@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="1.1. Statistical design"
+    id="EAID_7C497B5A_963C_4903_8114_4B5F38C2B9A8"
+    documentation="Description: The ability to map information needs and set up statistical processes for this purpose.&#xD; Explanation: -&#xD; Source: CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_4E10FFB4_A285_4523_AA78_12AC1DA6BA74"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_6B81148A_F8CB_4c16_BC77_8D2B5C042999"/>
+  <properties
+      key="Capability Level"
+      value="1"/>
+</archimate:Capability>

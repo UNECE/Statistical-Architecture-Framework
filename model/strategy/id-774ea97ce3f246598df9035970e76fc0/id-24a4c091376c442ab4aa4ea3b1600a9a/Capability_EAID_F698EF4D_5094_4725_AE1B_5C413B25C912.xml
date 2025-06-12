@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="2.1.2. Metadata management"
+    id="EAID_F698EF4D_5094_4725_AE1B_5C413B25C912"
+    documentation="Description: The ability to manage metadata throughout the lifecycle.&#xD; Explanation: -&#xD; Source: ESS Capabilities, CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_F38D273E_6E79_4f18_AA91_EF53BC76CC67"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_43494633_0A45_482b_8A25_4D7D81CF62B6"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="3.1.2. Purchasing &amp; contract management"
+    id="EAID_EED5469A_47A5_4e66_95B2_D33868952139"
+    documentation="Description: Acquiring goods and services and monitoring the agreements made with suppliers.&#xD; Explanation: -&#xD; Source: GEMMA, CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_57A6610D_A9AE_4199_BF24_355895FBC6C3"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_0E90D6A9_66E6_4225_AD49_5634731ADF27"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

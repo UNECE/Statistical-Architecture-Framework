@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="2.2.5. User research"
+    id="EAID_AF567730_9164_45a1_83E1_CD54184D1491"
+    documentation="Description: The ability to collect, assess and translate user needs into statistical output&#xD; Explanation: -&#xD; Source: CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_3426A9FA_BA04_4eb9_A239_4DA17FDF203D"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_2E214A33_5996_4876_8BA0_8EE42ED7338C"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

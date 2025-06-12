@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="2.1.3. Statistical quality management"
+    id="EAID_47C20668_F425_46da_B865_3E886C4CEB67"
+    documentation="Description: The ability to perform quality assessments, implement control mechanisms and initiate quality improvement mechanisms for the statistical value chain.&#xD; Explanation: -&#xD; Source: CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_AA26E33C_B81E_4ac5_AD8B_E1E1A82858FD"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_D8C6E0F5_7DFB_49e5_9F36_584EBF412727"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

@@ -1,0 +1,12 @@
+<archimate:Principle
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="A&amp;T-02 Active support"
+    id="EAID_002F3EB3_F59E_4021_BE5B_41DE677D411C"
+    documentation="Systems (hardware and software) have an active user community and/or vendor support. The rule of thumb is that we use the latest or the second-to-last major version.&#xD; Among other things, for business continuity it is necessary to be able to get quick and good support in resolving a disruption in the event of a disruption. It is also important from a security perspective that identified security risks are resolved in a timely manner.">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_9006BAE5_1965_46f5_BE83_1BE907EE5B09"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_5F7EF182_8D94_4697_8C59_FB0620114A3D"/>
+</archimate:Principle>

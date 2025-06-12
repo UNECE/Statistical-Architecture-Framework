@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="1.4.1. Statistical (output) analysis"
+    id="EAID_F028E250_6A24_40a6_8ABA_7059EDAACA59"
+    documentation="Description: The ability to validate output, interpret and explain statistical data and finalize output for dissemination using shared methodologies and processes.&#xD; Explanation: -&#xD; Source: ESS capability model">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_10FDA9B4_CE49_43f2_AD72_3B7BD225C804"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_29A8770D_9F8C_4bd4_A439_69F1E355AF08"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

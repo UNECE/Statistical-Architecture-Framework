@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="3.4.1. Services management"
+    id="EAID_E01D1A26_D550_4386_8233_234589602C24"
+    documentation="Description: Includes the design, development, implementation and management of services that the organization (parts) provides to customers and chain partners.&#xD; Explanation: -&#xD; Source: CIO office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_B7714DB9_FBD0_4112_9574_48E7B5C2EC4F"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_DE8570F8_C506_4226_B69E_72931581651E"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

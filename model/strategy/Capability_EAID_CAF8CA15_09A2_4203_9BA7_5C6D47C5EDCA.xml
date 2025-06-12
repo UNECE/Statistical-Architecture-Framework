@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="3.1. Business operations"
+    id="EAID_CAF8CA15_09A2_4203_9BA7_5C6D47C5EDCA"
+    documentation="Description: Contains all activities required for managing personnel, purchasing &amp; contracts, finances and housing and the associated systems and communication.&#xD; Explanation: -&#xD; Source: Chief Executive Officer BIM">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_16162BB1_E272_4838_878C_8C29A145AA79"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_DF4E1E05_4B67_49e7_89CD_78C91A1C2D09"/>
+  <properties
+      key="Capability Level"
+      value="1"/>
+</archimate:Capability>

@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="3.1.5. Administrative support"
+    id="EAID_F0F21356_FE72_420e_9F19_AA376CCB2B4F"
+    documentation="Description: Providing support with administrative tasks.&#xD; Explanation: -&#xD; Source: GEMMA">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_6206B8DC_1107_4380_8B6E_1322D678152E"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_24CDFDFD_376A_46d9_BF40_943E61366339"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

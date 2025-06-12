@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="2.2.1. Data source exploration"
+    id="EAID_5E11A8C9_58CC_4141_B1C5_D6A471D7A678"
+    documentation="Description: Exploring new data sources&#xD; Explanation: -&#xD; Source: ESS, CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_95A5F99A_81FC_4352_A891_D0BB176C6886"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_253C89EA_CD07_4f3f_8C6A_2EC6110D7B48"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

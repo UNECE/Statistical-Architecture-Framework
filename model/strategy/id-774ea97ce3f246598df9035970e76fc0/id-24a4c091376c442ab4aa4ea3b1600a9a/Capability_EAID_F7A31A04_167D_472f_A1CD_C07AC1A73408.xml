@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="3.1.1. Personnel management"
+    id="EAID_F7A31A04_167D_472f_A1CD_C07AC1A73408"
+    documentation="Description: Ensuring that sufficient qualified employees are available to carry out all business processes.&#xD; Explanation: -&#xD; Source: GEMMA, CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_D3D96F8A_F3D0_47d3_BB71_BD0B3B0A6E8E"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_41340930_A10D_4c5e_9A1C_CB950F3EF251"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

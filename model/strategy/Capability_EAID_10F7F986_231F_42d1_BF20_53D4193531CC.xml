@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="1.4. Analysis"
+    id="EAID_10F7F986_231F_42d1_BF20_53D4193531CC"
+    documentation="Description: The ability to examine and understand data before it is disseminated.&#xD; Explanation: Within Statistics Netherlands, statistical analysis is also known as statistical research in which certain connections or conclusions can be drawn on the basis of relationships (such as correlation).&#xD; Source: CIO office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_0B3327A9_E5F8_4350_91F6_DB7E882566AB"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_6DE22443_D575_4161_A460_DCD4803F47EC"/>
+  <properties
+      key="Capability Level"
+      value="1"/>
+</archimate:Capability>

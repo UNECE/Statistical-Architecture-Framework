@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="3.3.5. Physical security &amp; access control"
+    id="EAID_C961FB2A_1361_48d5_96BD_88F446EFD54E"
+    documentation="Description: Includes all activities that ensure controlled and safe access to buildings and spaces and that people and goods in these buildings and spaces are safe.&#xD; Explanation: -&#xD; Source: CIO office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_97EB9EFF_4B65_4327_A30C_B82D04399DF7"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_AB0C1929_2BF6_444c_9695_D5635179E9B6"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

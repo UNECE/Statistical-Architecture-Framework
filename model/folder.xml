@@ -1,0 +1,9 @@
+<archimate:ArchimateModel
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Statistical Architecture Framework"
+    id="EAPK_1FDD186E_B3EF_4b56_BDC7_C5CEF9B857ED"
+    version="5.0.0">
+  <properties
+      key="SSDefaultToolbox"
+      value="ArchiMate3::Motivation"/>
+</archimate:ArchimateModel>

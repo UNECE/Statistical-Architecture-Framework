@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="1.5.4. Statistical information management"
+    id="EAID_21DDA2F3_CF1E_4e8a_90F7_76E86267F160"
+    documentation="Description: The ability to prepare and distribute publications related to the statistical output.&#xD; Explanation: This includes press releases, interpretations and reports.&#xD; Source: ESS capability model, CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_68CD439E_D29B_4d52_A820_7320994EFE4A"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_112A4A7E_756A_4a4e_BE79_A91028ADBDF1"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

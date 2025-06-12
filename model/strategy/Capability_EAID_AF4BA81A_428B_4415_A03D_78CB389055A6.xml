@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="1.2. Data collection"
+    id="EAID_AF4BA81A_428B_4415_A03D_78CB389055A6"
+    documentation="Description: The ability to collect data for official statistics.&#xD; Explanation: -&#xD; Source: CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_382F11F1_7DB0_4581_A63E_F54470510477"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_52FDEFC3_BBA8_4d1e_92B4_920170CE895D"/>
+  <properties
+      key="Capability Level"
+      value="1"/>
+</archimate:Capability>

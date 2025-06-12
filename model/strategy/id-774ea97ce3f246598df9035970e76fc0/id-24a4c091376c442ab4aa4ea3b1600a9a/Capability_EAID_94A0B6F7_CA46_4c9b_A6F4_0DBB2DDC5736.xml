@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="2.1.1. Data lifecycle management"
+    id="EAID_94A0B6F7_CA46_4c9b_A6F4_0DBB2DDC5736"
+    documentation="Description: The ability to manage data throughout its entire lifecycle.&#xD; Explanation: -&#xD; Source: CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_6C948EE4_3D9A_42f0_92D4_2E90056BECA9"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_5F4804DE_F95A_4bfe_92E9_97DE2F1894CF"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

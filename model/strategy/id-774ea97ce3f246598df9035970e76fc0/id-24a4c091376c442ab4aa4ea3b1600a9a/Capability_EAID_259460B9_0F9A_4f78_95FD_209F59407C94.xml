@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="4.1.5. Accountability"
+    id="EAID_259460B9_0F9A_4f78_95FD_209F59407C94"
+    documentation="Description: Reporting to stakeholders inside and outside the organization on the extent to which obligations and agreements are met.&#xD; Explanation: -&#xD; Source: HORA">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_E8113F80_6C4D_4606_ABDD_77E8BC04E3B3"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_11A25114_8CAF_42f5_B0B5_85A73B8AEE3C"/>
+  <properties
+      key="Capability Level"
+      value="1"/>
+</archimate:Capability>

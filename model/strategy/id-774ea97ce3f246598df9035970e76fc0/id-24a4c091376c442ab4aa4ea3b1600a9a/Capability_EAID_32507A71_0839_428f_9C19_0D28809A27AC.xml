@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="1.3.6. Integrate statistics"
+    id="EAID_32507A71_0839_428f_9C19_0D28809A27AC"
+    documentation="Description: the ability to integrate separate statistics into one consistent whole. &#xD; Explanation: We know integration systems for, for example, the national accounts, sector accounts and labour accounts&#xD; Source: B&amp;I architecture, CIO office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_047B0D64_6983_4ef1_8FE9_142DC84346C4"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_4A9E2EF1_2CFC_49c6_B255_9E05B4A2890C"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="3.1.4. Communication management"
+    id="EAID_FFDC9BF7_A663_4d98_9ED4_EC95E9992CE8"
+    documentation="Description: Ensuring that the organization communicates correctly to internal and external parties.&#xD; Explanation: -&#xD; Source: GEMMA, HORA">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_B67643B0_4405_420a_BC9E_D3FD10E69CF1"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_32261CB2_CBEB_4b68_8C31_FBE8AA4C1F05"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

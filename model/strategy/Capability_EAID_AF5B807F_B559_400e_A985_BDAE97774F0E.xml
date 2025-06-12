@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="2. Additional and supporting statistical capabilities"
+    id="EAID_AF5B807F_B559_400e_A985_BDAE97774F0E"
+    documentation="Description: Includes additional statistical capabilities such as managing statistical data and conducting statistical research. &#xD; Explanation: -&#xD; Source: CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_4ED7C8CA_0E6D_4577_B617_6B5FFDE929B6"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_40B31561_493C_43d9_9E73_200B5DE17A82"/>
+  <properties
+      key="Capability Level"
+      value="0"/>
+</archimate:Capability>

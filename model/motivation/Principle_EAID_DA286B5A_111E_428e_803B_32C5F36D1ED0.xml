@@ -1,0 +1,12 @@
+<archimate:Principle
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Bus-02 IV is everyone's business"
+    id="EAID_DA286B5A_111E_428e_803B_32C5F36D1ED0"
+    documentation="All departments in the organization participate in IV decisions that are necessary to achieve organizational goals.&#xD; IV users are the key stakeholders in the application of technology to meet an organization's needs. &#xD; To ensure that IV is aligned with business operations, all departments in the organization must be involved in all aspects of the IV. Business experts from across the organization and the technical staff responsible for developing and maintaining the IV must work together as a team to jointly define the goals and objectives of the IV.">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_886E0FB7_2D03_4d78_A7C6_54A2BF53CB6F"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_8825255C_B63A_42b7_9A2F_1D04E97A7C84"/>
+</archimate:Principle>

@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="2.2.4. Data services"
+    id="EAID_36EDA2C4_9B01_4686_BE83_3C3EA6AE235D"
+    documentation="Description: the ability to provide data for statistical or scientific research.&#xD; Explanation: This applies to both internal and external datasets. These services are realized with, among other things, Microdata services.&#xD; Source: CBS Law article 41">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_2AB5B054_4AD4_433a_B7B5_68751F93C5B2"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_6A97AA57_8D61_4edf_A1E2_3D322E6A3DB5"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

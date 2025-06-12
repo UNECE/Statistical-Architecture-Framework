@@ -1,0 +1,12 @@
+<archimate:Principle
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Bus-04 Implement loosely coupled processes and systems"
+    id="EAID_03EA5942_602E_42d4_A368_E5E1B4824C52"
+    documentation="Processes and systems should be built as independently as possible. &#xD; &#xD; This means that processes and systems are designed in such a way that they are not intertwined and dependent on each other.&#xD; Functionality and logic should be shared with the rest of the organization via standard interfaces.&#xD; &#xD; Loosely coupling processes and systems offers more flexibility to adapt or replace individual processes and systems in the future. In addition, there are advantages in terms of scalability and robustness. Differences in security and privacy requirements can also be better enforced.">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_D9EA1AFD_0D07_4d4d_8713_AC2A651D6B31"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_D6298C0C_DDC5_4e50_80AA_761580ED3F89"/>
+</archimate:Principle>

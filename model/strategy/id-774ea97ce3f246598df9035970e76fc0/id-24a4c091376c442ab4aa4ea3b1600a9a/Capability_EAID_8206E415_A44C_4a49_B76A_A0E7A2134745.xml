@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="3.4.2. Contact management"
+    id="EAID_8206E415_A44C_4a49_B76A_A0E7A2134745"
+    documentation="Description: Maintaining relationships with customers and chain partners.&#xD; Explanation: -&#xD; Source: Gemma">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_0378F9EE_732E_4518_99D4_AFFAD4E1E1F8"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_452455B5_040E_4a58_A32B_C6834D56ED85"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

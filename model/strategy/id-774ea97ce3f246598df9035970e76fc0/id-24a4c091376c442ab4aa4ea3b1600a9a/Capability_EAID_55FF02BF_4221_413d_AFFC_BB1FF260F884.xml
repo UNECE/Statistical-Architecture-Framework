@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="1.1.2. Design statistics product"
+    id="EAID_55FF02BF_4221_413d_AFFC_BB1FF260F884"
+    documentation="Description: the ability to translate information needs into concrete designs consisting of datasets, process and workflow models and rule sets/methodology. This for the datasets that are released&#xD; Explanation: This concerns both the statistical product itself and the process that produces this product. Components of the process are various process steps, rule sets for the various process steps, methodology used, the process flow, the designs of the required datasets and the designs for the shared connection points for reuse. If the required datasets are not available, an observation assignment can follow. For primary observation, designs can then follow regarding sampling, questionnaire, etc. &#xD; Source: B&amp;I architecture, GSBPM, CIO office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_47DED069_E2BC_4720_B513_E1E6F2AE4D8B"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_E8D1F2F5_C38B_431f_9E21_52F2FFCC4586"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="3.4. Customer and chain interaction"
+    id="EAID_03E3DEF6_5A9E_4b3e_A149_5AA0EC2C4742"
+    documentation="Description: The ability to interact with the customer and chain partners, ensuring that they have the correct data and information and receiving notifications, requests and data.&#xD; Explanation: -&#xD; Source: GEMMA, CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_383F20F6_798B_4c56_B294_CA1F0B1DA837"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_6A7A0C22_A859_466d_A346_84DC4FFD3BA4"/>
+  <properties
+      key="Capability Level"
+      value="1"/>
+</archimate:Capability>

@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="4. Governance capabilities"
+    id="EAID_BAD3647E_9C0E_4d0e_8E31_C9796FD1141E"
+    documentation="Description: Includes the capabilities that provide direction to the organization by determining the desired strategy and the framework within which changes must take place.&#xD; Explanation: -&#xD; Source: Gemma, CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_D20E66A9_A277_4c5b_B734_5401D2433DB8"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_72269981_6969_40ab_B766_491D8249D76A"/>
+  <properties
+      key="Capability Level"
+      value="0"/>
+</archimate:Capability>

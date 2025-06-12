@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="3.3.6. IT Security services"
+    id="EAID_070A2868_12B6_4b57_90F7_3376E860AA15"
+    documentation="Description: IT services that serve to support information security &#xD; Explanation: Examples include: Endpoint protection, PKI, network security management,&#xD; Source: CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_B1B85816_9FB6_4bcb_8AE4_18F124988D88"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_E61329B5_7D3A_49fa_9E81_5E9C561FAE15"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

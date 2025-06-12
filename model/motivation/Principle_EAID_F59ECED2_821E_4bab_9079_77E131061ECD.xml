@@ -1,0 +1,12 @@
+<archimate:Principle
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="A&amp;T-03 Active Life Cycle management"
+    id="EAID_F59ECED2_821E_4bab_9079_77E131061ECD"
+    documentation="With active Life Cycle management we prevent &#xD; overdue maintenance in the IV landscape so that &#xD; continuity &amp; security risks are mitigated, among other things. &#xD; &#xD; Without Life Cycle management, systems or &#xD; parts thereof can become outdated and thus &#xD; become vulnerable in terms of security. &#xD; Without active Life Cycle management, a &#xD; technological debt is also built up that, when it &#xD; eventually has to be repaid, will require disproportionate &#xD; effort or introduce continuity risks. Keeping systems and components up-to-date in accordance with established LCM policy &#xD; mitigates these risks.">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_33319E45_E03C_48ac_AA8B_4840ACC083E3"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_A6909E75_5DE2_4814_A308_2517C4FF8E1C"/>
+</archimate:Principle>

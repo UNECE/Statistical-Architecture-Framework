@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="3.1.6. Facility management"
+    id="EAID_33A713F6_24D0_42d8_9EA3_2A25837B3FA4"
+    documentation="Description: Organizational function that integrates people, place and process within the built environment.&#xD; Explanation: Description based on ISO 41011. The purpose of facility management is to improve the quality of life of people and the productivity of the core activity.&#xD; Source: ISO 41011">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_8283AFE7_6205_4e8d_A72C_5EB1697DD69C"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_BA7FE5A8_6A8F_4358_A764_121A28A1CC80"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

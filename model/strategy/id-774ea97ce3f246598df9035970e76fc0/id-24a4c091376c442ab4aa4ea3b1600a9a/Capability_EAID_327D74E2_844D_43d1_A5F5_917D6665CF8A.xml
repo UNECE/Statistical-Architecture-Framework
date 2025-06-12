@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="2.2.2. Product Innovation"
+    id="EAID_327D74E2_844D_43d1_A5F5_917D6665CF8A"
+    documentation="Description: The ability to innovate, i.e. create new statistical products based on existing data sources and explore new data sources that are useful and important to users.&#xD; Explanation: A design phase may be preceded by product innovation.&#xD; Source: ESS">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_68C985EA_36CB_4966_9997_75E97FF21447"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_135FF6C7_1E33_4eea_A162_ADE2511A513C"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

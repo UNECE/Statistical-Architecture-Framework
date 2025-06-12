@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="1.3.1. Data standardization"
+    id="EAID_B33BB99B_2EFB_4c60_A0F7_BB192C599BC5"
+    documentation="Description: the ability to standardize data without loss of content. &#xD; Explanation: This includes standardization of data format, codes for categories, (link) keys, possible units of measurement (for weight, distance, time). Data standardization without loss of content takes place immediately after receipt of the raw data because we want this standardization as early as possible in the processing process for efficiency reasons.&#xD; Source: update B&amp;I architecture, CIO office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_6EDA9A76_47CB_4896_B17F_1618C7A950F0"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_3235770C_E7C7_49fc_B784_D681662A03FA"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="1.5.2. Promotion to use"
+    id="EAID_1F3F5F06_34BE_43e7_9FBB_C9D85498CF5F"
+    documentation="Description: The ability to promote the statistical output to potential users and to inform the press and other interested parties about the statistical output.&#xD; Explanation: -&#xD; Source: ESS capability model">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_FD089483_30D5_4a3d_AF6B_B81A18A70F6F"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_BD5725CB_7C2C_4e58_9747_B08D7C76D577"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

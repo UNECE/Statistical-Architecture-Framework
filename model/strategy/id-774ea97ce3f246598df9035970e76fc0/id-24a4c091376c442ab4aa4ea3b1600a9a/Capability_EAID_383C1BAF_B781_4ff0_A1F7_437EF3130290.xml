@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="2.2.3. Methodology"
+    id="EAID_383C1BAF_B781_4ff0_A1F7_437EF3130290"
+    documentation="Description: The ability to investigate new methods for the statistical process.&#xD; Explanation: -&#xD; Source: CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_49989740_FEF4_4140_A151_A85C81032A51"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_1C4E4906_54FD_4226_AC6D_2D1BF35E3336"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

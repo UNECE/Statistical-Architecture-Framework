@@ -1,0 +1,12 @@
+<archimate:Principle
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Bus-03 Business Continuity"
+    id="EAID_ABAF67B8_A625_4b3d_9A8F_957ACB0D014C"
+    documentation="Organizational activities are maintained despite system or employee outages.&#xD; &#xD; As systems and processes become increasingly important to operations, we become more dependent on them; therefore, we must consider the reliability of such systems and processes in their design and operation. Departments throughout the organization must have the ability to continue their activities, regardless of external events, within agreed lead times. Hardware failures, natural disasters, and data corruption must not disrupt or stop operations. The enterprise must be able to operate on the basis of alternative IV systems/processes.">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_081EA8EE_0CD6_4db4_AF8B_F850C3507526"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_EA934F19_067D_45e4_8308_2A3A40C70AE2"/>
+</archimate:Principle>

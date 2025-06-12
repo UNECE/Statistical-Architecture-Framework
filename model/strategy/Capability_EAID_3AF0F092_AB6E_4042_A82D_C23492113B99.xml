@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="1.5. Dissemination"
+    id="EAID_3AF0F092_AB6E_4042_A82D_C23492113B99"
+    documentation="Description: The ability to manage the release of statistical products to users.&#xD; Explanation: This applies to both internal and external users.&#xD; Source: CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_30908CD3_2C09_4649_AA00_E68B52B1A6A6"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_566D08EA_E938_462e_A8E8_D85E098C2457"/>
+  <properties
+      key="Capability Level"
+      value="1"/>
+</archimate:Capability>

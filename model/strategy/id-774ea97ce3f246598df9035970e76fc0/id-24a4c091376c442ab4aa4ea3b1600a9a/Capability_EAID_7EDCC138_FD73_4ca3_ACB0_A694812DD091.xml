@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="3.4.4. Self-service"
+    id="EAID_7EDCC138_FD73_4ca3_ACB0_A694812DD091"
+    documentation="Description: Offers the opportunity to customers and chain partners to find solutions to questions about the services purchased themselves or to make justified adjustments to these services without the intervention of an employee.&#xD; Explanation: -&#xD; Source: CIO-office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_F89DD359_1871_452a_92B6_00D4788B168E"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_E4C9BBC6_0877_4622_9A58_24BFEBE0014D"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="2.1.4. Statistical register management"
+    id="EAID_66152CB0_810D_4283_8790_0C8AD2EDF768"
+    documentation="Description: The ability to set up, maintain and make available &quot;registry&quot; services for collecting and integrating data.&#xD; Explanation: Some examples are: EHO, SBB, ABR&#xD; Source: ESS capability model">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_687F1047_A2F2_4f8b_9144_819E513DE4B3"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_230E2475_604B_4356_8048_738E2DE56AFD"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

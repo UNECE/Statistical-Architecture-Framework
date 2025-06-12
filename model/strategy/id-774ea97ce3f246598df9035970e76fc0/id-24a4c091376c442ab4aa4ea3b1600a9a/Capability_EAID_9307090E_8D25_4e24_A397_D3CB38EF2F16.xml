@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="1.2.2. Secondary data collection"
+    id="EAID_9307090E_8D25_4e24_A397_D3CB38EF2F16"
+    documentation="Description: Secondary observation is the activity that describes the work required to collect data and associated metadata from third parties for the production of statistics. &#xD; Explanation: Within secondary observation, sources with data collected by third parties are used as much as possible.&#xD; Source: ESS capability model, CIO office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_3A2A54E3_639C_4c60_8FF6_B881B7E9E28B"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_1033BE51_678B_4860_9AD9_2DF97852C5E1"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

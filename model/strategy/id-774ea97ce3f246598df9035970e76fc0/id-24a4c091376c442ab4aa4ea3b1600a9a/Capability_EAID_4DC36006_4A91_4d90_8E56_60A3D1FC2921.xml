@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="3.3.2. Security planning"
+    id="EAID_4DC36006_4A91_4d90_8E56_60A3D1FC2921"
+    documentation="Description: Includes the activities of identifying, analyzing, and planning measures to ensure the security of a system, network, organization, and facility.&#xD; Explanation: -&#xD; Source: CIO office">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_5073D0AB_3BBC_4c65_B983_2F679BA21BA6"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_08DC37A5_EEDE_4cf5_9040_A33C9324A525"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

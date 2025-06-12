@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="3.2.2. Functional management"
+    id="EAID_FEB3D581_ED54_413c_AF31_6046B8F2E0AB"
+    documentation="Description: Performing management tasks so that applications optimally support business processes. &#xD; Explanation: For example, by collecting existing user requirements and translating them into new application functionality.&#xD; Source: GEMMA">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_14B43D53_1BD9_443b_80D4_4FE292A28AD9"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_15D5DBBE_B822_4487_B49C_EC7B0066F93C"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>

@@ -1,0 +1,15 @@
+<archimate:Capability
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="3.3.4. Logical identity and access control"
+    id="EAID_DEBB5E67_A4DD_45bb_A48E_78B74367E241"
+    documentation="Description: Includes all activities that ensure that a person, organization or IT facility can only use automated functions for which it has been granted access rights through an application process.&#xD; Explanation: -&#xD; Source: Nora">
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_B9A8B8C1_E4D7_440b_A354_E8EA3E98A3B7"/>
+  <properties
+      key="archimate_element_identifier"
+      value="EAID_7BCF6889_AF46_4db8_B159_5F15759DBEBC"/>
+  <properties
+      key="Capability Level"
+      value="2"/>
+</archimate:Capability>
