@@ -8,38 +8,13 @@ This project provides a reference architecture for use in a National Statistics 
 - **Modeling Language:** [ArchiMate](https://www.opengroup.org/archimate/)
 - **Tool:** [Archi](https://www.archimatetool.com/) (open-source ArchiMate modeling tool)
 
+## Getting started
+Please refer to the GettingStarted.md in the docs folder.
+
 ## Repository Structure
 
-- `/models/` — ArchiMate model files (`*.archimate`)
 - `/docs/` — Documentation and rendered views
-- `/scripts/` — Automation and integration scripts
-
-## Using the Archi Tool with GitHub
-
-1. **Install Archi:**
-    - Download from [archimatetool.com](https://www.archimatetool.com/download/).
-
-2. **Clone this repository:**
-    ```sh
-    git clone https://github.com/your-org/unece-saf.git
-    ```
-
-3. **Open the Model in Archi:**
-    - Launch Archi.
-    - Use `File > Import > ArchiMate Model` to open `.archimate` files from `/models/`.
-
-4. **Version Control Workflow:**
-    - Save your model changes in Archi.
-    - Commit and push updates using Git:
-      ```sh
-      git add models/
-      git commit -m "Update reference architecture"
-      git push
-      ```
-
-5. **Collaboration Tips:**
-    - Use branches for feature/model changes.
-    - Resolve merge conflicts in Archi by importing and merging models.
+- `/model/` — Archi contents
 
 ## References
 
