@@ -52,7 +52,8 @@ o Standardization without loss of content
 o Editing, derivation, and non-response correction
 o Estimation and closed-loop
 o Statistically composed and composite statistical products
-• Dissemination,
+• Dissemination
+
 with a distinction between them within each domain
 • Design of the execution processes; provides metadata
 • Implementation of the execution processes; provides the execution process
@@ -63,3 +64,5 @@ Each domain focuses on adding a specific statistical value. Once sufficient valu
 To realize statistical value within a business domain, execution processes (including governance) have been designed and implemented. How an execution process adds statistical value, and is therefore designed and implemented, falls outside the scope of the B&I architecture. This framework must stem from, among other things, the methodology set.
 
 The execution processes between the business domains are loosely coupled. Each has its own design and implementation. For the mutual exchange of data, they are loosely linked via steady state interfaces. To this end, five steady state phases are recognized that exist between the business domains: [1] raw data, [2] standardized data without loss of content, [3] processed data, [4] statistics, and [5] released data. An steady state phase is therefore an environment where high-quality versions of data are brought together for exchange, but it also represents a value in the value chain of this data.
+
+
