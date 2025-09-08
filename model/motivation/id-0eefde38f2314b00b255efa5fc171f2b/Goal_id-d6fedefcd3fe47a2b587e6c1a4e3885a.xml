@@ -1,0 +1,5 @@
+<archimate:Goal
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Support for Data Innovation"
+    id="id-d6fedefcd3fe47a2b587e6c1a4e3885a"
+    documentation="The statistical community is under pressure to integrate novel data sources, such as big data, geospatial data, and administrative records. SAF provides the architectural foundation to incorporate these sources while maintaining statistical quality, methodological rigor, and compliance. Supporting data innovation is key to ensuring official statistics remain relevant and authoritative in the digital age.&#xD;&#xA;"/>

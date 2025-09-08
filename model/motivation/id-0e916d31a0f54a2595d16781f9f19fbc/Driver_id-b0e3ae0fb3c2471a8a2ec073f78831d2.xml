@@ -1,0 +1,5 @@
+<archimate:Driver
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Policy &amp; Regulation"
+    id="id-b0e3ae0fb3c2471a8a2ec073f78831d2"
+    documentation="Statistical offices operate in a regulatory environment that is increasingly complex, with requirements such as GDPR, the EU Data Act, and the upcoming European Health Data Space (EHDS). These regulations influence architecture design by mandating strong governance, privacy controls, and interoperability. SAF integrates these drivers to ensure NSIs remain compliant while retaining flexibility.&#xD;&#xA;"/>
