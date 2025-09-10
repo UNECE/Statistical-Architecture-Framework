@@ -1,0 +1,5 @@
+<archimate:Goal
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Sustainable Compliance"
+    id="id-f020a87189ae4f2483c54b6a86998ae5"
+    documentation="Compliance with international frameworks such as GSBPM, GSIM, GAMSO, and newer EU frameworks like EHDS and Data Spaces is essential for statistical comparability and trust. SAF ensures that architecture decisions align with these standards by design, reducing the risk of ad hoc adaptations and compliance failures. This long-term compliance contributes to sustainable operations and reputational trust.&#xD;&#xA;"/>
