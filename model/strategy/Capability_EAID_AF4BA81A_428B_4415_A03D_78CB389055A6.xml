@@ -2,7 +2,7 @@
     xmlns:archimate="http://www.archimatetool.com/archimate"
     name="1.2. Data collection"
     id="EAID_AF4BA81A_428B_4415_A03D_78CB389055A6"
-    documentation="Description: The ability to collect data for official statistics.&#xD; Explanation: -&#xD; Source: GSBPM">
+    documentation="Description: The ability to collect data for official statistics.&#xD; Explanation: -&#xD;Source: GSBPM 5.2, Collect&#xA;Link : https://unece.github.io/GSBPM-5.2/#collect-phase">
   <properties
       key="archimate_element_identifier"
       value="EAID_382F11F1_7DB0_4581_A63E_F54470510477"/>

@@ -2,7 +2,7 @@
     xmlns:archimate="http://www.archimatetool.com/archimate"
     name="1.5. Dissemination"
     id="EAID_3AF0F092_AB6E_4042_A82D_C23492113B99"
-    documentation="Description: The ability to manage the release of statistical products to users.&#xD; Explanation: This applies to both internal and external users.&#xD; Source: CIO-office">
+    documentation="Description: The ability to manage the release of statistical products to users.&#xD;Explanation: This applies to both internal and external users.&#xD;Source: GSBPM 5.2, Disseminate&#xA;Link: https://unece.github.io/GSBPM-5.2/#disseminate-phase">
   <properties
       key="archimate_element_identifier"
       value="EAID_30908CD3_2C09_4649_AA00_E68B52B1A6A6"/>
