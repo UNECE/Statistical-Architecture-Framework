@@ -2,7 +2,7 @@
     xmlns:archimate="http://www.archimatetool.com/archimate"
     name="1.5.1. Publication management"
     id="EAID_0EC8EF45_7715_4be9_A546_9351EA12D390"
-    documentation="Description: The ability to manage the release of statistical output and associated content according to release schedules, so that users have predictable and equal access to data.&#xD; Explanation: -&#xD; Source: ESS capability model">
+    documentation="Description: The ability to manage the release of statistical output and associated content according to release schedules, so that users have predictable and equal access to data.&#xD;Explanation: -&#xD;Source: ESS capability model">
   <properties
       key="archimate_element_identifier"
       value="EAID_C94D4D5B_878E_40eb_AEB2_9EF293F84DDD"/>
