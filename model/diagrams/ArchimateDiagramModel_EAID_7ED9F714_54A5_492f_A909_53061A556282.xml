@@ -1093,9 +1093,9 @@
       </sourceConnections>
       <bounds
           x="39"
-          y="66"
+          y="48"
           width="298"
-          height="244"/>
+          height="262"/>
       <children
           xsi:type="archimate:DiagramModelArchimateObject"
           id="EAID_DN000000_CA46_4c9b_A6F4_0DBB2DDC5736"
@@ -1106,7 +1106,7 @@
           fillColor="#ffff99">
         <bounds
             x="35"
-            y="47"
+            y="65"
             width="120"
             height="55"/>
         <archimateElement
@@ -1123,7 +1123,7 @@
           fillColor="#ffff99">
         <bounds
             x="160"
-            y="47"
+            y="65"
             width="120"
             height="55"/>
         <archimateElement
@@ -1140,7 +1140,7 @@
           fillColor="#ffff99">
         <bounds
             x="35"
-            y="150"
+            y="168"
             width="120"
             height="55"/>
         <archimateElement
@@ -1156,7 +1156,7 @@
           fillColor="#ffff99">
         <bounds
             x="160"
-            y="150"
+            y="168"
             width="120"
             height="55"/>
         <archimateElement
@@ -1840,7 +1840,7 @@
           lineColor="#9a8484"
           fillColor="#ffff99">
         <bounds
-            x="23"
+            x="12"
             y="146"
             width="120"
             height="55"/>
@@ -1857,7 +1857,7 @@
           lineColor="#9a8484"
           fillColor="#ffff99">
         <bounds
-            x="23"
+            x="12"
             y="51"
             width="120"
             height="55"/>

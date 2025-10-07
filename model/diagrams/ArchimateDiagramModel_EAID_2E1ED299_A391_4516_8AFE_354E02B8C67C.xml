@@ -311,9 +311,9 @@
         fillColor="#ccffff">
       <bounds
           x="29"
-          y="142"
+          y="72"
           width="301"
-          height="196"/>
+          height="266"/>
       <archimateElement
           xsi:type="archimate:Capability"
           href="Capability_EAID_F1E39D7C_F7CF_455e_8D8B_4EC309568FF4.xml#EAID_F1E39D7C_F7CF_455e_8D8B_4EC309568FF4"/>
