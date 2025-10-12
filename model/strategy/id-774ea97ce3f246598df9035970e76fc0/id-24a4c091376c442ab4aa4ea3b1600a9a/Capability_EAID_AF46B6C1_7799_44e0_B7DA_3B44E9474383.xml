@@ -2,7 +2,7 @@
     xmlns:archimate="http://www.archimatetool.com/archimate"
     name="3.4.3. Service Agreement"
     id="EAID_AF46B6C1_7799_44e0_B7DA_3B44E9474383"
-    documentation="Description: Includes drawing up, managing and enforcing service agreements with clients and chain partners.&#xD; Explanation: These contracts apply to clients to whom CBS provides services such as Remote Access for external researchers or for Additional Statistical Services, but also to parties that supply information for primary or secondary observation. If these parties fail to comply, CBS can take enforcement action.&#xD; Source: CIO-office">
+    documentation="Description: Includes drawing up, managing and enforcing service agreements with clients and chain partners.&#xD;Explanation: These contracts apply to clients to whom CBS provides services such as Remote Access for external researchers or for Additional Statistical Services, but also to parties that supply information for primary or secondary observation. If these parties fail to comply, CBS can take enforcement action.&#xD;Source:">
   <properties
       key="archimate_element_identifier"
       value="EAID_5EDBE693_625D_4cbd_BAB9_BB7050D7840C"/>

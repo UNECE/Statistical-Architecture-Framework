@@ -2,7 +2,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:archimate="http://www.archimatetool.com/archimate"
     name="Capability Map Viewpoint - Level 1,2"
-    id="EAID_2E1ED299_A391_4516_8AFE_354E02B8C67C">
+    id="EAID_2E1ED299_A391_4516_8AFE_354E02B8C67C"
+    documentation="A capability map provides a structured, visual overview of the organization’s core abilities required to achieve its mission of producing and disseminating official statistics. This map displays capabilities as stable, business-centric building blocks, grouped to align with strategic goals and is useful to highlight areas for development and investment.&#xA;&#xA;A capability map helps a statistical bureau assess and communicate its strengths, gaps, and areas needing improvement to support organizational objectives such as delivering high-quality, timely statistics, maintaining the trust of data providers, and promoting innovation in data processing.&#xA;&#xA;">
   <children
       xsi:type="archimate:DiagramModelArchimateObject"
       id="EAID_DN000000_1A38_4f15_94D8_378EE1457430"
@@ -311,9 +312,9 @@
         fillColor="#ccffff">
       <bounds
           x="29"
-          y="142"
+          y="72"
           width="301"
-          height="196"/>
+          height="266"/>
       <archimateElement
           xsi:type="archimate:Capability"
           href="Capability_EAID_F1E39D7C_F7CF_455e_8D8B_4EC309568FF4.xml#EAID_F1E39D7C_F7CF_455e_8D8B_4EC309568FF4"/>

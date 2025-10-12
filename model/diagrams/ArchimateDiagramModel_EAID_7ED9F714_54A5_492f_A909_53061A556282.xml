@@ -2,7 +2,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:archimate="http://www.archimatetool.com/archimate"
     name="Capability Map Viewpoint - Level 1,2,3"
-    id="EAID_7ED9F714_54A5_492f_A909_53061A556282">
+    id="EAID_7ED9F714_54A5_492f_A909_53061A556282"
+    documentation="A capability map provides a structured, visual overview of the organization’s core abilities required to achieve its mission of producing and disseminating official statistics. This map displays capabilities as stable, business-centric building blocks, grouped to align with strategic goals and is useful to highlight areas for development and investment.&#xA;&#xA;A capability map helps a statistical bureau assess and communicate its strengths, gaps, and areas needing improvement to support organizational objectives such as delivering high-quality, timely statistics, maintaining the trust of data providers, and promoting innovation in data processing.">
   <children
       xsi:type="archimate:DiagramModelArchimateObject"
       id="EAID_DN000001_1A38_4f15_94D8_378EE1457430"
@@ -1093,9 +1094,9 @@
       </sourceConnections>
       <bounds
           x="39"
-          y="66"
+          y="48"
           width="298"
-          height="244"/>
+          height="262"/>
       <children
           xsi:type="archimate:DiagramModelArchimateObject"
           id="EAID_DN000000_CA46_4c9b_A6F4_0DBB2DDC5736"
@@ -1106,7 +1107,7 @@
           fillColor="#ffff99">
         <bounds
             x="35"
-            y="47"
+            y="65"
             width="120"
             height="55"/>
         <archimateElement
@@ -1123,7 +1124,7 @@
           fillColor="#ffff99">
         <bounds
             x="160"
-            y="47"
+            y="65"
             width="120"
             height="55"/>
         <archimateElement
@@ -1140,7 +1141,7 @@
           fillColor="#ffff99">
         <bounds
             x="35"
-            y="150"
+            y="168"
             width="120"
             height="55"/>
         <archimateElement
@@ -1156,7 +1157,7 @@
           fillColor="#ffff99">
         <bounds
             x="160"
-            y="150"
+            y="168"
             width="120"
             height="55"/>
         <archimateElement
@@ -1840,7 +1841,7 @@
           lineColor="#9a8484"
           fillColor="#ffff99">
         <bounds
-            x="23"
+            x="12"
             y="146"
             width="120"
             height="55"/>
@@ -1857,7 +1858,7 @@
           lineColor="#9a8484"
           fillColor="#ffff99">
         <bounds
-            x="23"
+            x="12"
             y="51"
             width="120"
             height="55"/>

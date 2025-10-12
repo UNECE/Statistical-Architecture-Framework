@@ -2,7 +2,7 @@
     xmlns:archimate="http://www.archimatetool.com/archimate"
     name="1.3.5. Estimating population parameters"
     id="EAID_14EBA873_5E12_4851_895D_D6F0F8FEF33C"
-    documentation="Description: the ability to estimate population parameters from microdata. &#xD; Explanation: estimated population parameters often manifest themselves as observations (the cells) in a dimensional dataset (table). There are several estimation methods, including the traditional 'weight and aggregate'. There are several techniques to arrive at the weights. Sometimes weights are adjusted to give found outliers, see capacity &quot;Content check&quot; a smaller weight. &#xD; Source: B&amp;I architecture, CIO office">
+    documentation="Description: the ability to estimate population parameters from microdata. &#xD;Explanation: estimated population parameters often manifest themselves as observations (the cells) in a dimensional dataset (table). There are several estimation methods, including the traditional 'weight and aggregate'. There are several techniques to arrive at the weights. Sometimes weights are adjusted to give found outliers, see capacity &quot;Content check&quot; a smaller weight. &#xD;Source: B&amp;I architecture, CIO office">
   <properties
       key="archimate_element_identifier"
       value="EAID_C5A79B02_9C3B_4a58_AD55_23F08E70C05A"/>
