@@ -1,8 +1,8 @@
 <archimate:Capability
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="1.1. Statistical design"
+    name="1.1. Statistical design and build"
     id="EAID_7C497B5A_963C_4903_8114_4B5F38C2B9A8"
-    documentation="Description: The ability to map information needs and set up statistical processes for this purpose.&#xD; Explanation: -&#xD; Source: GSBPM">
+    documentation="Description: The ability to map information needs and set up statistical processes for this purpose.&#xD;Explanation: -&#xD;Source: GSBPM 5.2, Design&#xA;Link: https://unece.github.io/GSBPM-5.2/#design-phase">
   <properties
       key="archimate_element_identifier"
       value="EAID_4E10FFB4_A285_4523_AA78_12AC1DA6BA74"/>

@@ -2,7 +2,7 @@
     xmlns:archimate="http://www.archimatetool.com/archimate"
     name="1.5.3. Facilitate data access"
     id="EAID_B0CCCE95_2DD4_4d7f_9D0C_64777823EDD2"
-    documentation="Description: The ability to make statistical data and metadata available to humans and machines through multiple channels.&#xD; Explanation: -&#xD; Source: ESS capability model, CIO office">
+    documentation="Description: The ability to make statistical data and metadata available to humans and machines through multiple channels.&#xD;Explanation: -&#xD;Source: ESS capability model">
   <properties
       key="archimate_element_identifier"
       value="EAID_210DD12F_28D7_495a_868E_2454304959F5"/>

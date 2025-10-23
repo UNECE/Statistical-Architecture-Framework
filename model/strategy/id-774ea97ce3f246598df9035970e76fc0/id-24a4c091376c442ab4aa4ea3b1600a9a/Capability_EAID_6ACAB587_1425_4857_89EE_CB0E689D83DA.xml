@@ -2,7 +2,7 @@
     xmlns:archimate="http://www.archimatetool.com/archimate"
     name="1.3.4. Adjusting and imputing"
     id="EAID_6ACAB587_1425_4857_89EE_CB0E689D83DA"
-    documentation="Description: the ability to adjust possible incorrect values and missing values. &#xD; Explanation: together with the &quot;Content check&quot; capacity, this capacity is often called editing. The check is then carried out using editing rules. The adjustment is then often based on imputation. The imputed values do not yet have to comply with the editing rules. To this end, a final 'adjustment' often takes place with the editing rules as a restriction. &#xD; Source: GSBPM, ESS capability model, B&amp;I architecture, CIO office">
+    documentation="Description: the ability to adjust possible incorrect values and missing values. &#xD; Explanation: together with the &quot;Content check&quot; capacity, this capacity is often called editing. The check is then carried out using editing rules. The adjustment is then often based on imputation. The imputed values do not yet have to comply with the editing rules. To this end, a final 'adjustment' often takes place with the editing rules as a restriction. &#xD; Source: GSBPM, ESS capability model">
   <properties
       key="archimate_element_identifier"
       value="EAID_38590372_4D2A_4428_BC90_3222D744B94C"/>

@@ -2,7 +2,7 @@
     xmlns:archimate="http://www.archimatetool.com/archimate"
     name="1.2.1. Primary data collection"
     id="EAID_7F22F240_1D4D_49db_8B43_70E817BE9648"
-    documentation="Description: Primary observation describes the ability to set up and manage surveys, through to completion and transfer for processing and analysis. Primary observation collects both the data and the associated metadata.&#xD; Explanation: Primary observation is a domain within data collection and performs observations via one or more modes. The research population and the size of the sample are determined together with the client based on the needs. A distinction is made between personal surveys and company surveys. Components of surveys include samples, questionnaires, approach strategies&#xD; Source: ESS capability model, CIO-office">
+    documentation="Description: Primary observation describes the ability to set up and manage surveys, through to completion and transfer for processing and analysis. Primary observation collects both the data and the associated metadata.&#xD; Explanation: Primary observation is a domain within data collection and performs observations via one or more modes. The research population and the size of the sample are determined together with the client based on the needs. A distinction is made between personal surveys and company surveys. Components of surveys include samples, questionnaires, approach strategies&#xD;Source: ESS capability model">
   <properties
       key="archimate_element_identifier"
       value="EAID_835D4A7F_193B_4cc1_9018_EBEB3B18E6E6"/>

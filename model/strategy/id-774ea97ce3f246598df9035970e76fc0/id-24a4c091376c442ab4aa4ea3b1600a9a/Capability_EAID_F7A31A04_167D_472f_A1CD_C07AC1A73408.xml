@@ -1,8 +1,8 @@
 <archimate:Capability
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="3.1.1. Personnel management"
+    name="3.1.1. Personnel management (HR)"
     id="EAID_F7A31A04_167D_472f_A1CD_C07AC1A73408"
-    documentation="Description: Ensuring that sufficient qualified employees are available to carry out all business processes.&#xD; Explanation: -&#xD; Source: GEMMA, CIO-office">
+    documentation="Description: Ensuring that sufficient qualified employees are available to carry out all business processes.&#xD;Explanation: -&#xD;Source: ">
   <properties
       key="archimate_element_identifier"
       value="EAID_D3D96F8A_F3D0_47d3_BB71_BD0B3B0A6E8E"/>
