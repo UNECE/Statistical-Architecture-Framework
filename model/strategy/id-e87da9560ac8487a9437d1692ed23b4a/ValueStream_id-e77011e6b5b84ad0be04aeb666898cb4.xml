@@ -1,0 +1,5 @@
+<archimate:ValueStream
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Store and Register Raw Data Artefacts"
+    id="id-e77011e6b5b84ad0be04aeb666898cb4"
+    documentation="Persist data in controlled repositories, assign identifiers, and register associated metadata, ownership, and provenance."/>

@@ -2,7 +2,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:archimate="http://www.archimatetool.com/archimate"
     name="SAF Outcomes"
-    id="id-966207c1a8d94846a55b73c9dcab62aa">
+    id="id-966207c1a8d94846a55b73c9dcab62aa"
+    documentation="Architecture outcomes describe the tangible benefits that organizations can expect when adopting SAF. They translate principles, goals, and drivers into measurable impacts such as improved interoperability, reduced costs, and enhanced data quality. Outcomes are critical for demonstrating the value of architecture to stakeholders, as they provide a clear “return on investment” for adopting the framework.&#xD;&#xA;&#xD;&#xA;In the SAF, outcomes are both technical and societal. On the technical side, NSIs benefit from streamlined processes, better metadata management, and more efficient system development. On the societal side, SAF supports trust, transparency, and comparability of statistics, which are essential for informed policy-making and democratic accountability. This dual perspective ensures that SAF delivers benefits beyond IT, directly supporting the mission of statistical organizations.&#xD;&#xA;&#xD;&#xA;By emphasizing outcomes, SAF also reinforces a culture of continuous improvement. Outcomes are not static — they evolve as organizations mature and as new challenges emerge. Making outcomes explicit allows NSIs to assess progress, measure success, and adjust their modernization strategies in line with both internal priorities and external demands.&#xD;&#xA;"
+    viewpoint="motivation">
   <children
       xsi:type="archimate:DiagramModelArchimateObject"
       id="id-ab606daa81c04b20bd90e08cb4f05f46">

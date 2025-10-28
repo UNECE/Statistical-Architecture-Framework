@@ -1,0 +1,5 @@
+<archimate:ValueStream
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Validate Structural and Semantic Conformance"
+    id="id-e8aac973d2c8465aa3eb1e42b3fc0c93"
+    documentation="Execute validation routines to ensure the data conforms to standards and classifications."/>

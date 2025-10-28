@@ -1,0 +1,5 @@
+<archimate:ValueStream
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Collect or Receive Data"
+    id="id-8dc6f97688954dd7b813f6a6f6b4539d"
+    documentation="Execute data collection through surveys, APIs, secure data transfers, or data space connectors. Capture metadata during ingestion."/>

@@ -1,0 +1,5 @@
+<archimate:ValueStream
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Conduct Error Detection and Quality Diagnostics"
+    id="id-724cce4d16f54c3a8b580c4ec47ad3ef"
+    documentation="Identify logical errors, duplicates, missing values, or outliers through rule-based or machine-learning validation."/>

@@ -1,0 +1,67 @@
+<archimate:ArchimateDiagramModel
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="3 Data Editing and Enrichment Value Stream"
+    id="id-7eace385d7574bc389044438d062c8a5"
+    documentation="Purpose:&#xD;&#xA;To improve the accuracy, completeness, and internal consistency of datasets through validation, correction, and enrichment processes.&#xD;&#xA;&#xD;&#xA;Description:&#xD;&#xA;At this stage, value is created by enhancing data reliability and usability. Activities include error detection, imputation of missing data, derivation of new variables, and correction of inconsistencies or non-response. The goal is to maximize the analytical value of the dataset while maintaining transparency and traceability of transformations.&#xD;&#xA;&#xD;&#xA;The resulting artefact — an edited and enriched dataset — represents data that has been cleansed, quality-checked, and enhanced, ready for statistical estimation or modeling.&#xD;&#xA;&#xD;&#xA;Key capabilities: Data Quality Management, Data Editing, Imputation &amp; Derivation, Non-response Correction, Data Validation &amp; Verification."
+    viewpoint="value_stream">
+  <children
+      xsi:type="archimate:DiagramModelNote"
+      id="id-b379cf71128e4c939bb5ec206cfd0f53"
+      textAlignment="1"
+      content="To detect and correct errors, fill gaps, and derive new variables, improving the accuracy and completeness of data.">
+    <bounds
+        x="24"
+        y="24"
+        width="185"
+        height="80"/>
+  </children>
+  <children
+      xsi:type="archimate:DiagramModelArchimateObject"
+      id="id-39400e0e21a047009611af2430517e7f">
+    <bounds
+        x="312"
+        y="120"
+        width="168"
+        height="71"/>
+    <archimateElement
+        xsi:type="archimate:Outcome"
+        href="Outcome_id-553f7ebdd76142209be3209188291978.xml#id-553f7ebdd76142209be3209188291978"/>
+  </children>
+  <children
+      xsi:type="archimate:DiagramModelArchimateObject"
+      id="id-2b0805b5fcd14112906aad942f64be4b">
+    <bounds
+        x="156"
+        y="357"
+        width="120"
+        height="55"/>
+    <archimateElement
+        xsi:type="archimate:ValueStream"
+        href="ValueStream_id-724cce4d16f54c3a8b580c4ec47ad3ef.xml#id-724cce4d16f54c3a8b580c4ec47ad3ef"/>
+  </children>
+  <children
+      xsi:type="archimate:DiagramModelArchimateObject"
+      id="id-b111b722fe7e4a54b1f0f0820c180871">
+    <bounds
+        x="312"
+        y="357"
+        width="120"
+        height="55"/>
+    <archimateElement
+        xsi:type="archimate:ValueStream"
+        href="ValueStream_id-a9a9c2a0c842445790c9c272eea91ce4.xml#id-a9a9c2a0c842445790c9c272eea91ce4"/>
+  </children>
+  <children
+      xsi:type="archimate:DiagramModelArchimateObject"
+      id="id-8ab82ed7941c46d9990498dc0f06e68e">
+    <bounds
+        x="456"
+        y="357"
+        width="120"
+        height="55"/>
+    <archimateElement
+        xsi:type="archimate:ValueStream"
+        href="ValueStream_id-3e2e09ac586b489bad43297f86424035.xml#id-3e2e09ac586b489bad43297f86424035"/>
+  </children>
+</archimate:ArchimateDiagramModel>

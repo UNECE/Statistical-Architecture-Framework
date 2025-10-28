@@ -1,0 +1,5 @@
+<archimate:ValueStream
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Apply Standard Classifications and Formats"
+    id="id-198b100370ff450d82141becabc7b62d"
+    documentation="Map variables, codes, and identifiers to standardized taxonomies and reference data (e.g., NACE, ISCO, SDMX, GSIM concepts)."/>
