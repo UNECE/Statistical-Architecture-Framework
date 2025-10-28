@@ -1,6 +1,6 @@
 <archimate:Principle
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Dat-01 Data is shared property"
+    name="SAF-P08 Data is shared property"
     id="EAID_26FEC9B9_0E60_4a5d_BE1C_56A4194DA4C2"
     documentation="Statistical data that has been determined to add value for use by internal or external users is shared. This implies re-use of data, both in observation to reduce the burden and in further processing to prevent duplication of work in improving and analyzing data.">
   <properties

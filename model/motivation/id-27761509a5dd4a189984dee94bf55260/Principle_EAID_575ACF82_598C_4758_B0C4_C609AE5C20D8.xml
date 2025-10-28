@@ -1,6 +1,6 @@
 <archimate:Principle
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="S&amp;P-02 Privacy By Design"
+    name="SAF-P11 Privacy By Design"
     id="EAID_575ACF82_598C_4758_B0C4_C609AE5C20D8"
     documentation="Privacy by design should be designed as an integrated part of the system architecture and business processes. Privacy should not be an afterthought in IV solutions, but should be part of those solutions. The result is that privacy becomes an essential part of the core functionality that is delivered. Privacy is an integral part of the system without compromising functionality.">
   <properties

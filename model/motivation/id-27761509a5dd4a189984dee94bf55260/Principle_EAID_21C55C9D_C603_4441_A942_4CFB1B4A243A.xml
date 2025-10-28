@@ -1,6 +1,6 @@
 <archimate:Principle
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="S&amp;P-01 Security By Design"
+    name="SAF-P10 Security By Design"
     id="EAID_21C55C9D_C603_4441_A942_4CFB1B4A243A"
     documentation="Security should not be an afterthought in IV solutions, but should be part of those solutions. Coherent security mechanisms should span all layers of the architecture and be scalable � from small objects to large objects. Security should be designed as an integrated part of the system architecture.">
   <properties

@@ -1,15 +1,14 @@
 <archimate:ArchimateDiagramModel
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Principles Viewpoint"
+    name="SAF Principles"
     id="id-cb79a4bc3e5a4d6cac4e3f06410cbe97">
   <children
       xsi:type="archimate:DiagramModelArchimateObject"
-      id="id-2348e3cbaaa5487090c8116171b1707f"
-      font="1|Calibri|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|0|3|2|1|34|Calibri">
+      id="id-47367ed10cfa4f6082d6e78cc9c88d17">
     <bounds
-        x="66"
-        y="72"
+        x="466"
+        y="157"
         width="120"
         height="55"/>
     <archimateElement
@@ -18,11 +17,10 @@
   </children>
   <children
       xsi:type="archimate:DiagramModelArchimateObject"
-      id="id-9edeecf0b1e848e292f86e47c72e228c"
-      font="1|Calibri|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|0|3|2|1|34|Calibri">
+      id="id-2c4fde2b4892433e992b806824dce239">
     <bounds
-        x="66"
-        y="156"
+        x="616"
+        y="157"
         width="120"
         height="55"/>
     <archimateElement
@@ -31,11 +29,10 @@
   </children>
   <children
       xsi:type="archimate:DiagramModelArchimateObject"
-      id="id-f5e24fc2f8be42f686ddfcb16db3ab77"
-      font="1|Calibri|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|0|3|2|1|34|Calibri">
+      id="id-1726efd2061640699837b7937d87e30f">
     <bounds
-        x="66"
-        y="240"
+        x="766"
+        y="157"
         width="120"
         height="55"/>
     <archimateElement
@@ -44,11 +41,10 @@
   </children>
   <children
       xsi:type="archimate:DiagramModelArchimateObject"
-      id="id-6fd95f961c864a1cb8c447f5c1302ffc"
-      font="1|Calibri|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|0|3|2|1|34|Calibri">
+      id="id-493f5fab201f402cadff5fef8818d6f4">
     <bounds
-        x="672"
-        y="72"
+        x="466"
+        y="257"
         width="120"
         height="55"/>
     <archimateElement
@@ -57,11 +53,10 @@
   </children>
   <children
       xsi:type="archimate:DiagramModelArchimateObject"
-      id="id-23930d36581f444e9204429cdca11e18"
-      font="1|Calibri|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|0|3|2|1|34|Calibri">
+      id="id-8530974b5d1b46a7ad921a1d920a70d5">
     <bounds
-        x="672"
-        y="156"
+        x="616"
+        y="257"
         width="120"
         height="55"/>
     <archimateElement
@@ -70,11 +65,10 @@
   </children>
   <children
       xsi:type="archimate:DiagramModelArchimateObject"
-      id="id-e1bfd2f888fe47debcc02d0f8d287d09"
-      font="1|Calibri|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|0|3|2|1|34|Calibri">
+      id="id-c746b6c31d9f4210ad9a35244e1dc7ff">
     <bounds
-        x="672"
-        y="240"
+        x="766"
+        y="257"
         width="120"
         height="55"/>
     <archimateElement
@@ -83,11 +77,10 @@
   </children>
   <children
       xsi:type="archimate:DiagramModelArchimateObject"
-      id="id-a0f0515dbaf3400eb2cb1ad8201ef737"
-      font="1|Calibri|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|0|3|2|1|34|Calibri">
+      id="id-064d092c1ddf4bab981b3c1851e4c880">
     <bounds
-        x="672"
-        y="336"
+        x="466"
+        y="357"
         width="120"
         height="55"/>
     <archimateElement
@@ -96,12 +89,11 @@
   </children>
   <children
       xsi:type="archimate:DiagramModelArchimateObject"
-      id="id-e8247c0bfd6c479d8b3133b018c476fb"
-      targetConnections="id-7bfa756fa6ff4b2fadfbee9733ebd3c5"
-      font="1|Calibri|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|0|3|2|1|34|Calibri">
+      id="id-56cfa8f809654194b510f81e91ccb734"
+      targetConnections="id-756e3f357e0b417fb77c321b1171e3e6">
     <bounds
-        x="372"
-        y="72"
+        x="616"
+        y="357"
         width="120"
         height="55"/>
     <archimateElement
@@ -110,21 +102,19 @@
   </children>
   <children
       xsi:type="archimate:DiagramModelArchimateObject"
-      id="id-d7ab81e1a6e34940aa9e6f50083e7e9c"
-      font="1|Calibri|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|0|3|2|1|34|Calibri">
+      id="id-f38f0bc50c034116a9ea8386c5fb825e">
     <sourceConnections
         xsi:type="archimate:DiagramModelArchimateConnection"
-        id="id-7bfa756fa6ff4b2fadfbee9733ebd3c5"
-        font="1|Calibri|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|0|3|2|1|34|Calibri"
-        source="id-d7ab81e1a6e34940aa9e6f50083e7e9c"
-        target="id-e8247c0bfd6c479d8b3133b018c476fb">
+        id="id-756e3f357e0b417fb77c321b1171e3e6"
+        source="id-f38f0bc50c034116a9ea8386c5fb825e"
+        target="id-56cfa8f809654194b510f81e91ccb734">
       <archimateRelationship
           xsi:type="archimate:AggregationRelationship"
           href="AggregationRelationship_EAID_C97C4319_1174_4e6c_BE6A_9D8412CC8A73.xml#EAID_C97C4319_1174_4e6c_BE6A_9D8412CC8A73"/>
     </sourceConnections>
     <bounds
-        x="372"
-        y="204"
+        x="766"
+        y="357"
         width="120"
         height="55"/>
     <archimateElement
@@ -133,11 +123,10 @@
   </children>
   <children
       xsi:type="archimate:DiagramModelArchimateObject"
-      id="id-713d04f7eb4d4a44af1430d26be54a86"
-      font="1|Calibri|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|0|3|2|1|34|Calibri">
+      id="id-c304032b4f1b44909f95f321d5e30dc0">
     <bounds
-        x="444"
-        y="360"
+        x="466"
+        y="457"
         width="120"
         height="55"/>
     <archimateElement
@@ -146,11 +135,10 @@
   </children>
   <children
       xsi:type="archimate:DiagramModelArchimateObject"
-      id="id-636c3dbb15b149c587145cae51c7a006"
-      font="1|Calibri|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|0|3|2|1|34|Calibri">
+      id="id-bdc672be08cf476cbbbc89b4d03f12da">
     <bounds
-        x="264"
-        y="360"
+        x="616"
+        y="457"
         width="120"
         height="55"/>
     <archimateElement

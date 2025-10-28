@@ -1,6 +1,6 @@
 <archimate:Principle
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="A&amp;T-01 Reuse before open source, open source before buying, buying before making it yourself"
+    name="SAF-P01 Reuse before open source, open source before buying, buying before making it yourself"
     id="EAID_29E38142_7366_451e_A5FA_2AAF86388555"
     documentation="In case of equal suitability (Business Case), reuse of (parts of) applications takes precedence. The use of open source software takes precedence over purchasing. Purchasing is then preferred over making it yourself. Non-statistical processes only use standard applications. &#xD; &#xD;Reuse of an application or parts thereof is sustainable and cost-efficient, and also leads to standardization in service provision and information provision. If reuse is not possible, investigate whether an Open Source solution is available before considering a Closed Source (Commercial) solution. &#xD;&#xA;&#xD;&#xA;This is to comply with the government policy &quot;Open, unless&quot;. Only if there are no existing solutions available, is it permitted to develop the application yourself.">
   <properties
