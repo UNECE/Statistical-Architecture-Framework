@@ -1,8 +1,8 @@
 <archimate:Principle
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Dat-02 No data without metadata and classification"
+    name="SAF-P09 No data without metadata and classification"
     id="EAID_5DAE6213_448B_4935_9B52_8EDA6305DFA9"
-    documentation="All data that needs to be shared, needs to be provided with metadata information that describes the content and meaning of the data as well as possible. In addition, the data also needs to be classified. &#xD; &#xD; Metadata makes it possible to make data FAIR and the BIV classification (Availability, Integrity and Confidentiality) provides direction for the necessary technical and organizational measures. This is to comply with various laws, requirements and security standards.">
+    documentation="All data that needs to be shared, needs to be provided with metadata information that describes the content and meaning of the data as well as possible. In addition, the data also needs to be classified. Metadata makes it possible to make data FAIR and the BIV classification (Availability, Integrity and Confidentiality) provides direction for the necessary technical and organizational measures. This is to comply with various laws, requirements and security standards.">
   <properties
       key="archimate_element_identifier"
       value="EAID_91798D0F_4A40_48d7_9924_4615C19DBEBE"/>

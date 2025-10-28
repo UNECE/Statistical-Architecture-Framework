@@ -1,5 +1,5 @@
 <archimate:Goal
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Harmonized Reference Framework"
+    name="SAF-G2 Harmonized Reference Framework"
     id="id-85063cec96e445beab965817ed888a13"
-    documentation="Without a common reference model, each statistical office risks developing isolated solutions, resulting in inefficiency and reduced comparability. SAF aims to serve as a harmonized reference, providing shared architectural patterns, best practices, and standards that NSIs can adapt to their local contexts. This harmonization fosters collaboration and reduces the costs of developing systems independently.&#xD;&#xA;"/>
+    documentation="Without a shared architectural reference, statistical organizations risk developing isolated solutions that reduce comparability and increase long-term costs. SAF provides a harmonized foundation of standards, patterns, and best practices that can be adapted to local contexts while supporting interoperability across borders and domains.&#xD;&#xA;&#xD;&#xA;As collaboration increasingly takes place across shared infrastructures such as national data platforms and European data spaces, harmonization also becomes a prerequisite for participation. By promoting transparency and consistent design principles, SAF helps NSIs protect the integrity of official statistics and ensure that shared and open solutions can be reused safely and effectively. A common reference framework enables collaboration, strengthens trust, and supports coherence even as the data landscape evolves."/>

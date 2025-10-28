@@ -1,5 +1,5 @@
 <archimate:Driver
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Legacy Systems"
+    name="SAF-D3 Trust, Scientific Rigor, and Data Protection"
     id="id-be8e41fb0be34d48b4d3ebe4621e3892"
-    documentation="Legacy systems remain one of the biggest barriers to modernization. They are often costly to maintain, siloed, and difficult to integrate. SAF addresses this driver by offering pathways for incremental modernization, encouraging modular replacements, and advocating for hybrid approaches where legacy and modern systems can coexist temporarily.&#xD;&#xA;"/>
+    documentation="Trust is the foundation of official statistics. In an environment shaped by misinformation, privacy concerns, and competition from unregulated data providers, maintaining public confidence requires more than compliance. It depends on scientific rigor, transparency, and clear accountability for how data is handled and communicated.&#xD;&#xA;&#xD;&#xA;SAF addresses this driver by embedding trust and protection directly into architectural design. It promotes governance and technical controls that safeguard confidentiality, ensure methodological integrity, and make processes traceable and transparent. Through a risk-based approach, SAF allows NSIs to apply strict oversight where sensitivity and quality demands are high, while enabling greater automation and shared solutions where risks are lower. This balance ensures that modernization strengthens trust rather than compromising it."/>

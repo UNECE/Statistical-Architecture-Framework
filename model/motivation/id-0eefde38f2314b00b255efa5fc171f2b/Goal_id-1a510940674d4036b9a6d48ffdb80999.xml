@@ -1,5 +1,5 @@
 <archimate:Goal
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Cost Efficiency and Resource Sharing"
+    name="SAF-G1 Cost Efficiency and Resource Sharing"
     id="id-1a510940674d4036b9a6d48ffdb80999"
-    documentation="With shrinking budgets and limited human resources, NSIs must operate as efficiently as possible. SAF promotes cost reduction through shared services, reuse of solutions, and improved interoperability. By pooling resources across borders, NSIs can access more advanced capabilities than they could individually, while reducing duplication of effort.&#xD;&#xA;"/>
+    documentation="With limited budgets and growing demands, statistical organizations must operate as efficiently as possible. SAF promotes cost reduction and improved effectiveness through shared services, reuse of solutions, and stronger interoperability. By pooling resources and adopting common components, NSIs can access capabilities that would be difficult to develop individually while avoiding duplication of effort.&#xD;&#xA;&#xD;&#xA;SAF also encourages the use of open-source components and community-driven platforms where this strengthens transparency, collaboration, and cost efficiency. Through modular architectures and clear governance, organizations can adapt to changing needs, reallocate capacity, and modernize incrementally without large-scale reinvestments. This approach ensures that efficiency is achieved in ways that reinforce both quality and long-term sustainability."/>
