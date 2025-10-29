@@ -1,0 +1,5 @@
+<archimate:ValueStream
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Construct Composite Indicators or Indices"
+    id="id-a8900ae821af406aabdd4565c8109112"
+    documentation="Create derived measures such as indices, ratios, or time-series aggregates."/>
