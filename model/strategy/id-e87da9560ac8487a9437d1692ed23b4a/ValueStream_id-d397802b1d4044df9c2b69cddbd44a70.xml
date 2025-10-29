@@ -1,0 +1,5 @@
+<archimate:ValueStream
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Validate and Log Data Intake"
+    id="id-d397802b1d4044df9c2b69cddbd44a70"
+    documentation="Verify completeness, structural integrity, and compliance with expected formats; log the ingestion process for traceability."/>

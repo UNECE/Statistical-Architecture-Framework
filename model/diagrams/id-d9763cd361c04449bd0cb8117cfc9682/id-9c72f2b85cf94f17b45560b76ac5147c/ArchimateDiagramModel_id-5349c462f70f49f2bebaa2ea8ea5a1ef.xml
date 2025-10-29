@@ -1,0 +1,6 @@
+<archimate:ArchimateDiagramModel
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Supporting Value Stream: Infrastructure and Platform Enablement"
+    id="id-5349c462f70f49f2bebaa2ea8ea5a1ef"
+    documentation="Purpose and Description&#xD;&#xA;The Infrastructure and Platform Enablement Value Stream provides the digital and technical foundation that enables all other value streams to operate efficiently, securely, and at scale. It includes the management of platforms, data fabrics, computational environments, APIs, and automation frameworks that host and orchestrate statistical processes.&#xD;&#xA;&#xD;&#xA;Its goal is to ensure that technology acts as a seamless enabler of business capability, not as an isolated domain. This value stream underpins modernization, scalability, and interoperability — enabling data-driven, automated, and resilient statistical production."
+    viewpoint="value_stream"/>

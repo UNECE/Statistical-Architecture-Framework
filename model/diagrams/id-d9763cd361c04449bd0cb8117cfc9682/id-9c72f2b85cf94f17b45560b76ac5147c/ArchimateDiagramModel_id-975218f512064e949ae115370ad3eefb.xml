@@ -1,0 +1,6 @@
+<archimate:ArchimateDiagramModel
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Supporting Value Stream: Governance and Compliance"
+    id="id-975218f512064e949ae115370ad3eefb"
+    documentation="Purpose and Description&#xD;&#xA;The Governance and Compliance Value Stream ensures that all activities within the statistical organization are performed within a coherent framework of legal, ethical, methodological, and quality standards. It provides the mechanisms by which statistical processes, data assets, and outputs are governed, documented, and audited.&#xD;&#xA;This value stream safeguards trust, accountability, and transparency, ensuring compliance with regulations such as GDPR, national statistical laws, and international frameworks (UNECE, Eurostat, ISO).&#xD;&#xA;&#xD;&#xA;It operates continuously, underpinning all core value streams by defining the “rules of the game” that govern statistical production."
+    viewpoint="value_stream"/>
