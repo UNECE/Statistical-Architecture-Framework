@@ -1,0 +1,5 @@
+<archimate:ValueStream
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="VS-08.4 Develop / Document New Methodologies or Tools"
+    id="id-d7a30419cf124bbb8c5fb57e88847803"
+    documentation="er a method is proven, it must be made reusable. In this step, the organization turns a tested idea into a documented, standardized asset. This can be:&#xD;&#xA;- a methodological guideline,&#xD;&#xA;- a processing pattern,&#xD;&#xA;- a code template,&#xD;&#xA;- a reference implementation,&#xD;&#xA;- or an architectural building block.&#xD;&#xA;&#xD;&#xA;Documentation includes: purpose, inputs, outputs, assumptions, quality effects, and links to governance rules. This makes the innovation usable by other teams, other domains, or even other national institutes.&#xD;&#xA;&#xD;&#xA;Value created: Reusable, documented innovation assets — not one-off experiments."/>

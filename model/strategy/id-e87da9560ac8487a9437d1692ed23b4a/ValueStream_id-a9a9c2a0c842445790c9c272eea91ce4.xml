@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Perform Data Editing and Correction"
+    name="VS-03.2 Perform Data Editing and Correction"
     id="id-a9a9c2a0c842445790c9c272eea91ce4"
-    documentation="Apply predefined rules and algorithms to correct errors or replace invalid entries."/>
+    documentation="Next, the organization focuses on correcting identified errors. This involves systematically updating incorrect or inconsistent values to restore internal data coherence. Corrections may be applied automatically using predefined rules, or manually when expert judgment is needed. For example, a misreported code may be replaced with a valid one, or inconsistent entries may be harmonized with reference data. Every correction is documented and versioned, ensuring that data lineage and accountability are maintained. This step ensures that datasets are internally consistent, eliminating structural or logical defects before further processing.&#xD;&#xA;&#xD;&#xA;Value created: Clean, coherent data that accurately represents real-world information."/>

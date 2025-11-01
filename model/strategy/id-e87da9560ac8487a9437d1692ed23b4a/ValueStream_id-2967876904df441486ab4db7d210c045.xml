@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Select and Integrate Source Datasets"
+    name="VS-05.1 Select and Integrate Source Datasets"
     id="id-2967876904df441486ab4db7d210c045"
-    documentation="Combine outputs from multiple domains, surveys, or time periods."/>
+    documentation="The process starts with selecting the datasets and analytical outputs that will form the foundation of the statistical product. Teams identify which sources — such as surveys, registers, or model results — are relevant to the product being created. Next, the selected datasets are integrated and aligned. Integration involves merging data from different domains or time periods, ensuring compatibility in structure, concepts, and classifications. Cross-domain consistency checks confirm that values match across datasets and no contradictions exist. This step ensures that the product is built from reliable and compatible sources.&#xD;&#xA;&#xD;&#xA;Value created: Integrated data foundation for consistent and comprehensive statistical products."/>

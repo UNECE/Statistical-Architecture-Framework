@@ -1,0 +1,5 @@
+<archimate:ValueStream
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="VS-09.1 Define Digital and Technical Requirements"
+    id="id-7479eb22e6c1498d972fa85891a8126e"
+    documentation="The first step begins with understanding what the business and data processes need from the technical environment.&#xD;&#xA;Architects and system owners work closely with business and data experts to identify requirements for computing power, data storage, networking, security, scalability, and interoperability.&#xD;&#xA;&#xD;&#xA;This step translates business goals into technical specifications.&#xD;&#xA;For example, it defines how much storage is needed for large datasets, what security level is required for sensitive data, and what tools are needed for analytical work.&#xD;&#xA;Requirements are collected for both current systems and future modernization projects, ensuring that the infrastructure can evolve with organizational needs.&#xD;&#xA;&#xD;&#xA;Value created: Clear, shared understanding of what the infrastructure must deliver to support all business and data processes effectively."/>

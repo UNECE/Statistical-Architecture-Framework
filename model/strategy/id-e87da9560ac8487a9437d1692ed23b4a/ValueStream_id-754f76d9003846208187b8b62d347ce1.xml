@@ -1,4 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Derive Additional Variables and Indicators"
-    id="id-754f76d9003846208187b8b62d347ce1"/>
+    name="VS-03.4 Derive Additional Variables and Indicators"
+    id="id-754f76d9003846208187b8b62d347ce1"
+    documentation="Once errors are corrected and gaps filled, the data can be enriched with new variables. This involves deriving new attributes or indicators that enhance analytical potential — for example, calculating age groups from birthdates, income brackets from earnings, or regional indicators from addresses. These derived variables help make the dataset more meaningful and easier to use in analysis and modeling.&#xD;&#xA;They also allow for consistent comparisons across studies, time periods, or regions. This step transforms the dataset from a purely factual record into a structured analytical resource.&#xD;&#xA;&#xD;&#xA;Value created: Enriched datasets that support deeper analysis and insight generation."/>

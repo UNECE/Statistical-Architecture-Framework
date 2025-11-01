@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Construct Composite Indicators or Indices"
+    name="VS-05.2 Construct Composite Indicators or Indices"
     id="id-a8900ae821af406aabdd4565c8109112"
-    documentation="Create derived measures such as indices, ratios, or time-series aggregates."/>
+    documentation="After integration, the organization develops composite indicators or derived indices that summarize complex information. Examples include economic indices, environmental sustainability measures, or composite well-being scores. This step involves designing formulas, applying weighting schemes, and ensuring methodological soundness. Each indicator is tested for robustness, interpretability, and comparability over time. Composite indicators add significant analytical value because they condense multiple measures into a single, easy-to-understand metric.&#xD;&#xA;&#xD;&#xA;Value created: Clear, aggregated indicators that simplify complex statistical information."/>

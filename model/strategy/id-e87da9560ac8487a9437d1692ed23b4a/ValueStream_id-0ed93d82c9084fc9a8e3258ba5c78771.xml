@@ -1,0 +1,5 @@
+<archimate:ValueStream
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="VS-09.4 Enable Integration and Orchestration Services"
+    id="id-0ed93d82c9084fc9a8e3258ba5c78771"
+    documentation="Once the core platforms are in place, they must be connected.&#xD;&#xA;This step focuses on integration and orchestration — ensuring that data, applications, and services can work together smoothly.&#xD;&#xA;&#xD;&#xA;Integration services enable the flow of data between systems using APIs, message queues, or data pipelines.&#xD;&#xA;Orchestration tools automate sequences of actions — for example, automatically triggering data validation after ingestion, or sending completed datasets into the next processing stage.&#xD;&#xA;&#xD;&#xA;These services form the “nervous system” of the organization’s technical ecosystem — coordinating activities, maintaining consistency, and ensuring efficiency.&#xD;&#xA;Without them, systems would remain isolated, and processes would require manual intervention.&#xD;&#xA;&#xD;&#xA;Value created: Seamless integration and automation across systems, enabling smooth and consistent data and process flows."/>

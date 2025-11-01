@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Collect and Analyze User Needs"
+    name="VS-10.2 Collect and Analyze User Needs"
     id="id-63c5e8f3a15a45cf83a961410417c7f0"
-    documentation="Gather feedback, conduct consultations, and translate stakeholder needs into data or service requirements."/>
+    documentation="Once stakeholders are identified, the next step is to understand their needs and expectations. This is done through surveys, workshops, interviews, feedback forms, and digital analytics that track how users interact with published data. The organization studies how users search for, interpret, and apply statistical information. It identifies pain points — such as difficult data formats, missing indicators, or limited accessibility — and areas where new services could add value. Insights from this analysis are shared internally so that products and services can be adapted accordingly. In this way, user feedback becomes a strategic input into planning and product development.&#xD;&#xA;&#xD;&#xA;Value created: Actionable insights that guide product design, data publication, and service improvement."/>

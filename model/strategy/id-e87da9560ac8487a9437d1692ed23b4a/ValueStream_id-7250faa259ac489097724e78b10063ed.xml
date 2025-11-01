@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Publish and Provide Access Services"
+    name="VS-06.3 Publish and Provide Access Services"
     id="id-7250faa259ac489097724e78b10063ed"
-    documentation="elease data and metadata via portals, APIs, dashboards, or secure research environments."/>
+    documentation="Next, the prepared data and products are released through publication and service platforms. This may include open data portals, interactive dashboards, downloadable datasets, APIs, and secure research access environments. Each access point is designed to support different types of users — from general audiences who want summaries and charts, to researchers who need detailed microdata. Systems are monitored to ensure reliability, accessibility, and data integrity. By providing multiple channels, the organization ensures that everyone can find and access the data they need in a way that suits them.&#xD;&#xA;&#xD;&#xA;Value created: Trusted access to official statistics and data services through diverse, user-friendly channels."/>

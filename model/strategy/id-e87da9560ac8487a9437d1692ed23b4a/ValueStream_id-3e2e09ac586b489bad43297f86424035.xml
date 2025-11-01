@@ -1,4 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Impute Missing or Non-Response Data"
-    id="id-3e2e09ac586b489bad43297f86424035"/>
+    name="VS-03.3 Impute Missing or Non-Response Data"
+    id="id-3e2e09ac586b489bad43297f86424035"
+    documentation="After correcting known errors, the next challenge is missing information. Incomplete data can reduce the reliability of statistical analysis, so this step aims to fill gaps responsibly. The organization uses statistical imputation techniques — such as mean substitution, regression, or model-based estimation — to replace missing or non-response values. When possible, external sources or related datasets are used to enrich or cross-check the imputed information. All imputed values are flagged to ensure transparency and to differentiate between observed and derived data. By carefully imputing missing data, the organization restores completeness and analytical balance to the dataset.&#xD;&#xA;&#xD;&#xA;Value created: Complete datasets that preserve statistical representativeness and minimize bias."/>

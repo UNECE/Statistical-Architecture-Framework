@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Store and Register Raw Data Artefacts"
+    name="VS-01.5 Store and Register Raw Data Artefacts"
     id="id-e77011e6b5b84ad0be04aeb666898cb4"
-    documentation="Persist data in controlled repositories, assign identifiers, and register associated metadata, ownership, and provenance."/>
+    documentation="Finally, the validated data is securely stored in the organization’s controlled repositories. Each dataset is assigned a unique identifier and linked with its metadata, ownership, and provenance information. &#xD;&#xA;This step ensures that the data is not only stored safely but also discoverable and managed according to data governance rules. It becomes part of the organization’s data inventory — the official record of all raw data available for processing and analysis. Access permissions are applied according to the rules established earlier, ensuring that only authorized users can view or handle the data.&#xD;&#xA;&#xD;&#xA;Value created: Secure, organized, and traceable storage of raw data, ready for standardization and further processing."/>

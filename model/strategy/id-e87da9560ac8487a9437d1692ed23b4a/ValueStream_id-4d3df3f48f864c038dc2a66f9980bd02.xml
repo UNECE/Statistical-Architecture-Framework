@@ -1,4 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Perform Quality Evaluation and Versioning"
-    id="id-4d3df3f48f864c038dc2a66f9980bd02"/>
+    name="VS-03.5 Perform Quality Evaluation and Versioning"
+    id="id-4d3df3f48f864c038dc2a66f9980bd02"
+    documentation="Finally, after all editing, correction, and enrichment, the dataset undergoes a quality evaluation. This step checks whether the actions taken have improved data accuracy, consistency, and completeness. &#xD;&#xA;Teams compare pre- and post-editing quality metrics to confirm that known issues have been resolved. Documentation is updated, and a new version of the dataset is created — fully traceable and ready for use in estimation or modeling. This versioned dataset becomes the organization’s official edited dataset, forming the trusted baseline for statistical computation.&#xD;&#xA;&#xD;&#xA;Value created: Verified, high-quality dataset with clear lineage and confidence in its reliability."/>

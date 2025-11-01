@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Align Metadata and Semantics"
+    name="VS-02.3 Align Metadata and Semantics"
     id="id-82852ec9ffda409a9b0fa4bb0b9fc6b6"
-    documentation="Harmonize descriptive metadata, ensuring coherence in definitions, classifications, and quality descriptors."/>
+    documentation="Once structural and format alignment is complete, the next step focuses on semantic alignment — ensuring that data means the same thing across different contexts. Teams review and adjust metadata to confirm that definitions, measurement units, and concepts are consistent with organizational and international standards (e.g., GSIM, SDMX). They ensure that variable names, descriptions, and reference metadata reflect a shared understanding of what each data element represents. This step is critical for semantic interoperability, allowing data from different sources to be correctly interpreted and compared without ambiguity.&#xD;&#xA;&#xD;&#xA;Value created: Harmonized meaning and context across datasets — a shared language for all data."/>

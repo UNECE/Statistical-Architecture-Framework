@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Prepare Data for Dissemination"
+    name="VS-06.2 Prepare Data for Dissemination"
     id="id-1ccfc343b6a14863b5c95367efa1233f"
-    documentation="Apply disclosure control, anonymization, and formatting for publication or access."/>
+    documentation="Once the strategy is set, the data must be prepared for publication. This means ensuring that all information to be released is safe, accurate, and properly formatted. Sensitive or confidential data is anonymized or aggregated. Disclosure control techniques — such as data masking or noise addition — are applied where necessary to protect privacy. All datasets, tables, and visualizations are formatted according to publication standards, ensuring clarity and consistency. Metadata and documentation are attached, describing the content, source, and methodology behind each release.&#xD;&#xA;&#xD;&#xA;Value created: Secure and well-prepared data that is safe for public or controlled release."/>

@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Monitor Usage and Feedback"
+    name="VS-06.5 Monitor Usage and Feedback"
     id="id-29c516c96aed4e10840ddaa06a1f38c7"
-    documentation="Track user interactions, collect feedback, and feed insights into continuous improvement loops."/>
+    documentation="Finally, the organization continuously monitors how users interact with its data and services. Usage analytics, surveys, and feedback forms are used to learn which products are most useful, which channels are most effective, and where improvements are needed. This feedback is analyzed and shared with product owners, data producers, and management teams. Insights from this step help shape future dissemination strategies, product design, and data access services. By closing this loop, the organization ensures that dissemination evolves in step with user needs and technological change.&#xD;&#xA;&#xD;&#xA;Value created: A feedback-driven improvement cycle that keeps data services relevant, accessible, and impactful."/>

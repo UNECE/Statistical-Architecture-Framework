@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Perform Model-Based Analysis"
+    name="VS-04.4 Perform Model-Based Analysis"
     id="id-3d4624e13d8b4006b373f2dd150dce88"
-    documentation="Conduct modeling, regression, or forecasting analyses as applicable to the domain."/>
+    documentation="Once basic estimates are available, analysts may take a further step — performing model-based analysis. This involves applying statistical or econometric models to reveal deeper insights, identify relationships, or make predictions. Examples include regression models, time-series forecasting, small-area estimation, or machine-learning models for classification and clustering. Model-based analysis adds explanatory and predictive value to the data, helping to understand underlying patterns rather than just describe observed values. All model assumptions, limitations, and performance metrics are reviewed and documented to maintain statistical credibility.&#xD;&#xA;&#xD;&#xA;Value created: Deeper analytical insights and predictive understanding of complex data relationships."/>

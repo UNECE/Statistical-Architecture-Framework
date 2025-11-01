@@ -1,0 +1,5 @@
+<archimate:ValueStream
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="VS-08.5 Integrate Innovation into Production Environments"
+    id="id-2989518d268e4b018473a110c7e5f34a"
+    documentation="Innovation only has impact if it reaches production. So, in this step, the new method or tool is embedded into the real statistical process. &#xD;&#xA;That can mean:&#xD;&#xA;- adding it to the standard GSBPM-based workflow,&#xD;&#xA;- making it available in the data platform / data fabric,&#xD;&#xA;- exposing it as a business or application service,&#xD;&#xA;- or adding it to the “official toolstack” of the organization.&#xD;&#xA;&#xD;&#xA;Security, performance, and support requirements are added here. This step is often done together with IT, architecture, and process owners.&#xD;&#xA;&#xD;&#xA;Value created: Innovation that is operational, supported, and available to real statistical production."/>

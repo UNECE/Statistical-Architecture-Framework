@@ -1,0 +1,5 @@
+<archimate:ValueStream
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="VS-07.3 Implement Data and Metadata Governance"
+    id="id-ffc2f8a34ebc440aa21cf8f5e77d34a6"
+    documentation="Once frameworks are in place, the organization puts governance into action by managing data and metadata consistently.&#xD;&#xA;This includes establishing data catalogues, defining naming conventions, maintaining reference data, and tracking data lineage.&#xD;&#xA;&#xD;&#xA;Each dataset is registered with metadata describing its source, transformations, and usage restrictions.&#xD;&#xA;Stewards ensure that metadata remains complete, accurate, and up to date.&#xD;&#xA;&#xD;&#xA;By doing so, data becomes discoverable, understandable, and traceable, supporting both operational efficiency and auditability.&#xD;&#xA;&#xD;&#xA;Value created: Transparent and well-managed data and metadata that support reusability and accountability."/>

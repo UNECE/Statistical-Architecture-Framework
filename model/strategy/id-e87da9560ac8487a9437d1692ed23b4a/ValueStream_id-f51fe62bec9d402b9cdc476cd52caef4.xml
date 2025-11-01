@@ -1,0 +1,5 @@
+<archimate:ValueStream
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="VS-07.1 Define Governance Frameworks and Policies"
+    id="id-f51fe62bec9d402b9cdc476cd52caef4"
+    documentation="The process begins with defining the governance structure that guides how data and statistics are managed.&#xD;&#xA;This includes creating policies for data governance, metadata management, information security, and quality assurance.&#xD;&#xA;&#xD;&#xA;The organization establishes roles and responsibilities — such as data owner, data steward, and quality coordinator — and defines how they interact.&#xD;&#xA;Governance committees or boards may be created to oversee compliance and resolve policy issues.&#xD;&#xA;&#xD;&#xA;These frameworks form the foundation for consistent decision-making and control across the statistical value chain.&#xD;&#xA;&#xD;&#xA;Value created: A clear governance framework that defines ownership, accountability, and rules for data and statistical operations."/>

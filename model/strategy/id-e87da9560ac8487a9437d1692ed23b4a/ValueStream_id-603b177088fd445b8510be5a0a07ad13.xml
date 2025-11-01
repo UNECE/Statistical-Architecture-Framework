@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Define and Manage Service Portfolios"
+    name="VS-10.3 Define and Manage Service Portfolios"
     id="id-603b177088fd445b8510be5a0a07ad13"
-    documentation="Develop catalogues of business services and data products that address stakeholder needs and align with strategic goals."/>
+    documentation="After understanding user needs, the organization translates them into structured services and offerings. It defines and manages a service portfolio that includes statistical publications, open data portals, APIs, customized data delivery, and research access environments. Each service is described in terms of its target audience, scope, service levels, and access conditions.&#xD;&#xA;Roles and responsibilities are assigned for ownership, maintenance, and user support. Clear documentation and service catalogues help users navigate and request the services they need. This step turns abstract user requirements into concrete, well-managed service offerings.&#xD;&#xA;&#xD;&#xA;Value created: A transparent and organized set of services that clearly show what users can access and how."/>

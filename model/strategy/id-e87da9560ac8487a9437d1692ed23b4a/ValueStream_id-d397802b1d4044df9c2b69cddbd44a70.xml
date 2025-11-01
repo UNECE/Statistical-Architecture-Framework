@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Validate and Log Data Intake"
+    name="VS-01.4 Validate and Log Data Intake"
     id="id-d397802b1d4044df9c2b69cddbd44a70"
-    documentation="Verify completeness, structural integrity, and compliance with expected formats; log the ingestion process for traceability."/>
+    documentation="Once the data has been received, it must be checked before it can be used. In this step, data managers validate the completeness, structure, and format of the incoming data. They verify that all expected files and records are present, that field types and values match the expected structure, and that the data follows the agreed-upon standards. Any inconsistencies or missing information are recorded for follow-up. Next, all intake activities are logged — documenting who received the data, when it was received, from which source, and under which agreement. This log creates an audit trail, ensuring that every dataset entering the system can be traced and verified later if needed.&#xD;&#xA;&#xD;&#xA;Value created: Confidence that received data is complete, structured, and fully traceable."/>

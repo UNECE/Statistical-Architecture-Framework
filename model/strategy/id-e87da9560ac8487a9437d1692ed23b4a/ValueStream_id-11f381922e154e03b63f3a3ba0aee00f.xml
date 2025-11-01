@@ -1,0 +1,5 @@
+<archimate:ValueStream
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="VS-08.2 Conduct Research and Proof-of-Concepts"
+    id="id-11f381922e154e03b63f3a3ba0aee00f"
+    documentation="Next, ideas must be tested safely. In this step, small teams run experiments, PoCs, or pilot studies. They try out a new imputation method, a new AI-based classification, a new data ingestion pattern, or a new statistical package. The work is exploratory, but not chaotic. Scope, success criteria, and risks are defined upfront. Security and privacy rules still apply.&#xD;&#xA;The goal is simple: Does this work for us?&#xD;&#xA;If yes — continue.&#xD;&#xA;If no — document and stop.&#xD;&#xA;&#xD;&#xA;Value created: Evidence about what works and what does not, based on real tests — not assumptions."/>
