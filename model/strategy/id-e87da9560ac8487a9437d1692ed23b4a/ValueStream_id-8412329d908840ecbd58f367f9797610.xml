@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Design Estimation and Analytical Approach"
+    name="VS-04.1 Design Estimation and Analytical Approach"
     id="id-8412329d908840ecbd58f367f9797610"
-    documentation="Select methodology, model type, and parameters based on survey design and analytical objectives."/>
+    documentation="The process begins with defining how the analysis will be done. In this step, statisticians and methodologists work together to design the estimation strategy that fits the data and the analytical goals. They choose appropriate methods — such as regression analysis, calibration, model-based estimation, or weighting — and define parameters, sampling adjustments, and quality criteria. They also establish the assumptions, constraints, and validation metrics that will guide the analytical process. By doing this design work upfront, the organization ensures that every analytical result is methodologically sound and reproducible.&#xD;&#xA;&#xD;&#xA;Value created: A clear, well-documented plan for estimation and analysis that ensures methodological integrity."/>

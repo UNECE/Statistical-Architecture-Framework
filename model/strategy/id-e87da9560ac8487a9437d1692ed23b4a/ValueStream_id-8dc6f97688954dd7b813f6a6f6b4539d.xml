@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Collect or Receive Data"
+    name="VS-01.3 Collect or Receive Data"
     id="id-8dc6f97688954dd7b813f6a6f6b4539d"
-    documentation="Execute data collection through surveys, APIs, secure data transfers, or data space connectors. Capture metadata during ingestion."/>
+    documentation="After agreements are in place, the actual data collection or transfer begins. Depending on the data type and source, this may happen through surveys, APIs, secure data transfers, or data space connectors. During this step, the organization focuses on data integrity and security. Data is transferred through controlled channels that ensure confidentiality and prevent tampering.&#xD;&#xA;At the same time, metadata is captured — information about where the data came from, how it was collected, and under what conditions. This metadata provides context and traceability, linking the data back to its original source and collection method.&#xD;&#xA;&#xD;&#xA;Value created: Secure and verifiable transfer of authentic data into the organization."/>

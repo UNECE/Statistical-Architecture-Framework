@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Conduct Error Detection and Quality Diagnostics"
+    name="VS-03.1 Conduct Error Detection/ Quality Diagnostics"
     id="id-724cce4d16f54c3a8b580c4ec47ad3ef"
-    documentation="Identify logical errors, duplicates, missing values, or outliers through rule-based or machine-learning validation."/>
+    documentation="The process begins with examining the data for errors and inconsistencies. Teams use automated checks, business rules, and sometimes machine learning models to identify suspicious or incorrect values. These may include impossible combinations (e.g., negative ages), missing responses, duplicate records, or outliers. The data is also tested against expected patterns, reference data, and statistical distributions to detect anomalies. Each detected issue is flagged and categorized — for example, by type (missing value, outlier) or severity (critical, minor). This diagnostic step builds an accurate picture of the dataset’s current quality state, showing where corrections or enrichments are needed.&#xD;&#xA;&#xD;&#xA;Value created: Clear understanding of data quality issues and areas requiring correction."/>

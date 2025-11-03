@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Approve and Register Statistical Products"
+    name="VS-05.5 Approve and Register Statistical Products"
     id="id-bd7dbdb03d20496ba7406d88bbef33ff"
-    documentation="Validate products against dissemination and confidentiality standards and register them for publication."/>
+    documentation="In step 5, each statistical product undergoes a formal review and approval process.&#xD;&#xA;Quality reviewers, domain experts, and governance bodies check that all data, methods, and interpretations meet internal standards and external obligations.&#xD;&#xA;&#xD;&#xA;Once approved, the product is registered as an official statistical artefact.&#xD;&#xA;It is documented with detailed metadata — including data sources, methodology, quality indicators, and publication details.&#xD;&#xA;&#xD;&#xA;This versioned and registered product becomes the official output of the organization, ready for dissemination through appropriate channels.&#xD;&#xA;&#xD;&#xA;Value created: Verified, traceable, and approved statistical products ready for publication and reuse."/>

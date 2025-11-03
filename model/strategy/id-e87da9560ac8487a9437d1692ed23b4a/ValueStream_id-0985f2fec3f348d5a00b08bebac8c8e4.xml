@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Estimate and Aggregate Data"
+    name="VS-04.3 Estimate and Aggregate Data"
     id="id-0985f2fec3f348d5a00b08bebac8c8e4"
-    documentation="Generate aggregated statistics, measures, and derived indicators."/>
+    documentation="After calibration, the organization performs the core estimation work — calculating measures, aggregates, and indicators from the prepared data. This may include averages, totals, ratios, growth rates, or more complex derived metrics. These calculations can be performed at different levels of detail — by region, sector, or demographic group — depending on the analytical objectives. At this point, data transitions from detailed records to summarized statistical outputs. All methods, parameters, and results are documented to ensure reproducibility and auditability.&#xD;&#xA;&#xD;&#xA;Value created: Statistically valid and transparent estimates derived from high-quality data."/>

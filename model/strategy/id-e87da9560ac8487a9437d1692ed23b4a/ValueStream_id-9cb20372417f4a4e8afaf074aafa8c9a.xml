@@ -1,0 +1,5 @@
+<archimate:ValueStream
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="VS-09.5 Ensure Performance, Security, and Continuity"
+    id="id-9cb20372417f4a4e8afaf074aafa8c9a"
+    documentation="Once platforms are operational, maintaining them becomes critical.&#xD;&#xA;This step ensures that the infrastructure remains secure, reliable, and high-performing.&#xD;&#xA;&#xD;&#xA;Monitoring tools continuously track performance metrics such as response time, resource usage, and availability.&#xD;&#xA;Security teams watch for intrusions, vulnerabilities, or misconfigurations, applying updates and patches regularly.&#xD;&#xA;Disaster recovery procedures are tested to ensure data and operations can be restored quickly in case of failure.&#xD;&#xA;Service-level agreements (SLAs) are defined to maintain expected uptime and performance levels.&#xD;&#xA;&#xD;&#xA;These activities protect the organization’s data assets and guarantee operational resilience, even in the face of incidents or cyber threats.&#xD;&#xA;&#xD;&#xA;Value created: Secure, stable, and resilient platforms that ensure continuous statistical operations."/>

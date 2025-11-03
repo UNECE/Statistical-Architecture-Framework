@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Register Standardized Artefacts"
+    name="VS-02.5 Register Standardized Artefacts"
     id="id-02897f0b602e4055b03e996966b16291"
-    documentation="Store the standardized dataset and update the metadata catalogue to reflect structural and semantic alignment."/>
+    documentation="Finally, once data is validated, it is registered and stored as a standardized artefact within the organization’s controlled repositories. Each dataset is given a version identifier, linked with its metadata, and catalogued for discovery and reuse. The registration process ensures traceability — it documents how the data was transformed, what standards were applied, and where it originated.&#xD;&#xA;This makes it possible to track lineage and maintain consistency across time and versions. At this point, the data is ready to move into the next phase: Data Editing &amp; Enrichment — where its quality and completeness will be further refined.&#xD;&#xA;&#xD;&#xA;Value created: Traceable, reusable, and standardized dataset ready for editing and analysis."/>

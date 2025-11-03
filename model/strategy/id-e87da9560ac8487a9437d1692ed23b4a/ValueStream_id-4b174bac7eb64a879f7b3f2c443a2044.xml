@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Establish Data Agreements and Access Rights"
+    name="VS-01.2 Establish Data Agreement and Access Right"
     id="id-4b174bac7eb64a879f7b3f2c443a2044"
-    documentation="Negotiate and formalize data-sharing agreements, define legal and ethical frameworks, and ensure privacy and compliance."/>
+    documentation="Once the data sources are known, the organization must secure the rights and permissions to use them. This involves both legal and ethical considerations. Teams negotiate and formalize data-sharing agreements with the data providers. These agreements define what data will be shared, how it will be used, who owns it, and how privacy will be protected. They ensure compliance with data protection laws (e.g., GDPR) and internal governance frameworks. At the same time, access rules and security measures are defined — specifying who can access which datasets, under what conditions, and for what purpose. This step guarantees that all future use of the data is both authorized and transparent.&#xD;&#xA;&#xD;&#xA;Value created: Legal, ethical, and transparent access to data under controlled conditions."/>

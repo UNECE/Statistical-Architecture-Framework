@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Apply Standard Classifications and Formats"
+    name="VS-02.2 Apply Standard Classifications and Formats"
     id="id-198b100370ff450d82141becabc7b62d"
-    documentation="Map variables, codes, and identifiers to standardized taxonomies and reference data (e.g., NACE, ISCO, SDMX, GSIM concepts)."/>
+    documentation="Next, the organization begins to align the data with established standards. This means mapping local variables and codes to standardized classifications, such as NACE for industries, ISCO for occupations, or other domain-specific taxonomies. Data formats are also standardized — dates, numbers, and identifiers are converted to consistent patterns that match the organization’s reference frameworks. This ensures that the data can be combined with other datasets or reused in future analyses without additional reformatting. By using common standards, the organization makes sure that data can be shared and understood across internal and external systems.&#xD;&#xA;&#xD;&#xA;Value created: Consistent, interoperable data aligned with recognized standards."/>

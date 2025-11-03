@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Identify Data Needs and Sources"
+    name="VS-01.1 Identify Data Needs and Sources"
     id="id-688a29fbf3134e5984e838477e0f6bad"
-    documentation="Define the statistical or analytical requirement and identify potential data sources (surveys, registers, administrative systems, sensors, commercial or open data)."/>
+    documentation="Every data journey begins by understanding what data is needed and where it can be found. In this step, analysts, subject-matter experts, and data stewards work together to define the statistical or analytical purpose. They clarify what questions must be answered and what information is required to do so. Next, they identify potential data sources — these may include surveys, administrative registers, external databases, sensors, or even open data portals. Each potential source is evaluated for relevance, quality, and accessibility. This step ensures that only meaningful and reliable data is considered. It also helps align the organization’s data needs with available sources, avoiding unnecessary duplication or data collection.&#xD;&#xA;&#xD;&#xA;Value created: Clear understanding of what data is needed and where it can be obtained."/>

@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Profile and Assess Data Structure"
+    name="VS-02.1 Profile and Assess Data Structure"
     id="id-807f65191eed48f0844294f373130014"
-    documentation="Analyze data structure, identify inconsistencies, and align schema with target models."/>
+    documentation="Before any harmonization can begin, the data must be understood in detail. In this step, teams profile the dataset to identify its structure, content, and potential issues. They look at variables, data types, field names, coding systems, and metadata to see how they compare to existing standards. They assess whether the dataset uses consistent formats, whether codes and classifications are aligned, and whether any transformations will be needed. This step provides a clear picture of the “as-is” structure of the data, serving as the foundation for all subsequent standardization efforts.&#xD;&#xA;&#xD;&#xA;Value created: Full understanding of the dataset’s structure, format, and readiness for integration."/>

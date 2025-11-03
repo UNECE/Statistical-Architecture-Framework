@@ -1,0 +1,5 @@
+<archimate:ValueStream
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="VS-09.3 Provision and Configure Platforms"
+    id="id-6d922e73ea4f4b128f16b9f76131fed1"
+    documentation="After the design is approved, the focus shifts to building and configuring the actual environments.&#xD;&#xA;IT and platform teams provision servers, containers, databases, and analytical tools according to the architecture plan.&#xD;&#xA;&#xD;&#xA;They set up data storage systems, computing clusters, integration layers, and APIs.&#xD;&#xA;At the same time, they configure security controls — encryption, firewalls, role-based access, and monitoring tools.&#xD;&#xA;Automation scripts are used to deploy resources quickly and consistently, following infrastructure-as-code principles.&#xD;&#xA;&#xD;&#xA;The goal is to create platforms that are reliable, reproducible, and compliant, while remaining adaptable to evolving needs.&#xD;&#xA;&#xD;&#xA;Value created: Operational platforms that are configured, secure, and ready to support statistical production and analysis."/>

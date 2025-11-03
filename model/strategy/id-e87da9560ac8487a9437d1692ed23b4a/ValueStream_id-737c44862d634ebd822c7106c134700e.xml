@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Perform Consistency and Coherence Checks"
+    name="VS-05.3 Perform Consistency and Coherence Checks"
     id="id-737c44862d634ebd822c7106c134700e"
-    documentation="Ensure integrated datasets are internally consistent and methodologically sound."/>
+    documentation="Next, the composed products are tested for internal and cross-domain consistency. This means checking that the values across datasets, tables, or indicators align logically and methodologically. &#xD;&#xA;For example, totals should match their components, derived indices should follow expected trends, and time series should show plausible continuity. Any inconsistencies are reviewed and corrected. This ensures that all data and indicators in the statistical product tell a consistent and coherent story.&#xD;&#xA;&#xD;&#xA;Value created: Reliable and internally consistent statistical products that maintain user confidence."/>

@@ -1,5 +1,5 @@
 <archimate:ValueStream
     xmlns:archimate="http://www.archimatetool.com/archimate"
-    name="Apply Weighting and Calibration"
+    name="VS-04.2 Apply Weighting and Calibration"
     id="id-65a5b7e482aa433c83fba6d438f07c6e"
-    documentation="Adjust for sample bias, non-response, or coverage errors through statistical weighting or calibration methods."/>
+    documentation="Next, the organization ensures that the dataset properly represents the population or phenomenon being studied. This is achieved through weighting and calibration. Weighting adjusts the influence of each observation in the dataset so that sample results reflect the true characteristics of the population. Calibration fine-tunes these weights using known reference totals or auxiliary variables — for example, demographic or economic distributions from trusted sources. These adjustments correct for sampling bias, non-response, or undercoverage. The result is data that is statistically representative and ready for estimation.&#xD;&#xA;&#xD;&#xA;Value created: Balanced datasets that accurately represent real-world populations or domains."/>
