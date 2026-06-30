@@ -1,0 +1,185 @@
+---
+title: VS-09.0 Infrastructure and Platform Enablement — Business Layer
+abstract: "This document describes the business layer of **VS-09.0 Infrastructure and Platform Enablement**, one of the four **supporting** value streams of the Statistical Architecture Framework (SAF). Unlike the primary streams (VS-01–VS-06), it does not transform data through steady states; it provides the technical and digital foundation — environments, platforms, integration and orchestration services — on which every other stream runs, safely, at scale, and with continuity. It is described here as a continuous capability (define → design → provision → integrate → assure → evolve) rather than as a per-cycle data process. (This is the business-layer view of providing the application and technology enablement that the primary-stream documents scoped out.)"
+
+---
+
+## Introduction and Strategic Context
+
+### Purpose and Scope
+
+VS-09.0 provides the technical and digital foundation that supports every part of the statistical organization. Where the other streams focus on data, methods, or governance, this one ensures all of those activities can actually **run** — safely, efficiently, and at scale. It delivers the IT environments, data platforms, tools, and integration services that make statistical production possible from collection to dissemination, keeping systems secure, resilient, and compliant while remaining flexible enough to adopt new technologies. The value it creates is **reliable enablement** — turning infrastructure from a background function into an active enabler of the statistical mission.
+
+This document is the **business-layer** view of that enablement (the capability of providing platforms and services). The detailed application and technology architecture is the subject of the SAF's application and technology layers.
+
+{{< include _includes/_key-concepts.qmd >}}
+
+*A note on numbering:* each `VS-0x.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
+
+### Position — a supporting stream that works across the whole chain
+
+VS-09 is not a stage in the production line. It is the **foundation underneath** all of it: every primary and supporting stream runs on the platforms it provides.
+
+```{mermaid}
+%%| label: fig-1
+%%| fig-cap: "VS-09 is the technical foundation every other stream runs on."
+%%| fig-width: 6
+flowchart TD
+    subgraph primary["Primary Value Streams"]
+        direction LR
+        VS01["VS-01"] --> VS02["VS-02"] --> VS03["VS-03"] --> VS04["VS-04"] --> VS05["VS-05"] --> VS06["VS-06"]
+    end
+    other["Supporting streams<br/>VS-07 · VS-08 · VS-10"]
+
+    VS09["**VS-09.0 Infrastructure &<br/>Platform Enablement**"]:::hi
+    VS09 -->|"platforms, environments,<br/>integration & continuity"| primary
+    VS09 -->|"runtime & tooling"| other
+
+    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9,stroke-width:2px
+```
+
+::: {.callout-important title="How a supporting value stream differs from a primary one"}
+- **No steady-state data transition.** VS-09 does not move data along the chain; it provides the environments in which the chain runs.
+- **It runs continuously** as an always-on service, not per production cycle.
+- **Its output is an enabling capability, not a data artefact:** platforms, environments, integration services, and assured availability.
+- **It aligns to GAMSO Capability Management and Corporate Support**, not to GSBPM production phases.
+:::
+
+### How It Interacts with the Production Chain
+
+VS-09 receives requirements (from business capabilities, data volumes, and the other streams — notably VS-08 for new technology and VS-06 for dissemination platforms) and provides the platforms, integration services, and operational assurance the whole organization depends on. Its security and continuity posture is governed by VS-07.
+
+```{mermaid}
+%%| label: fig-2
+%%| fig-cap: "Interaction with the chain: requirements in; platforms, integration, and assured availability out."
+%%| fig-width: 6
+flowchart LR
+    REQ["Requirements<br/>(business capabilities,<br/>data volumes, VS-08 tech,<br/>VS-06 channels)"] --> VS09["VS-09<br/>Infrastructure &<br/>Platform Enablement"]:::hi
+    VS09 -->|"environments, platforms,<br/>integration, availability"| ALL["All value streams<br/>(VS-01…VS-10)"]
+    VS07["VS-07 Governance"] -.->|"security & continuity policy"| VS09
+    ALL -.->|"incidents, capacity demand"| VS09
+
+    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9
+```
+
+### Framework Alignment (GAMSO)
+
+Where the primary streams map to **GSBPM** production phases, VS-09 maps to **GAMSO** capability and support activities and the SAF **supporting-business** capability domain (IT):
+
+| GAMSO area | Relevance to VS-09 |
+|---|---|
+| **Capability Management** | Manage IT capability; introduce and modernize technology |
+| **Corporate Support** | Manage IT services and operations, security, and business continuity |
+| **SAF capability domain: Supporting business (3.x)** | Computerization & automation (application development, functional management); security & privacy (technical) |
+
+### Principles Emphasised
+
+| Principle | Statement | How VS-09 applies it |
+|---|---|---|
+| **SAF-P10** | Security By Design | Builds security and access control into every platform and environment from the start |
+| **SAF-P06** | Business Continuity | Guarantees availability, resilience, and disaster recovery for the whole chain |
+| **SAF-P02** | Active support | Runs platforms as actively-supported, monitored services, not one-off builds |
+| **SAF-P05** | IT and technology is everyone's business | Provides self-service, well-documented platforms so technology serves all teams |
+| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | Favours open, shared platform components to retain collective control |
+
+## Roles and Actors
+
+{{< include _includes/_roles-note.qmd >}}
+
+| Role | Description |
+|---|---|
+| **Chief Technology / Infrastructure Officer** | Accountable for the technical foundation and its strategy |
+| **Platform / Cloud Architect** | Designs the platform and infrastructure architecture |
+| **DevOps / Platform Engineer** | Provisions, configures, and operates environments |
+| **Integration Engineer** | Builds APIs, workflow engines, and orchestration |
+| **Security & Continuity Officer** | Implements security controls, monitoring, and disaster recovery (with VS-07) |
+| **Service Desk / Operations** | Runs incident management and keeps services available |
+| **Consuming teams (VS-01…VS-10)** | Define requirements and run their processes on the platforms |
+
+## The Value-Stream Flow
+
+VS-09's six business processes form a continuous enablement lifecycle — **define → design → provision → integrate → assure → evolve**.
+
+```{mermaid}
+%%| label: fig-3
+%%| fig-cap: "The six business processes as a continuous enablement lifecycle."
+%%| fig-width: 6
+flowchart LR
+    A["09.1 Define Digital &<br/>Technical Requirements"] --> B["09.2 Design Platform &<br/>Infrastructure Architecture"]
+    B --> C["09.3 Provision &<br/>Configure Platforms"]
+    C --> D["09.4 Enable Integration<br/>& Orchestration"]
+    D --> E["09.5 Ensure Performance,<br/>Security & Continuity"]
+    E --> F["09.6 Evolve &<br/>Modernize"]
+    F -.->|"continuous lifecycle"| A
+
+    style A fill:#f5f3ff,stroke:#7c3aed
+    style B fill:#f5f3ff,stroke:#7c3aed
+    style C fill:#eff6ff,stroke:#2563eb
+    style D fill:#eff6ff,stroke:#2563eb
+    style E fill:#ecfdf5,stroke:#059669
+    style F fill:#fef3c7,stroke:#d97706
+```
+
+**Plan — understand what is needed.** The lifecycle begins by **defining digital and technical requirements** (09.1): identifying the infrastructure needs arising from business capabilities, data volumes, and analytical complexity across the streams. These feed the **design of the platform and infrastructure architecture** (09.2): blueprints for data storage, processing, integration, and secure access (data fabric, data market, compute platforms).
+
+**Build — stand it up.** The architecture is realized by **provisioning and configuring platforms** (09.3): deploying environments (on-premise, hybrid, or cloud) with the necessary governance, monitoring, and security controls, and by **enabling integration and orchestration services** (09.4): the APIs, workflow engines, and automation that connect the business services and processes — including the steady-state event interfaces the primary streams rely on.
+
+**Operate — keep it running and safe.** Day to day, VS-09 **ensures performance, security, and continuity** (09.5): monitoring platform performance, implementing data protection, managing incidents, and guaranteeing availability and disaster recovery — the assurance that the whole chain can run reliably.
+
+**Improve — modernize.** Finally it **evolves and modernizes the technical ecosystem** (09.6): introducing new technologies (often transferred from VS-08), retiring obsolete components, and keeping the foundation flexible for new data sources and operating models.
+
+| Business process | What it produces |
+|---|---|
+| VS-09.1 Define Digital and Technical Requirements | Infrastructure requirements derived from business needs |
+| VS-09.2 Design Platform and Infrastructure Architecture | Architecture blueprints (storage, processing, integration, access) |
+| VS-09.3 Provision and Configure Platforms | Deployed, controlled environments |
+| VS-09.4 Enable Integration and Orchestration Services | APIs, workflow/automation, event interfaces |
+| VS-09.5 Ensure Performance, Security, and Continuity | Monitoring, security, availability, disaster recovery |
+| VS-09.6 Evolve and Modernize the Technical Ecosystem | Modernization roadmap and adopted technologies |
+
+## Capability Governance
+
+VS-09 is itself a capability that is **designed** (architecture and operating model), **built** (provisioning and integration), **operated** (continuous monitoring, security, and incident management), and **improved** (09.6). Unlike a primary stream it produces **platforms and assured availability**, not statistical data, and runs as an **always-on service** rather than a per-cycle production run. Its security and continuity are governed by VS-07.
+
+### Key Performance Indicators
+
+| KPI | Description | Measurement |
+|---|---|---|
+| Platform availability | Measured availability against the agreed service level, per platform | Monthly |
+| Incident response | Mean time to restore service after an incident, per severity class | Per incident, trended quarterly |
+| Event-interface reliability | Delivery rate of the steady-state handover events the chain depends on | Per interface, monthly |
+| Capacity headroom | Share of platforms operating within their planned capacity envelope | Monthly, ahead of known peaks |
+| Security posture | Open critical vulnerabilities and patch latency (assessed with VS-07) | Continuous, reported quarterly |
+| Modernization progress | Components retired or replaced according to the roadmap | Annually |
+
+## Interactions, Services and Events
+
+| Counterpart | VS-09 provides | VS-09 receives | Interaction / event |
+|---|---|---|---|
+| **All streams (VS-01…VS-10)** | Environments, platforms, integration, availability | Requirements, capacity demand, incidents | "Platform/service request", "Incident", "Capacity change" |
+| **VS-06 Dissemination** | Portals, APIs, dashboards, secure research environments | Channel/scaling requirements | "Dissemination platform request" |
+| **VS-08 Innovation** | Sandbox and production runtime for new tech | New-technology adoption requests | "Technology onboarding" |
+| **VS-07 Governance** | Security posture and continuity evidence | Security & continuity policy | "Security/continuity review" |
+
+## Business Objects / Artefacts
+
+VS-09 manages enabling artefacts: **technical requirements**, **architecture blueprints**, **provisioned environments and platforms**, **integration/orchestration services and event interfaces**, **monitoring/security/continuity controls**, and the **modernization roadmap**. These underpin every stream and are managed across their lifecycle (SAF-P03), with security and continuity (SAF-P10/P06) built in. Each artefact has a designated owner; changes are tracked, prior versions remain identifiable, and obsolete components are formally retired.
+
+## Applying This to Your NSO
+
+### Maturity Assessment Checklist
+
+- [ ] Do we derive infrastructure requirements from business capabilities and data volumes (not ad-hoc)?
+- [ ] Do we have architecture blueprints for storage, processing, integration, and secure access?
+- [ ] Are environments provisioned with governance, monitoring, and security controls built in?
+- [ ] Do we provide integration/orchestration and the event interfaces the streams rely on?
+- [ ] Do we monitor performance, manage incidents, and guarantee availability and disaster recovery?
+- [ ] Is there a modernization path that adopts new technology (often from VS-08) and retires the obsolete?
+
+### Scenarios
+
+**Scenario A — Onboarding a secure research environment.** VS-06 needs to release de-identified microdata to accredited researchers. VS-09 captures the requirement (09.1), designs the SRE architecture (09.2), provisions it with access controls and output checking (09.3/09.4), and assures its security and availability (09.5) under VS-07's policy — so VS-06 can deliver controlled microdata access reliably.
+
+**Scenario B — Adopting a cloud processing platform.** VS-08 validates a scalable processing technology. VS-09 designs and provisions the platform (09.2/09.3), enables integration with the existing pipelines (09.4), assures performance and continuity (09.5), and folds it into the modernization roadmap (09.6), so the production streams gain capacity without disruption.
+
+**Scenario C — Scaling for the census peak.** The census (VS-01) will multiply ingestion and processing volumes for three months. VS-09 derives the peak requirements with the census team (09.1), updates the capacity plan and architecture (09.2), provisions elastic compute and storage ahead of the field period (09.3), and load-tests the ingestion event interfaces end to end (09.4). During the peak it monitors throughput and availability against the agreed service levels (09.5); afterwards the surge capacity is released and the lessons feed the modernization roadmap (09.6). The chain experiences the census as business as usual.

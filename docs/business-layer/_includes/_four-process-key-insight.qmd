@@ -1,0 +1,3 @@
+::: {.callout-important}
+**Key insight:** Most organizations focus primarily on execution, expecting to get results faster. The Statistical Architecture Framework emphasizes that **design, implementation, and management** are equally essential — without them, execution is ad-hoc and ungoverned, eventually leading to loss of control. The governance cycle ensures continuous improvement.
+:::

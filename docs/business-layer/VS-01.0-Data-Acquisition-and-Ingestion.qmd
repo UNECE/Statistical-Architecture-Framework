@@ -1,0 +1,952 @@
+---
+title: VS-01.0 Data Acquisition and Ingestion — Business Layer
+abstract: "This document describes how external data — from survey respondents, government registers, or web sources — becomes validated **Raw Data** under the custody of a National Statistical Office (NSO). It covers the complete lifecycle in four process groups: _Design_ (decide what data is needed and how to validate it), _Implementation_ (build the collection systems), _Execution_ (run the collection each cycle), and _Management_ (track quality and improve). It is intended as a canvas for NSOs to adapt to their own context."
+
+---
+
+## Introduction and Strategic Context
+
+### Purpose and Scope
+
+This document specifies the complete business layer for the **Observation/Collection** business domain, corresponding to the *VS-01.0 Data Acquisition and Ingestion Value Stream*. It also covers 4 governance process types:
+
+- **Design** — how the acquisition pipeline is specified and planned (produces metadata)
+- **Implementation** — how the pipeline is built, configured, and tested (produces the execution process)
+- **Execution** — how data is operationally collected, validated, and stored (produces statistical data)
+- **Management** — how the domain is monitored, quality-assessed, and improved (produces quality reports)
+
+::: {.callout-warning title="Out of Scope"}
+Application and Technology layer specifications are out of scope for this document.
+:::
+
+{{< include _includes/_key-concepts.qmd >}}
+
+{{< include _includes/_how-to-read.qmd >}}
+
+*A note on numbering:* each `VS-01.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
+
+
+
+### Position in the Statistical Value Chain
+
+VS-01.0 is the first primary value stream — the entry point through which all data enters the statistical system. It is the "Source & Ingest Information" orchestration stage that feeds all downstream processing.
+
+```{mermaid}
+%%| label: fig-1
+%%| fig-cap: "Value Stream Context Map. VS-01.0 (highlighted) is the entry point: all data passes through it before any downstream processing. The four supporting streams below enable the whole chain."
+%%| fig-width: 6
+
+
+flowchart TD
+    subgraph primary["Primary Value Streams"]
+        direction LR
+        VS01["**VS-01.0**
+        Data Acquisition
+        & Ingestion"]:::highlight
+        VS02["VS-02.0
+        Data Standardization
+        & Integration"]
+        VS03["VS-03.0
+        Data Editing
+        & Enrichment"]
+        VS04["VS-04.0
+        Estimation, Analysis
+        & Modeling"]
+        VS05["VS-05.0
+        Statistical Product
+        Composition"]
+        VS06["VS-06.0
+        Dissemination
+        & Service Delivery"]
+        VS01 --> VS02 --> VS03 --> VS04 --> VS05 --> VS06
+    end
+
+    subgraph supporting["Supporting Value Streams"]
+        VS07["VS-07.0
+        Governance &
+        Compliance"]
+        VS08["VS-08.0
+        Innovation &
+        Methodology"]
+        VS09["VS-09.0
+        Infrastructure &
+        Platform Enablement"]
+        VS10["VS-10.0
+        Customer &
+        Stakeholder Engagement"]
+    end
+
+    supporting -.->|"enables"| primary
+
+    classDef highlight fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
+```
+
+### Steady State Transition
+
+VS-01.0 transitions data from **Steady State #0 (Source Data)** — data at the external provider — to **Steady State #1 (Raw Data)** — data under NSO custody in its original form, with provenance metadata and basic quality verification completed.
+
+```{mermaid}
+%%| label: fig-2
+%%| fig-cap: "Steady State Transition. Source Data is external data in its original form; the ingestion service at the NSO boundary validates and documents it; Raw Data is the same data under NSO custody, ready for downstream use."
+%%| fig-width: 6
+flowchart LR
+    subgraph external["External Domain"]
+        SD["Source Data
+        (State #0)"]
+    end
+
+    subgraph boundary["NSO Boundary"]
+        QG["Ingestion Service
+        (Metadata addition, Quality/Schema check)"]
+    end
+
+    subgraph internal["NSO Domain"]
+        RD["Raw Data
+        (State #1)"]
+    end
+
+    SD --> QG --> RD
+
+    style internal fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
+    style external fill:#7d7d7d,color:#fff,stroke:#1d4ed8,stroke-width:1px
+    style boundary fill:#FFF,stroke-dasharray:5,5
+
+```
+
+::: {.callout-tip title='Quality gate criteria (Examples)'}
+- File integrity checks completed (checksum, digital signature)
+- Virus and security scans performed
+- Service-level agreement (SLA) requirements verified with the data provider (completeness, delivery timeliness)
+- Sender verification completed
+- Data stored in its original format — no content-level transformation has been applied
+- Ingestion metadata captured (provenance, source, timestamp, method)
+:::
+
+
+### The Four-Process Governance Pattern
+
+{{< include _includes/_four-process-intro.qmd >}}
+
+```{mermaid}
+%%| label: fig-3
+%%| fig-cap: "The Four-Process Governance Pattern. Each process type produces a distinct artefact class. The cycle closes when Management findings feed back into Design improvements."
+%%| fig-width: 6
+flowchart LR
+    D["**Design**
+    _provides metadata_
+
+    Data models, validation rules,
+    methodology, quality criteria"]
+    I["**Implement**
+    _provides the execution process_
+
+    Configured pipelines, tested
+    instruments, production-ready systems"]
+    E["**Execute**
+    _provides the statistical data_
+    Collected datasets, ingestion
+    metadata, audit trails"]
+    M["**Manage**
+    _provides quality reports_
+    KPI dashboards, quality scorecards,
+    improvement recommendations"]
+
+    D -->|"design artefacts
+    guide building"| I
+    I -->|"production-ready
+    process"| E
+    E -->|"data & process logs
+    for assessment"| M
+    M -->|"improvement
+    feedback"| D
+
+    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
+    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
+    style E fill:#059669,color:#fff,stroke:#047857
+    style M fill:#d97706,color:#fff,stroke:#b45309
+```
+
+{{< include _includes/_four-process-key-insight.qmd >}}
+
+
+### Governing Principles
+
+The following principles directly govern the VS-01.0 business domain:
+
+| Principle | Statement | Application to VS-01.0 |
+|---|---|---|
+| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSOs should contribute to open source communities for collection and ingestion tooling, ensuring collective control over critical capabilities rather than vendor dependence. |
+| **SAF-P07** | Implement loosely coupled processes and systems | The data acquisition domain must be independent from downstream processing. Raw Data (State #1) serves as a decoupling interface — downstream consumers access it without knowledge of how it was collected. |
+| **SAF-P08** | Data is shared property | Raw data, once registered, is available to all authorized consumers. Collection efforts should not be duplicated across statistical products when the same source data can serve multiple purposes. |
+| **SAF-P09** | No data without metadata and classification | At the point of ingestion, every dataset must be enriched with provenance (where it came from and how), source, method, timestamp, quality indicators, and a BIV classification (availability, integrity, confidentiality). This is not a precondition that blocks ingestion, but an obligation the NSO fulfills during acquisition. |
+| **SAF-P10** | Security By Design | Security is embedded in the acquisition pipeline — encrypted transfer channels, virus scanning, checksum verification, access controls — not added as an afterthought. |
+| **SAF-P11** | Privacy By Design | Privacy protection (pseudonymization timing, purpose limitation, GDPR lawful basis) is designed into the acquisition process from the start, not retrofitted after data enters the system. |
+
+::: {.callout-note title="Cross-cutting principle application"}
+Several principles cut across all four process types. SAF-P09 (no data without metadata) applies everywhere: Design defines the target metadata, Execute captures it at ingestion, Manage assesses and closes remaining gaps. SAF-P10 (Security By Design) applies to Design (Section 3.5), Implementation (Section 4.1), and Execution (Sections 5.3–5.5). SAF-P11 (Privacy By Design) applies to Design (Section 3.5) and propagates through all phases. SAF-P07 (loosely coupled) governs the State #1 handover interface to VS-02.0.
+:::
+
+### Capability Foundations
+
+This table is reference material: it shows which abilities from the SAF capability model the domain relies on, so you can map them to your own organization. It is safe to skip on a first read.
+
+VS-01.0 draws on the following SAF capabilities:
+
+| Capability Group | Capabilities | Role in VS-01.0 |
+|---|---|---|
+| **1.1 Statistical design and build** | 1.1.1 Needs inventory, 1.1.2 Design statistics product, 1.1.3 Build statistics product | Design the data requirements, collection methodology, and build the acquisition pipeline |
+| **1.2 Data collection** | 1.2.1 Primary data collection, 1.2.2 Secondary data collection | Execute the collection — surveys, administrative data intake, API extraction |
+| **2.1 Data management** | 2.1.1 Data lifecycle management, 2.1.2 Metadata management, 2.1.3 Statistical quality management, 2.1.4 Statistical register management | Manage the data and metadata throughout ingestion, assess quality, maintain registers |
+| **3.1 Business operations** | 3.1.2 Purchasing & contract management | Manage data sharing agreements and provider contracts |
+| **3.2 Computerization and automation** | 3.2.1 Application development, 3.2.2 Functional management | Build and maintain collection instruments and ingestion systems |
+| **3.3 Security and Privacy** | 3.3.1 Privacy management, 3.3.2 Security planning | Ensure privacy and security by design in all acquisition processes |
+| **4.1 Governance** | 4.1.1 Strategy and governance, 4.1.2 Policy and planning, 4.1.4 Improve management, 4.1.5 Accountability | Govern the domain, plan improvements, report on compliance |
+
+### Metadata Perspective
+
+Metadata is produced in every phase, not only in Design. The table below shows what each process type contributes — both data metadata (describing the datasets) and process metadata, also called *paradata* (describing how the process itself ran: who, when, with which tools).
+
+| Process Type | Data Metadata Produced | Process Metadata (Paradata) Produced |
+|---|---|---|
+| **Design** | Data models, variable definitions, classification schemes, expected formats, quality thresholds | Design decisions log, methodology version, review and approval records |
+| **Implement** | Schema configurations, validation rule parameters, catalog templates, instrument-to-metadata mappings | Build log, test results, configuration change records, deployment approvals |
+| **Execute** | Per-dataset provenance, source, timestamp, file hash, volume, quality indicator values, agreement reference | Operator identity, timing, volumes, errors, collection mode, instrument version |
+| **Manage** | Quality scores, lineage assessments, completeness reports, lifecycle status, trend analyses | KPI dashboards, quality trend analyses, improvement decisions, audit findings |
+
+
+## Business Roles and Actors
+
+{{< include _includes/_roles-note.qmd >}}
+
+| Role                        | Process Orientation | Description                                                                                       |
+|-----------------------------|---------------------|---------------------------------------------------------------------------------------------------|
+| **Data Provider**           | External            | Supplies data to the NSO under a data sharing agreement (government agency, business, individual) |
+| **Survey Respondent**       | External            | Provides data through survey instruments — web (CAWI), face-to-face (CAPI), telephone (CATI), or paper |
+| **Legal Authority**         | External            | Grants legal basis for data collection (e.g., statistics law, GDPR authorization)                 |
+| **Metadata Architect**      | Design              | Designs data models, metadata schemas, and classification mappings                                |
+| **Data Engineer**           | Implementation      | Builds and configures ingestion pipelines, collection instruments, and data channels              |
+| **System Configurator**     | Implementation      | Configures platforms, SFTP endpoints, API connectors, and access controls                         |
+| **Test Manager**            | Implementation      | Plans and executes testing of the acquisition pipeline (technical, field, integration)            |
+| **Process Owner**           | Management          | Accountable for the end-to-end performance of the data acquisition domain                         |
+| **Compliance Officer**      | Management          | Ensures legal and regulatory compliance, produces audit reports                                   |
+| **Quality Manager**         | Management          | Monitors KPIs, produces quality reports, and drives continuous improvement                        |
+| **Methodologist**           | Design              | Designs collection methodology, sampling strategies, and questionnaire content                    |
+| **Statistical Designer**    | Design              | Translates statistical needs into data requirements and process specifications                    |
+| **Data Collection Manager** | Execution           | Oversees operational data collection campaigns and coordinates collection teams                   |
+| **Data Quality Analyst**    | Execution           | Performs validation checks, assesses data quality at intake, and logs exceptions                  |
+| **Data Steward**            | Execution           | Registers datasets in the catalog, manages metadata entries, and applies access controls          |
+
+
+
+## Design Processes — "provides metadata"
+
+*Framework alignment: GSBPM Phases 1–2 — see [Framework Mappings](#framework-mappings).*
+
+The design phase produces the **metadata artefacts** that govern all subsequent phases. Without a well-designed acquisition pipeline, execution becomes ad-hoc, implementation becomes inconsistent, and management has nothing to measure against.
+
+### Design Data Requirements and Source Strategy
+
+The starting point of any data acquisition effort is understanding what data is needed and where it can be obtained. This sub-process translates statistical objectives — target populations, required variables, reference periods, and quality expectations — into a concrete source strategy. The team inventories and evaluates potential data sources across the full spectrum: surveys, administrative registers, APIs, web sources, sensors, and commercial data. Each source is assessed for relevance, quality, accessibility, cost, timeliness, and legal availability. The outcome is a strategic decision on the collection approach: primary collection (run a survey), secondary collection (reuse administrative data), or a multi-source combination. The trade-offs behind that decision are documented (GSBPM phases 1.1–1.3 and 1.5–1.6).
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Define statistical needs: target population, variables, reference period, quality expectations | Data Requirements Specification | GSBPM 1.1–1.3 |
+| Inventory and evaluate potential data sources across all types | Source Assessment Report | GSBPM 1.5 |
+| Assess each source for relevance, quality, accessibility, cost, timeliness, legal availability | Source Assessment Report | GSBPM 1.5 |
+| Decide collection strategy: primary vs. secondary vs. multi-source | Collection Strategy Decision Record | GSBPM 1.6 |
+| Document trade-offs between source options | Collection Strategy Decision Record | GSBPM 1.6 |
+
+::: {.callout-tip title="**NSO Example — Population Census:**"}
+A national statistical organization designing its next census decides on a register-first approach: use the population register as the primary source, supplement with a sample survey for variables not available in registers (housing conditions, commuting patterns), and validate against municipal records. The design phase produces the variable mapping from registers to census variables, the sample design for the supplementary survey, and the quality criteria for register data acceptance.
+:::
+
+
+### Design Collection Methodology and Instruments
+
+Once the source strategy is set, the methodology team designs how data will actually be collected. This involves selecting collection modes — web, face-to-face, or telephone interviewing (CAWI/CAPI/CATI), secure file transfer (SFTP), automated machine-to-machine interfaces (API), data space connectors, or web scraping — and defining how each mode operates within the overall design. For survey-based collection, this includes questionnaire design: variable definitions, question wording, skip logic, and code lists. The sampling frame and sample selection methodology are designed to ensure statistical representativeness. Where multiple modes are used, the team specifies which respondents receive which mode and the fallback sequence for non-response. A respondent communication strategy — invitation letters, reminders, and help desk scripts — rounds out the design, aligned with GSBPM phases 2.2–2.4.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Design collection modes (CAWI, CAPI, CATI, SFTP, API, web scraping, etc.) | Collection Methodology Document | GSBPM 2.3 |
+| Design questionnaire content: variable definitions, question wording, skip logic, code lists | Questionnaire Design (per mode) | GSBPM 2.2 |
+| Design sampling frame and sample selection methodology | Sample Design and Selection Criteria | GSBPM 2.4 |
+| Define multi-mode strategy and fallback sequences | Collection Methodology Document | GSBPM 2.3 |
+| Design respondent communication strategy | Respondent Communication Plan | GSBPM 2.3 |
+
+::: {.callout-tip title="**NSO Example — Labour Force Survey:**"}
+The LFS design team specifies a mixed-mode approach: first CAWI invitation by email, CATI follow-up after 2 weeks for non-respondents, CAPI for hard-to-reach populations. A rotation panel design (2-2-2) ensures longitudinal tracking. The questionnaire is designed with adaptive questioning to minimize response burden.
+:::
+
+
+
+### Design Data Model and Metadata Schema
+
+This sub-process defines the target data structure for Raw Data (State #1) and the metadata that must accompany every dataset at the point of ingestion. The data model specifies fields, types, formats, and constraints for the storage area where incoming data first lands (the "landing zone"). Equally important is the ingestion metadata model. It prescribes what must be captured at each point of receipt: provenance information (source organization, contact, agreement reference), method details (collection mode, instrument version, sampling parameters), timing information (collection period, delivery and processing timestamps), and quality indicators (completeness rate, delivery timeliness, format conformance). Classification and coding schemes are defined to ensure consistency with national and international standards. Finally, the metadata catalog structure is designed so that datasets are discoverable, linked, and traceable — making active metadata a foundation for downstream automation, as emphasized by the CSDA (Common Statistical Data Architecture) Metadata Management capability.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Define target data structure for Raw Data (State #1) — fields, types, formats, constraints | Raw Data Schema Definition | GSBPM 2.1 |
+| Define ingestion metadata model: provenance, method, timing, quality indicators | Ingestion Metadata Model | SAF-P09 |
+| Define classification and coding schemes | Classification Mapping Rules | SAF-P09 |
+| Design metadata catalog structure for dataset registration and discovery | Catalog Registration Template | CSDA Metadata Mgmt |
+
+### Design Validation Rules and Quality Criteria
+
+Before any data enters the system, the acceptance criteria and exception handling rules must be clearly defined. This sub-process establishes completeness thresholds (minimum record counts, required field coverage percentages), SLA parameters (delivery windows, response times, format specifications), and structural validation rules (field types, value ranges, referential integrity, format conformance). Security and integrity check specifications — virus scan requirements, checksum algorithms, and encryption standards — are defined in line with SAF-P10. Quality dimensions to track (completeness, timeliness, conformance, integrity) are agreed upon, and exception handling rules are designed to distinguish between outright rejection, conditional acceptance with quality flags, and routing to manual review. The GAMSO Quality Management capability provides the overarching control framework.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Define completeness thresholds and SLA parameters | Quality Criteria Document, SLA Template | GSBPM 2.5 |
+| Define structural validation rules: field types, value ranges, referential integrity | Validation Rule Set | GSBPM 2.5 |
+| Define security and integrity check specifications | Validation Rule Set | SAF-P10 |
+| Define quality dimensions to track | Quality Criteria Document | GAMSO QM |
+| Design exception handling rules: rejection vs. conditional acceptance vs. manual review | Exception Handling Policy | GSBPM 2.5 |
+
+### Design Access Control and Privacy Framework
+
+The final design sub-process ensures that security and privacy are embedded from the outset, not bolted on after the fact. Each data source receives a BIV classification (availability, integrity, confidentiality) per SAF-P09. Role-based access controls for the raw data repository are designed in accordance with SAF-P10, specifying who can read, write, and administer. Privacy protection measures follow SAF-P11: pseudonymization timing (when direct identifiers are removed or replaced), purpose limitation (what uses are authorized under each agreement), the GDPR lawful basis (which Article 6 ground applies to each source), and data minimization (whether only necessary data is collected). Audit logging requirements — what access events must be recorded — complete the security design.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Define BIV data classification per source | Data Classification Policy | SAF-P09 |
+| Design role-based access control for the raw data repository | Access Control Design | SAF-P10 |
+| Design privacy protection: pseudonymization timing, purpose limitation, GDPR basis, data minimization | Privacy Impact Assessment Template | SAF-P11 |
+| Design audit logging requirements | Audit Logging Specification | SAF-P10 |
+
+```{mermaid}
+%%| label: fig-4
+%%| fig-cap: "Design Process Decomposition. Statistical needs and data sources feed the five design sub-processes (run in order, left column to right); each produces a design document. Together these documents govern how the pipeline is built, run, and measured. The dashed arrow means the framework standards inform all five."
+%%| fig-width: 6
+flowchart TB
+    subgraph inputs["Inputs"]
+        SN["Statistical Needs"]
+        FW["Framework Standards<br/><small>GSBPM · GAMSO · CSDA</small>"]
+        SRC["Data Sources"]
+        LAW["Legal & Privacy"]
+    end
+
+    subgraph design["Design Sub-Processes"]
+        D1["Data requirements<br/>& source strategy (§3.1)"]
+        D2["Collection methodology<br/>& instruments (§3.2)"]
+        D3["Data model &<br/>metadata schema (§3.3)"]
+        D4["Validation rules &<br/>quality criteria (§3.4)"]
+        D5["Access control &<br/>privacy framework (§3.5)"]
+    end
+
+    subgraph outputs["Design documents produced"]
+        O1["Data requirements spec"]
+        O2["Collection & questionnaire"]
+        O3["Raw data schema"]
+        O4["Validation rule set"]
+        O5["Access control &<br/>privacy assessment"]
+    end
+
+    SN --> D1
+    SRC --> D1
+    FW -.->|inform| design
+    LAW --> D5
+
+    D1 --> D2 --> D3 --> D4 --> D5
+
+    D1 --> O1
+    D2 --> O2
+    D3 --> O3
+    D4 --> O4
+    D5 --> O5
+
+    outputs -->|govern| NEXT["Implementation (§4) · Execution (§5)<br/>measured by Management (§6)"]
+
+    style design fill:#f5f3ff,stroke:#7c3aed
+    style outputs fill:#ede9fe,stroke:#7c3aed
+```
+
+## Implementation Processes — "provides the execution process"
+
+*Framework alignment: GSBPM Phase 3 (Build) — see [Framework Mappings](#framework-mappings).*
+
+The implementation phase takes the metadata artefacts from Design and **builds, configures, and tests** the production-ready acquisition pipeline. Nothing runs operationally until this phase is complete.
+
+### Build Collection Instruments and Channels
+
+This sub-process transforms the collection methodology design into operational tools and channels. For survey-based collection, this means building or configuring the instruments themselves: a CAWI web portal with the designed question logic, multi-language support, and responsive layout; a CAPI mobile application with offline capability and the designed questionnaire; CATI call center scripts with designed routing logic; and paper forms laid out for automated scanning (OCR) or manual data entry, all following GSBPM 3.1. For secondary and emerging sources, data receipt channels are configured: SFTP endpoints with the designed encryption and authentication, API connections with rate limiting and error handling, and data space connectors per designed specifications. Secure data transfer channels with end-to-end encryption are set up in line with SAF-P10, and a respondent management system handles invitations, reminders, and tracking.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Build/configure survey instruments per mode (CAWI, CAPI, CATI, paper) | Production-ready instruments | GSBPM 3.1 |
+| Configure data receipt channels (SFTP, API, data space connectors) | Configured channel endpoints | GSBPM 3.1 |
+| Set up secure transfer channels with end-to-end encryption | Secure channel configuration | SAF-P10 |
+| Configure respondent management system (invitations, reminders, tracking) | Respondent management system | GSBPM 3.1 |
+
+::: {.callout-tip title="**NSO Example — Household Budget Survey:**"}
+ The implementation team builds a CAWI portal with diary entry functionality (daily spending log), configures it for 12 languages, implements the designed sampling filter, and sets up an SFTP fallback channel for large retailers providing scanner data as supplementary price information.
+:::
+
+### Configure Data Ingestion Workflows
+
+The designed validation rules and metadata capture requirements are translated into automated workflows in this sub-process. Structural validation — schema conformance, field types, and required fields — is implemented first. Alongside it come integrity checks (checksum verification, virus scanning, digital signature validation), completeness checks (record counts, field coverage thresholds), and SLA checks (delivery timeliness, format conformance), following GSBPM 3.2. Metadata capture at each ingestion point is automated to extract provenance, format, timestamps, and file hashes without manual intervention. The raw-data landing zone (the repository where incoming data first lands) is set up with the designed access controls and storage policies. Event notifications are configured so that downstream consumers (VS-02.0) are alerted when raw data is registered. Exception handling workflows route rejected data to the appropriate queue — provider notification, manual review, or conditional acceptance — per GSBPM 3.4.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Implement validation rules as automated checks (structural, integrity, completeness, SLA) | Automated validation pipeline | GSBPM 3.2 |
+| Configure metadata capture at each ingestion point | Automated metadata extraction | SAF-P09 |
+| Set up raw data landing zone with access controls and storage policies | Configured repository | GSBPM 3.2 |
+| Configure event notifications for downstream consumers | "Raw Data Registered" event publication | GSBPM 3.2 |
+| Configure exception handling workflows | Rejection routing and manual review queues | GSBPM 3.4 |
+
+### Build Metadata Registration and Cataloging
+
+This sub-process implements the metadata catalog and the automated registration processes that ensure every dataset is discoverable and traceable. Catalog entries are built based on the designed metadata model (Section 3.3), and automatic metadata propagation is configured from collection instruments (questionnaire metadata: variables, code lists, question wording), transfer channels (source, method, timing), and the validation pipeline (validation results, completeness scores) into the catalog. Metadata quality validation ensures that every registered dataset has all required metadata fields. Search and discovery capabilities are implemented so that downstream consumers can find and access raw data and its associated metadata. As the CSDA emphasizes, active metadata — metadata that can auto-generate collection instruments, validation rules, and processing specifications — is the ultimate goal.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Implement metadata catalog entries based on designed model | Populated metadata catalog | GSBPM 3.3 |
+| Configure automatic metadata propagation from instruments, channels, and validation | Automated metadata pipelines | CSDA Metadata Mgmt |
+| Set up metadata quality validation | Metadata completeness checks | SAF-P09 |
+| Implement metadata search and discovery for downstream consumers | Discovery interface | CSDA Metadata Mgmt |
+
+### Test and Validate the Pipeline
+
+Before the pipeline goes into production, it must be rigorously verified. Technical testing covers all individual components — instruments, channels, validators, and catalog (GSBPM 3.5). Integration testing validates the end-to-end flow from data receipt through validation to catalog registration. A field test or pilot with real or synthetic data (GSBPM 3.6) runs a small-scale test with actual data providers to verify that metadata is correctly captured and propagated, quality criteria are enforced at each checkpoint, and exception handling works as designed. Performance testing confirms the pipeline can handle expected volumes within SLA windows. Security testing — penetration testing of transfer channels and access control verification — ensures the pipeline meets SAF-P10 requirements. The phase concludes with finalization of the production system and documentation of operational procedures (GSBPM 3.7).
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Technical testing of all individual components | Unit test reports | GSBPM 3.5 |
+| Integration testing: end-to-end flow from receipt to registration | Integration test report | GSBPM 3.5 |
+| Field test / pilot with real or synthetic data | Field test report, validated metadata propagation | GSBPM 3.6 |
+| Performance testing against expected volumes | Performance test report | GSBPM 3.6 |
+| Security testing: penetration testing, access control verification | Security test report | SAF-P10 |
+| Finalize production system and document operational procedures | Operational Procedures Manual, Production-Ready Pipeline | GSBPM 3.7 |
+
+```{mermaid}
+%%| label: fig-5
+%%| fig-cap: "Implementation Pipeline from design artefacts through build/configure/test to production-ready system."
+%%| fig-width: 6
+flowchart LR
+    subgraph design_artefacts["Design Artefacts (from Section 3)"]
+        DA1["Data Requirements\n& Source Strategy"]
+        DA2["Collection Methodology\n& Instruments"]
+        DA3["Data Model &\nMetadata Schema"]
+        DA4["Validation Rules &\nQuality Criteria"]
+        DA5["Access Control &\nPrivacy Framework"]
+    end
+
+    subgraph build["Build & Configure"]
+        B1["4.1 Build Collection\nInstruments &\nChannels"]
+        B2["4.2 Configure\nIngestion\nWorkflows"]
+        B3["4.3 Build Metadata\nRegistration &\nCataloging"]
+    end
+
+    subgraph test["Test & Validate"]
+        T1["4.4 Technical\nTesting"]
+        T2["4.4 Field\nTest / Pilot"]
+        T3["4.4 Security\n& Performance"]
+    end
+
+    subgraph output["Production-Ready"]
+        PR["Operational\nAcquisition\nPipeline"]
+        OP["Operational\nProcedures"]
+    end
+
+    DA1 & DA2 --> B1
+    DA3 & DA4 & DA5 --> B2
+    DA3 --> B3
+
+    B1 & B2 & B3 --> T1 --> T2 --> T3
+    T3 --> PR & OP
+
+    PR -->|"ready for"| EXEC["Execution\n(Section 5)"]
+
+    style build fill:#eff6ff,stroke:#2563eb
+    style test fill:#dbeafe,stroke:#2563eb
+```
+
+## Execution Processes — "provides the statistical data"
+
+*Framework alignment: GSBPM Phase 4 (Collect) — see [Framework Mappings](#framework-mappings).*
+
+The execution phase runs the **designed and implemented pipeline** operationally for each production cycle. This corresponds to the five VS-01 value stream stages. In a mature steady state, much of the work has been pre-designed (Section 3) and pre-built (Section 4) — execution focuses on running the cycle, capturing data and metadata, and ensuring quality gates are passed.
+
+### Identify Data Needs and Sources
+
+**Value created:** *Clear understanding of what data is needed and where it can be obtained.*
+
+In a mature steady state, the design phase (Section 3) has already defined the data requirements and source strategy. Per-cycle execution therefore focuses on confirmation rather than re-creation. The team confirms or updates data requirements for the current production cycle, applying GSBPM 1.1 in its recurrent form. They verify that identified data sources remain available and accessible, check that source metadata is current — contact persons, data formats, delivery schedules — and identify any new sources that may have become available since the last cycle. Significant changes to requirements or source availability trigger a return to the design process rather than ad-hoc adaptation during execution.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Confirm or update data requirements for this production cycle | Confirmed requirements for cycle | GSBPM 1.1 |
+| Verify data source availability and accessibility | Source availability confirmation | GSBPM 1.5 |
+| Check that source metadata is current (contacts, formats, schedules) | Updated source metadata | GSBPM 1.5 |
+| Identify new sources available since last cycle | New source assessment (if any) | GSBPM 1.5 |
+
+::: {.callout-tip title="**NSO Example — Annual Census:**"}
+At the start of the reference year, the census team confirms that all 393 municipal registers are available for the current reference year, verifies contact persons and API endpoints, and confirms that the supplementary survey sample frame has been updated with the latest population register extract.
+:::
+
+### Establish Data Agreement and Access Right
+
+**Value created:** *Legal, ethical, and transparent access to data under controlled conditions.*
+
+Before data flows, legal and operational access must be confirmed for the current production cycle. The team activates or renews data sharing agreements, verifies GDPR compliance for the current data scope — checking that processing records (Article 30) are up to date — and confirms that access credentials and security certificates are valid and not expired. For sources new to this cycle, the full agreement process designed in Section 3.5 is executed. The active agreement status is recorded and linked to the upcoming data deliveries, creating a traceable chain from legal authorization to received data.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Activate or renew data sharing agreements for the current cycle | Active Agreement Record (per source) | GSBPM 4.1 |
+| Verify GDPR compliance: processing records (Art. 30) up to date | Compliance Confirmation Log | SAF-P11 |
+| Confirm access credentials and security certificates are valid | Current Access Credentials (verified) | SAF-P10 |
+| For new sources: execute full agreement process (per Section 3.5) | New source agreement | SAF-P11 |
+| Record active agreement status linked to upcoming deliveries | Agreement-delivery linkage | GSBPM 4.1 |
+
+::: {.callout-tip title='**NSO Example — Quarterly Tax Data:**'}
+Before the Q3 delivery window opens, the data management team verifies the SLA with the tax authority (delivery within 45 days of quarter end, minimum 98% of expected records), confirms SFTP credentials are valid, and records the active agreement reference number for linking to the incoming dataset.
+:::
+
+
+### Collect, Receive, or Extract Data
+
+**Value created:** *Secure and verifiable transfer of authentic data into the organization.*
+
+This sub-process is the operational heart of the value stream, where data physically enters NSO custody. Primary data collection runs surveys through the designed and built instruments: CAWI portals open, invitation links are sent, and response rates are monitored; CAPI field interviewers are deployed with managed assignments; CATI call schedules are executed with callback management. Secondary data collection receives administrative data via agreed channels — SFTP accepts scheduled file deliveries, APIs pull data on agreed schedules, and data space connectors facilitate federated exchange. Emerging sources — web scraping, sensor data, commercial feeds — are extracted according to designed specifications, all aligned with GSBPM 4.1–4.3.
+
+Equally critical is the metadata captured at the point of receipt. For every dataset received, the ingestion system records the source identifier and organization, timestamp of receipt, transfer method and channel, file hash (SHA-256) and format, volume (record count and file size), agreement reference, and — for surveys — the collection mode and instrument version. This metadata capture obligation, required by SAF-P09, ensures that no data enters the system without the context needed to understand its provenance and quality.
+
+| Ingestion Metadata Field               | Description                                  |
+|----------------------------------------|----------------------------------------------|
+| Source identifier and organization     | Who provided the data                        |
+| Timestamp of receipt                   | When it was received                         |
+| Transfer method and channel            | How it was delivered (SFTP, API, CAWI, etc.) |
+| File hash (SHA-256) and format         | Integrity verification and format record     |
+| Volume (record count, file size)       | Scale of the delivery                        |
+| Agreement reference                    | Legal basis for the data                     |
+| Collection mode and instrument version | Survey-specific provenance                   |
+
+```{mermaid}
+%%| label: fig-6
+%%| fig-cap: "Collection Channel Architecture. Whatever the channel — surveys, administrative deliveries, or emerging sources — all data arrives at a single landing point, and each channel records its own metadata on the way in."
+%%| fig-width: 6
+flowchart LR
+    subgraph channels["Collection Channels"]
+        direction TB
+        S["Survey Collection\n(web / face-to-face / telephone)"]
+        A["Administrative Data\n(file transfer / API / data space)"]
+        W["Emerging Sources\n(web / sensors / commercial)"]
+    end
+
+    subgraph capture["Metadata captured on receipt"]
+        M1["Source ID &\norganization"]
+        M2["Timestamp &\ntransfer method"]
+        M3["File hash &\nformat"]
+        M4["Volume &\nagreement ref"]
+    end
+
+    subgraph ingestion["Ingestion Point"]
+        IP["Raw data storage\n(landing zone)"]
+    end
+
+    S -->|"+ survey paradata"| IP
+    A -->|"+ transfer metadata"| IP
+    W -->|"+ extraction metadata"| IP
+
+    IP --- capture
+
+    IP -->|"to validation\n(§5.4)"| V["Validate & log\nintake (VS-01.4)"]
+
+    style channels fill:#ecfdf5,stroke:#059669
+    style capture fill:#f0fdf4,stroke:#059669
+```
+
+
+::: {.callout-tip title='**NSO Example — Multi-Mode Census:**'}
+The 2026 census runs with CAWI (70% of households), CAPI (25% for non-respondents and hard-to-reach areas), and paper (5% for elderly and institutionalized populations). Each mode generates channel-specific metadata: CAWI records browser type and completion time; CAPI records interviewer ID, GPS coordinates, and interview duration; paper records scanning batch ID and OCR confidence scores.
+:::
+
+
+### Validate and Log Data Intake
+
+**Value created:** *Confidence that received data is complete, structured, and fully traceable.*
+
+Once data has been received, it must pass through the quality gates before it can be accepted into the system. The validation process checks completeness (expected record counts present, required fields populated, delivery matching SLA), structure and format against the designed schema (Section 3.3), and security and integrity (virus scan, checksum verification via SHA-256, digital signature validation per SAF-P10). A quality assessment is executed against the designed criteria from Section 3.4, producing a completeness rate, timeliness score, and conformance rating. Every validation result, exception, and decision is logged in an audit trail that captures both data metadata (what was validated, what passed, what failed) and process metadata (who validated, when, which rules were applied, which tool version). The outcome is one of two business events: *Data Intake Validated* (proceed to storage and registration) or *Data Intake Rejected* (trigger exception handling per the designed rules — notify provider, queue for manual review, or accept conditionally with quality flag).
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Verify completeness: record counts, required fields, SLA conformance | Completeness assessment | GSBPM 4.4 |
+| Validate structure and format against designed schema | Structural validation result | GSBPM 4.4 |
+| Perform security and integrity checks: virus scan, checksum, signature | Security verification result | SAF-P10 |
+| Execute quality assessment against designed criteria | Quality assessment scores | GSBPM 4.4 |
+| Create audit trail: log all validation results, exceptions, and decisions | Audit trail record | GAMSO QM |
+
+::: {.callout-important}
+**Boundary:** NO content-level editing occurs at this stage. Only technical and structural validation is performed. Content editing (correction, imputation, harmonization) is the responsibility of VS-03.0 Data Editing and Enrichment.
+:::
+
+::: {.callout-tip title="**NSO Example — Tax Authority Quarterly File:**"}
+Q3 delivery received: 2.3 million records, SHA-256 checksum pass, 47 fields validated against schema (all conform), 0.3% null rate on mandatory fields (within 1% tolerance), delivery received 2 days ahead of SLA deadline. Result: Data Intake Validated. All validation results logged with timestamp, rule version, and operator ID.
+:::
+
+### Store and Register Raw Data Artefacts
+
+**Value created:** *Secure, organized, and traceable storage of raw data.*
+
+The final execution sub-process persists validated data and makes it discoverable to the rest of the statistical system. Each dataset version receives a unique persistent identifier (URI/UUID) and is stored in the raw data repository in its original format, in line with SAF-P07's principle of loose coupling from downstream processing. Metadata is registered in the data catalog per SAF-P09: each dataset is linked to its provenance record (source, method, timing), quality assessment results (from Section 5.4), governing data sharing agreement, and classification and coding scheme references. Data lineage is recorded — Source Data (State #0) to Raw Data (State #1) — and access permissions are applied per the designed framework (Section 3.5, SAF-P10, SAF-P11). The sub-process concludes by publishing a "Raw Data Registered" event, notifying downstream VS-02.0 that new raw data is available for standardization.
+
+**Output:** **Raw Data (Steady State #1)** — the official handover artefact to the rest of the statistical value chain.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Assign unique persistent identifier (URI/UUID) to the dataset version | Dataset ID | GSBPM 4.4 |
+| Persist data in raw data repository in original format | Stored raw data artefact | SAF-P07 |
+| Register metadata in the data catalog (provenance, quality, agreement, classification, lineage) | Catalog registration | SAF-P09 |
+| Apply access permissions per designed framework | Access-controlled dataset | SAF-P10, SAF-P11 |
+| Publish "Raw Data Registered" event to notify VS-02.0 | Event notification | SAF-P07 |
+
+```{mermaid}
+%%| label: fig-7
+%%| fig-cap: "Raw Data Artefact Structure. Reading guide: each box is a type of record with its fields; a connecting line means the records are linked one-to-one. Every stored raw dataset carries four linked records: its provenance, its quality assessment, the agreement it was received under, and its access classification."
+%%| fig-width: 6
+erDiagram
+    RAW_DATA_ARTEFACT {
+        string dataset_id PK "Unique persistent URI/UUID"
+        string dataset_version "Version identifier"
+        string original_format "Format as received"
+        date reference_period "Statistical reference period"
+        datetime registration_timestamp "When registered in catalog"
+    }
+    PROVENANCE_RECORD {
+        string source_organization "Data provider"
+        string collection_mode "CAWI/CAPI/SFTP/API/etc"
+        string instrument_version "Collection instrument version"
+        datetime receipt_timestamp "When data was received"
+        string transfer_method "Channel used"
+        string file_hash "SHA-256 checksum"
+    }
+    QUALITY_ASSESSMENT {
+        float completeness_rate "Percentage of expected records"
+        float field_coverage "Percentage of non-null required fields"
+        string timeliness_rating "Ahead/On-time/Late vs SLA"
+        string conformance_rating "Pass/Conditional/Fail"
+        int validation_errors "Count of validation issues"
+    }
+    AGREEMENT_REFERENCE {
+        string agreement_id "Data sharing agreement ID"
+        string legal_basis "GDPR Article 6 ground"
+        date valid_from "Agreement start date"
+        date valid_until "Agreement end date"
+        string purpose_limitation "Authorized uses"
+    }
+    ACCESS_CONTROL {
+        string biv_classification "Availability/Integrity/Confidentiality"
+        string access_level "Public/Internal/Restricted/Secret"
+        string authorized_roles "Roles with access"
+    }
+
+    RAW_DATA_ARTEFACT ||--|| PROVENANCE_RECORD : "has provenance"
+    RAW_DATA_ARTEFACT ||--|| QUALITY_ASSESSMENT : "has quality record"
+    RAW_DATA_ARTEFACT ||--|| AGREEMENT_REFERENCE : "governed by"
+    RAW_DATA_ARTEFACT ||--|| ACCESS_CONTROL : "protected by"
+```
+
+## Management Processes — "provides quality reports"
+
+*Framework alignment: GSBPM overarching Quality/Metadata Management — see [Framework Mappings](#framework-mappings).*
+
+The management phase runs **alongside and after** execution. It monitors the acquisition domain's performance, assesses the quality of ingested data, ensures compliance, and feeds improvement recommendations back into the design phase — closing the governance cycle.
+
+### Monitor Process Performance
+
+Operational performance of the acquisition domain must be tracked systematically across production cycles. The process owner and quality manager collect and aggregate key performance indicators, monitor SLA compliance with all data providers, and track paradata — who performed each step, when, how long it took, what tools were used, what errors occurred. This information feeds process performance dashboards that give the process owner a real-time view of domain health, aligned with the GAMSO Quality Management capability for monitoring performance across the production lifecycle.
+
+**Key Performance Indicators (KPIs):** these are collected per production cycle and feed the dashboard the process owner reviews.
+
+| KPI | Description | Measurement |
+|---|---|---|
+| Response rate | Percentage of sample units that provided data (surveys) | Per survey, per mode, per cycle |
+| Delivery timeliness | Whether data providers delivered within SLA windows | Per source, per cycle |
+| Rejection rate | Percentage of deliveries that failed validation | Per source, per cycle |
+| Processing time | Duration from data receipt to catalog registration | Per dataset, per cycle |
+| Metadata completeness | Percentage of required metadata fields populated at registration | Per dataset |
+| Exception rate | Frequency of exception handling triggers | Per validation rule |
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Collect and aggregate KPIs per production cycle | Process Performance Dashboard | GAMSO QM |
+| Monitor SLA compliance with all data providers | SLA Compliance Report | GAMSO QM |
+| Track paradata: operator, timing, tools, errors | Paradata Records | GAMSO QM |
+| Generate process performance dashboards | Dashboard for Process Owner | GAMSO QM |
+
+### Assess Data Quality
+
+Beyond process performance, the quality of the ingested data itself must be evaluated against the criteria established in the design phase. Each ingested dataset is assessed across multiple quality dimensions: completeness (record counts versus expected, field coverage), timeliness (delivery date versus SLA deadline), accuracy in a structural sense (format conformance, valid value ranges), consistency (cross-field consistency, temporal consistency with previous deliveries), and conformance to standards (alignment with designed schema and classification schemes). Results are compared against the designed quality criteria from Section 3.4. Quality indicators are produced per dataset, per source, and per production cycle, and quality trends are tracked to detect deteriorating sources or consistently lower-quality modes. This aligns with the CSDA Data Quality capability and SAF Capability 2.1.3 for statistical quality management.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Evaluate quality dimensions per dataset: completeness, timeliness, accuracy, consistency, conformance | Data Quality Report (per cycle) | CSDA Data Quality |
+| Compare results against designed quality criteria (Section 3.4) | Quality assessment against baseline | SAF 2.1.3 |
+| Produce quality indicators per dataset, per source, per cycle | Quality Scorecards (per source, per mode) | CSDA Data Quality |
+| Identify quality trends across sources and modes | Quality Trend Analysis | SAF 2.1.3 |
+
+### Manage Metadata Lifecycle
+
+The metadata ecosystem supporting data acquisition must remain complete, accurate, and current throughout the data lifecycle. This sub-process verifies metadata completeness — checking that every registered dataset has all required metadata fields as an SAF-P09 compliance check — and assesses metadata quality: are provenance records accurate, are classifications correctly applied, are agreement references current? The metadata catalog is actively maintained: outdated entries are retired, schemas are updated for new source formats, and metadata models are versioned. Metadata lineage from source through ingestion to raw data state is tracked, and reconciliation across systems ensures that catalog entries match actual stored artefacts. As the CSDA emphasizes, metadata conveys all context needed to understand and reuse data — without it, data is effectively useless.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Verify metadata completeness for all registered datasets | Metadata Quality Report | SAF-P09 |
+| Assess metadata quality: accuracy, currency, correct classification | Metadata Quality Report | CSDA Metadata Mgmt |
+| Maintain and update the metadata catalog: retire, update schemas, version models | Catalog Maintenance Log | CSDA Metadata Mgmt |
+| Track metadata lineage from source through ingestion to raw data | Metadata Lineage Audit | CSDA Metadata Mgmt |
+| Reconcile metadata across systems | Catalog-artefact reconciliation | SAF-P09 |
+
+### Audit and Compliance Reporting
+
+This sub-process produces the evidence that the acquisition domain operates within legal, regulatory, and organizational requirements. Audit trail reports demonstrate full traceability of every dataset from external source to NSO raw data repository. GDPR compliance reporting covers data processing records (Article 30), Data Protection Impact Assessment reviews for high-risk processing, and the ability to demonstrate which data the NSO holds and why. Agreement compliance reporting confirms that all data uses remain within the terms of governing agreements. Security compliance reporting verifies that all designed security measures have been applied and documents any breaches or incidents. These reports satisfy the SAF Capability 4.1.5 (Accountability) obligation and feed into VS-07.5 Audit, Certify, and Report Compliance.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Produce audit trail reports: full traceability from source to raw data | Audit Trail Summary | SAF 4.1.5 |
+| Report on GDPR compliance: Art. 30 records, DPIA reviews, data subject rights | GDPR Processing Records | SAF-P11 |
+| Report on agreement compliance | Agreement Compliance Report | SAF 4.1.5 |
+| Report on security compliance: measures applied, breaches, incidents | Compliance Report (per cycle) | SAF-P10 |
+
+### Continuous Improvement
+
+The final management sub-process closes the governance loop by analyzing performance and quality data to identify and drive improvements. Quality trends across production cycles are examined: are rejection rates decreasing, is metadata completeness improving, are processing times shortening? Improvement opportunities are identified — new data sources that could replace lower-quality existing ones, better collection modes that reduce burden or increase response rates, automation of manual ingestion steps, and simplification of validation rules that generate too many false positives. These improvement recommendations are fed back to the design processes (Section 3), prioritized based on impact and feasibility, and tracked through subsequent design-implement-execute cycles. This is the SAF Capability 4.1.4 (Improve management) in action, and it connects to the GAMSO concept of identifying mature capabilities from innovation that can be transferred to production.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Analyze quality trends across production cycles | Improvement Recommendations Report | SAF 4.1.4 |
+| Identify improvement opportunities: new sources, better modes, automation, rule simplification | Updated Design Inputs | SAF 4.1.4 |
+| Feed recommendations back to design processes (Section 3) | Design feedback (closing the governance loop) | SAF 4.1.4 |
+| Prioritize improvements based on impact and feasibility | Improvement Tracking Log | GAMSO Capability Mgmt |
+| Track implementation of accepted improvements | Improvement Tracking Log | GAMSO Capability Mgmt |
+
+```{mermaid}
+%%| label: fig-8
+%%| fig-cap: "Management Feedback Loop. Execution data flows through monitoring, quality assessment, metadata management, and audit processes. Continuous improvement feeds recommendations back to Design, closing the governance cycle."
+%%| fig-width: 6
+flowchart TD
+    E["Execution\n(Section 5)<br/><em>data + paradata</em>"]
+
+    M1["Monitor process<br/>performance (§6.1)<br/><em>KPIs, SLA compliance</em>"]
+    M2["Assess data<br/>quality (§6.2)<br/><em>quality scorecards</em>"]
+    M3["Manage metadata<br/>lifecycle (§6.3)<br/><em>catalog maintenance</em>"]
+    M4["Audit & compliance<br/>reporting (§6.4)<br/><em>audit trails, GDPR</em>"]
+    M5["Continuous<br/>improvement (§6.5)<br/><em>recommendations</em>"]
+
+    D["Design<br/>(Section 3)<br/><em>updated requirements</em>"]
+
+    E --> M1
+    E --> M2
+    M1 --> M2
+    M2 --> M3
+    M3 --> M4
+    M4 --> M5
+    M5 -->|"feedback loop"| D
+
+    M1 -->|"dashboards"| PO["Process Owner"]
+    M2 -->|"quality reports"| QM["Quality Manager"]
+    M4 -->|"compliance reports"| VS07["VS-07.0\nGovernance"]
+
+    style E fill:#ecfdf5,stroke:#059669
+    style D fill:#f5f3ff,stroke:#7c3aed
+    style M5 fill:#fef3c7,stroke:#d97706
+```
+
+## Business Services and Interfaces
+
+The VS-01.0 business domain exposes the following services:
+
+| Service | Direction | Consumers | Mapped Processes |
+|---|---|---|---|
+| **Data Collection Service** | External → NSO | Survey respondents, data providers | 5.3 Collect or Receive Data |
+| **Data Agreement Management Service** | External ↔ NSO | Data providers, legal authorities | 5.2 Establish Data Agreement |
+| **Raw Data Provisioning Service** | Internal (NSO → VS-02.0) | Standardization teams, data analysts | 5.5 Store and Register Raw Data |
+| **Ingestion Monitoring Service** | Internal | Process owners, quality managers | 6.1 Monitor Performance, 6.2 Assess Quality |
+| **Metadata Catalog Service** | Internal | All data consumers across the NSO | 6.3 Manage Metadata Lifecycle |
+| **Design and Methodology Service** | Internal | Methodologists, statistical designers, data engineers | 3.1–3.5 All design processes |
+
+**Interface specifications:**
+
+- **Data Collection Service** interfaces include: web portals (CAWI), mobile apps (CAPI), telephone systems (CATI), SFTP endpoints, REST APIs, data space connectors
+- **Raw Data Provisioning Service** interface: event-driven notification ("Raw Data Registered") + catalog query API for downstream consumers to discover and access raw datasets
+- **Metadata Catalog Service** interface: search/browse API for metadata discovery, with metadata exchange compliant with SDMX (the international standard for exchanging statistical data and metadata)
+
+### Boundary Interface Specifications
+
+The domain is loosely coupled (SAF-P07) to its neighbors through two boundary interfaces. Specifying each boundary explicitly — the handover artefact, the metadata it must carry, the event that triggers it, and where responsibility transfers — makes the loose-coupling contract concrete and testable.
+
+| Boundary | Handover Artefact | Required Metadata | Trigger Event | Responsibility Transfer |
+|---|---|---|---|---|
+| **External provider → VS-01.0** (intake) | Source Data (State #0) delivery | Source identifier and organization, transfer method and channel, receipt timestamp, file hash, volume, agreement reference, collection mode and instrument version (surveys) | Delivery received / survey response submitted | The provider is responsible up to the point of receipt; VS-01.0 assumes custody and the metadata-capture obligation (SAF-P09) at the ingestion point |
+| **VS-01.0 → VS-02.0** (handover) | Raw Data (State #1) | Provenance, source, collection method, receipt timestamp, file hash, agreement reference, quality assessment (completeness, timeliness, conformance), BIV classification | "Raw Data Registered" event | VS-01.0 retains custody of the raw artefact; VS-02.0 assumes responsibility for standardization on event receipt |
+
+Each interface exchanges a registered, immutable steady-state artefact plus its metadata — never internal working data — so neither side needs knowledge of the other's internal processing.
+
+## Business Objects and Data Flow
+
+```{mermaid}
+%%| label: fig-9
+%%| fig-cap: "Business Object Lifecycle across all four process types. Design objects govern implementation, which produces the pipeline that processes execution objects, which are assessed by management objects, which feed back to design."
+%%| fig-width: 6
+flowchart TB
+    design["🔷 Design Artefacts<br/><small>Requirements · Methodology · Schema<br/>Metadata Model · Validation Rules · Access Control</small>"]
+    implement["🔧 Implementation Assets<br/><small>Instruments · Workflows<br/>Catalog Config · Pipeline</small>"]
+    execute["⚡ Execution Objects"]
+    manage["📊 Management Reports"]
+
+    design -->|"govern building"| implement
+    implement -->|"produces pipeline<br/>that processes"| execute
+    execute -->|"assessed by"| manage
+    manage -->|"feeds back to"| design
+
+    subgraph execute_detail [" "]
+        direction LR
+        SD["Source Data<br/>(State #0)"]:::bo -->|"ingested as"| RD["Raw Data<br/>(State #1)"]:::bo
+    end
+
+    execute --> execute_detail
+    SD -->|generates| logs["Provenance · QA · Audit"]
+
+    classDef bo fill:#fbbf24,stroke:#b45309,color:#000
+    style design fill:#f5f3ff,stroke:#7c3aed
+    style implement fill:#dbeafe,stroke:#2563eb
+    style execute fill:#fef9c3,stroke:#b45309
+    style manage fill:#dcfce7,stroke:#16a34a
+    style execute_detail fill:none,stroke:none
+    style logs fill:#fff,stroke:#888,stroke-dasharray: 5 5
+```
+
+
+## Business Events
+
+```{mermaid}
+%%| label: fig-10
+%%| fig-cap: "Event-Driven Choreography between Data Provider, NSO teams, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design."
+%%| fig-width: 6
+
+sequenceDiagram
+    participant DP as Data Provider
+    participant NSO as NSO Teams
+    participant PM as Process Mgmt
+
+    rect rgb(245, 243, 255)
+    Note over NSO: Design Phase
+    NSO->>NSO: Define requirements, methodology,<br/>schema, validation & privacy rules
+    NSO-->>NSO: Design Artefacts Published
+    end
+
+    rect rgb(239, 246, 255)
+    Note over NSO: Implementation Phase
+    NSO->>NSO: Build instruments, workflows,<br/>catalog & pipeline
+    NSO-->>NSO: Pipeline Production-Ready
+    end
+
+    rect rgb(236, 253, 245)
+    Note over NSO,DP: Execution Phase (per cycle)
+    NSO->>DP: Confirm source & activate agreement
+    DP-->>NSO: Agreement Confirmed
+
+    alt Primary Collection
+        NSO->>DP: Send survey invitation
+        DP-->>NSO: Survey Response
+    else Secondary Collection
+        DP-->>NSO: Data File (SFTP/API)
+    end
+
+    NSO->>NSO: Validate structure & quality
+
+    alt Validation Passed
+        NSO->>NSO: Assign ID, store raw data,<br/>register metadata
+    else Validation Failed
+        NSO->>DP: Request redelivery
+    end
+    end
+
+    rect rgb(254, 243, 199)
+    Note over PM: Management Phase
+    PM->>PM: Monitor KPIs, assess quality,<br/>produce compliance reports
+    PM-->>NSO: Improvement Recommendations
+    end
+```
+
+## Framework Mappings
+
+This reference table maps each process group of this document to the international frameworks (GSBPM, GAMSO, CSDA) and the SAF capability model. It is intended for architects and auditors; the narrative sections above do not depend on it.
+
+| Process group | GSBPM | GAMSO | CSDA | SAF Capabilities |
+|---|---|---|---|---|
+| **Design** | Phase 1 (Specify Needs: 1.1–1.6), Phase 2 (Design: 2.1–2.6) | Production (design activities), Capability Management | Data Governance, Metadata Management | 1.1.1 Needs inventory, 1.1.2 Design statistics product, 2.1.2 Metadata management |
+| **Implementation** | Phase 3 (Build: 3.1–3.7) | Capability Management | Data Ingestion (setup), Data Governance (configuration) | 1.1.3 Build statistics product, 3.2.1 Application development, 3.2.2 Functional management |
+| **Execution** | Phase 4 (Collect: 4.1–4.4) | Production (execution) | Data Ingestion (execution) | 1.2.1 Primary data collection, 1.2.2 Secondary data collection |
+| **Management** | Overarching processes (Quality Management, Metadata Management) | Corporate Support (Quality, Data, Metadata Management), Capability Management (improvement) | Data Quality, Data Governance, Traceability | 2.1.3 Statistical quality management, 4.1.4 Improve management, 4.1.5 Accountability |
+
+## Applying This to Your NSO
+
+### Maturity Assessment Checklist
+
+Use this checklist to assess your NSO's maturity across all four process types — not just execution.
+
+**Design Maturity**
+
+- [ ] Do we have documented data requirements specifications for each data source?
+- [ ] Do we have a formal collection methodology document that is reviewed and versioned?
+- [ ] Do we have a defined metadata schema for raw data, including required metadata fields at ingestion?
+- [ ] Do we have explicit validation rules and quality criteria documented before collection begins?
+- [ ] Do we have a privacy impact assessment for each data source?
+
+**Implementation Maturity**
+
+- [ ] Are our collection instruments built from design specifications (not ad-hoc)?
+- [ ] Are validation rules implemented as automated checks (not manual inspection)?
+- [ ] Is metadata capture automated at each ingestion point?
+- [ ] Do we have a formal testing process (technical, field, security) before going to production?
+- [ ] Are operational procedures documented and maintained?
+
+**Execution Maturity**
+
+- [ ] Do we confirm data requirements and source availability at the start of each cycle?
+- [ ] Are data sharing agreements actively managed and verified per cycle?
+- [ ] Do we capture ingestion metadata for every dataset received?
+- [ ] Do we perform automated structural validation before accepting data?
+- [ ] Do we register every raw dataset in a metadata catalog with provenance links?
+
+**Management Maturity**
+
+- [ ] Do we track KPIs (response rates, rejection rates, timeliness) across cycles?
+- [ ] Do we produce data quality reports for each ingested dataset?
+- [ ] Do we regularly assess metadata completeness and quality?
+- [ ] Do we produce audit and compliance reports?
+- [ ] Do we have a formal improvement process that feeds back into design?
+
+### End-to-End Scenarios
+
+Each scenario walks through **all four process types**, demonstrating how the governance pattern works in practice.
+
+#### Scenario A: Household Budget Survey (Primary Collection)
+
+**Design Phase:** Statistical designers define the information need — monthly household expenditure by category, income sources, and household composition. Methodologists design a mixed-mode approach: a CAWI diary for daily entry over two weeks, with CAPI follow-up for non-respondents. Metadata architects define the raw data schema: 156 variables across 12 expenditure categories, with code lists from COICOP (the international classification of household expenditure). Quality criteria are set at a minimum 60% response rate, diary completion rate of at least 80% of days, and delivery to processing within 30 days of collection period end. The privacy framework specifies pseudonymization at point of receipt, with purpose limited to expenditure statistics and CPI input.
+
+**Implementation Phase:** Data engineers build the CAWI diary portal — a responsive web app with daily spending entry and barcode scanning for receipts, configured for 12 languages. System configurators set up the CAPI tablet app with offline capability, GPS logging for urban/rural classification, and interview recording consent. Ingestion workflows are configured so that CAWI responses are aggregated daily, CAPI interviews uploaded at the end of the field period, and paper diaries OCR-scanned in batches. The full pipeline is tested with a 200-household pilot in two municipalities, with metadata propagation verified end-to-end.
+
+**Execution Phase:** For cycle Q3-2026, 8,000 households are sampled from the population register. CAWI invitations go out and a response monitoring dashboard tracks daily completion rates. After week two, CAPI is deployed to 2,400 non-responding households. After week four, 312 paper diaries are received from elderly respondents. Each channel generates ingestion metadata, and all 7,240 completed diaries pass structural validation. Raw data is registered in the catalog with full provenance — per household: mode, completion dates, and diary completeness score.
+
+**Management Phase:** Response rate reaches 90.5% against the 60% target. CAWI diary completeness is 87% of days (target 80%). Quality scoring identifies three municipalities with unusually low CAWI completion, suggesting possible broadband issues. Metadata completeness is 99.8%. Improvement recommendations: add SMS reminders for CAWI to improve daily completion; investigate broadband-gap municipalities for a CAPI-first approach next cycle. Recommendations are fed back to the design team for the Q1-2027 methodology update.
+
+#### Scenario B: Tax Register Administrative Data (Secondary Collection)
+
+**Design Phase:** Statistical designers define the data requirement — quarterly corporate income tax declarations for all legal entities, for use in national accounts and business statistics. The data model maps the tax authority's XML schema to the NSO's raw data structure: 47 fields retained, 12 derived, corporate ID as the linkage key. The SLA is set at delivery within 45 calendar days of quarter end, minimum 98% of expected records, in XML format with XSD validation. Validation rules cover XSD schema validation, corporate ID referential integrity against the business register, and amount fields within historical range (plus or minus three standard deviations). Privacy framework: data is received under the Statistics Act mandate, with pseudonymization deferred to the standardization phase (VS-02.0) per agreement.
+
+**Implementation Phase:** System configurators set up a dedicated SFTP endpoint with mutual TLS authentication and IP whitelist. Data engineers configure automated ingestion: file arrival triggers a validation pipeline (XSD check, checksum, virus scan, completeness, referential integrity, range check). Metadata registration is automated — on successful validation, a provenance record is created and linked to the agreement, and quality scores are calculated and stored. The pipeline is tested with Q1-2026 historical data resubmission; all validation rules are verified and one false-positive range check is identified and the threshold adjusted.
+
+**Execution Phase:** Q3-2026: the tax authority delivers the quarterly file via SFTP on day 38 (within the 45-day SLA). The automated pipeline triggers: XSD valid, SHA-256 checksum matches manifest, virus scan clean, 2,347,891 records (99.2% of expected — above the 98% threshold), 14 corporate IDs not in the business register (flagged but not rejected — known lag in register updates). Raw data is stored in original XML format, assigned dataset ID `RD-TAX-2026Q3-001`. Metadata is registered: provenance, quality assessment (completeness=99.2%, timeliness=OnTime, conformance=Pass with 14 flags), and agreement reference. The "Raw Data Registered" event is published and VS-02.0 is notified.
+
+**Management Phase:** The Q3 quality scorecard shows completeness at 99.2% (stable — consistent with Q1=99.1% and Q2=99.3%) and timeliness on time, seven days ahead of the SLA deadline. The 14 unmatched corporate IDs are all newly registered businesses with a register update lag of two to four weeks, consistent with previous quarters. SLA compliance stands at 100% for 12 consecutive quarters. Metadata completeness is 100%. No improvement recommendations are needed — the process is mature and stable, with an annual agreement renewal review scheduled for Q4.
+
+#### Scenario C: Web-Scraped Price Data (Emerging Source)
+
+**Design Phase:** Statistical designers define the requirement — daily retail prices from major online retailers for CPI basket items covering 500 product categories and 25 retailer websites. The methodology involves no bilateral agreement (public web data), with the legal framework based on the statistics act mandate and a public interest assessment. The data model captures product URL, product name, price, currency, timestamp, retailer, product category (COICOP), and availability status. Validation rules specify that price must be positive, currency must be EUR or local, timestamp must be within 24 hours, the product URL must resolve, and price changes exceeding 50% from the previous day are flagged for review (not rejected). Quality criteria: minimum 85% of target URLs successfully scraped per day, with price change detection within 24 hours. Privacy considerations confirm no personal data is involved, with terms-of-service compliance documented per retailer.
+
+**Implementation Phase:** Data engineers build web scrapers — one module per retailer, headless browser for JavaScript-rendered pages, with proxy rotation to avoid rate limiting. Daily scheduling is configured so that scraping runs at 03:00 local time with results aggregated by 06:00. Volatility handling includes website structure change detection via DOM fingerprinting, with automatic alerts when a scraper breaks. Metadata capture records per-scrape provenance: URL, timestamp, HTTP status, scraper version, and DOM fingerprint. The system is tested with a two-week parallel run comparing scraped prices against manually collected prices for 50 products, achieving 94% agreement (within the acceptance threshold).
+
+**Execution Phase:** Daily operation scrapes 12,500 URLs across 25 retailers. On 2026-03-15, 11,875 URLs are successful (95% — above the 85% threshold), with 625 failures (HTTP 404: product pages removed or restructured). Forty-seven price changes exceeding 50% are flagged for manual review: 41 are confirmed genuine (seasonal sales) and 6 are identified as scraper errors (wrong element selected due to DOM change). Raw data is stored as daily JSON files with full scrape metadata. Metadata is registered: daily provenance, quality scores, scraper version, and DOM fingerprint per retailer.
+
+**Management Phase:** The weekly quality dashboard shows an average daily success rate of 93.2% (above the 85% threshold). Retailer `ElectroShop` shows a declining success rate from 98% to 72% over three weeks — a website redesign detected by DOM fingerprinting. Monthly price comparison against official CPI field collection shows 96.1% agreement for overlapping products (above the 90% acceptance threshold). Improvement recommendations: rebuild the `ElectroShop` scraper for the new DOM structure (implementation action), investigate two new retailers for coverage expansion (design action), and evaluate retailer API access as an alternative to scraping for the top five retailers (design action that may lead to a transition from scraping to API-based secondary collection). Recommendations are fed back to the design team, with the `ElectroShop` scraper rebuild prioritized for the next sprint.

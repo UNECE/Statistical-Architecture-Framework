@@ -1,0 +1,941 @@
+---
+title: VS-06.0 Dissemination and Service Delivery — Business Layer
+abstract: "This document describes the final stage of the chain: how **approved statistical products** are published and become **Released Data** in the hands of users. Products are published and delivered through trusted, secure channels — with a final confidentiality check (statistical disclosure control) as the gate nothing passes without — and users are supported in interpreting the statistics correctly. It covers the complete lifecycle in four process groups: _Design_ (define channels and the release policy), _Implementation_ (build the publication services), _Execution_ (prepare, clear, and publish each release), and _Management_ (track usage and improve). It is intended as a canvas for National Statistical Offices (NSOs) to adapt to their own context."
+
+---
+
+## Introduction and Strategic Context
+
+### Purpose and Scope
+
+This document specifies the complete business layer for the **Dissemination** business domain, corresponding to the *VS-06.0 Dissemination and Service Delivery Value Stream*. It also covers 4 governance process types:
+
+- **Design** — how the dissemination strategy, channels, and release processes are specified and planned (produces metadata)
+- **Implementation** — how the dissemination platforms and release pipeline are built, configured, and tested (produces the execution process)
+- **Execution** — how products are operationally prepared, released, supported, and monitored (produces statistical data)
+- **Management** — how the domain is monitored, quality-assessed, and improved (produces quality reports)
+
+::: {.callout-warning title="Out of Scope"}
+Application and Technology layer specifications are out of scope for this document (the technical platforms themselves are provided by VS-09.0 Infrastructure and Platform Enablement). Composing and approving statistical products is out of scope — it belongs to VS-05.0; VS-06 disseminates products that have already been approved and registered.
+:::
+
+{{< include _includes/_key-concepts.qmd >}}
+
+{{< include _includes/_how-to-read.qmd >}}
+
+*A note on numbering:* each `VS-0x.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
+
+
+
+### Position in the Statistical Value Chain
+
+VS-06.0 is the sixth and final primary value stream — it receives approved statistical products from VS-05.0 and publishes, distributes, and makes them accessible to users through trusted, secure channels. It is the "Release & Serve" orchestration stage where statistical products become societal value.
+
+```{mermaid}
+%%| label: fig-1
+%%| fig-cap: "Value Stream Context Map. VS-06.0 is highlighted as the dissemination stage — the exit point of the value chain, releasing statistics to users and society."
+%%| fig-width: 6
+
+
+flowchart TD
+    subgraph primary["Primary Value Streams"]
+        direction LR
+        VS01["VS-01.0
+        Data Acquisition
+        & Ingestion"]
+        VS02["VS-02.0
+        Data Standardization
+        & Integration"]
+        VS03["VS-03.0
+        Data Editing
+        & Enrichment"]
+        VS04["VS-04.0
+        Estimation, Analysis
+        & Modeling"]
+        VS05["VS-05.0
+        Statistical Product
+        Composition"]
+        VS06["**VS-06.0**
+        Dissemination
+        & Service Delivery"]:::highlight
+        VS01 --> VS02 --> VS03 --> VS04 --> VS05 --> VS06
+    end
+
+    subgraph supporting["Supporting Value Streams"]
+        VS07["VS-07.0
+        Governance &
+        Compliance"]
+        VS08["VS-08.0
+        Innovation &
+        Methodology"]
+        VS09["VS-09.0
+        Infrastructure &
+        Platform Enablement"]
+        VS10["VS-10.0
+        Customer &
+        Stakeholder Engagement"]
+    end
+
+    VS06 ==>|"released to"| USERS["Users & Society
+    (State #6 — Consumed)"]
+    supporting -.->|"enables"| primary
+
+    classDef highlight fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
+    style USERS fill:#0f766e,color:#fff,stroke:#0f766e
+```
+
+### Steady State Transition
+
+VS-06.0 transitions data from **Steady State #4 (approved statistical products)** to **Steady State #5 (Released Data)** — products that have undergone final disclosure control (additional confidentiality protection beyond State #4), are documented for correct interpretation, and are published or delivered to external parties via trusted channels. Once released, data is used externally as **Steady State #6 (Consumed Data)**, outside the NSO's direct control.
+
+```{mermaid}
+%%| label: fig-2
+%%| fig-cap: "Steady State Transition from approved products (State #4) to Released Data (State #5), consumed externally as State #6."
+%%| fig-width: 6
+flowchart LR
+    subgraph upstream["Upstream Domain (VS-05.0)"]
+        SP["Approved Statistical
+        Products (State #4)"]
+    end
+
+    subgraph boundary["Dissemination Boundary"]
+        QG["Dissemination Service
+        (Prepare & disclosure-control, Publish,
+        Provide access, Support users, Monitor)"]
+    end
+
+    subgraph internal["Released Domain (VS-06.0)"]
+        RD["Released Data
+        (State #5)"]
+    end
+
+    subgraph external["External"]
+        CD["Consumed Data
+        (State #6)"]
+    end
+
+    SP --> QG --> RD --> CD
+
+    style internal fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
+    style upstream fill:#7d7d7d,color:#fff,stroke:#1d4ed8,stroke-width:1px
+    style boundary fill:#FFF,stroke-dasharray:5,5
+    style external fill:#0f766e,color:#fff,stroke:#0f766e
+```
+
+::: {.callout-tip title='Release readiness criteria (Examples)*'}
+- Dissemination channels and formats selected for the target users (open data, API, publication, secure research access)
+- Final statistical disclosure control applied; output further protected vs State #4 where required
+- Released microdata de-identified to the agreed standard
+- Documentation, metadata, and methodology notes prepared for correct interpretation
+- Release timing managed per the release calendar and equal-access/embargo policy
+- Accessibility standards met (formats, languages, machine-readability)
+- Usage monitoring and feedback channels in place
+:::
+
+::: {.callout-important title="The dissemination discipline — accessibility, trust, and responsible use"}
+VS-06 is the chain's exit point: it converts statistical output into societal value. The guarantee here is **accessibility and trust** — accurate, timely, understandable delivery through trusted, secure channels — gated by **final statistical disclosure control** (no release without confidentiality clearance) and supported by documentation and user services that enable **responsible use**. Equal access to released statistics (managed release timing, embargo discipline) and accessibility (formats, languages, machine-readability) are explicit obligations.
+:::
+
+::: {.callout-note title="Inherited from VS-05.0"}
+VS-06 receives approved, registered statistical products **plus** the metadata VS-05 attached — component lineage, composition method, propagated accuracy, coherence results, the approval record, and the product's confidentiality status. VS-06 applies the **final disclosure control for release** (beyond the initial disclosure control of VS-04 and the standards check of VS-05), formats the product for each channel, and publishes — it does not alter the statistics, only protects, formats, and delivers them.
+:::
+
+::: {.callout-note title="Reliance on supporting value streams"}
+Dissemination is a strategic, user-centered activity that depends on the supporting value streams: **VS-07.0 Governance and Compliance** ensures all dissemination complies with data-protection and confidentiality law; **VS-09.0 Infrastructure and Platform Enablement** provides the portals, APIs, and secure research environments; and **VS-10.0 Customer and Stakeholder Engagement** ensures dissemination services meet real user needs. The usage and feedback gathered here (Section 5.5) flow back to VS-10 and across the chain.
+:::
+
+
+### The Four-Process Governance Pattern
+
+{{< include _includes/_four-process-intro.qmd >}}
+
+```{mermaid}
+%%| label: fig-3
+%%| fig-cap: "The Four-Process Governance Pattern. Each process type produces a distinct artefact class. The cycle closes when Management findings feed back into Design improvements."
+%%| fig-width: 6
+flowchart LR
+    D["**Design**
+    _provides metadata_
+
+    Dissemination & access strategy, release
+    & disclosure policy, support model"]
+    I["**Implement**
+    _provides the execution process_
+
+    Configured publication & access channels,
+    disclosure-control & release tooling"]
+    E["**Execute**
+    _provides the statistical data_
+    Released products, access services,
+    user support, usage data"]
+    M["**Manage**
+    _provides quality reports_
+    Usage & accessibility dashboards, release
+    quality scorecards, improvement recommendations"]
+
+    D -->|"design artefacts
+    guide building"| I
+    I -->|"production-ready
+    process"| E
+    E -->|"data & process logs
+    for assessment"| M
+    M -->|"improvement
+    feedback"| D
+
+    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
+    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
+    style E fill:#059669,color:#fff,stroke:#047857
+    style M fill:#d97706,color:#fff,stroke:#b45309
+```
+
+{{< include _includes/_four-process-key-insight.qmd >}}
+
+
+### Governing Principles
+
+The following principles directly govern the VS-06.0 business domain:
+
+| Principle | Statement | Application to VS-06.0 |
+|---|---|---|
+| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSOs should contribute to open source communities for dissemination platforms, APIs, and visualization tooling, ensuring collective control over critical delivery capabilities rather than vendor dependence. |
+| **SAF-P07** | Implement loosely coupled processes and systems | The dissemination domain consumes approved products through the State #4 interface without knowledge of how they were composed, and exposes released data through stable, versioned access services. |
+| **SAF-P08** | Data is shared property | Released data is made broadly and equally available to all authorized users through open and standard channels, maximising reuse while respecting confidentiality. |
+| **SAF-P09** | No data without metadata and classification | Every released product carries the metadata, methodology notes, and documentation users need to interpret it correctly; released datasets are accompanied by structural and reference metadata (e.g., SDMX). |
+| **SAF-P10** | Security By Design | Access controls, secure channels, and integrity protection are embedded in publication and access services — including secure research environments for sensitive microdata — not added as an afterthought. |
+| **SAF-P11** | Privacy By Design | Final statistical disclosure control and de-identification are applied before release, and the disclosure risk of every released product and microdata file is assessed and cleared by design. |
+
+::: {.callout-note title="Cross-cutting principle application"}
+Several principles cut across all four process types. SAF-P11 (Privacy By Design) is the release gate: disclosure control is designed (Section 3.2/3.4), implemented (Section 4.2), and applied at execution (Section 5.2) before anything is published. SAF-P08 (data is shared property) and SAF-P09 (metadata) drive open, well-documented, equal-access release. SAF-P10 (Security By Design) governs access services and secure research environments across Execution (Sections 5.3–5.4). SAF-P07 (loosely coupled) governs the State #4 intake interface from VS-05.0 and the released-data access interface to external users.
+:::
+
+### Capability Foundations
+
+VS-06.0 draws on the following SAF capabilities:
+
+| Capability Group | Capabilities | Role in VS-06.0 |
+|---|---|---|
+| **1.1 Statistical design and build** | 1.1.2 Design statistics product, 1.1.3 Build statistics product | Design dissemination products/services and build the release and access pipeline |
+| **2.1 Data management** | 2.1.1 Data lifecycle management, 2.1.2 Metadata management, 2.1.3 Statistical quality management | Manage released data and its metadata, and the quality of release and access |
+| **3.2 Computerization and automation** | 3.2.1 Application development, 3.2.2 Functional management | Build and maintain publication channels, APIs, dashboards (with VS-09 platforms) |
+| **3.3 Security and Privacy** | 3.3.1 Privacy management, 3.3.2 Security planning | Apply final disclosure control and secure access to released and microdata products |
+| **4.1 Governance** | 4.1.1 Strategy and governance, 4.1.2 Policy and planning, 4.1.4 Improve management, 4.1.5 Accountability | Govern release, manage equal-access policy, plan improvements, report on compliance |
+
+### Metadata Perspective
+
+It is considered that metadata is an essential product of the Design phase and a critical concern of every other phase. In this domain, metadata is what enables responsible use: every released product must carry the documentation, methodology, and reference metadata users need. The table below consolidates the metadata produced across all four process types, covering both data metadata (about the released products) and process metadata or paradata (about how the process runs).
+
+| Process Type | Data Metadata Produced | Process Metadata (Paradata) Produced |
+|---|---|---|
+| **Design** | Dissemination & access strategy, channel/format specs, release & disclosure policy, documentation standards | Design decisions log, policy version, review and approval records |
+| **Implement** | Channel configurations, API/dataset templates, disclosure-control parameters, documentation templates | Build log, test results, accessibility-test outcomes, deployment approvals |
+| **Execute** | Per-release documentation, applied-SDC record, channel/format published, release timestamp, access-service metadata | Operator identity, release-calendar adherence, embargo handling, publication run identifiers |
+| **Manage** | Usage statistics, accessibility assessments, user-satisfaction metrics, release-quality reports | Usage dashboards, feedback logs, improvement decisions, audit findings |
+
+
+## Business Roles and Actors
+
+{{< include _includes/_roles-note.qmd >}}
+
+| Role                        | Process Orientation | Description                                                                                       |
+|-----------------------------|---------------------|---------------------------------------------------------------------------------------------------|
+| **Upstream Data Provider (VS-05.0)** | External (internal NSO) | Supplies approved statistical products (State #4) with their metadata and approval record |
+| **Data User**               | External            | Consumes released data — policymakers, researchers, journalists, businesses, the public            |
+| **Dissemination Manager**   | Design              | Designs the dissemination and access strategy, product/service portfolio, and release calendar     |
+| **Disclosure-Control Designer** | Design          | Designs the final disclosure-control rules and de-identification standards for release              |
+| **Channel/Service Designer**| Design              | Designs the access channels, formats, APIs, dashboards, and secure research access                 |
+| **Data Engineer**           | Implementation      | Builds and configures publication channels, APIs, and access services (on VS-09 platforms)         |
+| **System Configurator**     | Implementation      | Configures release tooling, access controls, and disclosure-control tooling                       |
+| **Test Manager**            | Implementation      | Plans and executes testing of the release pipeline (technical, accessibility, security)            |
+| **Process Owner**           | Management          | Accountable for the end-to-end performance of the dissemination domain                             |
+| **Compliance Officer**      | Management          | Ensures data-protection, confidentiality, and equal-access compliance (with VS-07), produces audits |
+| **Quality Manager**         | Management          | Monitors usage/accessibility KPIs, produces quality reports, and drives continuous improvement     |
+| **Release Manager**         | Execution           | Manages the release event: timing, embargo, equal access, and publication                          |
+| **Open-Data / API Product Owner** | Execution     | Operates the open-data, API, and dashboard services for released data                              |
+| **User-Support Lead**       | Execution           | Provides documentation, helpdesk support, and training for correct interpretation and use          |
+| **Engagement / Communications Officer** | Execution | Promotes releases and gathers user feedback (with VS-10)                                            |
+
+
+
+## Design Processes — "provides metadata"
+
+*Framework alignment: GSBPM Phases 1–2 — see [Framework Mappings](#framework-mappings).*
+
+The design phase produces the **metadata artefacts** that govern all subsequent phases — the dissemination and access strategy, the disclosure-control and release policy, the channel/format specifications, and the user-support and documentation model. Without well-designed strategy and policy, release becomes ad-hoc and risks confidentiality breaches or inequitable access, and management has no baseline to measure accessibility and impact against.
+
+### Design the Dissemination and Access Strategy
+
+The starting point is deciding who the products are for and how they will be reached. This sub-process defines the target user groups and their needs (with VS-10), the access channels and release formats (open data, API, research access, publications, dashboards), the release calendar, and the equal-access/embargo policy. It maps each product to its appropriate channels and formats, aligned with GSBPM 2.5 and Phase 7 design.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Define target user groups and their needs (with VS-10) | User Segmentation | GSBPM 2.1 |
+| Define access channels and release formats (open data, API, research access, publications) | Channel & Format Strategy | GSBPM 2.5 |
+| Define the release calendar and equal-access/embargo policy | Release Calendar & Access Policy | SAF 4.1.5 |
+| Map each product to its channels and formats | Product-Channel Map | GSBPM 2.5 |
+
+::: {.callout-tip title="**NSO Example — Labour Market Statistics:**"}
+The labour-market dissemination strategy targets policymakers (press release + commentary on the release date), researchers (API + downloadable series), and the public (interactive dashboard). The release calendar is published in advance and an embargo gives accredited media pre-access under agreement, ensuring equal access at the release moment.
+:::
+
+
+### Design Disclosure-Control and De-identification for Release
+
+This sub-process designs the final confidentiality protection applied before release. It specifies the disclosure-control rules for tables and dashboards (suppression, rounding, perturbation) over and above the protection already applied upstream, the de-identification standard for any released microdata, and the disclosure-risk criteria a release must meet. Differential treatment by channel is designed — for example, more detailed microdata only via a secure research environment — aligned with SAF-P11 and GSBPM 6.4.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Define final disclosure-control rules for tables/dashboards | Release SDC Rules | SAF-P11 |
+| Define de-identification standard for released microdata | De-identification Standard | SAF-P11 |
+| Define disclosure-risk criteria a release must meet | Disclosure-Risk Criteria | SAF-P11 |
+| Design differential treatment by channel (open vs. secure research access) | Channel Protection Design | SAF-P10 |
+
+### Design Channels, Formats, and Documentation
+
+This sub-process designs the delivery mechanics. It specifies the publication formats and accessibility standards (machine-readable formats, languages, web-accessibility), the API and dataset structures (e.g., SDMX), the dashboard and visualization designs, the secure research environment access model, and the documentation standard (methodology notes, metadata, user guides) that must accompany every release. It draws on the platforms provided by VS-09, aligned with GSBPM 2.5/3 design.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Specify publication formats and accessibility standards | Format & Accessibility Standard | GSBPM 2.5 |
+| Specify API/dataset structures (e.g., SDMX) | API & Dataset Specification | CSDA Dissemination |
+| Specify dashboards, visualizations, and research-access model | Service Design | GSBPM 2.5 |
+| Define the documentation standard accompanying every release | Documentation Standard | SAF-P09 |
+
+### Design User Support, Promotion, and Feedback Model
+
+This sub-process designs how users are supported and heard. It specifies the user-support model (documentation, helpdesk, training), the promotion/communication approach for releases (with VS-10), and the usage-monitoring and feedback model — what is measured (usage, satisfaction), how feedback is collected, and how it routes back into improvement. The equal-access and correction/erratum policy round out the design, aligned with GSBPM 7 design and Phase 8.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Define the user-support model (documentation, helpdesk, training) | User-Support Model | GSBPM 2.5 |
+| Define promotion/communication approach for releases (with VS-10) | Communication Plan | GSBPM 2.5 |
+| Define usage-monitoring and feedback model | Usage & Feedback Model | GSBPM 2.5 |
+| Define correction/erratum and re-release policy | Correction Policy | SAF 4.1.5 |
+
+### Design Release Governance and Audit Framework
+
+The final design sub-process ensures releases are governed, equitable, and auditable. It defines the release approval/sign-off workflow, the equal-access controls (no privileged early access outside policy), the release-versioning policy (identity, revisions/corrections, retention), the lineage requirements from each release back to its approved product, and the role-based access controls for access services in line with SAF-P10.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Define release approval/sign-off workflow | Release Approval Policy | SAF 4.1.5 |
+| Define equal-access controls and embargo governance | Equal-Access Controls | SAF 4.1.5 |
+| Define release-versioning and lineage requirements | Versioning & Lineage Policy | CSDA Traceability |
+| Design role-based access control for access services | Access Control Design | SAF-P10 |
+
+```{mermaid}
+%%| label: fig-4
+%%| fig-cap: "Design Process Decomposition. Approved products, user needs, and confidentiality/access law flow into five design sub-processes, producing metadata artefacts that govern Implementation, Execution, and Management."
+%%| fig-width: 6
+flowchart TB
+    subgraph inputs["Inputs"]
+        SP["Approved Products<br/><small>(State #4 from VS-05)</small>"]
+        FW["Framework Standards<br/><small>GSBPM · GAMSO · CSDA</small>"]
+        USR["User Needs<br/><small>(via VS-10)</small>"]
+        LAW["Confidentiality & Access Law<br/><small>(via VS-07)</small>"]
+    end
+
+    subgraph design["Design Sub-Processes"]
+        D1["3.1 Dissemination<br/>& Access Strategy"]
+        D2["3.2 Disclosure-Control<br/>& De-identification"]
+        D3["3.3 Channels, Formats<br/>& Documentation"]
+        D4["3.4 User Support,<br/>Promotion & Feedback"]
+        D5["3.5 Release Governance<br/>& Audit Framework"]
+    end
+
+    subgraph outputs["Metadata Artefacts"]
+        O1["Channel & Format Strategy"]
+        O2["Release SDC Rules"]
+        O3["Service & Documentation Specs"]
+        O4["Support & Feedback Model"]
+        O5["Release Governance Policy"]
+    end
+
+    SP --> D1
+    USR --> D1
+    FW -.->|inform| design
+    LAW --> D2
+
+    D1 --> D2 --> D3 --> D4 --> D5
+
+    D1 --> O1
+    D2 --> O2
+    D3 --> O3
+    D4 --> O4
+    D5 --> O5
+
+    outputs -->|govern| NEXT["Implementation (§4) · Execution (§5)<br/>measured by Management (§6)"]
+
+    style design fill:#f5f3ff,stroke:#7c3aed
+    style outputs fill:#ede9fe,stroke:#7c3aed
+```
+
+## Implementation Processes — "provides the execution process"
+
+*Framework alignment: GSBPM Phase 3 (Build) — see [Framework Mappings](#framework-mappings).*
+
+The implementation phase takes the metadata artefacts from Design and **builds, configures, and tests** the production-ready dissemination and access pipeline — on the platforms provided by VS-09.0. Nothing is published operationally until this phase is complete.
+
+### Build Publication and Access Channels
+
+This sub-process turns the channel and format designs into operational services. Publication channels (website/publication system), the API and open-data services, dashboards, and the secure research environment access are built or configured on the VS-09 platforms per the designed formats and accessibility standards. SDMX-compliant dataset and metadata exchange is configured, and access controls are applied per the designed model, following GSBPM 3.1–3.3.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Build/configure publication channels and the open-data/API services | Configured publication & API services | GSBPM 3.3 |
+| Build/configure dashboards and visualization services | Configured dashboards | GSBPM 3.3 |
+| Configure secure research environment access | Research-access service | SAF-P10 |
+| Configure SDMX-compliant dataset and metadata exchange | Standard exchange interfaces | CSDA Dissemination |
+
+::: {.callout-tip title="**NSO Example — Open Data and API:**"}
+The team configures an SDMX-based API and a bulk open-data download for the labour-market series on the NSO's VS-09 platform, with rate-limiting and machine-readable metadata, plus a public dashboard fed from the same released datasets.
+:::
+
+### Configure Disclosure-Control and Release Tooling
+
+The designed final disclosure-control rules and release policy are implemented. SDC tooling is configured to apply the designed suppression/rounding/perturbation to tables and dashboards and to de-identify released microdata, with disclosure-risk checks enforced before publication. Release tooling is configured for managed-timing release, embargo handling, and equal-access enforcement, following GSBPM 6.4/7.3.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Configure final SDC tooling (suppression/rounding/perturbation) | Configured SDC tooling | SAF-P11 |
+| Configure microdata de-identification to the designed standard | De-identification component | SAF-P11 |
+| Enforce disclosure-risk checks before publication | Release disclosure gate | SAF-P11 |
+| Configure managed-timing release, embargo, and equal-access enforcement | Release-management tooling | SAF 4.1.5 |
+
+### Build Documentation, Support, and Usage-Monitoring Services
+
+This sub-process implements the user-facing support and the feedback loop. Documentation/metadata services are built so every release is accompanied by methodology notes, reference metadata, and user guides. Helpdesk and training support is set up per the support model. Usage-monitoring and feedback collection are implemented to capture usage statistics, satisfaction, and feedback, and to route them into the improvement loop (and to VS-10). The release-versioning store is built so each release is identified, immutable, and traceable to its approved product, and event notifications are configured to signal a release.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Build documentation/metadata services for every release | Documentation services | SAF-P09 |
+| Set up helpdesk and training support | User-support services | GSBPM 3.3 |
+| Implement usage-monitoring and feedback collection | Usage & feedback tooling | GSBPM 3.3 |
+| Build the release-versioning store and configure the "Statistics Released" event | Versioning store, event publication | CSDA Traceability |
+
+### Test and Validate the Pipeline
+
+Before the pipeline goes into production, it must be rigorously verified. Technical testing covers all components — publication channels, API, dashboards, research access, SDC tooling, release tooling, and documentation/support services (GSBPM 3.5). Integration testing validates the end-to-end flow from product intake through preparation, disclosure control, release, to access and support. An **accessibility test** confirms formats meet the accessibility standard; a **security/disclosure test** confirms access controls and that no output breaches the disclosure-risk criteria; and a **release-rehearsal** confirms managed timing and embargo work. The phase concludes with finalization of the production system and documentation of operational procedures (GSBPM 3.6–3.7).
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Technical testing of all individual components | Unit test reports | GSBPM 3.5 |
+| Integration testing: end-to-end flow from intake to access & support | Integration test report | GSBPM 3.5 |
+| Accessibility test (formats, languages, machine-readability) | Accessibility test report | GSBPM 3.6 |
+| Security/disclosure test (access controls, disclosure-risk criteria) | Security & disclosure test report | SAF-P10, SAF-P11 |
+| Release rehearsal (managed timing, embargo, equal access) | Release-rehearsal report | GSBPM 3.6 |
+| Finalize production system and document operational procedures | Operational Procedures Manual, Production-Ready Pipeline | GSBPM 3.7 |
+
+```{mermaid}
+%%| label: fig-5
+%%| fig-cap: "Implementation Pipeline from design artefacts through build/configure/test to production-ready system."
+%%| fig-width: 6
+flowchart LR
+    subgraph design_artefacts["Design Artefacts (from Section 3)"]
+        DA1["Channel & Format\nStrategy"]
+        DA2["Release SDC\nRules"]
+        DA3["Service &\nDocumentation Specs"]
+        DA4["Support &\nFeedback Model"]
+        DA5["Release Governance\nPolicy"]
+    end
+
+    subgraph build["Build & Configure"]
+        B1["4.1 Build Publication\n& Access Channels"]
+        B2["4.2 Configure SDC\n& Release Tooling"]
+        B3["4.3 Build Docs,\nSupport & Monitoring"]
+    end
+
+    subgraph test["Test & Validate"]
+        T1["4.4 Technical\nTesting"]
+        T2["4.4 Accessibility &\nDisclosure Tests"]
+        T3["4.4 Release\nRehearsal"]
+    end
+
+    subgraph output["Production-Ready"]
+        PR["Operational\nDissemination\nPipeline"]
+        OP["Operational\nProcedures"]
+    end
+
+    DA1 & DA3 --> B1
+    DA2 & DA5 --> B2
+    DA3 & DA4 --> B3
+
+    B1 & B2 & B3 --> T1 --> T2 --> T3
+    T3 --> PR & OP
+
+    PR -->|"ready for"| EXEC["Execution\n(Section 5)"]
+
+    style build fill:#eff6ff,stroke:#2563eb
+    style test fill:#dbeafe,stroke:#2563eb
+```
+
+## Execution Processes — "provides the statistical data"
+
+*Framework alignment: the later GSBPM phases for this domain — see [Framework Mappings](#framework-mappings).*
+
+The execution phase runs the **designed and implemented pipeline** operationally for each release cycle. This corresponds to the five VS-06 value stream stages. In a mature steady state, much of the work has been pre-designed (Section 3) and pre-built (Section 4) — execution focuses on running the release, serving users, and monitoring usage, with final disclosure control as the gate that must pass before anything is published.
+
+### Confirm Dissemination and Access Plan
+
+**Value created:** *The right channels, formats, and timing confirmed for this release.*
+
+When a "Statistical Product Registered" event is received from VS-05.0, execution begins by confirming the dissemination plan for the release. In a mature steady state the strategy has been designed (Section 3), so per-cycle execution confirms the channels, formats, and release-calendar slot for the product, verifies the embargo/equal-access arrangements, and confirms the target user groups. Significant changes (a new channel, a policy change) trigger a return to the design process rather than ad-hoc adaptation.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Confirm channels, formats, and release-calendar slot for the product | Confirmed release plan | GSBPM 7.1 |
+| Verify embargo and equal-access arrangements | Access arrangements confirmed | SAF 4.1.5 |
+| Confirm target user groups and communication plan | Confirmed audience & comms | GSBPM 7.4 |
+| Flag plan changes for design review | Plan-change exception (if any) | GAMSO QM |
+
+::: {.callout-tip title="**NSO Example — Labour Market Release:**"}
+For the Q3-2026 labour-market release the team confirms the release date and slot, the press embargo for accredited media, and the channels (press release, API, dashboard), with no change to the strategy this cycle.
+:::
+
+### Prepare Data for Dissemination
+
+**Value created:** *Products made disclosure-safe and formatted for each channel.*
+
+This sub-process prepares the product for release, aligned with GSBPM 6.4 (Apply disclosure control) and 7.2. The final disclosure control is applied — suppression, rounding, or perturbation for tables and dashboards beyond the upstream protection, and de-identification for any released microdata — and the release is checked against the disclosure-risk criteria; **nothing proceeds if the criteria are not met**. The product is then formatted for each channel (publication, API/dataset, dashboard) and the accompanying documentation, metadata, and methodology notes are assembled per the documentation standard.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Apply final disclosure control to tables/dashboards | Disclosure-controlled outputs | GSBPM 6.4 |
+| De-identify any released microdata to the designed standard | De-identified microdata | SAF-P11 |
+| Check the release against disclosure-risk criteria (gate) | Disclosure clearance | SAF-P11 |
+| Format for each channel and assemble documentation/metadata | Channel-ready products + docs | GSBPM 7.2 |
+
+::: {.callout-important}
+**Release gate:** No product is published until it passes the disclosure-risk criteria. If a release fails the gate, it is returned for additional protection — confidentiality is non-negotiable at the boundary to State #5.
+:::
+
+### Publish and Provide Access Services
+
+**Value created:** *Statistics released to users through trusted, secure channels — equally and on time.*
+
+This sub-process executes the release, aligned with GSBPM 7.3 (Manage release). The product and its metadata are published via the confirmed channels — portal/publication, API/open data, dashboards — and made available through secure research environments where microdata access is mediated. Release timing is managed per the calendar with embargo and equal-access enforced (no privileged early access outside policy), and the release is promoted per the communication plan (with VS-10). A persistent, identified released version is recorded with lineage to the approved product, and a "Statistics Released" event is published.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Publish products and metadata via confirmed channels (portal, API, dashboards) | Published release | GSBPM 7.3 |
+| Provide mediated access via secure research environment where applicable | Research-access provision | SAF-P10 |
+| Manage release timing, embargo, and equal access | Managed release | SAF 4.1.5 |
+| Promote the release per the communication plan (with VS-10) | Promotion executed | GSBPM 7.4 |
+
+```{mermaid}
+%%| label: fig-6
+%%| fig-cap: "Release Architecture. The approved product is disclosure-controlled and formatted, must pass the disclosure-risk gate, and is then released through publication, API, dashboard, and secure research channels to users (State #6)."
+%%| fig-width: 6
+flowchart LR
+    subgraph product["Approved product (State #4)"]
+        SP["Approved product\n(+ metadata, accuracy)"]
+    end
+
+    subgraph prepare["Prepare & Gate"]
+        SDC["Final disclosure\ncontrol"]
+        FMT["Format per channel\n+ documentation"]
+        GATE{"Disclosure-risk\ncriteria met?"}
+    end
+
+    subgraph release["Release (State #5)"]
+        PUB["Portal / Publication"]
+        API["API / Open data"]
+        DASH["Dashboards"]
+        SRE["Secure research\nenvironment"]
+    end
+
+    USERS["Users & Society\n(State #6)"]
+
+    SP --> SDC --> FMT --> GATE
+    GATE -->|"yes"| PUB & API & DASH & SRE
+    GATE -->|"no"| RET["Return for\nmore protection"]
+    PUB & API & DASH & SRE --> USERS
+
+    style product fill:#ecfdf5,stroke:#059669
+    style prepare fill:#f0fdf4,stroke:#059669
+    style release fill:#eff6ff,stroke:#2563eb
+    style USERS fill:#0f766e,color:#fff,stroke:#0f766e
+```
+
+
+::: {.callout-tip title='**NSO Example — Multi-Channel Release:**'}
+At 09:00 on the release date the Q3-2026 labour-market figures go live simultaneously on the website, the API, and the dashboard; accredited media that received the embargoed copy may publish at the same moment. Equal access is enforced — no figure is available before the release time.
+:::
+
+
+### Support and Engage Users
+
+**Value created:** *Users helped to find, understand, and correctly use the statistics.*
+
+This sub-process supports users, aligned with GSBPM 7.5 (Manage user support). Documentation, metadata, and user guides are made available with the release; the helpdesk answers queries; and training or guidance is provided for correct interpretation and use. Engagement activities (with VS-10) gather questions and needs, and any errata or clarifications are issued per the correction policy. The aim is responsible use — helping users avoid misinterpretation of estimates and their uncertainty.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Provide documentation, metadata, and user guides with the release | Published documentation | SAF-P09 |
+| Operate the helpdesk and respond to user queries | Query responses | GSBPM 7.5 |
+| Provide training/guidance for correct interpretation | User guidance | GSBPM 7.5 |
+| Issue errata/clarifications per the correction policy | Corrections (if any) | SAF 4.1.5 |
+
+::: {.callout-tip title="**NSO Example — Research Microdata:**"}
+Researchers accessing de-identified business microdata via the secure research environment receive the data dictionary, methodology notes, and an onboarding session; the helpdesk handles output-checking requests so that researchers' exported results also meet disclosure rules.
+:::
+
+### Monitor Usage and Feedback
+
+**Value created:** *Insight into how statistics are used and valued, feeding continuous improvement.*
+
+The final execution sub-process closes the loop with users, aligned with GSBPM 7.4 and Phase 8 (Evaluate). Usage is tracked across channels (downloads, API calls, dashboard views, publication reads), user satisfaction and feedback are collected, and the insights are analyzed to understand reach, value, and unmet needs. These insights are routed back to the design process (Section 3), to VS-10 Customer and Stakeholder Engagement, and across the value chain — for example, signalling demand for a new breakdown that would originate in earlier streams.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Track usage across channels (downloads, API calls, views) | Usage Statistics | GSBPM 7.4 |
+| Collect user satisfaction and feedback | Feedback Log | GSBPM 8 |
+| Analyze reach, value, and unmet needs | Usage Insight Report | GSBPM 8 |
+| Route insights to design, VS-10, and the wider chain | Improvement & engagement inputs | SAF 4.1.4 |
+
+```{mermaid}
+%%| label: fig-7
+%%| fig-cap: "Released Data Artefact Structure. Reading guide: each box is a type of record with its fields; a connecting line means the records are linked. Each released version is linked to its disclosure-control record, the channels it was released via, its documentation, and its usage — all traceable to the approved product it came from."
+%%| fig-width: 6
+erDiagram
+    RELEASED_DATA_ARTEFACT {
+        string release_id PK "Unique persistent URI/UUID"
+        string release_version "Immutable release identifier"
+        string product_source_id "Approved product (State #4) ID"
+        date reference_period "Reference period"
+        datetime release_timestamp "When released"
+    }
+    DISCLOSURE_RECORD {
+        string final_sdc_method "Suppression/rounding/perturbation applied"
+        string deidentification "Microdata de-identification standard"
+        boolean risk_criteria_met "Passed disclosure-risk gate"
+        string approver "Release sign-off authority"
+    }
+    CHANNEL_RECORD {
+        string channel "Portal / API / dashboard / research env"
+        string format "Format (e.g., SDMX, CSV, HTML)"
+        string accessibility "Accessibility standard met"
+        boolean equal_access "Equal-access/embargo enforced"
+    }
+    DOCUMENTATION_RECORD {
+        string methodology_notes "Methodology documentation"
+        string metadata_ref "Reference & structural metadata"
+        string user_guide "User guidance"
+        string corrections "Errata issued (if any)"
+    }
+    USAGE_RECORD {
+        int downloads "Downloads / API calls"
+        int dashboard_views "Dashboard views"
+        float satisfaction "User-satisfaction measure"
+        string feedback_ref "Collected feedback"
+    }
+
+    RELEASED_DATA_ARTEFACT ||--|| DISCLOSURE_RECORD : "protected by"
+    RELEASED_DATA_ARTEFACT ||--|{ CHANNEL_RECORD : "released via"
+    RELEASED_DATA_ARTEFACT ||--|| DOCUMENTATION_RECORD : "documented by"
+    RELEASED_DATA_ARTEFACT ||--|| USAGE_RECORD : "monitored by"
+```
+
+## Management Processes — "provides quality reports"
+
+*Framework alignment: GSBPM overarching Quality/Metadata Management — see [Framework Mappings](#framework-mappings).*
+
+The management phase runs **alongside and after** execution. It monitors the dissemination domain's performance, assesses the accessibility and impact of releases, ensures every release is compliant and equitable, and feeds improvement recommendations back into the design phase and to VS-10 — closing the governance cycle.
+
+### Monitor Process Performance
+
+Operational performance of the dissemination domain must be tracked systematically across release cycles. The process owner and quality manager collect and aggregate key performance indicators, monitor adherence to the release calendar, and track paradata — which channels were used, when each release went live, how embargoes were handled, and how many support queries arose. This information feeds process performance dashboards that give the process owner a real-time view of domain health, aligned with the GAMSO Quality Management capability.
+
+**Key Performance Indicators (KPIs):**
+
+| KPI | Description | Measurement |
+|---|---|---|
+| On-time release rate | Releases published exactly on the calendar slot | Per release, per cycle |
+| Disclosure-gate pass rate | Releases passing the disclosure-risk gate on first run | Per release, per cycle |
+| Channel availability | Uptime/availability of API and access services | Per channel |
+| Usage / reach | Downloads, API calls, dashboard views per release | Per release, per channel |
+| User satisfaction | Satisfaction measure from feedback | Per cycle |
+| Support response time | Time to resolve user queries | Per cycle |
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Collect and aggregate KPIs per release cycle | Process Performance Dashboard | GAMSO QM |
+| Monitor adherence to the release calendar | Release-Calendar Adherence Report | GAMSO QM |
+| Track paradata: channels, timing, embargo handling, queries | Paradata Records | GAMSO QM |
+| Generate process performance dashboards | Dashboard for Process Owner | GAMSO QM |
+
+### Assess Dissemination Quality
+
+Beyond process performance, the quality of dissemination itself must be evaluated against the criteria established in design. Each release and the service overall are assessed across multiple quality dimensions: accessibility (formats, languages, machine-readability, web-accessibility compliance), timeliness and punctuality (against the release calendar), reach and relevance (usage vs. expectations, coverage of user groups), and clarity (do users interpret correctly, judged from queries and feedback). Results are compared against the designed criteria from Section 3. Quality indicators are produced per release and per cycle, and trends are tracked. This aligns with the CSDA Data Quality capability and SAF Capability 2.1.3.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Assess accessibility compliance of releases | Accessibility Report (per cycle) | SAF 2.1.3 |
+| Assess timeliness and punctuality vs. the release calendar | Punctuality Report | CSDA Data Quality |
+| Assess reach, relevance, and clarity from usage and feedback | Reach & Clarity Report | SAF 2.1.3 |
+| Identify quality trends across releases and cycles | Quality Trend Analysis | SAF 2.1.3 |
+
+### Manage Release and Channel Lifecycle
+
+The dissemination products, channels, and the releases they produce must remain current, complete, and well-governed. This sub-process governs the lifecycle of channels, formats, and documentation standards — versioning them, managing transitions (e.g., an API version upgrade), and retiring obsolete channels. It verifies metadata completeness — that every release carries full documentation, disclosure record, and lineage as an SAF-P09 compliance check — and governs the release-version store: retention, immutability, corrections handling, and reconciliation that catalog entries match what is published. Metadata lineage from approved product to released data is tracked.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Govern channel, format, and documentation lifecycle and versions | Channel Version Register | SAF-P09 |
+| Verify metadata completeness (documentation, disclosure record, lineage) | Metadata Quality Report | SAF-P09 |
+| Govern the release-version store: retention, immutability, corrections | Release Store Audit | CSDA Traceability |
+| Track metadata lineage from approved product to released data | Metadata Lineage Audit | CSDA Traceability |
+
+### Audit and Compliance Reporting
+
+This sub-process produces the evidence that the dissemination domain operates within legal, regulatory, and organizational requirements. Disclosure-compliance reports confirm that every release passed the disclosure-risk gate and that released microdata meets the de-identification standard per SAF-P11. Equal-access compliance reports confirm that release timing and embargo policy were respected (no privileged early access). Accessibility-compliance reports confirm formats met the accessibility standard, and security-compliance reports verify access controls and secure-research-environment integrity. These reports — produced with VS-07.0 Governance and Compliance — satisfy the SAF Capability 4.1.5 (Accountability) obligation.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Produce disclosure-compliance reports: every release passed the gate | Disclosure Compliance Summary | SAF-P11 |
+| Report on equal-access compliance (timing, embargo) | Equal-Access Compliance Report | SAF 4.1.5 |
+| Report on accessibility compliance | Accessibility Compliance Report | SAF 4.1.5 |
+| Report on security compliance: access controls, research-environment integrity | Compliance Report (per cycle) | SAF-P10 |
+
+### Continuous Improvement
+
+The final management sub-process closes the governance loop by analyzing performance, usage, and feedback data to identify and drive improvements. Trends across release cycles are examined: is punctuality holding, is reach growing, is satisfaction improving, are support queries falling? Improvement opportunities are identified — adding or improving channels and formats, enhancing documentation that users find unclear, streamlining the release process, improving accessibility, and signalling demand for new statistics or breakdowns. These recommendations are fed back to the design processes (Section 3), to VS-10 Customer and Stakeholder Engagement, and — where the need originates earlier — across the value chain, prioritized and tracked through subsequent cycles. This is the SAF Capability 4.1.4 (Improve management) in action, and it connects to the GAMSO concept of transferring mature capabilities from innovation into production.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Analyze usage, satisfaction, and quality trends across cycles | Improvement Recommendations Report | SAF 4.1.4 |
+| Identify improvement opportunities: channels, documentation, accessibility, release process | Updated Design Inputs | SAF 4.1.4 |
+| Feed recommendations back to design, VS-10, and the wider chain | Design & engagement feedback (closing the loop) | SAF 4.1.4 |
+| Prioritize improvements based on impact and feasibility | Improvement Tracking Log | GAMSO Capability Mgmt |
+| Track implementation of accepted improvements | Improvement Tracking Log | GAMSO Capability Mgmt |
+
+```{mermaid}
+%%| label: fig-8
+%%| fig-cap: "Management Feedback Loop. Execution releases and usage data flow through monitoring, quality assessment, release/channel management, and audit processes. Continuous improvement feeds recommendations back to Design and to VS-10, closing the governance cycle."
+%%| fig-width: 6
+flowchart TD
+    E["Execution\n(Section 5)<br/><em>releases + usage data</em>"]
+
+    M1["6.1 Monitor<br/>Process Performance<br/><em>punctuality, reach</em>"]
+    M2["6.2 Assess<br/>Dissemination Quality<br/><em>accessibility, clarity</em>"]
+    M3["6.3 Manage Release<br/>& Channel Lifecycle<br/><em>channels, versions</em>"]
+    M4["6.4 Audit &<br/>Compliance Reporting<br/><em>disclosure, equal access</em>"]
+    M5["6.5 Continuous<br/>Improvement<br/><em>recommendations</em>"]
+
+    D["Design<br/>(Section 3)<br/><em>updated strategy & channels</em>"]
+    V10["VS-10.0\nEngagement"]
+
+    E --> M1
+    E --> M2
+    M1 --> M2
+    M2 --> M3
+    M3 --> M4
+    M4 --> M5
+    M5 -->|"feedback loop"| D
+    M5 -->|"user insight"| V10
+
+    M1 -->|"dashboards"| PO["Process Owner"]
+    M2 -->|"quality reports"| QM["Quality Manager"]
+    M4 -->|"compliance reports"| VS07["VS-07.0\nGovernance"]
+
+    style E fill:#ecfdf5,stroke:#059669
+    style D fill:#f5f3ff,stroke:#7c3aed
+    style M5 fill:#fef3c7,stroke:#d97706
+```
+
+## Business Services and Interfaces
+
+The VS-06.0 business domain exposes the following services:
+
+| Service | Direction | Consumers | Mapped Processes |
+|---|---|---|---|
+| **Dissemination Preparation Service** | Internal (VS-05.0 → NSO) | Approved-product consumers, release teams | 5.2 Prepare Data for Dissemination |
+| **Publication and Open-Data Service** | NSO → External | Data users, the public, businesses | 5.3 Publish and Provide Access Services |
+| **API and Dashboard Service** | NSO → External | Researchers, developers, analysts | 5.3 Publish and Provide Access Services |
+| **Secure Research Access Service** | NSO → External (mediated) | Accredited researchers | 5.3 Publish and Provide Access Services |
+| **User Support Service** | NSO → External | All data users | 5.4 Support and Engage Users |
+| **Usage and Feedback Service** | Internal ↔ External | Process owners, VS-10, the wider chain | 5.5 Monitor Usage and Feedback |
+| **Design and Strategy Service** | Internal | Dissemination managers, channel designers | 3.1–3.5 All design processes |
+
+**Interface specifications:**
+
+- **Publication and Open-Data Service** interface: web publication + bulk open-data download with machine-readable metadata; equal-access release timing enforced
+- **API and Dashboard Service** interface: SDMX-compliant API (query released series/datasets + metadata) and interactive dashboards fed from the released datasets
+- **Secure Research Access Service** interface: mediated access to de-identified microdata in a controlled environment with output checking
+
+### Boundary Interface Specifications
+
+The domain is loosely coupled (SAF-P07) to its neighbor upstream and to external users. Specifying each boundary explicitly — the handover artefact, the metadata it must carry, the event that triggers it, and where responsibility transfers — makes the loose-coupling contract concrete and testable. As the final primary value stream, VS-06 has **no downstream primary value stream**: its handover is to external users (State #5 → State #6), and its feedback path runs to VS-10.
+
+| Boundary | Handover Artefact | Required Metadata | Trigger Event | Responsibility Transfer |
+|---|---|---|---|---|
+| **VS-05.0 → VS-06.0** (intake) | Approved Statistical Product (State #4) | Component lineage, composition method, propagated accuracy, coherence results, approval record, confidentiality status, product-version identifier, BIV classification | "Statistical Product Registered" event | VS-05.0 retains custody of the product version; VS-06.0 assumes responsibility for preparation, release, and service delivery on event receipt |
+| **VS-06.0 → Users/Society** (release) | Released Data (State #5): published statistics + de-identified microdata + access services | Final disclosure-control record, documentation/methodology notes, reference & structural metadata, channel/format, release timestamp, release-version identifier, lineage to approved product | "Statistics Released" event | NSO publishes/serves; external users consume the data as **State #6 (Consumed)**, outside NSO control. Usage and feedback flow back to VS-06.5 and VS-10. |
+
+Each interface exchanges a registered, immutable steady-state artefact plus its metadata — never internal working data — so neither side needs knowledge of the other's internal processing.
+
+## Business Objects and Data Flow
+
+```{mermaid}
+%%| label: fig-9
+%%| fig-cap: "Business Object Lifecycle across all four process types. Design objects govern implementation, which produces the pipeline that releases execution objects; the approved product becomes released data and then consumed data, assessed by management objects that feed back to design."
+%%| fig-width: 6
+flowchart TB
+    design["🔷 Design Artefacts<br/><small>Access Strategy · Release SDC Rules<br/>Service & Documentation Specs · Governance Policy</small>"]
+    implement["🔧 Implementation Assets<br/><small>Publication & Access Channels · SDC & Release Tooling<br/>Documentation, Support & Monitoring</small>"]
+    execute["⚡ Execution Objects"]
+    manage["📊 Management Reports"]
+
+    design -->|"govern building"| implement
+    implement -->|"produces pipeline<br/>that processes"| execute
+    execute -->|"assessed by"| manage
+    manage -->|"feeds back to"| design
+
+    subgraph execute_detail [" "]
+        direction LR
+        SP["Approved Product<br/>(State #4)"]:::bo -->|"released as"| RD["Released Data<br/>(State #5)"]:::bo -->|"consumed as"| CD["Consumed Data<br/>(State #6)"]:::ext
+    end
+
+    execute --> execute_detail
+    RD -->|generates| logs["Disclosure Record · Documentation · Usage Data"]
+
+    classDef bo fill:#fbbf24,stroke:#b45309,color:#000
+    classDef ext fill:#0f766e,stroke:#0f766e,color:#fff
+    style design fill:#f5f3ff,stroke:#7c3aed
+    style implement fill:#dbeafe,stroke:#2563eb
+    style execute fill:#fef9c3,stroke:#b45309
+    style manage fill:#dcfce7,stroke:#16a34a
+    style execute_detail fill:none,stroke:none
+    style logs fill:#fff,stroke:#888,stroke-dasharray: 5 5
+```
+
+
+## Business Events
+
+```{mermaid}
+%%| label: fig-10
+%%| fig-cap: "Event-Driven Choreography between the upstream domain (VS-05.0), NSO teams, and users, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design and to VS-10."
+%%| fig-width: 6
+
+sequenceDiagram
+    participant US as Upstream (VS-05.0)
+    participant NSO as NSO Teams
+    participant USR as Users
+    participant PM as Process Mgmt
+
+    rect rgb(245, 243, 255)
+    Note over NSO: Design Phase
+    NSO->>NSO: Define access strategy, release & disclosure<br/>policy, channels & support model
+    NSO-->>NSO: Design Artefacts Published
+    end
+
+    rect rgb(239, 246, 255)
+    Note over NSO: Implementation Phase
+    NSO->>NSO: Build publication/API channels, SDC &<br/>release tooling, support & monitoring
+    NSO-->>NSO: Pipeline Production-Ready
+    end
+
+    rect rgb(236, 253, 245)
+    Note over NSO,USR: Execution Phase (per release)
+    US-->>NSO: Statistical Product Registered event
+    NSO->>NSO: Confirm plan; apply final disclosure control
+
+    alt Disclosure gate passed
+        NSO->>USR: Publish via channels (managed timing, equal access)
+        NSO-->>NSO: Statistics Released event
+        USR-->>NSO: Usage & feedback
+    else Disclosure gate failed
+        NSO->>NSO: Return for additional protection
+    end
+
+    NSO->>USR: Provide documentation & support
+    end
+
+    rect rgb(254, 243, 199)
+    Note over PM: Management Phase
+    PM->>PM: Monitor usage & punctuality, assess accessibility,<br/>produce compliance reports
+    PM-->>NSO: Improvement Recommendations (to design & VS-10)
+    end
+```
+
+## Framework Mappings
+
+This reference table maps each process group of this document to the international frameworks (GSBPM, GAMSO, CSDA) and the SAF capability model. It is intended for architects and auditors; the narrative sections above do not depend on it.
+
+| Process group | GSBPM | GAMSO | CSDA | SAF Capabilities |
+|---|---|---|---|---|
+| **Design** | Phase 1 (Specify Needs), Phase 2 (Design: 2.1–2.5) | Production (design activities), Capability Management | Data Governance, Metadata Management, Dissemination | 1.1.2 Design statistics product, 2.1.2 Metadata management, 3.3.1 Privacy management |
+| **Implementation** | Phase 3 (Build: 3.1–3.7) | Capability Management | Dissemination (setup), Data Governance (configuration) | 1.1.3 Build statistics product, 3.2.1 Application development, 3.2.2 Functional management |
+| **Execution** | Phase 6 (6.4 Apply disclosure control) + Phase 7 (7.2 Produce dissemination products, 7.3 Manage release, 7.4 Promote, 7.5 Manage user support) + Phase 8 (Evaluate) for usage monitoring | Production (execution), Corporate Support (communication) | Dissemination (execution) | 2.1.2 Metadata management, 3.3.1 Privacy management |
+| **Management** | Phase 8 (Evaluate) + Overarching processes (Quality Management, Metadata Management) | Corporate Support (Quality Management, Communication), Capability Management (improvement) | Data Quality, Data Governance, Traceability | 2.1.3 Statistical quality management, 4.1.4 Improve management, 4.1.5 Accountability |
+
+## Applying This to Your NSO
+
+### Maturity Assessment Checklist
+
+Use this checklist to assess your NSO's maturity across all four process types — not just execution.
+
+**Design Maturity**
+
+- [ ] Do we have a documented dissemination and access strategy mapped to user groups and channels?
+- [ ] Do we have a final disclosure-control and de-identification policy with disclosure-risk criteria?
+- [ ] Do we have channel, format, accessibility, and documentation standards defined?
+- [ ] Do we have a user-support, promotion, and usage/feedback model?
+- [ ] Do we have a release-governance policy with equal-access controls and a release calendar?
+
+**Implementation Maturity**
+
+- [ ] Are our publication, API, dashboard, and research-access services built from design specifications (on VS-09 platforms)?
+- [ ] Is final disclosure-control tooling implemented with an enforced disclosure-risk gate?
+- [ ] Is release timing/embargo and equal-access enforcement implemented?
+- [ ] Are documentation, support, and usage-monitoring services implemented?
+- [ ] Do we have a formal testing process (technical, accessibility, security/disclosure, release rehearsal)?
+
+**Execution Maturity**
+
+- [ ] Do we confirm channels, formats, and timing for each release?
+- [ ] Do we apply final disclosure control and pass a disclosure-risk gate before publishing?
+- [ ] Do we release through the confirmed channels with managed timing and equal access?
+- [ ] Do we accompany every release with documentation and user support?
+- [ ] Do we monitor usage and collect feedback each cycle?
+
+**Management Maturity**
+
+- [ ] Do we track KPIs (punctuality, disclosure-gate pass rate, usage, satisfaction) across cycles?
+- [ ] Do we assess accessibility, reach, and clarity?
+- [ ] Do we govern channel/release lifecycles and the release-version store?
+- [ ] Do we produce disclosure, equal-access, accessibility, and security compliance reports (with VS-07)?
+- [ ] Do we have a formal improvement process that feeds back into design and VS-10?
+
+### End-to-End Scenarios
+
+Each scenario walks through **all four process types**, demonstrating how the governance pattern works in practice.
+
+#### Scenario A: Labour Market Quarterly Release
+
+**Design Phase:** The dissemination strategy targets policymakers (press release), researchers (API + series download), and the public (dashboard), with a pre-announced release calendar and a media embargo policy. Final disclosure-control rules for small NUTS-2 cells, accessibility standards, and the documentation standard are designed.
+
+**Implementation Phase:** Engineers configure the publication page, the SDMX API, and the dashboard on the VS-09 platform, the SDC tooling for small-cell suppression, and embargo/equal-access release tooling. Accessibility, disclosure, and release-rehearsal tests pass.
+
+**Execution Phase:** A Statistical Product Registered event arrives for the Q3-2026 labour-market product. The team confirms the plan, applies final SDC (suppressing two small NUTS-2 cells), and clears the disclosure-risk gate. At 09:00 the figures publish simultaneously on the website, API, and dashboard; embargoed media publish at the same moment. Documentation and methodology notes accompany the release; the helpdesk handles queries. Usage and feedback are collected. A Statistics Released event is published.
+
+**Management Phase:** On-time release rate 100%, disclosure-gate passed first time, API availability 99.95%, usage up 12% on the prior quarter. Improvement recommendation: add a plain-language summary after feedback showed confusion about the confidence interval. Recommendations fed back to design and VS-10.
+
+#### Scenario B: Business Statistics — Microdata via Secure Research Environment
+
+**Design Phase:** The strategy provides aggregate tables openly and de-identified business microdata through a secure research environment (SRE) for accredited researchers. The de-identification standard, output-checking rules, and SRE access model are designed with VS-07.
+
+**Implementation Phase:** Engineers configure the open tables on the portal and the SRE access service with output checking on the VS-09 platform; the de-identification component and disclosure gate are configured. Security/disclosure and accessibility tests pass.
+
+**Execution Phase:** A Statistical Product Registered event arrives for the SBS product. Aggregate tables are disclosure-controlled and published openly; the microdata is de-identified to the standard and made available in the SRE. Accredited researchers are onboarded with the data dictionary and methodology; the helpdesk handles output-checking so researchers' exported results also meet disclosure rules. Usage in the SRE is logged. A Statistics Released event is published.
+
+**Management Phase:** Disclosure-gate pass rate 100%, no disclosure incidents, SRE onboarding time within target. Improvement recommendation: add a self-service output-checking pre-screen to reduce helpdesk load. Recommendations fed back to design and VS-10.
+
+#### Scenario C: Consumer Price Index — Headline Release and Dashboard
+
+**Design Phase:** The CPI dissemination strategy provides a headline press release, an API for the series, and an interactive dashboard, on a fixed pre-announced calendar with a tight embargo (price indices are market-sensitive). Accessibility and documentation standards are designed.
+
+**Implementation Phase:** Engineers configure the release page, the API, and the dashboard, plus strict embargo/equal-access release tooling (CPI is market-sensitive). Disclosure (light, aggregated indices), accessibility, and release-rehearsal tests pass.
+
+**Execution Phase:** A Statistical Product Registered event arrives for the monthly CPI product. The plan is confirmed, the light disclosure check passes, and at the scheduled minute the headline, API series, and dashboard go live simultaneously with strict equal access. Documentation explains the monthly movement and contributions; the helpdesk handles media queries. Usage spikes are monitored. A Statistics Released event is published.
+
+**Management Phase:** Punctuality 100% (critical for a market-sensitive release), no embargo breaches, dashboard views at record highs on release day. Improvement recommendation: add a contributions-to-change visual to the dashboard after user feedback. Recommendations fed back to design and VS-10.

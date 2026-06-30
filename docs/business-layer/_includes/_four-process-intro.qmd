@@ -1,0 +1,1 @@
+The Statistical Architecture Framework defines that each business domain operates through four distinct process types. This is not a linear sequence but a governance cycle where each process type produces a distinct output that feeds the others:

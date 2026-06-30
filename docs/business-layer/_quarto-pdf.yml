@@ -1,0 +1,7 @@
+# PDF profile: quarto render --profile pdf
+# Requires Chromium for mermaid diagrams (see README).
+format:
+  typst:
+    toc: true
+    number-sections: true
+    section-numbering: 1.1.
