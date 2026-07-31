@@ -1,43 +1,52 @@
-# SAF Architecture Framework
+SAF Architecture Framework
+============================
+
 Created on: 07-07-2025
 Workgroup SAF: Trygve Falch (Statistics Norway), Jakob Engdahl (Statistics Sweden), Stephane Crete (Statistics Canada), Cedric Couralet (Insee), Daan Swinkels (CBS), Pascal Fransen (CBS)
-Version 0.2
+Version 0.3
 
 | Version | Date | Contributor/Secretary |
 |---|---|---|
 |0.1|2025-07-07|Initial version|
 |0.2|2026-06-01|Review processed|
+|0.3|2026-07-31|Merge Business Architecture|
 
 ## Content
-Preface
+[Preface](#preface)
 
-Acknowledgements
+Acknowledgements [TODO]
 
-Introduction
+[Introduction](#introduction)
 
-Activity Proposal
+Activity Proposal [TODO]
 
-Purpose
+[Purpose](#purpose)
 
-Definition of Scope
+[Definition of Scope](#definition-of-scope)
 
-Target Audience
+[Target Audience](#target-audience)
 
-Constraints & Assumptions
+Constraints & Assumptions [TODO]
 
-Goals and Drivers
+[Motivation](#motivation)
+-    [Drivers](#drivers)
+-    [Goals](#goals)
+-    [Meaning](#meaning)
 
-Motivation
+[Outcome](#outcome)
 
-Architecture Principles
+[Architecture Principles](#architecture-principles)
 
-Stakeholders, Roles and Collaborations
+[Stakeholders, Roles and Collaborations](#stakeholders-roles-and-collaborations)
 
-Capability Model
+[Capability Model](#capability-model)
 
-Business Architecture
+[Valuestreams](#value-streams)
 
-## Preface
+[Business Architecture](#business-architecture)
+
+
+# Preface
 
 The Statistical Architecture Framework (SAF) is developed to support the modernisation of official statistics. It responds to a shared need across National Statistical Institutes (NSIs) and partner organisations. Statistical production must remain credible, secure, and efficient. At the same time, it must adapt to new data sources, new user expectations, and tighter constraints. SAF provides a common architectural foundation to help organisations make these changes in a controlled and coherent way.
 
@@ -50,11 +59,11 @@ The framework is designed to support multiple types of use in parallel. It can b
 SAF is intended to work alongside established statistical standards and models. It does not replace statistical business and information models. Instead, it provides the architectural link between strategy, capabilities, processes, services, and technology. This “glue” helps organisations make consistent decisions, improve traceability from policy to implementation, and reduce fragmentation across projects and teams. To support communication and shared understanding, SAF uses a set of architecture viewpoints. Visual models are included to clarify scope, responsibilities, and dependencies. Where appropriate, a consistent modelling notation is used so that organisations can compare, reuse, and extend the content in a disciplined way.
 SAF is a living framework. It is expected to evolve through implementation experience, community feedback, and changes in the external environment. Its value depends on active use and continuous improvement across the community it serves, so that the framework remains both credible and practical over time.
 
-## Acknowledgements
+# Acknowledgements
 
 TODO
 
-## Introduction
+# Introduction
 
 The Statistical Architecture Framework (SAF) provides a common architectural basis for the design, delivery, and evolution of statistical production in National Statistical Institutes (NSIs) and related organisations. It brings together architectural concepts, reference structures, and practical guidance that support consistent decision-making across portfolios and programmes. SAF aims to help statistical organisations modernise with control, while preserving the institutional qualities that make official statistics credible: transparency, quality, impartiality, reproducibility, and public trust.
 
@@ -62,10 +71,10 @@ Statistical organisations are facing a period of accelerated change. Data ecosys
 
 SAF replaces earlier reference documentation by consolidating core architectural ideas into a single framework that is more usable in practice. It is not designed as a theoretical reference alone. It is designed to be applied. SAF supports the translation of strategy into capabilities, services, and implementation choices. It supports alignment across business, methodology, data, applications, and technology. It also supports collaboration between organisations by promoting common patterns, shared viewpoints, and comparable architectural descriptions.
 
-## Activity Proposal
+# Activity Proposal
 TODO
 
-## Purpose
+# Purpose
 
 The purpose of SAF is to provide an authoritative, consistent, and actionable framework for developing and governing statistical architectures. It aims to support coherent modernisation across NSIs by providing shared structures for describing needs, designing solutions, and managing change. SAF helps ensure that investments in platforms, data management, methods, and delivery practices strengthen each other instead of competing. It also helps organisations to demonstrate traceability from policy and strategy to implemented solutions, including the controls required for confidentiality, integrity, accountability, and lawful processing.
 
@@ -73,7 +82,7 @@ SAF is intended to enable better outcomes in three areas. First, interoperabilit
 
  Second, quality and robustness, by making architectural choices explicit and reviewable, and by promoting consistent handling of data, metadata, and methodological assets. Third, overall statistical production  effectiveness, by providing a common language and set of expectations that connects architects, methodologists, engineers, managers, and oversight functions.
 
-## Definition of Scope
+# Definition of Scope
 
 SAF covers the enterprise architecture concerns that are most relevant to statistical production and dissemination, including the supporting functions that enable them. It addresses the design and evolution of capabilities, information assets, applications and services, and underlying infrastructure and deployment arrangements. It also considers the cross-cutting concerns that are essential for official statistics, such as governance, security, privacy, auditability, reproducibility and the responsible use of data and advanced analytics.
 
@@ -81,7 +90,7 @@ To ensure consistency and practical applicability, SAF is organised according to
 
 SAF does not prescribe a single operating model, a single technology stack, or a single organisational design. It recognises that NSIs differ in mandate, maturity, and context. Instead, it provides a shared architectural foundation that can be adapted to local realities while remaining comparable across organisations. It also assumes that terminology and detailed definitions are managed through a dedicated glossary, which is maintained alongside the framework.
 
-## Target Audience
+# Target Audience
 
 SAF is intended to be used as a reference and as a working instrument. It can be applied when shaping strategy and roadmaps, when designing new capabilities and platforms, and when assessing initiatives for alignment and risk. It can be used to structure architectural work in programmes and projects, and to support governance decisions by making assumptions, dependencies, and trade-offs explicit. It can also be used to support communication across disciplines by establishing shared architectural concepts and consistent viewpoints.
 
@@ -94,13 +103,13 @@ SAF is most effective when it is used consistently across the lifecycle of chang
 The expected value of SAF is a stronger and more coherent statistical architecture practice across NSIs. It supports faster and safer modernisation by reducing ambiguity and rework. It supports reuse by encouraging common building blocks and comparable solution descriptions. It supports trust by embedding governance and assurance concerns into architecture, rather than treating them as afterthoughts. It also supports collaboration across organisations, where shared approaches to interoperability, data governance, and service orientation reduce the effort required to work together.
 In providing a common framework with practical orientation, SAF aims to help statistical organisations remain resilient and responsive. It supports them in delivering high-quality statistics under changing conditions, while maintaining the safeguards and institutional discipline that official statistics require.
 
-## Constraints & Assumptions
+# Constraints & Assumptions
 
 TODO
 
-## Motivation
+# Motivation
 
-### Drivers
+## Drivers
 
 TODO : formatting
 
@@ -147,7 +156,7 @@ Many statistical organizations face increasing expectations with limited budgets
 SAF addresses this driver by promoting architectures that make flexibility and reuse a core principle. It supports modular designs, shared services, and scalable solutions that reduce duplication and enable more effective use of existing resources. By fostering an agile organizational mindset and clear governance around priorities, SAF allows NSIs to reallocate capacity, modernize incrementally, and continue to deliver high-quality outputs even under financial and staffing constraints.
 
 
-### Goals
+## Goals
 
 Definition: Architecture goals represent the outcomes an organization aims to achieve by adopting and implementing aframework. They define what success looks like and serve as the link between strategy and action. In the case of the SAF, these goals are not just about modernizing IT systems, but about ensuring that national statistical institutes can continue to provide trustworthy, relevant, and high-quality statistics in a rapidly changing environment.
 
@@ -186,7 +195,7 @@ However, as the production of statistics becomes increasingly integrated into th
 
 Through consistent governance and the use of open, verifiable technologies, SAF supports compliance as an enabler rather than a constraint. It provides the structures necessary to ensure that innovation, data sharing, and open collaboration occur within controlled and auditable environments. This approach reinforces public trust by embedding transparency, scientific rigor, and privacy-by-design across all processes.
 
-### Meaning
+## Meaning
 Architecture meaning provides the “why” behind the framework. While goals and outcomes describe what SAF achieves, meaning explains why it matters. For statistical organizations, architecture is not just a technical exercise but a way of ensuring their continued relevance in a digital society. SAF’s meaning lies in its role as the foundation for modernization, trust, and international collaboration.
 
 - One dimension of this meaning is its role as a bridge between strategy and technology. Without such a framework, investments in IT risk being disconnected from the mission of providing high-quality statistics. SAF ensures that every technological decision, from adopting a new platform to restructuring business processes, can be traced back to strategic objectives, creating a coherent organizational narrative. 
@@ -205,7 +214,7 @@ SAF is not just a set of technical models; it is the foundation for digital tran
 By adopting TOGAF and ArchiMate, SAF ensures that diverse stakeholders can communicate using a consistent language and notation. This reduces misunderstandings, enables shared modelling practices, and promotes architectural maturity across the community.
 
 
-## Outcome
+# Outcome
 
 Architecture outcomes describe the tangible benefits that organizations can expect when adopting SAF. They translate principles, goals, and drivers into measurable impacts such as improved interoperability, reduced costs, and enhanced data quality. Outcomes are critical for demonstrating the value of architecture to stakeholders, as they provide a clear “return on investment” for adopting the framework. In the SAF, outcomes are both technical and societal.
 
@@ -231,7 +240,7 @@ SAF reduces duplication of effort by promoting reuse, harmonization, and standar
 #### SAF-O6 Shared Knowledge Base
 SAF fosters a community of practice across UNECE members. Through shared architectural frameworks, NSIs can exchange lessons learned, reusable components, and knowledge, leading to continuous improvement at lower cost.
 
-## Architecture Principles
+# Architecture Principles
 Architecture principles are the basis for any enterprise architecture framework. They provide the guiding rules and fundamental truths that define the way organizations design, implement, and manage their IT landscapes. In the context of official statistics, principles are particularly important because they ensure consistency across an interconnected environment.
 
 For the SAF, architecture principles act as a compass for decision-making. They ensure that whenever there is a choice to be made between technologies, processes, or solutions, decisions are not taken in isolation but in accordance with the overarching vision of the statistical community. They also prevent short-term convenience from undermining long-term sustainability, a challenge that statistical offices often face given their reliance on legacy systems and resource constraints.
@@ -298,7 +307,7 @@ SAF promotes efficiency and modernization while reducing technical debt. By prov
 #### SAF-V6 Trust & Legitimacy
 The value of SAF lies in enhancing trust in official statistics. By ensuring transparency, ethical practices, and robust security, SAF reinforces the legitimacy of NSIs as authoritative providers of public data.
 
-## Stakeholders, Roles and Collaborations
+# Stakeholders, Roles and Collaborations
 
 ### Stakeholders
 
@@ -335,7 +344,7 @@ TODO
 ### Collaborations
 TODO
 
-## Capability Model
+# Capability Model
 
 Within the Statistical Architecture Framework (SAF), business capabilities define the fundamental abilities of a statistical organization to perform its mission , independent of processes, organizational structures, or technologies. A business capability represents what the organization must be able to do to deliver value and achieve its objectives, providing a stable and long-term view of the enterprise’s functional landscape.
 
@@ -630,11 +639,11 @@ Explanation: These activities involve collaboration and coordination with other 
  
 Source: GAMSO 1.2, Manage Strategic Collaboration and Cooperation
 
-## Value Streams
+# Value Streams
 
-### Primary Value Streams
+## Primary Value Streams
 
-#### VS-01.0 Data Acquisition and Ingestion Value Stream
+### VS-01.0 Data Acquisition and Ingestion Value Stream
  
 The Data Acquisition & Ingestion Value Stream is the first step in the statistical value chain. It focuses on bringing raw data into the statistical system in a secure, traceable, and compliant way. The purpose of this value stream is to make sure that data, no matter where the data comes from, enters the organization in a state that is authentic, well-documented, and ready for use. This value stream sets the foundation for everything that follows. It makes sure that the right data is collected, that legal requirements and ethical guidelines are observed, and that the data is safely stored and traceable from its source.
 
@@ -649,7 +658,7 @@ The value created here lies in trust and readiness , trust that the data has bee
 
 Once data has been safely acquired and registered, it is ready to move into the next phase - the Data Standardization & Integration Value Stream. Here, the focus shifts from collecting data to structuring it, ensuring that all incoming data can be compared, combined, and analyzed.
 
-#### VS-02.0 Data Standardization and Integration Value Stream
+### VS-02.0 Data Standardization and Integration Value Stream
 
 The Data Standardization & Integration Value Stream is the second step in the statistical value chain. After raw data has been collected and securely stored, it now needs to be standardized, harmonized, and prepared for further processing. In this value stream, the organization ensures that data from different sources - surveys, administrative registers, or external datasets - can work together seamlessly.
 This is achieved through consistent structures, common formats, and shared definitions. The main goal is interoperability: data that looks different at the source must be aligned so it can be understood, compared, and reused across systems, domains, and time periods.
@@ -666,7 +675,7 @@ Once data is standardized and validated, it can safely move to the Data Editing 
 
 The organization begins improving data accuracy, filling gaps, and enriching datasets with derived or corrected information.
 
-#### VS-03.0 Data Editing and Enrichment Value Stream
+### VS-03.0 Data Editing and Enrichment Value Stream
 
 The Data Editing & Enrichment Value Stream is the third step in the statistical value chain. After data has been standardized and aligned, the next task is to improve its quality, completeness, and usability. At this stage, the organization focuses on cleaning, correcting, and enriching data so that it becomes trustworthy and analytically sound. Errors are detected, inconsistencies are corrected, missing values are filled, and new variables are derived to add more meaning and analytical value. This is where raw, standardized data begins to transform into high-quality statistical input , ready for estimation, modeling, and analysis.
 
@@ -679,7 +688,7 @@ This value chain identifies the following value steps:
 
 The main value created here is data reliability and analytical readiness. By systematically improving data quality, the organization ensures that every subsequent result , every estimate, model, and publication, rests on a solid foundation.
 
-#### VS-04.0 Estimation, Analysis, and Statistical Modeling Value Stream
+### VS-04.0 Estimation, Analysis, and Statistical Modeling Value Stream
 
 The Estimation & Analysis Value Stream is the fourth stage of the statistical value chain. Here, the focus shifts from improving data quality to extracting insight and meaning. At this stage, the organization applies statistical methods, estimation techniques, and analytical models to transform edited and enriched data into representative results that describe real-world phenomena. This is where data becomes statistical information, summarized, interpreted, and validated to reflect populations, trends, and behaviors. Every decision taken in this stage must balance methodological detail with transparency and reproducibility.
 This value chain identifies the following value steps:
@@ -693,7 +702,7 @@ The main value created here is analytical insight and statistical credibility. T
 
 After estimation and analysis, the organization moves to the Statistical Product Composition Value Stream. Here, the focus shifts from individual analyses to building integrated and composite products. In that next stage, data from multiple sources and analyses are combined into coherent statistical publications, dashboards, and reports, turning analytical results into accessible products that provide a complete picture.
 
-#### VS-05.0 Statistical Product Composition Value Stream
+### VS-05.0 Statistical Product Composition Value Stream
  
 The Statistical Product Composition Value Stream is the fifth stage in the statistical value chain. After estimation and analysis, the focus now shifts to bringing multiple analytical results together to create coherent, meaningful, and high-value statistical products. At this stage, data from different sources, domains, and analyses are combined, refined, and formatted into composite datasets, time series, and indicators that can be used for reporting, policymaking, and research. This value stream transforms intermediate analytical outputs into final statistical products , ready for validation, interpretation, and dissemination.
 This value chain identifies the following value steps:
@@ -723,8 +732,8 @@ The key value created here is impact and accessibility, ensuring that statistics
 Together, these supporting streams ensure that dissemination is not just a technical process , but a strategic, user-centered activity that delivers societal value through trustworthy data.
  
 
-### Supporting Cross Domain Value-Streams
-#### VS-07.0 Governance and Compliance Value Stream
+## Supporting Cross Domain Value-Streams
+### VS-07.0 Governance and Compliance Value Stream
 
 The Governance and Compliance Value Stream runs horizontally across all stages of the statistical value chain. Its purpose is to make sure that every process, dataset, and product within the organization operates under clear rules, standards, and accountability mechanisms. This value stream builds trust , both inside and outside the organization , by ensuring that all data activities are ethical, transparent, and compliant with legal, methodological, and quality requirements. It provides the framework of control and assurance that keeps the statistical system reliable, consistent, and aligned with national and international standards such as the European Statistics Code of Practice, GDPR, GSBPM, GAMSO and ISO data quality principles.
 This value chain identifies the following value steps:
@@ -739,7 +748,7 @@ The value created here is integrity and accountability making sure that the NSI 
 
 The Governance and Compliance Value Stream supports all other value streams by acting as the foundation of trust and assurance. It ensures that Data Acquisition & Ingestion follows lawful and ethical standards. It guarantees that Editing, Estimation, and Dissemination meet quality benchmarks. It provides the governance structure for Infrastructure, Innovation, and Stakeholder Engagement. In short, it supports the entire SAF value chain, ensuring that every activity is compliant, transparent, and aligned with the mission of producing trustworthy statistics.
 
-#### VS-08.0 Innovation and Methodological Development Value Stream
+### VS-08.0 Innovation and Methodological Development Value Stream
 
 The Innovation and Methodological Development Value Stream makes sure the statistical organization does not stand still. Its purpose is to discover, test, and introduce new ways of working , new data sources, new methods, new tools, and new technologies. This value stream helps the organization move from “we have always done it this way” to “we can do this better, faster, and smarter.”
 It connects research, methodology, IT, and business users. It also makes sure that innovation is controlled , so that only methods that are sound, documented, and compliant end up in production. This value chain identifies the following value steps:
@@ -760,7 +769,7 @@ How This Supports the Other Value Streams.
 
 So, this value stream keeps the entire SAF alive and evolving.
 
-#### VS-09.0 Infrastructure and Platform Enablement Value Stream
+### VS-09.0 Infrastructure and Platform Enablement Value Stream
  
 The Infrastructure and Platform Enablement Value Stream provides the technical and digital foundation that supports every part of the statistical organization. Where the other value streams focus on data, methods, or governance, this one ensures that all those activities can actually run safely, efficiently, and at scale. It delivers the IT environments, data platforms, tools, and integration services that make statistical production possible, from data collection to dissemination. It ensures that the systems are secure, resilient, and compliant, while also flexible enough to handle new technologies and data sources as the organization modernizes. This value stream enables the organization to work faster, smarter, and with confidence. It transforms infrastructure from a background function into an active enabler of the statistical mission, ensuring that every user, process, and dataset has the tools and environment it needs to perform reliably.
 This value chain identifies the following value steps:
@@ -806,9 +815,9 @@ Through this value stream, the organization ensures that it doesn’t just produ
 Value Stream to Process Realization
 TBD – this view shows the difference - but also the relationship - between the business processes that drive the steady-state architecture and the value that is being created.
 
-## Business Architecture
+# Business Architecture
 
-### Overview 
+## Overview 
 
 The statistical process is divided into three main business domains (observation, processing/analysis, and dissemination), with processing/analysis further divided into four subdomains. This results in a total of six business domains:
 
@@ -838,12 +847,12 @@ The execution processes between the business domains are loosely coupled. Each h
 Each of the mentioned business domain can be linked to a GSBPM phase.
 
 
-### Steady States of Data and Their Business Process Links
+## Steady States of Data and Their Business Process Links
 
 
 The business architecture leverages a data value chain approach where data progresses through predefined steady states, each representing a stage where data meets specific quality criteria and is ready for exchange between business domains. These steady states serve as handover points in the statistical production process, ensuring consistency, reusability, and quality control as well as interoperability across other ONS.
 
-#### State #1: Raw Data
+### State #1: Raw Data
 
 **Business Domain Link:*- Observation/Collection
 
@@ -863,7 +872,7 @@ The business architecture leverages a data value chain approach where data progr
 - Technical checks and transformations on the technical level only (not content level)
 - Forms the baseline for all subsequent processing
 
-#### State #2: Standardized Data
+### State #2: Standardized Data
 
 **Business Domain Links:*- Standardization without loss of content
 
@@ -888,7 +897,7 @@ The business architecture leverages a data value chain approach where data progr
 
 **Interoperability Benefit:*- This state enables data from different sources to be combined and used across multiple statistical products, reducing duplication and increasing efficiency.
 
-#### State #3: Processed Data
+### State #3: Processed Data
 
 **Business domain Links:*- Editing, derivation, and non-response correction
 
@@ -916,7 +925,7 @@ The business architecture leverages a data value chain approach where data progr
 
 **Reusability Focus:*- Processed data aims to be as reusable as possible for other processes or units, reducing duplication of data and processing effort while increasing transparency.
 
-#### State #4: Output Data (Statistics)
+### State #4: Output Data (Statistics)
 
 **Business Domain Links:*- Estimation and closed-loop + Statistically composed and composite statistical products
 
@@ -941,7 +950,7 @@ The business architecture leverages a data value chain approach where data progr
 
 **Domain-Driven Production:*- The type of outputs and specific processing methods vary significantly by statistical domain and product requirements.
 
-#### State #5: Published Output Data (Released Data)
+### State #5: Published Output Data (Released Data)
 
 **Business Process Links:*- Disseminate
 
@@ -966,7 +975,7 @@ The business architecture leverages a data value chain approach where data progr
 
 **External Consumption:*- This is the final state in the value chain where statistical information fulfills the core mission of the NSO—delivering trusted statistics to society.
 
-#### State #6: Consumed Data
+### State #6: Consumed Data
 
 **Description:*- Data that has been used by external parties for their own purposes. This represents data outside the direct control of the ONS.
 
