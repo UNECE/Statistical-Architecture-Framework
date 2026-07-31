@@ -9,7 +9,7 @@ Version 0.3
 |---|---|---|
 |0.1|2025-07-07|Initial version|
 |0.2|2026-06-01|Review processed|
-|0.3|2026-07-31|Merge Business Architecture|
+|0.3|2026-07-31|Restructuring, Merge Business Architecture|
 
 ## Content
 [Preface](#preface)
@@ -32,10 +32,12 @@ Constraints & Assumptions [TODO]
 -    [Drivers](#drivers)
 -    [Goals](#goals)
 -    [Meaning](#meaning)
-
+ 
 [Outcome](#outcome)
 
 [Architecture Principles](#architecture-principles)
+
+[Value](#value)
 
 [Stakeholders, Roles and Collaborations](#stakeholders-roles-and-collaborations)
 
@@ -111,9 +113,7 @@ TODO
 
 ## Drivers
 
-TODO : formatting
-
-Definition: Architecture drivers in many ocassions  are the same forces that make change necessary. They capture the pressures, trends, and constraints that statistical offices face and which the SAF is designed to address. Drivers can be external, such as technological advancements or new regulations, or internal, such as the need to replace legacy systems or respond to stakeholder demands. By documenting these drivers, SAF ensures that its architecture is not an abstract ideal but a practical response to real-world challenges.
+Architecture drivers in many ocassions  are the same forces that make change necessary. They capture the pressures, trends, and constraints that statistical offices face and which the SAF is designed to address. Drivers can be external, such as technological advancements or new regulations, or internal, such as the need to replace legacy systems or respond to stakeholder demands. By documenting these drivers, SAF ensures that its architecture is not an abstract ideal but a practical response to real-world challenges.
 
 For statistical organizations, these drivers are particularly intense. Rapid technological change requires continuous adaptation, while political and societal pressures demand timely, relevant, and transparent data. At the same time, many organizations face limited budgets and must balance modernization with cost control. 
 
@@ -121,7 +121,7 @@ Recognizing these drivers helps statistical offices prioritize investments and a
 
 Including architecture drivers in the framework also strengthens communication with stakeholders. By clearly articulating the external and internal factors shaping architecture, CIOs, CTOs, and enterprise architects can build a stronger case for change, justify strategic initiatives, and ensure that all parties understand the urgency of modernization. In this way, SAF creates a shared understanding of why action is necessary and what risks are avoided by adopting a structured framework.
  
-#### SAF-D1 Evolving Data Ecosystems and Partnerships
+### SAF-D1 Evolving Data Ecosystems and Partnerships
 
 The environment for producing official statistics is shifting from one of isolated data collection toward a complex and interdependent data ecosystem. Traditional surveys, once the cornerstone of statistical production, now coexist with administrative, commercial, platform, and community-driven data sources. This evolution expands opportunities for collaboration but also introduces dependencies on actors, technologies, and infrastructures outside the direct control of statistical organizations.
 
@@ -137,47 +137,47 @@ SAF addresses this driver by enabling NSIs to adopt a risk-based approach to mod
 
 Through modular and standards-based design, SAF provides the flexibility needed to integrate emerging technologies at an appropriate pace. It allows NSIs to benefit from automation and AI-driven tools while maintaining full accountability for statistical quality, data protection, and institutional independence.
  
-#### SAF-D3 Trust, Scientific Rigor, and Data Protection
+### SAF-D3 Trust, Scientific Rigor, and Data Protection
 
 Trust is the foundation of official statistics. In an environment increasingly challenged by misinformation, privacy concerns, and competition from unregulated data providers, maintaining public confidence requires more than compliance. It depends on scientific rigor, transparency, and clear accountability for how data is handled and communicated.
 
 SAF addresses this driver by embedding trust and protection directly into architectural design. It promotes governance and technical controls that safeguard confidentiality, ensure methodological integrity, and make processes traceable and transparent. Through a risk-based approach, SAF allows NSIs to apply strict oversight where sensitivity and quality demands are high, while enabling greater automation and shared solutions where risks are lower. This balance ensures that modernization strengthens trust rather than compromising it.
  
-#### SAF-D4 Uncertain and Polarized Global Environment
+### SAF-D4 Uncertain and Polarized Global Environment
 
 Statistical organizations operate in an increasingly complex and uncertain world. Global tensions, political polarization, and shifting power dynamics influence both the demand for and the perception of official statistics. At the same time, digital interdependence and cross-border data flows require statistical systems to remain open and interoperable while safeguarding national and institutional integrity.
 
 SAF addresses this driver by providing a stable and transparent foundation for cooperation and resilience. It promotes interoperable architectures based on shared standards, enabling NSIs to exchange data and methods securely even in times of uncertainty. By embedding governance and design principles that protect independence and transparency, SAF helps organizations maintain credibility, comparability, and trust in environments where facts themselves are often contested.
  
-#### SAF-D5 Resource Constraints and Organizational Agility
+### SAF-D5 Resource Constraints and Organizational Agility
 
 Many statistical organizations face increasing expectations with limited budgets, aging systems, and challenges in recruiting and retaining specialized skills. At the same time, the demand for more timely, detailed, and multidomain outputs continues to grow. Meeting these needs requires not only efficiency, but the ability to adapt rapidly to changing priorities and technologies.
 
 SAF addresses this driver by promoting architectures that make flexibility and reuse a core principle. It supports modular designs, shared services, and scalable solutions that reduce duplication and enable more effective use of existing resources. By fostering an agile organizational mindset and clear governance around priorities, SAF allows NSIs to reallocate capacity, modernize incrementally, and continue to deliver high-quality outputs even under financial and staffing constraints.
 
 
-## Goals
+### Goals
 
-Definition: Architecture goals represent the outcomes an organization aims to achieve by adopting and implementing aframework. They define what success looks like and serve as the link between strategy and action. In the case of the SAF, these goals are not just about modernizing IT systems, but about ensuring that national statistical institutes can continue to provide trustworthy, relevant, and high-quality statistics in a rapidly changing environment.
+Architecture goals represent the outcomes an organization aims to achieve by adopting and implementing aframework. They define what success looks like and serve as the link between strategy and action. In the case of the SAF, these goals are not just about modernizing IT systems, but about ensuring that national statistical institutes can continue to provide trustworthy, relevant, and high-quality statistics in a rapidly changing environment.
 
 The goals of SAF address both operational and strategic needs. On one hand, they focus on efficiency, modernization, and compliance, which are essential for ensuring sustainability. On the other hand, they support innovation, adaptability, and collaboration, enabling statistical offices to embrace new opportunities such as integrating alternative data sources or experimenting with advanced analytics. Together, these goals ensure that modernization efforts do not compromise the fundamental values of official statistics, neutrality, accuracy, and reliability.
 
 By defining goals explicitly, SAF provides a roadmap that can be adapted by each statistical organization according to its maturity and context. This ensures that while each office may have unique challenges and resources, they are all working toward a shared vision that promotes harmonization, comparability, and global collaboration in official statistics.
  
-#### SAF-G1 Cost Efficiency and Resource Sharing
+### SAF-G1 Cost Efficiency and Resource Sharing
 With limited budgets and growing demands, statistical organizations must operate as efficiently as possible. SAF promotes cost optimization and improved effectiveness through shared services, reuse of solutions, and stronger interoperability. By pooling resources and adopting common components, NSIs can access capabilities that would be difficult to develop individually while avoiding duplication of effort.
 SAF also encourages the use of open-source components and community-driven platforms where this strengthens transparency, collaboration, and cost efficiency. Through modular architectures and clear governance, organizations can adapt to changing needs, reallocate capacity, and modernize incrementally without large-scale reinvestments. This approach ensures that efficiency is achieved in ways that reinforce both quality and long-term sustainability.
  
-#### SAF-G2 Harmonized Reference Framework
+### SAF-G2 Harmonized Reference Framework
 
 Without a shared architectural reference, statistical organizations risk developing isolated solutions that reduce comparability and increase long-term costs. SAF provides a harmonized foundation of standards, patterns, and best practices that can be adapted to local contexts while supporting interoperability across borders and domains. As collaboration increasingly takes place across shared infrastructures such as national data platforms and international data spaces, harmonization also becomes a prerequisite for participation. By promoting transparency and consistent design principles, SAF helps NSIs protect the integrity of official statistics and ensure that shared and open solutions can be reused safely and effectively. A common reference framework enables collaboration, strengthens trust, and supports coherence even as the data landscape evolves.
  
-#### SAF-G3 Modernization of Statistical Systems
+### SAF-G3 Modernization of Statistical Systems
 
 Many statistical organizations continue to rely on fragmented and legacy IT environments that limit innovation and responsiveness. SAF provides guidance for transitioning toward modern, modular, and service-based architectures that are secure, scalable, and easier to maintain. Modernization reduces technical debt, improves reliability, and allows faster delivery of new and higher-quality statistical outputs.
 Modernization increasingly takes place in environments where multiple actors operate, from national infrastructures to cross-border data spaces. SAF ensures that such settings can be used safely by defining principles for access control, data protection, and accountability. It also supports a risk-based approach to automation and integration of emerging technologies. Critical processes can remain tightly governed to preserve methodological rigor, while less sensitive stages can be automated or shared.
  
-#### SAF-G4 Support for Data Innovation
+### SAF-G4 Support for Data Innovation
 
 Innovation in data and methods is central to the future of official statistics. SAF promotes an environment where experimentation, collaboration, and reuse are encouraged within secure and well-governed boundaries. By providing a clear architectural foundation, SAF enables NSIs to incorporate new data sources, tools, and analytical methods without undermining consistency or quality.
 
@@ -187,7 +187,7 @@ To make this possible, the framework emphasizes mechanisms and guardrails that e
 
 Open source plays a key role in this innovation process. It allows organizations to build on each other’s work, increase transparency, and strengthen the collective capacity of the statistical community. SAF supports this through architectural patterns that enable safe reuse of open components and integration with shared platforms. In doing so, it helps turn innovation into a structured, sustainable part of statistical production.
  
-#### SAF-G5 Sustainable Compliance
+### SAF-G5 Sustainable Compliance
 
 Compliance with regulations, standards, and ethical principles is fundamental to maintaining the trust and legitimacy of official statistics. SAF ensures that modernization aligns with legal, security, and quality frameworks while promoting transparency and accountability. Within the statistical domain, well-established standards such as GSBPM, GSIM, and SDMX continue to provide a foundation for consistent processes, metadata management, and data exchange. These remain essential for ensuring methodological rigor and comparability across the statistical system.
 
@@ -201,18 +201,17 @@ Architecture meaning provides the “why” behind the framework. While goals an
 - One dimension of this meaning is its role as a bridge between strategy and technology. Without such a framework, investments in IT risk being disconnected from the mission of providing high-quality statistics. SAF ensures that every technological decision, from adopting a new platform to restructuring business processes, can be traced back to strategic objectives, creating a coherent organizational narrative. 
 - Another dimension is collaboration. The meaning of SAF extends beyond individual organizations: it is a unifying language for the UNECE statistical community. By providing shared models, practices, and principles, SAF fosters international collaboration, reduces duplication, and amplifies collective impact. In this sense, SAF is not just meaningful to IT professionals but to the broader community of statisticians, policymakers, and citizens who depend on trustworthy statistics.
  
-#### SAF-M1 Bridge Between Strategy and Technology
+### SAF-M1 Bridge Between Strategy and Technology
 SAF connects high-level strategic objectives, such as improving statistical relevance and efficiency, with concrete technology choices. It ensures that IT investments are always justified by their contribution to the organization’s mission.
  
-#### SAF-M2 Catalyst for Collaboration
+### SAF-M2 Catalyst for Collaboration
 SAF is a unifying framework for the statistical community. It enables organizations to work together on shared goals, whether through joint platforms, interoperable systems, or harmonized standards, thereby amplifying the collective capacity of UNECE members.
  
-#### SAF-M3 Foundation for Digital Transformation
+### SAF-M3 Foundation for Digital Transformation
 SAF is not just a set of technical models; it is the foundation for digital transformation in official statistics. It enables NSIs to embrace innovation without sacrificing methodological rigor or institutional trust.
 
-#### SAF-M4 Unifying Language and Notation
+### SAF-M4 Unifying Language and Notation
 By adopting TOGAF and ArchiMate, SAF ensures that diverse stakeholders can communicate using a consistent language and notation. This reduces misunderstandings, enables shared modelling practices, and promotes architectural maturity across the community.
-
 
 # Outcome
 
@@ -222,22 +221,22 @@ On the technical side, NSIs benefit from streamlined processes, better metadata 
 
 By emphasizing outcomes, SAF also reinforces a culture of continuous improvement. Outcomes are not static; rather they evolve as organizations mature and as new challenges emerge. Making outcomes explicit allows NSIs to assess progress, measure success, and adjust their modernization strategies in line with both internal priorities and external demands.
  
-#### SAF-O1 Accelerated Modernization
+## SAF-O1 Accelerated Modernization
 Embedding governance, metadata, and lineage into architecture ensures that statistical outputs maintain the highest standards of quality and trustworthiness. SAF makes quality an architectural outcome rather than an afterthought.
  
-#### SAF-O2 Enhanced Data Quality
+## SAF-O2 Enhanced Data Quality
 Embedding governance, metadata, and lineage into architecture ensures that statistical outputs maintain the highest standards of quality and trustworthiness. SAF makes quality an architectural outcome rather than an afterthought.
  
-#### SAF-O3 Improved Interoperability
+## SAF-O3 Improved Interoperability
 By adopting SAF, NSIs will achieve higher levels of interoperability across systems, domains, and borders. This facilitates cross-country collaborations, enhances comparability of statistics, and simplifies the integration of external data sources into official workflows.
  
-#### SAF-O4 Improved Trust and Transparency
+## SAF-O4 Improved Trust and Transparency
 By embedding principles such as openness, security, and transparency, SAF helps to build and maintain public trust in statistics. This outcome strengthens the reputation of NSIs and the legitimacy of their outputs.
  
-#### SAF-O5 Increased Efficiency
+## SAF-O5 Increased Efficiency
 SAF reduces duplication of effort by promoting reuse, harmonization, and standardization. This outcome means lower IT costs, faster system development cycles, and more efficient data processing pipelines across the statistical system.
  
-#### SAF-O6 Shared Knowledge Base
+## SAF-O6 Shared Knowledge Base
 SAF fosters a community of practice across UNECE members. Through shared architectural frameworks, NSIs can exchange lessons learned, reusable components, and knowledge, leading to continuous improvement at lower cost.
 
 # Architecture Principles
@@ -247,64 +246,62 @@ For the SAF, architecture principles act as a compass for decision-making. They 
 
 These principles also provide an element of accountability. When stakeholders understand the principles behind architectural decisions, it becomes easier to justify investments, explain trade-offs, and demonstrate that architecture is not a purely technical exercise but a strategic enabler of the organization’s mission. In this way, principles make architecture transparent, predictable, and anchored in trust.
 
-#### SAF-P01 Reuse before open source, open source, before buying, buying before making it yourself
+## SAF-P01 Reuse before open source, open source, before buying, buying before making it yourself
 In case of equal suitability (Business Case), reuse of (parts of) applications takes precedence. The use of open source software takes precedence over purchasing. Purchasing is then preferred over making it yourself. Non-statistical processes only use standard applications.
 
 Reuse of an application or parts of that application is sustainable and cost-efficient, and also leads to standardization in service provision and information provision. If reuse is not possible, investigate whether an Open Source solution is available before considering a Closed Source (Commercial) solution.
  
-#### SAF-P02 Active support
+## SAF-P02 Active support
 Systems (hardware and software) have an active user community and/or vendor support. The rule of thumb is that we use the latest or the second-to-last major version. Among other things, for business continuity it is necessary to be able to get quick and good support in resolving a disruption in the event of a disruption. It is also important from a security perspective that identified security risks are resolved in a timely manner.
  
-#### SAF-P03 Active Life Cycle management
+## SAF-P03 Active Life Cycle management
 With active Life Cycle management we prevent overdue maintenance in the IV landscape so that continuity & security risks are mitigated, among other things. Without Life Cycle management, systems or parts thereof can become outdated and thus become vulnerable in terms of security. Without active Life Cycle management, a  technological debt is also built up that, when it eventually has to be repaid, will require disproportionate effort or introduce continuity risks. Keeping systems and components up-to-date in accordance with established LCM policy mitigates these risks.
  
-#### SAF-P04 Maximize the benefits for the organization
+## SAF-P04 Maximize the benefits for the organization
 IT decisions are made to maximize the benefits of the organization as a whole. This principle embodies 'service above self'. Decisions made from an organization-wide perspective have greater long-term value than decisions made from a departmental perspective. To maximize the return on the investment, IV decisions must align with the organization-wide mission and priorities.
  
-#### SAF-P05 IT and technology is everyone's business
+## SAF-P05 IT and technology is everyone's business
 All departments in the organization participate in IV decisions that are necessary to achieve organizational goals. IT and technology users are the key stakeholders in the application of technology to meet an organization's needs. To ensure that IT and technology are aligned with business operations, all departments in the organization must be involved in all aspects of the IT and technology landscape. Business experts from across the organization and the technical staff responsible for developing and maintaining the IT and technology capabilities must work together as a team to jointly define the goals and objectives.
  
-#### SAF-P06 Business Continuity
+## SAF-P06 Business Continuity
 Organizational activities are maintained despite system or employee outages. As systems and processes become increasingly important to operations, we become more dependent on them; therefore, we must consider the reliability of such systems and processes in their design and operation. Departments throughout the organization must have the ability to continue their activities, regardless of external events, within agreed lead times. Hardware failures, natural disasters, and data corruption must not disrupt or stop operations. The enterprise must be able to operate on the basis of alternative IV systems/processes.
  
-#### SAF-P07 Implement loosely coupled processes and systems
+## SAF-P07 Implement loosely coupled processes and systems
 Processes and systems should be built as independently as possible. This means that processes and systems are designed in such a way that they are not intertwined and dependent on each other. Functionality and logic should be shared with the rest of the organization via standard interfaces. Loosely coupling processes and systems offers more flexibility to adapt or replace individual processes and systems in the future. In addition, there are advantages in terms of scalability and robustness. Differences in security and privacy requirements can also be better enforced.
  
-#### SAF-P08 Data is shared property
+## SAF-P08 Data is shared property
 Statistical data that has been determined to add value for use by internal or external users is shared. This implies re-use of data, both in observation to reduce the burden and in further processing to prevent duplication of work in improving and analyzing data.
  
-#### SAF-P09 No data without metadata and classification
+## SAF-P09 No data without metadata and classification
 All data that needs to be shared, needs to be provided with metadata information that describes the content and meaning of the data as well as possible. In addition, the data also needs to be classified. Metadata makes it possible to make data FAIR and the BIV classification (Availability, Integrity and Confidentiality) provides direction for the necessary technical and organizational measures. This is to comply with various laws, requirements and security standards.
  
-#### SAF-P10 Security By Design
+## SAF-P10 Security By Design
 Security should not be an afterthought in IV solutions, but should be part of those solutions. Coherent security mechanisms should span all layers of the architecture and be scalable from small objects to large objects. Security should be designed as an integrated part of the system architecture.
  
-#### SAF-P11 Privacy By Design
+## SAF-P11 Privacy By Design
 Privacy by design should be designed as an integrated part of the system architecture and business processes. Privacy should not be an afterthought in IV solutions, but should be part of those solutions. The result is that privacy becomes an essential part of the core functionality that is delivered. Privacy is an integral part of the system without compromising functionality.
 
-
-### Value
+# Value
 The value of architecture lies in the benefits it creates for stakeholders. While outcomes describe specific impacts, value captures the broader, long-term importance of SAF to statistical organizations and society. It is about demonstrating that investing in architecture is not merely a technical necessity but a strategic decision that creates trust, efficiency, and sustainability.
 For NSIs, the value of SAF includes reduced risks, greater agility, and improved alignment between IT and business objectives. For international organizations, it provides harmonization and comparability, enabling more effective collaboration across borders. For citizens and policymakers, the value lies in the trustworthiness of the statistics produced, ensuring that public policy and democratic processes are grounded in reliable data.
 Value is also about sustainability. Without a framework, modernization efforts can be fragmented, costly, and short-lived. SAF provides a stable foundation that reduces technical debt, improves governance, and ensures that investments yield long-term benefits. In doing so, it secures the role of statistical organizations as trusted institutions in the digital age.
  
-#### SAF-V1 Cross-Border Comparability
+## SAF-V1 Cross-Border Comparability
 Statistics gain value when they are comparable across borders. SAF enables this by promoting common standards, models, and processes, ensuring that statistics from different countries can be meaningfully compared.
 
-#### SAF-V2 Innovation Enablement
+## SAF-V2 Innovation Enablement
 SAF is designed to support the integration of advanced technologies such as AI/ML, real-time analytics, and big data. By lowering the barriers to innovation, it enables NSIs to experiment safely while maintaining methodological soundness.
 
-
-#### SAF-V3 Risk Reduction
+## SAF-V3 Risk Reduction
 By embedding compliance, security, and governance into the architecture, SAF reduces risks associated with system failures, data breaches, or regulatory non-compliance. This value is particularly critical in maintaining the trust of citizens and stakeholders.
  
-#### SAF-V4 Strategic Alignment
+## SAF-V4 Strategic Alignment
 SAF ensures that all IT initiatives within NSIs directly contribute to their mission of producing official statistics. This alignment improves governance, prioritization, and the impact of IT investments.
  
-#### SAF-V5 Sustainability
+## SAF-V5 Sustainability
 SAF promotes efficiency and modernization while reducing technical debt. By providing clear pathways for evolution, it ensures that NSIs can sustain their IT landscapes without repeated costly overhauls.
  
-#### SAF-V6 Trust & Legitimacy
+## SAF-V6 Trust & Legitimacy
 The value of SAF lies in enhancing trust in official statistics. By ensuring transparency, ethical practices, and robust security, SAF reinforces the legitimacy of NSIs as authoritative providers of public data.
 
 # Stakeholders, Roles and Collaborations
@@ -846,17 +843,15 @@ The execution processes between the business domains are loosely coupled. Each h
 
 Each of the mentioned business domain can be linked to a GSBPM phase.
 
-
 ## Steady States of Data and Their Business Process Links
-
 
 The business architecture leverages a data value chain approach where data progresses through predefined steady states, each representing a stage where data meets specific quality criteria and is ready for exchange between business domains. These steady states serve as handover points in the statistical production process, ensuring consistency, reusability, and quality control as well as interoperability across other ONS.
 
 ### State #1: Raw Data
 
-**Business Domain Link:*- Observation/Collection
+**Business Domain Link:** Observation/Collection
 
-**Description:*- Raw data represents the initial entry point where data has been received from external data holders and checked for basic safety and validation. At this stage, data has entered the NSO system in its original form as received from the data provider.
+**Description:** Raw data represents the initial entry point where data has been received from external data holders and checked for basic safety and validation. At this stage, data has entered the NSO system in its original form as received from the data provider.
 
 **Quality Requirements:**
 - File integrity checks completed
@@ -864,7 +859,7 @@ The business architecture leverages a data value chain approach where data progr
 - SLA requirements verified with the data provider (e.g., completeness, delivery time)
 - Data stored in its original format or equivalent
 
-**ONS Use:*- Raw data for the raw source data in its original form as received from the data holder. The ONS does not have access to the data at the source; this is the first point of possession.
+**Usage:** Raw data for the raw source data in its original form as received from the data holder. The ONS does not have access to the data at the source; this is the first point of possession.
 
 **Key Characteristics:**
 - Data has not been further validated for content
@@ -874,9 +869,9 @@ The business architecture leverages a data value chain approach where data progr
 
 ### State #2: Standardized Data
 
-**Business Domain Links:*- Standardization without loss of content
+**Business Domain Links:** Standardization without loss of content
 
-**Description:*- Standardized data has been transformed, formatted, and structured according to defined standards. This is the first point at which interoperability between domains is enabled through common classifications and standardized formats.
+**Description:** Standardized data has been transformed, formatted, and structured according to defined standards. This is the first point at which interoperability between domains is enabled through common classifications and standardized formats.
 
 **Quality Requirements:**
 - Format and structure standardized (e.g., converted from CSV to XML)
@@ -886,7 +881,7 @@ The business architecture leverages a data value chain approach where data progr
 - Confidentiality measures applied (e.g., pseudonymisation, data minimization)
 - Data must not contain personally identifiable information
 
-**ONS Use:*- Standardized data based on the received raw data, enabling data integration and interoperability across the organization.
+**Usage:** Standardized data based on the received raw data, enabling data integration and interoperability across the organization.
 
 **Key Processing Activities:**
 - Application of reference data and master data
@@ -895,13 +890,13 @@ The business architecture leverages a data value chain approach where data progr
 - Pseudonymisation and encryption where required
 - Value sets adapted to organizational standards
 
-**Interoperability Benefit:*- This state enables data from different sources to be combined and used across multiple statistical products, reducing duplication and increasing efficiency.
+**Interoperability Benefit:** This state enables data from different sources to be combined and used across multiple statistical products, reducing duplication and increasing efficiency.
 
 ### State #3: Processed Data
 
-**Business domain Links:*- Editing, derivation, and non-response correction
+**Business domain Links:** Editing, derivation, and non-response correction
 
-**Description:*- Processed data has undergone content-related validation, editing, and enrichment. Data accuracy has been improved through validation checks and corrective measures. This data is ready to be integrated with other datasets.
+**Description:** Processed data has undergone content-related validation, editing, and enrichment. Data accuracy has been improved through validation checks and corrective measures. This data is ready to be integrated with other datasets.
 
 **Quality Requirements:**
 - Completeness and accuracy improved through validation and editing
@@ -911,7 +906,7 @@ The business architecture leverages a data value chain approach where data progr
 - Integration with other datasets completed where applicable
 - New derived variables calculated
 
-**ONS Use:*- Processed data for the processed statistical microdata, ready for statistical analysis and production.
+**Usage:** Processed data for the processed statistical microdata, ready for statistical analysis and production.
 
 **Key Processing Activities:**
 - Data cleansing and editing (content-related standardization)
@@ -921,15 +916,15 @@ The business architecture leverages a data value chain approach where data progr
 - Creation of new variables through calculation or derivation
 - Flagging of problematic values
 
-**Domain Responsibility:*- While this processing is primarily driven by individual statistical domains, depending on the data type, it may be performed by a central unit for efficiency and consistency.
+**Domain Responsibility:** While this processing is primarily driven by individual statistical domains, depending on the data type, it may be performed by a central unit for efficiency and consistency.
 
-**Reusability Focus:*- Processed data aims to be as reusable as possible for other processes or units, reducing duplication of data and processing effort while increasing transparency.
+**Reusability Focus:** Processed data aims to be as reusable as possible for other processes or units, reducing duplication of data and processing effort while increasing transparency.
 
 ### State #4: Output Data (Statistics)
 
-**Business Domain Links:*- Estimation and closed-loop + Statistically composed and composite statistical products
+**Business Domain Links:** Estimation and closed-loop + Statistically composed and composite statistical products
 
-**Description:*- Output data represents statistics that have been aggregated and analyzed, or microdata that has been prepared for specific purposes. Confidentiality measures have been applied to allow potential release.
+**Description:** Output data represents statistics that have been aggregated and analyzed, or microdata that has been prepared for specific purposes. Confidentiality measures have been applied to allow potential release.
 
 **Quality Requirements:**
 - Data lineage fully documented
@@ -939,7 +934,7 @@ The business architecture leverages a data value chain approach where data progr
 - Quality indicators produced
 - Internal review completed
 
-**ONS Use:*- Statistics for basic statistics and integrated macrostatistics. These may be used internally by other statistical processes or prepared for dissemination.
+**Usage:** Statistics for basic statistics and integrated macrostatistics. These may be used internally by other statistical processes or prepared for dissemination.
 
 **Key Characteristics:**
 - Statistics will usually be aggregated data or estimated sizes
@@ -948,13 +943,13 @@ The business architecture leverages a data value chain approach where data progr
 - Estimated statistical target quantities produced
 - Different confidentiality thresholds may apply depending on intended use
 
-**Domain-Driven Production:*- The type of outputs and specific processing methods vary significantly by statistical domain and product requirements.
+**Domain-Driven Production:** The type of outputs and specific processing methods vary significantly by statistical domain and product requirements.
 
 ### State #5: Published Output Data (Released Data)
 
-**Business Process Links:*- Disseminate
+**Business Process Links:** Disseminate
 
-**Description:*- Published output data has been fully vetted, confidentiality requirements have been satisfied, and the data has been released or published for external use.
+**Description:** Published output data has been fully vetted, confidentiality requirements have been satisfied, and the data has been released or published for external use.
 
 **Quality Requirements:**
 - Higher confidentiality criteria applied
@@ -964,7 +959,7 @@ The business architecture leverages a data value chain approach where data progr
 - Release authorization obtained
 - Metadata and documentation suitable for external users
 
-**ONS Use:*- Released data for all data to be disseminated publicly or delivered to authorized external parties.
+**Usage:** Released data for all data to be disseminated publicly or delivered to authorized external parties.
 
 **Key Characteristics:**
 - All requirements for confidentiality taken care of
@@ -973,12 +968,12 @@ The business architecture leverages a data value chain approach where data progr
 - Includes both published statistical values and delivered microdata (de-identified)
 - Strict documentation requirements to support user understanding and data reuse
 
-**External Consumption:*- This is the final state in the value chain where statistical information fulfills the core mission of the NSO—delivering trusted statistics to society.
+**External Consumption:** This is the final state in the value chain where statistical information fulfills the core mission of the NSO—delivering trusted statistics to society.
 
 ### State #6: Consumed Data
 
-**Description:*- Data that has been used by external parties for their own purposes. This represents data outside the direct control of the ONS.
+**Description:** Data that has been used by external parties for their own purposes. This represents data outside the direct control of the NSI.
 
-**ONS Use:*- None - Consumed data is data used by external data consumers for their analyses and decision-making.
+**Usage:** - None - Consumed data is data used by external data consumers for their analyses and decision-making.
 
-**Key Characteristic:*- This state recognizes that once data is published, it enters the public domain and is used in ways that may be beyond the NSO's direct oversight, though the quality and documentation provided in State #5 support appropriate use.
+**Key Characteristic:** This state recognizes that once data is published, it enters the public domain and is used in ways that may be beyond the NSO's direct oversight, though the quality and documentation provided in State #5 support appropriate use.
