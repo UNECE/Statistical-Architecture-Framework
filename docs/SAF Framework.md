@@ -2,48 +2,40 @@ SAF Architecture Framework
 ============================
 
 Created on: 07-07-2025
-Workgroup SAF: Trygve Falch (Statistics Norway), Jakob Engdahl (Statistics Sweden), Stephane Crete (Statistics Canada), Cedric Couralet (Insee), Daan Swinkels (CBS), Pascal Fransen (CBS)
+Workgroup SAF: Trygve Falch (Statistics Norway, SSB), Jakob Engdahl (Statistics Sweden, SCB), Stephane Crete (Statistics Canada, StatCan), Cedric Couralet (Statistics France,Insee), Daan Swinkels (Statistics Netherlands,CBS), Pascal Fransen (Statistics Netherlands,CBS)
 Version 0.3
 
 | Version | Date | Contributor/Secretary |
 |---|---|---|
 |0.1|2025-07-07|Initial version|
 |0.2|2026-06-01|Review processed|
-|0.3|2026-07-31|Restructuring, Merge Business Architecture|
+|0.3|2026-07-31|Restructuring, Start with Business Architecture|
 
 ## Content
 [Preface](#preface)
 
-Acknowledgements [TODO]
+-   Acknowledgements [TODO]
 
 [Introduction](#introduction)
 
-Activity Proposal [TODO]
-
-[Purpose](#purpose)
-
-[Definition of Scope](#definition-of-scope)
-
-[Target Audience](#target-audience)
-
-Constraints & Assumptions [TODO]
+-   Activity Proposal [TODO]
+-   [Purpose](#purpose)
+-   [Definition of Scope](#definition-of-scope)
+-   [Target Audience](#target-audience)
+-   Constraints & Assumptions [TODO]
 
 [Motivation](#motivation)
--    [Drivers](#drivers)
--    [Goals](#goals)
--    [Meaning](#meaning)
- 
-[Outcome](#outcome)
+-   [Drivers](#drivers)
+-   [Goals](#goals)
+-   [Meaning](#meaning)
+-   [Outcome](#outcome)
+-   [Architecture Principles](#architecture-principles)
+-   [Value](#value)
+-   [Stakeholders, Roles and Collaborations](#stakeholders-roles-and-collaborations)
 
-[Architecture Principles](#architecture-principles)
-
-[Value](#value)
-
-[Stakeholders, Roles and Collaborations](#stakeholders-roles-and-collaborations)
-
-[Capability Model](#capability-model)
-
-[Valuestreams](#value-streams)
+[Strategy](#strategys)
+-   [Capability Model](#capability-model)
+-   [Valuestreams](#value-streams)
 
 [Business Architecture](#business-architecture)
 
@@ -341,7 +333,9 @@ TODO
 ### Collaborations
 TODO
 
-# Capability Model
+# Strategy
+
+## Capability Model
 
 Within the Statistical Architecture Framework (SAF), business capabilities define the fundamental abilities of a statistical organization to perform its mission , independent of processes, organizational structures, or technologies. A business capability represents what the organization must be able to do to deliver value and achieve its objectives, providing a stable and long-term view of the enterprise’s functional landscape.
 
@@ -636,9 +630,9 @@ Explanation: These activities involve collaboration and coordination with other 
  
 Source: GAMSO 1.2, Manage Strategic Collaboration and Cooperation
 
-# Value Streams
+## Value Streams
 
-## Primary Value Streams
+### Primary Value Streams
 
 ### VS-01.0 Data Acquisition and Ingestion Value Stream
  
