@@ -10,6 +10,7 @@ Version 0.3
 |0.1|2025-07-07|Initial version|
 |0.2|2026-06-01|Review processed|
 |0.3|2026-07-31|Restructuring, Start with Business Architecture|
+|0.4|2026-09-01|Merging Business Architecture content|
 
 ## Content
 [Preface](#preface)
@@ -38,6 +39,9 @@ Version 0.3
 -   [Valuestreams](#value-streams)
 
 [Business Architecture](#business-architecture)
+-   [Overview](#overview)
+-   [Steady States](#steady-states-of-data-and-their-business-process-links)
+
 
 
 # Preface
@@ -833,9 +837,16 @@ To realize statistical value within a business domain, execution processes (incl
 
 ![Generic Business Architecture](images/Business%20Architecture_GSBPM_Data%20Steady%20State_visual_v0.1.png)
 
-The execution processes between the business domains are loosely coupled. Each has its own design and implementation. For the mutual exchange of data, they are loosely linked via steady state interfaces. To this end, five steady state phases are recognized that exist between the business domains: [1] raw data, [2] standardized data without loss of content, [3] processed data, [4] statistics, and [5] released data. An steady state phase is therefore an environment where high-quality versions of data are brought together for exchange, but it also represents a value in the value chain of this data.
+The execution processes between the business domains are loosely coupled. Each has its own design and implementation. For the mutual exchange of data, they are loosely linked via steady state interfaces. To this end, five steady state phases are recognized that exist between the business domains: 
+1. raw data,
+2. standardized data without loss of content, 
+3. processed data, 
+4. statistics, and 
+5. released data. 
+ 
+ A steady state phase is therefore an environment where high-quality versions of data are brought together for exchange, but it also represents a value in the value chain of this data.
 
-Each of the mentioned business domain can be linked to a GSBPM phase.
+Each of the mentioned business domains can be linked to a GSBPM phase.
 
 ## Steady States of Data and Their Business Process Links
 
