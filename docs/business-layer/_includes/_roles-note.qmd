@@ -1,3 +1,0 @@
-::: {.callout-note title="Indicative, not prescriptive"}
-The roles below are indicative, not a mandated organizational structure. The SAF deliberately leaves organization design to each NSO — assign these responsibilities to fit your own size, culture, and operating model.
-:::

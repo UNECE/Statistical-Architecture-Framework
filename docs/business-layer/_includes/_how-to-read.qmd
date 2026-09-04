@@ -1,9 +1,0 @@
-::: {.callout-tip title="How to read this document"}
-You do not need to read this document cover to cover — go to the section that matches your role:
-
-- **Data collection manager / operations staff** → the **Execution** processes (what happens each production cycle).
-- **Quality or compliance manager** → the **Management** processes (monitoring, quality, audit, improvement).
-- **Methodologist / statistical designer** → the **Design** processes (requirements, methodology, rules).
-- **System builder / IT** → the **Implementation** processes (building and testing the pipeline).
-- **Manager wanting the big picture** → read the *Introduction and Strategic Context*, then jump to the *End-to-End Scenarios* at the end.
-:::
