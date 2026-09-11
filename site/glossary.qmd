@@ -1,0 +1,35 @@
+---
+title: "Glossary"
+---
+
+The words SAF uses that are not everyday statistical vocabulary. No architecture background assumed. Where a term means something different inside SAF than it does elsewhere in a statistical office, that is said explicitly.
+
+**Artefact** — the thing that gets handed over at a boundary: a dataset or file, together with the metadata describing it. "Artefact" rather than "dataset" because the metadata is part of what is handed over, not an optional extra.
+
+**BIV classification** — a security label recording how sensitive a dataset is on three axes: availability, integrity and confidentiality. The letters are from the Dutch (*Beschikbaarheid, Integriteit, Vertrouwelijkheid*), which is why they do not match the English words.
+
+**Boundary** — the point where one value stream hands data to the next. In SAF a boundary is a *contract*, not an organisational unit: it says what is handed over, what metadata travels with it, what signals the handover, and who becomes responsible. One team may own several boundaries.
+
+**Disclosure control (SDC)** — statistical disclosure control: the familiar practice of suppressing, rounding or perturbing figures so that individual people or businesses cannot be identified. SAF applies it progressively rather than once: at standardisation (#2), on enrichment (#3), on outputs (#4), and as a final gate before release (#5).
+
+**Event** — a short notification a value stream publishes when it has finished something, for example *"Raw Data Registered"*. The next stream listens for it. Events are how streams stay independent: nobody has to ask whether the data is ready.
+
+**Immutable** — frozen. Once a dataset is registered at a steady state it is not edited in place. Corrections produce a new version, so that any published figure can always be traced back to exactly the data it came from.
+
+**Lineage** — the trace from a figure back through every step to the data it came from. If a published number is questioned, lineage is what lets you show how it was produced.
+
+**Loosely coupled** — two parts of the chain work independently and exchange only finished, described datasets. Neither needs to know how the other works inside. The practical benefit: you can replace or modernise one part without disturbing the rest.
+
+**Metadata** — the description that travels with data: where it came from, what was done to it, by which rule or method, how accurate it is, and how it is classified.
+
+**Provenance** — the record of where a dataset came from and how it arrived: the source, the collection method, when it was received, and under which agreement.
+
+**Register / registered** — **not** a statistical register. In SAF, to *register* a dataset means to record it in a catalogue with an identifier and its metadata, so that other teams can find it, trust it and cite the exact version they used. A statistical register (the business register, the population register) is a different thing entirely, and both meanings appear in these documents.
+
+**Signature discipline** — a phrase used on this site for the one rule that defines each value stream: the thing it must always do, and the thing it must never do. VS-02's is "change no values"; VS-03's is "change values, but never invisibly".
+
+**Steady state** — a defined handover point in the production chain: a versioned, quality-assured dataset that one stream finishes and the next one picks up. SAF numbers them #0 (data still at the provider) to #6 (data in users' hands). A steady state is both a place where data waits to be exchanged and a milestone in the value added to it.
+
+**Value stream** — a sequence of steps that together add one particular kind of value to data. Think of a production line: VS-01 to VS-06 each add something specific, and VS-07 to VS-10 support all of them.
+
+**`VS-0x.y`** — the numbering used for the stages of a value stream, for example `VS-03.2`. The same number identifies both the stage (what value is added) and the business process (how your office does it), so the two can always be matched up.

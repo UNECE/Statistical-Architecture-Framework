@@ -1,0 +1,75 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Statistical Architecture Framework"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: SAF-in-Brief.qmd
+        text: SAF in Brief
+      - href: SAF-Getting-Started.qmd
+        text: Getting Started
+      - href: framework/index.qmd
+        text: Framework
+      - href: glossary.qmd
+        text: Glossary
+      - href: open-source.qmd
+        text: Open Source
+  sidebar:
+    - id: framework
+      title: "Framework"
+      style: floating
+      collapse-level: 2
+      contents:
+        - framework/index.qmd
+        - section: "Foundations"
+          contents:
+            - framework/introduction.qmd
+            - framework/motivation.qmd
+            - framework/strategy.qmd
+        - section: "Business architecture"
+          contents:
+            - framework/business-architecture.qmd
+        - section: "Production value streams"
+          contents:
+            - framework/vs-01.qmd
+            - framework/vs-02.qmd
+            - framework/vs-03.qmd
+            - framework/vs-04.qmd
+            - framework/vs-05.qmd
+            - framework/vs-06.qmd
+        - section: "Supporting value streams"
+          contents:
+            - framework/vs-07.qmd
+            - framework/vs-08.qmd
+            - framework/vs-09.qmd
+            - framework/vs-10.qmd
+  page-navigation: true
+
+format:
+  html:
+    theme: [yeti, custom.scss]
+    toc: true
+    toc-depth: 3
+    toc-expand: 2
+    number-sections: false
+    code-copy: false
+  pdf:
+    documentclass: scrartcl
+    papersize: a4
+    geometry:
+      - margin=2.4cm
+    fontsize: 10pt
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    colorlinks: true
+    linkcolor: "RoyalBlue"
+    urlcolor: "RoyalBlue"
+    filters:
+      - pdf-links.lua
+
+lang: en

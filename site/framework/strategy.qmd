@@ -1,0 +1,477 @@
+---
+title: "Strategy"
+---
+
+# Strategy
+
+## Capability Model
+
+Within the Statistical Architecture Framework (SAF), business capabilities define the fundamental abilities of a statistical organization to perform its mission , independent of processes, organizational structures, or technologies. A business capability represents what the organization must be able to do to deliver value and achieve its objectives, providing a stable and long-term view of the enterprise’s functional landscape.
+
+Capabilities serve as the enabling building blocks of the statistical enterprise. They do not change frequently, even when the underlying processes, applications, or organizational units evolve. For example, the capability “Manage Statistical Data Quality” remains essential regardless of whether data validation is manual, automated, or AI-driven. This stability makes capabilities the preferred unit of analysis for strategic planning, transformation roadmaps, and architecture alignment within the SAF.
+
+Each capability encapsulates a specific business purpose and outcome, which is realized through one or more business functions and operationalized by business processes. Capabilities therefore serve as the conceptual bridge between strategy and execution: they translate strategic goals into operational competence. Within the SAF, capabilities are often organized hierarchically, showing decomposition from high-level domains (such as Data Governance or Statistical Production) into more granular sub-capabilities (such as Metadata Management or Sampling Design).
+
+A capability-based view enables statistical organizations to assess maturity, identify gaps, and prioritize modernization efforts systematically. By mapping capabilities to the supporting processes, services, and technologies, the SAF facilitates a traceable and measurable link between strategic drivers and operational implementation. This approach supports architectural coherence across business, information, application, and technology layers, ensuring that investments in modernization or digitalization strengthen the organization’s ability to deliver trusted, high-quality statistical outputs.
+
+In essence, business capabilities in the SAF define the functional DNA of the statistical system, the core abilities that enable it to collect, manage, analyze, and disseminate data in alignment with legal, ethical, and methodological standards. They provide the foundation upon which processes, roles, and value streams are built and integrated into a unified, resilient, and future-oriented architecture.
+ 
+### Capability Model Main-level
+The capability model provides a structured, visual overview of the organization’s core abilities required to achieve its mission of producing and disseminating official statistics. This map displays capabilities as stable, business-centric building blocks, grouped to align with strategic goals and is useful to highlight areas for development and investment. The capability model helps a statistical bureau assess and communicate its strengths, gaps, and areas needing improvement to support organizational objectives such as delivering high-quality, timely statistics, maintaining the trust of data providers, and promoting innovation in data processing.
+On the highest level, four main capabilities are defined. The next paragraph will describe the more detailed capabilities.
+
+1. Primary statistical capabilities
+Description: Contains all capacities required to perform the legally required tasks of a Statistical Institute.Source: GAMSO
+2. Supporting Data capabilities
+Description: Includes additional statistical capabilities such as managing statistical data and conducting statistical research.
+3. Supporting business capacities
+Description: Includes the capabilities that ensure that the right people, information and resources are available to implement and support the statistical domains and the governing domain.
+4. Governance capabilities
+Description: Includes the capabilities that provide direction to the organization by determining the desired strategy and the framework within which changes must take place.
+Source: GAMSO 1.2, Strategy and Leadership
+
+### Capability Model Sub-levels
+
+#### 1. Primary statistical capabilities
+
+##### 1.1. Statistical design and build
+The ability to map information needs and set up statistical processes for this purpose.
+Source: GSBPM 5.2, Design
+Link: https://unece.github.io/GSBPM-5.2/#design-phase
+ 
+##### 1.1.1 Needs inventory      	
+The ability to map out the information requirement (demand for information) and translate it into social tasks that we want to respond to (supply). 
+Explanation: We often do this through strategic relationships, see the social tasks mentioned in the MJP and the process preceding it.
+Source: GSBPM
+
+##### 1.1.2. Design statistics product
+The ability to translate information needs into concrete designs consisting of datasets, process and workflow models and rule sets/methodology. This for the datasets that are released
+Explanation: This concerns both the statistical product itself and the process that produces this product. Components of the process are various process steps, rule sets for the various process steps, methodology used, the process flow, the designs of the required datasets and the designs for the shared connection points for reuse. If the required datasets are not available, an observation assignment can follow. For primary observation, designs can then follow regarding sampling, questionnaire, etc.
+Source: GSBPM Design phase
+
+##### 1.1.3. Build statistics product
+Building, testing, and managing a statistical product to the point where the product lifecycle ends
+Explanation: The output from the "Design" phase is assembled and configured in this phase to create the complete operational environment to execute the process.
+Source: GSBPM
+
+#### 1.2. Data collection
+The ability to collect data for official statistics.
+Source: GSBPM 5.2, Collect
+Link : https://unece.github.io/GSBPM-5.2/#collect-phase 
+ 
+##### 1.2.1. Primary data collection
+Primary observation describes the ability to set up and manage surveys, through to completion and transfer for processing and analysis. Primary observation collects both the data and the associated metadata. 
+
+Explanation: Primary observation is a domain within data collection and performs observations via one or more modes. The research population and the size of the sample are determined together with the client based on the needs. A distinction is made between personal surveys and company surveys. Components of surveys include samples, questionnaires, approach strategies. 
+Source: ESS capability model
+
+##### 1.2.2. Secondary data collection
+Secondary observation is the activity that describes the work required to collect data and associated metadata from third parties for the production of statistics. 
+Explanation: Within secondary observation, sources with data collected by third parties are used as much as possible. 
+Source: ESS capability model
+
+#### 1.3. Processing
+The ability to process raw data into statistical microdata and statistics.Source : GSBPM Process Phase
+ 
+##### 1.3.1. Data standardization	The ability to standardize data without loss of content.
+Explanation: This includes standardization of data format, codes for categories, (link) keys, possible units of measurement (for weight, distance, time). Data standardization without loss of content takes place immediately after receipt of the raw data because we want this standardization as early as possible in the processing process for efficiency reasons.
+ 
+##### 1.3.2. Deriving variables and units
+The ability to create new units and values of new variables from existing units and values of existing variables. 
+Explanation: We generally derive new variables with the aim of better describing reality; something the data source was not originally intended for.
+ 
+##### 1.3.3. Check content
+The ability to check datasets for irregularities, such as missing data, possible errors and outliers. 
+Explanation: discovering possible errors can lead to adjustment, see also capacity "Adjust and impute", but can also lead to a quality indicator on the basis of which quality reports can be made. Discovering outliers leads to an 'outlier indicator' and is important for a good estimation method, see also capacity "Estimate population parameter". 
+Source: GSBPM 
+ 
+##### 1.3.4. Adjusting and imputing    	
+The ability to adjust possible incorrect values and missing values. 
+Explanation: together with the "Content check" capacity, this capacity is often called editing. The check is then carried out using editing rules. The adjustment is then often based on imputation. The imputed values do not yet have to comply with the editing rules. To this end, a final 'adjustment' often takes place with the editing rules as a restriction.
+Source: GSBPM, ESS capability model
+
+##### 1.3.5. Estimating population parameters
+The ability to estimate population parameters from microdata.
+Explanation: estimated population parameters often manifest themselves as observations (the cells) in a dimensional dataset (table). There are several estimation methods, including the traditional 'weight and aggregate'. There are several techniques to arrive at the weights. Sometimes weights are adjusted to give found outliers a smaller weight.
+
+##### 1.3.6. Integrate statistics
+The ability to integrate separate statistics into one consistent whole.
+Explanation: We know integration systems for, for example, the national accounts, sector accounts and labour accounts
+
+##### 1.3.7. Statistical disclosure
+The ability to check datasets for privacy sensitivity and to adjust them in case of violation.
+Source: GSBPM 6.4
+
+#### 1.4. Analysis
+The ability to examine and understand data before it is disseminated. 
+Explanation: Within statistical institutes, statistical analysis is also known as statistical research in which certain connections or conclusions can be drawn on the basis of relationships (such as correlation).
+Source: GSBPM 5.2, Analyse
+ Link : https://unece.github.io/GSBPM-5.2/#analyse-phase
+
+##### 1.4.1. Statistical (output) analysis
+The ability to validate output, interpret and explain statistical data and finalize output for dissemination using shared methodologies and processes.
+Source: ESS capability model
+
+#### 1.5. Dissemination
+The ability to manage the release of statistical products to users.
+Explanation: This applies to both internal and external users.
+Source: GSBPM 5.2, Disseminate
+Link: https://unece.github.io/GSBPM-5.2/#disseminate-phase
+ 
+##### 1.5.1. Publication management
+The ability to manage the release of statistical output and associated content according to release schedules, so that users have predictable and equal access to data.
+Source: ESS capability model
+
+##### 1.5.2. Promotion to use
+The ability to promote the statistical output to potential users and to inform the press and other interested parties about the statistical output.
+Source: ESS capability model
+
+##### 1.5.3. Facilitate data access
+The ability to make statistical data and metadata available to humans and machines through multiple channels.
+Source: ESS capability model
+
+##### 1.5.4. Statistical information management
+The ability to prepare and distribute publications related to statistical output. 
+Explanation: This includes press releases, interpretations and reports. 
+Source: ESS capability model
+ 
+#### 2. Supporting Data capabilities
+Includes additional statistical capabilities such as managing statistical data and conducting statistical research.
+ 
+#### 2.1. Data management
+The ability to manage data and metadata.
+
+##### 2.1.1. Data lifecycle management
+The ability to manage data throughout its entire lifecycle.
+ 
+##### 2.1.2. Metadata management      	
+The ability to manage metadata throughout the lifecycle.
+Source: ESS Capabilities
+ 
+##### 2.1.3. Statistical quality management   	
+The ability to perform quality assessments, implement control mechanisms and initiate quality improvement mechanisms for the statistical value chain.
+ 
+##### 2.1.4. Statistical register management
+The ability to set up, maintain and make available "registry"-like services for collecting and integrating data.
+Explanation: Master Data
+Source: ESS capability model
+
+#### 2.2. Research
+Includes acquiring and recording knowledge in relation to statistical methods, products, sources and techniques.
+
+##### 2.2.1. Data source exploration
+Exploring new data sources
+Source: ESS
+ 
+##### 2.2.2. Product Innovation
+The ability to innovate, i.e. create new statistical products based on existing data sources and explore new data sources that are useful and important to users.
+Explanation: A design phase may be preceded by product innovation.
+Source: ESS
+ 
+##### 2.2.3. Methodology
+The ability to investigate new methods for the statistical process.
+ 
+##### 2.2.4. Data services
+The ability to provide data for statistical or scientific research.
+Explanation: This applies to both internal and external datasets. These services are realized with, among other things, Microdata services.
+Source: local laws and regulations ?
+
+##### 2.2.5. User research
+The ability to collect, assess and translate user needs into statistical output
+
+#### 3. Supporting business capacities 	
+Includes the capabilities that ensure that the right people, information and resources are available to implement and support the statistical domains and the governing domain.
+
+##### 3.1. Business operations
+Contains all activities required for managing personnel, purchasing & contracts, finances and housing and the associated systems and communication.
+
+##### 3.1.1. Personnel management (HR)
+Ensuring that sufficient qualified employees are available to carry out all business processes.
+ 
+##### 3.1.2. Purchasing & contract management
+Acquiring goods and services and monitoring the agreements made with suppliers.
+ 
+##### 3.1.3. Financial management
+Includes the planning, organization, design, recording and control of the financial activities of the organization.
+ 
+##### 3.1.4. Communication management
+Ensuring that the organization communicates correctly to internal and external parties.
+ 
+##### 3.1.5. Administrative support
+Providing support with administrative tasks.
+ 
+##### 3.1.6. Facility management
+Organizational function that integrates people, place and process within the built environment.
+Explanation: Description based on ISO 41011. The purpose of facility management is to improve the quality of life of people and the productivity of the core activity.
+Source: ISO 41011
+ 
+##### 3.1.7. Legal support
+Handling requests and applications, assessing agreements and advising on relevant legislation and regulations.
+ 
+##### 3.1.8. Information management and archive management
+Includes the activities to bring, maintain and preserve the organization's information in a state of sustainable accessibility (FAIR).
+Explanation: This concerns information created in the supporting and management processes, not statistical information from the primary statistical process.
+
+#### 3.2. Computerization and automation
+Ensuring that the information needs of the organization are translated into desired functionalities of the information provision and ensuring that the information systems are available to support the business processes.
+
+##### 3.2.1. Application development
+The ability to develop applications yourself.
+Explanation: This skill is needed to fill gaps in functionality that are missing in the statistical process.
+ 
+##### 3.2.2. Functional management
+Performing management tasks so that applications optimally support business processes.
+Explanation: For example, by collecting existing user requirements and translating them into new application functionality.
+
+##### 3.2.3. Technical management
+Performing management tasks regarding system software and applications.
+Explanation: Installing and configuring hardware and software. Managing this hardware and software to ensure that it continues to function correctly, including all measures to help resolve disruptions in a timely manner.
+ 
+##### 3.2.4. Digital workplace management
+Management of the resources and services that the employee uses for his digital workplace.
+Explanation: Examples are: (Develop) Laptop / Desktops, Mobile devices, Virtual desktops, Video / audio conferencing, Printing, VPN, proxy services, all for the benefit of the workplace.
+ 
+##### 3.2.5. IT infrastructure     	
+Developing, maintaining and managing IT infrastructure
+
+#### 3.3. Security and Privacy
+Contains all security and privacy related activities
+
+##### 3.3.1. Privacy management
+Developing, managing, applying and testing the privacy policy of Statistics Netherlands in order to comply with, among other things, legislation and regulations in the field of privacy protection.
+
+##### 3.3.2. Security planning
+Includes the activities of identifying, analyzing, and planning measures to ensure the security of a system, network, organization, and facility.
+
+##### 3.3.3. Security incident management    	
+Includes the activities of identifying, analyzing, responding to, and recovering from security incidents within an organization.
+
+##### 3.3.4. Logical identity and access control
+Includes all activities that ensure that a person, organization or IT facility can only use automated functions for which it has been granted access rights through an application process.
+
+##### 3.3.5. Physical security & access control
+Includes all activities that ensure controlled and safe access to buildings and spaces and that people and goods in these buildings and spaces are safe.
+
+##### 3.3.6. IT Security services
+IT services that serve to support information security. 
+Explanation: Examples include:Endpoint protection, PKI, network security management,
+
+#### 3.4. Customer and chain interaction
+The ability to interact with the customer and chain partners, ensuring that they have the correct data and information and receiving notifications, requests and data.
+
+##### 3.4.1. Services management
+Includes the design, development, implementation and management of services that the organization (parts) provides to customers and chain partners.
+ 
+##### 3.4.2. Contact management
+Maintaining relationships with customers and chain partners.
+Source: GSBPM 1.2
+Link: https://statswiki.unece.org/spaces/GAMSO/pages/247302304/Corporate+Support#CorporateSupport-GAMSOv1.2ManageConsumersManageConsumers
+
+##### 3.4.3. Service Agreement
+Includes drawing up, managing and enforcing service agreements with clients and chain partners.
+Explanation: These contracts apply to clients to whom NSO’s provide services such as access for external researchers or for additional statistical Services, but also to parties that supply information for primary or secondary observation. If these parties fail to comply, the NSO can take enforcement action.
+ 
+##### 3.4.4. Self-service
+Offers the opportunity to customers and chain partners to find solutions to questions about the services purchased themselves or to make justified adjustments to these services without the intervention of an employee.
+
+#### 4. Governance capabilities
+Includes the capabilities that provide direction to the organization by determining the desired strategy and the framework within which changes must take place.
+Source: GAMSO 1.2, Strategy and Leadership"
+ 
+##### 4.1.1. Strategy and governance
+Developing a vision and setting up and monitoring the organization and its management.
+ 
+##### 4.1.2. Policy and planning
+Translating the strategy into more concrete objectives, principles and plans.
+ 
+##### 4.1.3. Change management
+Determining and managing major changes so that maximum contribution is made to the objectives.
+
+##### 4.1.4. Improvement management
+Managing the daily operation and working on identifying areas for improvement and implementing improvement measures based on daily operations.
+
+##### 4.1.5. Accountability
+Reporting to stakeholders inside and outside the organization on the extent to which obligations and agreements are met.
+
+##### 4.1.6. Collaboration
+The ability to maintain and consolidate strategic relationships with external stakeholders.
+Explanation: These activities involve collaboration and coordination with other statistical organizations and other external stakeholders. They may involve coordination within a statistical system, which may be based on a geographical hierarchy of entities (local, regional, national, multinational), or a division of responsibilities between organizations based on activities. They include activities undertaken to identify new opportunities for data exchange or integration. They provide opportunities for the statistical community to exchange knowledge, improve statistical infrastructure and practices, and influence statistical standards.
+ 
+Source: GAMSO 1.2, Manage Strategic Collaboration and Cooperation
+
+## Value Streams
+
+### Primary Value Streams
+
+### VS-01.0 Data Acquisition and Ingestion Value Stream
+ 
+The Data Acquisition & Ingestion Value Stream is the first step in the statistical value chain. It focuses on bringing raw data into the statistical system in a secure, traceable, and compliant way. The purpose of this value stream is to make sure that data, no matter where the data comes from, enters the organization in a state that is authentic, well-documented, and ready for use. This value stream sets the foundation for everything that follows. It makes sure that the right data is collected, that legal requirements and ethical guidelines are observed, and that the data is safely stored and traceable from its source.
+
+This value chain identifies the following value steps:
+- Identify Data Needs and Sources: Define the statistical or analytical requirement and identify potential data sources (surveys, registers, administrative systems, sensors, commercial or open data).
+- Establish Data Agreements and Access Rights: Negotiate and formalize data-sharing agreements, define legal and ethical frameworks, and ensure privacy and compliance.
+- Collect or Receive Data: Execute data collection through surveys, APIs, secure data transfers, or data space connectors. Capture metadata during ingestion.
+- Validate and Log Data Intake: Verify completeness, structural integrity, and compliance with expected formats; log the ingestion process for traceability.
+- Store and Register Raw Data Artefacts: Persist data in controlled repositories, assign identifiers, and register associated metadata, ownership, and provenance.
+
+The value created here lies in trust and readiness , trust that the data has been acquired correctly, and readiness for the data to move forward into later stages of the statistical process.
+
+Once data has been safely acquired and registered, it is ready to move into the next phase - the Data Standardization & Integration Value Stream. Here, the focus shifts from collecting data to structuring it, ensuring that all incoming data can be compared, combined, and analyzed.
+
+### VS-02.0 Data Standardization and Integration Value Stream
+
+The Data Standardization & Integration Value Stream is the second step in the statistical value chain. After raw data has been collected and securely stored, it now needs to be standardized, harmonized, and prepared for further processing. In this value stream, the organization ensures that data from different sources - surveys, administrative registers, or external datasets - can work together seamlessly.
+This is achieved through consistent structures, common formats, and shared definitions. The main goal is interoperability: data that looks different at the source must be aligned so it can be understood, compared, and reused across systems, domains, and time periods.
+This value chain identifies the following value steps:
+- Profile and Assess Data Structure: Analyze data structure, identify inconsistencies, and align schema with target models.
+- Apply Standard Classifications and Formats: Map variables, codes, and identifiers to standardized taxonomies and reference data (e.g., NACE, ISCO, SDMX, GSIM concepts).
+- Align Metadata and Semantics: Harmonize descriptive metadata, ensuring coherence in definitions, classifications, and quality descriptors.
+- Validate Structural and Semantic Conformance: Execute validation routines to ensure the data conforms to standards and classifications.
+- Register Standardized Artefacts: Store the standardized dataset and update the metadata catalogue to reflect structural and semantic alignment.
+
+The value created here is coherence and comparability, transforming raw data into a structured and standardized asset that can flow smoothly into editing, analysis, and modeling.
+
+Once data is standardized and validated, it can safely move to the Data Editing & Enrichment Value Stream. In that stage, attention shifts from structure and standards to quality and completeness.
+
+The organization begins improving data accuracy, filling gaps, and enriching datasets with derived or corrected information.
+
+### VS-03.0 Data Editing and Enrichment Value Stream
+
+The Data Editing & Enrichment Value Stream is the third step in the statistical value chain. After data has been standardized and aligned, the next task is to improve its quality, completeness, and usability. At this stage, the organization focuses on cleaning, correcting, and enriching data so that it becomes trustworthy and analytically sound. Errors are detected, inconsistencies are corrected, missing values are filled, and new variables are derived to add more meaning and analytical value. This is where raw, standardized data begins to transform into high-quality statistical input , ready for estimation, modeling, and analysis.
+
+This value chain identifies the following value steps:
+- Conduct Error Detection and Quality Diagnostics: Identify logical errors, duplicates, missing values, or outliers through rule-based or machine-learning validation.
+- Perform Data Editing and Correction: Apply predefined rules and algorithms to correct errors or replace invalid entries.
+- Impute Missing or Non-Response Data: Estimate missing values using statistical imputation techniques or external data sources.
+- Derive Additional Variables and Indicators: Enrich datasets by calculating derived measures or additional analytical variables.
+- Perform Quality Evaluation and Versioning: Assess improvement in data quality, document changes, and create traceable versions of edited datasets.
+
+The main value created here is data reliability and analytical readiness. By systematically improving data quality, the organization ensures that every subsequent result , every estimate, model, and publication, rests on a solid foundation.
+
+### VS-04.0 Estimation, Analysis, and Statistical Modeling Value Stream
+
+The Estimation & Analysis Value Stream is the fourth stage of the statistical value chain. Here, the focus shifts from improving data quality to extracting insight and meaning. At this stage, the organization applies statistical methods, estimation techniques, and analytical models to transform edited and enriched data into representative results that describe real-world phenomena. This is where data becomes statistical information, summarized, interpreted, and validated to reflect populations, trends, and behaviors. Every decision taken in this stage must balance methodological detail with transparency and reproducibility.
+This value chain identifies the following value steps:
+- Design Estimation and Analytical Approach: Select methodology, model type, and parameters based on survey design and analytical objectives.
+- Apply Weighting and Calibration: Adjust for sample bias, non-response, or coverage errors through statistical weighting or calibration methods.
+- Estimate and Aggregate Data: Generate aggregated statistics, measures, and derived indicators.
+- Perform Model-Based Analysis: Conduct modeling, regression, or forecasting analyses as applicable to the domain.
+- Validate and Document Results: Review statistical soundness, check for consistency, document methodology and quality metrics.
+
+The main value created here is analytical insight and statistical credibility. Through careful estimation and analysis, data is turned into knowledge that policymakers, researchers, and society can trust.
+
+After estimation and analysis, the organization moves to the Statistical Product Composition Value Stream. Here, the focus shifts from individual analyses to building integrated and composite products. In that next stage, data from multiple sources and analyses are combined into coherent statistical publications, dashboards, and reports, turning analytical results into accessible products that provide a complete picture.
+
+### VS-05.0 Statistical Product Composition Value Stream
+ 
+The Statistical Product Composition Value Stream is the fifth stage in the statistical value chain. After estimation and analysis, the focus now shifts to bringing multiple analytical results together to create coherent, meaningful, and high-value statistical products. At this stage, data from different sources, domains, and analyses are combined, refined, and formatted into composite datasets, time series, and indicators that can be used for reporting, policymaking, and research. This value stream transforms intermediate analytical outputs into final statistical products , ready for validation, interpretation, and dissemination.
+This value chain identifies the following value steps:
+- Select and Integrate Source Datasets: Combine outputs from multiple domains, surveys, or time periods.
+- Construct Composite Indicators or Indices: Create derived measures such as indices, ratios, or time-series aggregates.
+- Perform Consistency and Coherence Checks: Ensure integrated datasets are internally consistent and methodologically sound.
+- Generate Analytical and Interpretive Outputs: Produce thematic reports, visualizations, or analytical interpretations.
+- Approve and Register Statistical Products: Validate products against dissemination and confidentiality standards and register them for publication.
+
+The key value created here is coherence and interpretability. Through careful composition, integration, and quality control, statistical outputs become consistent, accessible, and ready to serve their intended purpose.
+
+After products are approved and registered, they move into the Dissemination & Service Delivery Value Stream. Here, the focus shifts from producing statistics to sharing them, making them available through publications, APIs, dashboards, and data services. That next stage ensures that the work done throughout the entire value chain ultimately reaches users in a secure, accessible, and user-friendly way.
+ 
+#### VS-06.0 Dissemination and Service Delivery Value Stream
+
+The Dissemination & Service Delivery Value Stream is the final stage in the statistical value chain. At this point, the statistical products created in the previous stages are published, distributed, and made accessible to users through trusted and secure channels. The main goal of this value stream is to ensure that information reaches users in a way that is accurate, timely, and easy to understand. This includes policymakers, researchers, journalists, businesses, and the general public. Dissemination is not only about releasing data, it is about providing services that help users access, interpret, and apply statistical information responsibly. This step transforms statistical outputs into societal value by enabling informed decision-making, evidence-based policy, and transparency.
+This value chain identifies the following value steps:
+- Plan Dissemination and Access Strategy: Define target users, access channels, and release formats (open data, API, research access, publications).
+- Prepare Data for Dissemination: Apply disclosure control, anonymization, and formatting for publication or access.
+- Publish and Provide Access Services: Release data and metadata via portals, APIs, dashboards, or secure research environments.
+- Support and Engage Users: Provide user documentation, helpdesk support, and training for correct interpretation and use.
+- Monitor Usage and Feedback: Track user interactions, collect feedback, and feed insights into continuous improvement loops.
+
+The key value created here is impact and accessibility, ensuring that statistics and data services are usable, trusted, and beneficial to all. The Dissemination & Service Delivery Value Stream relies heavily on several cross-cutting value streams:
+- Governance and Compliance ensures that all dissemination complies with data protection and confidentiality laws.
+- Infrastructure and Platform Enablement provides the technical platforms for portals, Customer and Stakeholder Engagement ensures that dissemination services meet real user needs and expectations.
+Together, these supporting streams ensure that dissemination is not just a technical process , but a strategic, user-centered activity that delivers societal value through trustworthy data.
+ 
+
+## Supporting Cross Domain Value-Streams
+
+### VS-07.0 Governance and Compliance Value Stream
+
+The Governance and Compliance Value Stream runs horizontally across all stages of the statistical value chain. Its purpose is to make sure that every process, dataset, and product within the organization operates under clear rules, standards, and accountability mechanisms. This value stream builds trust , both inside and outside the organization , by ensuring that all data activities are ethical, transparent, and compliant with legal, methodological, and quality requirements. It provides the framework of control and assurance that keeps the statistical system reliable, consistent, and aligned with national and international standards such as the European Statistics Code of Practice, GDPR, GSBPM, GAMSO and ISO data quality principles.
+This value chain identifies the following value steps:
+- Define Governance Frameworks and Policies: Establish overarching governance structures, charters, and principles covering data, metadata, ethics, confidentiality, and statistical quality.
+- Establish Legal and Regulatory Compliance Mechanisms: Identify applicable regulations (GDPR, official statistics legislation, data-sharing agreements) and define procedures to ensure compliance across all processes.
+- Implement Data and Metadata Governance: Define roles (data owner, steward, custodian) and processes for metadata creation, maintenance, and lineage tracking.
+- Monitor Quality and Compliance Indicators: Measure process and output quality (accuracy, timeliness, comparability) and track compliance status using formal scorecards or dashboards.
+- Audit, Certify, and Report Compliance: Conduct internal or external audits, perform quality reviews, and document adherence to governance frameworks.
+- Update and Improve Governance Mechanisms: Incorporate feedback, regulatory changes, and lessons learned into policies and control frameworks.
+
+The value created here is integrity and accountability making sure that the NSI acts responsibly, protects privacy, and delivers products users can trust.
+
+The Governance and Compliance Value Stream supports all other value streams by acting as the foundation of trust and assurance. It ensures that Data Acquisition & Ingestion follows lawful and ethical standards. It guarantees that Editing, Estimation, and Dissemination meet quality benchmarks. It provides the governance structure for Infrastructure, Innovation, and Stakeholder Engagement. In short, it supports the entire SAF value chain, ensuring that every activity is compliant, transparent, and aligned with the mission of producing trustworthy statistics.
+
+### VS-08.0 Innovation and Methodological Development Value Stream
+
+The Innovation and Methodological Development Value Stream makes sure the statistical organization does not stand still. Its purpose is to discover, test, and introduce new ways of working , new data sources, new methods, new tools, and new technologies. This value stream helps the organization move from “we have always done it this way” to “we can do this better, faster, and smarter.”
+It connects research, methodology, IT, and business users. It also makes sure that innovation is controlled , so that only methods that are sound, documented, and compliant end up in production. This value chain identifies the following value steps:
+- Identify Innovation Needs and Opportunities: Scan technological, methodological, and policy developments (AI, ML, new data sources, cloud computing) for potential improvements in statistical production.
+- Conduct Research and Proof-of-Concepts: Perform controlled experiments and pilot studies to test new methodologies or technologies in limited scope.
+- Evaluate Methodological Soundness and Feasibility: Assess research outcomes for accuracy, scalability, and alignment with quality frameworks and ethical principles.
+- Develop and Document New Methodologies or Tools: Formalize validated innovations into standardized procedures, algorithms, or reference implementations.
+- Integrate Innovation into Production Environments: Transition successful methods or technologies from pilot to production, ensuring interoperability and governance compliance.
+- Promote Knowledge Sharing and Capability Building: Disseminate results, best practices, and guidelines across teams; build staff competencies to adopt new methods.
+
+The value created here is continuous improvement. Thanks to this stream, the SAF remains future-proof, able to work with new data (IoT, admin, data spaces), new techniques (ML, small-area estimation), and new operating models (secure processing environments, data sharing).
+How This Supports the Other Value Streams.
+- It gives Data Acquisition new ways to connect to data spaces and new sources.
+- It gives Standardization & Integration new mapping or classification techniques.
+- It gives Editing & Enrichment smarter imputation and outlier detection.
+- It gives Estimation & Analysis new models and ML-based methods.
+- It gives Dissemination new channels (APIs, linked data, interactive views).
+
+So, this value stream keeps the entire SAF alive and evolving.
+
+### VS-09.0 Infrastructure and Platform Enablement Value Stream
+ 
+The Infrastructure and Platform Enablement Value Stream provides the technical and digital foundation that supports every part of the statistical organization. Where the other value streams focus on data, methods, or governance, this one ensures that all those activities can actually run safely, efficiently, and at scale. It delivers the IT environments, data platforms, tools, and integration services that make statistical production possible, from data collection to dissemination. It ensures that the systems are secure, resilient, and compliant, while also flexible enough to handle new technologies and data sources as the organization modernizes. This value stream enables the organization to work faster, smarter, and with confidence. It transforms infrastructure from a background function into an active enabler of the statistical mission, ensuring that every user, process, and dataset has the tools and environment it needs to perform reliably.
+This value chain identifies the following value steps:
+- Define Digital and Technical Requirements: Identify infrastructure needs arising from business capabilities, data volumes, and analytical complexity.
+- Design Platform and Infrastructure Architecture: Develop architectural blueprints for data storage, processing, integration, and secure access (data fabric, data market, compute platforms).
+- Provision and Configure Platforms: Deploy and configure environments (on-premise, hybrid, or cloud) with necessary governance, monitoring, and security controls.
+- Enable Integration and Orchestration Services: Implement APIs, workflow engines, and automation frameworks to connect business services and processes.
+- Ensure Performance, Security, and Continuity: Monitor platform performance, implement data protection, manage incidents, and guarantee availability and disaster recovery.
+- Evolve and Modernize the Technical Ecosystem: Introduce new technologies, upgrade components, and decommission obsolete infrastructure in alignment with modernization strategy.
+The value created here is operational capability and continuity, a stable, modern, and adaptive foundation for the entire SAF ecosystem.
+
+Connecting to Other Value Streams
+The Infrastructure and Platform Enablement Value Stream supports every other part of the SAF. It underpins the business and data processes by providing the digital environment in which they operate.
+- It gives Data Acquisition the secure pipelines and storage needed for data collection.
+- It gives Standardization, Editing, and Analysis the computing and orchestration needed to process large datasets efficiently.
+- It gives Dissemination the platforms, portals, and APIs through which users access results.
+- It ensures Governance and Compliance have the tools to monitor security, quality, and data lineage, and
+- It enables Innovation by offering scalable, modern platforms for experimentation and research.
+
+#### VS-10.0 Customer and Stakeholder Engagement Value Stream
+ 
+The Customer and Stakeholder Engagement Value Stream ensures that the statistical organization remains connected, relevant, and responsive to the needs of those it serves. It focuses on building and maintaining mutual understanding and trust between the organization and its users, data providers, partners, and policy stakeholders. In the SAF, this value stream is essential because official statistics exist to create public value. To achieve that, the organization must understand what stakeholders need, communicate transparently, and ensure that products, data services, and policies remain aligned with real-world demands.
+
+This value stream is not a one-way process. It is a continuous dialogue, listening to users, understanding their challenges, and translating those insights into better products, improved services, and stronger relationships. This value chain identifies the following value steps:
+- Identify and Segment Stakeholders: Map the organization’s ecosystem of users, data providers, partners, and policymakers; understand their roles and expectations.
+- Collect and Analyze User Needs: Gather feedback, conduct consultations, and translate stakeholder needs into data or service requirements.
+- Define and Manage Service Portfolios: Develop catalogues of business services and data products that address stakeholder needs and align with strategic goals.
+- Deliver Services and Manage Relationships: Operate customer support, service desks, and account management; monitor satisfaction and service performance.
+- Engage and Communicate with Stakeholders: Conduct outreach, workshops, and knowledge-sharing events to promote awareness and understanding of statistical outputs.
+- Monitor Impact and Satisfaction: Measure how data and services are used, assess societal impact, and feed insights back into planning and innovation.
+
+The value created here is relevance and trust, ensuring that the organization’s work is understood, used, and appreciated by its partners, users, and society at large.
+
+Connecting to Other Value Streams
+The Customer and Stakeholder Engagement Value Stream is the voice and mirror of the statistical organization.
+- It connects external expectations with internal capabilities, closing the feedback loop across the SAF.
+- It informs Data Acquisition by revealing what data sources or topics matter most to users.
+- It influences Product Composition and Dissemination by identifying which outputs and formats users prefer.
+- It strengthens Governance and Compliance through transparent communication about data ethics, confidentiality, and quality. It supports Innovation and Methodology by gathering ideas and feedback from real users and partners.
+
+Through this value stream, the organization ensures that it doesn’t just produce data, it produces public value. It turns statistics into impact by aligning what the organization creates with what stakeholders need.
+
+Value Stream to Process Realization
+TBD – this view shows the difference - but also the relationship - between the business processes that drive the steady-state architecture and the value that is being created.

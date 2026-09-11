@@ -1,0 +1,58 @@
+---
+title: "SAF Architecture Framework"
+---
+
+This is the full Statistical Architecture Framework document, split into chapters. It is the reference: everything the workgroup has agreed about how a statistical office can describe its production architecture. You do not need to read it in order, and most readers never read all of it.
+
+If you are new to SAF, start with [SAF in Brief](../SAF-in-Brief.qmd) instead, then come back here for the chapter you need. Terms are explained in the [Glossary](../glossary.qmd).
+
+::: {.callout-note title="About this document"}
+**Version 0.4.** Prepared by the SAF workgroup: Trygve Falch (Statistics Norway, SSB), Jakob Engdahl (Statistics Sweden, SCB), Stephane Crete (Statistics Canada, StatCan), Cedric Couralet (Statistics France, Insee), Daan Swinkels (Statistics Netherlands, CBS), Pascal Fransen (Statistics Netherlands, CBS). Created 07-07-2025.
+
+| Version | Date | Change |
+|---|---|---|
+| 0.1 | 2025-07-07 | Initial version |
+| 0.2 | 2026-06-01 | Review processed |
+| 0.3 | 2026-07-31 | Restructuring, start with Business Architecture |
+| 0.4 | 2026-09-01 | Merging Business Architecture content |
+
+A few sections are still marked as not yet written. That is deliberate — the framework is a living document.
+:::
+
+## The chapters
+
+**The foundations** — why SAF exists and what it is built on.
+
+| Chapter | What it covers | Who needs it |
+|---|---|---|
+| [Introduction and Scope](introduction.qmd) | What SAF is for, what it covers and what it deliberately does not prescribe, and who it is written for | Everyone, first |
+| [Motivation](motivation.qmd) | The pressures driving change, the goals, the eleven architecture principles, the outcomes and the stakeholders | Managers, policy makers, privacy officers |
+| [Strategy](strategy.qmd) | The capability model (what an office must be able to do) and the ten value streams | Architects, planners |
+
+**The business architecture** — how the production chain actually works. This is the part most readers come for.
+
+| Chapter | What it covers | Who needs it |
+|---|---|---|
+| [Business Architecture](business-architecture.qmd) | The steady states of data, the four-process governance pattern, how the principles apply across the chain, and a summary of each value stream | Everyone working with production |
+
+**The ten value streams in depth** — one chapter each. Each follows the same shape: purpose, position in the chain, the steady state it produces, the four process types, business services and boundary contracts, events, framework mappings, a maturity checklist and worked scenarios.
+
+*The six production streams, in the order data passes through them:*
+
+| Chapter | Takes data from → to |
+|---|---|
+| [VS-01 Data Acquisition and Ingestion](vs-01.qmd) | Source data → #1 Raw |
+| [VS-02 Data Standardization and Integration](vs-02.qmd) | #1 Raw → #2 Standardized |
+| [VS-03 Data Editing and Enrichment](vs-03.qmd) | #2 Standardized → #3 Processed |
+| [VS-04 Estimation, Analysis, and Statistical Modeling](vs-04.qmd) | #3 Processed → #4 Statistics |
+| [VS-05 Statistical Product Composition](vs-05.qmd) | Within #4, to an approved product |
+| [VS-06 Dissemination and Service Delivery](vs-06.qmd) | #4 → #5 Released → #6 Consumed |
+
+*The four supporting streams, which run continuously across the whole chain:*
+
+| Chapter | What it provides |
+|---|---|
+| [VS-07 Governance and Compliance](vs-07.qmd) | Frameworks, controls and assurance |
+| [VS-08 Innovation and Methodological Development](vs-08.qmd) | Validated new methods and tools |
+| [VS-09 Infrastructure and Platform Enablement](vs-09.qmd) | Platforms, environments, integration |
+| [VS-10 Customer and Stakeholder Engagement](vs-10.qmd) | Understood user needs and relationships |

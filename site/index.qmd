@@ -1,0 +1,29 @@
+---
+title: "Statistical Architecture Framework"
+---
+
+SAF is a shared way for national statistical offices to describe how they turn data into official statistics — and to change how they do it without breaking things.
+
+It is aimed at everyone involved in that work: methodologists, statisticians, data and IT staff, quality and privacy officers, managers and CIOs... **No architecture background is assumed**, on this site or in the framework itself.
+
+::: {.callout-tip title="Where to start"}
+If you have ten minutes, read **SAF in Brief**. If you want to try SAF on one of your own statistical products, read **Getting Started** and do the exercise at the end. The **Framework** is the reference you dip into afterwards.
+:::
+
+## The four routes in
+
+| | What it answers | Reading time |
+|---|---|---|
+| **[SAF in Brief](SAF-in-Brief.qmd)** | What is SAF, what are its two core ideas, what would adopting it give my office — and what would it commit us to? | about 10 minutes |
+| **[Getting Started with SAF](SAF-Getting-Started.qmd)** | What does this look like on real data? A labour force survey and a tax register, followed step by step from collection to publication — then an exercise for mapping one of your own processes. | about 30 minutes, plus the exercise |
+| **[SAF Architecture Framework](framework/index.qmd)** | The full agreed framework, in chapters: motivation and principles, the capability model, and a chapter on each of the ten value streams. | dip in by chapter |
+| **[Glossary](glossary.qmd)** | What does SAF mean by *artefact*, *steady state*, *lineage*, *registered*? | as needed |
+: The four routes in {tbl-colwidths="[26,54,20]"}
+
+## The one idea worth knowing first
+
+SAF splits statistical production into stages that hand data to each other at defined points called **steady states**. At each handover the data is finished to a known quality, given a version and an identifier, and passed on with a description of what was done to it. Nothing else about the next stage's inner workings needs to be known.
+
+That single arrangement is what lets an office modernise one part of its production — a collection channel, an editing engine, a publication platform — without disturbing the rest, and lets it show exactly how any published figure was produced.
+
+The formal model behind all of this is available in archimate format ([to complete](link))

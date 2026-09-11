@@ -1,0 +1,62 @@
+---
+title: "Introduction and Scope"
+---
+
+# Preface
+
+The Statistical Architecture Framework (SAF) is developed to support the modernisation of official statistics. It responds to a shared need across National Statistical Institutes (NSIs) and partner organisations. Statistical production must remain credible, secure, and efficient. At the same time, it must adapt to new data sources, new user expectations, and tighter constraints. SAF provides a common architectural foundation to help organisations make these changes in a controlled and coherent way.
+
+This documentation is written for enterprise and data architects, IT architects, methodologists, and IT delivery teams. It is also intended for senior decision-makers such as CIOs and CTOs, and for privacy officers, policy makers, and managers who carry responsibility for compliance, traceability, and responsible data use.
+SAF replaces the earlier Common Statistical Production Architecture (CSPA) and the Common Statistical Data Architecture (CSDA). It consolidates their core ideas into a single, coherent documentation set, and it retains their ambition of shared understanding across organisations. It also continues to promote interoperability, reuse, and standardised building blocks. However, SAF shifts the centre of gravity from reference descriptions towards practical applications. It is intended to be used directly in programmes and projects, and to guide concrete design and implementation choices.
+
+The framework builds on the assumption that, in statistical organisations, data and metadata are central assets of the organisation, and not just enablers of processes. SAF therefore treats data and metadata as managed assets across the full statistical lifecycle. It supports architectures that can work with both traditional and newdata sources. It also provides practical guidance for designing capabilities for acquisition, integration, production, and dissemination, in a way that strengthens quality, transparency, and repeatability. SAF also carries forward the capability-centric, service-based and component-oriented direction introduced in CSDA and CSPA. It promotes modular design and reuse within and across organisations. This is intended to reduce duplication, improve maintainability, and make change more manageable. It also supports a clearer separation of concerns between business methods, data, applications, and technology, which is essential for scaling and for governing complex landscapes.
+The framework is designed to support multiple types of use in parallel. It can be applied for strategic planning and capability development, for solution design and architecture governance, and for portfolio alignment and implementation guidance. It can be used at enterprise level, at programme level, and within specific initiatives. This includes initiatives focused on data sharing across organizations, secure processing environments, and regulated access workflows, where security, trust, and accountability are important requirements.
+ 
+SAF is intended to work alongside established statistical standards and models. It does not replace statistical business and information models. Instead, it provides the architectural link between strategy, capabilities, processes, services, and technology. This “glue” helps organisations make consistent decisions, improve traceability from policy to implementation, and reduce fragmentation across projects and teams. To support communication and shared understanding, SAF uses a set of architecture viewpoints. Visual models are included to clarify scope, responsibilities, and dependencies. Where appropriate, a consistent modelling notation is used so that organisations can compare, reuse, and extend the content in a disciplined way.
+SAF is a living framework. It is expected to evolve through implementation experience, community feedback, and changes in the external environment. Its value depends on active use and continuous improvement across the community it serves, so that the framework remains both credible and practical over time.
+
+# Acknowledgements
+*This section has not been written yet.*
+
+# Introduction
+
+The Statistical Architecture Framework (SAF) provides a common architectural basis for the design, delivery, and evolution of statistical production in National Statistical Institutes (NSIs) and related organisations. It brings together architectural concepts, reference structures, and practical guidance that support consistent decision-making across portfolios and programmes. SAF aims to help statistical organisations modernise with control, while preserving the institutional qualities that make official statistics credible: transparency, quality, impartiality, reproducibility, and public trust.
+
+Statistical organisations are facing a period of accelerated change. Data ecosystems are evolving and increasingly depend on partnerships and shared infrastructures. Artificial intelligence and rapid technological advances are changing how data can be collected, processed, and interpreted, while also introducing new risks and new expectations. At the same time, trust, scientific rigor, and data protection requirements are becoming more prominent and more demanding. These changes occur in an uncertain and fragmented global environment, where information integrity and societal confidence cannot be taken for granted. All of this is happening under sustained resource constraints, requiring organisations to be more agile and deliberate in how they prioritise, reuse, and industrialise capabilities. SAF is intended to support organisations in quickly responding to these drivers without fragmenting their architecture, governance, and implementation landscape in the process.
+
+SAF replaces earlier reference documentation by consolidating core architectural ideas into a single framework that is more usable in practice. It is not designed as a theoretical reference alone. It is designed to be applied. SAF supports the translation of strategy into capabilities, services, and implementation choices. It supports alignment across business, methodology, data, applications, and technology. It also supports collaboration between organisations by promoting common patterns, shared viewpoints, and comparable architectural descriptions.
+
+# Activity Proposal
+*This section has not been written yet.*
+
+# Purpose
+
+The purpose of SAF is to provide an authoritative, consistent, and actionable framework for developing and governing statistical architectures. It aims to support coherent modernisation across NSIs by providing shared structures for describing needs, designing solutions, and managing change. SAF helps ensure that investments in platforms, data management, methods, and delivery practices strengthen each other instead of competing. It also helps organisations to demonstrate traceability from policy and strategy to implemented solutions, including the controls required for confidentiality, integrity, accountability, and lawful processing.
+
+SAF is intended to enable better outcomes in three areas. First, interoperability and reuse, both within an organisation and across organisational boundaries.
+
+ Second, quality and robustness, by making architectural choices explicit and reviewable, and by promoting consistent handling of data, metadata, and methodological assets. Third, overall statistical production  effectiveness, by providing a common language and set of expectations that connects architects, methodologists, engineers, managers, and oversight functions.
+
+# Definition of Scope
+
+SAF covers the enterprise architecture concerns that are most relevant to statistical production and dissemination, including the supporting functions that enable them. It addresses the design and evolution of capabilities, information assets, applications and services, and underlying infrastructure and deployment arrangements. It also considers the cross-cutting concerns that are essential for official statistics, such as governance, security, privacy, auditability, reproducibility and the responsible use of data and advanced analytics.
+
+To ensure consistency and practical applicability, SAF is organised according to a TOGAF-aligned structure. It addresses motivation and principles, strategic direction and target outcomes, and the architecture domains that connect intent to implementation. This includes business architecture, data architecture, application architecture, and technology and infrastructure considerations, as well as deployment and operationalisation aspects. SAF also includes viewpoints that are tailored to distinct roles and activities within an NSI, enabling the same underlying architecture to be communicated and assessed from multiple perspectives without losing coherence.
+
+SAF does not prescribe a single operating model, a single technology stack, or a single organisational design. It recognises that NSIs differ in mandate, maturity, and context. Instead, it provides a shared architectural foundation that can be adapted to local realities while remaining comparable across organisations. It also assumes that terminology and detailed definitions are managed through a dedicated glossary, which is maintained alongside the framework.
+
+# Target Audience
+
+SAF is intended to be used as a reference and as a working instrument. It can be applied when shaping strategy and roadmaps, when designing new capabilities and platforms, and when assessing initiatives for alignment and risk. It can be used to structure architectural work in programmes and projects, and to support governance decisions by making assumptions, dependencies, and trade-offs explicit. It can also be used to support communication across disciplines by establishing shared architectural concepts and consistent viewpoints.
+
+Different roles will use SAF in different ways, while relying on the same underlying content. Enterprise and data architects will use it to define target states, standards, patterns, and architecture decisions across the organisation. IT architects and delivery teams will use it to translate those decisions into solution designs, implementation plans, and operational controls. Methodologists will use it to connect methods and process design to the enabling data and technology arrangements, and to support repeatability and scientific rigor. CIOs, CTOs, managers, and policy makers will use it to understand the implications of strategic choices, to prioritise investment, and to oversee risk and compliance. Privacy officers and assurance functions will use it to assess whether designs incorporate adequate safeguards, traceability, and accountability.
+
+SAF is most effective when it is used consistently across the lifecycle of change. It supports early-stage framing by clarifying drivers, objectives, and constraints. It supports design by providing reference structures and viewpoints that guide architecture development. It supports delivery by improving alignment between architecture and implementation decisions. It supports operation and evolution by making dependencies and responsibilities explicit, enabling controlled change and measurable improvement.
+
+### Expected value
+
+The expected value of SAF is a stronger and more coherent statistical architecture practice across NSIs. It supports faster and safer modernisation by reducing ambiguity and rework. It supports reuse by encouraging common building blocks and comparable solution descriptions. It supports trust by embedding governance and assurance concerns into architecture, rather than treating them as afterthoughts. It also supports collaboration across organisations, where shared approaches to interoperability, data governance, and service orientation reduce the effort required to work together.
+In providing a common framework with practical orientation, SAF aims to help statistical organisations remain resilient and responsive. It supports them in delivering high-quality statistics under changing conditions, while maintaining the safeguards and institutional discipline that official statistics require.
+
+# Constraints & Assumptions
+*This section has not been written yet.*
