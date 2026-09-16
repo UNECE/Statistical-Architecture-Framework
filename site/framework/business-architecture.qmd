@@ -4,7 +4,7 @@ title: "Business Architecture"
 
 # Business Architecture
 
-## Overview 
+## Overview
 
 The statistical process is divided into three main business domains (observation, processing/analysis, and dissemination), with processing/analysis further divided into four subdomains. This results in a total of six business domains:
 
@@ -29,13 +29,13 @@ To realize statistical value within a business domain, execution processes (incl
 
 ![Generic Business Architecture](../images/Business%20Architecture_GSBPM_Data%20Steady%20State_visual_v0.1.png)
 
-The execution processes between the business domains are loosely coupled. Each has its own design and implementation. For the mutual exchange of data, they are loosely linked via steady state interfaces. To this end, five steady state phases are recognized that exist between the business domains: 
+The execution processes between the business domains are loosely coupled. Each has its own design and implementation. For the mutual exchange of data, they are loosely linked via steady state interfaces. To this end, five steady state phases are recognized that exist between the business domains:
 1. raw data,
-2. standardized data without loss of content, 
-3. processed data, 
-4. statistics, and 
-5. released data. 
- 
+2. standardized data without loss of content,
+3. processed data,
+4. statistics, and
+5. released data.
+
  A steady state phase is therefore an environment where high-quality versions of data are brought together for exchange, but it also represents a value in the value chain of this data.
 
 Each of the mentioned business domains can be linked to a GSBPM phase.
@@ -177,7 +177,7 @@ The business architecture leverages a data value chain approach where data progr
 
 ## The Statistical Data Value Chain
 
-The SAF business layer describes how a National Statistical Office (NSO) turns externally-held data into trusted statistics that serve society. Six **primary** value streams form a linear production chain, each adding a specific kind of statistical value, and four **supporting** value streams enable them across the board.
+The SAF business layer describes how a National Statistical Office (NSO) turns externally-held data into trusted statistics that serve society. Six **primary** value streams form a production chain, normally run in this order, each adding a specific kind of statistical value, and four **supporting** value streams enable them across the board.
 
 ::: {.callout-note title="Key concepts — if you are new to architecture documents" collapse="true"}
 This documentation uses a handful of architecture terms. Here is what they mean in plain language:
@@ -227,7 +227,7 @@ flowchart TB
 
 ## Steady States of Data
 
-The streams work independently of each other (in architecture terms: they are **loosely coupled**). They exchange data only at defined **steady states** — points where a high-quality, versioned dataset is handed over. Each primary stream consumes one steady state and produces the next, so a stream needs no knowledge of its neighbors' internals (SAF-P07). The handover works through events: when a stream registers a finished dataset, a notification tells the next stream that new data is ready.
+The streams work independently of each other (in architecture terms: they are **loosely coupled**). They exchange data only at defined **steady states** — points where a high-quality, versioned dataset is handed over. In the usual case each primary stream consumes one steady state and produces the next, so a stream needs no knowledge of its neighbors' internals (SAF-P07). The handover works through events: when a stream registers a finished dataset, a notification tells the next stream that new data is ready. Not every process has to pass through every state; see [Applying the steady states pragmatically](#pragmatic-steady-states).
 
 The table lists the steady states in the order data passes through them — from data still at the provider (#0) to data in users' hands (#6):
 
@@ -263,6 +263,17 @@ flowchart TD
     style S4b fill:#fef9c3,stroke:#b45309
     style S5 fill:#dcfce7,stroke:#16a34a
 ```
+
+### Applying the steady states pragmatically {#pragmatic-steady-states}
+
+
+A steady state is an agreement about data: the quality it has reached, who owns it, how it is identified and what metadata comes with it. It does not require a separate physical copy at every state, and it does not require every process to pass through all six. An office may depart from the usual sequence in the three cases below, provided it records the choice (which state was shared or skipped, and why) in the catalogue entry. In other words, the rule is "comply or explain".
+
+1. **Two states can share one artefact.** If nothing happens between State #4 and State #5 (no transformation and no further disclosure control), the #4 artefact does not have to be registered again as a new dataset; it is marked as released instead. The release steps still take place: release authorisation is obtained and the final disclosure check is carried out, and both are recorded even when the check changes nothing.
+2. **A process can start downstream.** Not every production process begins at VS-01. Macro statistics, for example, are often built on Processed Data (#3) or Statistics (#4) that another team has already registered, and State #4 above can already be "shared internally for use as input data in other statistical processes". Such a process starts from the registered artefact and its lineage points to it; there is no need to create placeholder #1 or #2 artefacts. Data that comes from outside the office still enters through VS-01 and State #1.
+3. **Lineage is about traceability, not duplication.** SAF-P09 requires that every value can be traced back to where it came from. When a stream uses an artefact without changing any values, a logged process event that refers to the existing artefact version meets this requirement, and no identical copy needs to be registered. As soon as a value changes, a new version is registered.
+
+One limit applies to all three cases. States must not be merged where this would hide a change of values (for example, standardisation at #2 and editing at #3 carried out as a single undocumented step) or a disclosure-control step (for example, #4 and #5 when additional disclosure control is applied before release).
 
 ## The Four-Process Governance Pattern
 
@@ -313,7 +324,7 @@ The SAF defines eleven architecture principles, labeled SAF-P01 to SAF-P11. The 
 | Principle | Statement | How to apply across the value chain |
 |---|---|---|
 | **SAF-P01** ★ | Actively participate in open source to maintain collective control over statistical processes | Build statistical capabilities on shared, open tooling; contribute back, so NSOs keep collective control of critical methods rather than depending on vendors. |
-| **SAF-P07** ★ | Implement loosely coupled processes and systems | Exchange data only at steady-state interfaces; each stream consumes one state and produces the next without knowing the others' internals. |
+| **SAF-P07** ★ | Implement loosely coupled processes and systems | Exchange data only at steady-state interfaces; each stream normally consumes one state and produces the next without knowing the others' internals. |
 | **SAF-P08** ★ | Data is shared property | Once an artefact is registered at a steady state, make it available to all authorized consumers; avoid duplicating collection, processing, or analysis. |
 | **SAF-P09** ★ | No data without metadata and classification | Every artefact carries provenance (origin), methodology, accuracy, classification, and lineage (the trace back to its inputs) — captured at the point each value is created or changed. |
 | **SAF-P10** ★ | Security By Design | Embed access control, integrity verification, and tamper-evident audit trails in every pipeline from the start. |
@@ -330,7 +341,7 @@ The SAF defines eleven architecture principles, labeled SAF-P01 to SAF-P11. The 
 ::: {.callout-important title="Two cross-chain disciplines"}
 **Metadata everywhere (SAF-P09):** value is only added once its context is captured — what was done, by which rule/method, with what accuracy, and traceable to its inputs.
 
-**Confidentiality progressively applied (SAF-P11):** identifiers are removed/pseudonymized at standardization (#2), disclosure risk is assessed on enrichment (#3), initial disclosure control is applied to outputs (#4), and final disclosure control gates release (#5).
+**Confidentiality progressively applied (SAF-P11):** identifiers are removed/pseudonymized at standardization (#2) at the latest, or earlier where that suits the process; disclosure risk is assessed on enrichment (#3), disclosure control is applied to outputs (#4), and a final disclosure check gates release (#5).
 :::
 
 ## VS-01.0 — Data Acquisition and Ingestion
@@ -382,7 +393,7 @@ VS-02 makes data from different sources speak the same language. After raw data 
 **How the business processes work.** The stream first **profiles and assesses the incoming structure**, comparing it against the target data model to see which fields map directly, which simply need reformatting, which source codes have a standard correspondence, and which values are uncoded. It then **applies standard classifications and formats**: source codes are mapped one-to-one to standards (for example a source activity code to NACE, the European industry classification) through maintained correspondence tables, and the layout is coerced into the common format (renaming, restructuring, type-casting, e.g. CSV→XML). The original values are preserved, and anything that has no deterministic correspondence — or is free text needing interpretation — is flagged and passed downstream to VS-03. Next it **aligns metadata and semantics**: variables are linked to canonical concepts, and each variable's unit, currency, and reference-period basis (and any differing cross-source definitions) are *recorded as metadata* rather than converted. The result is **checked for structural and semantic conformance**, including a no-loss-of-content check confirming that record counts and key measures are unchanged. Conformant data is then **registered as a standardized artefact** with its mapping lineage, and a "Standardized Data Registered" event notifies VS-03.
 
 ::: {.callout-note title="Signature discipline — standardization without loss of content"}
-VS-02 only maps codes 1-to-1, coerces format/structure, and annotates metadata. It **never changes a value**; unit/currency conversion, reference-period alignment, value reconciliation, and interpretive free-text coding are deliberately deferred to VS-03.
+VS-02 only maps codes 1-to-1, reformats structure, and annotates metadata. It **never changes a value**; unit/currency conversion, reference-period alignment, value reconciliation, and interpretive free-text coding are deliberately deferred to VS-03.
 :::
 
 Around this, **Design** defines the target data model, the deterministic classification correspondences, the harmonization and conformance rules, and the privacy framework; **Implementation** builds the mapping & format-coercion component, the classification-mapping services, the conformance pipeline, and identifier pseudonymization; **Management** tracks mapping coverage and the unmapped-value rate, governs classification versions, and improves the correspondences.
@@ -676,9 +687,9 @@ Use these two tables as a quick reference: the first summarizes the six producti
 | VS | Domain | State in → out | Trigger out | Signature discipline |
 |---|---|---|---|---|
 | **01** | Acquisition & Ingestion | Source → #1 Raw | Raw Data Registered | Metadata & validation at ingestion |
-| **02** | Standardization & Integration | #1 → #2 Standardized | Standardized Data Registered | No loss of content — map, coerce, annotate |
+| **02** | Standardization & Integration | #1 → #2 Standardized | Standardized Data Registered | No loss of content: map, reformat, annotate |
 | **03** | Editing & Enrichment | #2 → #3 Processed | Processed Data Registered | Full traceability of every value change |
-| **04** | Estimation & Modeling | #3 → #4 Statistics | Output Data Registered | Methodological transparency + accuracy + initial disclosure control |
+| **04** | Estimation & Modeling | #3 → #4 Statistics | Output Data Registered | Methodological transparency + accuracy + disclosure control on outputs |
 | **05** | Product Composition | within #4 (→ approved) | Statistical Product Registered | Coherence & interpretability; approval before registration |
 | **06** | Dissemination & Service Delivery | #4 → #5 Released → #6 | Statistics Released | Accessibility & trust; final disclosure-control gate |
 

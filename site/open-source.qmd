@@ -2,44 +2,41 @@
 title: "Open Source in SAF"
 ---
 
-*Why the framework treats open source as an architectural question rather than a procurement one.*
+*Why the framework discusses open source as part of its architecture, and not only as a purchasing decision.*
 
 ::: {.callout-tip title="Who this is for"}
-Anyone weighing how their office should source the tools that carry statistical method — CIOs and CTOs, architects, methodologists, procurement. It gathers in one place what the framework says across its drivers, goals, principles and value streams. About five minutes.
+Anyone considering how their office should source the tools that carry statistical method: CIOs and CTOs, architects, methodologists, procurement staff. This page gathers what the framework says about open source in its drivers, goals, principles and value streams. It takes about five minutes to read.
 :::
 
-## The case in one line
+## The case in brief
 
-A statistical office's methods are part of what makes its figures trustworthy. When those methods live inside software nobody outside the vendor can inspect, the office can no longer fully explain how a published figure was produced, cannot easily move the method elsewhere, and cannot improve it on its own timetable.
+A statistical office's methods are part of what makes its figures trustworthy. When those methods run inside software that nobody outside the vendor can inspect, the office can no longer fully explain how a published figure was produced. It also cannot easily move the method elsewhere or improve it on its own timetable.
 
-SAF's answer runs through the whole framework in one recurring phrase: open source keeps **collective control of critical statistical capabilities** in the hands of the statistical community, rather than leaving them dependent on a vendor.
+The framework returns to this point several times, using the same phrase: open source keeps **collective control of critical statistical capabilities** within the statistical community, instead of leaving offices dependent on a vendor.
 
 ## What the principle says
 
 ::: {.callout-important title="SAF-P01"}
 **Actively participate in open source to maintain collective control over statistical processes.**
 
-Build statistical capabilities on shared, open tooling, and contribute back — so that statistical offices keep collective control of critical methods rather than depending on vendors.
+Build statistical capabilities on shared, open tooling, and contribute back, so that statistical offices keep collective control of critical methods rather than depending on vendors.
 :::
 
-The wording matters. The commitment is not only to *use* open components but to **participate**: to contribute fixes and methods back to the communities an office depends on. A component that every statistical office consumes and nobody maintains is a shared dependency, not shared control.
+Note the word *participate*. Using open components is not enough on its own: an office is expected to contribute fixes and methods back to the communities it relies on. A component that every office uses and nobody maintains is a shared dependency, and gives none of them real control.
 
-SAF-P01 is one of the six principles marked as actively applied by all six production value streams — see [Principles to Apply](framework/business-architecture.qmd#principles-to-apply) in the Business Architecture chapter.
+SAF-P01 is one of the six principles applied by all six production value streams. See [Principles to Apply](framework/business-architecture.qmd#principles-to-apply) in the Business Architecture chapter.
 
-## Why this architecture makes it work
+## Why the architecture matters here
 
-This is the part specific to SAF, and the reason open source belongs in an architecture document rather than in a procurement policy.
+This part is specific to SAF.
 
-The production chain is built from [steady states](framework/business-architecture.qmd#steady-states-of-data): each value stream is defined by the artefact it hands over and the metadata that travels with it — **not** by the tool it uses inside. A stream is a contract at its boundaries and a black box in the middle, by design.
+The production chain is built from [steady states](framework/business-architecture.qmd#steady-states-of-data). Each value stream is defined by the artefact it hands over and the metadata that travels with it. The tool it uses internally is not part of that definition.
 
-That has a direct consequence for tooling. If a stream's obligations are fully expressed at its boundaries, then the component inside can be adopted, replaced or shared without disturbing anything downstream. A community editing engine can be dropped into VS-03 and the only thing VS-04 notices is that a Processed Data artefact arrives, registered, with its edit lineage intact.
+This has a direct consequence for tooling. If a stream's obligations are fully expressed at its boundaries, the component inside can be adopted, replaced or shared without affecting anything downstream. A community editing engine can be introduced in VS-03, and VS-04 still receives a registered Processed Data artefact with its edit lineage, as before.
 
-So the two ideas reinforce each other:
+The two ideas support each other. Because streams are loosely coupled, replacing a tool is a decision for one stream and does not require a migration across the whole chain. Open components, in turn, give offices something to put in those replaceable places.
 
-- **Loose coupling makes open components adoptable.** Swapping a tool is a local decision, not a chain-wide migration.
-- **Open components make loose coupling worth having.** There is little point in a substitutable slot if there is nothing to substitute into it.
-
-The same property is what makes a component an office builds *shareable* with other offices: if it respects the steady-state contract, another NSO can use it without adopting that office's internal design.
+For the same reason, a component built by one office can be shared: if it respects the steady-state contract, another NSO can use it without adopting the first office's internal design.
 
 ## Where the framework already says this
 
@@ -60,15 +57,15 @@ Each value-stream chapter names the tooling where this applies in its domain.
 | Stream | Where open tooling carries the method |
 |---|---|
 | [VS-01 Acquisition](framework/vs-01.qmd) | Collection and ingestion tooling |
-| [VS-02 Standardization](framework/vs-02.qmd) | Classification, coding and mapping tooling — for example libraries for SDMX, the statistical data-exchange standard |
-| [VS-03 Editing](framework/vs-03.qmd) | Editing, imputation and coding engines — selective-editing engines, imputation libraries |
-| [VS-04 Estimation](framework/vs-04.qmd) | Estimation, weighting and modelling tooling — calibration and variance-estimation libraries |
+| [VS-02 Standardization](framework/vs-02.qmd) | Classification, coding and mapping tooling, for example libraries for SDMX, the statistical data-exchange standard |
+| [VS-03 Editing](framework/vs-03.qmd) | Editing, imputation and coding engines, such as selective-editing engines and imputation libraries |
+| [VS-04 Estimation](framework/vs-04.qmd) | Estimation, weighting and modelling tooling, such as calibration and variance-estimation libraries |
 | [VS-05 Composition](framework/vs-05.qmd) | Composition, indicator-construction and reporting or visualisation tooling |
 | [VS-06 Dissemination](framework/vs-06.qmd) | Dissemination platforms, APIs and visualisation tooling |
 : Open tooling by value stream {tbl-colwidths="[26,74]"}
 
-The pattern is the same in every row: the closer a component sits to statistical *method*, the stronger the argument for it being open — because that is where the office's ability to explain and defend its figures lives.
+In every row, the closer a component is to statistical *method*, the stronger the case for it being open, because that is the part an office must be able to explain and defend.
 
 ## Where to go next
 
-The principle sits among the others in [Architecture Principles](framework/motivation.qmd#architecture-principles); how the principles apply across the production chain is in [Principles to Apply](framework/business-architecture.qmd#principles-to-apply). For what the steady states are and why they make components substitutable, see [SAF in Brief](SAF-in-Brief.qmd).
+The principle is listed with the others in [Architecture Principles](framework/motivation.qmd#architecture-principles), and how the principles apply across the production chain is described in [Principles to Apply](framework/business-architecture.qmd#principles-to-apply). For what the steady states are and why they make components replaceable, see [SAF in Brief](SAF-in-Brief.qmd).
