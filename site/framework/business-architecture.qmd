@@ -207,7 +207,7 @@ The diagram below shows the whole business layer in one picture: data enters fro
 %%| fig-cap: "The six primary value streams as a production chain, delivering to users and society. Purple = the four supporting streams (they enable the chain, dashed arrow); dark green = parties outside the NSO."
 flowchart TB
     EXT["External data providers"]:::ext --> chain
-    subgraph chain["Primary value streams — the production chain"]
+    subgraph chain["Primary value streams"]
         direction LR
         VS01["VS-01<br/>Acquisition &<br/>Ingestion"] --> VS02["VS-02<br/>Standardization &<br/>Integration"] --> VS03["VS-03<br/>Editing &<br/>Enrichment"] --> VS04["VS-04<br/>Estimation &<br/>Modeling"] --> VS05["VS-05<br/>Product<br/>Composition"] --> VS06["VS-06<br/>Dissemination &<br/>Service Delivery"]
     end
