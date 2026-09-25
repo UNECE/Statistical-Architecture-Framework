@@ -1,0 +1,235 @@
+---
+title: "Motivation"
+---
+
+# Motivation
+
+## Drivers
+
+Architecture drivers in many ocassions  are the same forces that make change necessary. They capture the pressures, trends, and constraints that statistical offices face and which the SAF is designed to address. Drivers can be external, such as technological advancements or new regulations, or internal, such as the need to replace legacy systems or respond to stakeholder demands. By documenting these drivers, SAF ensures that its architecture is not an abstract ideal but a practical response to real-world challenges.
+
+For statistical organizations, these drivers are particularly intense. Rapid technological change requires continuous adaptation, while political and societal pressures demand timely, relevant, and transparent data. At the same time, many organizations face limited budgets and must balance modernization with cost control. 
+
+Recognizing these drivers helps statistical offices prioritize investments and avoid the pitfalls of reactive decision-making, where short-term fixes can lead to long-term inefficiencies.
+
+Including architecture drivers in the framework also strengthens communication with stakeholders. By clearly articulating the external and internal factors shaping architecture, CIOs, CTOs, and enterprise architects can build a stronger case for change, justify strategic initiatives, and ensure that all parties understand the urgency of modernization. In this way, SAF creates a shared understanding of why action is necessary and what risks are avoided by adopting a structured framework.
+ 
+### SAF-D1 Evolving Data Ecosystems and Partnerships
+
+The environment for producing official statistics is shifting from one of isolated data collection toward a complex and interdependent data ecosystem. Traditional surveys, once the cornerstone of statistical production, now coexist with administrative, commercial, platform, and community-driven data sources. This evolution expands opportunities for collaboration but also introduces dependencies on actors, technologies, and infrastructures outside the direct control of statistical organizations.
+
+Open-source development has become a key element of this ecosystem. It provides a shared foundation for innovation, transparency, and cost efficiency, while fostering cooperation across institutional and national boundaries. As part of a wider collaboration model, open source allows NSIs to co-develop tools and methods with peers, academia, and private partners, ensuring that advances in technology benefit the entire statistical community. SAF addresses this driver by promoting architectures that support secure data sharing, standardized interfaces, and transparent governance models. It enables NSIs to participate confidently in broader ecosystems, from national data platforms to European data spaces, where production may take place across multiple environments and jurisdictions. By combining openness with strong governance and clear accountability, SAF ensures that collaboration and shared development strengthen rather than compromise the integrity of official statistics.
+ 
+#### SAF-D2 Artificial Intelligence and Technological Acceleration
+
+Artificial intelligence, automation, and rapid technological progress are transforming how data is created, processed, and consumed. For statistical organizations, these developments bring both opportunities and dependencies. Emerging tools can automate repetitive tasks, enhance analytical capabilities, and strengthen quality assurance. At the same time, they redefine what it means for official statistics to remain relevant and trusted in an environment increasingly shaped by intelligent systems.
+
+The accelerating pace of innovation requires statistical offices to be both adopters and enablers of AI. Internally, this means developing architectures and competencies that support automation, machine learning, and advanced analytics within secure and transparent frameworks. Externally, it requires ensuring that official statistics are AI-ready - that is, machine-readable, machine-understandable, and interoperable with the digital platforms and applications used by policymakers, researchers, and citizens.
+
+SAF addresses this driver by enabling NSIs to adopt a risk-based approach to modernization. It supports architectures where critical processes that demand methodological rigor, transparency, and control can be tightly governed, while areas that are less sensitive can be automated to a higher degree. This balance ensures that innovation strengthens quality and efficiency without compromising security, privacy, or trust.
+
+Through modular and standards-based design, SAF provides the flexibility needed to integrate emerging technologies at an appropriate pace. It allows NSIs to benefit from automation and AI-driven tools while maintaining full accountability for statistical quality, data protection, and institutional independence.
+ 
+### SAF-D3 Trust, Scientific Rigor, and Data Protection
+
+Trust is the foundation of official statistics. In an environment increasingly challenged by misinformation, privacy concerns, and competition from unregulated data providers, maintaining public confidence requires more than compliance. It depends on scientific rigor, transparency, and clear accountability for how data is handled and communicated.
+
+SAF addresses this driver by embedding trust and protection directly into architectural design. It promotes governance and technical controls that safeguard confidentiality, ensure methodological integrity, and make processes traceable and transparent. Through a risk-based approach, SAF allows NSIs to apply strict oversight where sensitivity and quality demands are high, while enabling greater automation and shared solutions where risks are lower. This balance ensures that modernization strengthens trust rather than compromising it.
+ 
+### SAF-D4 Uncertain and Polarized Global Environment
+
+Statistical organizations operate in an increasingly complex and uncertain world. Global tensions, political polarization, and shifting power dynamics influence both the demand for and the perception of official statistics. At the same time, digital interdependence and cross-border data flows require statistical systems to remain open and interoperable while safeguarding national and institutional integrity.
+
+SAF addresses this driver by providing a stable and transparent foundation for cooperation and resilience. It promotes interoperable architectures based on shared standards, enabling NSIs to exchange data and methods securely even in times of uncertainty. By embedding governance and design principles that protect independence and transparency, SAF helps organizations maintain credibility, comparability, and trust in environments where facts themselves are often contested.
+ 
+### SAF-D5 Resource Constraints and Organizational Agility
+
+Many statistical organizations face increasing expectations with limited budgets, aging systems, and challenges in recruiting and retaining specialized skills. At the same time, the demand for more timely, detailed, and multidomain outputs continues to grow. Meeting these needs requires not only efficiency, but the ability to adapt rapidly to changing priorities and technologies.
+
+SAF addresses this driver by promoting architectures that make flexibility and reuse a core principle. It supports modular designs, shared services, and scalable solutions that reduce duplication and enable more effective use of existing resources. By fostering an agile organizational mindset and clear governance around priorities, SAF allows NSIs to reallocate capacity, modernize incrementally, and continue to deliver high-quality outputs even under financial and staffing constraints.
+
+
+### Goals
+
+Architecture goals represent the outcomes an organization aims to achieve by adopting and implementing aframework. They define what success looks like and serve as the link between strategy and action. In the case of the SAF, these goals are not just about modernizing IT systems, but about ensuring that national statistical institutes can continue to provide trustworthy, relevant, and high-quality statistics in a rapidly changing environment.
+
+The goals of SAF address both operational and strategic needs. On one hand, they focus on efficiency, modernization, and compliance, which are essential for ensuring sustainability. On the other hand, they support innovation, adaptability, and collaboration, enabling statistical offices to embrace new opportunities such as integrating alternative data sources or experimenting with advanced analytics. Together, these goals ensure that modernization efforts do not compromise the fundamental values of official statistics, neutrality, accuracy, and reliability.
+
+By defining goals explicitly, SAF provides a roadmap that can be adapted by each statistical organization according to its maturity and context. This ensures that while each office may have unique challenges and resources, they are all working toward a shared vision that promotes harmonization, comparability, and global collaboration in official statistics.
+ 
+### SAF-G1 Cost Efficiency and Resource Sharing
+With limited budgets and growing demands, statistical organizations must operate as efficiently as possible. SAF promotes cost optimization and improved effectiveness through shared services, reuse of solutions, and stronger interoperability. By pooling resources and adopting common components, NSIs can access capabilities that would be difficult to develop individually while avoiding duplication of effort.
+SAF also encourages the use of open-source components and community-driven platforms where this strengthens transparency, collaboration, and cost efficiency. Through modular architectures and clear governance, organizations can adapt to changing needs, reallocate capacity, and modernize incrementally without large-scale reinvestments. This approach ensures that efficiency is achieved in ways that reinforce both quality and long-term sustainability.
+ 
+### SAF-G2 Harmonized Reference Framework
+
+Without a shared architectural reference, statistical organizations risk developing isolated solutions that reduce comparability and increase long-term costs. SAF provides a harmonized foundation of standards, patterns, and best practices that can be adapted to local contexts while supporting interoperability across borders and domains. As collaboration increasingly takes place across shared infrastructures such as national data platforms and international data spaces, harmonization also becomes a prerequisite for participation. By promoting transparency and consistent design principles, SAF helps NSIs protect the integrity of official statistics and ensure that shared and open solutions can be reused safely and effectively. A common reference framework enables collaboration, strengthens trust, and supports coherence even as the data landscape evolves.
+ 
+### SAF-G3 Modernization of Statistical Systems
+
+Many statistical organizations continue to rely on fragmented and legacy IT environments that limit innovation and responsiveness. SAF provides guidance for transitioning toward modern, modular, and service-based architectures that are secure, scalable, and easier to maintain. Modernization reduces technical debt, improves reliability, and allows faster delivery of new and higher-quality statistical outputs.
+Modernization increasingly takes place in environments where multiple actors operate, from national infrastructures to cross-border data spaces. SAF ensures that such settings can be used safely by defining principles for access control, data protection, and accountability. It also supports a risk-based approach to automation and integration of emerging technologies. Critical processes can remain tightly governed to preserve methodological rigor, while less sensitive stages can be automated or shared.
+ 
+### SAF-G4 Support for Data Innovation
+
+Innovation in data and methods is central to the future of official statistics. SAF promotes an environment where experimentation, collaboration, and reuse are encouraged within secure and well-governed boundaries. By providing a clear architectural foundation, SAF enables NSIs to incorporate new data sources, tools, and analytical methods without undermining consistency or quality.
+
+Innovation is not only about creating new solutions but also about making change possible within production. Many statistical organizations find it difficult to introduce new data sources or develop new statistical products because their production systems are optimized for predictability and stability. While these are necessary principles, they can limit agility. SAF addresses this by supporting architectures that balance robustness with flexibility, allowing new components, data, or workflows to be integrated more rapidly while maintaining full control over quality and compliance.
+
+To make this possible, the framework emphasizes mechanisms and guardrails that enable controlled integration of innovative methods into production chains. This includes versioning, validation, and automated testing approaches that preserve reliability even as systems evolve. SAF also seeks to narrow the gap between innovation and production by promoting shared platforms and processes that allow prototypes to transition smoothly into operational environments.
+
+Open source plays a key role in this innovation process. It allows organizations to build on each other’s work, increase transparency, and strengthen the collective capacity of the statistical community. SAF supports this through architectural patterns that enable safe reuse of open components and integration with shared platforms. In doing so, it helps turn innovation into a structured, sustainable part of statistical production.
+ 
+### SAF-G5 Sustainable Compliance
+
+Compliance with regulations, standards, and ethical principles is fundamental to maintaining the trust and legitimacy of official statistics. SAF ensures that modernization aligns with legal, security, and quality frameworks while promoting transparency and accountability. Within the statistical domain, well-established standards such as GSBPM, GSIM, and SDMX continue to provide a foundation for consistent processes, metadata management, and data exchange. These remain essential for ensuring methodological rigor and comparability across the statistical system.
+
+However, as the production of statistics becomes increasingly integrated into the broader data and technology ecosystem, compliance must also extend beyond traditional statistical standards. SAF encourages active engagement with and adoption of relevant standards from adjacent fields such as data management, artificial intelligence, and cloud computing. This outward-looking approach ensures that NSIs remain interoperable with modern data platforms and can benefit from technological progress developed outside the statistical community.
+
+Through consistent governance and the use of open, verifiable technologies, SAF supports compliance as an enabler rather than a constraint. It provides the structures necessary to ensure that innovation, data sharing, and open collaboration occur within controlled and auditable environments. This approach reinforces public trust by embedding transparency, scientific rigor, and privacy-by-design across all processes.
+
+## Meaning
+Architecture meaning provides the “why” behind the framework. While goals and outcomes describe what SAF achieves, meaning explains why it matters. For statistical organizations, architecture is not just a technical exercise but a way of ensuring their continued relevance in a digital society. SAF’s meaning lies in its role as the foundation for modernization, trust, and international collaboration.
+
+- One dimension of this meaning is its role as a bridge between strategy and technology. Without such a framework, investments in IT risk being disconnected from the mission of providing high-quality statistics. SAF ensures that every technological decision, from adopting a new platform to restructuring business processes, can be traced back to strategic objectives, creating a coherent organizational narrative. 
+- Another dimension is collaboration. The meaning of SAF extends beyond individual organizations: it is a unifying language for the UNECE statistical community. By providing shared models, practices, and principles, SAF fosters international collaboration, reduces duplication, and amplifies collective impact. In this sense, SAF is not just meaningful to IT professionals but to the broader community of statisticians, policymakers, and citizens who depend on trustworthy statistics.
+ 
+### SAF-M1 Bridge Between Strategy and Technology
+SAF connects high-level strategic objectives, such as improving statistical relevance and efficiency, with concrete technology choices. It ensures that IT investments are always justified by their contribution to the organization’s mission.
+ 
+### SAF-M2 Catalyst for Collaboration
+SAF is a unifying framework for the statistical community. It enables organizations to work together on shared goals, whether through joint platforms, interoperable systems, or harmonized standards, thereby amplifying the collective capacity of UNECE members.
+ 
+### SAF-M3 Foundation for Digital Transformation
+SAF is not just a set of technical models; it is the foundation for digital transformation in official statistics. It enables NSIs to embrace innovation without sacrificing methodological rigor or institutional trust.
+
+### SAF-M4 Unifying Language and Notation
+By adopting TOGAF and ArchiMate, SAF ensures that diverse stakeholders can communicate using a consistent language and notation. This reduces misunderstandings, enables shared modelling practices, and promotes architectural maturity across the community.
+
+# Outcome
+
+Architecture outcomes describe the tangible benefits that organizations can expect when adopting SAF. They translate principles, goals, and drivers into measurable impacts such as improved interoperability, reduced costs, and enhanced data quality. Outcomes are critical for demonstrating the value of architecture to stakeholders, as they provide a clear “return on investment” for adopting the framework. In the SAF, outcomes are both technical and societal.
+
+On the technical side, NSIs benefit from streamlined processes, better metadata management, and more efficient system development. On the societal side, SAF supports trust, transparency, and comparability of statistics, which are essential for informed policy-making and democratic accountability. This dual perspective ensures that SAF delivers benefits beyond IT, directly supporting the mission of statistical organizations.
+
+By emphasizing outcomes, SAF also reinforces a culture of continuous improvement. Outcomes are not static; rather they evolve as organizations mature and as new challenges emerge. Making outcomes explicit allows NSIs to assess progress, measure success, and adjust their modernization strategies in line with both internal priorities and external demands.
+ 
+## SAF-O1 Accelerated Modernization
+Embedding governance, metadata, and lineage into architecture ensures that statistical outputs maintain the highest standards of quality and trustworthiness. SAF makes quality an architectural outcome rather than an afterthought.
+ 
+## SAF-O2 Enhanced Data Quality
+Embedding governance, metadata, and lineage into architecture ensures that statistical outputs maintain the highest standards of quality and trustworthiness. SAF makes quality an architectural outcome rather than an afterthought.
+ 
+## SAF-O3 Improved Interoperability
+By adopting SAF, NSIs will achieve higher levels of interoperability across systems, domains, and borders. This facilitates cross-country collaborations, enhances comparability of statistics, and simplifies the integration of external data sources into official workflows.
+ 
+## SAF-O4 Improved Trust and Transparency
+By embedding principles such as openness, security, and transparency, SAF helps to build and maintain public trust in statistics. This outcome strengthens the reputation of NSIs and the legitimacy of their outputs.
+ 
+## SAF-O5 Increased Efficiency
+SAF reduces duplication of effort by promoting reuse, harmonization, and standardization. This outcome means lower IT costs, faster system development cycles, and more efficient data processing pipelines across the statistical system.
+ 
+## SAF-O6 Shared Knowledge Base
+SAF fosters a community of practice across UNECE members. Through shared architectural frameworks, NSIs can exchange lessons learned, reusable components, and knowledge, leading to continuous improvement at lower cost.
+
+# Architecture Principles
+Architecture principles are the basis for any enterprise architecture framework. They provide the guiding rules and fundamental truths that define the way organizations design, implement, and manage their IT landscapes. In the context of official statistics, principles are particularly important because they ensure consistency across an interconnected environment.
+
+For the SAF, architecture principles act as a compass for decision-making. They ensure that whenever there is a choice to be made between technologies, processes, or solutions, decisions are not taken in isolation but in accordance with the overarching vision of the statistical community. They also prevent short-term convenience from undermining long-term sustainability, a challenge that statistical offices often face given their reliance on legacy systems and resource constraints.
+
+These principles also provide an element of accountability. When stakeholders understand the principles behind architectural decisions, it becomes easier to justify investments, explain trade-offs, and demonstrate that architecture is not a purely technical exercise but a strategic enabler of the organization’s mission. In this way, principles make architecture transparent, predictable, and anchored in trust.
+
+## SAF-P01 Reuse before open source, open source, before buying, buying before making it yourself
+In case of equal suitability (Business Case), reuse of (parts of) applications takes precedence. The use of open source software takes precedence over purchasing. Purchasing is then preferred over making it yourself. Non-statistical processes only use standard applications.
+
+Reuse of an application or parts of that application is sustainable and cost-efficient, and also leads to standardization in service provision and information provision. If reuse is not possible, investigate whether an Open Source solution is available before considering a Closed Source (Commercial) solution.
+ 
+## SAF-P02 Active support
+Systems (hardware and software) have an active user community and/or vendor support. The rule of thumb is that we use the latest or the second-to-last major version. Among other things, for business continuity it is necessary to be able to get quick and good support in resolving a disruption in the event of a disruption. It is also important from a security perspective that identified security risks are resolved in a timely manner.
+ 
+## SAF-P03 Active Life Cycle management
+With active Life Cycle management we prevent overdue maintenance in the IV landscape so that continuity & security risks are mitigated, among other things. Without Life Cycle management, systems or parts thereof can become outdated and thus become vulnerable in terms of security. Without active Life Cycle management, a  technological debt is also built up that, when it eventually has to be repaid, will require disproportionate effort or introduce continuity risks. Keeping systems and components up-to-date in accordance with established LCM policy mitigates these risks.
+ 
+## SAF-P04 Maximize the benefits for the organization
+IT decisions are made to maximize the benefits of the organization as a whole. This principle embodies 'service above self'. Decisions made from an organization-wide perspective have greater long-term value than decisions made from a departmental perspective. To maximize the return on the investment, IV decisions must align with the organization-wide mission and priorities.
+ 
+## SAF-P05 IT and technology is everyone's business
+All departments in the organization participate in IV decisions that are necessary to achieve organizational goals. IT and technology users are the key stakeholders in the application of technology to meet an organization's needs. To ensure that IT and technology are aligned with business operations, all departments in the organization must be involved in all aspects of the IT and technology landscape. Business experts from across the organization and the technical staff responsible for developing and maintaining the IT and technology capabilities must work together as a team to jointly define the goals and objectives.
+ 
+## SAF-P06 Business Continuity
+Organizational activities are maintained despite system or employee outages. As systems and processes become increasingly important to operations, we become more dependent on them; therefore, we must consider the reliability of such systems and processes in their design and operation. Departments throughout the organization must have the ability to continue their activities, regardless of external events, within agreed lead times. Hardware failures, natural disasters, and data corruption must not disrupt or stop operations. The enterprise must be able to operate on the basis of alternative IV systems/processes.
+ 
+## SAF-P07 Implement loosely coupled processes and systems
+Processes and systems should be built as independently as possible. This means that processes and systems are designed in such a way that they are not intertwined and dependent on each other. Functionality and logic should be shared with the rest of the organization via standard interfaces. Loosely coupling processes and systems offers more flexibility to adapt or replace individual processes and systems in the future. In addition, there are advantages in terms of scalability and robustness. Differences in security and privacy requirements can also be better enforced.
+ 
+## SAF-P08 Data is shared property
+Statistical data that has been determined to add value for use by internal or external users is shared. This implies re-use of data, both in observation to reduce the burden and in further processing to prevent duplication of work in improving and analyzing data.
+ 
+## SAF-P09 No data without metadata and classification
+All data that needs to be shared, needs to be provided with metadata information that describes the content and meaning of the data as well as possible. In addition, the data also needs to be classified. Metadata makes it possible to make data FAIR and the BIV classification (Availability, Integrity and Confidentiality) provides direction for the necessary technical and organizational measures. This is to comply with various laws, requirements and security standards.
+ 
+## SAF-P10 Security By Design
+Security should not be an afterthought in IV solutions, but should be part of those solutions. Coherent security mechanisms should span all layers of the architecture and be scalable from small objects to large objects. Security should be designed as an integrated part of the system architecture.
+ 
+## SAF-P11 Privacy By Design
+Privacy by design should be designed as an integrated part of the system architecture and business processes. Privacy should not be an afterthought in IV solutions, but should be part of those solutions. The result is that privacy becomes an essential part of the core functionality that is delivered. Privacy is an integral part of the system without compromising functionality.
+
+# Value
+The value of architecture lies in the benefits it creates for stakeholders. While outcomes describe specific impacts, value captures the broader, long-term importance of SAF to statistical organizations and society. It is about demonstrating that investing in architecture is not merely a technical necessity but a strategic decision that creates trust, efficiency, and sustainability.
+For NSIs, the value of SAF includes reduced risks, greater agility, and improved alignment between IT and business objectives. For international organizations, it provides harmonization and comparability, enabling more effective collaboration across borders. For citizens and policymakers, the value lies in the trustworthiness of the statistics produced, ensuring that public policy and democratic processes are grounded in reliable data.
+Value is also about sustainability. Without a framework, modernization efforts can be fragmented, costly, and short-lived. SAF provides a stable foundation that reduces technical debt, improves governance, and ensures that investments yield long-term benefits. In doing so, it secures the role of statistical organizations as trusted institutions in the digital age.
+ 
+## SAF-V1 Cross-Border Comparability
+Statistics gain value when they are comparable across borders. SAF enables this by promoting common standards, models, and processes, ensuring that statistics from different countries can be meaningfully compared.
+
+## SAF-V2 Innovation Enablement
+SAF is designed to support the integration of advanced technologies such as AI/ML, real-time analytics, and big data. By lowering the barriers to innovation, it enables NSIs to experiment safely while maintaining methodological soundness.
+
+## SAF-V3 Risk Reduction
+By embedding compliance, security, and governance into the architecture, SAF reduces risks associated with system failures, data breaches, or regulatory non-compliance. This value is particularly critical in maintaining the trust of citizens and stakeholders.
+ 
+## SAF-V4 Strategic Alignment
+SAF ensures that all IT initiatives within NSIs directly contribute to their mission of producing official statistics. This alignment improves governance, prioritization, and the impact of IT investments.
+ 
+## SAF-V5 Sustainability
+SAF promotes efficiency and modernization while reducing technical debt. By providing clear pathways for evolution, it ensures that NSIs can sustain their IT landscapes without repeated costly overhauls.
+ 
+## SAF-V6 Trust & Legitimacy
+The value of SAF lies in enhancing trust in official statistics. By ensuring transparency, ethical practices, and robust security, SAF reinforces the legitimacy of NSIs as authoritative providers of public data.
+
+# Stakeholders, Roles and Collaborations
+
+### Stakeholders
+
+Architecture is never developed in isolation. Stakeholders - , as individuals, groups, or organizations that influence or are influenced by architecture - are central to its success. In the SAF, stakeholders range from technical experts and CIOs within NSIs to international organizations, policymakers, researchers, and ultimately, society at large. Each of these stakeholders has unique interests, expectations, and contributions, and the framework must balance these to be effective.
+
+Identifying stakeholders clarifies who should be involved in governance, decision-making, and implementation. For example, IT professionals are responsible for translating SAF principles into concrete systems, while policymakers are concerned with the outcomes those systems enable. International organizations such as UNECE play a custodial role, ensuring that SAF remains harmonized and relevant across countries. By mapping these roles, SAF ensures that no perspective is overlooked and that architecture decisions are inclusive and robust.
+
+Engaging stakeholders also strengthens legitimacy. When those affected by architecture decisions are part of the conversation, they are more likely to support the outcomes. For statistical organizations, where public trust is essential, engaging stakeholders such as researchers, academia, and citizens indirectly ensures that the architecture remains aligned with societal expectations of transparency, security, and fairness.
+ 
+#### SAF-ST01 CIOs & CTOs of NSIs
+Technology leaders within NSIs need to make strategic IT investment decisions. SAF supports them by providing a clear framework to evaluate options, align IT with business goals, and ensure compliance with international standards.
+ 
+#### SAF-ST02 Citizens & Society
+Ultimately, society is the beneficiary of SAF, as it ensures that statistical organizations produce trustworthy, transparent, and modern statistics that support democratic accountability and informed public discourse.
+ 
+#### SAF-ST03 Government Policy Makers
+Policy makers rely on official statistics to design, implement, and evaluate policies. SAF indirectly benefits them by ensuring that NSIs deliver timely, accurate, and comparable data in formats that are accessible and actionable.
+ 
+#### SAF-ST04 IT & Data Professionals
+Architects, engineers, and data scientists will use SAF to guide their daily work in designing, implementing, and managing systems. SAF provides them with common patterns, tools, and practices that increase efficiency and reduce the learning curve when collaborating across institutions.
+ 
+#### SAF-ST05 National Statistical Institutes (NSIs)
+NSIs are the primary beneficiaries of SAF, as it provides them with structured guidance for their enterprise architecture. By using SAF, NSIs can align with international practices, improve efficiency, and strengthen their ability to deliver high-quality statistics to stakeholders.
+ 
+#### SAF-ST06 Researchers & Academia
+Research communities increasingly rely on official data for scientific inquiry and innovation. SAF supports them by ensuring that statistical systems are designed with openness, data sharing, and high-quality metadata in mind, facilitating advanced research use cases.
+ 
+#### SAF-ST07 UNECE & Other International Bodies
+UNECE acts as a custodian of SAF, ensuring that it remains relevant, comprehensive, and widely adopted. Other bodies, such as Eurostat or the UN Statistics Division, are also stakeholders, as SAF complements their work in statistical modernization.
+
+### Roles
+*This section has not been written yet.*
+
+### Collaborations
+*This section has not been written yet.*

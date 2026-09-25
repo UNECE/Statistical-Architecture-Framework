@@ -1,0 +1,186 @@
+---
+title: "VS-10 Customer and Stakeholder Engagement"
+---
+
+## VS-10.0 Customer and Stakeholder Engagement
+
+### Purpose and Scope
+
+VS-10.0 ensures the statistical organization remains connected, relevant, and responsive to the needs of those it serves. It builds and maintains mutual understanding and trust between the NSO and its users, data providers, partners, and policy stakeholders. Because official statistics exist to create **public value**, the organization must understand what stakeholders need, communicate transparently, and keep products, services, and policies aligned with real-world demand. It is **not a one-way process** — it is a continuous dialogue that turns stakeholder insight into better products, improved services, and stronger relationships. The value it creates is **relevance and public value**.
+
+
+
+*A note on numbering:* each `VS-0x.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
+
+### Position — a supporting stream that works across the whole chain
+
+VS-10 is not a stage in the production line. It sits at the **edges** of the chain — facing both the data providers who feed VS-01 and the users who consume VS-06 — and channels what it learns inward to shape the whole chain.
+
+```{mermaid}
+%%| label: fig-1
+%%| fig-cap: "VS-10 engages providers and users two-way and channels their needs into the chain."
+%%| fig-width: 6
+flowchart TD
+    PROV["Data providers"] --> VS01["VS-01"]
+    subgraph primary["Primary Value Streams"]
+        direction LR
+        VS01 --> VS02["VS-02"] --> VS03["VS-03"] --> VS04["VS-04"] --> VS05["VS-05"] --> VS06["VS-06"]
+    end
+    VS06 --> USERS["Users & Society"]
+
+    VS10["**VS-10.0 Customer &<br/>Stakeholder Engagement**"]:::hi
+    VS10 <-->|"needs & relationships"| PROV
+    VS10 <-->|"needs, feedback,<br/>satisfaction"| USERS
+    VS10 -->|"needs routed into<br/>design & innovation"| primary
+
+    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9,stroke-width:2px
+    style PROV fill:#0f766e,color:#fff,stroke:#0f766e
+    style USERS fill:#0f766e,color:#fff,stroke:#0f766e
+```
+
+::: {.callout-important title="How a supporting value stream differs from a primary one"}
+- **No steady-state data transition.** VS-10 does not move data along the chain; it moves **understanding** — needs in, communication and services out.
+- **It runs continuously** as an ongoing dialogue, not per production cycle.
+- **Its output is an enabling capability, not a data artefact:** understood needs, a managed service portfolio, relationships, and impact insight.
+- **It aligns to GAMSO Strategy & Leadership and Corporate Support**, not to GSBPM production phases.
+:::
+
+### How It Interacts with the Production Chain
+
+VS-10 is the chain's two-way interface with the outside world. It is tightly coupled with **VS-01** (the data providers it engages) and **VS-06** (the users whose feedback it gathers, receiving VS-06.5's usage and satisfaction data). It translates what it hears into requirements that flow into design across the primary streams and into the **VS-08** innovation backlog.
+
+```{mermaid}
+%%| label: fig-2
+%%| fig-cap: "Interaction with the chain: needs and feedback in; communication, services, and requirements out."
+%%| fig-width: 6
+flowchart LR
+    EXT["Users, providers,<br/>partners, policymakers"] <-->|"dialogue"| VS10["VS-10<br/>Engagement"]:::hi
+    VS06["VS-06 Dissemination"] -->|"usage & feedback (§6.5)"| VS10
+    VS10 -->|"user needs & service requirements"| DES["Design across VS-01…06"]
+    VS10 -->|"user-driven innovation needs"| VS08["VS-08 Innovation"]
+
+    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9
+    style EXT fill:#0f766e,color:#fff,stroke:#0f766e
+```
+
+### Framework Alignment (GAMSO)
+
+Where the primary streams map to **GSBPM** production phases, VS-10 maps to **GAMSO** leadership and support activities:
+
+| GAMSO area | Relevance to VS-10 |
+|---|---|
+| **Strategy and Leadership** | Manage stakeholder and customer relationships; align the portfolio to strategy |
+| **Corporate Support** | Manage communications, marketing, user support, and service management |
+| **SAF capabilities** | Needs inventory (supports statistical design & build); customer/stakeholder management |
+
+### Principles Emphasised
+
+| Principle | Statement | How VS-10 applies it |
+|---|---|---|
+| **SAF-P04** | Maximize the benefits for the organization | Keeps the whole chain aligned to real stakeholder value and public benefit |
+| **SAF-P08** | Data is shared property | Promotes broad, equitable access and reuse of statistics and services |
+| **SAF-P02** | Active support | Runs user support and service management as actively-managed services |
+| **SAF-P11** | Privacy By Design | Engages data providers and users with transparency about how their data is used and protected |
+
+## Roles and Actors
+
+::: {.callout-note title="Indicative, not prescriptive"}
+The roles below are indicative, not a mandated organizational structure. The SAF deliberately leaves organization design to each NSO — assign these responsibilities to fit your own size, culture, and operating model.
+:::
+
+
+| Role | Description |
+|---|---|
+| **Head of Communication / Engagement** | Owns the stakeholder strategy and the external relationship |
+| **User Researcher** | Collects and analyzes user needs and satisfaction |
+| **Service / Product Portfolio Manager** | Defines and manages the catalog of services and data products |
+| **Account / Relationship Manager** | Manages relationships with key providers, partners, and policy users |
+| **Service Desk / User Support** | Operates day-to-day user support |
+| **Communications / Outreach Officer** | Runs outreach, workshops, and knowledge-sharing events |
+| **Impact Analyst** | Measures use, societal impact, and satisfaction |
+
+## The Value-Stream Flow
+
+VS-10's six business processes form a continuous engagement cycle — **understand → offer → deliver → measure** — that feeds back on itself.
+
+```{mermaid}
+%%| label: fig-3
+%%| fig-cap: "The six business processes as a continuous engagement cycle."
+%%| fig-width: 6
+flowchart LR
+    A["10.1 Identify &<br/>Segment Stakeholders"] --> B["10.2 Collect &<br/>Analyze User Needs"]
+    B --> C["10.3 Define & Manage<br/>Service Portfolios"]
+    C --> D["10.4 Deliver Services &<br/>Manage Relationships"]
+    D --> E["10.5 Engage &<br/>Communicate"]
+    E --> F["10.6 Monitor Impact<br/>& Satisfaction"]
+    F -.->|"insight feeds the next cycle"| A
+
+    style A fill:#f5f3ff,stroke:#7c3aed
+    style B fill:#f5f3ff,stroke:#7c3aed
+    style C fill:#eff6ff,stroke:#2563eb
+    style D fill:#ecfdf5,stroke:#059669
+    style E fill:#ecfdf5,stroke:#059669
+    style F fill:#fef3c7,stroke:#d97706
+```
+
+**Understand — know who and what.** The cycle begins by **identifying and segmenting stakeholders** (10.1): mapping the ecosystem of users, data providers, partners, and policymakers and understanding their roles and expectations. It then **collects and analyzes user needs** (10.2): gathering feedback, running consultations, and translating stakeholder needs into concrete data or service requirements.
+
+**Offer — shape the response.** Those needs shape the **definition and management of service portfolios** (10.3): catalogs of business services and data products that address stakeholder needs and align with strategic goals — the bridge between what users want and what the chain produces.
+
+**Deliver — serve and communicate.** Services are put into the hands of users by **delivering services and managing relationships** (10.4): operating customer support, service desks, and account management, and monitoring satisfaction and service performance. Alongside delivery, VS-10 **engages and communicates with stakeholders** (10.5): outreach, workshops, and knowledge-sharing that promote awareness and correct understanding of statistical outputs.
+
+**Measure — learn and feed back.** Finally it **monitors impact and satisfaction** (10.6): measuring how data and services are used, assessing societal impact, and feeding insight back into planning and innovation — closing the loop so the next cycle of needs is better understood.
+
+| Business process | What it produces |
+|---|---|
+| VS-10.1 Identify and Segment Stakeholders | Stakeholder map and segments |
+| VS-10.2 Collect and Analyze User Needs | Needs register / service requirements |
+| VS-10.3 Define and Manage Service Portfolios | Service & product portfolio |
+| VS-10.4 Deliver Services and Manage Relationships | Operating support & managed relationships |
+| VS-10.5 Engage and Communicate with Stakeholders | Outreach, communication, awareness |
+| VS-10.6 Monitor Impact and Satisfaction | Impact & satisfaction insight (fed back to the chain) |
+
+## Capability Governance
+
+VS-10 is itself a capability that is **designed** (engagement strategy, portfolio model), **built** (support and feedback channels — with VS-09), **operated** (continuous dialogue, support, communication), and **improved** (10.6 insight). Unlike a primary stream it produces **relevance, relationships, and insight**, not statistical data, and runs as a **continuous dialogue** rather than a per-cycle production run.
+
+### Key Performance Indicators
+
+| KPI | Description | Measurement |
+|---|---|---|
+| User satisfaction | Satisfaction score across user segments and services | Per survey wave, per segment |
+| Needs conversion | Share of captured needs converted into requirements routed to design or innovation | Per planning period |
+| Service performance | Support response and resolution times against the service standard | Monthly |
+| Reach and engagement | Participation in consultations and outreach; channel reach across segments | Per campaign, annually |
+| Impact evidence | Documented uses of official statistics in policy, research, and media | Annually |
+
+## Interactions, Services and Events
+
+| Counterpart | VS-10 provides | VS-10 receives | Interaction / event |
+|---|---|---|---|
+| **Users & society** | Services, support, communication, the service portfolio | Needs, feedback, satisfaction | "User need captured", "Consultation", "Service request" |
+| **Data providers (via VS-01)** | Relationship management, transparency | Willingness to provide data, provider needs | "Provider engagement" |
+| **VS-06 Dissemination** | Service requirements & user expectations | Usage and satisfaction data (its §6.5) | "Feedback received" |
+| **VS-08 Innovation & design across VS-01…06** | User-driven needs and service requirements | New/improved products and services | "Need routed to design/innovation" |
+
+## Business Objects / Artefacts
+
+VS-10 manages enabling artefacts: the **stakeholder map and segments**, the **user-needs register**, the **service and product portfolio**, **relationship and support records**, and **impact and satisfaction metrics**. These carry user insight into the rest of the chain and are maintained continuously rather than versioned per production cycle. Each artefact nevertheless has a designated owner and a managed lifecycle (SAF-P03): changes are tracked and outdated entries are retired.
+
+## Applying This to Your NSO
+
+### Maturity Assessment Checklist
+
+- [ ] Have we mapped and segmented our stakeholders (users, providers, partners, policymakers)?
+- [ ] Do we systematically collect and analyze user needs and translate them into requirements?
+- [ ] Do we manage a service/product portfolio aligned to those needs and to strategy?
+- [ ] Do we operate user support and manage key relationships, monitoring satisfaction?
+- [ ] Do we measure impact and feed insight back into design and innovation (VS-08)?
+
+### Scenarios
+
+**Scenario A — A new user need becomes a product.** Through consultation (10.2) VS-10 learns that regional policymakers need more granular labour-market data. It logs the requirement, adds a candidate product to the portfolio (10.3), routes the need to design (VS-04/VS-05) and, where new methods are required, to VS-08. Once released by VS-06, VS-10 monitors uptake and satisfaction (10.6) and refines the offering.
+
+**Scenario B — Closing the feedback loop.** VS-06.5 reports confusion about confidence intervals in a release. VS-10 analyzes the feedback (10.2/10.6), provides targeted user guidance and a plain-language explainer (10.5), and feeds a documentation improvement back to VS-05/VS-06 design — turning a usability problem into a concrete improvement.
+
+**Scenario C — A new audience emerges.** Monitoring shows journalists increasingly republishing statistics from third-party aggregators, sometimes incorrectly. VS-10 identifies data journalists as a distinct segment (10.1), consults them on their needs — machine-readable releases, embeddable visuals, plain-language methodology notes (10.2) — and adds a media-service offer to the portfolio (10.3). The channel requirements are routed to VS-06 and VS-09, an embargoed media briefing service is set up under VS-07's equal-access policy (10.4/10.5), and citation accuracy in the press is tracked as an impact measure (10.6).

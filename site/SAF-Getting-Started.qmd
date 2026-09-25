@@ -1,0 +1,483 @@
+---
+title: "Getting Started with SAF"
+---
+
+*A beginner's guide. Two processes are followed from start to finish through the steady states, and an exercise helps you map one of your own production processes onto the framework.*
+
+::: {.callout-tip title="How to use this guide"}
+There are three ways in:
+
+- **Read the walk** (sections 1–4): one survey dataset and one administrative dataset followed through the six steady states, then the governance cycle that runs around each stream.
+- **Jump to the exercise** (section 5) if you already know SAF and want to map one of your own processes.
+- **Run it as a workshop:** sections 1–3 as a 45-minute briefing, section 5 as a 90-minute working session.
+
+The guide assumes you know how statistical production works. It does **not** assume you know architecture; where a word is used in a special sense, the [Glossary](glossary.qmd) explains it. For the ten-minute overview see [SAF in Brief](SAF-in-Brief.qmd); for the full framework see the [SAF Framework document](framework/index.qmd).
+
+Like the framework's business-architecture chapters, this guide stops at the business layer: it does not cover applications or technology.
+:::
+
+## 1. Key concepts
+
+- **Value stream**: a sequence of steps that together create a statistical output. Think of it as a production line: VS-01 to VS-06 each add a specific kind of value to the data.
+- **Value stream stage vs. business process**: the stage (`VS-0x.y`) says *what value* is added; the business process describes *how* your office actually does it. The numbering maps one-to-one, so this guide uses `VS-0x.y` for both.
+- **Steady state**: a fixed handover point, where a versioned, quality-assured dataset produced by one stream is consumed by the next. The states are numbered from #0 (source data, still at the provider) to #6 (data in users' hands).
+- **The four process types**: every stream is described through the same four groups: **Design** (decide how it should work), **Implementation** (build and test it), **Execution** (run it each production cycle) and **Management** (check quality and feed improvements back).
+- **Business service / object / event**: what a stream offers to others / the data it works on / the signals streams send each other (for example *"Raw Data Registered"* tells the next stream new data is ready).
+- **Artefact**: what is handed over at a steady state, meaning the dataset plus the metadata describing it. It is **immutable**: a correction never overwrites a registered artefact but creates a new version. To **register** an artefact is to catalogue it with an identifier so others can find and cite that exact version. This has nothing to do with a statistical register such as the business or population register.
+
+| State | Name | Produced by | Meaning |
+|---|---|---|---|
+| (#0) | Source Data | *external providers* | Data at the external holder, before it enters the NSO (pre-ingestion; not a numbered SAF state) |
+| #1 | Raw Data | VS-01 | Received into NSO custody in original form, with provenance and basic validation |
+| #2 | Standardized Data | VS-02 | Aligned to common structure, format, and classifications; **values unchanged** |
+| #3 | Processed Data | VS-03 | Content validated, edited, imputed, enriched, integrated; derived variables added |
+| #4 | Statistics (Output Data) | VS-04 → VS-05 | Estimated/aggregated statistics (VS-04), composed into approved products (VS-05) |
+| #5 | Released Data | VS-06 | Disclosure-controlled, documented, published or delivered to external parties |
+| #6 | Consumed Data | *external users* | Data in use outside the NSO's direct control |
+: The steady states of data {tbl-colwidths="[10,20,20,50]"}
+
+```{mermaid}
+%%| label: fig-gs-states
+%%| fig-cap: "Steady-state handover across the chain. Each arrow is a handover between streams, triggered by a registration event. Blue = data states inside the NSO; yellow = statistics; light green = released; dark green = outside the NSO's control."
+flowchart TD
+    S0["Source Data"]:::ext -->|VS-01| S1["#1 Raw"]
+    S1 -->|VS-02| S2["#2 Standardized"]
+    S2 -->|VS-03| S3["#3 Processed"]
+    S3 -->|VS-04| S4["#4 Statistics"]
+    S4 -->|VS-05| S4b["#4 Approved products"]
+    S4b -->|VS-06| S5["#5 Released"]
+    S5 --> S6["#6 Consumed"]:::ext
+
+    classDef ext fill:#0f766e,color:#fff,stroke:#0f766e
+    style S1 fill:#dbeafe,stroke:#2563eb
+    style S2 fill:#dbeafe,stroke:#2563eb
+    style S3 fill:#dbeafe,stroke:#2563eb
+    style S4 fill:#fef9c3,stroke:#b45309
+    style S4b fill:#fef9c3,stroke:#b45309
+    style S5 fill:#dcfce7,stroke:#16a34a
+```
+
+::: {.callout-important title="Two cross-chain disciplines"}
+**Metadata everywhere (SAF-P09):** value is only added once its context is recorded: what was done, by which rule or method, with what accuracy, and traceable to its inputs.
+
+**Confidentiality at several points (SAF-P11):** direct identifiers are removed or pseudonymised at standardisation (#2) at the latest, or earlier where that suits the process; disclosure risk is assessed on enrichment (#3); disclosure control is applied to outputs (#4); and a final disclosure check comes before release (#5).
+:::
+
+## 2. The two datasets we follow
+
+The same architecture serves very different data. To show that, the walk follows two threads side by side:
+
+- **A Labour Force Survey (LFS)**, a case of *primary* data collection (capability 1.2.1): the NSO designs the sample and questionnaire, runs the fieldwork, and collects both the data and its metadata. The LFS uses a mixed-mode design (CAWI invitation by email, CATI follow-up after two weeks for non-respondents, CAPI for hard-to-reach populations) on a 2-2-2 rotation panel.
+- **A tax register feeding business statistics**, a case of *secondary* data collection (capability 1.2.2): quarterly corporate income-tax declarations for all legal entities, received from the tax authority under a data-sharing agreement (delivery within 45 days of quarter end, at least 98% of expected records), for use in business statistics and national accounts.
+
+The tax thread is not purely administrative all the way: at State #3 it is integrated with the structural business survey on the business-register key, and at State #4 register-based and survey-based estimates are composed into one product. This was chosen on purpose. It applies SAF-P08 (*data is shared property*) and shows how sources that entered the chain separately can be combined once they reach a common state.
+
+| Thread | Source type | Collection capability | Cycle | Identifiers used in this guide |
+|---|---|---|---|---|
+| Labour Force Survey | Survey (primary) | 1.2.1 Primary data collection | Quarterly, Q3-2026 | `RD-LFS-2026Q3-001` → `SD-LFS-2026Q3-001` → `PD-LFS-2026Q3-001` → `OD-LFS-2026Q3` → `SP-LFS-2026Q3-001` |
+| Tax register → business statistics | Administrative (secondary) | 1.2.2 Secondary data collection | Quarterly, Q3-2026 | `RD-TAX-2026Q3-001` → `SD-BUS-2026Q3-001` → `PD-BUS-2026Q3-001` → `OD-BUS-2026Q3-001` → `SP-BUS-2026Q3-001` |
+: The two threads {tbl-colwidths="[18,14,20,14,34]"}
+
+::: {layout-ncol="2"}
+
+```{mermaid}
+%%| label: fig-gs-thread-lfs
+%%| fig-cap: "Labour Force Survey — primary collection."
+flowchart TD
+    L0["Survey responses<br/>(#0 Source)"]:::ext -->|"response submitted"| L1["RD-LFS-2026Q3-001<br/>#1 Raw"]:::s
+    L1 -->|"Raw Data Registered"| L2["SD-LFS-2026Q3-001<br/>#2 Standardized"]:::s
+    L2 -->|"Standardized Data Registered"| L3["PD-LFS-2026Q3-001<br/>#3 Processed"]:::s
+    L3 -->|"Processed Data Registered"| L4["OD-LFS-2026Q3<br/>#4 Statistics"]:::o
+    L4 -->|"Output Data Registered"| L5["SP-LFS-2026Q3-001<br/>#4 Approved product"]:::o
+    L5 -->|"Statistical Product Registered"| L6["Labour market release<br/>#5 Released"]:::r
+    L6 -->|"Statistics Released"| L7["Users<br/>#6 Consumed"]:::ext
+
+    classDef ext fill:#0f766e,color:#fff,stroke:#0f766e
+    classDef s fill:#dbeafe,stroke:#2563eb
+    classDef o fill:#fef9c3,stroke:#b45309
+    classDef r fill:#dcfce7,stroke:#16a34a
+```
+
+```{mermaid}
+%%| label: fig-gs-thread-tax
+%%| fig-cap: "Tax register → business statistics — secondary collection."
+flowchart TD
+    T0["Tax authority file<br/>(#0 Source)"]:::ext -->|"delivery received"| T1["RD-TAX-2026Q3-001<br/>#1 Raw"]:::s
+    T1 -->|"Raw Data Registered"| T2["SD-BUS-2026Q3-001<br/>#2 Standardized"]:::s
+    T2 -->|"Standardized Data Registered"| T3["PD-BUS-2026Q3-001<br/>#3 Processed"]:::s
+    T3 -->|"Processed Data Registered"| T4["OD-BUS-2026Q3-001<br/>#4 Statistics"]:::o
+    T4 -->|"Output Data Registered"| T5["SP-BUS-2026Q3-001<br/>#4 Approved product"]:::o
+    T5 -->|"Statistical Product Registered"| T6["Tables + secure microdata<br/>#5 Released"]:::r
+    T6 -->|"Statistics Released"| T7["Users & researchers<br/>#6 Consumed"]:::ext
+
+    classDef ext fill:#0f766e,color:#fff,stroke:#0f766e
+    classDef s fill:#dbeafe,stroke:#2563eb
+    classDef o fill:#fef9c3,stroke:#b45309
+    classDef r fill:#dcfce7,stroke:#16a34a
+```
+
+:::
+
+The two threads go through the same seven handovers with the same event names, although their sources are very different.
+
+
+::: {.callout-warning title="The numbers are illustrative"}
+Volumes, rates, and dates in the walk (42,000 returns, 2,347,891 records, an employment rate of 71.4%, a 09:00 release) are taken from the worked scenarios in the SAF Framework document. They illustrate the mechanism; they are not benchmarks. The tax-thread identifiers (`RD-TAX-2026Q3-001` … `SP-BUS-2026Q3-001`) are the ones used there. For the LFS thread, only `OD-LFS-2026Q3` appears in the framework document; the other LFS identifiers are introduced here so the two threads can be read in parallel.
+:::
+
+## 3. The walk, one state at a time
+
+Each state below is one **handover card**: what arrives, what the stream does, what it deliberately does *not* do, what it registers, the event it fires, the metadata that travels, and how the two threads differ. The event and metadata rows have the same shape on every card. This is deliberate: a stream only needs to understand that shape, not the work of the stream before it. The cards show each stream's **Execution** process; section 4 shows the three other process types around it.
+
+### State #1 — Raw Data (VS-01 Data Acquisition and Ingestion)
+
+*Source Data → #1 Raw Data. Received into NSO custody in original form, with provenance and basic validation. Nothing about the content is changed here.*
+
+::: {.column-page}
+| | Labour Force Survey | Tax register → business statistics |
+|---|---|---|
+| **What arrives** | Survey responses from the sampled households: CAWI first, CATI follow-up after two weeks, CAPI for hard-to-reach cases. Trigger: *survey response submitted*. | The Q3 quarterly file, delivered via SFTP on day 38 of the 45-day SLA. Before the window opened, the team verified the SLA (≥ 98% of expected records), confirmed the SFTP credentials, and recorded the active agreement reference. Trigger: *delivery received*. |
+| **What this stream does** | Confirms the round's needs and sources; activates the legal basis; runs each mode, capturing ingestion metadata at receipt (mode, completion date, instrument version); validates completeness and structure per return; logs every result. | The automated pipeline fires on arrival: XSD valid, SHA-256 checksum matches the manifest, virus scan clean, 2,347,891 records (99.2% of expected, above the 98% threshold); 14 corporate IDs not in the business register are flagged but not rejected (known register lag). |
+| **What is *not* done here** | No coding, editing or change of values: the content is what the respondent gave. | No pseudonymisation (deferred to VS-02 by agreement); no conversion of amounts; the XML is kept as received. |
+| **What is registered** | `RD-LFS-2026Q3-001`: the ~42,000 returns in original form, with per-return provenance and a completeness score. | `RD-TAX-2026Q3-001`: the file in original XML, with provenance, a quality assessment (completeness 99.2%, timeliness on time, conformance pass with 14 flags), and the agreement reference. |
+| **Event fired → who listens** | *"Raw Data Registered"* → VS-02 | *"Raw Data Registered"* → VS-02 |
+| **Metadata that travels** (both) | Provenance, source, collection method, receipt timestamp, file hash, agreement reference, quality assessment (completeness, timeliness, conformance), and a BIV classification (a security label covering availability, integrity and confidentiality; the letters come from the Dutch). | |
+| **What differs** | Primary collection: the NSO designed the instrument and runs the fieldwork; the raw artefact is many submissions across several modes. | Secondary collection: the NSO negotiated an SLA and receives one file; validation is entirely automated. The contract at the boundary is identical. |
+: State #1 handover card {tbl-colwidths="[18,41,41]"}
+:::
+
+::: {.callout-note title="Signature discipline — no data without metadata"}
+Every dataset is enriched at ingestion with provenance, source, method, timestamp, a quality assessment and a BIV classification, as SAF-P09 requires, with security and privacy built in from the start (SAF-P10/P11).
+:::
+
+::: {.callout-note title="In the main document"}
+Full chapter: [VS-01 Data Acquisition and Ingestion](framework/vs-01.qmd). Its *Steady State Transition*, *Boundary Interface Specifications* and *End-to-End Scenarios* go further than the card above. Note that the survey scenario there is a Household Budget Survey; the LFS thread above is built from the LFS design example in the same chapter. A one-page summary of this stream also sits in [Business Architecture](framework/business-architecture.qmd).
+:::
+
+### State #2 — Standardized Data (VS-02 Data Standardization and Integration)
+
+*#1 Raw → #2 Standardized. Aligned to common structure, format, and classifications, with values unchanged. This is the first point at which data from different domains can be combined.*
+
+::: {.column-page}
+| | Labour Force Survey | Tax register → business statistics |
+|---|---|---|
+| **What arrives** | *"Raw Data Registered"* for `RD-LFS-2026Q3-001`, ~42,000 returns. | *"Raw Data Registered"* for `RD-TAX-2026Q3-001`, 2,347,891 records. |
+| **What this stream does** | Converts the file into the target structure; maps education codes one-to-one to ISCED-2011 and region codes to NUTS-3 via correspondence tables; records the survey's employment-status definition difference from ILO *as metadata*; pseudonymises the personal identifier. Conformance validation passes, including the no-loss-of-content check (42,000 records, no value changed). | Maps the tax authority's internal activity codes to NACE Rev. 2 (99.4% coverage); converts the XML into the target structure; attaches the statistical business register (SBR) key; records that turnover is in thousands of EUR on a fiscal-year basis *as metadata*; values are left exactly as received. 14 records without an SBR match are flagged but retained. Conformance passes with every value unchanged. |
+| **What is *not* done here** | The 42,000 free-text occupation strings are **not** coded; they are flagged and handed to VS-03 for ISCO-08 coding. The definition difference is not reconciled. | Turnover is **not** converted to units or to a calendar year; the 0.6% of activity codes with no correspondence are flagged for VS-03. |
+| **What is registered** | `SD-LFS-2026Q3-001`, with mapping lineage to the raw artefact. | `SD-BUS-2026Q3-001`, with lineage to `RD-TAX-2026Q3-001` and a note that unit/period conversion remains to be done. |
+| **Event fired → who listens** | *"Standardized Data Registered"* → VS-03 | *"Standardized Data Registered"* → VS-03 |
+| **Metadata that travels** (both) | Source-to-target mapping lineage, applied classification scheme versions, recorded unit/currency/reference-period bases, the list of unmapped or uncoded values for VS-03 to code, definition-difference records, conformance assessment, pseudonymisation record, BIV classification. | |
+| **What differs** | Deterministic mapping of coded answers; pseudonymisation of persons. | Mapping of an administrative code list to NACE; linkage key attached; the *bases* of amounts recorded so a later stream can convert them. |
+: State #2 handover card {tbl-colwidths="[18,41,41]"}
+:::
+
+Confidentiality step at this state: direct identifiers are replaced by pseudonymous keys before the artefact is registered.
+
+::: {.callout-note title="Signature discipline — standardization without loss of content"}
+VS-02 only maps codes one-to-one, reformats the structure, and adds metadata. It **never changes a value**. Recoding through a fixed correspondence table counts as standardisation because the meaning of the value stays the same. Unit/currency conversion, reference-period alignment, value reconciliation and interpretive free-text coding are left to VS-03.
+:::
+
+::: {.callout-note title="In the main document"}
+Full chapter: [VS-02 Data Standardization and Integration](framework/vs-02.qmd). See its *Steady State Transition*, *Boundary Interface Specifications* and *End-to-End Scenarios*: Scenario A is the LFS, Scenario B the tax register. A one-page summary of this stream also sits in [Business Architecture](framework/business-architecture.qmd).
+:::
+
+### State #3 — Processed Data (VS-03 Data Editing and Enrichment)
+
+*#2 Standardized → #3 Processed. Content validated, edited, imputed, enriched, integrated; derived variables added. This is the only stream that deliberately changes values, and every change must be documented and reversible.*
+
+::: {.column-page}
+| | Labour Force Survey | Tax register → business statistics |
+|---|---|---|
+| **What arrives** | *"Standardized Data Registered"* for `SD-LFS-2026Q3-001`, plus the flagged occupation strings and the recorded definition difference. | *"Standardized Data Registered"* for `SD-BUS-2026Q3-001`, plus the recorded unit and fiscal-year bases and the unmapped activity codes. |
+| **What this stream does** | Error detection flags inconsistencies and outliers; auto-corrections are applied and high-impact records adjudicated. The 42,000 occupations are coded to ISCO-08 (88% auto-coded, the rest computer-assisted and reviewed). Income non-response (9%) is imputed and flagged. Employment status is harmonised to the ILO definition under the reconciliation rule. | Outliers and duplicates are detected and corrected with full lineage. Turnover is converted to units on a calendar-year basis (conversion factor and original value stored). The tax data and the structural business survey are integrated on the SBR key, with the reconciliation rule applied where they disagree. Turnover-per-employee is derived. |
+| **What is *not* done here** | No weighting or estimation: no statistics are computed here. Observed values are never overwritten: the original is kept beside every edit, and imputed values stay distinguishable. | Same. Integration does not silently pick one source over the other: reconciliation follows a designed rule and is logged. |
+| **What is registered** | `PD-LFS-2026Q3-001`: an immutable quality version with complete edit lineage. | `PD-BUS-2026Q3-001`, with lineage to `SD-BUS-2026Q3-001`. |
+| **Event fired → who listens** | *"Processed Data Registered"* → VS-04 | *"Processed Data Registered"* → VS-04 |
+| **Metadata that travels** (both) | Edit lineage (original value, rule, reason), imputation flags and methods, derived-variable formulae and classification, integration/linkage lineage, quality-improvement assessment, quality-version identifier, BIV classification. | |
+| **What differs** | Interpretive coding and imputation of item non-response dominate. | Conversion, multi-source integration, and derivation dominate. In both, every change is traceable to its original value. |
+: State #3 handover card {tbl-colwidths="[18,41,41]"}
+:::
+
+Confidentiality step at this state: disclosure risk is assessed on enrichment and linkage. In the tax thread, the disclosure-risk report confirms the survey–register linkage stays within assessed bounds.
+
+::: {.callout-note title="Signature discipline — full traceability"}
+VS-03 is the domain that changes values, under the guarantee of *no undocumented or irreversible change*: original values are preserved beside edited ones, imputations are flagged, and every version is reproducible.
+:::
+
+::: {.callout-note title="In the main document"}
+Full chapter: [VS-03 Data Editing and Enrichment](framework/vs-03.qmd). See its *Steady State Transition*, *Boundary Interface Specifications* and *End-to-End Scenarios*. A one-page summary of this stream also sits in [Business Architecture](framework/business-architecture.qmd).
+:::
+
+### State #4a — Statistics (Output Data): analytical outputs (VS-04 Estimation, Analysis, and Statistical Modeling)
+
+*#3 Processed → #4 Statistics. The microdata is not edited further; statistics are computed from it, each with a measure of its accuracy, and disclosure control is applied to the outputs.*
+
+::: {.column-page}
+| | Labour Force Survey | Tax register → business statistics |
+|---|---|---|
+| **What arrives** | *"Processed Data Registered"* for `PD-LFS-2026Q3-001`, with its imputation flags. | *"Processed Data Registered"* for `PD-BUS-2026Q3-001`, the integrated business dataset. |
+| **What this stream does** | Confirms the pre-approved approach and current calibration totals. Calibration converges and the weighted margins reproduce the population register. The employment rate is estimated at 71.4% (95% CI ± 0.5 pp nationally, wider at NUTS-2), with variance inflated for the imputed values. Coherence checks against Q2 pass. Small NUTS-2 cells are suppressed. | Aggregates are computed by NACE × region. Unstable small domains are estimated with a small-area model and flagged distinctly from direct aggregates. Dominant-unit cells are suppressed. Coherence with national-accounts inputs is checked. |
+| **What is *not* done here** | No microdata is changed. No product is assembled or published. | Same. Model-based estimates are never presented as if they were direct aggregates. |
+| **What is registered** | `OD-LFS-2026Q3`: the output version with methodology, weights, and accuracy attached. | `OD-BUS-2026Q3-001`, with methodology and accuracy, linked to `PD-BUS-2026Q3-001`. |
+| **Event fired → who listens** | *"Output Data Registered"* → VS-05 | *"Output Data Registered"* → VS-05 |
+| **Metadata that travels** (both) | Methodology and parameters, weights, accuracy measures (sampling error, confidence intervals), model diagnostics, applied disclosure-control record, quality indicators, output-version identifier, lineage to the processed source, BIV classification. | |
+| **What differs** | Design-based estimation with calibration to register totals; the variance reflects both the survey design and VS-03's imputation. | Register-based aggregation plus a small-area model for thin domains; disclosure control is about dominant units rather than small cells. In both, every figure carries the method and accuracy that produced it and can be regenerated. |
+: State #4a handover card {tbl-colwidths="[18,41,41]"}
+:::
+
+Confidentiality step at this state: statistical disclosure control is applied to the outputs, so that they could be released.
+
+::: {.callout-note title="Signature discipline — methodological transparency"}
+Every estimate carries the method, parameters, and accuracy measure that produced it and can be regenerated; imputation uncertainty from VS-03 is reflected in the variance, and disclosure control is applied to the outputs so that they could be released.
+:::
+
+::: {.callout-note title="In the main document"}
+Full chapter: [VS-04 Estimation, Analysis, and Statistical Modeling](framework/vs-04.qmd). See its *Steady State Transition*, *Boundary Interface Specifications* and *End-to-End Scenarios*. A one-page summary of this stream also sits in [Business Architecture](framework/business-architecture.qmd).
+:::
+
+### State #4b — Statistics (Output Data): approved product (VS-05 Statistical Product Composition)
+
+*Still within State #4. The framework has a single State #4; **#4a / #4b is this guide's shorthand** for its two halves, because two different streams work on it. VS-04 produced individual validated estimates, and VS-05 now assembles them into an approved product that readers can use. The numbers themselves do not change.*
+
+::: {.column-page}
+| | Labour Force Survey | Tax register → business statistics |
+|---|---|---|
+| **What arrives** | *"Output Data Registered"* for `OD-LFS-2026Q3`. | *"Output Data Registered"* for `OD-BUS-2026Q3-001`. |
+| **What this stream does** | Integrates the pinned `OD-LFS-2026Q3` employment and unemployment outputs (national and NUTS-2) and the latest administrative vacancy output, carrying their confidence intervals; constructs the headline series; runs coherence checks (all reconcile; coherent with Q2). The commentary explains the 0.3 pp rise in the employment rate and notes its significance; visualisations are editorially reviewed. | Integrates the register-based and survey-based turnover and employment estimates for the same NACE × region domains. NACE-class turnover sums to the published total. The components agree within tolerance except one domain, which is **returned to VS-04 for review rather than adjusted**. |
+| **What is *not* done here** | Nothing is re-estimated. Discrepancies are explained or sent back, never quietly adjusted. | Same. |
+| **What is registered** | `SP-LFS-2026Q3-001`: the approved quarterly labour-market product, an immutable version with full lineage to its components. | `SP-BUS-2026Q3-001`, once the returned domain is resolved, with lineage to its components. |
+| **Event fired → who listens** | *"Statistical Product Registered"* → VS-06 | *"Statistical Product Registered"* → VS-06 |
+| **Metadata that travels** (both) | Component lineage, composition/indicator method, propagated accuracy, coherence results, interpretive content, approval record, confidentiality status, product-version identifier, BIV classification. | |
+| **What differs** | Composes survey and administrative outputs into a publication with narrative. | Composes register- and survey-based estimates into a structural business statistics composite. In both, component versions are pinned and approval precedes registration. |
+: State #4b handover card {tbl-colwidths="[18,41,41]"}
+:::
+
+Confidentiality step at this state: the product is validated against dissemination and confidentiality standards before it is approved.
+
+::: {.callout-note title="Signature discipline — coherence and interpretability"}
+VS-05 **composes** validated outputs (it does not re-estimate). Products are internally consistent, coherent with related and prior statistics, carry their components' accuracy metadata, and are **approved against dissemination and confidentiality standards** before being registered.
+:::
+
+::: {.callout-note title="In the main document"}
+Full chapter: [VS-05 Statistical Product Composition](framework/vs-05.qmd). Its *Steady State Transition* explains why State #4 has two halves. A one-page summary of this stream also sits in [Business Architecture](framework/business-architecture.qmd).
+:::
+
+### State #5 — Released Data, then #6 Consumed Data (VS-06 Dissemination and Service Delivery)
+
+*#4 Approved product → #5 Released → #6 Consumed. This is where data leaves the office. The key control is a final disclosure check, and nothing is released until it is passed. VS-06 does not alter the statistics; it protects, formats and delivers them.*
+
+::: {.column-page}
+| | Labour Force Survey | Tax register → business statistics |
+|---|---|---|
+| **What arrives** | *"Statistical Product Registered"* for the Q3-2026 labour-market product. | *"Statistical Product Registered"* for the SBS product. |
+| **What this stream does** | Confirms the plan; applies final disclosure control (two small NUTS-2 cells suppressed); clears the disclosure-risk gate. At 09:00 the figures publish simultaneously on the website, the API, and the dashboard; embargoed media publish at the same moment. Documentation and methodology notes accompany the release; the helpdesk handles queries; usage and feedback are collected. | Aggregate tables are disclosure-controlled and published openly. The microdata is de-identified to the agreed standard and made available in a secure research environment (SRE) for accredited researchers, who are onboarded with the data dictionary and methodology. The helpdesk performs output-checking so that results researchers export also meet disclosure rules. SRE usage is logged. |
+| **What is *not* done here** | No figure is changed. No release before the gate is passed; no privileged early sight outside policy. | Same. Researchers work inside the environment; nothing leaves without output-checking. |
+| **What is registered** | The release version, with lineage to `SP-LFS-2026Q3-001`. | The release version, with lineage to `SP-BUS-2026Q3-001`. |
+| **Event fired → who listens** | *"Statistics Released"* → users and society; feedback returns to VS-06.5 and VS-10. | *"Statistics Released"* → users and researchers; feedback returns to VS-06.5 and VS-10. |
+| **Metadata that travels** (both) | Final disclosure-control record, documentation/methodology notes, reference and structural metadata, channel/format, release timestamp, release-version identifier, lineage to the approved product. | |
+| **What differs** | An open aggregate release at a fixed minute, with equal access enforced. | Open tables plus controlled microdata access with output checking. The gate is the same; the channels are not. |
+: State #5 handover card {tbl-colwidths="[18,41,41]"}
+:::
+
+Confidentiality step at this state: the final disclosure-control gate. Once released, the data is **Consumed Data (#6)**, used by external parties for their own purposes, outside the NSO's direct control. The documentation delivered at #5 supports appropriate use at #6.
+
+In some processes nothing changes between the approved product and the release. A proposal under review allows the #4 artefact to be marked as released in that case, instead of being registered again, provided the release steps are still carried out and recorded. See [Applying the steady states pragmatically](framework/business-architecture.qmd#pragmatic-steady-states).
+
+::: {.callout-note title="Signature discipline — accessibility, trust, and the release gate"}
+Accurate, timely, understandable delivery through secure channels, gated by **final statistical disclosure control** (no release without confidentiality clearance) and supported by documentation that enables responsible, equal-access use. VS-06 relies on the supporting streams VS-07 (compliance), VS-09 (platforms), and VS-10 (user needs).
+:::
+
+::: {.callout-note title="In the main document"}
+Full chapter: [VS-06 Dissemination and Service Delivery](framework/vs-06.qmd). See its *Steady State Transition*, *Boundary Interface Specifications* and *End-to-End Scenarios*. A one-page summary of this stream also sits in [Business Architecture](framework/business-architecture.qmd).
+:::
+
+## 4. The other three process types, worked once
+
+The cards above show the **Execution** process of each stream, which runs every production cycle. Around it, three other process types run in every stream: **Design** decides how the work should be done and provides the metadata; **Implementation** builds and tests the systems and provides the execution process; **Management** checks quality and performance and feeds improvements back to Design. The cycle looks the same in every stream, so it is worked here once, for the tax thread at State #1.
+
+```{mermaid}
+%%| label: fig-gs-cycle
+%%| fig-cap: "The four-process governance pattern. Each of the six primary streams runs this full cycle; the feedback arrow from Management to Design closes the loop."
+%%| fig-width: 6
+flowchart LR
+    D["**Design**
+    _metadata_"] -->|"guides building"| I["**Implement**
+    _execution process_"]
+    I -->|"production-ready"| E["**Execute**
+    _statistical data_"]
+    E -->|"data & process logs"| M["**Manage**
+    _quality reports_"]
+    M -->|"improvement feedback"| D
+
+    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
+    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
+    style E fill:#059669,color:#fff,stroke:#047857
+    style M fill:#d97706,color:#fff,stroke:#b45309
+```
+
+**Design.** Statistical designers define the data requirement: quarterly corporate income-tax declarations for all legal entities, for use in national accounts and business statistics. The data model maps the tax authority's XML schema to the NSO's raw-data structure: 47 fields retained, 12 derived, the corporate ID as the linkage key. The SLA is set at delivery within 45 calendar days of quarter end, at least 98% of expected records, in XML with XSD validation. Validation rules cover schema validation, referential integrity of the corporate ID against the business register, and amount fields within historical range. The privacy framework records that data is received under the statistics-act mandate, with pseudonymisation deferred to VS-02 by agreement.
+
+**Implementation.** System configurators set up a dedicated secure file-transfer endpoint, locked down so that only the tax authority's systems can connect to it. Data engineers configure automated ingestion: file arrival triggers the validation pipeline (XSD check, checksum, virus scan, completeness, referential integrity, range check). Metadata registration is automated: on successful validation a provenance record is created and linked to the agreement, and quality scores are calculated and stored. The pipeline is tested by resubmitting Q1-2026 historical data; one false-positive range check is found and its threshold adjusted.
+
+**Execution.** This is the State #1 card above: the Q3 file arrives on day 38, the pipeline validates it, `RD-TAX-2026Q3-001` is registered, and *"Raw Data Registered"* notifies VS-02.
+
+**Management.** The Q3 quality scorecard shows completeness at 99.2% (stable against Q1 = 99.1% and Q2 = 99.3%) and delivery seven days ahead of the SLA deadline. The 14 unmatched corporate IDs are all newly registered businesses, consistent with previous quarters. SLA compliance stands at 100% for 12 consecutive quarters; metadata completeness is 100%. No improvement recommendation is needed this cycle; an annual agreement-renewal review is scheduled for Q4.
+
+Two things are worth noticing. The Design artefacts (the schema mapping, the validation rules, the SLA) existed *before* the first file arrived, and Execution follows them. And Management ends with a decision about Design, even when that decision is to change nothing.
+
+What Design and Management look like in the other five streams, in one line each:
+
+| Stream | Design prepares | Management watches and feeds back |
+|---|---|---|
+| VS-02 Standardization | The target data model, deterministic classification correspondences, harmonisation and conformance rules, the privacy framework | Mapping coverage and the unmapped-value rate; classification versions; extensions to the correspondence tables |
+| VS-03 Editing & Enrichment | Error-detection and editing rules with a selective-editing strategy, the imputation methodology, derivation and coding specs, integration rules, the versioning policy | Edit, imputation, and over-editing rates; quality improvement against the State #2 baseline; audit of the edit lineage |
+| VS-04 Estimation | The estimation strategy and accuracy approach, weighting/calibration methodology, aggregation and model specifications, the validation and disclosure-control policy | Accuracy, timeliness, and revisions; coherence; reproducibility audits |
+| VS-05 Composition | The product portfolio, composite-indicator specs, coherence checks, content templates, the approval/confidentiality/versioning framework | Coherence-check pass rates and approval iterations; product quality; reproducibility and approval audits |
+| VS-06 Dissemination | The dissemination and access strategy, final disclosure-control and de-identification rules, channel/format/documentation standards, release governance | Punctuality, usage, and satisfaction; accessibility; disclosure and equal-access compliance, with VS-07 |
+: Design and Management around each stream {tbl-colwidths="[18,44,38]"}
+
+## 5. Map your own process
+
+The framework is explicit that "SAF does not prescribe a single operating model, a single technology stack, or a single organisational design"; what it gives you is a shared way of describing the one you have and the one you want. This exercise does that for one production process in three steps. Invite the people who design, build, run and monitor the process; the four process types also make a good attendance list.
+
+### Step 1 — Find your steady-state boundaries
+
+Pick one statistical product. For each handover in the chain, answer the questions in the worksheet. Each column is one of the four things the framework says a boundary must specify (the artefact, its metadata, the event, and where responsibility transfers), phrased as a question.
+
+Filled in for the tax thread, the worksheet reads:
+
+::: {.column-page}
+| Handover | What is the artefact? | Who produces → who consumes? | Registered, identified, immutable? | What signals the next team? | What metadata travels? |
+|---|---|---|---|---|---|
+| Source → #1 | The tax authority's quarterly XML file, stored as received | Tax authority → acquisition team | Yes: `RD-TAX-2026Q3-001`, original form kept | *"Raw Data Registered"* | Provenance, hash, agreement reference, quality assessment, BIV |
+| #1 → #2 | The same records in the office's common data model, with NACE codes and the SBR key | Acquisition team → standardisation team | Yes: `SD-BUS-2026Q3-001` | *"Standardized Data Registered"* | Mapping lineage, classification versions, recorded unit/period bases, unmapped list |
+| #2 → #3 | The edited, converted, integrated quality version | Standardization team → editing/integration team | Yes: `PD-BUS-2026Q3-001` | *"Processed Data Registered"* | Edit lineage, imputation flags, derivation formulae, linkage lineage |
+| #3 → #4a | Aggregates by NACE × region with accuracy and small-area flags | Editing team → estimation team | Yes: `OD-BUS-2026Q3-001` | *"Output Data Registered"* | Methodology, accuracy, model diagnostics, SDC record |
+| #4a → #4b | The approved SBS composite product | Estimation team → product team | Yes: `SP-BUS-2026Q3-001` | *"Statistical Product Registered"* | Component lineage, propagated accuracy, approval record |
+| #4 → #5 | Published tables and the de-identified SRE microdata | Product team → dissemination team → users | Yes: release version | *"Statistics Released"* | Final SDC record, documentation, channel, release timestamp |
+: Step 1 worksheet, filled in for the tax thread {tbl-colwidths="[12,20,18,16,16,18]"}
+:::
+
+Now blank, for your process:
+
+::: {.column-page}
+| Handover | What is the artefact? | Who produces → who consumes? | Registered, identified, immutable? | What signals the next team? | What metadata travels? | Gap |
+|---|---|---|---|---|---|---|
+| Source → #1 | | | | | | |
+| #1 → #2 | | | | | | |
+| #2 → #3 | | | | | | |
+| #3 → #4a | | | | | | |
+| #4a → #4b | | | | | | |
+| #4 → #5 | | | | | | |
+: Step 1 worksheet, blank {tbl-colwidths="[12,18,16,14,14,16,10]"}
+:::
+
+Your process does not have to fill every row. If it starts from data another team has already registered, such as a shared #3, begin at that row and note the artefact you start from. If two states hold the same data, for example when nothing changes between #4 and #5, write "same artefact as #4" and give the reason. See [Applying the steady states pragmatically](framework/business-architecture.qmd#pragmatic-steady-states), a proposal still under review.
+
+::: {.callout-tip title="Reading your worksheet: four symptoms and what they mean"}
+- **You cannot name the artefact** at a handover → either the boundary does not exist yet, or two states have been merged or skipped. Both can be legitimate if you can explain why. If you cannot, deciding where the boundary belongs is your first architecture decision.
+- **The next team has to read the previous team's code, or ask them how to use the data** → the streams are tightly coupled (SAF-P07). The metadata that should travel with the artefact is living in people's heads or in scripts.
+- **The same data is re-collected or re-cleaned by a second team** → the artefact is not shared property (SAF-P08). This is usually a problem of registration or discovery rather than a technical one.
+- **Values change between #1 and #2** → the standardisation boundary is in the wrong place. Anything that changes a value belongs in VS-03, where every change is logged against its original.
+
+A boundary is an agreement between streams and does not have to match an organisational unit. One team may own several states, and a central unit may run processing for many domains. The agreement in each row just needs to be written down.
+:::
+
+### Step 2 — A condensed self-assessment
+
+The framework provides a maturity checklist of twenty questions for every stream, which is too many for a first pass. The questions follow one pattern: for each process type, one thing must be true. The four tables below condense the six primary streams into that pattern. Score each stream on each process type: **0** absent, **1** partial or ad hoc, **2** systematic. Fill the tables in order, or take one process type at a time across all six streams.
+
+#### Design — are the rules written down and versioned *before* the cycle runs?
+
+| Stream | What "systematic" looks like | Score |
+|---|---|:--:|
+| VS-01 Acquisition | Requirements, collection methodology, raw schema, validation rules, privacy assessment | |
+| VS-02 Standardization | Common data model, agreed code correspondences with a version policy, conformance rules, pseudonymisation design | |
+| VS-03 Editing | Editing rules with a selective-editing strategy, imputation methodology, coding specifications, versioning policy | |
+| VS-04 Estimation | Estimation strategy and accuracy approach, calibration methodology, validation and disclosure-control policy | |
+| VS-05 Composition | Product specifications, composite specifications, coherence tolerances, approval and versioning policy | |
+| VS-06 Dissemination | Access strategy, final disclosure-control and de-identification policy, release governance and calendar | |
+: Design {tbl-colwidths="[22,68,10]"}
+
+#### Implementation — is it built from those rules, automated, and tested?
+
+| Stream | What "systematic" looks like | Score |
+|---|---|:--:|
+| VS-01 Acquisition | Instruments built from the specifications; validation and metadata capture automated; tested before production | |
+| VS-02 Standardization | Mapping built from the specifications and preserving values; automated check that no value changed; lineage captured | |
+| VS-03 Editing | Edit lineage (original value, rule, reason, who) captured automatically; versions reproducible | |
+| VS-04 Estimation | Variance reflects both the survey design and imputation; outputs reproducible from input plus method | |
+| VS-05 Composition | Composites carry their components' uncertainty; products reproducible; approval trail tamper-evident | |
+| VS-06 Dissemination | Disclosure-risk gate enforced by the tooling; embargo and equal access enforced; releases rehearsed | |
+: Implementation {tbl-colwidths="[22,68,10]"}
+
+#### Execution — is the signature work done every cycle, and the result registered?
+
+| Stream | What "systematic" looks like | Score |
+|---|---|:--:|
+| VS-01 Acquisition | Ingestion metadata captured for every dataset; every raw dataset registered with its provenance | |
+| VS-02 Standardization | Codes mapped one-to-one with the version recorded; no value changed; mapping lineage registered | |
+| VS-03 Editing | The original kept beside every edit; imputations flagged; every processed dataset an identified version | |
+| VS-04 Estimation | Method, weights and accuracy attached to every estimate; disclosure control applied; output versioned | |
+| VS-05 Composition | The exact component versions used are recorded; nothing re-estimated; approval before registration | |
+| VS-06 Dissemination | The gate passed before publishing; equal-access timing; documentation with every release | |
+: Execution {tbl-colwidths="[22,68,10]"}
+
+#### Management — is quality measured, and does it change anything?
+
+| Stream | What "systematic" looks like | Score |
+|---|---|:--:|
+| VS-01 Acquisition | Response, rejection and timeliness tracked; metadata completeness measured; findings fed back to design | |
+| VS-02 Standardization | Mapping coverage and unmapped rate tracked; classification versions governed; correspondence tables improved | |
+| VS-03 Editing | Edit, imputation and over-editing rates tracked; improvement measured against the State #2 baseline; edit lineage audited | |
+| VS-04 Estimation | Accuracy, revisions and reproducibility tracked; coherence assessed; methodology compliance reported | |
+| VS-05 Composition | Coherence pass rate and approval iterations tracked; product lifecycle governed; reproducibility audited | |
+| VS-06 Dissemination | Punctuality, gate pass rate, usage and satisfaction tracked; compliance reported with VS-07; feedback to VS-10 | |
+: Management {tbl-colwidths="[22,68,10]"}
+
+The supporting streams have no state transition, so one question each is enough for a first pass:
+
+| Supporting stream | The closed-loop question |
+|---|---|
+| VS-07 Governance & Compliance | Is there a closed loop that feeds audit findings and regulatory change back into the governance frameworks? |
+| VS-08 Innovation & Methodology | Is there a governed transfer gate, with VS-07 approval, for moving new methods into production? |
+| VS-09 Infrastructure & Platforms | Do we provide the integration/orchestration and the event interfaces the streams rely on? |
+| VS-10 Customer & Stakeholder Engagement | Do we measure impact and feed insight back into design and innovation? |
+: Supporting streams — score 0 / 1 / 2 {tbl-colwidths="[30,70]"}
+
+::: {.callout-tip title="Scoring in a 90-minute workshop"}
+Ten minutes per stream column, with the people who design, build, run, and monitor that stream in the room. Score by consensus; when the room disagrees, record the lower score and the reason. Precision matters less than the overall pattern. A common result is a stream scoring 2 on Execution but 0 on Design and Management: it runs well, but without design or management artefacts it cannot be changed safely.
+:::
+
+Any cell scoring 0 or 1 points you at the stream's full checklist in the SAF Framework document (the *Maturity Assessment Checklist* under *Applying This to Your NSO* in that stream's deep dive), where twenty detailed questions describe what "systematic" looks like.
+
+### Step 3 — Walk one of your own datasets
+
+Take the blank handover card below and fill it for the product you chose in Step 1, one card per state. Use the six cards in section 3 as the model. If you reach a card where you cannot fill in *what is registered*, stop there, unless you have deliberately shared or skipped that state and can say why. That gap is your first architecture decision, and the deep dive for that stream is the place to look next.
+
+| | Your dataset |
+|---|---|
+| **What arrives (on which event)** | |
+| **What this stream does** | |
+| **What is *not* done here (deferred downstream)** | |
+| **What is registered (artefact + identifier)** | |
+| **Event fired → who listens** | |
+| **Metadata that travels** | |
+| **Owner of this state (data steward); criteria a dataset must meet to be in it** | |
+: Blank handover card {tbl-colwidths="[40,60]"}
+
+## 6. Where this leads
+
+| If you want to | Go to, in the SAF Framework document |
+|---|---|
+| Read the full definition of each state and its quality requirements | [Steady States of Data](framework/business-architecture.qmd#steady-states-of-data) and the *State #1 … #6* sections that precede it |
+| See the chain and the two summary tables | [The Statistical Data Value Chain](framework/business-architecture.qmd#the-statistical-data-value-chain) and [The Value Chain at a Glance](framework/business-architecture.qmd#the-value-chain-at-a-glance) |
+| Specify a boundary contract precisely | The *Boundary Interface Specifications* table in each VS deep dive: handover artefact, required metadata, trigger event, responsibility transfer |
+| Design, build, or govern one stream | That stream's deep dive: *Design Processes*, *Implementation Processes*, *Management Processes*, and the *Business Roles and Actors* section |
+| Understand how the supporting streams work | [Supporting Value Streams (VS-07 to VS-10)](framework/business-architecture.qmd#supporting-value-streams-vs-07-to-vs-10) |
+| Relate this to GSBPM, GAMSO, and CSDA | The *Framework Mappings* table in each VS deep dive |
+| See which capabilities a stream relies on | The *Capability Foundations* table in each VS deep dive, and the [Capability Model](framework/strategy.qmd#capability-model) |
+| Apply the principles | [Principles to Apply](framework/business-architecture.qmd#principles-to-apply) |
+: Where to go next {tbl-colwidths="[40,60]"}
+
+The formal ArchiMate model behind these documents is in the repository's `model/` folder and opens in Archi; the capability model, the value streams and their stages, and the steady-state business objects are all there.

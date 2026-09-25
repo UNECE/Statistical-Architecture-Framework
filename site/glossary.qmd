@@ -1,0 +1,35 @@
+---
+title: "Glossary"
+---
+
+Words SAF uses that are not everyday statistical vocabulary, explained without assuming a background in architecture. Where a term means something different inside SAF than elsewhere in a statistical office, the entry says so.
+
+**Artefact**: what is handed over at a boundary, meaning a dataset or file together with the metadata that describes it. SAF says "artefact" rather than "dataset" because the metadata is part of what is handed over.
+
+**BIV classification**: a security label recording how sensitive a dataset is on three axes: availability, integrity and confidentiality. The letters come from the Dutch (*Beschikbaarheid, Integriteit, Vertrouwelijkheid*), which is why they do not match the English words.
+
+**Boundary**: the point where one value stream hands data to the next. In SAF a boundary is an agreement between two streams and does not have to match an organisational unit. It states what is handed over, what metadata comes with it, what signals the handover, and who becomes responsible. One team may own several boundaries.
+
+**Disclosure control (SDC)**: statistical disclosure control, the familiar practice of suppressing, rounding or perturbing figures so that individual people or businesses cannot be identified. SAF applies it at several points: disclosure risk is assessed on enrichment (#3), disclosure control is applied to outputs (#4), and a final check is made before release (#5). Removing or pseudonymising direct identifiers is a separate privacy measure, done at standardisation (#2) at the latest and earlier where that suits the process. Other methods, such as synthetic data or differential privacy, can also protect confidentiality.
+
+**Event**: a short notification a value stream publishes when it has finished something, for example *"Raw Data Registered"*. The next stream listens for it, so it never has to ask whether the data is ready.
+
+**Immutable**: frozen. Once a dataset is registered at a steady state it is not edited in place. A correction produces a new version, so any published figure can be traced back to the exact data it came from.
+
+**Lineage**: the trace from a figure back through every step to the data it came from. If a published number is questioned, lineage lets you show how it was produced. Lineage does not require a copy of the data at every step: when a step uses a dataset without changing its values, a logged record of that step pointing to the existing version is enough.
+
+**Loosely coupled**: two parts of the chain work independently and exchange only finished, described datasets. Neither needs to know how the other works inside, so one part can be replaced or modernised without disturbing the rest.
+
+**Metadata**: the description that travels with data: where it came from, what was done to it, by which rule or method, how accurate it is, and how it is classified.
+
+**Provenance**: the record of where a dataset came from and how it arrived: the source, the collection method, when it was received, and under which agreement.
+
+**Register / registered**: **not** a statistical register. In SAF, to *register* a dataset means to record it in a catalogue with an identifier and its metadata, so that others, inside the office or outside it, can find it, trust it and cite the exact version they used. A statistical register, such as the business register or the population register, is something else. Both meanings appear in these documents.
+
+**Signature discipline**: a phrase used on this site for the rule that defines each value stream, stating what it must always do or must never do. VS-02's is "change no values". Recoding a value into a standard classification through a fixed correspondence table counts as standardisation, because the meaning of the value stays the same; interpreting free text, such as coding job titles to ISCO, is left to VS-03. VS-03's discipline is "change values, but never invisibly".
+
+**Steady state**: a defined handover point in the production chain, where a versioned, quality-assured dataset is finished by one stream and picked up by the next. SAF numbers them from #0 (data still at the provider) to #6 (data in users' hands). A steady state is both a place where data waits to be exchanged and a stage in the value added to it. Not every process passes through every state. A process may start from a dataset another team has already registered, and two states may share one dataset when nothing changes between them (see [Applying the steady states pragmatically](framework/business-architecture.qmd#pragmatic-steady-states), a proposal under review).
+
+**Value stream**: a sequence of steps that together add one particular kind of value to data. Think of a production line: VS-01 to VS-06 each add something specific, and VS-07 to VS-10 support all of them.
+
+**`VS-0x.y`**: the numbering used for the stages of a value stream, for example `VS-03.2`. The same number identifies both the stage (what value is added) and the business process (how your office does it), so the two can always be matched.

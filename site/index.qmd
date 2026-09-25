@@ -1,0 +1,29 @@
+---
+title: "Statistical Architecture Framework"
+---
+
+SAF is a shared way for national statistical offices to describe how they turn data into official statistics, and to change how they do it while keeping production running.
+
+It is written for the people who do that work: methodologists, statisticians, data and IT staff, quality and privacy officers, managers and CIOs. You do not need a background in architecture to read this site or the framework itself.
+
+::: {.callout-tip title="Where to start"}
+If you have ten minutes, read **SAF in Brief**. To try SAF on one of your own statistical products, read **Getting Started** and do the exercise at the end. Use the **Framework** as a reference afterwards.
+:::
+
+## The four routes in
+
+| | What it answers | Reading time |
+|---|---|---|
+| **[SAF in Brief](SAF-in-Brief.qmd)** | What is SAF, what are its two core ideas, and what would adopting it give my office and commit us to? | about 10 minutes |
+| **[Getting Started with SAF](SAF-Getting-Started.qmd)** | What does this look like on real data? A labour force survey and a tax register are followed from collection to publication, and an exercise helps you map one of your own processes. | about 30 minutes, plus the exercise |
+| **[SAF Architecture Framework](framework/index.qmd)** | The full framework in chapters: motivation and principles, the capability model, and one chapter for each of the ten value streams. | read by chapter |
+| **[Glossary](glossary.qmd)** | What does SAF mean by *artefact*, *steady state*, *lineage*, *registered*? | as needed |
+: The four routes in {tbl-colwidths="[26,54,20]"}
+
+## The one idea worth knowing first
+
+SAF splits statistical production into stages that pass data to each other at agreed points called **steady states**. At each of these points the data has reached a known quality, has a version and an identifier, and comes with a description of what was done to it. The stage that picks it up does not need to know anything else about how the previous stage works.
+
+Because of this, an office can modernise one part of its production (a collection channel, an editing engine, a publication platform) without disrupting the others. It can also show how any published figure was produced.
+
+The formal model behind all of this is available in ArchiMate format.

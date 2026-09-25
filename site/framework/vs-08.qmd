@@ -1,0 +1,178 @@
+---
+title: "VS-08 Innovation and Methodological Development"
+---
+
+## VS-08.0 Innovation and Methodological Development
+
+### Purpose and Scope
+
+VS-08.0 makes sure the statistical organization does not stand still. Its purpose is to discover, test, and introduce new ways of working — new data sources, methods, tools, and technologies — and to move the organization from "we have always done it this way" to "we can do this better, faster, and smarter." It connects research, methodology, IT, and business users, and it keeps innovation **controlled**, so that only methods that are sound, documented, and compliant end up in production. The value it creates is **continuous improvement** — keeping the SAF future-proof for new data (IoT, administrative, data spaces) and new techniques (ML, small-area estimation).
+
+
+
+*A note on numbering:* each `VS-0x.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
+
+### Position — a supporting stream that works across the whole chain
+
+VS-08 is not a stage in the production line. It runs alongside it as a pipeline that **feeds improvements into** every primary stream and draws its agenda from their needs.
+
+```{mermaid}
+%%| label: fig-1
+%%| fig-cap: "VS-08 draws needs from the chain and delivers validated methods back into it."
+%%| fig-width: 6
+flowchart TD
+    subgraph primary["Primary Value Streams"]
+        direction LR
+        VS01["VS-01"] --> VS02["VS-02"] --> VS03["VS-03"] --> VS04["VS-04"] --> VS05["VS-05"] --> VS06["VS-06"]
+    end
+
+    VS08["**VS-08.0 Innovation &<br/>Methodological Development**"]:::hi
+    primary -->|"improvement needs"| VS08
+    VS08 -->|"validated methods & tools<br/>transferred to production"| primary
+
+    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9,stroke-width:2px
+```
+
+::: {.callout-important title="How a supporting value stream differs from a primary one"}
+- **No steady-state data transition.** VS-08 does not move data from one state to the next; it improves the *methods and tools* the production streams use.
+- **It runs continuously**, as a research-and-development pipeline, not per production cycle.
+- **Its output is an enabling capability, not a data artefact:** validated methods, documented tools, reference implementations, and trained staff.
+- **It aligns to GAMSO Capability Management**, not to GSBPM production phases.
+:::
+
+### How It Interacts with the Production Chain
+
+VS-08 has a distinctive two-way relationship with the chain. The improvement recommendations every primary stream produces (their §6.5 continuous-improvement loops), together with user needs surfaced by VS-10, form VS-08's **innovation backlog**. After research and evaluation, the famous **transfer gate (08.5)** moves a validated method or tool **into** the relevant production stream — gated by VS-07 compliance approval and enabled by VS-09 platforms.
+
+```{mermaid}
+%%| label: fig-2
+%%| fig-cap: "Interaction with the chain: needs in, validated methods out (through a governed transfer gate)."
+%%| fig-width: 6
+flowchart LR
+    SRC["Improvement needs<br/>(VS-01…06 §6.5)<br/>+ user needs (VS-10)<br/>+ external tech scan"] --> VS08["VS-08<br/>Innovation"]:::hi
+    VS08 -->|"08.5 transfer<br/>(validated method/tool)"| PROD["Target production<br/>stream (e.g. VS-03/04)"]
+    VS07["VS-07 Governance"] -.->|"compliance approval"| VS08
+    VS09["VS-09 Infrastructure"] -.->|"sandbox & production platforms"| VS08
+
+    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9
+```
+
+### Framework Alignment (GAMSO)
+
+Where the primary streams map to **GSBPM** production phases, VS-08 maps to **GAMSO Capability Management** and the SAF's research/capability foundations:
+
+| GAMSO area | Relevance to VS-08 |
+|---|---|
+| **Capability Management** | Manage research & innovation, develop methodology, manage change, build staff capability |
+| **Strategy and Leadership** | Set the innovation agenda aligned to organizational strategy |
+| **SAF capabilities** | Statistical design & build (methodology), research; supports all primary capabilities |
+
+### Principles Emphasised
+
+| Principle | Statement | How VS-08 applies it |
+|---|---|---|
+| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | Innovate on and contribute to shared, open methods and tools rather than vendor black boxes |
+| **SAF-P05** | IT and technology is everyone's business | Connect research, methodology, IT, and business users; build broad capability to adopt new methods |
+| **SAF-P03** | Active Life Cycle management | Manage methods and tools across their lifecycle, from PoC to production to retirement |
+| **SAF-P04** | Maximize the benefits for the organization | Prioritize innovations by organization-wide value and scalability, not novelty |
+| **SAF-P07** | Implement loosely coupled processes and systems | Transfer methods that fit the steady-state interfaces, so production streams stay decoupled |
+
+## Roles and Actors
+
+
+
+| Role | Description |
+|---|---|
+| **Head of Methodology / Innovation** | Owns the innovation agenda and the methodological standards |
+| **Researcher / Data Scientist** | Conducts research and proofs-of-concept |
+| **Methodologist** | Evaluates soundness and feasibility; formalizes validated methods |
+| **Tool / Platform Engineer** | Builds reference implementations and prepares them for production (with VS-09) |
+| **Subject-Matter Expert (from production streams)** | Brings the real problem and validates fitness for purpose |
+| **Compliance Officer (VS-07)** | Approves a method against compliance criteria before transfer |
+| **Trainer / Knowledge Manager** | Disseminates results and builds staff competency |
+
+## The Value-Stream Flow
+
+VS-08's six business processes form a continuous innovation pipeline — **identify → research → evaluate → develop → integrate → share**.
+
+```{mermaid}
+%%| label: fig-3
+%%| fig-cap: "The six business processes as a continuous innovation pipeline."
+%%| fig-width: 6
+flowchart LR
+    A["08.1 Identify<br/>Needs & Opportunities"] --> B["08.2 Research<br/>& Proof-of-Concept"]
+    B --> C["08.3 Evaluate<br/>Soundness & Feasibility"]
+    C --> D["08.4 Develop &<br/>Document Methods/Tools"]
+    D --> E["08.5 Integrate into<br/>Production"]
+    E --> F["08.6 Promote<br/>Knowledge Sharing"]
+    F -.->|"feeds the next agenda"| A
+
+    style A fill:#f5f3ff,stroke:#7c3aed
+    style B fill:#f5f3ff,stroke:#7c3aed
+    style C fill:#eff6ff,stroke:#2563eb
+    style D fill:#eff6ff,stroke:#2563eb
+    style E fill:#ecfdf5,stroke:#059669
+    style F fill:#fef3c7,stroke:#d97706
+```
+
+**Plan — find what is worth doing.** The pipeline begins by **identifying innovation needs and opportunities** (08.1): scanning technological, methodological, and policy developments (AI, ML, new data sources, cloud) and the chain's own improvement backlog for things worth pursuing. Candidates then enter **research and proofs-of-concept** (08.2): controlled experiments and pilots that test a new method or technology in limited scope before any commitment.
+
+**Build — make it sound and real.** Promising results are put through **evaluation of methodological soundness and feasibility** (08.3): assessing accuracy, scalability, and alignment with quality and ethical frameworks — the gate that stops attractive-but-unsound ideas. What passes is **developed and documented** (08.4) into standardized procedures, algorithms, or reference implementations, so it is reproducible and ready to hand over rather than living in a researcher's notebook.
+
+**Operate — put it to work.** The defining step is **integrating innovation into production environments** (08.5): transitioning a validated method or tool from pilot to production in the relevant primary stream, ensuring interoperability and — crucially — passing VS-07 governance approval and running on VS-09 platforms. This is the transfer gate where innovation becomes part of business as usual.
+
+**Improve — spread it.** Finally VS-08 **promotes knowledge sharing and capability building** (08.6): disseminating results, best practices, and guidelines, and growing staff competency so the organization can actually adopt and sustain the new way of working — which in turn surfaces the next round of needs.
+
+| Business process | What it produces |
+|---|---|
+| VS-08.1 Identify Innovation Needs and Opportunities | Prioritized innovation backlog |
+| VS-08.2 Conduct Research and Proof-of-Concepts | Experiment/pilot results |
+| VS-08.3 Evaluate Methodological Soundness and Feasibility | Soundness & feasibility assessment |
+| VS-08.4 Develop / Document New Methodologies or Tools | Standardized method + reference implementation + documentation |
+| VS-08.5 Integrate Innovation into Production Environments | Method/tool live in a production stream (governed transfer) |
+| VS-08.6 Promote Knowledge Sharing and Capability Building | Disseminated guidance + trained staff |
+
+## Capability Governance
+
+VS-08 is itself a capability that is **designed** (innovation strategy, evaluation criteria), **built** (research/sandbox environments — with VS-09), **operated** (the pipeline runs continuously), and **improved** (08.6 and retrospectives). Unlike a primary stream it produces **methods and capability**, not statistical data, and its cadence is project/pipeline-based, not per production cycle. The GAMSO notion of transferring mature capabilities from innovation into production is exactly step 08.5.
+
+### Key Performance Indicators
+
+| KPI | Description | Measurement |
+|---|---|---|
+| Idea-to-production lead time | Median time from a backlog item (08.1) to a completed transfer (08.5) | Per transferred innovation |
+| Transfer rate and durability | Methods/tools transferred to production per year, and the share still in use after 12 months | Annually |
+| Gate effectiveness | Share of PoCs stopped at the 08.3 gate with a documented rationale (a healthy gate stops some) | Per evaluation |
+| Backlog responsiveness | Share of prioritized backlog items reaching a PoC within the agreed time | Per planning period |
+| Capability building | Staff trained on new methods, and adoption rate in the target streams | Per year, per transfer |
+
+## Interactions, Services and Events
+
+| Counterpart | VS-08 provides | VS-08 receives | Interaction / event |
+|---|---|---|---|
+| **All primary streams (VS-01…06)** | Validated methods/tools transferred to production | Improvement recommendations (their §6.5); fitness-for-purpose validation | "Innovation need raised", "Method transferred to production" |
+| **VS-10 Engagement** | New service/product possibilities | User needs that imply new methods | "User-driven innovation need" |
+| **VS-07 Governance** | Methods for pre-production approval | Compliance criteria & approval | "Method compliance assessment" |
+| **VS-09 Infrastructure** | Requirements for sandbox/production platforms | Research environments and production runtime | "Platform request", "Production onboarding" |
+
+## Business Objects / Artefacts
+
+VS-08 manages enabling artefacts: the **innovation backlog**, **research findings and PoC results**, **soundness/feasibility assessments**, **validated methods, algorithms, and reference implementations**, and **knowledge assets** (guidelines, training). These are version-managed across their lifecycle (SAF-P03) and, once transferred, become part of a production stream's design metadata. Each artefact has a designated owner; changes are tracked, prior versions remain identifiable, and superseded methods are formally retired.
+
+## Applying This to Your NSO
+
+### Maturity Assessment Checklist
+
+- [ ] Do we maintain a prioritized innovation backlog drawn from both technology scanning and the production streams' improvement needs?
+- [ ] Do we test new methods in controlled PoCs before committing?
+- [ ] Do we evaluate soundness, scalability, and ethics before development?
+- [ ] Is there a governed transfer gate (with VS-07 approval) for moving methods into production?
+- [ ] Do we disseminate results and build staff capability so innovations are sustained?
+
+### Scenarios
+
+**Scenario A — ML-assisted coding.** A production stream (VS-03) repeatedly flags free-text occupation coding as costly. VS-08 picks this up (08.1), pilots an ML coder (08.2), evaluates accuracy and bias (08.3), builds a documented reference implementation (08.4), and — after VS-07 approval and on a VS-09 platform — transfers it into VS-03 (08.5), then trains the coding team (08.6).
+
+**Scenario B — New data source (web-scraped prices).** VS-10 reports demand for more timely price statistics. VS-08 researches web-scraping and multilateral index methods, evaluates feasibility and quality against the official CPI, documents the method, and transfers it into VS-01/VS-04, sharing the methodology across the price-statistics team.
+
+**Scenario C — The gate says no.** A vendor demo convinces a statistical domain that a generative-AI assistant could draft analytical commentary (VS-05). VS-08 takes it through the pipeline: the PoC (08.2) shows impressive fluency, but the evaluation (08.3) finds unexplainable variation between runs and no way to meet the methodological-transparency requirement, and VS-07's compliance pre-assessment concurs. The idea is stopped at the gate, the rationale is documented and shared (08.6), and a narrower, compliant alternative — template-based drafting with human sign-off — is added to the backlog. A healthy 08.3 gate is one that sometimes says no.

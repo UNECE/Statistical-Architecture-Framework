@@ -1,0 +1,951 @@
+---
+title: "VS-02 Data Standardization and Integration"
+---
+
+## VS-02.0 Data Standardization and Integration
+
+### Purpose and Scope
+
+This document specifies the complete business layer for the **Standardization without loss of content** business domain, corresponding to the *VS-02.0 Data Standardization and Integration Value Stream*. It also covers 4 governance process types:
+
+- **Design** — how the standardization pipeline is specified and planned (produces metadata)
+- **Implementation** — how the pipeline is built, configured, and tested (produces the execution process)
+- **Execution** — how raw data is operationally profiled, classified, harmonized, and registered (produces statistical data)
+- **Management** — how the domain is monitored, quality-assessed, and improved (produces quality reports)
+
+::: {.callout-warning title="Out of Scope"}
+Application and Technology layer specifications are out of scope for this document. Content-level correction, imputation, and enrichment are out of scope — they belong to VS-03.0 Data Editing and Enrichment. Standardization aligns structure, format, classification, and semantics **without altering the informational content** of the data.
+:::
+
+
+
+::: {.callout-tip title="How to read this document"}
+You do not need to read this document cover to cover — go to the section that matches your role:
+
+- **Data collection manager / operations staff** → the **Execution** processes (what happens each production cycle).
+- **Quality or compliance manager** → the **Management** processes (monitoring, quality, audit, improvement).
+- **Methodologist / statistical designer** → the **Design** processes (requirements, methodology, rules).
+- **System builder / IT** → the **Implementation** processes (building and testing the pipeline).
+- **Manager wanting the big picture** → read the *Introduction and Strategic Context*, then jump to the *End-to-End Scenarios* at the end.
+:::
+
+*A note on numbering:* each `VS-0x.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
+
+
+
+### Position in the Statistical Value Chain
+
+VS-02.0 is the second primary value stream — it receives Raw Data from VS-01.0 and maps and reformats it into a structured, standardized asset that can flow smoothly into editing, analysis, and modeling. It is the "Harmonize & Integrate Information" orchestration stage that makes data from different sources work together — by aligning structure, format, and codes, **not** by changing the data's values.
+
+```{mermaid}
+%%| label: fig-1
+%%| fig-cap: "Value Stream Context Map. VS-02.0 is highlighted as the standardization stage that bridges acquisition and editing in the primary value chain."
+%%| fig-width: 6
+
+
+flowchart TD
+    subgraph primary["Primary Value Streams"]
+        direction LR
+        VS01["VS-01.0
+        Data Acquisition
+        & Ingestion"]
+        VS02["**VS-02.0**
+        Data Standardization
+        & Integration"]:::highlight
+        VS03["VS-03.0
+        Data Editing
+        & Enrichment"]
+        VS04["VS-04.0
+        Estimation, Analysis
+        & Modeling"]
+        VS05["VS-05.0
+        Statistical Product
+        Composition"]
+        VS06["VS-06.0
+        Dissemination
+        & Service Delivery"]
+        VS01 --> VS02 --> VS03 --> VS04 --> VS05 --> VS06
+    end
+
+    subgraph supporting["Supporting Value Streams"]
+        VS07["VS-07.0
+        Governance &
+        Compliance"]
+        VS08["VS-08.0
+        Innovation &
+        Methodology"]
+        VS09["VS-09.0
+        Infrastructure &
+        Platform Enablement"]
+        VS10["VS-10.0
+        Customer &
+        Stakeholder Engagement"]
+    end
+
+    supporting -.->|"enables"| primary
+
+    classDef highlight fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
+```
+
+### Steady State Transition
+
+VS-02.0 transitions data from **Steady State #1 (Raw Data)** — data under NSO custody in its original form — to **Steady State #2 (Standardized Data)** — data aligned to common structures, formats, classifications, and semantics, with direct identifiers removed, so that it is interoperable and comparable across sources, domains, and time.
+
+```{mermaid}
+%%| label: fig-2
+%%| fig-cap: "Steady State Transition from Raw Data to Standardized Data through the standardization service at the domain boundary."
+%%| fig-width: 6
+flowchart LR
+    subgraph upstream["Upstream Domain (VS-01.0)"]
+        RD["Raw Data
+        (State #1)"]
+    end
+
+    subgraph boundary["Standardization Boundary"]
+        QG["Standardization Service
+        (Profiling, Classification/Coding,
+        Semantic Alignment, Conformance check)"]
+    end
+
+    subgraph internal["Standardized Domain (VS-02.0)"]
+        SD["Standardized Data
+        (State #2)"]
+    end
+
+    RD --> QG --> SD
+
+    style internal fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
+    style upstream fill:#7d7d7d,color:#fff,stroke:#1d4ed8,stroke-width:1px
+    style boundary fill:#FFF,stroke-dasharray:5,5
+
+```
+
+::: {.callout-tip title='Conformance gate criteria (Examples)*'}
+- Source codes mapped 1-to-1 to standard classifications via correspondence/lookup tables (e.g., NACE, ISCO, COICOP — the standard classifications of industries, occupations, and household expenditure), with the original value preserved
+- Structure conforms to the target data model (fields, types, formats, cardinalities)
+- Descriptive metadata harmonized — coherent definitions, units, reference periods, and quality descriptors recorded **as metadata**
+- Structural and semantic validation routines passed
+- Direct identifiers removed or pseudonymized per the privacy framework
+- No data value has been changed, converted, or derived — only the representation (structure/format) is re-expressed, standard codes are added by 1-to-1 mapping, and metadata is attached
+- Standardization metadata captured (source-to-target mappings, classification versions, mapping & format-coercion lineage)
+:::
+
+::: {.callout-note title="What 'content' means for the no-loss-of-content invariant"}
+The no-loss-of-content invariant covers the **statistical and informational content** of the data — the records, observed values, and key measures, which the content-preservation checks verify are preserved unchanged (record counts and key business measures identical before and after). In VS-02 this is straightforward because the domain **never alters a value**: it only re-expresses the representation (structure/format), adds standard codes by deterministic 1-to-1 mapping, and attaches metadata. Anything that would change a value — unit or currency conversion, reference-period alignment, value reconciliation, derivation, or interpretive coding of free text — is **not** performed here; it belongs to VS-03 (Editing & Enrichment). The invariant does **not** cover direct identifiers, which are personal data rather than statistical content; these are removed or pseudonymized at this transition to satisfy privacy by design (SAF-P11). The distinction matters: **pseudonymization** replaces a direct identifier with a key that preserves the ability to link records, whereas **removal** deletes the identifier and does not preserve linkage. The content-preservation checks operate on statistical content, not on identifiers — so identifier handling never registers as content loss.
+:::
+
+
+### The Four-Process Governance Pattern
+
+The Statistical Architecture Framework defines that each business domain operates through four distinct process types. This is not a linear sequence but a governance cycle where each process type produces a distinct output that feeds the others.
+
+
+```{mermaid}
+%%| label: fig-3
+%%| fig-cap: "The Four-Process Governance Pattern. Each process type produces a distinct artefact class. The cycle closes when Management findings feed back into Design improvements."
+%%| fig-width: 6
+flowchart LR
+    D["**Design**
+    _provides metadata_
+
+    Target data models, classification
+    strategies, mapping rules, conformance criteria"]
+    I["**Implement**
+    _provides the execution process_
+
+    Configured mapping engines, coding
+    services, validation pipelines"]
+    E["**Execute**
+    _provides the statistical data_
+    Standardized datasets, mapping
+    lineage, conformance metadata"]
+    M["**Manage**
+    _provides quality reports_
+    Conformance dashboards, classification
+    quality scorecards, improvement recommendations"]
+
+    D -->|"design artefacts
+    guide building"| I
+    I -->|"production-ready
+    process"| E
+    E -->|"data & process logs
+    for assessment"| M
+    M -->|"improvement
+    feedback"| D
+
+    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
+    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
+    style E fill:#059669,color:#fff,stroke:#047857
+    style M fill:#d97706,color:#fff,stroke:#b45309
+```
+
+
+
+
+### Governing Principles
+
+The following principles directly govern the VS-02.0 business domain:
+
+| Principle | Statement | Application to VS-02.0 |
+|---|---|---|
+| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSOs should contribute to open source communities for classification, coding, and mapping tooling (e.g., libraries for SDMX, the statistical data-exchange standard, or coding engines), ensuring collective control over critical standardization capabilities rather than vendor dependence. |
+| **SAF-P07** | Implement loosely coupled processes and systems | The standardization domain must be independent from upstream acquisition and downstream editing. Standardized Data (State #2) serves as a decoupling interface — downstream consumers access standardized, classified data without knowledge of the original source structure. |
+| **SAF-P08** | Data is shared property | Standardized data, once registered, is available to all authorized consumers. Standardization should not be duplicated across statistical products when the same standardized asset can serve multiple purposes. |
+| **SAF-P09** | No data without metadata and classification | Standardization is where classification is applied as a first-class activity. Every standardized dataset carries source-to-target mappings, classification scheme versions, harmonized definitions, units, and a BIV classification (availability, integrity, confidentiality). The principle does not require raw inputs to *arrive* already classified — it requires that data **handed over from State #2 onward** carries the required metadata and classification. This domain is the principal fulfillment point of that obligation. |
+| **SAF-P10** | Security By Design | Access controls, integrity verification, and audit logging are embedded in the standardization pipeline so that every mapping and format-coercion operation remains traceable and tamper-evident, not added as an afterthought. |
+| **SAF-P11** | Privacy By Design | Removal or pseudonymization of direct identifiers is performed during standardization (the State #1 → State #2 transition), applying data minimization and purpose limitation by design rather than retrofitting privacy after data is processed. |
+
+::: {.callout-note title="Cross-cutting principle application"}
+Several principles cut across all four process types. SAF-P09 (no data without metadata and classification) is the defining principle of this domain: Design defines the target classifications and mappings, Execute applies and captures them, Manage assesses classification quality and closes remaining gaps. SAF-P11 (Privacy By Design) applies to Design (Section 3.5), Implementation (Section 4.3), and Execution (confirmed at registration, Section 5.5), where direct identifiers are removed or pseudonymized. SAF-P07 (loosely coupled) governs both the State #1 intake interface from VS-01.0 and the State #2 handover interface to VS-03.0.
+:::
+
+### Capability Foundations
+
+VS-02.0 draws on the following SAF capabilities:
+
+| Capability Group | Capabilities | Role in VS-02.0 |
+|---|---|---|
+| **1.1 Statistical design and build** | 1.1.2 Design statistics product, 1.1.3 Build statistics product | Design the target data models, classification strategies, and build the standardization pipeline |
+| **2.1 Data management** | 2.1.1 Data lifecycle management, 2.1.2 Metadata management, 2.1.3 Statistical quality management, 2.1.4 Statistical register management | Manage data and metadata through standardization, harmonize semantics, assess conformance quality, align with reference registers |
+| **3.2 Computerization and automation** | 3.2.1 Application development, 3.2.2 Functional management | Build and maintain mapping engines, coding services, and conformance validation pipelines |
+| **3.3 Security and Privacy** | 3.3.1 Privacy management, 3.3.2 Security planning | Ensure direct-identifier removal and security by design across standardization processes |
+| **4.1 Governance** | 4.1.1 Strategy and governance, 4.1.2 Policy and planning, 4.1.4 Improve management, 4.1.5 Accountability | Govern the domain, steward classification standards, plan improvements, report on compliance |
+
+### Metadata Perspective
+
+It is considered that metadata is an essential product of the Design phase and a critical concern of every other phase. In this domain, metadata — and classification in particular — is not a by-product but the central asset being created. The table below consolidates the metadata produced across all four process types, covering both data metadata (about the datasets) and process metadata or paradata (about how the process runs).
+
+| Process Type | Data Metadata Produced | Process Metadata (Paradata) Produced |
+|---|---|---|
+| **Design** | Target data models, classification schemes, code lists, source-to-target mapping rules, conformance criteria, harmonized definitions | Design decisions log, classification version policy, review and approval records |
+| **Implement** | Mapping configurations, coding-service parameters, validation rule parameters, catalog templates | Build log, test results, configuration change records, deployment approvals |
+| **Execute** | Per-dataset source-to-target mappings, applied classification versions, mapping & format-coercion lineage, conformance scores, profiling statistics | Operator identity, timing, volumes, mapping coverage, unmatched-value counts, engine version |
+| **Manage** | Conformance scores, classification quality assessments, coverage reports, lineage assessments, trend analyses | Conformance dashboards, classification quality trends, improvement decisions, audit findings |
+
+
+## Business Roles and Actors
+
+
+
+| Role                        | Process Orientation | Description                                                                                       |
+|-----------------------------|---------------------|---------------------------------------------------------------------------------------------------|
+| **Upstream Data Provider (VS-01.0)** | External (internal NSO) | Supplies Raw Data (State #1) and its provenance metadata to the standardization domain |
+| **Standards Body**          | External            | Maintains classification and exchange standards the NSO conforms to (e.g., Eurostat, UNSD for NACE, ISCO, COICOP, SDMX) |
+| **Data Architect**          | Design              | Designs the target data models, canonical schemas, and structural conformance rules               |
+| **Classification Steward**  | Design              | Owns classification strategy, code lists, and the 1-to-1 correspondence/lookup tables from source codes to standards |
+| **Metadata Architect**      | Design              | Designs harmonized definitions, semantic mappings, unit/period metadata, and the standardized metadata schema |
+| **Data Engineer**           | Implementation      | Builds and configures profiling, mapping, and format-coercion components and the standardization pipeline |
+| **System Configurator**     | Implementation      | Configures classification services, reference-data connections, and access controls               |
+| **Test Manager**            | Implementation      | Plans and executes testing of the standardization pipeline (technical, conformance, integration)   |
+| **Process Owner**           | Management          | Accountable for the end-to-end performance of the standardization domain                           |
+| **Compliance Officer**      | Management          | Ensures privacy (identifier removal) and standards compliance, produces audit reports              |
+| **Quality Manager**         | Management          | Monitors conformance KPIs, produces quality reports, and drives continuous improvement             |
+| **Methodologist**           | Design              | Designs the mapping methodology and the cross-source harmonization of definitions and metadata     |
+| **Data Quality Analyst**    | Execution           | Profiles data, assesses structural and semantic conformance, and logs unmapped values and exceptions |
+| **Data Steward**            | Execution           | Registers standardized datasets, manages metadata entries, and applies access controls            |
+
+
+
+## Design Processes — "provides metadata"
+
+*Framework alignment: GSBPM Phases 1–2 — see [Framework Mappings](#framework-mappings).*
+
+The design phase produces the **metadata artefacts** that govern all subsequent phases — above all the target data models, classification schemes, and mapping rules. Without well-designed standards, execution produces inconsistent, incomparable data and management has no baseline to measure conformance against.
+
+### Design Target Data Models and Schemas
+
+The starting point of standardization is defining the canonical structure that all data must conform to. This sub-process specifies the target data model for Standardized Data (State #2): entities, fields, data types, formats, units of measure, cardinalities, and referential constraints. It establishes canonical representations for common concepts — dates, geographies, currencies, organizational and personal identifiers — so that data from surveys, registers, and external sources can be expressed consistently. The team also defines the structural conformance contract: what it means for a dataset to be structurally valid against the target model. Where multiple sources describe the same population, the integration model defines how they are aligned to a common key structure (e.g., a business or statistical unit register key), aligned with GSBPM 2.1.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Define canonical target data model for Standardized Data (State #2) — entities, fields, types, formats, units | Target Data Model Specification | GSBPM 2.1 |
+| Define canonical representations for common concepts (dates, geography, currency, identifiers) | Canonical Concept Catalog | GSBPM 2.1 |
+| Define structural conformance contract and referential constraints | Structural Conformance Rules | GSBPM 2.5 |
+| Define integration/linkage key structure for multi-source alignment | Integration Key Design | SAF 2.1.4 |
+
+::: {.callout-tip title="**NSO Example — Business Statistics:**"}
+A national statistical organization designing its business statistics data model defines the statistical business register identifier as the canonical linkage key, requires that each turnover figure carry its currency and reference-period basis as metadata (values are recorded as received, not converted), and specifies that economic activity is expressed in NACE Rev. 2 via a maintained correspondence table. The design produces the target schema against which survey returns, VAT register data, and structural business statistics are all aligned.
+:::
+
+
+### Design Classification Mapping Strategy
+
+Once the target structure is set, the classification steward designs how **source codes are mapped one-to-one to standard classifications**. This sub-process selects the authoritative classifications and code lists the NSO conforms to — NACE, ISCO, COICOP, NUTS, SDMX code lists, and GSIM-aligned concepts — and defines the version policy (which version applies, how transitions between versions are handled). The mapping is **deterministic**: maintained correspondence/lookup tables translate a value that already carries a source code into the corresponding standard code, with the original value preserved. The design also specifies how **unmapped or uncoded values are handled** — they are flagged and passed to VS-03 (Editing & Enrichment), which performs any interpretive coding of free text. Reference and master data sources are identified so that mapping is anchored to authoritative registers, aligned with GSBPM 2.5 (Design processing and analysis).
+
+::: {.callout-note}
+Interpretive coding of free-text values (e.g., coding a written job title to ISCO) is **not** a VS-02 activity — it requires judgement that can change informational content and is therefore performed in VS-03. VS-02 only applies deterministic source-code → standard-code correspondences.
+:::
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Select authoritative classifications and code lists (NACE, ISCO, COICOP, NUTS, SDMX, GSIM concepts) | Classification Standards Register | GSBPM 2.5 |
+| Define classification version policy and transition handling | Classification Version Policy | SAF-P09 |
+| Design deterministic source-code → standard-code correspondence/lookup tables (1-to-1) | Correspondence Table Set | GSBPM 2.5 |
+| Define handling of unmapped/uncoded values (flag and route to VS-03) | Unmapped-Value Routing Rules | GSBPM 2.5 |
+| Identify reference and master data sources for mapping | Reference Data Catalog | CSDA Reference Data |
+
+::: {.callout-tip title="**NSO Example — Labour Statistics:**"}
+The labour statistics team designs deterministic correspondence tables: source education codes from the Labour Force Survey map one-to-one to ISCED-2011, and source region codes map to NUTS-3. Free-text job titles are **not** coded here — they are flagged and handed to VS-03, where occupation is coded to ISCO-08. VS-02 only re-expresses values that already carry a source code.
+:::
+
+### Design Metadata and Semantic Harmonization Rules
+
+This sub-process defines how descriptive metadata and semantics are harmonized so that data from different sources can be *understood* consistently — without changing any value. The team designs the harmonized concept and variable definitions, and the **metadata** that records each variable's unit of measure and reference-period basis (the unit/period is recorded, not converted). Semantic mapping rules link source variables to canonical concepts in the concept system, and quality descriptors (completeness, accuracy, confidentiality flags) are standardized. Where sources use differing definitions for the same concept (e.g., when "employee" is defined differently in a survey and an administrative register), the design specifies that the difference is **recorded as metadata and flagged for VS-03** — VS-02 does not adjust values to reconcile them. The metadata catalog structure for standardized artefacts is designed so that lineage from raw to standardized state is fully traceable — making active metadata a foundation for downstream automation, as emphasized by the CSDA Metadata Management capability.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Define harmonized concept and variable definitions | Harmonized Concept System | GSBPM 2.2 |
+| Define unit-of-measure and reference-period metadata to be recorded per variable (no conversion) | Unit & Reference-Period Metadata Standards | SAF-P09 |
+| Design semantic mapping rules from source variables to canonical concepts | Semantic Mapping Rules | CSDA Metadata Mgmt |
+| Design rules to record differing cross-source definitions as metadata and flag them for VS-03 | Definition-Difference Policy | SAF 2.1.4 |
+| Design metadata catalog structure and lineage model for standardized artefacts | Catalog Registration Template | CSDA Metadata Mgmt |
+
+### Design Conformance Validation Rules
+
+Before any data is standardized, the acceptance criteria for "standardized" must be clearly defined. This sub-process establishes structural validation rules (field types, formats, value ranges, cardinalities, referential integrity against the target model), classification conformance rules (every mapped code belongs to the correct classification version, no orphan codes), and semantic conformance rules (units, definitions, and reference periods are correctly recorded as metadata against the harmonized standards). Coverage thresholds are agreed — maximum acceptable unmapped-value rate — and exception handling rules are designed to distinguish between outright rejection, conditional acceptance with conformance flags, and routing of unmapped values to VS-03. Crucially, validation rules also verify the **no-loss-of-content** invariant: every value is unchanged, and record counts and key business measures are identical before and after. The GAMSO Quality Management capability provides the overarching control framework.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Define structural validation rules against the target model | Structural Validation Rule Set | GSBPM 2.5 |
+| Define classification conformance rules (valid codes, correct version, no orphans) | Classification Conformance Rules | GSBPM 2.5 |
+| Define semantic conformance rules (units, definitions, reference periods) | Semantic Conformance Rules | GSBPM 2.5 |
+| Define no-loss-of-content checks (record/measure preservation across standardization) | Content-Preservation Checks | GAMSO QM |
+| Design exception handling rules: rejection vs. conditional acceptance vs. manual review | Exception Handling Policy | GSBPM 2.5 |
+
+### Design Standardization Registration and Privacy Framework
+
+The final design sub-process ensures that standardized artefacts are correctly registered, traceable, and privacy-compliant. Each standardized dataset receives a BIV classification (Availability, Integrity, Confidentiality) per SAF-P09, and role-based access controls for the standardized data repository are designed in accordance with SAF-P10. The lineage model is designed so that every standardized field can be traced back to its raw source value and the mapping rule applied. Privacy protection follows SAF-P11: the standardization stage is where direct identifiers are removed or replaced with pseudonymous keys, so the design specifies which identifiers are dropped, which are pseudonymized, the pseudonymization method and key management, and data minimization rules. Audit logging requirements — what mapping & format-coercion events must be recorded — complete the design.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Define BIV data classification for standardized datasets | Data Classification Policy | SAF-P09 |
+| Design role-based access control for the standardized data repository | Access Control Design | SAF-P10 |
+| Design lineage model: standardized field → raw source value → mapping rule | Lineage Model Specification | CSDA Traceability |
+| Design identifier removal/pseudonymization: which identifiers, method, key management, minimization | Privacy & Pseudonymization Design | SAF-P11 |
+| Design mapping & format-coercion audit logging requirements | Audit Logging Specification | SAF-P10 |
+
+```{mermaid}
+%%| label: fig-4
+%%| fig-cap: "Design Process Decomposition. Raw data structure, framework and classification standards flow into five design sub-processes, producing metadata artefacts that govern Implementation, Execution, and Management."
+%%| fig-width: 6
+flowchart TB
+    subgraph inputs["Inputs"]
+        RM["Raw Data Model<br/><small>(State #1 schema)</small>"]
+        FW["Framework Standards<br/><small>GSBPM · GAMSO · CSDA</small>"]
+        CL["Classification Standards<br/><small>NACE · ISCO · COICOP · SDMX</small>"]
+        LAW["Legal & Privacy"]
+    end
+
+    subgraph design["Design Sub-Processes"]
+        D1["3.1 Target Data Models<br/>& Schemas"]
+        D2["3.2 Classification<br/>Mapping Strategy"]
+        D3["3.3 Metadata & Semantic<br/>Harmonization Rules"]
+        D4["3.4 Conformance<br/>Validation Rules"]
+        D5["3.5 Registration &<br/>Privacy Framework"]
+    end
+
+    subgraph outputs["Metadata Artefacts"]
+        O1["Target Data Model"]
+        O2["Correspondence Tables"]
+        O3["Harmonized Concepts"]
+        O4["Conformance Rule Set"]
+        O5["Lineage & Privacy Design"]
+    end
+
+    RM --> D1
+    CL --> D2
+    FW -.->|inform| design
+    LAW --> D5
+
+    D1 --> D2 --> D3 --> D4 --> D5
+
+    D1 --> O1
+    D2 --> O2
+    D3 --> O3
+    D4 --> O4
+    D5 --> O5
+
+    outputs -->|govern| NEXT["Implementation (§4) · Execution (§5)<br/>measured by Management (§6)"]
+
+    style design fill:#f5f3ff,stroke:#7c3aed
+    style outputs fill:#ede9fe,stroke:#7c3aed
+```
+
+## Implementation Processes — "provides the execution process"
+
+*Framework alignment: GSBPM Phase 3 (Build) — see [Framework Mappings](#framework-mappings).*
+
+The implementation phase takes the metadata artefacts from Design and **builds, configures, and tests** the production-ready standardization pipeline. Nothing runs operationally until this phase is complete.
+
+### Build Profiling and Mapping Engines
+
+This sub-process turns the target data model and mapping designs into operational tools. Profiling components are built to analyze incoming raw data structure — inferring types, detecting cardinalities, value distributions, and structural anomalies — so that the pipeline can report how far each source is from the target model. The mapping & format-coercion component is built or configured to apply the designed **value-preserving** operations: renaming, restructuring, type casting, reformatting (e.g., CSV→XML), and key alignment. It does **not** convert units, currencies, or reference periods — those are recorded as metadata and any conversion is performed in VS-03. The component is configured to be declarative and lineage-aware, capturing for each output field which input field and which rule produced it. All mapping logic is version-controlled in line with SAF-P10 so that any standardized record can be reproduced from raw data, following GSBPM 3.1.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Build data profiling components (type inference, cardinality, distributions, anomalies) | Production-ready profiling module | GSBPM 3.1 |
+| Build/configure the mapping & format-coercion component (rename, restructure, cast, reformat, align keys) | Configured mapping component | GSBPM 3.1 |
+| Configure lineage capture for every mapping/coercion operation | Lineage-aware mapping modules | CSDA Traceability |
+| Version-control all mapping & format-coercion logic | Versioned mapping repository | SAF-P10 |
+
+::: {.callout-tip title="**NSO Example — Price Statistics:**"}
+The implementation team builds a component that coerces heterogeneous retailer price feeds into the canonical price record structure — reshaping fields and casting types — and records each item's currency, unit (e.g., price-per-kilogram), and scrape timestamp **as metadata**. Prices are stored exactly as received. Converting currencies/units to a common basis and coding each product to its COICOP item require judgement and are performed in VS-03; VS-02 only re-structures and annotates. Lineage is captured so every standardized record links back to the exact raw scrape record.
+:::
+
+### Configure Classification Mapping Services
+
+The designed correspondence tables are translated into automated mapping services in this sub-process. Deterministic lookup/correspondence tables are loaded and connected to authoritative reference data, so that a value already carrying a source code is translated one-to-one to the corresponding standard code, following GSBPM 3.2. Classification version control is configured so the correct version is applied and version transitions are managed. Values with no matching correspondence (and any free-text/uncoded values) are routed to VS-03 rather than coded here. Reference and master data connections are configured so mapping stays synchronized with authoritative registers.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Load correspondence/lookup tables for deterministic source-code → standard-code mapping | Configured mapping services | GSBPM 3.2 |
+| Configure classification version control and transition handling | Version-controlled classifications | SAF-P09 |
+| Configure routing of unmapped/uncoded values to VS-03 | Unmapped-value routing | GSBPM 3.4 |
+| Configure reference/master data connections | Synchronized reference data | CSDA Reference Data |
+
+### Build Conformance Validation Pipelines and Metadata Registration
+
+This sub-process implements the conformance validation rules and the registration of standardized artefacts. Structural, classification, semantic, and content-preservation checks (Section 3.4) are implemented as automated validations that run on every standardized dataset. The metadata catalog entries are built from the designed model (Section 3.3), and automatic metadata propagation is configured so that mapping lineage, applied classification versions, harmonized definitions, and conformance scores flow into the catalog. Identifier removal/pseudonymization is implemented per the privacy design (Section 3.5). Event notifications are configured so that downstream consumers (VS-03.0) are alerted when standardized data is registered, and exception workflows route non-conforming data to manual review. As the CSDA emphasizes, active metadata — metadata that can drive standardization rules and downstream processing specifications — is the ultimate goal.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Implement conformance checks as automated validations (structural, classification, semantic, content-preservation) | Automated conformance pipeline | GSBPM 3.2 |
+| Implement identifier removal/pseudonymization per privacy design | Pseudonymization component | SAF-P11 |
+| Configure automatic metadata & lineage propagation into the catalog | Automated metadata pipelines | CSDA Metadata Mgmt |
+| Configure "Standardized Data Registered" event for downstream consumers | Event publication | GSBPM 3.2 |
+| Configure exception handling workflows | Non-conformance routing & review queues | GSBPM 3.4 |
+
+### Test and Validate the Pipeline
+
+Before the pipeline goes into production, it must be rigorously verified. Technical testing covers all individual components — profilers, mapping & format-coercion component, mapping services, validators, and catalog (GSBPM 3.5). Integration testing validates the end-to-end flow from raw data intake through mapping, validation, to catalog registration. A pilot run with real or synthetic data (GSBPM 3.6) verifies that source codes are correctly mapped one-to-one, mapping lineage is complete, conformance criteria are enforced, the no-loss-of-content invariant holds (every value unchanged; record counts and key measures preserved), unmapped values are correctly routed to VS-03, and identifier removal works as designed. Performance testing confirms the pipeline can handle expected volumes within processing windows. The phase concludes with finalization of the production system and documentation of operational procedures (GSBPM 3.7).
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Technical testing of all individual components | Unit test reports | GSBPM 3.5 |
+| Integration testing: end-to-end flow from raw intake to registration | Integration test report | GSBPM 3.5 |
+| Pilot with real or synthetic data; verify lineage, no-loss-of-content, and unmapped-value routing | Pilot report, validated lineage | GSBPM 3.6 |
+| Verify correspondence-table mappings against the source code lists | Mapping verification report | GSBPM 3.6 |
+| Performance testing against expected volumes | Performance test report | GSBPM 3.6 |
+| Finalize production system and document operational procedures | Operational Procedures Manual, Production-Ready Pipeline | GSBPM 3.7 |
+
+```{mermaid}
+%%| label: fig-5
+%%| fig-cap: "Implementation Pipeline from design artefacts through build/configure/test to production-ready system."
+%%| fig-width: 6
+flowchart LR
+    subgraph design_artefacts["Design Artefacts (from Section 3)"]
+        DA1["Target Data Model\n& Schemas"]
+        DA2["Classification\nMapping Strategy"]
+        DA3["Harmonization\nRules"]
+        DA4["Conformance\nValidation Rules"]
+        DA5["Lineage &\nPrivacy Framework"]
+    end
+
+    subgraph build["Build & Configure"]
+        B1["4.1 Build Profiling\n& Mapping Engines"]
+        B2["4.2 Configure\nClassification\nMapping Services"]
+        B3["4.3 Build Conformance\nValidation &\nRegistration"]
+    end
+
+    subgraph test["Test & Validate"]
+        T1["4.4 Technical\nTesting"]
+        T2["4.4 Pilot &\nMapping Verification"]
+        T3["4.4 Performance\n& Lineage"]
+    end
+
+    subgraph output["Production-Ready"]
+        PR["Operational\nStandardization\nPipeline"]
+        OP["Operational\nProcedures"]
+    end
+
+    DA1 & DA3 --> B1
+    DA2 --> B2
+    DA4 & DA5 --> B3
+
+    B1 & B2 & B3 --> T1 --> T2 --> T3
+    T3 --> PR & OP
+
+    PR -->|"ready for"| EXEC["Execution\n(Section 5)"]
+
+    style build fill:#eff6ff,stroke:#2563eb
+    style test fill:#dbeafe,stroke:#2563eb
+```
+
+## Execution Processes — "provides the statistical data"
+
+*Framework alignment: the later GSBPM phases for this domain — see [Framework Mappings](#framework-mappings).*
+
+The execution phase runs the **designed and implemented pipeline** operationally for each production cycle. This corresponds to the five VS-02 value stream stages. In a mature steady state, much of the work has been pre-designed (Section 3) and pre-built (Section 4) — execution focuses on running the cycle, applying mappings and classifications, capturing lineage and conformance metadata, and ensuring conformance gates are passed without altering data content.
+
+### Profile and Assess Data Structure
+
+**Value created:** *A clear understanding of how far incoming raw data is from the target standard, so the right mapping and format coercion can be applied.*
+
+When a "Raw Data Registered" event is received from VS-01.0, the standardization domain begins by profiling the incoming dataset. Per-cycle execution applies the profiling components (Section 4.1) to analyze structure, infer types, measure cardinalities and value distributions, and detect inconsistencies, missing fields, and structural anomalies relative to the target data model. The dataset is then compared against the target schema to produce a structure-gap assessment — which fields map directly, which require format coercion, which source codes have a standard correspondence, and which values are uncoded and must be routed to VS-03. Significant or unexpected structural deviations (e.g., a source that has changed its schema) trigger a return to the design process rather than ad-hoc adaptation during execution, applying GSBPM 5.1 in its recurrent form.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Profile incoming raw data: types, cardinalities, distributions, anomalies | Data Profiling Report | GSBPM 5.1 |
+| Compare structure against the target data model | Structure-Gap Assessment | GSBPM 5.1 |
+| Identify required format coercion and code mappings to apply | Mapping Plan (per dataset) | GSBPM 5.1 |
+| Flag unexpected structural deviations for design review | Schema-change exception (if any) | GSBPM 5.1 |
+
+::: {.callout-tip title="**NSO Example — Tax Register Intake:**"}
+The quarterly corporate tax file (Raw Data registered by VS-01.0) is profiled on arrival: 47 fields detected, corporate identifier present at 99.8% coverage, economic activity supplied as the tax authority's internal code (which has a maintained correspondence to NACE), and turnover provided in thousands of euro. The structure-gap assessment flags the activity-code correspondence mapping and the format coercion of the XML as the VS-02 work; it records that turnover's unit basis ("thousands of EUR") must travel as metadata and that converting it to a common unit is a VS-03 activity.
+:::
+
+### Apply Standard Classifications and Formats
+
+**Value created:** *Source codes re-expressed in shared, authoritative classifications and a common format so data is comparable across sources — with no value changed.*
+
+This is the core standardization sub-process. The mapping & format-coercion component applies the designed **value-preserving** operations — renaming, restructuring, type casting, reformatting (e.g., CSV→XML), and key alignment — to bring the data into the target format. The mapping services then translate values that **already carry a source code** to the corresponding standard classification (NACE, ISCO, COICOP, NUTS, SDMX code lists) via deterministic correspondence/lookup tables, one-to-one, preserving the original value. Values that have no correspondence, or that are free text requiring interpretation, are **not** coded here — they are flagged and routed to VS-03. Throughout, the no-loss-of-content principle is enforced: only the representation changes and standard codes are added; the underlying information is preserved — aligned with GSBPM 5.2. Every applied mapping and classification version is recorded as lineage metadata.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Apply format coercion (rename, restructure, cast, reformat, align keys) | Format-coerced dataset (values unchanged) | GSBPM 5.1 |
+| Map source codes to standard classifications via correspondence/lookup (1-to-1) | Standard-coded dataset (original preserved) | GSBPM 5.2 |
+| Flag unmapped/uncoded and free-text values and route them to VS-03 | Unmapped-value handover list | GSBPM 5.2 |
+| Capture applied mappings and classification versions as lineage | Mapping & classification lineage | SAF-P09 |
+
+```{mermaid}
+%%| label: fig-6
+%%| fig-cap: "Classification Mapping Architecture. Values that already carry a source code are mapped one-to-one to standard classifications via correspondence/lookup tables, with the original preserved; unmapped and free-text values are routed to VS-03 for interpretive coding. No value is changed in VS-02."
+%%| fig-width: 6
+flowchart LR
+    subgraph sources["Raw Data Inputs"]
+        direction TB
+        SV["Survey Data\n(source codes + free text)"]
+        AD["Administrative Data\n(source codes)"]
+        EM["Emerging Sources\n(mixed values)"]
+    end
+
+    subgraph mapping["Deterministic Mapping (1-to-1)"]
+        L["Correspondence /\nLookup tables"]
+    end
+
+    subgraph target["Standard Output"]
+        ST["Standard-coded Values\n(original preserved)"]
+    end
+
+    V3["VS-03\nEditing & Enrichment\n(interpretive coding)"]
+
+    SV -->|"+ format coercion"| mapping
+    AD -->|"+ format coercion"| mapping
+    EM -->|"+ format coercion"| mapping
+
+    L -->|"source code has\ncorrespondence"| ST
+    L -.->|"unmapped / free text"| V3
+
+    style sources fill:#ecfdf5,stroke:#059669
+    style mapping fill:#f0fdf4,stroke:#059669
+    style V3 fill:#fee2e2,stroke:#b91c1c
+```
+
+
+::: {.callout-tip title='**NSO Example — Labour Force Survey Standardization:**'}
+The LFS returns are standardized in VS-02 by deterministic mapping only: source education codes map one-to-one to ISCED-2011 and source region codes map to NUTS-3 via correspondence tables, and the XML is coerced to the target schema. The 42,000 free-text occupation strings are **not** coded here — they are flagged and handed to VS-03, where occupation is coded to ISCO-08. No response value is altered — values are only re-expressed in standard codes where a deterministic correspondence exists.
+:::
+
+
+### Align Metadata and Semantics
+
+**Value created:** *Coherent, shared meaning across datasets so the same concept means the same thing everywhere.*
+
+Once structure and codes are standardized, the descriptive metadata and semantics are harmonized — at the **metadata level only, without changing any value**. Source variables are linked to canonical concepts in the concept system; each variable's unit of measure and reference-period basis are **recorded as metadata** against the standard conventions (not converted); and where sources use differing definitions for the same concept (e.g., two sources defining "employee" differently), the difference is **recorded as metadata and flagged for VS-03** rather than reconciled by adjusting values. Quality descriptors (completeness, accuracy, confidentiality flags) are standardized and attached. The harmonized metadata is bound to the dataset so that downstream consumers receive both the standardized data and the coherent semantics needed to interpret it, aligned with GSBPM 5.1 and the CSDA Metadata Management capability.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Link source variables to canonical concepts | Concept-aligned variables | GSBPM 5.1 |
+| Record unit-of-measure and reference-period basis as metadata (no conversion) | Unit & period metadata | SAF-P09 |
+| Record differing cross-source definitions as metadata and flag them for VS-03 | Definition-difference record | SAF 2.1.4 |
+| Standardize and attach quality descriptors | Harmonized quality metadata | CSDA Metadata Mgmt |
+
+::: {.callout-tip title="**NSO Example — Multi-Source Business Statistics:**"}
+Turnover arrives from the structural business survey, the VAT register, and a commercial dataset. VS-02 links each turnover variable to the canonical concept and **records** each source's currency, unit, and reference-period basis as metadata — noting, for instance, that the VAT register reports on a fiscal-year basis and the survey on a calendar-year basis. VS-02 does **not** adjust the values to a common basis; the period and unit differences are carried as metadata and the alignment/conversion is performed downstream in VS-03, keeping the difference transparent and the original values intact.
+:::
+
+### Validate Structural and Semantic Conformance
+
+**Value created:** *Confidence that the standardized data conforms to standards and that no content was lost in standardization.*
+
+Before standardized data can be accepted, it must pass the conformance gates. The validation process runs the automated checks from Section 3.4: structural validation against the target model (types, formats, ranges, cardinalities, referential integrity), classification conformance (every mapped code belongs to the correct classification version, no orphan codes, mapping coverage above the threshold), and semantic conformance (units, definitions, and reference periods are correctly recorded as metadata against the harmonized standards). Critically, content-preservation checks verify the no-loss-of-content invariant — every value is unchanged, and record counts and key business measures are identical before and after. A conformance assessment is produced, with a structural score, mapping coverage rate, and semantic conformance rating. Every result, exception, and decision is logged in a mapping & format-coercion audit trail capturing both data metadata (what was validated, what passed) and process metadata (who validated, when, which rule and engine version). The outcome is one of two business events: *Standardization Conformed* (proceed to registration) or *Standardization Non-Conformant* (trigger exception handling — re-map, route unmapped values to VS-03, or accept conditionally with a conformance flag).
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Validate structure against the target model | Structural validation result | GSBPM 5.3 |
+| Validate classification conformance (valid codes, correct version, coverage) | Classification conformance result | GSBPM 5.3 |
+| Validate semantic conformance (units, definitions, reference periods) | Semantic conformance result | GSBPM 5.3 |
+| Run no-loss-of-content checks (record/measure preservation) | Content-preservation result | GAMSO QM |
+| Create audit trail: log all conformance results, exceptions, and decisions | Audit trail record | GAMSO QM |
+
+::: {.callout-important}
+**Boundary:** NO value is changed at this stage. Standardization re-expresses structure and format, adds standard codes by 1-to-1 mapping, and attaches metadata — nothing more. The following are explicitly the responsibility of **VS-03.0 Data Editing and Enrichment**, not VS-02: content correction, imputation, enrichment, **unit and currency conversion, reference-period alignment, value reconciliation across sources, derivation of new variables, and interpretive coding of free text**.
+:::
+
+::: {.callout-tip title="**NSO Example — Price Data Conformance:**"}
+The standardized daily price dataset is validated: all 11,875 records conform structurally to the canonical price record, every product whose source code has a COICOP correspondence is mapped (the rest are flagged for VS-03), each price carries its currency and unit as metadata with the value left exactly as received, and the record count and observed price points match the raw scrape exactly (no-loss-of-content confirmed). Result: Standardization Conformed. All results logged with rule version, engine version, and operator ID.
+:::
+
+### Register Standardized Artefacts
+
+**Value created:** *Secure, organized, and traceable storage of standardized data, discoverable by downstream consumers.*
+
+The final execution sub-process persists conformant standardized data and makes it discoverable to the rest of the statistical system. Each standardized dataset version receives a unique persistent identifier (URI/UUID) and is stored in the standardized data repository, in line with SAF-P07's principle of loose coupling from downstream processing. Identifier removal/pseudonymization is confirmed applied per the privacy framework (SAF-P11). Metadata is registered in the catalog per SAF-P09: each dataset is linked to its source-to-target mapping lineage, applied classification scheme versions, harmonized concept and quality metadata, and conformance assessment results. Full lineage is recorded — Raw Data (State #1) to Standardized Data (State #2), traceable to the originating source — and access permissions are applied per the designed framework (Section 3.5, SAF-P10). The sub-process concludes by publishing a "Standardized Data Registered" event, notifying downstream VS-03.0 that new standardized data is available for editing and enrichment.
+
+**Output:** **Standardized Data (Steady State #2)** — the official handover artefact to the rest of the statistical value chain.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Assign unique persistent identifier (URI/UUID) to the standardized dataset version | Dataset ID | GSBPM 5.1 |
+| Persist data in the standardized data repository | Stored standardized artefact | SAF-P07 |
+| Confirm identifier removal/pseudonymization applied | Privacy-compliant dataset | SAF-P11 |
+| Register metadata: mapping lineage, classification versions, harmonized concepts, conformance, lineage | Catalog registration | SAF-P09 |
+| Apply access permissions per designed framework | Access-controlled dataset | SAF-P10 |
+| Publish "Standardized Data Registered" event to notify VS-03.0 | Event notification | SAF-P07 |
+
+```{mermaid}
+%%| label: fig-7
+%%| fig-cap: "Standardized Data Artefact Structure. Reading guide: each box is a type of record with its fields; a connecting line means the records are linked. Each standardized artefact is linked to its mapping lineage, applied classifications, conformance assessment, and privacy/access classification."
+%%| fig-width: 6
+erDiagram
+    STANDARDIZED_DATA_ARTEFACT {
+        string dataset_id PK "Unique persistent URI/UUID"
+        string dataset_version "Version identifier"
+        string target_model_version "Canonical model version applied"
+        string reference_period_basis "Reference-period basis (metadata, not converted)"
+        datetime registration_timestamp "When registered in catalog"
+    }
+    MAPPING_LINEAGE {
+        string source_dataset_id "Raw Data (State #1) source ID"
+        string mapping_ruleset_version "Mapping & format-coercion ruleset version"
+        string engine_version "Standardization engine version"
+        string mapping_log_ref "Field-level lineage reference"
+    }
+    CLASSIFICATION_RECORD {
+        string classification_scheme "NACE/ISCO/COICOP/NUTS/etc"
+        string scheme_version "Classification version applied"
+        float mapping_coverage "Percentage of source codes mapped 1-to-1"
+        int unmatched_values "Count routed to VS-03 (unmapped/free text)"
+        int orphan_codes "Count of non-conforming codes"
+    }
+    CONFORMANCE_ASSESSMENT {
+        float structural_score "Structural conformance %"
+        float mapping_coverage "Mapped-code coverage %"
+        string semantic_rating "Pass/Conditional/Fail"
+        boolean content_preserved "No-loss-of-content verified (no value changed)"
+        int conformance_errors "Count of conformance issues"
+    }
+    PRIVACY_RECORD {
+        string identifiers_removed "Direct identifiers dropped"
+        string pseudonymization_method "Method applied"
+        string biv_classification "Availability/Integrity/Confidentiality"
+        string access_level "Public/Internal/Restricted/Secret"
+    }
+
+    STANDARDIZED_DATA_ARTEFACT ||--|| MAPPING_LINEAGE : "derived via"
+    STANDARDIZED_DATA_ARTEFACT ||--|| CLASSIFICATION_RECORD : "classified by"
+    STANDARDIZED_DATA_ARTEFACT ||--|| CONFORMANCE_ASSESSMENT : "has conformance record"
+    STANDARDIZED_DATA_ARTEFACT ||--|| PRIVACY_RECORD : "protected by"
+```
+
+## Management Processes — "provides quality reports"
+
+*Framework alignment: GSBPM overarching Quality/Metadata Management — see [Framework Mappings](#framework-mappings).*
+
+The management phase runs **alongside and after** execution. It monitors the standardization domain's performance, assesses the conformance and classification quality of standardized data, ensures compliance, and feeds improvement recommendations back into the design phase — closing the governance cycle.
+
+### Monitor Process Performance
+
+Operational performance of the standardization domain must be tracked systematically across production cycles. The process owner and quality manager collect and aggregate key performance indicators, monitor throughput against processing windows, and track paradata — who performed each step, when, how long it took, what engine and classification versions were used, what exceptions occurred. This information feeds process performance dashboards that give the process owner a real-time view of domain health, aligned with the GAMSO Quality Management capability for monitoring performance across the production lifecycle.
+
+**Key Performance Indicators (KPIs):**
+
+| KPI | Description | Measurement |
+|---|---|---|
+| Mapping coverage | Percentage of source codes mapped 1-to-1 to a valid standard code | Per dataset, per classification |
+| Unmapped-value rate | Percentage of values with no correspondence, routed to VS-03 | Per source, per cycle |
+| Conformance pass rate | Percentage of datasets passing conformance on first run | Per source, per cycle |
+| Format-conformance rate | Percentage of records conforming to the target structure/format | Per dataset, per cycle |
+| Processing time | Duration from raw intake to standardized registration | Per dataset, per cycle |
+| Re-mapping rate | Frequency of datasets returned for re-mapping or design change | Per source, per cycle |
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Collect and aggregate KPIs per production cycle | Process Performance Dashboard | GAMSO QM |
+| Monitor throughput against processing windows | Throughput Report | GAMSO QM |
+| Track paradata: operator, timing, engine/classification versions, exceptions | Paradata Records | GAMSO QM |
+| Generate process performance dashboards | Dashboard for Process Owner | GAMSO QM |
+
+### Assess Standardization Quality
+
+Beyond process performance, the quality of the standardized data itself must be evaluated against the criteria established in the design phase. Each standardized dataset is assessed across multiple quality dimensions: mapping completeness (proportion of source codes successfully mapped 1-to-1, unmapped-value rate routed to VS-03), classification conformance (no orphan codes, correct version), structural and format conformance (alignment with the target model), metadata completeness (units, reference-period bases, definitions correctly recorded), and content preservation (confirmation that no value was changed and record counts/key measures are identical). Results are compared against the designed quality criteria from Section 3.4. Quality indicators are produced per dataset, per source, and per production cycle, and quality trends are tracked to detect deteriorating sources, growing unmapped-value rates, or classification version issues. This aligns with the CSDA Data Quality capability and SAF Capability 2.1.3 for statistical quality management.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Assess mapping completeness and unmapped-value rate | Mapping Completeness Report (per cycle) | SAF 2.1.3 |
+| Assess classification conformance and orphan-code rate | Conformance & Orphan-Code Report | CSDA Data Quality |
+| Assess structural/format conformance, metadata completeness, and content preservation | Conformance Quality Report | SAF 2.1.3 |
+| Identify quality trends across sources, classifications, and cycles | Quality Trend Analysis | SAF 2.1.3 |
+
+### Manage Classification and Metadata Lifecycle
+
+The classification standards and metadata ecosystem supporting standardization must remain complete, accurate, and current. This sub-process governs the lifecycle of classification versions — adopting new versions (e.g., a NACE or COICOP revision), managing transition periods, and maintaining the mapping tables and correspondence tables between versions. It verifies metadata completeness — that every standardized dataset carries full mapping lineage, classification versions, and harmonized concepts as an SAF-P09 compliance check — and maintains the concept system, code lists, and reference data so mapping stays anchored to authoritative sources. Metadata lineage from raw through standardization to standardized state is tracked, and reconciliation across systems ensures catalog entries match stored artefacts. As the CSDA emphasizes, active, well-managed metadata is what makes standardized data reusable and downstream automation possible.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Govern classification version lifecycle and correspondence tables | Classification Version & Correspondence Register | SAF-P09 |
+| Verify metadata completeness for all standardized datasets | Metadata Quality Report | SAF-P09 |
+| Maintain concept system, code lists, and reference data | Reference Data Maintenance Log | CSDA Metadata Mgmt |
+| Track metadata lineage from raw through standardization to standardized state | Metadata Lineage Audit | CSDA Traceability |
+| Reconcile metadata across systems | Catalog-artefact reconciliation | SAF-P09 |
+
+### Audit and Compliance Reporting
+
+This sub-process produces the evidence that the standardization domain operates within legal, regulatory, and organizational requirements. Audit trail reports demonstrate full traceability of every standardized value from raw source through the mapping rules applied — supporting reproducibility and content-preservation assurance. Privacy compliance reporting covers identifier removal/pseudonymization, confirming that direct identifiers have been dropped or replaced at the State #1 → State #2 transition per SAF-P11, and that data minimization has been applied. Standards compliance reporting confirms conformance to the adopted classifications and exchange standards (e.g., SDMX), and security compliance reporting verifies that designed access controls and audit logging have been applied. These reports satisfy the SAF Capability 4.1.5 (Accountability) obligation and feed into VS-07.0 Governance and Compliance.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Produce audit trail reports: full lineage from raw value to standardized value | Audit Trail Summary | SAF 4.1.5 |
+| Report on privacy compliance: identifier removal/pseudonymization, minimization | Privacy Compliance Record | SAF-P11 |
+| Report on standards compliance (classifications, SDMX exchange) | Standards Compliance Report | SAF 4.1.5 |
+| Report on security compliance: measures applied, breaches, incidents | Compliance Report (per cycle) | SAF-P10 |
+
+### Continuous Improvement
+
+The final management sub-process closes the governance loop by analyzing performance and quality data to identify and drive improvements. Quality trends across production cycles are examined: is mapping coverage improving, is the unmapped-value rate falling, are conformance pass rates rising, is the re-mapping rate decreasing? Improvement opportunities are identified — extending and maintaining correspondence tables to raise coverage, refining mappings that generate orphan codes, adopting new classification versions, and simplifying conformance rules that generate false positives. Where recurring unmapped values point to a source that needs interpretive coding, that need is communicated to VS-03 rather than absorbed into VS-02. These improvement recommendations are fed back to the design processes (Section 3), prioritized based on impact and feasibility, and tracked through subsequent design-implement-execute cycles. This is the SAF Capability 4.1.4 (Improve management) in action, and it connects to the GAMSO concept of transferring mature capabilities from innovation into production.
+
+| Activity | Key Outputs | Framework Ref |
+|---|---|---|
+| Analyze quality trends across production cycles | Improvement Recommendations Report | SAF 4.1.4 |
+| Identify improvement opportunities: correspondence-table extension, mapping refinement, version adoption | Updated Design Inputs | SAF 4.1.4 |
+| Feed recommendations back to design processes (Section 3) | Design feedback (closing the governance loop) | SAF 4.1.4 |
+| Prioritize improvements based on impact and feasibility | Improvement Tracking Log | GAMSO Capability Mgmt |
+| Track implementation of accepted improvements | Improvement Tracking Log | GAMSO Capability Mgmt |
+
+```{mermaid}
+%%| label: fig-8
+%%| fig-cap: "Management Feedback Loop. Execution data flows through monitoring, quality assessment, classification/metadata management, and audit processes. Continuous improvement feeds recommendations back to Design, closing the governance cycle."
+%%| fig-width: 6
+flowchart TD
+    E["Execution\n(Section 5)<br/><em>data + paradata</em>"]
+
+    M1["6.1 Monitor<br/>Process Performance<br/><em>KPIs, throughput</em>"]
+    M2["6.2 Assess<br/>Standardization Quality<br/><em>mapping coverage</em>"]
+    M3["6.3 Manage Classification<br/>& Metadata Lifecycle<br/><em>versions, reference data</em>"]
+    M4["6.4 Audit &<br/>Compliance Reporting<br/><em>lineage, privacy</em>"]
+    M5["6.5 Continuous<br/>Improvement<br/><em>recommendations</em>"]
+
+    D["Design<br/>(Section 3)<br/><em>updated rules & classifications</em>"]
+
+    E --> M1
+    E --> M2
+    M1 --> M2
+    M2 --> M3
+    M3 --> M4
+    M4 --> M5
+    M5 -->|"feedback loop"| D
+
+    M1 -->|"dashboards"| PO["Process Owner"]
+    M2 -->|"quality reports"| QM["Quality Manager"]
+    M4 -->|"compliance reports"| VS07["VS-07.0\nGovernance"]
+
+    style E fill:#ecfdf5,stroke:#059669
+    style D fill:#f5f3ff,stroke:#7c3aed
+    style M5 fill:#fef3c7,stroke:#d97706
+```
+
+## Business Services and Interfaces
+
+The VS-02.0 business domain exposes the following services:
+
+| Service | Direction | Consumers | Mapped Processes |
+|---|---|---|---|
+| **Standardization Service** | Internal (VS-01.0 → NSO) | Raw data consumers, standardization teams | 5.1 Profile, 5.2 Apply Classifications |
+| **Classification Mapping Service** | Internal | Standardization teams, methodologists, other domains needing code mapping | 5.2 Apply Standard Classifications |
+| **Semantic Harmonization Service** | Internal | Metadata architects, downstream analysts | 5.3 Align Metadata and Semantics |
+| **Conformance Validation Service** | Internal | Process owners, quality managers | 5.4 Validate Conformance |
+| **Standardized Data Provisioning Service** | Internal (NSO → VS-03.0) | Editing & enrichment teams, data analysts | 5.5 Register Standardized Artefacts |
+| **Classification Catalog Service** | Internal | All data consumers across the NSO | 6.3 Manage Classification & Metadata Lifecycle |
+| **Design and Methodology Service** | Internal | Methodologists, data architects, classification stewards | 3.1–3.5 All design processes |
+
+**Interface specifications:**
+
+- **Standardized Data Provisioning Service** interface: event-driven notification ("Standardized Data Registered") + catalog query API for downstream consumers to discover and access standardized datasets and their lineage
+- **Classification Mapping Service** interface: mapping API (source code → standard code via deterministic correspondence), SDMX-compliant code list exchange, correspondence-table lookup
+- **Classification Catalog Service** interface: search/browse API for classifications, code lists, and concept definitions, with SDMX-compliant metadata exchange
+
+### Boundary Interface Specifications
+
+The domain is loosely coupled (SAF-P07) to its neighbors through two steady-state interfaces. Specifying each boundary explicitly — the handover artefact, the metadata it must carry, the event that triggers it, and where responsibility transfers — makes the loose-coupling contract concrete and testable.
+
+| Boundary | Handover Artefact | Required Metadata | Trigger Event | Responsibility Transfer |
+|---|---|---|---|---|
+| **VS-01.0 → VS-02.0** (intake) | Raw Data (State #1) | Provenance, source, collection method, receipt timestamp, file hash, agreement reference, BIV classification | "Raw Data Registered" event | VS-01.0 retains custody of the raw artefact; VS-02.0 assumes responsibility for standardization on event receipt |
+| **VS-02.0 → VS-03.0** (handover) | Standardized Data (State #2) | Source-to-target mapping lineage, applied classification scheme versions, recorded unit/currency/reference-period bases, list of unmapped/uncoded values for VS-03 to code, definition-difference records, conformance assessment, pseudonymization record, BIV classification | "Standardized Data Registered" event | VS-02.0 retains custody of the standardized artefact; VS-03.0 assumes responsibility for editing & enrichment — including any value conversion, interpretive coding, and reconciliation — on event receipt |
+
+Each interface exchanges a registered, immutable steady-state artefact plus its metadata — never internal working data — so neither side needs knowledge of the other's internal processing.
+
+## Business Objects and Data Flow
+
+```{mermaid}
+%%| label: fig-9
+%%| fig-cap: "Business Object Lifecycle across all four process types. Design objects govern implementation, which produces the pipeline that standardizes execution objects, which are assessed by management objects, which feed back to design."
+%%| fig-width: 6
+flowchart TB
+    design["🔷 Design Artefacts<br/><small>Target Model · Classification Strategy<br/>Harmonization Rules · Conformance Rules · Privacy Design</small>"]
+    implement["🔧 Implementation Assets<br/><small>Mapping & Format-Coercion · Mapping Services<br/>Conformance Pipeline · Catalog Config</small>"]
+    execute["⚡ Execution Objects"]
+    manage["📊 Management Reports"]
+
+    design -->|"govern building"| implement
+    implement -->|"produces pipeline<br/>that processes"| execute
+    execute -->|"assessed by"| manage
+    manage -->|"feeds back to"| design
+
+    subgraph execute_detail [" "]
+        direction LR
+        RD["Raw Data<br/>(State #1)"]:::bo -->|"standardized as"| SD["Standardized Data<br/>(State #2)"]:::bo
+    end
+
+    execute --> execute_detail
+    RD -->|generates| logs["Mapping Lineage · Conformance · Audit"]
+
+    classDef bo fill:#fbbf24,stroke:#b45309,color:#000
+    style design fill:#f5f3ff,stroke:#7c3aed
+    style implement fill:#dbeafe,stroke:#2563eb
+    style execute fill:#fef9c3,stroke:#b45309
+    style manage fill:#dcfce7,stroke:#16a34a
+    style execute_detail fill:none,stroke:none
+    style logs fill:#fff,stroke:#888,stroke-dasharray: 5 5
+```
+
+
+## Business Events
+
+```{mermaid}
+%%| label: fig-10
+%%| fig-cap: "Event-Driven Choreography between the upstream domain (VS-01.0) and NSO teams, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design."
+%%| fig-width: 6
+
+sequenceDiagram
+    participant US as Upstream (VS-01.0)
+    participant NSO as NSO Teams
+    participant PM as Process Mgmt
+
+    rect rgb(245, 243, 255)
+    Note over NSO: Design Phase
+    NSO->>NSO: Define target model, classification strategy,<br/>harmonization & conformance rules
+    NSO-->>NSO: Design Artefacts Published
+    end
+
+    rect rgb(239, 246, 255)
+    Note over NSO: Implementation Phase
+    NSO->>NSO: Build mapping & format-coercion, mapping services,<br/>conformance pipeline & catalog
+    NSO-->>NSO: Pipeline Production-Ready
+    end
+
+    rect rgb(236, 253, 245)
+    Note over NSO,US: Execution Phase (per cycle)
+    US-->>NSO: Raw Data Registered event
+    NSO->>NSO: Profile & assess structure
+    NSO->>NSO: Map codes 1-to-1 & coerce format; record unit/period metadata
+
+    NSO->>NSO: Validate structural & semantic conformance
+
+    alt Conformance Passed
+        NSO->>NSO: Assign ID, store standardized data,<br/>register lineage & metadata
+        NSO-->>NSO: Standardized Data Registered event
+    else Conformance Failed
+        NSO->>NSO: Re-map / route unmapped values to VS-03
+    end
+    end
+
+    rect rgb(254, 243, 199)
+    Note over PM: Management Phase
+    PM->>PM: Monitor KPIs, assess mapping quality,<br/>produce compliance reports
+    PM-->>NSO: Improvement Recommendations
+    end
+```
+
+## Framework Mappings
+
+This reference table maps each process group of this document to the international frameworks (GSBPM, GAMSO, CSDA) and the SAF capability model. It is intended for architects and auditors; the narrative sections above do not depend on it.
+
+| Process group | GSBPM | GAMSO | CSDA | SAF Capabilities |
+|---|---|---|---|---|
+| **Design** | Phase 1 (Specify Needs), Phase 2 (Design: 2.1–2.5) | Production (design activities), Capability Management | Data Governance, Metadata Management, Reference & Master Data | 1.1.2 Design statistics product, 2.1.2 Metadata management, 2.1.4 Statistical register management |
+| **Implementation** | Phase 3 (Build: 3.1–3.7) | Capability Management | Data Integration (setup), Data Governance (configuration) | 1.1.3 Build statistics product, 3.2.1 Application development, 3.2.2 Functional management |
+| **Execution** | Phase 5 (Process: 5.1 Integrate, 5.2 Classify & code, 5.3 Review & validate) | Production (execution) | Data Integration (execution) | 2.1.2 Metadata management, 2.1.4 Statistical register management |
+| **Management** | Overarching processes (Quality Management, Metadata Management) | Corporate Support (Quality Management, Data Management, Metadata Management), Capability Management (improvement) | Data Quality, Data Governance, Traceability | 2.1.3 Statistical quality management, 4.1.4 Improve management, 4.1.5 Accountability |
+
+## Applying This to Your NSO
+
+### Maturity Assessment Checklist
+
+Use this checklist to assess your NSO's maturity across all four process types — not just execution.
+
+**Design Maturity**
+
+- [ ] Do we have a documented canonical target data model for standardized data?
+- [ ] Do we have a formal classification mapping strategy (deterministic correspondence tables) with an explicit version policy?
+- [ ] Do we have harmonized concept and variable definitions, and rules to record cross-source definition differences as metadata (flagged for VS-03)?
+- [ ] Do we have explicit structural, classification, and semantic conformance rules documented before standardization begins?
+- [ ] Do we have a defined identifier-removal/pseudonymization design for the State #1 → State #2 transition?
+
+**Implementation Maturity**
+
+- [ ] Are our mapping and format-coercion rules built from design specifications (not ad-hoc scripts), and value-preserving?
+- [ ] Are mapping services deterministic, with unmapped/free-text values routed to VS-03 rather than coded here?
+- [ ] Is conformance validation implemented as automated checks, including a no-loss-of-content (no value changed) check?
+- [ ] Is lineage capture automated for every mapping and format-coercion operation?
+- [ ] Do we have a formal testing process (technical, pilot, correspondence-mapping verification) before going to production?
+
+**Execution Maturity**
+
+- [ ] Do we profile incoming raw data and produce a structure-gap assessment each cycle?
+- [ ] Do we map source codes to standards 1-to-1, capturing the version applied and preserving the original?
+- [ ] Do we record unit/currency/reference-period bases and definition differences as metadata (without converting values)?
+- [ ] Do we validate structural and semantic conformance before accepting standardized data?
+- [ ] Do we register every standardized dataset with full mapping lineage to its raw source?
+
+**Management Maturity**
+
+- [ ] Do we track KPIs (mapping coverage, unmapped-value rate, conformance pass rate) across cycles?
+- [ ] Do we assess mapping completeness and orphan-code rate?
+- [ ] Do we govern classification version lifecycles and correspondence tables?
+- [ ] Do we produce audit, privacy, and standards-compliance reports?
+- [ ] Do we have a formal improvement process that feeds back into design (e.g., correspondence-table extension)?
+
+### End-to-End Scenarios
+
+Each scenario walks through **all four process types**, demonstrating how the governance pattern works in practice.
+
+#### Scenario A: Labour Force Survey (Survey, Deterministic Mapping)
+
+**Design Phase:** Data architects define the canonical LFS data model — person and household entities keyed to a pseudonymous personal identifier, with occupation, education, employment status, and region as core variables. Classification stewards adopt ISCED-2011 for education and NUTS-3 for region and build deterministic correspondence tables from the survey's source education and region codes to those standards; they also define the version policy. The design records that the survey's employment-status definition differs from the harmonized ILO definition — this difference is captured as metadata and flagged for VS-03, not reconciled here — and that free-text occupation strings are **not** coded in VS-02 but handed to VS-03 for ISCO-08 coding. The privacy design specifies that the direct personal identifier is replaced with a pseudonymous key at standardization.
+
+**Implementation Phase:** Data engineers build the mapping & format-coercion component that restructures raw survey returns into the canonical model and casts types, and configure the ISCED and NUTS-3 correspondence-table lookups. The conformance pipeline is configured with structural, classification, semantic, and no-loss-of-content checks, and the pseudonymization component is implemented. The pipeline is tested on a 2,000-record synthetic sample; correspondence mappings are verified against the source code lists (100% of source codes resolve), and the routing of free-text occupation to VS-03 is confirmed.
+
+**Execution Phase:** For cycle Q3-2026, a Raw Data Registered event arrives for 42,000 LFS returns. Profiling confirms the expected structure. The component coerces the format and maps source education codes 1-to-1 to ISCED-2011 and source region codes to NUTS-3; the 42,000 free-text occupation strings are flagged and passed to VS-03 for coding. The employment-status definition difference is recorded as metadata, the personal identifier is pseudonymized, and conformance validation passes — including the no-loss-of-content check (42,000 records, no value changed). The standardized dataset is registered with full lineage, and a Standardized Data Registered event notifies VS-03.0.
+
+**Management Phase:** Mapping coverage for education and region is 99.9%, with 4 orphan source codes investigated and corrected in the correspondence table. The unmapped-value rate (free-text occupation routed to VS-03) is as expected. Conformance pass rate is 100% on first run. Improvement recommendations: extend the region correspondence table to cover two newly created NUTS-3 codes; confirm with VS-03 that occupation coding volumes are within capacity. Recommendations are fed back to design for the next cycle.
+
+#### Scenario B: Tax Register to Business Statistics (Multi-Source Integration)
+
+**Design Phase:** Data architects define the canonical business statistics model keyed to the statistical business register (SBR) identifier, with turnover, employment, and economic activity as core measures. Classification stewards adopt NACE Rev. 2 for activity and build a deterministic correspondence table from the tax authority's internal activity codes. The design requires that each turnover figure carry its currency, unit ("thousands of EUR"), and reference-period basis (the VAT register's fiscal year) **as metadata** — values are recorded as received and **not** converted; converting turnover to a common unit and aligning the fiscal year to the calendar year are explicitly VS-03 activities. Conformance rules require SBR-key referential integrity and that every value is preserved unchanged.
+
+**Implementation Phase:** Data engineers build the mapping & format-coercion component: tax internal-code → NACE Rev. 2 via the maintained correspondence table (1-to-1), XML reformatting and type casting, and SBR-key linkage. The unit/currency/period bases are captured as metadata fields. The conformance pipeline checks SBR referential integrity and verifies that every turnover value is byte-for-byte unchanged and record counts match. The pipeline is tested on Q1-2026 historical data; one activity-code correspondence gap is found and the table updated.
+
+**Execution Phase:** Q3-2026: a Raw Data Registered event arrives for 2,347,891 tax records. Profiling flags activity as the tax internal code and turnover in thousands of EUR on a fiscal-year basis. Standardization maps activity to NACE Rev. 2 (99.4% coverage; 0.6% with no correspondence flagged for VS-03), coerces the XML, links the SBR key, and records the turnover unit and fiscal-year basis as metadata — turnover values are left exactly as received. Fourteen records lack an SBR match (newly registered businesses, known register lag) and are flagged but retained. Conformance passes with every value unchanged. The standardized dataset `SD-BUS-2026Q3-001` is registered with lineage to `RD-TAX-2026Q3-001`, and VS-03.0 is notified that unit/period conversion remains to be done.
+
+**Management Phase:** NACE mapping coverage is 99.4% (stable across quarters); the 0.6% unmapped activity codes are passed to VS-03. The 14 unmatched SBR keys match the known register-update lag. No-loss-of-content confirmed: turnover values and record counts identical before and after. SLA on processing time met. Improvement recommendation: extend the NACE correspondence table for the new business-activity codes, and schedule adoption planning for the upcoming NACE revision. Recommendations fed back to design.
+
+#### Scenario C: Web-Scraped Price Data (Emerging Source Standardization)
+
+**Design Phase:** Data architects define the canonical price record — product, retailer, price, currency, unit, reference day, and (where available) a source category code — keyed to a product-offer identifier. The design recognizes that web-scraped data is largely uncoded and heterogeneous, so VS-02's role is deliberately small: coerce the scraped JSON into the canonical record structure and record each item's currency, unit, and scrape timestamp **as metadata**, leaving prices exactly as received. Where a retailer supplies a category code that has a maintained correspondence to COICOP-2018, that code is mapped 1-to-1; products with only a free-text name (no source code) are **not** classified here. Coding products to COICOP, converting currencies to EUR, and normalizing units are all explicitly **VS-03** activities. Conformance rules require structural conformance and preservation of the count of distinct price observations.
+
+**Implementation Phase:** Data engineers build the component that coerces the scraped JSON into the canonical structure and captures currency/unit/timestamp metadata, and configure the correspondence-table lookup for any retailer category codes that map to COICOP. The conformance pipeline checks structural conformance and observation-count preservation. The pipeline is tested on a sample; the structure coercion and metadata capture are verified, and the routing of unclassified products to VS-03 is confirmed.
+
+**Execution Phase:** For 2026-03-15, a Raw Data Registered event arrives for 11,875 scraped price records. Profiling confirms structure. VS-02 coerces the records into the canonical structure, maps the subset of products that carry a correspondence-bearing retailer category code to COICOP-2018, and records each price's currency, unit, and timestamp as metadata — prices are unchanged. The majority of products (free-text only) are flagged for VS-03 classification. Conformance passes, with the distinct-observation count preserved (no value changed). The standardized daily price dataset is registered with lineage to the raw scrape, and VS-03.0 is notified that product classification and currency/unit conversion remain.
+
+**Management Phase:** The weekly dashboard shows structural conformance at 99.6% and a high unmapped-value rate (most products lack a source code and are handed to VS-03) — expected for this source type and a useful signal that the bulk of the work for web data is downstream. Observation-count preservation is 100%. Improvement recommendations: where a retailer begins supplying category codes, add the corresponding correspondence table to raise VS-02 mapping coverage; otherwise no VS-02 change is warranted. Recommendations are fed back to the design team.

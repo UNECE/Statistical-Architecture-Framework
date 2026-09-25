@@ -1,0 +1,91 @@
+/*-- scss:defaults --*/
+
+// Drop the Bootswatch web-font @import. Every stock theme declares
+//   $web-font-path: "https://fonts.googleapis.com/..." !default;
+//   @if $web-font-path { @import url($web-font-path); }
+// so setting it false here removes the third-party request and falls back
+// to the system font stack. No page of this site should call out to Google.
+$web-font-path: false;
+
+// Tables are the dominant surface of this site (27 on a single framework
+// chapter), so give them a visible grid instead of Bootstrap's borderless default.
+$table-cell-padding-y:    .45rem !default;
+$table-cell-padding-x:    .6rem !default;
+$table-border-color:      #d7dbe0 !default;
+$table-striped-bg:        rgba(0, 0, 0, .022) !default;
+$table-th-font-weight:    600 !default;
+
+/*-- scss:rules --*/
+
+// The single biggest legibility win here. The handover cards and comparison
+// tables put a six-word cell beside a sixty-word one; centred cells make a row
+// impossible to follow across. Top-align everything.
+.table > :not(caption) > * > * {
+  vertical-align: top;
+}
+
+// Dense comparison tables need a grid to be scannable.
+table.table {
+  font-size: .92em;
+  line-height: 1.45;
+  border-top: 1px solid $table-border-color;
+  border-bottom: 1px solid $table-border-color;
+
+  thead th {
+    background: rgba(0, 0, 0, .035);
+    border-bottom: 2px solid $table-border-color;
+    white-space: nowrap;
+  }
+
+  tbody tr:nth-child(even) {
+    background: $table-striped-bg;
+  }
+
+  tbody td,
+  tbody th {
+    border-top: 1px solid rgba(0, 0, 0, .06);
+  }
+
+  // First column of the handover cards and worksheets is a row label.
+  tbody tr > td:first-child strong,
+  tbody tr > th:first-child {
+    white-space: normal;
+  }
+}
+
+// Table captions read as titles, not afterthoughts.
+caption,
+.table caption {
+  caption-side: bottom;
+  padding-top: .5rem;
+  font-size: .85em;
+  color: rgba(0, 0, 0, .55);
+}
+
+// Wide tables: use the extra width, and scroll rather than overflow when narrow.
+.column-page,
+.column-screen-inset {
+  > .table-responsive,
+  > table,
+  > div > table {
+    width: 100%;
+  }
+}
+
+.table-responsive,
+.cell-output-display > table {
+  overflow-x: auto;
+}
+
+// Long-form comfort for a 77,000-word document.
+main {
+  p, li {
+    line-height: 1.6;
+  }
+}
+
+// Mermaid figures sit better with a little air and a consistent width.
+figure.quarto-float-fig,
+div.cell-output-display > figure {
+  margin-block: 1.4rem;
+}

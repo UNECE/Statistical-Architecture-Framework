@@ -1,0 +1,199 @@
+---
+title: "VS-07 Governance and Compliance"
+---
+
+## VS-07.0 Governance and Compliance
+
+### Purpose and Scope
+
+VS-07.0 makes sure that every process, dataset, and product in the organization operates under clear rules, standards, and accountability. It builds trust — inside and outside the NSO — by ensuring all data activities are ethical, transparent, and compliant with legal, methodological, and quality requirements, aligned with standards such as the **European Statistics Code of Practice, GDPR, GSBPM, GAMSO, and ISO** data-quality principles. The value it creates is **integrity and accountability**.
+
+This document covers the business layer only: the governance capabilities, how they are established and operated, and how they interact with the rest of the value chain. The specific application and technology controls that implement them are out of scope (provided with VS-09).
+
+
+
+*A note on numbering:* each `VS-0x.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
+
+### Position — a supporting stream that works across the whole chain
+
+VS-07 is not a stage in the production line. It runs **horizontally** across all six primary streams, setting the rules they must follow and collecting the evidence that they do.
+
+```{mermaid}
+%%| label: fig-1
+%%| fig-cap: "VS-07 governs the whole primary value chain horizontally; it is not a step within it."
+%%| fig-width: 6
+flowchart TD
+    subgraph primary["Primary Value Streams"]
+        direction LR
+        VS01["VS-01"] --> VS02["VS-02"] --> VS03["VS-03"] --> VS04["VS-04"] --> VS05["VS-05"] --> VS06["VS-06"]
+    end
+
+    VS07["**VS-07.0 Governance & Compliance**"]:::hi
+    VS07 -->|"sets rules & controls,<br/>collects compliance evidence"| primary
+
+    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9,stroke-width:2px
+```
+
+::: {.callout-important title="How a supporting value stream differs from a primary one"}
+- **No steady-state data transition.** VS-07 does not take data from one steady state to the next; it does not appear in the #1→#6 chain. It oversees the streams that do.
+- **It runs continuously**, not per production cycle — there is no "Data Registered" event that triggers it.
+- **Its output is an enabling capability, not a data artefact:** governance frameworks, compliance mechanisms, assurance, and audit results.
+- **It aligns to GAMSO** (the over-arching activity model) rather than to GSBPM production phases.
+:::
+
+### How It Interacts with the Production Chain
+
+VS-07 interacts with every other stream in two directions: **downward** it imposes governance frameworks, policies, and controls; **upward** it receives compliance evidence, quality indicators, and audit findings. The primary streams' own audit-and-compliance reporting (their §6.4) feeds directly into VS-07.
+
+```{mermaid}
+%%| label: fig-2
+%%| fig-cap: "Interaction with the chain: VS-07 sets controls and consumes evidence across the chain, and provides external assurance."
+%%| fig-width: 6
+flowchart LR
+    VS07["VS-07<br/>Governance &<br/>Compliance"]:::hi
+
+    subgraph chain["All value streams (VS-01…VS-10)"]
+        P["Processes, datasets,<br/>products & platforms"]
+    end
+
+    VS07 -->|"frameworks, policies,<br/>roles, controls"| P
+    P -->|"compliance evidence,<br/>quality indicators, audit findings"| VS07
+    VS07 -->|"certification &<br/>assurance"| EXT["Regulators, the public,<br/>international peers"]
+
+    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9
+    style EXT fill:#0f766e,color:#fff,stroke:#0f766e
+```
+
+### Framework Alignment (GAMSO)
+
+Where the primary streams map to **GSBPM** production phases, VS-07 maps to the **GAMSO** over-arching activities and the **Governance** capability domain of the SAF:
+
+| GAMSO area | Relevance to VS-07 |
+|---|---|
+| **Strategy and Leadership** | Set governance strategy, charters, and accountability; manage organizational and ethical frameworks |
+| **Corporate Support** | Manage the legal framework, quality management, and information security governance |
+| **Capability Management** | Govern the lifecycle of standards, methods, and data assets |
+| **SAF capability domain: Governance (4.x)** | Strategy & governance, policy & planning, improvement management, accountability |
+
+### Principles Emphasised
+
+VS-07 is the stream that **enforces the data principles across the whole chain** and embodies several of the broader architecture principles:
+
+| Principle | Statement | How VS-07 applies / enforces it |
+|---|---|---|
+| **SAF-P09** | No data without metadata and classification | Governs metadata and classification obligations and audits them across every stream |
+| **SAF-P10** | Security By Design | Sets and assures the information-security and access-control framework |
+| **SAF-P11** | Privacy By Design | Sets the privacy, confidentiality, and disclosure-control policy and verifies compliance |
+| **SAF-P03** | Active Life Cycle management | Governs the lifecycle of policies, standards, classifications, and data assets |
+| **SAF-P04** | Maximize the benefits for the organization | Aligns controls to organizational value and accountability, avoiding governance for its own sake |
+| **SAF-P07** | Implement loosely coupled processes and systems | Defines the steady-state interface and event conventions the streams are governed by |
+
+## Roles and Actors
+
+
+
+| Role | Description |
+|---|---|
+| **Chief Data / Governance Officer** | Accountable for the governance framework and organizational data policy |
+| **Compliance Officer** | Ensures legal and regulatory compliance (Code of Practice, GDPR, statistics law) |
+| **Data Owner / Steward / Custodian** | The data-governance roles VS-07 defines and assigns across domains |
+| **Quality Manager** | Defines quality indicators and monitors quality and compliance status |
+| **Internal / External Auditor** | Conducts audits and certifications of adherence to the frameworks |
+| **Legal Counsel** | Interprets regulation and frames compliance procedures |
+| **Process Owners (VS-01…VS-10)** | Accountable, in their own streams, for operating within VS-07's controls and supplying evidence |
+
+## The Value-Stream Flow
+
+VS-07's six business processes form a continuous governance loop — **plan → build → operate → improve** — that never stops running.
+
+```{mermaid}
+%%| label: fig-3
+%%| fig-cap: "The six business processes as a continuous governance loop."
+%%| fig-width: 6
+flowchart LR
+    A["07.1 Define<br/>Frameworks & Policies"] --> B["07.2 Establish Legal &<br/>Regulatory Compliance"]
+    B --> C["07.3 Implement Data &<br/>Metadata Governance"]
+    C --> D["07.4 Monitor Quality &<br/>Compliance Indicators"]
+    D --> E["07.5 Audit, Certify<br/>& Report"]
+    E --> F["07.6 Update & Improve<br/>Governance"]
+    F -.->|"continuous loop"| A
+
+    style A fill:#f5f3ff,stroke:#7c3aed
+    style B fill:#f5f3ff,stroke:#7c3aed
+    style C fill:#eff6ff,stroke:#2563eb
+    style D fill:#ecfdf5,stroke:#059669
+    style E fill:#ecfdf5,stroke:#059669
+    style F fill:#fef3c7,stroke:#d97706
+```
+
+::: {.callout-note title="Model note"}
+The strategy model labels two steps `VS-07.5`. They are distinct activities; this document treats them as **VS-07.5 Audit, Certify, and Report Compliance** and **VS-07.6 Update and Improve Governance Mechanisms**.
+:::
+
+**Plan — establish the rules.** The loop begins by **defining governance frameworks and policies** (07.1): the overarching charters and principles covering data, metadata, ethics, confidentiality, and statistical quality — the rule-book the whole organization works under. In parallel it **establishes legal and regulatory compliance mechanisms** (07.2): identifying the applicable regulations (GDPR, official-statistics legislation, data-sharing agreements) and defining the procedures that keep every process within the law.
+
+**Build — embed the controls.** The frameworks are made operational by **implementing data and metadata governance** (07.3): assigning the data-governance roles (owner, steward, custodian) and the processes for metadata creation, maintenance, and lineage tracking, so governance is wired into how the streams actually work rather than living only on paper.
+
+**Operate — assure continuously.** With controls in place, VS-07 **monitors quality and compliance indicators** (07.4) — measuring process and output quality (accuracy, timeliness, comparability) and tracking compliance status on formal scorecards and dashboards — and periodically **audits, certifies, and reports compliance** (07.5): conducting internal and external audits, performing quality reviews, and documenting adherence, which produces the assurance that statistics can be trusted.
+
+**Improve — close the loop.** Finally it **updates and improves the governance mechanisms** (07.6): incorporating feedback, regulatory changes, and lessons learned back into the policies and control frameworks — so governance evolves with the organization rather than ossifying.
+
+| Business process | What it produces |
+|---|---|
+| VS-07.1 Define Governance Frameworks and Policies | Governance charters and policies (data, metadata, ethics, confidentiality, quality) |
+| VS-07.2 Establish Legal and Regulatory Compliance Mechanisms | Compliance procedures mapped to applicable regulation |
+| VS-07.3 Implement Data and Metadata Governance | Assigned governance roles + metadata/lineage processes |
+| VS-07.4 Monitor Quality and Compliance Indicators | Quality & compliance dashboards/scorecards |
+| VS-07.5 Audit, Certify, and Report Compliance | Audit reports, certifications, assurance statements |
+| VS-07.6 Update and Improve Governance Mechanisms | Revised policies and controls reflecting change |
+
+## Capability Governance
+
+VS-07 is itself a capability that must be **designed** (its frameworks and operating model), **built** (roles, tooling, dashboards — with VS-09), **operated** (continuous monitoring and periodic audit), and **improved** (07.6). Unlike a primary stream it runs **continuously and organization-wide**, not as a per-cycle production run, and it produces assurance rather than statistical data.
+
+### Key Performance Indicators
+
+VS-07 monitors itself with the same discipline it imposes on the chain:
+
+| KPI | Description | Measurement |
+|---|---|---|
+| Policy coverage | Share of streams and data domains operating under current, approved policies | Per policy domain, annually |
+| Audit findings closed on time | Percentage of audit findings remediated within their agreed deadline | Per audit cycle |
+| Compliance incidents | Number of confidentiality, security, or legal incidents | Per quarter (target: zero) |
+| Certification status | Certifications and peer-review assessments held and current (e.g. Code of Practice) | Annually |
+| Metadata-governance compliance | Share of registered datasets meeting the SAF-P09 obligations | Per cycle, from the streams' compliance evidence (their §6.4) |
+| Regulatory response time | Time from detection of a regulatory change to an updated policy being issued | Per change |
+
+## Interactions, Services and Events
+
+VS-07 offers governance and assurance as a service to every other stream.
+
+| Counterpart | VS-07 provides | VS-07 receives | Interaction / event |
+|---|---|---|---|
+| **All primary streams (VS-01…06)** | Frameworks, policies, data-governance roles, controls | Compliance evidence, quality indicators, audit findings (their §6.4) | "Compliance review", "Audit", "Policy update issued" |
+| **VS-08 Innovation** | Compliance criteria a new method must meet | Requests to assess/approve new methods before production | "Method compliance assessment" |
+| **VS-09 Infrastructure** | Security & continuity policy to enforce | Security posture and incident evidence | "Security/continuity review" |
+| **VS-10 Engagement** | Transparency & accountability commitments | Stakeholder trust signals and complaints | "Transparency report" |
+| **External (regulators, public, peers)** | Certification, assurance, transparency reports | Regulatory requirements and changes | "Certification", "Regulatory change" |
+
+## Business Objects / Artefacts
+
+VS-07 manages enabling artefacts, not data states: the **governance framework & policy set**, the **regulatory compliance register**, the **data-governance role assignments and metadata/lineage rules**, the **quality & compliance dashboards**, and the **audit/certification reports**. These are referenced by every stream. Each artefact has a designated owner and is version-managed across its lifecycle (SAF-P03): changes are tracked, prior versions remain identifiable, and obsolete policies and controls are formally retired.
+
+## Applying This to Your NSO
+
+### Maturity Assessment Checklist
+
+- [ ] Do we have documented governance frameworks and policies covering data, metadata, ethics, confidentiality, and quality?
+- [ ] Have we mapped applicable regulation (GDPR, statistics law) to concrete compliance procedures?
+- [ ] Are data-governance roles (owner, steward, custodian) assigned and metadata/lineage processes in place?
+- [ ] Do we monitor quality and compliance on dashboards, and audit/certify periodically?
+- [ ] Is there a closed loop that feeds audit findings and regulatory change back into the frameworks?
+
+### Scenarios
+
+**Scenario A — A new regulation lands.** A change to data-protection law is detected (07.2/07.6). VS-07 assesses the impact, updates the privacy and confidentiality policy, issues a "Policy update" to all streams, and verifies adoption at the next audit — the chain stays compliant without each stream interpreting the law independently.
+
+**Scenario B — Pre-production method approval.** VS-08 proposes a new machine-learning coding method. VS-07 assesses it against the compliance criteria (privacy, transparency, quality) before VS-08's 08.5 transfer to production, certifies it, and records the decision — so only sound, compliant methods reach the production streams.
+
+**Scenario C — Preparing a Code of Practice peer review.** Ahead of the periodic European Statistics Code of Practice peer review, VS-07 assembles the evidence base from its dashboards and the streams' compliance reporting (07.4/07.5): policy register, audit trail summaries, quality indicators, and incident records. Gaps surfaced by the self-assessment — say, an outdated revision policy — are remediated through 07.6 before the review. The peer-review outcome and its recommendations enter the governance backlog, and the resulting certification is published as external assurance.

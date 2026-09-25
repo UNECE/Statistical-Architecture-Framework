@@ -1,0 +1,105 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Statistical Architecture Framework"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: SAF-in-Brief.qmd
+        text: SAF in Brief
+      - href: SAF-Getting-Started.qmd
+        text: Getting Started
+      - href: framework/index.qmd
+        text: Framework
+      - href: glossary.qmd
+        text: Glossary
+      - href: open-source.qmd
+        text: Open Source
+  sidebar:
+    - id: framework
+      title: "Framework"
+      style: floating
+      collapse-level: 2
+      contents:
+        - framework/index.qmd
+        - section: "Foundations"
+          contents:
+            - framework/introduction.qmd
+            - framework/motivation.qmd
+            - framework/strategy.qmd
+        - section: "Business architecture"
+          contents:
+            - framework/business-architecture.qmd
+        - section: "Production value streams"
+          contents:
+            - framework/vs-01.qmd
+            - framework/vs-02.qmd
+            - framework/vs-03.qmd
+            - framework/vs-04.qmd
+            - framework/vs-05.qmd
+            - framework/vs-06.qmd
+        - section: "Supporting value streams"
+          contents:
+            - framework/vs-07.qmd
+            - framework/vs-08.qmd
+            - framework/vs-09.qmd
+            - framework/vs-10.qmd
+  page-navigation: true
+
+format:
+  html:
+    theme: [yeti, custom.scss]
+    # quarto-nav.js rewrites every ".../index.html" link to "/..." (it assumes the
+    # host serves index.html for a folder). MinIO does NOT, so those links 403.
+    # Inline a restore (independent of page depth, unlike <script src=../...>)
+    # that reads the original href quarto-nav.js saved in data-original-href and
+    # re-applies it; a MutationObserver re-fixes any later re-strip. No-op on
+    # hosts that serve index.html for a folder (every data-original-href ends in
+    # /index.html, so nothing is restored).
+    include-in-header:
+      - text: |
+          <script>
+          (function () {
+            if (typeof window === "undefined" || window.__s3FixInstalled) return;
+            window.__s3FixInstalled = true;
+            function fix() {
+              document.querySelectorAll("a[data-original-href]").forEach(function (a) {
+                var o = a.getAttribute("data-original-href");
+                if (o && /\/index\.html(?=[?#]|$)/.test(o) && a.href !== o) a.href = o;
+              });
+            }
+            function go() {
+              fix();
+              if (window.MutationObserver) {
+                new MutationObserver(fix).observe(document.documentElement,
+                  { subtree: true, attributes: true, attributeFilter: ["href"] });
+              }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go);
+            else go();
+          })();
+          </script>
+    toc: true
+    toc-depth: 3
+    toc-expand: 2
+    number-sections: false
+    code-copy: false
+  pdf:
+    documentclass: scrartcl
+    papersize: a4
+    geometry:
+      - margin=2.4cm
+    fontsize: 10pt
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    colorlinks: true
+    linkcolor: "RoyalBlue"
+    urlcolor: "RoyalBlue"
+    filters:
+      - pdf-links.lua
+
+lang: en

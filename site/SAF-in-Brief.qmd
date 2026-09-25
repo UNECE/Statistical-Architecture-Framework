@@ -1,0 +1,190 @@
+---
+title: "SAF in Brief"
+---
+
+*The Statistical Architecture Framework in ten minutes: what it is, the two ideas at its core, what it gives you, and what it asks of you.*
+
+::: {.callout-tip title="Who this is for"}
+Anyone deciding whether and where their office should engage with SAF: CIOs and CTOs, architects, methodologists and statisticians, quality and privacy officers, programme managers. **No architecture background is assumed.** Where a word is used in a special sense, the [Glossary](glossary.qmd) explains it.
+
+This page summarises the [SAF Framework document](framework/index.qmd) and does not replace it. To try SAF on one of your own statistical products, continue with [Getting Started with SAF](SAF-Getting-Started.qmd).
+:::
+
+## Why SAF
+
+Statistical organisations share a need: production must remain credible, secure and efficient while adapting to new data sources, new user expectations and tighter constraints. The Statistical Architecture Framework (SAF) gives national statistical offices (NSOs) a common architectural foundation for making those changes in a controlled and coherent way.
+
+SAF builds on earlier work, the Common Statistical Production Architecture (CSPA) and the Common Statistical Data Architecture (CSDA). It shares their aims of common understanding across organisations, interoperability, reuse and standard building blocks, but moves the emphasis from description towards implementation. It is meant to be used directly in programmes and projects, to guide actual design and implementation choices.
+
+It does not compete with the standards an office already uses: GSBPM, GAMSO and GSIM remain as they are. SAF supplies the connecting tissue between them, linking strategy, capabilities and processes to services and technology.
+
+::: {.callout-important title="A mapping framework, not an operating model"}
+"SAF does not prescribe a single operating model, a single technology stack, or a single organisational design. It recognises that NSOs differ in mandate, maturity, and context. Instead, it provides a shared architectural foundation that can be adapted to local realities while remaining comparable across organisations." (*SAF Framework, [Definition of Scope](framework/introduction.qmd#definition-of-scope)*)
+:::
+
+## The two ideas at its core
+
+Much of SAF (*the motivation layer, the GAMSO-derived capability model, the ten value streams*) will look familiar to anyone who knows the UNECE standards. SAF complements those standards with two further ideas, and applying the framework depends mainly on them. Neither is entirely new: steady states in particular were discussed in the statistical community before SAF gave them a formal definition.
+
+### Steady states of data
+
+Statistical production is split into six stages, called **value streams** and numbered VS-01 to VS-06. Each adds one particular kind of value to the data, and each works independently of the others (they are *loosely coupled*, in architecture terms).
+
+The streams exchange data at defined points called **steady states**. A steady state is a dataset that has reached a known quality, has been given a version and an identifier, and is available for the next stage to pick up. One stream produces it and the next consumes it, and neither needs to know more about how the other works inside.
+
+When a stream finishes a dataset it **registers** it: it records the dataset in a catalogue with its identifier and a description of what was done to it. The registration sends an event telling the next stream that new data is ready, so the next stream does not have to ask.
+
+::: {.callout-note title="\"Registered\" does not mean a statistical register"}
+In the context of SAF, *registering* a dataset means cataloguing it so that others, inside or outside the NSO, can find and cite the exact version. It has nothing to do with a statistical register such as a business register or a population register. Both meanings appear in these documents, and the [Glossary](glossary.qmd) distinguishes them.
+:::
+
+| State | Name | Produced by | Meaning |
+|---|---|---|---|
+| (#0) | Source Data | *external providers* | Data at the external holder, before it enters the NSO (pre-ingestion; not a numbered SAF state) |
+| #1 | Raw Data | VS-01 | Received into NSO custody in original form, with its provenance (where it came from and how) and basic validation |
+| #2 | Standardized Data | VS-02 | Aligned to common structure, format, and classifications; **values unchanged** |
+| #3 | Processed Data | VS-03 | Content validated, edited, imputed, enriched, integrated; derived variables added |
+| #4 | Statistics (Output Data) | VS-04 → VS-05 | Estimated/aggregated statistics (VS-04), composed into approved products (VS-05) |
+| #5 | Released Data | VS-06 | Disclosure-controlled, documented, published or delivered to external parties |
+| #6 | Consumed Data | *external users* | Data in use outside the NSO's direct control |
+: The steady states of data {tbl-colwidths="[10,20,20,50]"}
+
+"Values unchanged" at #2 means that no value changes its meaning. Recoding a value into a standard classification through a fixed correspondence table is standardisation. Interpreting free text, such as coding job titles to an occupation classification, happens on the way to #3.
+
+```{mermaid}
+%%| label: fig-brief-states
+%%| fig-cap: "Steady-state handover across the chain. Each arrow is a handover between streams, triggered by a registration event. Blue = data states inside the NSO; yellow = statistics; light green = released; dark green = outside the NSO's control."
+flowchart TD
+    S0["Source Data"]:::ext -->|VS-01| S1["#1 Raw"]
+    S1 -->|VS-02| S2["#2 Standardized"]
+    S2 -->|VS-03| S3["#3 Processed"]
+    S3 -->|VS-04| S4["#4 Statistics"]
+    S4 -->|VS-05| S4b["#4 Approved products"]
+    S4b -->|VS-06| S5["#5 Released"]
+    S5 --> S6["#6 Consumed"]:::ext
+
+    classDef ext fill:#0f766e,color:#fff,stroke:#0f766e
+    style S1 fill:#dbeafe,stroke:#2563eb
+    style S2 fill:#dbeafe,stroke:#2563eb
+    style S3 fill:#dbeafe,stroke:#2563eb
+    style S4 fill:#fef9c3,stroke:#b45309
+    style S4b fill:#fef9c3,stroke:#b45309
+    style S5 fill:#dcfce7,stroke:#16a34a
+```
+
+### The four-process governance pattern
+
+Every stream is described through the same **four process types**. They form a repeating cycle rather than a one-off sequence, and each produces a different kind of result:
+
+- **Design:** decide how the work should be done (rules, methodology, specifications, policies). *Provides metadata.*
+- **Implementation:** build, configure and test the systems that will do it. *Provides the execution process.*
+- **Execution:** run the work each production cycle. *Provides the statistical data.*
+- **Management:** check quality, monitor performance and feed improvements back to Design. *Provides quality reports.*
+
+```{mermaid}
+%%| label: fig-brief-cycle
+%%| fig-cap: "The four-process governance pattern. Each of the six primary streams runs this full cycle; the feedback arrow from Management to Design closes the loop."
+%%| fig-width: 6
+flowchart LR
+    D["**Design**
+    _metadata_"] -->|"guides building"| I["**Implement**
+    _execution process_"]
+    I -->|"production-ready"| E["**Execute**
+    _statistical data_"]
+    E -->|"data & process logs"| M["**Manage**
+    _quality reports_"]
+    M -->|"improvement feedback"| D
+
+    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
+    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
+    style E fill:#059669,color:#fff,stroke:#047857
+    style M fill:#d97706,color:#fff,stroke:#b45309
+```
+
+
+::: {.callout-tip title="For GSBPM readers"}
+
+Design maps to Phase 2, Implementation to Phase 3, Execution to Phases 4–7 as appropriate to the domain, and Management to the overarching Quality Management / Phase 8. Separating the four lets an office change how a stream is *built* without touching how it is *designed*, and govern quality without owning execution.
+
+:::
+
+
+## How the pieces fit
+
+Six primary streams form the production chain. Four **supporting** streams (VS-07 Governance & Compliance, VS-08 Innovation & Methodological Development, VS-09 Infrastructure & Platform Enablement, VS-10 Customer & Stakeholder Engagement) enable and constrain all six continuously. They have no steady-state transition of their own. They run as a plan → build → operate → improve cycle, produce enabling capabilities rather than data, and align to GAMSO rather than GSBPM.
+
+| VS | Domain | State in → out | Signature discipline |
+|---|---|---|---|
+| **01** | Acquisition & Ingestion | Source → #1 Raw | Metadata & validation at ingestion |
+| **02** | Standardization & Integration | #1 → #2 Standardized | No loss of content: map, reformat, annotate |
+| **03** | Editing & Enrichment | #2 → #3 Processed | Full traceability of every value change |
+| **04** | Estimation & Modelling | #3 → #4 Statistics | Methodological transparency, accuracy, disclosure control on outputs |
+| **05** | Product Composition | within #4 (→ approved) | Coherence & interpretability; approval before registration |
+| **06** | Dissemination & Service Delivery | #4 → #5 Released → #6 | Accessibility & trust; final disclosure check before release |
+: The six primary value streams {tbl-colwidths="[8,30,24,38]"}
+
+The last column names each stream's **signature discipline**: the rule that defines it, stating what the stream must always do or must never do.
+
+Beneath the streams sit the **capability model** (70 capabilities in four groups, taken from GAMSO 1.2) and the **motivation layer** (drivers, goals, principles, outcomes, stakeholders), which give the framework its vocabulary and basis. The streams and steady states are where they are applied.
+
+
+::: {.callout-caution}
+
+GAMSO 2.0 was published in july 2026; aligning the capability model with it is still to be reviewed.
+
+:::
+
+
+
+## What adopting SAF gives you
+
+The framework names six outcomes for an office that adopts it: **accelerated modernization**, **enhanced data quality**, **improved interoperability**, **improved trust and transparency**, **increased efficiency**, and a **shared knowledge base** for the organisation and its partners.
+
+In practice these follow from the steady states:
+
+* State #2 puts data from different sources into common formats and classifications, so datasets can be combined and reused across products. This matters more as survey response rates fall and offices combine surveys with administrative sources to produce multi-source statistics.
+* State #3 is designed for reuse, so the same processing is not repeated by each unit.
+* Loose coupling means one capability, such as a collection channel, an editing engine or a dissemination platform, can be modernised without disrupting the rest of the chain.
+* Every dataset carries its **lineage** (the trace back through each step to the data it came from) together with its quality documentation, so an office can show how any published figure was produced.
+
+For NSOs this means lower risk, more agility, and better alignment between IT and business objectives. For international organisations it means harmonisation and comparability. For citizens and policymakers it means statistics whose trustworthiness can be demonstrated.
+
+## What it commits you to
+
+Adopting the steady-state model comes with concrete obligations, and loose coupling only works in practice if they are met.
+
+::: {.callout-important title="Adopting SAF means you commit to"}
+- **Naming what is handed over at every boundary.** Streams exchange finished, registered datasets (*artefacts*, in SAF's vocabulary) with their metadata, never internal working data. Neither side then needs to know how the other works inside (SAF-P07).
+- **A catalogue.** Every artefact is identified, versioned and catalogued. Once registered, it is available to authorised users in the office and, where agreements allow, to partners across the national statistical system, so collection, cleaning and analysis are not duplicated (SAF-P08).
+- **Metadata from the start.** Every artefact carries its provenance, method, accuracy, classification and lineage, recorded when each value is created or changed rather than reconstructed months later (SAF-P09). Many offices have their best metadata at dissemination today; building it up from ingestion onwards is often the largest investment SAF asks for.
+- **An owner and quality criteria for each state.** Someone, often called a data steward, is accountable for each state, and a dataset must meet explicit criteria to *be* in that state.
+- **Security built in.** Access control, integrity checks and tamper-evident audit trails are part of every pipeline from the start (SAF-P10).
+- **Confidentiality at several points.** Direct identifiers are removed or pseudonymised at standardisation (#2) at the latest, and earlier where that suits the process. Disclosure risk is assessed on enrichment (#3), disclosure control is applied to outputs (#4), and a final disclosure check comes before release (#5); nothing is released until it passes (SAF-P11). Other methods, such as input privacy for data integration, synthetic data or differential privacy, can also be used.
+- **Design and management of artefacts, as well as execution.** Rules, methods and specifications exist and are versioned (for example in a Git repository) before a cycle runs; quality reports and improvement recommendations feed back into design afterwards.
+- **Events.** A handover is announced by a registration event, so the next stream does not have to ask.
+- **Open tooling where it carries statistical method.** Methods that produce official figures are built on shared, open components, and improvements are contributed back, so the statistical community keeps collective control of them instead of depending on a vendor (SAF-P01). See [Open Source in SAF](open-source.qmd).
+:::
+
+Registered artefacts are also **immutable**: they are not changed once registered. A correction produces a new version instead of overwriting the old one, which makes it possible, years later, to show the data behind a published figure.
+
+None of these commitments prescribes *how* you meet it. A boundary is an agreement between streams and does not have to match an organisational unit: one team may own several states, and a central unit may run processing for many domains. SAF only requires that the agreement exists and is written down.
+
+Nor does every process have to pass through all six states. A process that builds on data another team has already registered (macro statistics built on shared Processed Data, for example) starts from that data without creating earlier artefacts. When nothing changes between two states, as can happen between #4 and #5, one artefact can serve both. When a step uses data without changing its values, a logged event pointing to the existing version is enough for lineage. In each case the choice is recorded in the catalogue: comply or explain. These rules are set out in [Applying the steady states pragmatically](framework/business-architecture.qmd#pragmatic-steady-states).
+
+
+## Reading paths by role
+
+The SAF Framework document is long. Start where your role needs you to.
+
+| Role | Start here | Then |
+|---|---|---|
+| Enterprise and data architects | [Architecture Principles](framework/motivation.qmd#architecture-principles); [Steady States of Data](framework/business-architecture.qmd#steady-states-of-data); [Principles to Apply](framework/business-architecture.qmd#principles-to-apply) | [Capability Model](framework/strategy.qmd#capability-model); the *Boundary Interface Specifications* in each VS deep dive |
+| IT architects and delivery teams | [The Four-Process Governance Pattern](framework/business-architecture.qmd#the-four-process-governance-pattern); [VS-09 Infrastructure and Platform Enablement](framework/vs-09.qmd) | The *Implementation Processes* and *Business Services and Interfaces* sections of the stream you build for; the *Framework Mappings* tables |
+| Methodologists | The *Steady State Transition* section of VS-02 to VS-05; the VS-03 and VS-04 *Signature discipline* notes in [The Statistical Data Value Chain](framework/business-architecture.qmd#the-statistical-data-value-chain) | The *Design Processes* of VS-02 to VS-05; [VS-08 Innovation and Methodological Development](framework/vs-08.qmd) |
+| CIOs, CTOs, managers, policy makers | [Preface](framework/introduction.qmd#preface) and [Purpose](framework/introduction.qmd#purpose); [Motivation](framework/motivation.qmd#motivation) (drivers, goals, outcomes) | [The Value Chain at a Glance](framework/business-architecture.qmd#the-value-chain-at-a-glance); the *Maturity Assessment Checklist* of any stream |
+| Privacy officers and assurance functions | [SAF-P09](framework/motivation.qmd#saf-p09-no-data-without-metadata-and-classification), [SAF-P10](framework/motivation.qmd#saf-p10-security-by-design), [SAF-P11](framework/motivation.qmd#saf-p11-privacy-by-design); the *Two cross-chain disciplines* note under [Principles to Apply](framework/business-architecture.qmd#principles-to-apply) | The quality requirements of [State #2](framework/business-architecture.qmd#state-2-standardized-data) and [State #5](framework/business-architecture.qmd#state-5-published-output-data-released-data); [VS-07 Governance and Compliance](framework/vs-07.qmd); the *Required Metadata* column of every boundary specification |
+: Reading paths by role {tbl-colwidths="[22,40,38]"}
+
+## Next step
+
+[Getting Started with SAF](SAF-Getting-Started.qmd) follows one survey and one administrative dataset from source to release, and then helps you map one of your own processes.
