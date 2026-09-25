@@ -1,0 +1,2729 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>VS-04 Estimation, Analysis, and Statistical Modeling – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../framework/vs-05.html" rel="next">
+<link href="../framework/vs-03.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4b8eba7d388032a8ef35e180b04aa314.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../framework/index.html" aria-current="page"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-01.html">Production value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-04.html">VS-04 Estimation, Analysis, and Statistical Modeling</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAF Architecture Framework</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and Scope</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/motivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Motivation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/strategy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strategy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Business architecture</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/business-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Architecture</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Production value streams</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-01 Data Acquisition and Ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-02 Data Standardization and Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-03 Data Editing and Enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-04.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">VS-04 Estimation, Analysis, and Statistical Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-05 Statistical Product Composition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-06 Dissemination and Service Delivery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Supporting value streams</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-07 Governance and Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-08 Innovation and Methodological Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-09 Infrastructure and Platform Enablement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-10 Customer and Stakeholder Engagement</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#vs-04.0-estimation-analysis-and-statistical-modeling" id="toc-vs-04.0-estimation-analysis-and-statistical-modeling" class="nav-link active" data-scroll-target="#vs-04.0-estimation-analysis-and-statistical-modeling">VS-04.0 Estimation, Analysis, and Statistical Modeling</a>
+  <ul class="collapse">
+  <li><a href="#purpose-and-scope" id="toc-purpose-and-scope" class="nav-link" data-scroll-target="#purpose-and-scope">Purpose and Scope</a></li>
+  <li><a href="#position-in-the-statistical-value-chain" id="toc-position-in-the-statistical-value-chain" class="nav-link" data-scroll-target="#position-in-the-statistical-value-chain">Position in the Statistical Value Chain</a></li>
+  <li><a href="#steady-state-transition" id="toc-steady-state-transition" class="nav-link" data-scroll-target="#steady-state-transition">Steady State Transition</a></li>
+  <li><a href="#the-four-process-governance-pattern" id="toc-the-four-process-governance-pattern" class="nav-link" data-scroll-target="#the-four-process-governance-pattern">The Four-Process Governance Pattern</a></li>
+  <li><a href="#governing-principles" id="toc-governing-principles" class="nav-link" data-scroll-target="#governing-principles">Governing Principles</a></li>
+  <li><a href="#capability-foundations" id="toc-capability-foundations" class="nav-link" data-scroll-target="#capability-foundations">Capability Foundations</a></li>
+  <li><a href="#metadata-perspective" id="toc-metadata-perspective" class="nav-link" data-scroll-target="#metadata-perspective">Metadata Perspective</a></li>
+  </ul></li>
+  <li><a href="#business-roles-and-actors" id="toc-business-roles-and-actors" class="nav-link" data-scroll-target="#business-roles-and-actors">Business Roles and Actors</a></li>
+  <li><a href="#design-processes-provides-metadata" id="toc-design-processes-provides-metadata" class="nav-link" data-scroll-target="#design-processes-provides-metadata">Design Processes — “provides metadata”</a>
+  <ul class="collapse">
+  <li><a href="#design-estimation-strategy-and-accuracy-approach" id="toc-design-estimation-strategy-and-accuracy-approach" class="nav-link" data-scroll-target="#design-estimation-strategy-and-accuracy-approach">Design Estimation Strategy and Accuracy Approach</a></li>
+  <li><a href="#design-weighting-and-calibration-methodology" id="toc-design-weighting-and-calibration-methodology" class="nav-link" data-scroll-target="#design-weighting-and-calibration-methodology">Design Weighting and Calibration Methodology</a></li>
+  <li><a href="#design-aggregation-and-model-specifications" id="toc-design-aggregation-and-model-specifications" class="nav-link" data-scroll-target="#design-aggregation-and-model-specifications">Design Aggregation and Model Specifications</a></li>
+  <li><a href="#design-validation-and-disclosure-control-policy" id="toc-design-validation-and-disclosure-control-policy" class="nav-link" data-scroll-target="#design-validation-and-disclosure-control-policy">Design Validation and Disclosure-Control Policy</a></li>
+  <li><a href="#design-quality-measurement-and-versioning-framework" id="toc-design-quality-measurement-and-versioning-framework" class="nav-link" data-scroll-target="#design-quality-measurement-and-versioning-framework">Design Quality-Measurement and Versioning Framework</a></li>
+  </ul></li>
+  <li><a href="#implementation-processes-provides-the-execution-process" id="toc-implementation-processes-provides-the-execution-process" class="nav-link" data-scroll-target="#implementation-processes-provides-the-execution-process">Implementation Processes — “provides the execution process”</a>
+  <ul class="collapse">
+  <li><a href="#build-weighting-and-calibration-engines" id="toc-build-weighting-and-calibration-engines" class="nav-link" data-scroll-target="#build-weighting-and-calibration-engines">Build Weighting and Calibration Engines</a></li>
+  <li><a href="#build-estimation-and-aggregation-pipelines" id="toc-build-estimation-and-aggregation-pipelines" class="nav-link" data-scroll-target="#build-estimation-and-aggregation-pipelines">Build Estimation and Aggregation Pipelines</a></li>
+  <li><a href="#build-modeling-environment-validation-and-sdc-tooling" id="toc-build-modeling-environment-validation-and-sdc-tooling" class="nav-link" data-scroll-target="#build-modeling-environment-validation-and-sdc-tooling">Build Modeling Environment, Validation, and SDC Tooling</a></li>
+  <li><a href="#test-and-validate-the-pipeline" id="toc-test-and-validate-the-pipeline" class="nav-link" data-scroll-target="#test-and-validate-the-pipeline">Test and Validate the Pipeline</a></li>
+  </ul></li>
+  <li><a href="#execution-processes-provides-the-statistical-data" id="toc-execution-processes-provides-the-statistical-data" class="nav-link" data-scroll-target="#execution-processes-provides-the-statistical-data">Execution Processes — “provides the statistical data”</a>
+  <ul class="collapse">
+  <li><a href="#confirm-estimation-and-analytical-approach" id="toc-confirm-estimation-and-analytical-approach" class="nav-link" data-scroll-target="#confirm-estimation-and-analytical-approach">Confirm Estimation and Analytical Approach</a></li>
+  <li><a href="#apply-weighting-and-calibration" id="toc-apply-weighting-and-calibration" class="nav-link" data-scroll-target="#apply-weighting-and-calibration">Apply Weighting and Calibration</a></li>
+  <li><a href="#estimate-and-aggregate-data" id="toc-estimate-and-aggregate-data" class="nav-link" data-scroll-target="#estimate-and-aggregate-data">Estimate and Aggregate Data</a></li>
+  <li><a href="#perform-model-based-analysis" id="toc-perform-model-based-analysis" class="nav-link" data-scroll-target="#perform-model-based-analysis">Perform Model-Based Analysis</a></li>
+  <li><a href="#validate-and-document-results" id="toc-validate-and-document-results" class="nav-link" data-scroll-target="#validate-and-document-results">Validate and Document Results</a></li>
+  </ul></li>
+  <li><a href="#management-processes-provides-quality-reports" id="toc-management-processes-provides-quality-reports" class="nav-link" data-scroll-target="#management-processes-provides-quality-reports">Management Processes — “provides quality reports”</a>
+  <ul class="collapse">
+  <li><a href="#monitor-process-performance" id="toc-monitor-process-performance" class="nav-link" data-scroll-target="#monitor-process-performance">Monitor Process Performance</a></li>
+  <li><a href="#assess-output-quality" id="toc-assess-output-quality" class="nav-link" data-scroll-target="#assess-output-quality">Assess Output Quality</a></li>
+  <li><a href="#manage-methodology-and-output-version-lifecycle" id="toc-manage-methodology-and-output-version-lifecycle" class="nav-link" data-scroll-target="#manage-methodology-and-output-version-lifecycle">Manage Methodology and Output-Version Lifecycle</a></li>
+  <li><a href="#audit-and-compliance-reporting" id="toc-audit-and-compliance-reporting" class="nav-link" data-scroll-target="#audit-and-compliance-reporting">Audit and Compliance Reporting</a></li>
+  <li><a href="#continuous-improvement" id="toc-continuous-improvement" class="nav-link" data-scroll-target="#continuous-improvement">Continuous Improvement</a></li>
+  </ul></li>
+  <li><a href="#business-services-and-interfaces" id="toc-business-services-and-interfaces" class="nav-link" data-scroll-target="#business-services-and-interfaces">Business Services and Interfaces</a>
+  <ul class="collapse">
+  <li><a href="#boundary-interface-specifications" id="toc-boundary-interface-specifications" class="nav-link" data-scroll-target="#boundary-interface-specifications">Boundary Interface Specifications</a></li>
+  </ul></li>
+  <li><a href="#business-objects-and-data-flow" id="toc-business-objects-and-data-flow" class="nav-link" data-scroll-target="#business-objects-and-data-flow">Business Objects and Data Flow</a></li>
+  <li><a href="#business-events" id="toc-business-events" class="nav-link" data-scroll-target="#business-events">Business Events</a></li>
+  <li><a href="#framework-mappings" id="toc-framework-mappings" class="nav-link" data-scroll-target="#framework-mappings">Framework Mappings</a></li>
+  <li><a href="#applying-this-to-your-nso" id="toc-applying-this-to-your-nso" class="nav-link" data-scroll-target="#applying-this-to-your-nso">Applying This to Your NSO</a>
+  <ul class="collapse">
+  <li><a href="#maturity-assessment-checklist" id="toc-maturity-assessment-checklist" class="nav-link" data-scroll-target="#maturity-assessment-checklist">Maturity Assessment Checklist</a></li>
+  <li><a href="#end-to-end-scenarios" id="toc-end-to-end-scenarios" class="nav-link" data-scroll-target="#end-to-end-scenarios">End-to-End Scenarios</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="vs-04.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-01.html">Production value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-04.html">VS-04 Estimation, Analysis, and Statistical Modeling</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">VS-04 Estimation, Analysis, and Statistical Modeling</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="vs-04.0-estimation-analysis-and-statistical-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="vs-04.0-estimation-analysis-and-statistical-modeling">VS-04.0 Estimation, Analysis, and Statistical Modeling</h2>
+<section id="purpose-and-scope" class="level3">
+<h3 class="anchored" data-anchor-id="purpose-and-scope">Purpose and Scope</h3>
+<p>This document specifies the complete business layer for the <strong>Estimation and closed-loop</strong> business domain, corresponding to the <em>VS-04.0 Estimation, Analysis, and Statistical Modeling Value Stream</em>. It also covers 4 governance process types:</p>
+<ul>
+<li><strong>Design</strong> — how the estimation, weighting, and analytical approach is specified and planned (produces metadata)</li>
+<li><strong>Implementation</strong> — how the estimation and analysis pipeline is built, configured, and tested (produces the execution process)</li>
+<li><strong>Execution</strong> — how data is operationally weighted, estimated, modeled, and validated (produces statistical data)</li>
+<li><strong>Management</strong> — how the domain is monitored, quality-assessed, and improved (produces quality reports)</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled" title="Out of Scope">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Out of Scope
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Application and Technology layer specifications are out of scope for this document. Combining multiple analyses into integrated and composite statistical products is out of scope — it belongs to VS-05.0 Statistical Product Composition. Final disclosure control for publication and dissemination belongs to VS-06.0. VS-04 produces validated statistics with initial confidentiality protection; it does not compose products or publish them.</p>
+</div>
+</div>
+<p><em>A note on numbering:</em> each <code>VS-0x.y</code> below is both a value stream stage (<em>what value</em> is added) and a business process (<em>how</em> it is done); the numbering maps one-to-one. See the key-concepts box above.</p>
+</section>
+<section id="position-in-the-statistical-value-chain" class="level3">
+<h3 class="anchored" data-anchor-id="position-in-the-statistical-value-chain">Position in the Statistical Value Chain</h3>
+<p>VS-04.0 is the fourth primary value stream — it receives Processed Data from VS-03.0 and applies statistical methods, estimation techniques, and analytical models to turn it into representative results that describe real-world phenomena. It is the “Estimate &amp; Analyze Information” orchestration stage where data becomes statistical information.</p>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-1">
+flowchart TD
+    subgraph primary["Primary Value Streams"]
+        direction LR
+        VS01["VS-01.0
+        Data Acquisition
+        &amp; Ingestion"]
+        VS02["VS-02.0
+        Data Standardization
+        &amp; Integration"]
+        VS03["VS-03.0
+        Data Editing
+        &amp; Enrichment"]
+        VS04["**VS-04.0**
+        Estimation, Analysis
+        &amp; Modeling"]:::highlight
+        VS05["VS-05.0
+        Statistical Product
+        Composition"]
+        VS06["VS-06.0
+        Dissemination
+        &amp; Service Delivery"]
+        VS01 --&gt; VS02 --&gt; VS03 --&gt; VS04 --&gt; VS05 --&gt; VS06
+    end
+
+    subgraph supporting["Supporting Value Streams"]
+        VS07["VS-07.0
+        Governance &amp;
+        Compliance"]
+        VS08["VS-08.0
+        Innovation &amp;
+        Methodology"]
+        VS09["VS-09.0
+        Infrastructure &amp;
+        Platform Enablement"]
+        VS10["VS-10.0
+        Customer &amp;
+        Stakeholder Engagement"]
+    end
+
+    supporting -.-&gt;|"enables"| primary
+
+    classDef highlight fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Value Stream Context Map. VS-04.0 is highlighted as the estimation-and-analysis stage that turns processed microdata into representative statistics.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="steady-state-transition" class="level3">
+<h3 class="anchored" data-anchor-id="steady-state-transition">Steady State Transition</h3>
+<p>VS-04.0 transitions data from <strong>Steady State #3 (Processed Data)</strong> — edited, complete, enriched microdata — to <strong>Steady State #4 (Output Data / Statistics)</strong> — aggregated and analyzed statistics with estimates calculated, accuracy and quality indicators produced, lineage documented, internal review completed, and initial confidentiality measures applied so the output can potentially be released.</p>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-2">flowchart LR
+    subgraph upstream["Upstream Domain (VS-03.0)"]
+        PD["Processed Data
+        (State #3)"]
+    end
+
+    subgraph boundary["Estimation &amp; Analysis Boundary"]
+        QG["Estimation &amp; Analysis Service
+        (Weighting, Estimation, Aggregation,
+        Modeling, Validation, Disclosure control)"]
+    end
+
+    subgraph internal["Output Domain (VS-04.0)"]
+        OD["Output Data / Statistics
+        (State #4)"]
+    end
+
+    PD --&gt; QG --&gt; OD
+
+    style internal fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
+    style upstream fill:#7d7d7d,color:#fff,stroke:#1d4ed8,stroke-width:1px
+    style boundary fill:#FFF,stroke-dasharray:5,5
+
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Steady State Transition from Processed Data to Output Data through the estimation and analysis service at the domain boundary. State #4 is shared with VS-05.0 Statistical Product Composition.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Output quality criteria (Examples)*">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Output quality criteria (Examples)*
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Estimation/analytical approach selected and justified for the analytical objective</li>
+<li>Weighting and calibration applied to correct for sample bias, non-response, and coverage</li>
+<li>Estimates and aggregates calculated with accuracy measures (sampling error, confidence intervals)</li>
+<li>Model-based analyses conducted where applicable, with diagnostics documented</li>
+<li>Results validated for statistical soundness and coherence; methodology documented</li>
+<li>Initial statistical disclosure control applied so the output can potentially be released</li>
+<li>Full lineage from each statistic back to the processed source data and the method applied</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="The methodological discipline — insight, transparently produced">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The methodological discipline — insight, transparently produced
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VS-04 does not change microdata values; it <strong>computes statistics from them</strong>. The output is a new kind of object — estimates, weights, aggregates, model results. The guarantee here is <strong>methodological transparency, reproducibility, and statistical soundness</strong>: every estimate carries the methodology and parameters that produced it, an accuracy measure (sampling error, confidence interval, or model diagnostic), and lineage to its inputs, so that any published figure can be regenerated and defended. Fitness for purpose and coherence with related statistics are explicit acceptance criteria.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Inherited from VS-03.0">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Inherited from VS-03.0
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VS-04 receives Processed Data <strong>plus</strong> the metadata VS-03 attached — edit lineage, derived-variable definitions, and <strong>imputation flags</strong>. The imputation flags matter here: estimation must reflect the additional uncertainty that imputed values introduce (e.g., via variance estimation that accounts for imputation), and the edit/derivation lineage is carried through so every estimate remains traceable to its original observed and imputed inputs.</p>
+</div>
+</div>
+</section>
+<section id="the-four-process-governance-pattern" class="level3">
+<h3 class="anchored" data-anchor-id="the-four-process-governance-pattern">The Four-Process Governance Pattern</h3>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-3">flowchart LR
+    D["**Design**
+    _provides metadata_
+
+    Estimation &amp; weighting methodology,
+    model specs, validation &amp;\ndisclosure-control policy"]
+    I["**Implement**
+    _provides the execution process_
+
+    Configured weighting/estimation engines,
+    modeling environment, variance &amp; SDC tools"]
+    E["**Execute**
+    _provides the statistical data_
+    Weighted, estimated &amp; modeled outputs,
+    accuracy measures, methodology lineage"]
+    M["**Manage**
+    _provides quality reports_
+    Accuracy &amp; coherence dashboards, revision
+    analyses, improvement recommendations"]
+
+    D --&gt;|"design artefacts
+    guide building"| I
+    I --&gt;|"production-ready
+    process"| E
+    E --&gt;|"data &amp; process logs
+    for assessment"| M
+    M --&gt;|"improvement
+    feedback"| D
+
+    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
+    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
+    style E fill:#059669,color:#fff,stroke:#047857
+    style M fill:#d97706,color:#fff,stroke:#b45309
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: The Four-Process Governance Pattern. Each process type produces a distinct artefact class. The cycle closes when Management findings feed back into Design improvements.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="governing-principles" class="level3">
+<h3 class="anchored" data-anchor-id="governing-principles">Governing Principles</h3>
+<p>The following principles directly govern the VS-04.0 business domain:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Principle</th>
+<th>Statement</th>
+<th>Application to VS-04.0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAF-P01</strong></td>
+<td>Actively participate in open source to maintain collective control over statistical processes</td>
+<td>NSOs should contribute to open source communities for estimation, weighting, and modeling tooling (e.g., calibration and variance-estimation libraries), ensuring collective control over critical methodological capabilities rather than vendor dependence.</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-P07</strong></td>
+<td>Implement loosely coupled processes and systems</td>
+<td>The estimation domain must be independent from upstream editing and downstream composition. Output Data (State #4) serves as a decoupling interface — downstream consumers access validated statistics without knowledge of the estimation internals.</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-P08</strong></td>
+<td>Data is shared property</td>
+<td>Output statistics and output microdata, once validated, are available to all authorized consumers. Estimation should not be duplicated across products when the same validated output can serve multiple purposes.</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-P09</strong></td>
+<td>No data without metadata and classification</td>
+<td>Every estimate carries metadata: the methodology and parameters applied, the weights used, accuracy measures (sampling error, confidence interval), the reference population, and a classification for derived statistics. This is what makes results transparent and reproducible.</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-P10</strong></td>
+<td>Security By Design</td>
+<td>Access controls, integrity verification, and a tamper-evident record of methods and parameters are embedded in the estimation pipeline so that every published figure is attributable and reproducible, not added as an afterthought.</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-P11</strong></td>
+<td>Privacy By Design</td>
+<td>Initial statistical disclosure control is applied to outputs at this stage, and the disclosure risk of estimates and any output microdata is assessed by design, so the result can potentially be released.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled" title="Cross-cutting principle application">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Cross-cutting principle application
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Several principles cut across all four process types. SAF-P09 (no data without metadata and classification) is the backbone of methodological transparency: Design defines the methodology and required output metadata, Execute captures the method, parameters, weights, and accuracy measures for every estimate, and Manage assesses output quality and coherence. SAF-P10 (Security By Design) governs the tamper-evident record of methods and the reproducibility of outputs across Execution (Sections 5.1–5.5). SAF-P11 (Privacy By Design) applies especially to validation and disclosure control (Section 5.5), where the output’s disclosure risk is assessed before handover. SAF-P07 (loosely coupled) governs both the State #3 intake interface from VS-03.0 and the State #4 handover interface to VS-05.0.</p>
+</div>
+</div>
+</section>
+<section id="capability-foundations" class="level3">
+<h3 class="anchored" data-anchor-id="capability-foundations">Capability Foundations</h3>
+<p>VS-04.0 draws on the following SAF capabilities:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Capability Group</th>
+<th>Capabilities</th>
+<th>Role in VS-04.0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1.1 Statistical design and build</strong></td>
+<td>1.1.2 Design statistics product, 1.1.3 Build statistics product</td>
+<td>Design the estimation/weighting methodology and analytical models, and build the estimation pipeline</td>
+</tr>
+<tr class="even">
+<td><strong>2.1 Data management</strong></td>
+<td>2.1.1 Data lifecycle management, 2.1.2 Metadata management, 2.1.3 Statistical quality management, 2.1.4 Statistical register management</td>
+<td>Manage data, methodology metadata, and quality; assess accuracy and coherence; use registers for calibration totals</td>
+</tr>
+<tr class="odd">
+<td><strong>3.2 Computerization and automation</strong></td>
+<td>3.2.1 Application development, 3.2.2 Functional management</td>
+<td>Build and maintain weighting, estimation, aggregation, and modeling engines</td>
+</tr>
+<tr class="even">
+<td><strong>3.3 Security and Privacy</strong></td>
+<td>3.3.1 Privacy management, 3.3.2 Security planning</td>
+<td>Apply statistical disclosure control and assess output disclosure risk</td>
+</tr>
+<tr class="odd">
+<td><strong>4.1 Governance</strong></td>
+<td>4.1.1 Strategy and governance, 4.1.2 Policy and planning, 4.1.4 Improve management, 4.1.5 Accountability</td>
+<td>Govern the domain, steward estimation methodology, plan improvements, report on reproducibility and compliance</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="metadata-perspective" class="level3">
+<h3 class="anchored" data-anchor-id="metadata-perspective">Metadata Perspective</h3>
+<p>It is considered that metadata is an essential product of the Design phase and a critical concern of every other phase. In this domain, metadata is what makes a published figure defensible: every estimate must carry the method, parameters, weights, and accuracy that produced it. The table below consolidates the metadata produced across all four process types, covering both data metadata (about the outputs) and process metadata or paradata (about how the process runs).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Process Type</th>
+<th>Data Metadata Produced</th>
+<th>Process Metadata (Paradata) Produced</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Design</strong></td>
+<td>Estimation/weighting methodology, calibration totals &amp; sources, aggregation specs, model specifications, validation &amp; SDC policy</td>
+<td>Design decisions log, methodology version, review and approval records</td>
+</tr>
+<tr class="even">
+<td><strong>Implement</strong></td>
+<td>Engine configurations, weighting/estimation parameters, model parameters, variance-estimation settings, SDC parameters</td>
+<td>Build log, test results, reproducibility-test outcomes, deployment approvals</td>
+</tr>
+<tr class="odd">
+<td><strong>Execute</strong></td>
+<td>Per-estimate methodology, weights, accuracy measures (sampling error, CI), model diagnostics, reference population, applied-SDC record</td>
+<td>Operator identity, timing, software/version, parameter values, run identifiers</td>
+</tr>
+<tr class="even">
+<td><strong>Manage</strong></td>
+<td>Accuracy &amp; coherence assessments, revision analyses, lineage assessments, trend analyses</td>
+<td>Accuracy dashboards, coherence reports, improvement decisions, audit findings</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="business-roles-and-actors" class="level2">
+<h2 class="anchored" data-anchor-id="business-roles-and-actors">Business Roles and Actors</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 14%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Process Orientation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Upstream Data Provider (VS-03.0)</strong></td>
+<td>External (internal NSO)</td>
+<td>Supplies Processed Data (State #3) with edit/imputation lineage to the estimation domain</td>
+</tr>
+<tr class="even">
+<td><strong>Methodology Authority</strong></td>
+<td>External</td>
+<td>Sets the estimation, weighting, and analytical methods the NSO conforms to (e.g., methodology unit, Eurostat guidance)</td>
+</tr>
+<tr class="odd">
+<td><strong>Estimation Methodologist</strong></td>
+<td>Design</td>
+<td>Designs the estimation strategy, weighting/calibration methodology, and accuracy-measurement approach</td>
+</tr>
+<tr class="even">
+<td><strong>Model Designer</strong></td>
+<td>Design</td>
+<td>Specifies analytical and forecasting models, their inputs, assumptions, and diagnostics</td>
+</tr>
+<tr class="odd">
+<td><strong>Disclosure-Control Designer</strong></td>
+<td>Design</td>
+<td>Designs the statistical disclosure control rules and disclosure-risk criteria for outputs</td>
+</tr>
+<tr class="even">
+<td><strong>Data Engineer</strong></td>
+<td>Implementation</td>
+<td>Builds and configures weighting, estimation, aggregation, and modeling engines and the pipeline</td>
+</tr>
+<tr class="odd">
+<td><strong>System Configurator</strong></td>
+<td>Implementation</td>
+<td>Configures estimation services, calibration-total sources, and access controls</td>
+</tr>
+<tr class="even">
+<td><strong>Test Manager</strong></td>
+<td>Implementation</td>
+<td>Plans and executes testing of the estimation pipeline (technical, reproducibility, benchmark)</td>
+</tr>
+<tr class="odd">
+<td><strong>Process Owner</strong></td>
+<td>Management</td>
+<td>Accountable for the end-to-end performance of the estimation and analysis domain</td>
+</tr>
+<tr class="even">
+<td><strong>Compliance Officer</strong></td>
+<td>Management</td>
+<td>Ensures reproducibility and disclosure-risk compliance, produces audit reports</td>
+</tr>
+<tr class="odd">
+<td><strong>Quality Manager</strong></td>
+<td>Management</td>
+<td>Monitors accuracy/coherence KPIs, produces quality reports, and drives continuous improvement</td>
+</tr>
+<tr class="even">
+<td><strong>Survey Statistician</strong></td>
+<td>Execution</td>
+<td>Applies the designed weighting/calibration and computes estimates with accuracy measures</td>
+</tr>
+<tr class="odd">
+<td><strong>Analyst / Modeler</strong></td>
+<td>Execution</td>
+<td>Conducts model-based analysis, regression, and forecasting, and documents diagnostics</td>
+</tr>
+<tr class="even">
+<td><strong>Subject-Matter Reviewer</strong></td>
+<td>Execution</td>
+<td>Reviews results for plausibility, coherence, and fitness for purpose, and signs off</td>
+</tr>
+<tr class="odd">
+<td><strong>Data Steward</strong></td>
+<td>Execution</td>
+<td>Registers output datasets and versions, manages metadata entries, and applies access controls</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-processes-provides-metadata" class="level2">
+<h2 class="anchored" data-anchor-id="design-processes-provides-metadata">Design Processes — “provides metadata”</h2>
+<p><em>Framework alignment: GSBPM Phases 1–2 — see <a href="#framework-mappings">Framework Mappings</a>.</em></p>
+<p>The design phase produces the <strong>metadata artefacts</strong> that govern all subsequent phases — the estimation strategy, weighting/calibration methodology, aggregation and model specifications, and the validation and disclosure-control policy. Without well-designed methods, estimation becomes ad-hoc and indefensible, and management has no baseline to measure accuracy and coherence against.</p>
+<section id="design-estimation-strategy-and-accuracy-approach" class="level3">
+<h3 class="anchored" data-anchor-id="design-estimation-strategy-and-accuracy-approach">Design Estimation Strategy and Accuracy Approach</h3>
+<p>The starting point is choosing how the statistics will be estimated. This sub-process selects the estimation strategy appropriate to the source and analytical objective — design-based estimation for sample surveys, register-based aggregation, or model-assisted/model-based estimation for small domains — and defines the <strong>accuracy-measurement</strong> approach: how sampling error and confidence intervals are computed, including how the uncertainty introduced by VS-03 imputation is reflected in variance estimation. The team defines the target parameters, reference populations, and domains of estimation, aligned with GSBPM 2.5 (Design processing and analysis).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Select estimation strategy per source and objective (design-based / register-based / model-based)</td>
+<td>Estimation Strategy Document</td>
+<td>GSBPM 2.5</td>
+</tr>
+<tr class="even">
+<td>Define target parameters, reference populations, and domains of estimation</td>
+<td>Estimation Specification</td>
+<td>GSBPM 2.5</td>
+</tr>
+<tr class="odd">
+<td>Define accuracy-measurement approach (sampling error, CI), reflecting imputation uncertainty</td>
+<td>Accuracy Measurement Plan</td>
+<td>GSBPM 2.5</td>
+</tr>
+<tr class="even">
+<td>Define coherence criteria with related and prior statistics</td>
+<td>Coherence Criteria</td>
+<td>GAMSO QM</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Labour Force Survey:**">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><strong>NSO Example — Labour Force Survey:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The LFS team designs a design-based estimation strategy for the employment rate, with calibration to population totals by age, sex, and region, and a variance estimator (e.g., a linearization or replication method) that accounts for the survey design and for income/non-response imputation flagged in VS-03. Target parameters and the domains of estimation (national and NUTS-2) are specified.</p>
+</div>
+</div>
+</section>
+<section id="design-weighting-and-calibration-methodology" class="level3">
+<h3 class="anchored" data-anchor-id="design-weighting-and-calibration-methodology">Design Weighting and Calibration Methodology</h3>
+<p>This sub-process designs how sample bias, non-response, and coverage errors are corrected through weighting. The team specifies the design weights, the non-response adjustment model, and the calibration method (e.g., calibration to known population totals from registers), including the auxiliary variables and calibration totals to be used and their authoritative sources. Bounds and acceptance constraints on weights are defined to prevent extreme weights, aligned with GSBPM 2.5.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Specify design weights and non-response adjustment</td>
+<td>Weighting Specification</td>
+<td>GSBPM 2.5</td>
+</tr>
+<tr class="even">
+<td>Specify calibration method, auxiliary variables, and calibration totals (with sources)</td>
+<td>Calibration Specification</td>
+<td>GSBPM 2.5</td>
+</tr>
+<tr class="odd">
+<td>Define weight bounds and acceptance constraints</td>
+<td>Weight Constraint Policy</td>
+<td>GSBPM 2.5</td>
+</tr>
+<tr class="even">
+<td>Define the authoritative source and version for calibration totals</td>
+<td>Calibration-Total Source Register</td>
+<td>CSDA Reference Data</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Household Survey:**">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><strong>NSO Example — Household Survey:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The household survey calibration is designed to population totals by age × sex × region drawn from the population register, with a generalized regression (GREG) calibration and weight bounds to cap the calibration factor, so that weighted demographic margins reproduce the register while extreme weights are avoided.</p>
+</div>
+</div>
+</section>
+<section id="design-aggregation-and-model-specifications" class="level3">
+<h3 class="anchored" data-anchor-id="design-aggregation-and-model-specifications">Design Aggregation and Model Specifications</h3>
+<p>This sub-process specifies what is computed. For aggregation, each output statistic is defined by its formula, the domains/breakdowns, and rounding/units conventions. For analysis, model-based methods (regression, time-series/forecasting, small-area models) are specified with their inputs, assumptions, and the diagnostics that must be produced and checked. Each output statistic is given its metadata and classification per SAF-P09, aligned with GSBPM 2.5.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Specify output aggregates: formulae, domains/breakdowns, units, rounding</td>
+<td>Aggregation Specification</td>
+<td>GSBPM 2.5</td>
+</tr>
+<tr class="even">
+<td>Specify analytical/forecasting models: inputs, assumptions, diagnostics</td>
+<td>Model Specification</td>
+<td>GSBPM 2.5</td>
+</tr>
+<tr class="odd">
+<td>Define metadata and classification for every output statistic</td>
+<td>Output-Statistic Metadata Standard</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Define seasonal adjustment / time-series treatment where applicable</td>
+<td>Time-Series Treatment Spec</td>
+<td>GSBPM 2.5</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-validation-and-disclosure-control-policy" class="level3">
+<h3 class="anchored" data-anchor-id="design-validation-and-disclosure-control-policy">Design Validation and Disclosure-Control Policy</h3>
+<p>This sub-process designs how results are validated and protected before handover. Validation criteria cover statistical soundness (plausibility, consistency, model diagnostics within bounds), coherence with related and prior statistics, and the revision policy. The <strong>statistical disclosure control (SDC)</strong> policy is designed — disclosure-risk criteria for tables and any output microdata, and the protection methods (suppression, rounding, perturbation) — so the output reaches a state where it can potentially be released, aligned with GSBPM 6 design and SAF-P11. Reproducibility is designed in: an output must be regenerable from the processed input plus the recorded methodology and parameters.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define validation criteria: soundness, coherence, model diagnostics, revision policy</td>
+<td>Validation Policy</td>
+<td>GAMSO QM</td>
+</tr>
+<tr class="even">
+<td>Define disclosure-risk criteria and SDC protection methods</td>
+<td>Disclosure-Control Policy</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="odd">
+<td>Define output metadata and methodology-documentation requirements</td>
+<td>Output Documentation Standard</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Design reproducibility: regenerate outputs from inputs + methodology + parameters</td>
+<td>Reproducibility Design</td>
+<td>SAF-P10</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-quality-measurement-and-versioning-framework" class="level3">
+<h3 class="anchored" data-anchor-id="design-quality-measurement-and-versioning-framework">Design Quality-Measurement and Versioning Framework</h3>
+<p>The final design sub-process ensures accuracy is measured and outputs are traceable. It defines the quality indicators to be produced (sampling error, coefficient of variation, response/coverage rates, model fit), the <strong>output-versioning</strong> policy (how versions are identified, what triggers a revision, immutability and retention), the lineage requirements from each statistic back to its processed inputs and the method applied, and the role-based access controls for outputs in line with SAF-P10.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define quality indicators (sampling error, CV, response/coverage, model fit)</td>
+<td>Quality Indicator Set</td>
+<td>GAMSO QM</td>
+</tr>
+<tr class="even">
+<td>Define output-versioning and revision policy</td>
+<td>Versioning Policy</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="odd">
+<td>Define lineage from each statistic to processed inputs and method</td>
+<td>Lineage Specification</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="even">
+<td>Design role-based access control for outputs</td>
+<td>Access Control Design</td>
+<td>SAF-P10</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-4">flowchart TB
+    subgraph inputs["Inputs"]
+        PM["Processed Data Model&lt;br/&gt;&lt;small&gt;(State #3 + imputation flags)&lt;/small&gt;"]
+        FW["Framework Standards&lt;br/&gt;&lt;small&gt;GSBPM · GAMSO · CSDA&lt;/small&gt;"]
+        METH["Methodology Set&lt;br/&gt;&lt;small&gt;Estimation · Weighting · Models&lt;/small&gt;"]
+        REG["Calibration Totals&lt;br/&gt;&lt;small&gt;Registers / reference data&lt;/small&gt;"]
+    end
+
+    subgraph design["Design Sub-Processes"]
+        D1["3.1 Estimation Strategy&lt;br/&gt;&amp; Accuracy Approach"]
+        D2["3.2 Weighting &amp;&lt;br/&gt;Calibration Methodology"]
+        D3["3.3 Aggregation &amp;&lt;br/&gt;Model Specs"]
+        D4["3.4 Validation &amp;&lt;br/&gt;Disclosure-Control Policy"]
+        D5["3.5 Quality-Measurement&lt;br/&gt;&amp; Versioning Framework"]
+    end
+
+    subgraph outputs["Metadata Artefacts"]
+        O1["Estimation Strategy"]
+        O2["Weighting &amp; Calibration Spec"]
+        O3["Aggregation &amp; Model Specs"]
+        O4["Validation &amp; SDC Policy"]
+        O5["Quality &amp; Versioning Policy"]
+    end
+
+    PM --&gt; D1
+    METH -.-&gt;|inform| design
+    FW -.-&gt;|inform| design
+    REG --&gt; D2
+
+    D1 --&gt; D2 --&gt; D3 --&gt; D4 --&gt; D5
+
+    D1 --&gt; O1
+    D2 --&gt; O2
+    D3 --&gt; O3
+    D4 --&gt; O4
+    D5 --&gt; O5
+
+    outputs --&gt;|govern| NEXT["Implementation (§4) · Execution (§5)&lt;br/&gt;measured by Management (§6)"]
+
+    style design fill:#f5f3ff,stroke:#7c3aed
+    style outputs fill:#ede9fe,stroke:#7c3aed
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Design Process Decomposition. The processed data model, methodology set, calibration totals, and framework standards flow into five design sub-processes, producing metadata artefacts that govern Implementation, Execution, and Management.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="implementation-processes-provides-the-execution-process" class="level2">
+<h2 class="anchored" data-anchor-id="implementation-processes-provides-the-execution-process">Implementation Processes — “provides the execution process”</h2>
+<p><em>Framework alignment: GSBPM Phase 3 (Build) — see <a href="#framework-mappings">Framework Mappings</a>.</em></p>
+<p>The implementation phase takes the metadata artefacts from Design and <strong>builds, configures, and tests</strong> the production-ready estimation and analysis pipeline. Nothing runs operationally until this phase is complete.</p>
+<section id="build-weighting-and-calibration-engines" class="level3">
+<h3 class="anchored" data-anchor-id="build-weighting-and-calibration-engines">Build Weighting and Calibration Engines</h3>
+<p>This sub-process turns the weighting and calibration designs into operational tools. The weighting engine is built or configured to compute design weights and non-response adjustments, and the calibration engine to calibrate to the designed totals using the specified auxiliary variables, enforcing the weight bounds. The calibration-total connections are configured to the authoritative register/reference sources with version pinning, so the totals used are recorded and reproducible. All weighting logic is version-controlled in line with SAF-P10, following GSBPM 3.1–3.2.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build/configure the weighting engine (design weights, non-response adjustment)</td>
+<td>Configured weighting engine</td>
+<td>GSBPM 3.2</td>
+</tr>
+<tr class="even">
+<td>Build/configure the calibration engine with auxiliary variables and bounds</td>
+<td>Configured calibration engine</td>
+<td>GSBPM 3.2</td>
+</tr>
+<tr class="odd">
+<td>Configure calibration-total connections (versioned register sources)</td>
+<td>Calibration-total integration</td>
+<td>CSDA Reference Data</td>
+</tr>
+<tr class="even">
+<td>Version-control all weighting/calibration logic</td>
+<td>Versioned methodology repository</td>
+<td>SAF-P10</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Household Survey:**">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><strong>NSO Example — Household Survey:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The team configures a GREG calibration engine that pulls age × sex × region totals from a pinned version of the population register, applies weight bounds, and records the calibration totals and convergence diagnostics with every run so the weighting is reproducible.</p>
+</div>
+</div>
+</section>
+<section id="build-estimation-and-aggregation-pipelines" class="level3">
+<h3 class="anchored" data-anchor-id="build-estimation-and-aggregation-pipelines">Build Estimation and Aggregation Pipelines</h3>
+<p>The designed estimation and aggregation specifications are implemented as automated services. The estimation engine computes the target parameters with the designed accuracy measures, and the <strong>variance-estimation</strong> component computes sampling errors and confidence intervals — accounting for the survey design and for imputation uncertainty using the VS-03 imputation flags. The aggregation pipeline computes the specified output aggregates across the designed domains with the rounding/units conventions. Every output is produced with its methodology, parameters, weights, and accuracy measure attached, following GSBPM 3.2.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build the estimation engine for the designed target parameters</td>
+<td>Estimation pipeline</td>
+<td>GSBPM 3.2</td>
+</tr>
+<tr class="even">
+<td>Build the variance-estimation component (design + imputation uncertainty)</td>
+<td>Variance/accuracy component</td>
+<td>GSBPM 3.2</td>
+</tr>
+<tr class="odd">
+<td>Build the aggregation pipeline (domains, units, rounding)</td>
+<td>Aggregation pipeline</td>
+<td>GSBPM 3.2</td>
+</tr>
+<tr class="even">
+<td>Attach methodology, weights, and accuracy measure to every output</td>
+<td>Output metadata binding</td>
+<td>SAF-P09</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="build-modeling-environment-validation-and-sdc-tooling" class="level3">
+<h3 class="anchored" data-anchor-id="build-modeling-environment-validation-and-sdc-tooling">Build Modeling Environment, Validation, and SDC Tooling</h3>
+<p>This sub-process implements model-based analysis, validation, and disclosure control. The modeling environment is built/configured to run the specified analytical, forecasting, and small-area models with their diagnostics, and (where applicable) seasonal adjustment. Validation tooling implements the designed soundness and coherence checks, including comparison against prior periods and related statistics. The <strong>SDC tooling</strong> implements the designed disclosure-risk checks and protection methods (suppression, rounding, perturbation). The output-versioning store is built so each accepted output version is immutable, identified, reproducible from inputs plus methodology, and accompanied by its lineage. Event notifications are configured to alert downstream consumers (VS-05.0) when an output version is registered.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build/configure the modeling environment (models, diagnostics, seasonal adjustment)</td>
+<td>Modeling environment</td>
+<td>GSBPM 3.2</td>
+</tr>
+<tr class="even">
+<td>Implement validation tooling (soundness, coherence, prior-period comparison)</td>
+<td>Validation tooling</td>
+<td>GSBPM 3.2</td>
+</tr>
+<tr class="odd">
+<td>Implement SDC tooling (disclosure-risk checks, suppression/rounding/perturbation)</td>
+<td>SDC tooling</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="even">
+<td>Build the output-versioning store (immutable, identified, reproducible)</td>
+<td>Versioning store</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="odd">
+<td>Configure “Output Data Registered” event for downstream consumers</td>
+<td>Event publication</td>
+<td>GSBPM 3.2</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="test-and-validate-the-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="test-and-validate-the-pipeline">Test and Validate the Pipeline</h3>
+<p>Before the pipeline goes into production, it must be rigorously verified. Technical testing covers all individual components — weighting, calibration, estimation, variance, aggregation, modeling, validation, SDC, and versioning store (GSBPM 3.5). Integration testing validates the end-to-end flow from processed intake through weighting, estimation, modeling, validation, SDC, to versioned registration. A <strong>reproducibility test</strong> confirms an output can be regenerated identically from the processed input plus the recorded methodology and parameters; a <strong>benchmark/back-series test</strong> compares results against a known or prior-period benchmark; and accuracy measures are checked against expectations. The phase concludes with finalization of the production system and documentation of operational procedures (GSBPM 3.6–3.7).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Technical testing of all individual components</td>
+<td>Unit test reports</td>
+<td>GSBPM 3.5</td>
+</tr>
+<tr class="even">
+<td>Integration testing: end-to-end flow from processed intake to versioned registration</td>
+<td>Integration test report</td>
+<td>GSBPM 3.5</td>
+</tr>
+<tr class="odd">
+<td>Reproducibility test (regenerate an output from inputs + methodology)</td>
+<td>Reproducibility report</td>
+<td>GSBPM 3.6</td>
+</tr>
+<tr class="even">
+<td>Benchmark / back-series test against known or prior results</td>
+<td>Benchmark test report</td>
+<td>GSBPM 3.6</td>
+</tr>
+<tr class="odd">
+<td>Check accuracy measures and model diagnostics against expectations</td>
+<td>Accuracy verification report</td>
+<td>GSBPM 3.6</td>
+</tr>
+<tr class="even">
+<td>Finalize production system and document operational procedures</td>
+<td>Operational Procedures Manual, Production-Ready Pipeline</td>
+<td>GSBPM 3.7</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-5" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-5">flowchart LR
+    subgraph design_artefacts["Design Artefacts (from Section 3)"]
+        DA1["Estimation\nStrategy"]
+        DA2["Weighting &amp;\nCalibration Spec"]
+        DA3["Aggregation &amp;\nModel Specs"]
+        DA4["Validation &amp;\nSDC Policy"]
+        DA5["Quality &amp;\nVersioning Policy"]
+    end
+
+    subgraph build["Build &amp; Configure"]
+        B1["4.1 Build Weighting\n&amp; Calibration Engines"]
+        B2["4.2 Build Estimation\n&amp; Aggregation Pipelines"]
+        B3["4.3 Build Modeling,\nValidation &amp; SDC"]
+    end
+
+    subgraph test["Test &amp; Validate"]
+        T1["4.4 Technical\nTesting"]
+        T2["4.4 Reproducibility\n&amp; Benchmark"]
+        T3["4.4 Accuracy\nVerification"]
+    end
+
+    subgraph output["Production-Ready"]
+        PR["Operational\nEstimation\nPipeline"]
+        OP["Operational\nProcedures"]
+    end
+
+    DA1 &amp; DA2 --&gt; B1
+    DA1 &amp; DA3 --&gt; B2
+    DA3 &amp; DA4 &amp; DA5 --&gt; B3
+
+    B1 &amp; B2 &amp; B3 --&gt; T1 --&gt; T2 --&gt; T3
+    T3 --&gt; PR &amp; OP
+
+    PR --&gt;|"ready for"| EXEC["Execution\n(Section 5)"]
+
+    style build fill:#eff6ff,stroke:#2563eb
+    style test fill:#dbeafe,stroke:#2563eb
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Implementation Pipeline from design artefacts through build/configure/test to production-ready system.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="execution-processes-provides-the-statistical-data" class="level2">
+<h2 class="anchored" data-anchor-id="execution-processes-provides-the-statistical-data">Execution Processes — “provides the statistical data”</h2>
+<p><em>Framework alignment: the later GSBPM phases for this domain — see <a href="#framework-mappings">Framework Mappings</a>.</em></p>
+<p>The execution phase runs the <strong>designed and implemented pipeline</strong> operationally for each production cycle. This corresponds to the five VS-04 value stream stages. In a mature steady state, much of the work has been pre-designed (Section 3) and pre-built (Section 4) — execution focuses on running the cycle, computing weights/estimates/models, and capturing the methodology, parameters, and accuracy measures so that every output is reproducible and defensible.</p>
+<section id="confirm-estimation-and-analytical-approach" class="level3">
+<h3 class="anchored" data-anchor-id="confirm-estimation-and-analytical-approach">Confirm Estimation and Analytical Approach</h3>
+<p><strong>Value created:</strong> <em>The right, pre-approved method selected for this cycle’s data and objective.</em></p>
+<p>When a “Processed Data Registered” event is received from VS-03.0, execution begins by confirming the estimation and analytical approach for the cycle. In a mature steady state the methodology has been designed (Section 3), so per-cycle execution confirms or selects the pre-approved approach for the data at hand, verifies that the calibration totals and reference sources are current, and confirms that the target parameters and domains apply. Significant changes (a new domain, a methodology revision) trigger a return to the design process rather than ad-hoc adaptation. This applies GSBPM 2.5/5.6 in their recurrent form.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Confirm or select the pre-approved estimation/analytical approach for the cycle</td>
+<td>Confirmed approach for cycle</td>
+<td>GSBPM 2.5</td>
+</tr>
+<tr class="even">
+<td>Verify calibration totals and reference sources are current</td>
+<td>Reference-source confirmation</td>
+<td>CSDA Reference Data</td>
+</tr>
+<tr class="odd">
+<td>Confirm target parameters and domains of estimation</td>
+<td>Confirmed estimation scope</td>
+<td>GSBPM 5.6</td>
+</tr>
+<tr class="even">
+<td>Flag methodology changes for design review</td>
+<td>Methodology-change exception (if any)</td>
+<td>GAMSO QM</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Labour Force Survey:**">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><strong>NSO Example — Labour Force Survey:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For cycle Q3-2026 the LFS team confirms the design-based estimation strategy and the calibration totals (latest population-register extract by age × sex × region), and confirms the domains (national and NUTS-2). No methodology change is needed, so the cycle proceeds without a return to design.</p>
+</div>
+</div>
+</section>
+<section id="apply-weighting-and-calibration" class="level3">
+<h3 class="anchored" data-anchor-id="apply-weighting-and-calibration">Apply Weighting and Calibration</h3>
+<p><strong>Value created:</strong> <em>Bias from sampling, non-response, and coverage corrected so results represent the population.</em></p>
+<p>This sub-process computes the weights, aligned with GSBPM 5.6 (Calculate weights). The weighting engine applies the design weights and non-response adjustment, and the calibration engine calibrates to the confirmed population totals using the designed auxiliary variables, enforcing the weight bounds. Calibration convergence and the resulting weight distribution are checked against the designed constraints, and the calibration totals, auxiliary variables, and convergence diagnostics are recorded so the weighting is reproducible.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Compute design weights and non-response adjustment</td>
+<td>Adjusted weights</td>
+<td>GSBPM 5.6</td>
+</tr>
+<tr class="even">
+<td>Calibrate to confirmed population totals with designed auxiliary variables</td>
+<td>Calibrated weights</td>
+<td>GSBPM 5.6</td>
+</tr>
+<tr class="odd">
+<td>Check convergence and weight distribution against bounds</td>
+<td>Weight diagnostics</td>
+<td>GSBPM 5.6</td>
+</tr>
+<tr class="even">
+<td>Record calibration totals, auxiliaries, and diagnostics as lineage</td>
+<td>Weighting lineage</td>
+<td>SAF-P09</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Household Survey:**">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><strong>NSO Example — Household Survey:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The GREG calibration converges in 6 iterations; weighted margins reproduce the register totals by age × sex × region, the calibration factor stays within the designed bounds, and the totals and diagnostics are stored with the run.</p>
+</div>
+</div>
+</section>
+<section id="estimate-and-aggregate-data" class="level3">
+<h3 class="anchored" data-anchor-id="estimate-and-aggregate-data">Estimate and Aggregate Data</h3>
+<p><strong>Value created:</strong> <em>Representative statistics and aggregates, each carrying its accuracy.</em></p>
+<p>This sub-process computes the target estimates and aggregates, aligned with GSBPM 5.7 (Calculate aggregates) and 6.1 (Prepare draft outputs). The estimation engine computes the target parameters using the calibrated weights, and the aggregation pipeline computes the specified aggregates across the designed domains with the units/rounding conventions. The variance-estimation component computes sampling errors and confidence intervals, reflecting both the survey design and the imputation uncertainty signaled by the VS-03 imputation flags. Every estimate is produced with its methodology, weights, and accuracy measure attached.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Compute target estimates using calibrated weights</td>
+<td>Point estimates</td>
+<td>GSBPM 5.7</td>
+</tr>
+<tr class="even">
+<td>Compute aggregates across designed domains (units, rounding)</td>
+<td>Output aggregates</td>
+<td>GSBPM 5.7</td>
+</tr>
+<tr class="odd">
+<td>Compute sampling errors and CIs (design + imputation uncertainty)</td>
+<td>Accuracy measures</td>
+<td>GSBPM 6.1</td>
+</tr>
+<tr class="even">
+<td>Attach methodology, weights, and accuracy to every estimate</td>
+<td>Estimate metadata</td>
+<td>SAF-P09</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-6" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-6">flowchart LR
+    subgraph inputs["Processed microdata (State #3)"]
+        direction TB
+        MD["Microdata\n(observed + imputed,\nimputation-flagged)"]
+        WT["Calibrated weights\n(from 5.2)"]
+    end
+
+    subgraph estimation["Estimation &amp; Aggregation"]
+        EST["Point\nestimates"]
+        AGG["Aggregates\n(by domain)"]
+        VAR["Variance / CI\n(design + imputation)"]
+    end
+
+    subgraph output["Output statistics"]
+        OUT["Estimates + aggregates\n(+ accuracy + methodology)"]
+    end
+
+    MD --&gt; EST
+    WT --&gt; EST
+    EST --&gt; AGG
+    EST --&gt; VAR
+    AGG --&gt; OUT
+    VAR --&gt; OUT
+
+    MD -.-&gt;|"imputation flags\nraise uncertainty"| VAR
+
+    style inputs fill:#ecfdf5,stroke:#059669
+    style estimation fill:#f0fdf4,stroke:#059669
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Estimation and Aggregation Architecture. Calibrated weights and imputation-flagged microdata feed point estimation and aggregation; variance estimation reflects both the survey design and the imputation uncertainty, and every output carries its accuracy and methodology.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Labour Force Survey:**">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><strong>NSO Example — Labour Force Survey:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Q3-2026 employment rate is estimated at 71.4% with a 95% CI of ±0.5pp at national level and wider intervals at NUTS-2; the variance estimate is inflated appropriately for the income/non-response imputation flagged in VS-03. Each published cell carries its estimate, CV, and the method that produced it.</p>
+</div>
+</div>
+</section>
+<section id="perform-model-based-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="perform-model-based-analysis">Perform Model-Based Analysis</h3>
+<p><strong>Value created:</strong> <em>Deeper insight — relationships, trends, and small-domain estimates the direct counts cannot give.</em></p>
+<p>This sub-process conducts the designed model-based analyses, aligned with GSBPM 6.1/6.3. Analytical, regression, time-series/forecasting, and small-area models specified in design are run on the data, their diagnostics computed and checked against the designed bounds, and seasonal adjustment applied where applicable. Results are interpreted in context, with assumptions and limitations documented. As with direct estimates, every model output carries its specification, parameters, diagnostics, and uncertainty so it is reproducible and defensible.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Run the designed analytical/forecasting/small-area models</td>
+<td>Model outputs</td>
+<td>GSBPM 6.1</td>
+</tr>
+<tr class="even">
+<td>Compute and check model diagnostics against designed bounds</td>
+<td>Model diagnostics</td>
+<td>GSBPM 6.2</td>
+</tr>
+<tr class="odd">
+<td>Apply seasonal adjustment / time-series treatment where applicable</td>
+<td>Adjusted series</td>
+<td>GSBPM 6.1</td>
+</tr>
+<tr class="even">
+<td>Interpret results; document assumptions and limitations</td>
+<td>Analytical commentary</td>
+<td>GSBPM 6.3</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Tax Register to Business Statistics:**">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><strong>NSO Example — Tax Register to Business Statistics:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For small NACE × region domains where the direct register aggregate is unstable, a small-area model borrows strength across domains to produce more reliable estimates; model diagnostics (fit, prediction intervals) are recorded, and the model-based cells are flagged distinctly from direct aggregates.</p>
+</div>
+</div>
+</section>
+<section id="validate-and-document-results" class="level3">
+<h3 class="anchored" data-anchor-id="validate-and-document-results">Validate and Document Results</h3>
+<p><strong>Value created:</strong> <em>Statistically sound, coherent, documented, and disclosure-safe statistics ready for handover.</em></p>
+<p>The final execution sub-process validates the results and produces the official output version, aligned with GSBPM 6.2 (Validate outputs), 6.4 (Apply disclosure control), and 6.5 (Finalise outputs). Results are checked for statistical soundness and consistency, and for coherence with prior periods and related statistics; significant movements are explained, and revisions handled per policy. <strong>Initial statistical disclosure control</strong> is applied per the designed policy — disclosure risk assessed and protection methods (suppression, rounding, perturbation) applied — so the output can potentially be released. The methodology and quality indicators are documented, a persistent immutable output version is created with a unique identifier and full lineage, registered per SAF-P09, and access permissions applied per SAF-P10. The sub-process concludes by publishing an “Output Data Registered” event, notifying downstream VS-05.0 that new validated statistics are available for composition.</p>
+<p><strong>Output:</strong> <strong>Output Data / Statistics (Steady State #4)</strong> — the official handover artefact to the rest of the statistical value chain.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Validate soundness and coherence; explain movements; handle revisions</td>
+<td>Validation Report</td>
+<td>GSBPM 6.2</td>
+</tr>
+<tr class="even">
+<td>Apply initial statistical disclosure control per designed policy</td>
+<td>Disclosure-controlled outputs</td>
+<td>GSBPM 6.4</td>
+</tr>
+<tr class="odd">
+<td>Document methodology and quality indicators</td>
+<td>Methodology &amp; Quality Documentation</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Create an immutable, identified output version with full lineage</td>
+<td>Versioned Output Data</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="odd">
+<td>Register metadata and publish “Output Data Registered” event to notify VS-05.0</td>
+<td>Catalog registration, event</td>
+<td>SAF-P07</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-7" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-7">erDiagram
+    OUTPUT_DATA_ARTEFACT {
+        string dataset_id PK "Unique persistent URI/UUID"
+        string output_version "Immutable version identifier"
+        date reference_period "Reference period"
+        datetime registration_timestamp "When registered in catalog"
+        string processed_source_id "Processed Data (State #3) source ID"
+    }
+    ESTIMATE_RECORD {
+        string statistic "Estimate / aggregate"
+        string domain "Domain / breakdown"
+        float point_estimate "Estimated value"
+        string method "Estimation method applied"
+    }
+    ACCURACY_MEASURE {
+        float sampling_error "Standard error"
+        float cv "Coefficient of variation"
+        string confidence_interval "CI at stated level"
+        boolean imputation_reflected "Imputation uncertainty included"
+    }
+    METHODOLOGY_RECORD {
+        string weighting_method "Design + calibration method"
+        string calibration_totals_ref "Register source + version"
+        string model_spec "Model specification (if any)"
+        string software_version "Engine/software version"
+    }
+    DISCLOSURE_CONTROL {
+        string sdc_method "Suppression/rounding/perturbation"
+        string risk_assessment "Disclosure-risk outcome"
+        boolean release_safe "Cleared for potential release"
+    }
+
+    OUTPUT_DATA_ARTEFACT ||--|{ ESTIMATE_RECORD : "contains"
+    ESTIMATE_RECORD ||--|| ACCURACY_MEASURE : "has accuracy"
+    OUTPUT_DATA_ARTEFACT ||--|| METHODOLOGY_RECORD : "produced by"
+    OUTPUT_DATA_ARTEFACT ||--|| DISCLOSURE_CONTROL : "protected by"
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Output Data Artefact Structure. Reading guide: each box is a type of record with its fields; a connecting line means the records are linked. Each output version contains estimates with accuracy measures, is linked to the methodology that produced it and the applied disclosure control, and is traceable to the processed source data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="management-processes-provides-quality-reports" class="level2">
+<h2 class="anchored" data-anchor-id="management-processes-provides-quality-reports">Management Processes — “provides quality reports”</h2>
+<p><em>Framework alignment: GSBPM overarching Quality/Metadata Management — see <a href="#framework-mappings">Framework Mappings</a>.</em></p>
+<p>The management phase runs <strong>alongside and after</strong> execution. It monitors the estimation domain’s performance, assesses the accuracy and coherence of outputs, ensures every result is reproducible and disclosure-safe, and feeds improvement recommendations back into the design phase — closing the governance cycle.</p>
+<section id="monitor-process-performance" class="level3">
+<h3 class="anchored" data-anchor-id="monitor-process-performance">Monitor Process Performance</h3>
+<p>Operational performance of the estimation domain must be tracked systematically across production cycles. The process owner and quality manager collect and aggregate key performance indicators, monitor throughput against the release calendar, and track paradata — which methods and parameter/software versions were run, when, by whom, and how many manual interventions occurred. This information feeds process performance dashboards that give the process owner a real-time view of domain health, aligned with the GAMSO Quality Management capability.</p>
+<p><strong>Key Performance Indicators (KPIs):</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>KPI</th>
+<th>Description</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>On-time output rate</td>
+<td>Outputs produced within the release-calendar window</td>
+<td>Per output, per cycle</td>
+</tr>
+<tr class="even">
+<td>Average sampling error / CV</td>
+<td>Typical accuracy of key estimates</td>
+<td>Per statistic, per cycle</td>
+</tr>
+<tr class="odd">
+<td>Coherence-check pass rate</td>
+<td>Outputs passing coherence checks on first run</td>
+<td>Per cycle</td>
+</tr>
+<tr class="even">
+<td>Revision magnitude</td>
+<td>Size of revisions vs.&nbsp;previously published figures</td>
+<td>Per statistic, per cycle</td>
+</tr>
+<tr class="odd">
+<td>Reproducibility rate</td>
+<td>Outputs regenerable identically from inputs + methodology</td>
+<td>Per cycle</td>
+</tr>
+<tr class="even">
+<td>Processing time</td>
+<td>Duration from processed intake to versioned registration</td>
+<td>Per output, per cycle</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Collect and aggregate KPIs per production cycle</td>
+<td>Process Performance Dashboard</td>
+<td>GAMSO QM</td>
+</tr>
+<tr class="even">
+<td>Monitor throughput against the release calendar</td>
+<td>Throughput Report</td>
+<td>GAMSO QM</td>
+</tr>
+<tr class="odd">
+<td>Track paradata: methods, parameter/software versions, interventions</td>
+<td>Paradata Records</td>
+<td>GAMSO QM</td>
+</tr>
+<tr class="even">
+<td>Generate process performance dashboards</td>
+<td>Dashboard for Process Owner</td>
+<td>GAMSO QM</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="assess-output-quality" class="level3">
+<h3 class="anchored" data-anchor-id="assess-output-quality">Assess Output Quality</h3>
+<p>Beyond process performance, the quality of the outputs themselves must be evaluated against the criteria established in design. Each output is assessed across multiple quality dimensions: accuracy (sampling error, CV, model fit), coherence (consistency with related and prior statistics), timeliness (against the release calendar), and reliability (revision analysis comparing preliminary and final figures). Results are compared against the designed quality criteria from Section 3.5. Quality indicators are produced per statistic, per output, and per cycle, and trends are tracked to detect deteriorating accuracy, growing revisions, or models that need recalibration. This aligns with the CSDA Data Quality capability and SAF Capability 2.1.3.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Evaluate accuracy (sampling error, CV, model fit)</td>
+<td>Accuracy Report (per cycle)</td>
+<td>SAF 2.1.3</td>
+</tr>
+<tr class="even">
+<td>Assess coherence with related and prior statistics</td>
+<td>Coherence Report</td>
+<td>CSDA Data Quality</td>
+</tr>
+<tr class="odd">
+<td>Conduct revision analysis (preliminary vs.&nbsp;final)</td>
+<td>Revision Analysis</td>
+<td>SAF 2.1.3</td>
+</tr>
+<tr class="even">
+<td>Identify quality trends across statistics and cycles</td>
+<td>Quality Trend Analysis</td>
+<td>SAF 2.1.3</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="manage-methodology-and-output-version-lifecycle" class="level3">
+<h3 class="anchored" data-anchor-id="manage-methodology-and-output-version-lifecycle">Manage Methodology and Output-Version Lifecycle</h3>
+<p>The estimation methodology and the output versions it produces must remain current, complete, and well-governed. This sub-process governs the lifecycle of estimation methods, weighting/calibration specifications, and models — versioning them, managing transitions (e.g., a methodology change with back-series implications), and retiring obsolete methods. It verifies metadata completeness — that every output carries full methodology, weights, accuracy measures, and lineage as an SAF-P09 compliance check — and governs the output-version store: retention, immutability, and reconciliation that catalog entries match stored versions. Metadata lineage from processed through estimation to output state is tracked.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Govern estimation-method, weighting, and model lifecycle and versions</td>
+<td>Methodology Version Register</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Verify metadata completeness (methodology, weights, accuracy, lineage)</td>
+<td>Metadata Quality Report</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="odd">
+<td>Govern the output-version store: retention, immutability, reconciliation</td>
+<td>Version Store Audit</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="even">
+<td>Track metadata lineage from processed to output state</td>
+<td>Metadata Lineage Audit</td>
+<td>CSDA Traceability</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="audit-and-compliance-reporting" class="level3">
+<h3 class="anchored" data-anchor-id="audit-and-compliance-reporting">Audit and Compliance Reporting</h3>
+<p>This sub-process produces the evidence that the estimation domain operates within methodological, legal, and organizational requirements. Reproducibility-audit reports demonstrate that every published figure can be regenerated from the processed input plus the recorded methodology and parameters — supporting methodological transparency and accountability. Disclosure-control reporting confirms that SDC was applied and that outputs meet the disclosure-risk criteria per SAF-P11. Methodology compliance reporting confirms that approved estimation and analytical methods were applied, and security compliance reporting verifies that designed access controls and the tamper-evident methodology record have been applied. These reports satisfy the SAF Capability 4.1.5 (Accountability) obligation and feed into VS-07.0 Governance and Compliance.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Produce reproducibility-audit reports: every figure regenerable</td>
+<td>Reproducibility Audit Summary</td>
+<td>SAF 4.1.5</td>
+</tr>
+<tr class="even">
+<td>Report on disclosure control applied and disclosure-risk outcomes</td>
+<td>Disclosure-Control Report</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="odd">
+<td>Report on methodology compliance (approved methods applied)</td>
+<td>Methodology Compliance Report</td>
+<td>SAF 4.1.5</td>
+</tr>
+<tr class="even">
+<td>Report on security compliance: access controls, methodology-record integrity</td>
+<td>Compliance Report (per cycle)</td>
+<td>SAF-P10</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="continuous-improvement" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-improvement">Continuous Improvement</h3>
+<p>The final management sub-process closes the governance loop by analyzing performance and quality data to identify and drive improvements. Quality trends across production cycles are examined: are sampling errors falling, are revisions shrinking, is coherence improving, are models holding up? Improvement opportunities are identified — refining the calibration specification to reduce variance, recalibrating or replacing models, improving non-response adjustment, adopting better variance estimators, and tuning the release process to improve timeliness. These improvement recommendations are fed back to the design processes (Section 3), prioritized based on impact and feasibility, and tracked through subsequent design-implement-execute cycles. This is the SAF Capability 4.1.4 (Improve management) in action, and it connects to the GAMSO concept of transferring mature capabilities from innovation into production.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Analyze quality trends across production cycles</td>
+<td>Improvement Recommendations Report</td>
+<td>SAF 4.1.4</td>
+</tr>
+<tr class="even">
+<td>Identify improvement opportunities: calibration, models, variance estimators, timeliness</td>
+<td>Updated Design Inputs</td>
+<td>SAF 4.1.4</td>
+</tr>
+<tr class="odd">
+<td>Feed recommendations back to design processes (Section 3)</td>
+<td>Design feedback (closing the governance loop)</td>
+<td>SAF 4.1.4</td>
+</tr>
+<tr class="even">
+<td>Prioritize improvements based on impact and feasibility</td>
+<td>Improvement Tracking Log</td>
+<td>GAMSO Capability Mgmt</td>
+</tr>
+<tr class="odd">
+<td>Track implementation of accepted improvements</td>
+<td>Improvement Tracking Log</td>
+<td>GAMSO Capability Mgmt</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-8" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-8">flowchart TD
+    E["Execution\n(Section 5)&lt;br/&gt;&lt;em&gt;data + paradata&lt;/em&gt;"]
+
+    M1["6.1 Monitor&lt;br/&gt;Process Performance&lt;br/&gt;&lt;em&gt;accuracy, timeliness&lt;/em&gt;"]
+    M2["6.2 Assess&lt;br/&gt;Output Quality&lt;br/&gt;&lt;em&gt;accuracy, coherence, revisions&lt;/em&gt;"]
+    M3["6.3 Manage Methodology&lt;br/&gt;&amp; Version Lifecycle&lt;br/&gt;&lt;em&gt;methods, versions&lt;/em&gt;"]
+    M4["6.4 Audit &amp;&lt;br/&gt;Compliance Reporting&lt;br/&gt;&lt;em&gt;reproducibility, disclosure&lt;/em&gt;"]
+    M5["6.5 Continuous&lt;br/&gt;Improvement&lt;br/&gt;&lt;em&gt;recommendations&lt;/em&gt;"]
+
+    D["Design&lt;br/&gt;(Section 3)&lt;br/&gt;&lt;em&gt;updated methods &amp; models&lt;/em&gt;"]
+
+    E --&gt; M1
+    E --&gt; M2
+    M1 --&gt; M2
+    M2 --&gt; M3
+    M3 --&gt; M4
+    M4 --&gt; M5
+    M5 --&gt;|"feedback loop"| D
+
+    M1 --&gt;|"dashboards"| PO["Process Owner"]
+    M2 --&gt;|"quality reports"| QM["Quality Manager"]
+    M4 --&gt;|"compliance reports"| VS07["VS-07.0\nGovernance"]
+
+    style E fill:#ecfdf5,stroke:#059669
+    style D fill:#f5f3ff,stroke:#7c3aed
+    style M5 fill:#fef3c7,stroke:#d97706
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Management Feedback Loop. Execution data flows through monitoring, quality assessment, methodology/version management, and audit processes. Continuous improvement feeds recommendations back to Design, closing the governance cycle.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="business-services-and-interfaces" class="level2">
+<h2 class="anchored" data-anchor-id="business-services-and-interfaces">Business Services and Interfaces</h2>
+<p>The VS-04.0 business domain exposes the following services:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Service</th>
+<th>Direction</th>
+<th>Consumers</th>
+<th>Mapped Processes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Weighting and Calibration Service</strong></td>
+<td>Internal (VS-03.0 → NSO)</td>
+<td>Processed data consumers, estimation teams</td>
+<td>5.2 Apply Weighting and Calibration</td>
+</tr>
+<tr class="even">
+<td><strong>Estimation and Aggregation Service</strong></td>
+<td>Internal</td>
+<td>Estimation teams, analysts</td>
+<td>5.3 Estimate and Aggregate Data</td>
+</tr>
+<tr class="odd">
+<td><strong>Modeling and Analysis Service</strong></td>
+<td>Internal</td>
+<td>Analysts, methodologists</td>
+<td>5.4 Perform Model-Based Analysis</td>
+</tr>
+<tr class="even">
+<td><strong>Validation and Disclosure-Control Service</strong></td>
+<td>Internal</td>
+<td>Quality managers, disclosure-control officers</td>
+<td>5.5 Validate and Document Results</td>
+</tr>
+<tr class="odd">
+<td><strong>Output-Data Provisioning Service</strong></td>
+<td>Internal (NSO → VS-05.0)</td>
+<td>Product composition teams, data analysts</td>
+<td>5.5 Validate and Document Results</td>
+</tr>
+<tr class="even">
+<td><strong>Output-Version Catalog Service</strong></td>
+<td>Internal</td>
+<td>All data consumers across the NSO</td>
+<td>6.3 Manage Methodology &amp; Version Lifecycle</td>
+</tr>
+<tr class="odd">
+<td><strong>Design and Methodology Service</strong></td>
+<td>Internal</td>
+<td>Methodologists, estimation/model designers</td>
+<td>3.1–3.5 All design processes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interface specifications:</strong></p>
+<ul>
+<li><strong>Output-Data Provisioning Service</strong> interface: event-driven notification (“Output Data Registered”) + catalog query API for downstream consumers to discover and access output versions, their accuracy measures, and methodology</li>
+<li><strong>Estimation and Aggregation Service</strong> interface: estimation API returning estimates with accuracy measures, and a methodology/parameters query API</li>
+<li><strong>Output-Version Catalog Service</strong> interface: search/browse API for output versions, accuracy measures, methodology documentation, and lineage</li>
+</ul>
+<section id="boundary-interface-specifications" class="level3">
+<h3 class="anchored" data-anchor-id="boundary-interface-specifications">Boundary Interface Specifications</h3>
+<p>The domain is loosely coupled (SAF-P07) to its neighbors through two steady-state interfaces. Specifying each boundary explicitly — the handover artefact, the metadata it must carry, the event that triggers it, and where responsibility transfers — makes the loose-coupling contract concrete and testable.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Boundary</th>
+<th>Handover Artefact</th>
+<th>Required Metadata</th>
+<th>Trigger Event</th>
+<th>Responsibility Transfer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>VS-03.0 → VS-04.0</strong> (intake)</td>
+<td>Processed Data (State #3)</td>
+<td>Edit lineage, derived-variable definitions, <strong>imputation flags and methods</strong>, quality-improvement assessment, quality-version identifier, BIV classification</td>
+<td>“Processed Data Registered” event</td>
+<td>VS-03.0 retains custody of the processed version; VS-04.0 assumes responsibility for weighting, estimation, modeling, and validation on event receipt</td>
+</tr>
+<tr class="even">
+<td><strong>VS-04.0 → VS-05.0</strong> (handover)</td>
+<td>Output Data / Statistics (State #4)</td>
+<td>Methodology and parameters, weights, accuracy measures (sampling error, CI), model diagnostics, applied-SDC record, quality indicators, output-version identifier, lineage to processed source, BIV classification</td>
+<td>“Output Data Registered” event</td>
+<td>VS-04.0 retains custody of the output version; VS-05.0 assumes responsibility for composing integrated and composite products on event receipt</td>
+</tr>
+</tbody>
+</table>
+<p>Each interface exchanges a registered, immutable steady-state artefact plus its metadata — never internal working data — so neither side needs knowledge of the other’s internal processing.</p>
+</section>
+</section>
+<section id="business-objects-and-data-flow" class="level2">
+<h2 class="anchored" data-anchor-id="business-objects-and-data-flow">Business Objects and Data Flow</h2>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-9" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-9">flowchart TB
+    design["🔷 Design Artefacts&lt;br/&gt;&lt;small&gt;Estimation Strategy · Weighting &amp; Calibration Spec&lt;br/&gt;Aggregation &amp; Model Specs · Validation &amp; SDC Policy&lt;/small&gt;"]
+    implement["🔧 Implementation Assets&lt;br/&gt;&lt;small&gt;Weighting &amp; Estimation Engines · Modeling Environment&lt;br/&gt;Variance &amp; SDC Tooling · Versioning Store&lt;/small&gt;"]
+    execute["⚡ Execution Objects"]
+    manage["📊 Management Reports"]
+
+    design --&gt;|"govern building"| implement
+    implement --&gt;|"produces pipeline&lt;br/&gt;that processes"| execute
+    execute --&gt;|"assessed by"| manage
+    manage --&gt;|"feeds back to"| design
+
+    subgraph execute_detail [" "]
+        direction LR
+        PD["Processed Data&lt;br/&gt;(State #3)"]:::bo --&gt;|"estimated &amp; analyzed as"| OD["Output Data&lt;br/&gt;(State #4)"]:::bo
+    end
+
+    execute --&gt; execute_detail
+    PD --&gt;|generates| logs["Methodology · Weights · Accuracy · Output Versions"]
+
+    classDef bo fill:#fbbf24,stroke:#b45309,color:#000
+    style design fill:#f5f3ff,stroke:#7c3aed
+    style implement fill:#dbeafe,stroke:#2563eb
+    style execute fill:#fef9c3,stroke:#b45309
+    style manage fill:#dcfce7,stroke:#16a34a
+    style execute_detail fill:none,stroke:none
+    style logs fill:#fff,stroke:#888,stroke-dasharray: 5 5
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Business Object Lifecycle across all four process types. Design objects govern implementation, which produces the pipeline that estimates and analyses execution objects, which are assessed by management objects, which feed back to design.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="business-events" class="level2">
+<h2 class="anchored" data-anchor-id="business-events">Business Events</h2>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-10" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-10">sequenceDiagram
+    participant US as Upstream (VS-03.0)
+    participant NSO as NSO Teams
+    participant PM as Process Mgmt
+
+    rect rgb(245, 243, 255)
+    Note over NSO: Design Phase
+    NSO-&gt;&gt;NSO: Define estimation &amp; weighting methodology,&lt;br/&gt;model specs, validation &amp; SDC policy
+    NSO--&gt;&gt;NSO: Design Artefacts Published
+    end
+
+    rect rgb(239, 246, 255)
+    Note over NSO: Implementation Phase
+    NSO-&gt;&gt;NSO: Build weighting/estimation engines, modeling&lt;br/&gt;environment, variance &amp; SDC tooling
+    NSO--&gt;&gt;NSO: Pipeline Production-Ready
+    end
+
+    rect rgb(236, 253, 245)
+    Note over NSO,US: Execution Phase (per cycle)
+    US--&gt;&gt;NSO: Processed Data Registered event
+    NSO-&gt;&gt;NSO: Confirm approach; apply weighting &amp; calibration
+    NSO-&gt;&gt;NSO: Estimate &amp; aggregate; run model-based analysis
+
+    NSO-&gt;&gt;NSO: Validate soundness &amp; coherence; apply disclosure control
+
+    alt Output version accepted
+        NSO-&gt;&gt;NSO: Document methodology, create immutable version,&lt;br/&gt;register accuracy &amp; lineage
+        NSO--&gt;&gt;NSO: Output Data Registered event
+    else Validation failed
+        NSO-&gt;&gt;NSO: Re-estimate / revise per review
+    end
+    end
+
+    rect rgb(254, 243, 199)
+    Note over PM: Management Phase
+    PM-&gt;&gt;PM: Monitor accuracy &amp; timeliness, assess coherence&lt;br/&gt;&amp; revisions, produce audit reports
+    PM--&gt;&gt;NSO: Improvement Recommendations
+    end
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Event-Driven Choreography between the upstream domain (VS-03.0) and NSO teams, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="framework-mappings" class="level2">
+<h2 class="anchored" data-anchor-id="framework-mappings">Framework Mappings</h2>
+<p>This reference table maps each process group of this document to the international frameworks (GSBPM, GAMSO, CSDA) and the SAF capability model. It is intended for architects and auditors; the narrative sections above do not depend on it.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Process group</th>
+<th>GSBPM</th>
+<th>GAMSO</th>
+<th>CSDA</th>
+<th>SAF Capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Design</strong></td>
+<td>Phase 1 (Specify Needs), Phase 2 (Design: 2.1–2.5)</td>
+<td>Production (design activities), Capability Management</td>
+<td>Data Governance, Metadata Management, Data Quality</td>
+<td>1.1.2 Design statistics product, 2.1.2 Metadata management, 2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td><strong>Implementation</strong></td>
+<td>Phase 3 (Build: 3.1–3.7)</td>
+<td>Capability Management</td>
+<td>Data Processing / Analysis (setup), Data Governance (configuration)</td>
+<td>1.1.3 Build statistics product, 3.2.1 Application development, 3.2.2 Functional management</td>
+</tr>
+<tr class="odd">
+<td><strong>Execution</strong></td>
+<td>Phase 5 (Process: 5.6 Calculate weights, 5.7 Calculate aggregates) + Phase 6 (Analyze: 6.1 Prepare draft outputs, 6.2 Validate outputs, 6.3 Interpret &amp; explain, 6.4 Apply disclosure control, 6.5 Finalise outputs)</td>
+<td>Production (execution)</td>
+<td>Data Analysis (execution)</td>
+<td>2.1.2 Metadata management, 2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td><strong>Management</strong></td>
+<td>Overarching processes (Quality Management, Metadata Management)</td>
+<td>Corporate Support (Quality Management, Data Management, Metadata Management), Capability Management (improvement)</td>
+<td>Data Quality, Data Governance, Traceability</td>
+<td>2.1.3 Statistical quality management, 4.1.4 Improve management, 4.1.5 Accountability</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="applying-this-to-your-nso" class="level2">
+<h2 class="anchored" data-anchor-id="applying-this-to-your-nso">Applying This to Your NSO</h2>
+<section id="maturity-assessment-checklist" class="level3">
+<h3 class="anchored" data-anchor-id="maturity-assessment-checklist">Maturity Assessment Checklist</h3>
+<p>Use this checklist to assess your NSO’s maturity across all four process types — not just execution.</p>
+<p><strong>Design Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we have a documented estimation strategy and accuracy-measurement approach per output?</label></li>
+<li><label><input type="checkbox">Do we have a formal weighting/calibration methodology with defined auxiliary variables and totals?</label></li>
+<li><label><input type="checkbox">Do we have documented aggregation and model specifications with required diagnostics?</label></li>
+<li><label><input type="checkbox">Do we have a validation policy and a statistical disclosure control policy defined before estimation begins?</label></li>
+<li><label><input type="checkbox">Do we have a quality-measurement and output-versioning policy?</label></li>
+</ul>
+<p><strong>Implementation Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Are our weighting/estimation engines built from design specifications (not ad-hoc scripts)?</label></li>
+<li><label><input type="checkbox">Does variance estimation reflect both the survey design and imputation uncertainty?</label></li>
+<li><label><input type="checkbox">Can an output be reproduced identically from the processed input plus the recorded methodology?</label></li>
+<li><label><input type="checkbox">Is disclosure-control tooling implemented and applied before handover?</label></li>
+<li><label><input type="checkbox">Do we have a formal testing process (technical, reproducibility, benchmark, accuracy)?</label></li>
+</ul>
+<p><strong>Execution Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we confirm the pre-approved approach and current calibration totals each cycle?</label></li>
+<li><label><input type="checkbox">Do we attach methodology, weights, and an accuracy measure to every estimate?</label></li>
+<li><label><input type="checkbox">Do we document model assumptions, diagnostics, and limitations?</label></li>
+<li><label><input type="checkbox">Do we validate soundness and coherence and explain movements/revisions?</label></li>
+<li><label><input type="checkbox">Do we apply disclosure control and register every output as an immutable version?</label></li>
+</ul>
+<p><strong>Management Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we track KPIs (accuracy/CV, revisions, reproducibility, timeliness) across cycles?</label></li>
+<li><label><input type="checkbox">Do we assess coherence and conduct revision analysis?</label></li>
+<li><label><input type="checkbox">Do we govern methodology/model versions and the output-version store?</label></li>
+<li><label><input type="checkbox">Do we produce reproducibility-audit, disclosure-control, and methodology-compliance reports?</label></li>
+<li><label><input type="checkbox">Do we have a formal improvement process that feeds back into design?</label></li>
+</ul>
+</section>
+<section id="end-to-end-scenarios" class="level3">
+<h3 class="anchored" data-anchor-id="end-to-end-scenarios">End-to-End Scenarios</h3>
+<p>Each scenario walks through <strong>all four process types</strong>, demonstrating how the governance pattern works in practice.</p>
+<section id="scenario-a-labour-force-survey-design-based-estimation" class="level4">
+<h4 class="anchored" data-anchor-id="scenario-a-labour-force-survey-design-based-estimation">Scenario A: Labour Force Survey (Design-Based Estimation)</h4>
+<p><strong>Design Phase:</strong> Estimation methodologists design a design-based strategy for the employment rate, calibrated to population totals by age × sex × region, with a variance estimator that accounts for the survey design and for the income/non-response imputation flagged in VS-03. Target parameters, domains (national and NUTS-2), coherence criteria with prior quarters, and the disclosure-control policy for small cells are specified.</p>
+<p><strong>Implementation Phase:</strong> Engineers configure the GREG calibration engine (pinned register totals), the estimation engine, and a replication-based variance component that inflates variance for imputed values; they implement coherence checks against prior quarters and small-cell suppression. Reproducibility and back-series tests pass; accuracy measures match expectations on test data.</p>
+<p><strong>Execution Phase:</strong> For Q3-2026, a Processed Data Registered event arrives. The approach and calibration totals are confirmed; calibration converges and weighted margins reproduce the register. The employment rate is estimated at 71.4% (95% CI ±0.5pp national, wider at NUTS-2), with variance inflated for imputation. Coherence checks against Q2 pass; small NUTS-2 cells are suppressed by SDC. An output version is created with methodology, weights, and accuracy, and registered; VS-05.0 is notified.</p>
+<p><strong>Management Phase:</strong> Average CV for key estimates is stable, the coherence-check pass rate is 100%, and the preliminary-vs-final revision is within tolerance. Reproducibility audit confirms the figures regenerate from inputs + methodology. Improvement recommendations: add an auxiliary variable to the calibration to reduce variance for youth-employment estimates. Recommendations fed back to design.</p>
+</section>
+<section id="scenario-b-tax-register-to-business-statistics-register-based-small-area-estimation" class="level4">
+<h4 class="anchored" data-anchor-id="scenario-b-tax-register-to-business-statistics-register-based-small-area-estimation">Scenario B: Tax Register to Business Statistics (Register-Based + Small-Area Estimation)</h4>
+<p><strong>Design Phase:</strong> The team designs register-based aggregation of turnover and employment by NACE × region, and a small-area model for domains where direct aggregates are unstable. Accuracy measures, coherence criteria with national accounts inputs, and disclosure control for dominant-unit cells are specified.</p>
+<p><strong>Implementation Phase:</strong> Engineers build the aggregation pipeline (designed domains, units, rounding), the small-area model with its diagnostics, and dominance-rule suppression for confidentiality. Reproducibility and benchmark tests against the prior year pass; the small-area model’s prediction intervals are verified.</p>
+<p><strong>Execution Phase:</strong> Q3-2026: a Processed Data Registered event arrives for the integrated business dataset. Aggregates are computed by NACE × region; unstable small domains are estimated with the small-area model and flagged distinctly from direct aggregates. Dominant-unit cells are suppressed by SDC. Coherence with national-accounts inputs is checked. <code>OD-BUS-2026Q3-001</code> is created with methodology and accuracy, linked to <code>PD-BUS-2026Q3-001</code>, and VS-05.0 is notified.</p>
+<p><strong>Management Phase:</strong> Coherence with national accounts is within tolerance; revision analysis shows stable estimates; the small-area model fit is monitored across cycles. Disclosure-control report confirms no dominant-unit disclosure. Improvement recommendation: recalibrate the small-area model after two more cycles of data. Recommendations fed back to design.</p>
+</section>
+<section id="scenario-c-web-scraped-price-data-index-estimation" class="level4">
+<h4 class="anchored" data-anchor-id="scenario-c-web-scraped-price-data-index-estimation">Scenario C: Web-Scraped Price Data (Index Estimation)</h4>
+<p><strong>Design Phase:</strong> The team designs the price-index estimation (e.g., a GEKS or Törnqvist multilateral index) over the COICOP items coded in VS-03, with quality-adjustment treatment, an approach for new/disappearing products, and coherence criteria against the official CPI. The disclosure policy is light (aggregated indices), and the accuracy approach for the index is specified.</p>
+<p><strong>Implementation Phase:</strong> Engineers build the index estimator, the new/disappearing-product handling, and seasonal/quality adjustment, plus coherence checks against the official CPI. Reproducibility and back-series tests pass; the index is benchmarked against the official series on historical data.</p>
+<p><strong>Execution Phase:</strong> For the monthly run, a Processed Data Registered event arrives. The multilateral index is computed over COICOP items using the carry-forward-imputed daily prices flagged in VS-03 (their uncertainty noted), new products are chained in, and the index is validated for coherence against the official CPI movement. An output version with methodology and accuracy is created and registered; VS-05.0 is notified.</p>
+<p><strong>Management Phase:</strong> The scraped index tracks the official CPI within the agreed tolerance; revision magnitude is small. Reproducibility audit passes. Improvement recommendations: refine the new-product chaining rule for one volatile category, and evaluate a longer multilateral window. Recommendations fed back to design.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../framework/vs-03.html" class="pagination-link" aria-label="VS-03 Data Editing and Enrichment">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">VS-03 Data Editing and Enrichment</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../framework/vs-05.html" class="pagination-link" aria-label="VS-05 Statistical Product Composition">
+        <span class="nav-page-text">VS-05 Statistical Product Composition</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

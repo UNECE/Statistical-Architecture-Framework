@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Business Architecture – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../framework/vs-01.html" rel="next">
+<link href="../framework/strategy.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4b8eba7d388032a8ef35e180b04aa314.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../framework/index.html" aria-current="page"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/business-architecture.html">Business architecture</a></li><li class="breadcrumb-item"><a href="../framework/business-architecture.html">Business Architecture</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAF Architecture Framework</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and Scope</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/motivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Motivation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/strategy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strategy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Business architecture</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/business-architecture.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Business Architecture</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Production value streams</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-01 Data Acquisition and Ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-02 Data Standardization and Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-03 Data Editing and Enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-04 Estimation, Analysis, and Statistical Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-05 Statistical Product Composition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-06 Dissemination and Service Delivery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Supporting value streams</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-07 Governance and Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-08 Innovation and Methodological Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-09 Infrastructure and Platform Enablement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-10 Customer and Stakeholder Engagement</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#business-architecture" id="toc-business-architecture" class="nav-link active" data-scroll-target="#business-architecture">Business Architecture</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#steady-states-of-data-and-their-business-process-links" id="toc-steady-states-of-data-and-their-business-process-links" class="nav-link" data-scroll-target="#steady-states-of-data-and-their-business-process-links">Steady States of Data and Their Business Process Links</a>
+  <ul class="collapse">
+  <li><a href="#state-1-raw-data" id="toc-state-1-raw-data" class="nav-link" data-scroll-target="#state-1-raw-data">State #1: Raw Data</a></li>
+  <li><a href="#state-2-standardized-data" id="toc-state-2-standardized-data" class="nav-link" data-scroll-target="#state-2-standardized-data">State #2: Standardized Data</a></li>
+  <li><a href="#state-3-processed-data" id="toc-state-3-processed-data" class="nav-link" data-scroll-target="#state-3-processed-data">State #3: Processed Data</a></li>
+  <li><a href="#state-4-output-data-statistics" id="toc-state-4-output-data-statistics" class="nav-link" data-scroll-target="#state-4-output-data-statistics">State #4: Output Data (Statistics)</a></li>
+  <li><a href="#state-5-published-output-data-released-data" id="toc-state-5-published-output-data-released-data" class="nav-link" data-scroll-target="#state-5-published-output-data-released-data">State #5: Published Output Data (Released Data)</a></li>
+  <li><a href="#state-6-consumed-data" id="toc-state-6-consumed-data" class="nav-link" data-scroll-target="#state-6-consumed-data">State #6: Consumed Data</a></li>
+  </ul></li>
+  <li><a href="#the-statistical-data-value-chain" id="toc-the-statistical-data-value-chain" class="nav-link" data-scroll-target="#the-statistical-data-value-chain">The Statistical Data Value Chain</a></li>
+  <li><a href="#steady-states-of-data" id="toc-steady-states-of-data" class="nav-link" data-scroll-target="#steady-states-of-data">Steady States of Data</a>
+  <ul class="collapse">
+  <li><a href="#pragmatic-steady-states" id="toc-pragmatic-steady-states" class="nav-link" data-scroll-target="#pragmatic-steady-states">Applying the steady states pragmatically</a></li>
+  </ul></li>
+  <li><a href="#the-four-process-governance-pattern" id="toc-the-four-process-governance-pattern" class="nav-link" data-scroll-target="#the-four-process-governance-pattern">The Four-Process Governance Pattern</a></li>
+  <li><a href="#principles-to-apply" id="toc-principles-to-apply" class="nav-link" data-scroll-target="#principles-to-apply">Principles to Apply</a></li>
+  <li><a href="#vs-01.0-data-acquisition-and-ingestion" id="toc-vs-01.0-data-acquisition-and-ingestion" class="nav-link" data-scroll-target="#vs-01.0-data-acquisition-and-ingestion">VS-01.0 — Data Acquisition and Ingestion</a></li>
+  <li><a href="#vs-02.0-data-standardization-and-integration" id="toc-vs-02.0-data-standardization-and-integration" class="nav-link" data-scroll-target="#vs-02.0-data-standardization-and-integration">VS-02.0 — Data Standardization and Integration</a></li>
+  <li><a href="#vs-03.0-data-editing-and-enrichment" id="toc-vs-03.0-data-editing-and-enrichment" class="nav-link" data-scroll-target="#vs-03.0-data-editing-and-enrichment">VS-03.0 — Data Editing and Enrichment</a></li>
+  <li><a href="#vs-04.0-estimation-analysis-and-statistical-modeling" id="toc-vs-04.0-estimation-analysis-and-statistical-modeling" class="nav-link" data-scroll-target="#vs-04.0-estimation-analysis-and-statistical-modeling">VS-04.0 — Estimation, Analysis, and Statistical Modeling</a></li>
+  <li><a href="#vs-05.0-statistical-product-composition" id="toc-vs-05.0-statistical-product-composition" class="nav-link" data-scroll-target="#vs-05.0-statistical-product-composition">VS-05.0 — Statistical Product Composition</a></li>
+  <li><a href="#vs-06.0-dissemination-and-service-delivery" id="toc-vs-06.0-dissemination-and-service-delivery" class="nav-link" data-scroll-target="#vs-06.0-dissemination-and-service-delivery">VS-06.0 — Dissemination and Service Delivery</a></li>
+  <li><a href="#supporting-value-streams-vs-07-to-vs-10" id="toc-supporting-value-streams-vs-07-to-vs-10" class="nav-link" data-scroll-target="#supporting-value-streams-vs-07-to-vs-10">Supporting Value Streams (VS-07 to VS-10)</a></li>
+  <li><a href="#vs-07.0-governance-and-compliance" id="toc-vs-07.0-governance-and-compliance" class="nav-link" data-scroll-target="#vs-07.0-governance-and-compliance">VS-07.0 — Governance and Compliance</a></li>
+  <li><a href="#vs-08.0-innovation-and-methodological-development" id="toc-vs-08.0-innovation-and-methodological-development" class="nav-link" data-scroll-target="#vs-08.0-innovation-and-methodological-development">VS-08.0 — Innovation and Methodological Development</a></li>
+  <li><a href="#vs-09.0-infrastructure-and-platform-enablement" id="toc-vs-09.0-infrastructure-and-platform-enablement" class="nav-link" data-scroll-target="#vs-09.0-infrastructure-and-platform-enablement">VS-09.0 — Infrastructure and Platform Enablement</a></li>
+  <li><a href="#vs-10.0-customer-and-stakeholder-engagement" id="toc-vs-10.0-customer-and-stakeholder-engagement" class="nav-link" data-scroll-target="#vs-10.0-customer-and-stakeholder-engagement">VS-10.0 — Customer and Stakeholder Engagement</a></li>
+  <li><a href="#the-value-chain-at-a-glance" id="toc-the-value-chain-at-a-glance" class="nav-link" data-scroll-target="#the-value-chain-at-a-glance">The Value Chain at a Glance</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="business-architecture.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/business-architecture.html">Business architecture</a></li><li class="breadcrumb-item"><a href="../framework/business-architecture.html">Business Architecture</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Business Architecture</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="business-architecture" class="level1">
+<h1>Business Architecture</h1>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The statistical process is divided into three main business domains (observation, processing/analysis, and dissemination), with processing/analysis further divided into four subdomains. This results in a total of six business domains:</p>
+<ul>
+<li>Observation/Collection</li>
+<li>Processing/analysis
+<ul>
+<li>Standardization without loss of content</li>
+<li>Editing, derivation, and non-response correction</li>
+<li>Estimation and closed-loop</li>
+<li>Statistically composed and composite statistical products</li>
+</ul></li>
+<li>Dissemination</li>
+</ul>
+<p>Each of the business domains use the following processes :</p>
+<ul>
+<li>Design of the execution processes; provides metadata</li>
+<li>Implementation of the execution processes; provides the execution process</li>
+<li>Execution of the execution processes; provides the statistical data</li>
+<li>Management of the execution processes; provides quality reports</li>
+</ul>
+<p>Each domain focuses on adding a specific statistical value to some data. Once sufficient value has been added, a so-called quality version is versioned that must be kept and potentially shared to some consumers. This careful approach is crucial due to the growing interest in our microdata, combined with the increasing focus on privacy. If we combine the added values of the six business domains, a value chain of statistical data is created.</p>
+<p>To realize statistical value within a business domain, execution processes (including governance) have been designed and implemented. How an execution process adds statistical value, and is therefore designed and implemented, falls outside the scope of the B&amp;I architecture. This framework must stem from, among other things, the methodology set.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/Business Architecture_GSBPM_Data Steady State_visual_v0.1.png" class="img-fluid figure-img"></p>
+<figcaption>Generic Business Architecture</figcaption>
+</figure>
+</div>
+<p>The execution processes between the business domains are loosely coupled. Each has its own design and implementation. For the mutual exchange of data, they are loosely linked via steady state interfaces. To this end, five steady state phases are recognized that exist between the business domains: 1. raw data, 2. standardized data without loss of content, 3. processed data, 4. statistics, and 5. released data.</p>
+<p>A steady state phase is therefore an environment where high-quality versions of data are brought together for exchange, but it also represents a value in the value chain of this data.</p>
+<p>Each of the mentioned business domains can be linked to a GSBPM phase.</p>
+</section>
+<section id="steady-states-of-data-and-their-business-process-links" class="level2">
+<h2 class="anchored" data-anchor-id="steady-states-of-data-and-their-business-process-links">Steady States of Data and Their Business Process Links</h2>
+<p>The business architecture leverages a data value chain approach where data progresses through predefined steady states, each representing a stage where data meets specific quality criteria and is ready for exchange between business domains. These steady states serve as handover points in the statistical production process, ensuring consistency, reusability, and quality control as well as interoperability across other ONS.</p>
+<section id="state-1-raw-data" class="level3">
+<h3 class="anchored" data-anchor-id="state-1-raw-data">State #1: Raw Data</h3>
+<p><strong>Business Domain Link:</strong> Observation/Collection</p>
+<p><strong>Description:</strong> Raw data represents the initial entry point where data has been received from external data holders and checked for basic safety and validation. At this stage, data has entered the NSO system in its original form as received from the data provider.</p>
+<p><strong>Quality Requirements:</strong> - File integrity checks completed - Virus and security scans performed - SLA requirements verified with the data provider (e.g., completeness, delivery time) - Data stored in its original format or equivalent</p>
+<p><strong>Usage:</strong> Raw data for the raw source data in its original form as received from the data holder. The ONS does not have access to the data at the source; this is the first point of possession.</p>
+<p><strong>Key Characteristics:</strong> - Data has not been further validated for content - Sender verification completed - Technical checks and transformations on the technical level only (not content level) - Forms the baseline for all subsequent processing</p>
+</section>
+<section id="state-2-standardized-data" class="level3">
+<h3 class="anchored" data-anchor-id="state-2-standardized-data">State #2: Standardized Data</h3>
+<p><strong>Business Domain Links:</strong> Standardization without loss of content</p>
+<p><strong>Description:</strong> Standardized data has been transformed, formatted, and structured according to defined standards. This is the first point at which interoperability between domains is enabled through common classifications and standardized formats.</p>
+<p><strong>Quality Requirements:</strong> - Format and structure standardized (e.g., converted from CSV to XML) - Common classifications and code lists applied (e.g., geocoding, economic activity classifications) - Variables mapped to enterprise standards - Reference periods harmonized - Confidentiality measures applied (e.g., pseudonymisation, data minimization) - Data must not contain personally identifiable information</p>
+<p><strong>Usage:</strong> Standardized data based on the received raw data, enabling data integration and interoperability across the organization.</p>
+<p><strong>Key Processing Activities:</strong> - Application of reference data and master data - Restructuring and reformatting to NSO’s standard storage format - Recoding of variables to align with enterprise standards - Pseudonymisation and encryption where required - Value sets adapted to organizational standards</p>
+<p><strong>Interoperability Benefit:</strong> This state enables data from different sources to be combined and used across multiple statistical products, reducing duplication and increasing efficiency.</p>
+</section>
+<section id="state-3-processed-data" class="level3">
+<h3 class="anchored" data-anchor-id="state-3-processed-data">State #3: Processed Data</h3>
+<p><strong>Business domain Links:</strong> Editing, derivation, and non-response correction</p>
+<p><strong>Description:</strong> Processed data has undergone content-related validation, editing, and enrichment. Data accuracy has been improved through validation checks and corrective measures. This data is ready to be integrated with other datasets.</p>
+<p><strong>Quality Requirements:</strong> - Completeness and accuracy improved through validation and editing - Data integrity checks completed - Filtering, editing, or imputation applied as needed - Data lineage documented - Integration with other datasets completed where applicable - New derived variables calculated</p>
+<p><strong>Usage:</strong> Processed data for the processed statistical microdata, ready for statistical analysis and production.</p>
+<p><strong>Key Processing Activities:</strong> - Data cleansing and editing (content-related standardization) - Integration with other datasets - Validity checking and error correction - Imputation of missing values - Creation of new variables through calculation or derivation - Flagging of problematic values</p>
+<p><strong>Domain Responsibility:</strong> While this processing is primarily driven by individual statistical domains, depending on the data type, it may be performed by a central unit for efficiency and consistency.</p>
+<p><strong>Reusability Focus:</strong> Processed data aims to be as reusable as possible for other processes or units, reducing duplication of data and processing effort while increasing transparency.</p>
+</section>
+<section id="state-4-output-data-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="state-4-output-data-statistics">State #4: Output Data (Statistics)</h3>
+<p><strong>Business Domain Links:</strong> Estimation and closed-loop + Statistically composed and composite statistical products</p>
+<p><strong>Description:</strong> Output data represents statistics that have been aggregated and analyzed, or microdata that has been prepared for specific purposes. Confidentiality measures have been applied to allow potential release.</p>
+<p><strong>Quality Requirements:</strong> - Data lineage fully documented - Aggregation and analysis completed - Confidentiality measures applied - Statistical estimates calculated - Quality indicators produced - Internal review completed</p>
+<p><strong>Usage:</strong> Statistics for basic statistics and integrated macrostatistics. These may be used internally by other statistical processes or prepared for dissemination.</p>
+<p><strong>Key Characteristics:</strong> - Statistics will usually be aggregated data or estimated sizes - May contain confidential and detailed data not yet suitable for publication - Can be shared internally for use as input data in other statistical processes, especially macro statistics - Estimated statistical target quantities produced - Different confidentiality thresholds may apply depending on intended use</p>
+<p><strong>Domain-Driven Production:</strong> The type of outputs and specific processing methods vary significantly by statistical domain and product requirements.</p>
+</section>
+<section id="state-5-published-output-data-released-data" class="level3">
+<h3 class="anchored" data-anchor-id="state-5-published-output-data-released-data">State #5: Published Output Data (Released Data)</h3>
+<p><strong>Business Process Links:</strong> Disseminate</p>
+<p><strong>Description:</strong> Published output data has been fully vetted, confidentiality requirements have been satisfied, and the data has been released or published for external use.</p>
+<p><strong>Quality Requirements:</strong> - Higher confidentiality criteria applied - Stronger documentation requirements met - Data lineage fully traceable - Quality reports completed - Release authorization obtained - Metadata and documentation suitable for external users</p>
+<p><strong>Usage:</strong> Released data for all data to be disseminated publicly or delivered to authorized external parties.</p>
+<p><strong>Key Characteristics:</strong> - All requirements for confidentiality taken care of - May be further processed compared to State #4 for additional confidentiality protection - Published by the NSO or delivered to external parties - Includes both published statistical values and delivered microdata (de-identified) - Strict documentation requirements to support user understanding and data reuse</p>
+<p><strong>External Consumption:</strong> This is the final state in the value chain where statistical information fulfills the core mission of the NSO—delivering trusted statistics to society.</p>
+</section>
+<section id="state-6-consumed-data" class="level3">
+<h3 class="anchored" data-anchor-id="state-6-consumed-data">State #6: Consumed Data</h3>
+<p><strong>Description:</strong> Data that has been used by external parties for their own purposes. This represents data outside the direct control of the NSI.</p>
+<p><strong>Usage:</strong> - None - Consumed data is data used by external data consumers for their analyses and decision-making.</p>
+<p><strong>Key Characteristic:</strong> This state recognizes that once data is published, it enters the public domain and is used in ways that may be beyond the NSO’s direct oversight, though the quality and documentation provided in State #5 support appropriate use.</p>
+</section>
+</section>
+<section id="the-statistical-data-value-chain" class="level2">
+<h2 class="anchored" data-anchor-id="the-statistical-data-value-chain">The Statistical Data Value Chain</h2>
+<p>The SAF business layer describes how a National Statistical Office (NSO) turns externally-held data into trusted statistics that serve society. Six <strong>primary</strong> value streams form a production chain, normally run in this order, each adding a specific kind of statistical value, and four <strong>supporting</strong> value streams enable them across the board.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Key concepts — if you are new to architecture documents">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key concepts — if you are new to architecture documents
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This documentation uses a handful of architecture terms. Here is what they mean in plain language:</p>
+<ul>
+<li><strong>Value stream</strong> — a sequence of steps that together create a statistical output. Think of it as a production line: VS-01 to VS-06 each add a specific kind of value to the data.</li>
+<li><strong>Value stream stage vs.&nbsp;business process</strong> — the stage (<code>VS-0x.y</code>) says <em>what value</em> is added; the business process describes <em>how</em> your office actually does it. The numbering maps one-to-one.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li><strong>Steady state</strong> — a fixed handover point: a versioned, quality-assured dataset that one stream produces and the next one consumes. The six states are numbered #0 (source data, still at the provider) to #5 (published statistics).</li>
+<li><strong>The four process types</strong> — every domain is described through the same four groups: <strong>Design</strong> (decide how it should work), <strong>Implementation</strong> (build and test it), <strong>Execution</strong> (run it each production cycle), <strong>Management</strong> (check quality and feed improvements back).</li>
+<li><strong>Business service / object / event</strong> — what a domain offers to others / the data artefacts it works on / the signals streams send each other (e.g.&nbsp;<em>“Raw Data Registered”</em> tells the next stream new data is ready).</li>
+<li><strong>NSO</strong> — National Statistical Office.</li>
+<li><strong>GSBPM</strong> — the <em>Generic Statistical Business Process Model</em>: the standard, internationally agreed description of the phases of statistical production (specify needs, design, build, collect, process, analyse, disseminate, evaluate).</li>
+<li><strong>GAMSO</strong> — the <em>Generic Activity Model for Statistical Organizations</em>: the companion standard describing management and support activities (strategy, capability development, corporate support).</li>
+<li><strong>SAF-P01 … SAF-P11</strong> — the eleven SAF architecture <strong>p</strong>rinciples, defined in the SAF Framework document and referenced throughout.</li>
+</ul>
+</div>
+</div>
+</div>
+<p>This document is the consolidated, easier-to-read view of all ten streams. The shared concepts the primary streams rely on — the chain itself, the steady states of data, the four-process governance pattern, and the principles — are explained once below; each <strong>primary</strong> stream is then summarized compactly, keeping its execution detail. The four <strong>supporting</strong> streams follow at the end, in a section that first explains how a supporting stream differs from a production stream. For the full design, implementation, and management detail, and for NSO-application guidance, see the individual <code>VS-0x</code> business-layer documents.</p>
+<p><em>A note on numbering:</em> each <code>VS-0x.y</code> you see below is both a value stream stage (<em>what value</em> is added) and a business process (<em>how</em> it is done). The numbering maps one-to-one; this document uses the business-process view. See the key-concepts box above for the distinction.</p>
+<p>The diagram below shows the whole business layer in one picture: data enters from external providers on the left, gains value through the six primary streams, and reaches users and society on the right — with the four supporting streams enabling every step.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-overview" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-overview">flowchart TB
+    EXT["External data providers"]:::ext --&gt; chain
+    subgraph chain["Primary value streams"]
+        direction LR
+        VS01["VS-01&lt;br/&gt;Acquisition &amp;&lt;br/&gt;Ingestion"] --&gt; VS02["VS-02&lt;br/&gt;Standardization &amp;&lt;br/&gt;Integration"] --&gt; VS03["VS-03&lt;br/&gt;Editing &amp;&lt;br/&gt;Enrichment"] --&gt; VS04["VS-04&lt;br/&gt;Estimation &amp;&lt;br/&gt;Modeling"] --&gt; VS05["VS-05&lt;br/&gt;Product&lt;br/&gt;Composition"] --&gt; VS06["VS-06&lt;br/&gt;Dissemination &amp;&lt;br/&gt;Service Delivery"]
+    end
+    chain --&gt; USERS["Users &amp; society"]:::ext
+    subgraph sup["Supporting value streams"]
+        direction LR
+        VS07["VS-07&lt;br/&gt;Governance &amp;&lt;br/&gt;Compliance"]:::s
+        VS08["VS-08&lt;br/&gt;Innovation &amp;&lt;br/&gt;Methodology"]:::s
+        VS09["VS-09&lt;br/&gt;Infrastructure &amp;&lt;br/&gt;Platforms"]:::s
+        VS10["VS-10&lt;br/&gt;Customer &amp;&lt;br/&gt;Stakeholder Engagement"]:::s
+    end
+    sup -.-&gt;|"enable"| chain
+
+    classDef ext fill:#0f766e,color:#fff,stroke:#0f766e
+    classDef s fill:#7c3aed,color:#fff,stroke:#6d28d9
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The six primary value streams as a production chain, delivering to users and society. Purple = the four supporting streams (they enable the chain, dashed arrow); dark green = parties outside the NSO.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="steady-states-of-data" class="level2">
+<h2 class="anchored" data-anchor-id="steady-states-of-data">Steady States of Data</h2>
+<p>The streams work independently of each other (in architecture terms: they are <strong>loosely coupled</strong>). They exchange data only at defined <strong>steady states</strong> — points where a high-quality, versioned dataset is handed over. In the usual case each primary stream consumes one steady state and produces the next, so a stream needs no knowledge of its neighbors’ internals (SAF-P07). The handover works through events: when a stream registers a finished dataset, a notification tells the next stream that new data is ready. Not every process has to pass through every state; see <a href="#pragmatic-steady-states">Applying the steady states pragmatically</a>.</p>
+<p>The table lists the steady states in the order data passes through them — from data still at the provider (#0) to data in users’ hands (#6):</p>
+<table class="caption-top table">
+<caption>Steady States of data</caption>
+<colgroup>
+<col style="width: 10%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>State</th>
+<th>Name</th>
+<th>Produced by</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(#0)</td>
+<td>Source Data</td>
+<td><em>external providers</em></td>
+<td>Data at the external holder, before it enters the NSO (pre-ingestion; not a numbered SAF state)</td>
+</tr>
+<tr class="even">
+<td>#1</td>
+<td>Raw Data</td>
+<td>VS-01</td>
+<td>Received into NSO custody in original form, with provenance (a record of where it came from and how) and basic validation</td>
+</tr>
+<tr class="odd">
+<td>#2</td>
+<td>Standardized Data</td>
+<td>VS-02</td>
+<td>Aligned to common structure, format, and classifications — <strong>values unchanged</strong></td>
+</tr>
+<tr class="even">
+<td>#3</td>
+<td>Processed Data</td>
+<td>VS-03</td>
+<td>Content validated, edited, imputed, enriched, integrated; derived variables added</td>
+</tr>
+<tr class="odd">
+<td>#4</td>
+<td>Statistics (Output Data)</td>
+<td>VS-04 → VS-05</td>
+<td>Estimated/aggregated statistics (VS-04), composed into approved products (VS-05)</td>
+</tr>
+<tr class="even">
+<td>#5</td>
+<td>Released Data</td>
+<td>VS-06</td>
+<td>Disclosure-controlled, documented, published/delivered to external parties</td>
+</tr>
+<tr class="odd">
+<td>#6</td>
+<td>Consumed Data</td>
+<td><em>external users</em></td>
+<td>Data in use outside the NSO’s direct control</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-fig-width="10" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-1">flowchart TD
+    S0["Source Data"]:::ext --&gt;|VS-01| S1["#1 Raw"]
+    S1 --&gt;|VS-02| S2["#2 Standardized"]
+    S2 --&gt;|VS-03| S3["#3 Processed"]
+    S3 --&gt;|VS-04| S4["#4 Statistics"]
+    S4 --&gt;|VS-05| S4b["#4 Approved products"]
+    S4b --&gt;|VS-06| S5["#5 Released"]
+    S5 --&gt; S6["#6 Consumed"]:::ext
+
+    classDef ext fill:#0f766e,color:#fff,stroke:#0f766e
+    style S1 fill:#dbeafe,stroke:#2563eb
+    style S2 fill:#dbeafe,stroke:#2563eb
+    style S3 fill:#dbeafe,stroke:#2563eb
+    style S4 fill:#fef9c3,stroke:#b45309
+    style S4b fill:#fef9c3,stroke:#b45309
+    style S5 fill:#dcfce7,stroke:#16a34a
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Steady-state handover across the chain. Each arrow is a handover between streams, triggered by a registration event. Blue = data states inside the NSO; yellow = statistics; light green = released; dark green = outside the NSO’s control.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="pragmatic-steady-states" class="level3">
+<h3 class="anchored" data-anchor-id="pragmatic-steady-states">Applying the steady states pragmatically</h3>
+<p>A steady state is an agreement about data: the quality it has reached, who owns it, how it is identified and what metadata comes with it. It does not require a separate physical copy at every state, and it does not require every process to pass through all six. An office may depart from the usual sequence in the three cases below, provided it records the choice (which state was shared or skipped, and why) in the catalogue entry. In other words, the rule is “comply or explain”.</p>
+<ol type="1">
+<li><strong>Two states can share one artefact.</strong> If nothing happens between State #4 and State #5 (no transformation and no further disclosure control), the #4 artefact does not have to be registered again as a new dataset; it is marked as released instead. The release steps still take place: release authorisation is obtained and the final disclosure check is carried out, and both are recorded even when the check changes nothing.</li>
+<li><strong>A process can start downstream.</strong> Not every production process begins at VS-01. Macro statistics, for example, are often built on Processed Data (#3) or Statistics (#4) that another team has already registered, and State #4 above can already be “shared internally for use as input data in other statistical processes”. Such a process starts from the registered artefact and its lineage points to it; there is no need to create placeholder #1 or #2 artefacts. Data that comes from outside the office still enters through VS-01 and State #1.</li>
+<li><strong>Lineage is about traceability, not duplication.</strong> SAF-P09 requires that every value can be traced back to where it came from. When a stream uses an artefact without changing any values, a logged process event that refers to the existing artefact version meets this requirement, and no identical copy needs to be registered. As soon as a value changes, a new version is registered.</li>
+</ol>
+<p>One limit applies to all three cases. States must not be merged where this would hide a change of values (for example, standardisation at #2 and editing at #3 carried out as a single undocumented step) or a disclosure-control step (for example, #4 and #5 when additional disclosure control is applied before release).</p>
+</section>
+</section>
+<section id="the-four-process-governance-pattern" class="level2">
+<h2 class="anchored" data-anchor-id="the-four-process-governance-pattern">The Four-Process Governance Pattern</h2>
+<p>Every stream is described through the same <strong>four process types</strong>. This is not a one-off sequence but a repeating cycle that keeps quality improving, and each of the four produces a distinct kind of result:</p>
+<ul>
+<li><strong>Design</strong> — decide how the work should be done: rules, methodology, specifications, policies.</li>
+<li><strong>Implementation</strong> — build, configure, and test the systems that will do it.</li>
+<li><strong>Execution</strong> — run the work each production cycle; this is what produces the statistical data.</li>
+<li><strong>Management</strong> — check quality, monitor performance, and feed improvements back to Design.</li>
+</ul>
+<p>The cycle looks like this — note the feedback arrow that closes the loop:</p>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-2">flowchart LR
+    D["**Design**
+    _metadata_"] --&gt;|"guides building"| I["**Implement**
+    _execution process_"]
+    I --&gt;|"production-ready"| E["**Execute**
+    _statistical data_"]
+    E --&gt;|"data &amp; process logs"| M["**Manage**
+    _quality reports_"]
+    M --&gt;|"improvement feedback"| D
+
+    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
+    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
+    style E fill:#059669,color:#fff,stroke:#047857
+    style M fill:#d97706,color:#fff,stroke:#b45309
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: The four-process governance pattern. Each of the six streams runs this full cycle; the per-stream sections below summarize Design/Implementation/Management and keep the Execution detail.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the sections that follow, GSBPM phases are mapped per process type:</p>
+<ul>
+<li><strong>Design → Phase 2</strong>,</li>
+<li><strong>Implementation → Phase 3</strong>,</li>
+<li><strong>Execution → the later GSBPM phases</strong> appropriate to the domain (Phase 4 for collection, Phase 5 for processing, Phase 6 for analysis, Phase 7 for dissemination),</li>
+<li><strong>Management → overarching Quality Management / Phase 8</strong>.</li>
+</ul>
+<p>The four <strong>supporting</strong> streams (VS-07–VS-10) do not follow this production cadence: they run a <strong>continuous plan → build → operate → improve</strong> cycle and align to <strong>GAMSO</strong> rather than GSBPM (see the supporting-streams section).</p>
+</div>
+</div>
+</section>
+<section id="principles-to-apply" class="level2">
+<h2 class="anchored" data-anchor-id="principles-to-apply">Principles to Apply</h2>
+<p>The SAF defines eleven architecture principles, labeled SAF-P01 to SAF-P11. The six <strong>primary</strong> streams actively apply six of them (marked ★ below); the four <strong>supporting</strong> streams foreground the other five (marked †). The table shows each principle with practical guidance on how to apply it; VS-07 in particular <strong>enforces</strong> the data principles (P09/P10/P11) across the whole chain.</p>
+<table class="caption-top table">
+<caption>SAF Principles</caption>
+<colgroup>
+<col style="width: 10%">
+<col style="width: 30%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Principle</th>
+<th>Statement</th>
+<th>How to apply across the value chain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAF-P01</strong> ★</td>
+<td>Actively participate in open source to maintain collective control over statistical processes</td>
+<td>Build statistical capabilities on shared, open tooling; contribute back, so NSOs keep collective control of critical methods rather than depending on vendors.</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-P07</strong> ★</td>
+<td>Implement loosely coupled processes and systems</td>
+<td>Exchange data only at steady-state interfaces; each stream normally consumes one state and produces the next without knowing the others’ internals.</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-P08</strong> ★</td>
+<td>Data is shared property</td>
+<td>Once an artefact is registered at a steady state, make it available to all authorized consumers; avoid duplicating collection, processing, or analysis.</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-P09</strong> ★</td>
+<td>No data without metadata and classification</td>
+<td>Every artefact carries provenance (origin), methodology, accuracy, classification, and lineage (the trace back to its inputs) — captured at the point each value is created or changed.</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-P10</strong> ★</td>
+<td>Security By Design</td>
+<td>Embed access control, integrity verification, and tamper-evident audit trails in every pipeline from the start.</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-P11</strong> ★</td>
+<td>Privacy By Design</td>
+<td>Remove/pseudonymize identifiers during standardization; assess disclosure risk on enrichment and apply statistical disclosure control before release.</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-P02</strong> †</td>
+<td>Active support</td>
+<td>Operate and support capabilities as living services, not one-off builds (VS-09 platforms, VS-10 services).</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-P03</strong> †</td>
+<td>Active Life Cycle management</td>
+<td>Version and govern rules, methods, models, and products across their life cycle; retire what is obsolete (VS-07, VS-08).</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-P04</strong> †</td>
+<td>Maximize the benefits for the organization</td>
+<td>Prefer solutions that serve the whole organization and real user value over local optimizations (VS-10, VS-07).</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-P05</strong> †</td>
+<td>IT and technology is everyone’s business</td>
+<td>Treat methodology, data, and technology as a shared responsibility across business and IT (VS-08, VS-09).</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-P06</strong> †</td>
+<td>Business Continuity</td>
+<td>Keep the chain running reliably and able to recover from disruption (VS-09).</td>
+</tr>
+</tbody>
+</table>
+<p>★ = actively applied by the six primary value streams. † = foregrounded by the four supporting value streams (VS-07–VS-10).</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Two cross-chain disciplines">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Two cross-chain disciplines
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Metadata everywhere (SAF-P09):</strong> value is only added once its context is captured — what was done, by which rule/method, with what accuracy, and traceable to its inputs.</p>
+<p><strong>Confidentiality progressively applied (SAF-P11):</strong> identifiers are removed/pseudonymized at standardization (#2) at the latest, or earlier where that suits the process; disclosure risk is assessed on enrichment (#3), disclosure control is applied to outputs (#4), and a final disclosure check gates release (#5).</p>
+</div>
+</div>
+</section>
+<section id="vs-01.0-data-acquisition-and-ingestion" class="level2">
+<h2 class="anchored" data-anchor-id="vs-01.0-data-acquisition-and-ingestion">VS-01.0 — Data Acquisition and Ingestion</h2>
+<p><strong>Domain:</strong> Observation/Collection · <strong>State transition:</strong> Source Data → <strong>#1 Raw Data</strong> · <strong>Value:</strong> all data enters NSO custody, verifiably and with provenance.</p>
+<p>VS-01 is the front door of the statistical system. Its job is to bring data from the outside world — survey respondents, administrative registers, and emerging sources such as web or sensor data — into the NSO safely and with a complete record of where it came from. Nothing about the data’s content is changed here; the point is to receive it, prove it is what it claims to be, and register it so the rest of the chain can find and trust it. The output is <strong>Raw Data</strong>: the data in its original form, under NSO custody, accompanied by provenance.</p>
+<p><strong>Business processes</strong></p>
+<ul>
+<li>VS-01.1 Identify Data Needs and Sources</li>
+<li>VS-01.2 Establish Data Agreement and Access Right</li>
+<li>VS-01.3 Collect, Receive, or Extract Data</li>
+<li>VS-01.4 Validate and Log Data Intake</li>
+<li>VS-01.5 Store and Register Raw Data Artefacts</li>
+</ul>
+<p><strong>How the business processes work.</strong> The cycle starts by <strong>identifying the data needs and sources</strong> for the round — confirming what variables and populations are required and that the chosen sources are available and accessible. Once the source is settled, the team <strong>establishes the data agreement and access rights</strong>: activating or renewing the legal basis (a data-sharing agreement, or the relevant GDPR ground) and checking that credentials are valid, so collection is lawful and controlled. Data is then <strong>collected, received, or extracted</strong> through the appropriate channel — a survey instrument, an administrative file transfer, or an API/scraping job — and at the moment of receipt the ingestion metadata (source, method, timestamp, file hash, volume) is captured. Each delivery is <strong>validated and logged</strong>: completeness, structure, and integrity are checked and every result written to an audit trail, so the NSO can be confident the intake is whole and traceable. Finally the dataset is <strong>stored and registered as a raw-data artefact</strong> — given a persistent identifier, kept in its original form, and cataloged with its provenance — and a “Raw Data Registered” event tells VS-02 that new data is ready.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Signature discipline — no data without metadata">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Signature discipline — no data without metadata
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Every dataset is enriched at ingestion with provenance, source, method, timestamp, and a quality and BIV classification — availability, integrity, confidentiality — per SAF-P09, with security and privacy applied by design (SAF-P10/P11).</p>
+</div>
+</div>
+<p>Around this per-cycle run, <strong>Design</strong> prepares the data requirements, collection methodology, raw-data schema, validation rules, and access/privacy framework; <strong>Implementation</strong> builds the collection instruments and ingestion/validation workflows and tests them; and <strong>Management</strong> monitors response, timeliness, and rejection rates, assesses intake quality, and feeds improvements back to design.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Business process</th>
+<th>What it produces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-01.1 Identify Data Needs and Sources</td>
+<td>Confirmed requirements and available sources for the cycle</td>
+</tr>
+<tr class="even">
+<td>VS-01.2 Establish Data Agreement and Access Right</td>
+<td>Active, lawful access (agreements, GDPR basis, credentials)</td>
+</tr>
+<tr class="odd">
+<td>VS-01.3 Collect, Receive, or Extract Data</td>
+<td>Data in NSO custody + captured ingestion metadata</td>
+</tr>
+<tr class="even">
+<td>VS-01.4 Validate and Log Data Intake</td>
+<td>Validated intake + audit trail</td>
+</tr>
+<tr class="odd">
+<td>VS-01.5 Store and Register Raw Data Artefacts</td>
+<td>Registered Raw Data artefact + “Raw Data Registered” event</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Boundaries:</strong> in — Source Data from external providers; out — <strong>Raw Data</strong> on <em>“Raw Data Registered”</em> → VS-02.</p>
+</section>
+<section id="vs-02.0-data-standardization-and-integration" class="level2">
+<h2 class="anchored" data-anchor-id="vs-02.0-data-standardization-and-integration">VS-02.0 — Data Standardization and Integration</h2>
+<p><strong>Domain:</strong> Standardization without loss of content · <strong>State transition:</strong> #1 Raw → <strong>#2 Standardized</strong> · <strong>Value:</strong> coherence and comparability across sources.</p>
+<p>VS-02 makes data from different sources speak the same language. After raw data is in custody, this stream aligns its structure, format, and codes to the NSO’s agreed standards so that datasets which looked different at the source can be compared and combined. Crucially it does this <strong>without changing any value</strong> — it re-expresses and annotates, it does not transform. The output is <strong>Standardized Data</strong>: the same information, now in a common shape, expressed in standard classifications, and carrying rich metadata.</p>
+<p><strong>Business processes</strong></p>
+<ul>
+<li>VS-02.1 Profile and Assess Data Structure</li>
+<li>VS-02.2 Apply Standard Classifications and Formats</li>
+<li>VS-02.3 Align Metadata and Semantics</li>
+<li>VS-02.4 Validate Structural and Semantic Conformance</li>
+<li>VS-02.5 Register Standardized Artefacts</li>
+</ul>
+<p><strong>How the business processes work.</strong> The stream first <strong>profiles and assesses the incoming structure</strong>, comparing it against the target data model to see which fields map directly, which simply need reformatting, which source codes have a standard correspondence, and which values are uncoded. It then <strong>applies standard classifications and formats</strong>: source codes are mapped one-to-one to standards (for example a source activity code to NACE, the European industry classification) through maintained correspondence tables, and the layout is coerced into the common format (renaming, restructuring, type-casting, e.g.&nbsp;CSV→XML). The original values are preserved, and anything that has no deterministic correspondence — or is free text needing interpretation — is flagged and passed downstream to VS-03. Next it <strong>aligns metadata and semantics</strong>: variables are linked to canonical concepts, and each variable’s unit, currency, and reference-period basis (and any differing cross-source definitions) are <em>recorded as metadata</em> rather than converted. The result is <strong>checked for structural and semantic conformance</strong>, including a no-loss-of-content check confirming that record counts and key measures are unchanged. Conformant data is then <strong>registered as a standardized artefact</strong> with its mapping lineage, and a “Standardized Data Registered” event notifies VS-03.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Signature discipline — standardization without loss of content">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Signature discipline — standardization without loss of content
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VS-02 only maps codes 1-to-1, reformats structure, and annotates metadata. It <strong>never changes a value</strong>; unit/currency conversion, reference-period alignment, value reconciliation, and interpretive free-text coding are deliberately deferred to VS-03.</p>
+</div>
+</div>
+<p>Around this, <strong>Design</strong> defines the target data model, the deterministic classification correspondences, the harmonization and conformance rules, and the privacy framework; <strong>Implementation</strong> builds the mapping &amp; format-coercion component, the classification-mapping services, the conformance pipeline, and identifier pseudonymization; <strong>Management</strong> tracks mapping coverage and the unmapped-value rate, governs classification versions, and improves the correspondences.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Business process</th>
+<th>What it produces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-02.1 Profile and Assess Data Structure</td>
+<td>A structure-gap assessment against the target model</td>
+</tr>
+<tr class="even">
+<td>VS-02.2 Apply Standard Classifications and Formats</td>
+<td>Standard-coded, common-format data (values unchanged); unmapped values flagged for VS-03</td>
+</tr>
+<tr class="odd">
+<td>VS-02.3 Align Metadata and Semantics</td>
+<td>Canonical-concept links + unit/period/definition metadata</td>
+</tr>
+<tr class="even">
+<td>VS-02.4 Validate Structural and Semantic Conformance</td>
+<td>Conformance result + no-loss-of-content confirmation</td>
+</tr>
+<tr class="odd">
+<td>VS-02.5 Register Standardized Artefacts</td>
+<td>Registered Standardized Data + “Standardized Data Registered” event</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Boundaries:</strong> in — Raw Data on <em>“Raw Data Registered”</em>; out — <strong>Standardized Data</strong> on <em>“Standardized Data Registered”</em> → VS-03.</p>
+</section>
+<section id="vs-03.0-data-editing-and-enrichment" class="level2">
+<h2 class="anchored" data-anchor-id="vs-03.0-data-editing-and-enrichment">VS-03.0 — Data Editing and Enrichment</h2>
+<p><strong>Domain:</strong> Editing, derivation, and non-response correction · <strong>State transition:</strong> #2 Standardized → <strong>#3 Processed</strong> · <strong>Value:</strong> data reliability and analytical readiness.</p>
+<p>VS-03 is where data quality is actively improved. Standardized data is rarely clean — it contains errors, inconsistencies, gaps, and not-yet-coded values. This stream detects those problems, corrects them, fills the gaps, and derives the extra variables analysis needs. Uniquely in the chain, it <strong>deliberately changes values to do so</strong>. What makes that safe is total traceability: every change is recorded against its original value and a reproducible, versioned dataset is produced. The output is <strong>Processed Data</strong>: reliable, complete, analytically ready microdata.</p>
+<p><strong>Business processes</strong></p>
+<ul>
+<li>VS-03.1 Conduct Error Detection / Quality Diagnostics</li>
+<li>VS-03.2 Perform Data Editing and Correction</li>
+<li>VS-03.3 Impute Missing or Non-Response Data</li>
+<li>VS-03.4 Derive Additional Variables and Indicators</li>
+<li>VS-03.5 Perform Quality Evaluation and Versioning</li>
+</ul>
+<p><strong>How the business processes work.</strong> The stream begins by <strong>detecting errors and running quality diagnostics</strong> — consistency, range, outlier, and duplicate checks — and uses selective-editing scores to prioritize the problems that actually matter for the results. It then <strong>performs editing and correction</strong>: low-impact issues are auto-corrected by rule while high-impact records are reviewed by subject-matter analysts, and this is where the interpretive work VS-02 deferred is carried out (coding free-text values such as occupation to ISCO, the international occupation classification, and reconciling values where integrated sources disagree). Every change logs the original value, the rule or decision, the reason, the actor, and the time. Genuine gaps are then closed by <strong>imputing missing or non-response data</strong> using approved methods, with each imputed value clearly flagged so it stays distinguishable from observed data. The dataset is <strong>enriched by deriving additional variables and indicators</strong> — and this is also where unit/currency conversion and reference-period alignment are computed from the bases VS-02 recorded, and where datasets are integrated on common keys. Finally the stream <strong>evaluates quality and versions the result</strong>: it measures the improvement against the incoming baseline, verifies the edit lineage is complete and reversible, and creates an immutable Processed Data version, signaled to VS-04 by a “Processed Data Registered” event.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Signature discipline — full traceability">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Signature discipline — full traceability
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VS-03 is the domain that changes values, under the guarantee of <em>no undocumented or irreversible change</em>: original values are preserved beside edited ones, imputations are flagged, and every version is reproducible.</p>
+</div>
+</div>
+<p>Around this, <strong>Design</strong> sets the error-detection and editing rules (with a selective-editing strategy), the imputation methodology, the derivation and coding specs, the integration rules, and the versioning policy; <strong>Implementation</strong> builds the editing, imputation, coding, derivation, and integration engines and the version store; <strong>Management</strong> watches edit, imputation, and over-editing rates, assesses quality improvement, and audits the edit lineage.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Business process</th>
+<th>What it produces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-03.1 Conduct Error Detection / Quality Diagnostics</td>
+<td>A prioritized diagnosis of errors and gaps</td>
+</tr>
+<tr class="even">
+<td>VS-03.2 Perform Data Editing and Correction</td>
+<td>Corrected values + interpretive coding + full edit lineage</td>
+</tr>
+<tr class="odd">
+<td>VS-03.3 Impute Missing or Non-Response Data</td>
+<td>Completed data with imputation flags</td>
+</tr>
+<tr class="even">
+<td>VS-03.4 Derive Additional Variables and Indicators</td>
+<td>Derived variables + unit/currency/period conversions + integrated data</td>
+</tr>
+<tr class="odd">
+<td>VS-03.5 Perform Quality Evaluation and Versioning</td>
+<td>Versioned Processed Data + “Processed Data Registered” event</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Boundaries:</strong> in — Standardized Data on <em>“Standardized Data Registered”</em>; out — <strong>Processed Data</strong> on <em>“Processed Data Registered”</em> → VS-04.</p>
+</section>
+<section id="vs-04.0-estimation-analysis-and-statistical-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="vs-04.0-estimation-analysis-and-statistical-modeling">VS-04.0 — Estimation, Analysis, and Statistical Modeling</h2>
+<p><strong>Domain:</strong> Estimation and closed-loop · <strong>State transition:</strong> #3 Processed → <strong>#4 Statistics</strong> · <strong>Value:</strong> analytical insight and statistical credibility.</p>
+<p>VS-04 turns clean microdata into statistics. Up to now the chain has improved the data itself; here the focus shifts to producing numbers that describe a population — estimates, weighted aggregates, indices, and model results. The microdata is not edited further; instead statistics are computed <em>from</em> it, each accompanied by a measure of how accurate it is. The output is <strong>Output Data / Statistics</strong>: validated figures with their methodology and accuracy attached, and an initial layer of confidentiality protection applied.</p>
+<p><strong>Business processes</strong></p>
+<ul>
+<li>VS-04.1 Confirm Estimation and Analytical Approach</li>
+<li>VS-04.2 Apply Weighting and Calibration</li>
+<li>VS-04.3 Estimate and Aggregate Data</li>
+<li>VS-04.4 Perform Model-Based Analysis</li>
+<li>VS-04.5 Validate and Document Results</li>
+</ul>
+<p><strong>How the business processes work.</strong> Each round starts by <strong>confirming the estimation and analytical approach</strong> — selecting the pre-approved method for this cycle’s data and checking that the calibration totals and domains are current. The stream then <strong>applies weighting and calibration</strong> to correct for sampling, non-response, and coverage, so the sample represents the population. With weights in place it <strong>estimates and aggregates the data</strong>, producing the target statistics together with their accuracy (standard errors and confidence intervals) — and because VS-03 flagged which values were imputed, that added uncertainty is reflected in the variance. Where direct figures are not enough, it <strong>performs model-based analysis</strong> (regression, time-series/forecasting, small-area models) to reveal relationships and produce reliable estimates for thin domains, recording the model diagnostics. Finally it <strong>validates and documents the results</strong>: checking statistical soundness and coherence with related and prior statistics, applying an initial layer of statistical disclosure control so the figures can potentially be released, documenting the methodology, and versioning the output — announced to VS-05 by an “Output Data Registered” event.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Signature discipline — methodological transparency">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Signature discipline — methodological transparency
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Every estimate carries the method, parameters, and accuracy measure that produced it and can be regenerated; imputation uncertainty from VS-03 is reflected in the variance, and initial statistical disclosure control is applied so output can potentially be released.</p>
+</div>
+</div>
+<p>Around this, <strong>Design</strong> fixes the estimation strategy and accuracy approach, the weighting/calibration methodology, the aggregation and model specifications, and the validation and disclosure-control policy; <strong>Implementation</strong> builds the weighting, estimation, variance, and modeling engines and the disclosure-control and version tooling; <strong>Management</strong> tracks accuracy, timeliness, and revisions, assesses coherence, and audits reproducibility.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Business process</th>
+<th>What it produces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-04.1 Confirm Estimation and Analytical Approach</td>
+<td>The pre-approved method confirmed for the cycle</td>
+</tr>
+<tr class="even">
+<td>VS-04.2 Apply Weighting and Calibration</td>
+<td>Weights that make the sample represent the population</td>
+</tr>
+<tr class="odd">
+<td>VS-04.3 Estimate and Aggregate Data</td>
+<td>Estimates and aggregates, each with an accuracy measure</td>
+</tr>
+<tr class="even">
+<td>VS-04.4 Perform Model-Based Analysis</td>
+<td>Model/forecast/small-area results with diagnostics</td>
+</tr>
+<tr class="odd">
+<td>VS-04.5 Validate and Document Results</td>
+<td>Validated, disclosure-controlled, versioned statistics + “Output Data Registered” event</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Boundaries:</strong> in — Processed Data on <em>“Processed Data Registered”</em>; out — <strong>Output Data</strong> on <em>“Output Data Registered”</em> → VS-05.</p>
+</section>
+<section id="vs-05.0-statistical-product-composition" class="level2">
+<h2 class="anchored" data-anchor-id="vs-05.0-statistical-product-composition">VS-05.0 — Statistical Product Composition</h2>
+<p><strong>Domain:</strong> Statistically composed and composite products · <strong>State transition:</strong> within <strong>#4 Statistics</strong> (analytical outputs → approved products) · <strong>Value:</strong> coherence and interpretability.</p>
+<p>VS-05 assembles finished products from the statistics VS-04 produced. Individual estimates are not yet something a user reads; this stream brings results from different domains, surveys, and time periods together into coherent publications, time series, indices, and datasets — and approves them for release. It does not re-estimate anything; it selects, combines, checks, explains, and signs off. The output is an <strong>approved, registered statistical product</strong> ready for dissemination.</p>
+<p><strong>Business processes</strong></p>
+<ul>
+<li>VS-05.1 Select and Integrate Source Datasets</li>
+<li>VS-05.2 Construct Composite Indicators or Indices</li>
+<li>VS-05.3 Perform Consistency and Coherence Checks</li>
+<li>VS-05.4 Generate Analytical and Interpretive Outputs</li>
+<li>VS-05.5 Approve and Register Statistical Products</li>
+</ul>
+<p><strong>How the business processes work.</strong> The stream first <strong>selects and integrates the source datasets</strong> — picking the exact validated output versions a product needs and combining them, carrying their accuracy metadata along. It then <strong>constructs the composite indicators or indices</strong> the product presents (ratios, indices, chained time series), deriving each composite’s uncertainty from its components. The assembled product is put through <strong>consistency and coherence checks</strong>: totals must reconcile to their parts, and the figures must agree with related statistics and with prior releases — discrepancies are explained or sent back, never quietly adjusted. Next the stream <strong>generates the analytical and interpretive outputs</strong> — the commentary, key messages, tables, and visualizations that make the product understandable — and runs them through editorial review. Finally it <strong>approves and registers the product</strong>: validating it against dissemination and confidentiality standards, obtaining sign-off from the designated authority, and registering an immutable version with full lineage, which a “Statistical Product Registered” event passes to VS-06.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Signature discipline — coherence and interpretability">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Signature discipline — coherence and interpretability
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VS-05 <strong>composes</strong> validated outputs (it does not re-estimate). Products are internally consistent, coherent with related and prior statistics, carry their components’ accuracy metadata, and are <strong>approved against dissemination and confidentiality standards</strong> before being registered.</p>
+</div>
+</div>
+<p>Around this, <strong>Design</strong> defines the product portfolio, the composite-indicator specs, the coherence checks, the content templates, and the approval/confidentiality/versioning framework; <strong>Implementation</strong> builds the integration and composition engines, the indicator/time-series engines, the coherence and content tooling, and the approval/version store; <strong>Management</strong> tracks coherence-check pass rates and approval iterations, assesses product quality, and audits reproducibility and approval.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Business process</th>
+<th>What it produces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-05.1 Select and Integrate Source Datasets</td>
+<td>Integrated components with accuracy carried forward</td>
+</tr>
+<tr class="even">
+<td>VS-05.2 Construct Composite Indicators or Indices</td>
+<td>Composite measures and time series</td>
+</tr>
+<tr class="odd">
+<td>VS-05.3 Perform Consistency and Coherence Checks</td>
+<td>Confirmed internal consistency and coherence</td>
+</tr>
+<tr class="even">
+<td>VS-05.4 Generate Analytical and Interpretive Outputs</td>
+<td>Reviewed narrative, tables, and visualizations</td>
+</tr>
+<tr class="odd">
+<td>VS-05.5 Approve and Register Statistical Products</td>
+<td>Approved, versioned product + “Statistical Product Registered” event</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Boundaries:</strong> in — Output Data on <em>“Output Data Registered”</em>; out — <strong>Approved Statistical Product</strong> on <em>“Statistical Product Registered”</em> → VS-06.</p>
+</section>
+<section id="vs-06.0-dissemination-and-service-delivery" class="level2">
+<h2 class="anchored" data-anchor-id="vs-06.0-dissemination-and-service-delivery">VS-06.0 — Dissemination and Service Delivery</h2>
+<p><strong>Domain:</strong> Dissemination (final stage) · <strong>State transition:</strong> #4 Approved products → <strong>#5 Released</strong> → #6 Consumed · <strong>Value:</strong> impact and accessibility.</p>
+<p>VS-06 is the chain’s exit point — where approved products become public value. It publishes and delivers statistics to policymakers, researchers, journalists, businesses, and the public through trusted, secure channels, and supports users in interpreting them correctly. The decisive control here is confidentiality: a final disclosure-control gate stands between an approved product and release. The output is <strong>Released Data</strong> (State #5); once in users’ hands it becomes <strong>Consumed Data</strong> (State #6), beyond the NSO’s direct control.</p>
+<p><strong>Business processes</strong></p>
+<ul>
+<li>VS-06.1 Plan Dissemination and Access Strategy</li>
+<li>VS-06.2 Prepare Data for Dissemination</li>
+<li>VS-06.3 Publish and Provide Access Services</li>
+<li>VS-06.4 Support and Engage Users</li>
+<li>VS-06.5 Monitor Usage and Feedback</li>
+</ul>
+<p><strong>How the business processes work.</strong> Each release begins by <strong>confirming the dissemination and access plan</strong> — the channels (publication, API/open data, dashboards, secure research access), the formats, the release-calendar slot, and the embargo/equal-access arrangements. The product is then <strong>prepared for dissemination</strong>: final statistical disclosure control is applied (suppression, rounding, perturbation; de-identification of any microdata) and the release must clear the disclosure-risk criteria — <em>nothing proceeds if it does not</em> — after which it is formatted for each channel and packaged with its documentation and metadata. The stream then <strong>publishes and provides access services</strong>, releasing the product and its metadata across the confirmed channels with timing managed so that access is equal (no privileged early sight outside policy). It <strong>supports and engages users</strong> with documentation, a helpdesk, training, and errata, so the statistics are interpreted responsibly. Finally it <strong>monitors usage and feedback</strong> — tracking downloads, API calls, and dashboard views, and collecting satisfaction and questions — and routes those insights back to design, to VS-10, and across the chain. The release is signaled by a “Statistics Released” event.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Signature discipline — accessibility, trust, and the release gate">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Signature discipline — accessibility, trust, and the release gate
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Accurate, timely, understandable delivery through secure channels, gated by <strong>final statistical disclosure control</strong> (no release without confidentiality clearance) and supported by documentation that enables responsible, equal-access use. VS-06 relies on the supporting streams VS-07 (compliance), VS-09 (platforms), and VS-10 (user needs).</p>
+</div>
+</div>
+<p>Around this, <strong>Design</strong> sets the dissemination and access strategy, the final disclosure-control and de-identification rules, the channels/formats/documentation standards, and the release governance; <strong>Implementation</strong> builds the publication, API, dashboard, and secure-research-access services (on VS-09 platforms) and the disclosure-control and release tooling; <strong>Management</strong> monitors punctuality, usage, and satisfaction, assesses accessibility, and audits disclosure and equal-access compliance with VS-07.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Business process</th>
+<th>What it produces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-06.1 Plan Dissemination and Access Strategy</td>
+<td>Confirmed channels, formats, and release timing</td>
+</tr>
+<tr class="even">
+<td>VS-06.2 Prepare Data for Dissemination</td>
+<td>Disclosure-safe, channel-ready products + documentation</td>
+</tr>
+<tr class="odd">
+<td>VS-06.3 Publish and Provide Access Services</td>
+<td>Released statistics across channels, equally and on time</td>
+</tr>
+<tr class="even">
+<td>VS-06.4 Support and Engage Users</td>
+<td>User documentation, helpdesk, training, errata</td>
+</tr>
+<tr class="odd">
+<td>VS-06.5 Monitor Usage and Feedback</td>
+<td>Usage insight + feedback routed to design and VS-10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Boundaries:</strong> in — Approved Statistical Product on <em>“Statistical Product Registered”</em>; out — <strong>Released Data</strong> on <em>“Statistics Released”</em> → users/society (consumed as State #6). No downstream primary stream; feedback returns to VS-10.</p>
+</section>
+<section id="supporting-value-streams-vs-07-to-vs-10" class="level2">
+<h2 class="anchored" data-anchor-id="supporting-value-streams-vs-07-to-vs-10">Supporting Value Streams (VS-07 to VS-10)</h2>
+<p>The four supporting streams are not stages in the production line — they work <strong>across the whole chain</strong>, enabling and constraining all six primary streams continuously. Reading their sections requires a small shift of mindset from the six above.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="How a supporting value stream differs from a production stream">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>How a supporting value stream differs from a production stream
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>No steady-state data transition.</strong> A supporting stream does not take data from one state to the next; it does not appear in the #1→#6 chain. There is no “Data Registered” handover event and no “Boundaries: in→out” — instead each interacts with the whole chain at once.</li>
+<li><strong>It runs continuously</strong>, as a plan → build → operate → improve cycle, not per production cycle.</li>
+<li><strong>Its output is an enabling capability, not data:</strong> governance &amp; assurance (07), validated methods (08), platforms (09), understood needs &amp; relationships (10).</li>
+<li><strong>It aligns to GAMSO</strong> — the standard model of management and support activities (Strategy &amp; Leadership, Capability Management, Corporate Support) — rather than to GSBPM production phases, and it foregrounds principles <strong>P02–P06</strong>.</li>
+</ul>
+</div>
+</div>
+<p>The diagram shows the two directions of that interaction: the supporting streams provide capabilities to the chain (arrows in), and the chain sends back evidence, needs, and usage (arrow out):</p>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-3">flowchart TB
+    subgraph chain["Primary chain (VS-01 → VS-06)"]
+        direction LR
+        P1["VS-01"] --&gt; P2["VS-02"] --&gt; P3["VS-03"] --&gt; P4["VS-04"] --&gt; P5["VS-05"] --&gt; P6["VS-06"]
+    end
+
+    VS07["VS-07 Governance&lt;br/&gt;&amp; Compliance"]:::s --&gt;|"rules, controls,&lt;br/&gt;assurance"| chain
+    VS08["VS-08 Innovation &amp;&lt;br/&gt;Methodological Dev."]:::s --&gt;|"validated&lt;br/&gt;methods &amp; tools"| chain
+    VS09["VS-09 Infrastructure&lt;br/&gt;&amp; Platform Enablement"]:::s --&gt;|"platforms,&lt;br/&gt;integration, continuity"| chain
+    chain --&gt;|"compliance evidence,&lt;br/&gt;improvement needs, usage"| VS07 &amp; VS08 &amp; VS10
+    VS10["VS-10 Customer &amp;&lt;br/&gt;Stakeholder Engagement"]:::s --&gt;|"user needs,&lt;br/&gt;communication"| chain
+
+    classDef s fill:#7c3aed,color:#fff,stroke:#6d28d9
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: The four supporting streams (purple) and the primary chain: each provides a capability to the chain and receives feedback or needs from it.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="vs-07.0-governance-and-compliance" class="level2">
+<h2 class="anchored" data-anchor-id="vs-07.0-governance-and-compliance">VS-07.0 — Governance and Compliance</h2>
+<p><strong>Domain:</strong> Governance (horizontal) · <strong>GAMSO:</strong> Strategy &amp; Leadership + Corporate Support · <strong>Value:</strong> integrity and accountability.</p>
+<p>VS-07 makes sure every process, dataset, and product operates under clear rules, standards, and accountability. It builds trust by ensuring all data activities are ethical, transparent, and compliant with legal, methodological, and quality requirements (Code of Practice, GDPR, ISO). It does not move data along the chain — it <strong>oversees</strong> the streams that do, and is the place where the data principles (P09/P10/P11) are enforced organization-wide.</p>
+<p><strong>Business processes</strong></p>
+<ul>
+<li>VS-07.1 Define Governance Frameworks and Policies</li>
+<li>VS-07.2 Establish Legal and Regulatory Compliance Mechanisms</li>
+<li>VS-07.3 Implement Data and Metadata Governance</li>
+<li>VS-07.4 Monitor Quality and Compliance Indicators</li>
+<li>VS-07.5 Audit, Certify, and Report Compliance</li>
+<li>VS-07.6 Update and Improve Governance Mechanisms</li>
+</ul>
+<p><strong>How the business processes work.</strong> Governance runs as a continuous loop. It first <strong>defines governance frameworks and policies</strong> (07.1) — the charters and principles covering data, metadata, ethics, confidentiality, and quality — and <strong>establishes legal and regulatory compliance mechanisms</strong> (07.2), mapping applicable regulation to concrete procedures. These are made operational by <strong>implementing data and metadata governance</strong> (07.3): assigning the owner/steward/custodian roles and the metadata and lineage processes that wire governance into how the streams work. It then <strong>monitors quality and compliance indicators</strong> (07.4) on dashboards and periodically <strong>audits, certifies, and reports compliance</strong> (07.5), producing the assurance that the statistics can be trusted. Finally it <strong>updates and improves the governance mechanisms</strong> (07.6), folding regulatory change and lessons learned back into the policies. <em>(The strategy model labels two steps <code>VS-07.5</code>; the second is treated here as VS-07.6.)</em></p>
+<p><strong>Interaction with the chain:</strong> provides frameworks, roles, and controls to all streams and receives their compliance evidence, quality indicators, and audit findings (each primary stream’s audit-and-compliance reporting feeds here); issues certification and assurance to regulators and the public.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Business process</th>
+<th>What it produces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-07.1 Define Governance Frameworks and Policies</td>
+<td>Governance charters and policies</td>
+</tr>
+<tr class="even">
+<td>VS-07.2 Establish Legal and Regulatory Compliance Mechanisms</td>
+<td>Compliance procedures mapped to regulation</td>
+</tr>
+<tr class="odd">
+<td>VS-07.3 Implement Data and Metadata Governance</td>
+<td>Assigned roles + metadata/lineage processes</td>
+</tr>
+<tr class="even">
+<td>VS-07.4 Monitor Quality and Compliance Indicators</td>
+<td>Quality &amp; compliance dashboards</td>
+</tr>
+<tr class="odd">
+<td>VS-07.5 Audit, Certify, and Report Compliance</td>
+<td>Audit reports, certifications, assurance</td>
+</tr>
+<tr class="even">
+<td>VS-07.6 Update and Improve Governance Mechanisms</td>
+<td>Revised policies and controls</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vs-08.0-innovation-and-methodological-development" class="level2">
+<h2 class="anchored" data-anchor-id="vs-08.0-innovation-and-methodological-development">VS-08.0 — Innovation and Methodological Development</h2>
+<p><strong>Domain:</strong> Innovation (horizontal) · <strong>GAMSO:</strong> Capability Management · <strong>Value:</strong> continuous improvement / future-proofing.</p>
+<p>VS-08 keeps the organization from standing still: it discovers, tests, and introduces new data sources, methods, tools, and technologies, connecting research, methodology, IT, and business users. It keeps innovation <strong>controlled</strong> so that only sound, documented, compliant methods reach production. It does not transform data — it improves the methods and tools the production streams use.</p>
+<p><strong>Business processes</strong></p>
+<ul>
+<li>VS-08.1 Identify Innovation Needs and Opportunities</li>
+<li>VS-08.2 Conduct Research and Proof-of-Concepts</li>
+<li>VS-08.3 Evaluate Methodological Soundness and Feasibility</li>
+<li>VS-08.4 Develop / Document New Methodologies or Tools</li>
+<li>VS-08.5 Integrate Innovation into Production Environments</li>
+<li>VS-08.6 Promote Knowledge Sharing and Capability Building</li>
+</ul>
+<p><strong>How the business processes work.</strong> The pipeline begins by <strong>identifying innovation needs and opportunities</strong> (08.1) — scanning technology and methodology (AI, ML, new sources) and the chain’s own improvement backlog — then runs <strong>research and proofs-of-concept</strong> (08.2) in limited scope. Promising results pass through <strong>evaluation of methodological soundness and feasibility</strong> (08.3), the gate that stops attractive-but-unsound ideas, and are then <strong>developed and documented into methods or tools</strong> (08.4) — standardized procedures and reference implementations ready to hand over. The defining step is <strong>integrating innovation into production</strong> (08.5): the governed transfer of a validated method into the relevant primary stream (after VS-07 approval, on VS-09 platforms). Finally it <strong>promotes knowledge sharing and capability building</strong> (08.6), disseminating guidance and growing staff competency — which surfaces the next round of needs.</p>
+<p><strong>Interaction with the chain:</strong> receives improvement needs from every primary stream (their continuous-improvement loops) and user-driven needs from VS-10; <strong>delivers validated methods and tools into production</strong> through the 08.5 transfer gate.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Business process</th>
+<th>What it produces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-08.1 Identify Innovation Needs and Opportunities</td>
+<td>Prioritized innovation backlog</td>
+</tr>
+<tr class="even">
+<td>VS-08.2 Conduct Research and Proof-of-Concepts</td>
+<td>Experiment / pilot results</td>
+</tr>
+<tr class="odd">
+<td>VS-08.3 Evaluate Methodological Soundness and Feasibility</td>
+<td>Soundness &amp; feasibility assessment</td>
+</tr>
+<tr class="even">
+<td>VS-08.4 Develop / Document New Methodologies or Tools</td>
+<td>Standardized method + reference implementation</td>
+</tr>
+<tr class="odd">
+<td>VS-08.5 Integrate Innovation into Production Environments</td>
+<td>Method/tool live in a production stream (governed transfer)</td>
+</tr>
+<tr class="even">
+<td>VS-08.6 Promote Knowledge Sharing and Capability Building</td>
+<td>Disseminated guidance + trained staff</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vs-09.0-infrastructure-and-platform-enablement" class="level2">
+<h2 class="anchored" data-anchor-id="vs-09.0-infrastructure-and-platform-enablement">VS-09.0 — Infrastructure and Platform Enablement</h2>
+<p><strong>Domain:</strong> Infrastructure (horizontal) · <strong>GAMSO:</strong> Capability Management + Corporate Support · <strong>Value:</strong> reliable enablement at scale.</p>
+<p>VS-09 provides the technical and digital foundation every other stream runs on — environments, data platforms, tools, and integration services — keeping them secure, resilient, and compliant while flexible enough to adopt new technology. It is the business-layer view of providing the application and technology enablement the primary documents scoped out.</p>
+<p><strong>Business processes</strong></p>
+<ul>
+<li>VS-09.1 Define Digital and Technical Requirements</li>
+<li>VS-09.2 Design Platform and Infrastructure Architecture</li>
+<li>VS-09.3 Provision and Configure Platforms</li>
+<li>VS-09.4 Enable Integration and Orchestration Services</li>
+<li>VS-09.5 Ensure Performance, Security, and Continuity</li>
+<li>VS-09.6 Evolve and Modernize the Technical Ecosystem</li>
+</ul>
+<p><strong>How the business processes work.</strong> The lifecycle begins by <strong>defining digital and technical requirements</strong> (09.1) from business capabilities and data volumes, feeding the <strong>design of the platform and infrastructure architecture</strong> (09.2) — blueprints for storage, processing, integration, and secure access. The architecture is realized by <strong>provisioning and configuring platforms</strong> (09.3) with governance, monitoring, and security controls, and by <strong>enabling integration and orchestration services</strong> (09.4) — the APIs, workflow engines, and the event interfaces the steady-state handovers rely on. Day to day it <strong>ensures performance, security, and continuity</strong> (09.5): monitoring, data protection, incident management, and disaster recovery. Finally it <strong>evolves and modernizes the technical ecosystem</strong> (09.6), adopting new technology (often from VS-08) and retiring the obsolete.</p>
+<p><strong>Interaction with the chain:</strong> provides environments, platforms, integration, and assured availability to all streams (including VS-06’s portals/APIs and VS-08’s sandboxes); receives requirements, capacity demand, and incidents; its security and continuity posture is governed by VS-07.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Business process</th>
+<th>What it produces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-09.1 Define Digital and Technical Requirements</td>
+<td>Infrastructure requirements from business needs</td>
+</tr>
+<tr class="even">
+<td>VS-09.2 Design Platform and Infrastructure Architecture</td>
+<td>Architecture blueprints</td>
+</tr>
+<tr class="odd">
+<td>VS-09.3 Provision and Configure Platforms</td>
+<td>Deployed, controlled environments</td>
+</tr>
+<tr class="even">
+<td>VS-09.4 Enable Integration and Orchestration Services</td>
+<td>APIs, workflow/automation, event interfaces</td>
+</tr>
+<tr class="odd">
+<td>VS-09.5 Ensure Performance, Security, and Continuity</td>
+<td>Monitoring, security, availability, DR</td>
+</tr>
+<tr class="even">
+<td>VS-09.6 Evolve and Modernize the Technical Ecosystem</td>
+<td>Modernization roadmap and adopted technology</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vs-10.0-customer-and-stakeholder-engagement" class="level2">
+<h2 class="anchored" data-anchor-id="vs-10.0-customer-and-stakeholder-engagement">VS-10.0 — Customer and Stakeholder Engagement</h2>
+<p><strong>Domain:</strong> Engagement (horizontal) · <strong>GAMSO:</strong> Strategy &amp; Leadership + Corporate Support · <strong>Value:</strong> relevance and public value.</p>
+<p>VS-10 keeps the organization connected, relevant, and responsive — building mutual understanding and trust with users, data providers, partners, and policymakers. It is a continuous two-way dialogue: it does not move data, it moves <strong>understanding</strong> — needs in, communication and services out.</p>
+<p><strong>Business processes</strong></p>
+<ul>
+<li>VS-10.1 Identify and Segment Stakeholders</li>
+<li>VS-10.2 Collect and Analyze User Needs</li>
+<li>VS-10.3 Define and Manage Service Portfolios</li>
+<li>VS-10.4 Deliver Services and Manage Relationships</li>
+<li>VS-10.5 Engage and Communicate with Stakeholders</li>
+<li>VS-10.6 Monitor Impact and Satisfaction</li>
+</ul>
+<p><strong>How the business processes work.</strong> The cycle begins by <strong>identifying and segmenting stakeholders</strong> (10.1) and <strong>collecting and analyzing user needs</strong> (10.2), translating them into data or service requirements. Those needs shape the <strong>definition and management of service portfolios</strong> (10.3) — catalogs of services and products aligned to strategy. Services reach users through <strong>delivering services and managing relationships</strong> (10.4) — support desks, account management, satisfaction monitoring — alongside <strong>engaging and communicating with stakeholders</strong> (10.5) via outreach and knowledge-sharing. Finally it <strong>monitors impact and satisfaction</strong> (10.6), measuring use and societal impact and feeding insight back into planning and innovation.</p>
+<p><strong>Interaction with the chain:</strong> bidirectional with VS-01 (the data providers it engages) and VS-06 (whose usage and feedback it receives); it routes user needs into design across the primary streams and into VS-08’s innovation backlog.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Business process</th>
+<th>What it produces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-10.1 Identify and Segment Stakeholders</td>
+<td>Stakeholder map and segments</td>
+</tr>
+<tr class="even">
+<td>VS-10.2 Collect and Analyze User Needs</td>
+<td>Needs register / service requirements</td>
+</tr>
+<tr class="odd">
+<td>VS-10.3 Define and Manage Service Portfolios</td>
+<td>Service &amp; product portfolio</td>
+</tr>
+<tr class="even">
+<td>VS-10.4 Deliver Services and Manage Relationships</td>
+<td>Operating support &amp; managed relationships</td>
+</tr>
+<tr class="odd">
+<td>VS-10.5 Engage and Communicate with Stakeholders</td>
+<td>Outreach, communication, awareness</td>
+</tr>
+<tr class="even">
+<td>VS-10.6 Monitor Impact and Satisfaction</td>
+<td>Impact &amp; satisfaction insight (fed back to the chain)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-value-chain-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="the-value-chain-at-a-glance">The Value Chain at a Glance</h2>
+<p>Use these two tables as a quick reference: the first summarizes the six production streams, the second the four supporting streams.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>VS</th>
+<th>Domain</th>
+<th>State in → out</th>
+<th>Trigger out</th>
+<th>Signature discipline</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>01</strong></td>
+<td>Acquisition &amp; Ingestion</td>
+<td>Source → #1 Raw</td>
+<td>Raw Data Registered</td>
+<td>Metadata &amp; validation at ingestion</td>
+</tr>
+<tr class="even">
+<td><strong>02</strong></td>
+<td>Standardization &amp; Integration</td>
+<td>#1 → #2 Standardized</td>
+<td>Standardized Data Registered</td>
+<td>No loss of content: map, reformat, annotate</td>
+</tr>
+<tr class="odd">
+<td><strong>03</strong></td>
+<td>Editing &amp; Enrichment</td>
+<td>#2 → #3 Processed</td>
+<td>Processed Data Registered</td>
+<td>Full traceability of every value change</td>
+</tr>
+<tr class="even">
+<td><strong>04</strong></td>
+<td>Estimation &amp; Modeling</td>
+<td>#3 → #4 Statistics</td>
+<td>Output Data Registered</td>
+<td>Methodological transparency + accuracy + disclosure control on outputs</td>
+</tr>
+<tr class="odd">
+<td><strong>05</strong></td>
+<td>Product Composition</td>
+<td>within #4 (→ approved)</td>
+<td>Statistical Product Registered</td>
+<td>Coherence &amp; interpretability; approval before registration</td>
+</tr>
+<tr class="even">
+<td><strong>06</strong></td>
+<td>Dissemination &amp; Service Delivery</td>
+<td>#4 → #5 Released → #6</td>
+<td>Statistics Released</td>
+<td>Accessibility &amp; trust; final disclosure-control gate</td>
+</tr>
+</tbody>
+</table>
+<p>The four supporting streams work differently — they have no state transition; they run horizontally and continuously:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>VS</th>
+<th>Domain</th>
+<th>GAMSO area</th>
+<th>What it provides to the chain</th>
+<th>Principles foregrounded</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>07</strong></td>
+<td>Governance &amp; Compliance</td>
+<td>Strategy &amp; Leadership; Corporate Support</td>
+<td>Frameworks, controls, assurance; enforces the data principles</td>
+<td>P03, P04 (+ enforces P09/P10/P11)</td>
+</tr>
+<tr class="even">
+<td><strong>08</strong></td>
+<td>Innovation &amp; Methodological Development</td>
+<td>Capability Management</td>
+<td>Validated methods &amp; tools transferred into production</td>
+<td>P01, P05, P03, P04</td>
+</tr>
+<tr class="odd">
+<td><strong>09</strong></td>
+<td>Infrastructure &amp; Platform Enablement</td>
+<td>Capability Management; Corporate Support</td>
+<td>Platforms, environments, integration, continuity</td>
+<td>P10, P06, P02, P05</td>
+</tr>
+<tr class="even">
+<td><strong>10</strong></td>
+<td>Customer &amp; Stakeholder Engagement</td>
+<td>Strategy &amp; Leadership; Corporate Support</td>
+<td>Understood needs, service portfolio, relationships, impact</td>
+<td>P04, P08, P02</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This consolidated view omits the per-stream <strong>“Applying This to Your NSO”</strong> maturity checklists and scenarios. For those, and for the full Design / Implementation / Management detail, diagrams, and boundary-interface tables, see the individual documents <code>VS-01.0</code> … <code>VS-10.0</code> in this folder.</p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>This split follows the ArchiMate 3.2 Specification (sec.&nbsp;7.3.2): “value streams are typically realized by business processes”, with the stages providing “a framework for organizing and defining business processes”.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../framework/strategy.html" class="pagination-link" aria-label="Strategy">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Strategy</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../framework/vs-01.html" class="pagination-link" aria-label="VS-01 Data Acquisition and Ingestion">
+        <span class="nav-page-text">VS-01 Data Acquisition and Ingestion</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

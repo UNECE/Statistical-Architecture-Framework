@@ -1,0 +1,2787 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>VS-01 Data Acquisition and Ingestion – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../framework/vs-02.html" rel="next">
+<link href="../framework/business-architecture.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4b8eba7d388032a8ef35e180b04aa314.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../framework/index.html" aria-current="page"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-01.html">Production value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-01.html">VS-01 Data Acquisition and Ingestion</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAF Architecture Framework</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and Scope</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/motivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Motivation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/strategy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strategy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Business architecture</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/business-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Architecture</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Production value streams</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-01.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">VS-01 Data Acquisition and Ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-02 Data Standardization and Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-03 Data Editing and Enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-04 Estimation, Analysis, and Statistical Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-05 Statistical Product Composition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-06 Dissemination and Service Delivery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Supporting value streams</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-07 Governance and Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-08 Innovation and Methodological Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-09 Infrastructure and Platform Enablement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-10 Customer and Stakeholder Engagement</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#vs-01.0-data-acquisition-and-ingestion" id="toc-vs-01.0-data-acquisition-and-ingestion" class="nav-link active" data-scroll-target="#vs-01.0-data-acquisition-and-ingestion">VS-01.0 Data Acquisition and Ingestion</a>
+  <ul class="collapse">
+  <li><a href="#purpose-and-scope" id="toc-purpose-and-scope" class="nav-link" data-scroll-target="#purpose-and-scope">Purpose and Scope</a></li>
+  <li><a href="#position-in-the-statistical-value-chain" id="toc-position-in-the-statistical-value-chain" class="nav-link" data-scroll-target="#position-in-the-statistical-value-chain">Position in the Statistical Value Chain</a></li>
+  <li><a href="#steady-state-transition" id="toc-steady-state-transition" class="nav-link" data-scroll-target="#steady-state-transition">Steady State Transition</a></li>
+  <li><a href="#the-four-process-governance-pattern" id="toc-the-four-process-governance-pattern" class="nav-link" data-scroll-target="#the-four-process-governance-pattern">The Four-Process Governance Pattern</a></li>
+  <li><a href="#governing-principles" id="toc-governing-principles" class="nav-link" data-scroll-target="#governing-principles">Governing Principles</a></li>
+  <li><a href="#capability-foundations" id="toc-capability-foundations" class="nav-link" data-scroll-target="#capability-foundations">Capability Foundations</a></li>
+  <li><a href="#metadata-perspective" id="toc-metadata-perspective" class="nav-link" data-scroll-target="#metadata-perspective">Metadata Perspective</a></li>
+  </ul></li>
+  <li><a href="#business-roles-and-actors" id="toc-business-roles-and-actors" class="nav-link" data-scroll-target="#business-roles-and-actors">Business Roles and Actors</a></li>
+  <li><a href="#design-processes-provides-metadata" id="toc-design-processes-provides-metadata" class="nav-link" data-scroll-target="#design-processes-provides-metadata">Design Processes — “provides metadata”</a>
+  <ul class="collapse">
+  <li><a href="#design-data-requirements-and-source-strategy" id="toc-design-data-requirements-and-source-strategy" class="nav-link" data-scroll-target="#design-data-requirements-and-source-strategy">Design Data Requirements and Source Strategy</a></li>
+  <li><a href="#design-collection-methodology-and-instruments" id="toc-design-collection-methodology-and-instruments" class="nav-link" data-scroll-target="#design-collection-methodology-and-instruments">Design Collection Methodology and Instruments</a></li>
+  <li><a href="#design-data-model-and-metadata-schema" id="toc-design-data-model-and-metadata-schema" class="nav-link" data-scroll-target="#design-data-model-and-metadata-schema">Design Data Model and Metadata Schema</a></li>
+  <li><a href="#design-validation-rules-and-quality-criteria" id="toc-design-validation-rules-and-quality-criteria" class="nav-link" data-scroll-target="#design-validation-rules-and-quality-criteria">Design Validation Rules and Quality Criteria</a></li>
+  <li><a href="#design-access-control-and-privacy-framework" id="toc-design-access-control-and-privacy-framework" class="nav-link" data-scroll-target="#design-access-control-and-privacy-framework">Design Access Control and Privacy Framework</a></li>
+  </ul></li>
+  <li><a href="#implementation-processes-provides-the-execution-process" id="toc-implementation-processes-provides-the-execution-process" class="nav-link" data-scroll-target="#implementation-processes-provides-the-execution-process">Implementation Processes — “provides the execution process”</a>
+  <ul class="collapse">
+  <li><a href="#build-collection-instruments-and-channels" id="toc-build-collection-instruments-and-channels" class="nav-link" data-scroll-target="#build-collection-instruments-and-channels">Build Collection Instruments and Channels</a></li>
+  <li><a href="#configure-data-ingestion-workflows" id="toc-configure-data-ingestion-workflows" class="nav-link" data-scroll-target="#configure-data-ingestion-workflows">Configure Data Ingestion Workflows</a></li>
+  <li><a href="#build-metadata-registration-and-cataloging" id="toc-build-metadata-registration-and-cataloging" class="nav-link" data-scroll-target="#build-metadata-registration-and-cataloging">Build Metadata Registration and Cataloging</a></li>
+  <li><a href="#test-and-validate-the-pipeline" id="toc-test-and-validate-the-pipeline" class="nav-link" data-scroll-target="#test-and-validate-the-pipeline">Test and Validate the Pipeline</a></li>
+  </ul></li>
+  <li><a href="#execution-processes-provides-the-statistical-data" id="toc-execution-processes-provides-the-statistical-data" class="nav-link" data-scroll-target="#execution-processes-provides-the-statistical-data">Execution Processes — “provides the statistical data”</a>
+  <ul class="collapse">
+  <li><a href="#identify-data-needs-and-sources" id="toc-identify-data-needs-and-sources" class="nav-link" data-scroll-target="#identify-data-needs-and-sources">Identify Data Needs and Sources</a></li>
+  <li><a href="#establish-data-agreement-and-access-right" id="toc-establish-data-agreement-and-access-right" class="nav-link" data-scroll-target="#establish-data-agreement-and-access-right">Establish Data Agreement and Access Right</a></li>
+  <li><a href="#collect-receive-or-extract-data" id="toc-collect-receive-or-extract-data" class="nav-link" data-scroll-target="#collect-receive-or-extract-data">Collect, Receive, or Extract Data</a></li>
+  <li><a href="#validate-and-log-data-intake" id="toc-validate-and-log-data-intake" class="nav-link" data-scroll-target="#validate-and-log-data-intake">Validate and Log Data Intake</a></li>
+  <li><a href="#store-and-register-raw-data-artefacts" id="toc-store-and-register-raw-data-artefacts" class="nav-link" data-scroll-target="#store-and-register-raw-data-artefacts">Store and Register Raw Data Artefacts</a></li>
+  </ul></li>
+  <li><a href="#management-processes-provides-quality-reports" id="toc-management-processes-provides-quality-reports" class="nav-link" data-scroll-target="#management-processes-provides-quality-reports">Management Processes — “provides quality reports”</a>
+  <ul class="collapse">
+  <li><a href="#monitor-process-performance" id="toc-monitor-process-performance" class="nav-link" data-scroll-target="#monitor-process-performance">Monitor Process Performance</a></li>
+  <li><a href="#assess-data-quality" id="toc-assess-data-quality" class="nav-link" data-scroll-target="#assess-data-quality">Assess Data Quality</a></li>
+  <li><a href="#manage-metadata-lifecycle" id="toc-manage-metadata-lifecycle" class="nav-link" data-scroll-target="#manage-metadata-lifecycle">Manage Metadata Lifecycle</a></li>
+  <li><a href="#audit-and-compliance-reporting" id="toc-audit-and-compliance-reporting" class="nav-link" data-scroll-target="#audit-and-compliance-reporting">Audit and Compliance Reporting</a></li>
+  <li><a href="#continuous-improvement" id="toc-continuous-improvement" class="nav-link" data-scroll-target="#continuous-improvement">Continuous Improvement</a></li>
+  </ul></li>
+  <li><a href="#business-services-and-interfaces" id="toc-business-services-and-interfaces" class="nav-link" data-scroll-target="#business-services-and-interfaces">Business Services and Interfaces</a>
+  <ul class="collapse">
+  <li><a href="#boundary-interface-specifications" id="toc-boundary-interface-specifications" class="nav-link" data-scroll-target="#boundary-interface-specifications">Boundary Interface Specifications</a></li>
+  </ul></li>
+  <li><a href="#business-objects-and-data-flow" id="toc-business-objects-and-data-flow" class="nav-link" data-scroll-target="#business-objects-and-data-flow">Business Objects and Data Flow</a></li>
+  <li><a href="#business-events" id="toc-business-events" class="nav-link" data-scroll-target="#business-events">Business Events</a></li>
+  <li><a href="#framework-mappings" id="toc-framework-mappings" class="nav-link" data-scroll-target="#framework-mappings">Framework Mappings</a></li>
+  <li><a href="#applying-this-to-your-nso" id="toc-applying-this-to-your-nso" class="nav-link" data-scroll-target="#applying-this-to-your-nso">Applying This to Your NSO</a>
+  <ul class="collapse">
+  <li><a href="#maturity-assessment-checklist" id="toc-maturity-assessment-checklist" class="nav-link" data-scroll-target="#maturity-assessment-checklist">Maturity Assessment Checklist</a></li>
+  <li><a href="#end-to-end-scenarios" id="toc-end-to-end-scenarios" class="nav-link" data-scroll-target="#end-to-end-scenarios">End-to-End Scenarios</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="vs-01.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-01.html">Production value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-01.html">VS-01 Data Acquisition and Ingestion</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">VS-01 Data Acquisition and Ingestion</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="vs-01.0-data-acquisition-and-ingestion" class="level2">
+<h2 class="anchored" data-anchor-id="vs-01.0-data-acquisition-and-ingestion">VS-01.0 Data Acquisition and Ingestion</h2>
+<section id="purpose-and-scope" class="level3">
+<h3 class="anchored" data-anchor-id="purpose-and-scope">Purpose and Scope</h3>
+<p>This document specifies the complete business layer for the <strong>Observation/Collection</strong> business domain, corresponding to the <em>VS-01.0 Data Acquisition and Ingestion Value Stream</em>. It also covers 4 governance process types:</p>
+<ul>
+<li><strong>Design</strong> — how the acquisition pipeline is specified and planned (produces metadata)</li>
+<li><strong>Implementation</strong> — how the pipeline is built, configured, and tested (produces the execution process)</li>
+<li><strong>Execution</strong> — how data is operationally collected, validated, and stored (produces statistical data)</li>
+<li><strong>Management</strong> — how the domain is monitored, quality-assessed, and improved (produces quality reports)</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled" title="Out of Scope">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Out of Scope
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Application and Technology layer specifications are out of scope for this document.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="How to read this document">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>How to read this document
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You do not need to read this document cover to cover — go to the section that matches your role:</p>
+<ul>
+<li><strong>Data collection manager / operations staff</strong> → the <strong>Execution</strong> processes (what happens each production cycle).</li>
+<li><strong>Quality or compliance manager</strong> → the <strong>Management</strong> processes (monitoring, quality, audit, improvement).</li>
+<li><strong>Methodologist / statistical designer</strong> → the <strong>Design</strong> processes (requirements, methodology, rules).</li>
+<li><strong>System builder / IT</strong> → the <strong>Implementation</strong> processes (building and testing the pipeline).</li>
+<li><strong>Manager wanting the big picture</strong> → read the <em>Introduction and Strategic Context</em>, then jump to the <em>End-to-End Scenarios</em> at the end.</li>
+</ul>
+</div>
+</div>
+<p><em>A note on numbering:</em> each <code>VS-01.y</code> below is both a value stream stage (<em>what value</em> is added) and a business process (<em>how</em> it is done); the numbering maps one-to-one. See the key-concepts box above.</p>
+</section>
+<section id="position-in-the-statistical-value-chain" class="level3">
+<h3 class="anchored" data-anchor-id="position-in-the-statistical-value-chain">Position in the Statistical Value Chain</h3>
+<p>VS-01.0 is the first primary value stream — the entry point through which all data enters the statistical system. It is the “Source &amp; Ingest Information” orchestration stage that feeds all downstream processing.</p>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-1">
+flowchart TD
+    subgraph primary["Primary Value Streams"]
+        direction LR
+        VS01["**VS-01.0**
+        Data Acquisition
+        &amp; Ingestion"]:::highlight
+        VS02["VS-02.0
+        Data Standardization
+        &amp; Integration"]
+        VS03["VS-03.0
+        Data Editing
+        &amp; Enrichment"]
+        VS04["VS-04.0
+        Estimation, Analysis
+        &amp; Modeling"]
+        VS05["VS-05.0
+        Statistical Product
+        Composition"]
+        VS06["VS-06.0
+        Dissemination
+        &amp; Service Delivery"]
+        VS01 --&gt; VS02 --&gt; VS03 --&gt; VS04 --&gt; VS05 --&gt; VS06
+    end
+
+    subgraph supporting["Supporting Value Streams"]
+        VS07["VS-07.0
+        Governance &amp;
+        Compliance"]
+        VS08["VS-08.0
+        Innovation &amp;
+        Methodology"]
+        VS09["VS-09.0
+        Infrastructure &amp;
+        Platform Enablement"]
+        VS10["VS-10.0
+        Customer &amp;
+        Stakeholder Engagement"]
+    end
+
+    supporting -.-&gt;|"enables"| primary
+
+    classDef highlight fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Value Stream Context Map. VS-01.0 (highlighted) is the entry point: all data passes through it before any downstream processing. The four supporting streams below enable the whole chain.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="steady-state-transition" class="level3">
+<h3 class="anchored" data-anchor-id="steady-state-transition">Steady State Transition</h3>
+<p>VS-01.0 transitions data from <strong>Steady State #0 (Source Data)</strong> — data at the external provider — to <strong>Steady State #1 (Raw Data)</strong> — data under NSO custody in its original form, with provenance metadata and basic quality verification completed.</p>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-2">flowchart LR
+    subgraph external["External Domain"]
+        SD["Source Data
+        (State #0)"]
+    end
+
+    subgraph boundary["NSO Boundary"]
+        QG["Ingestion Service
+        (Metadata addition, Quality/Schema check)"]
+    end
+
+    subgraph internal["NSO Domain"]
+        RD["Raw Data
+        (State #1)"]
+    end
+
+    SD --&gt; QG --&gt; RD
+
+    style internal fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
+    style external fill:#7d7d7d,color:#fff,stroke:#1d4ed8,stroke-width:1px
+    style boundary fill:#FFF,stroke-dasharray:5,5
+
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Steady State Transition. Source Data is external data in its original form; the ingestion service at the NSO boundary validates and documents it; Raw Data is the same data under NSO custody, ready for downstream use.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Quality gate criteria (Examples)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Quality gate criteria (Examples)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>File integrity checks completed (checksum, digital signature)</li>
+<li>Virus and security scans performed</li>
+<li>Service-level agreement (SLA) requirements verified with the data provider (completeness, delivery timeliness)</li>
+<li>Sender verification completed</li>
+<li>Data stored in its original format — no content-level transformation has been applied</li>
+<li>Ingestion metadata captured (provenance, source, timestamp, method)</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="the-four-process-governance-pattern" class="level3">
+<h3 class="anchored" data-anchor-id="the-four-process-governance-pattern">The Four-Process Governance Pattern</h3>
+<p>The Statistical Architecture Framework defines that each business domain operates through four distinct process types. This is not a linear sequence but a governance cycle where each process type produces a distinct output that feeds the others.</p>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-3">flowchart LR
+    D["**Design**
+    _provides metadata_
+
+    Data models, validation rules,
+    methodology, quality criteria"]
+    I["**Implement**
+    _provides the execution process_
+
+    Configured pipelines, tested
+    instruments, production-ready systems"]
+    E["**Execute**
+    _provides the statistical data_
+    Collected datasets, ingestion
+    metadata, audit trails"]
+    M["**Manage**
+    _provides quality reports_
+    KPI dashboards, quality scorecards,
+    improvement recommendations"]
+
+    D --&gt;|"design artefacts
+    guide building"| I
+    I --&gt;|"production-ready
+    process"| E
+    E --&gt;|"data &amp; process logs
+    for assessment"| M
+    M --&gt;|"improvement
+    feedback"| D
+
+    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
+    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
+    style E fill:#059669,color:#fff,stroke:#047857
+    style M fill:#d97706,color:#fff,stroke:#b45309
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: The Four-Process Governance Pattern. Each process type produces a distinct artefact class. The cycle closes when Management findings feed back into Design improvements.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="governing-principles" class="level3">
+<h3 class="anchored" data-anchor-id="governing-principles">Governing Principles</h3>
+<p>The following principles directly govern the VS-01.0 business domain:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Principle</th>
+<th>Statement</th>
+<th>Application to VS-01.0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAF-P01</strong></td>
+<td>Actively participate in open source to maintain collective control over statistical processes</td>
+<td>NSOs should contribute to open source communities for collection and ingestion tooling, ensuring collective control over critical capabilities rather than vendor dependence.</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-P07</strong></td>
+<td>Implement loosely coupled processes and systems</td>
+<td>The data acquisition domain must be independent from downstream processing. Raw Data (State #1) serves as a decoupling interface — downstream consumers access it without knowledge of how it was collected.</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-P08</strong></td>
+<td>Data is shared property</td>
+<td>Raw data, once registered, is available to all authorized consumers. Collection efforts should not be duplicated across statistical products when the same source data can serve multiple purposes.</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-P09</strong></td>
+<td>No data without metadata and classification</td>
+<td>At the point of ingestion, every dataset must be enriched with provenance (where it came from and how), source, method, timestamp, quality indicators, and a BIV classification (availability, integrity, confidentiality). This is not a precondition that blocks ingestion, but an obligation the NSO fulfills during acquisition.</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-P10</strong></td>
+<td>Security By Design</td>
+<td>Security is embedded in the acquisition pipeline — encrypted transfer channels, virus scanning, checksum verification, access controls — not added as an afterthought.</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-P11</strong></td>
+<td>Privacy By Design</td>
+<td>Privacy protection (pseudonymization timing, purpose limitation, GDPR lawful basis) is designed into the acquisition process from the start, not retrofitted after data enters the system.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled" title="Cross-cutting principle application">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Cross-cutting principle application
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Several principles cut across all four process types. SAF-P09 (no data without metadata) applies everywhere: Design defines the target metadata, Execute captures it at ingestion, Manage assesses and closes remaining gaps. SAF-P10 (Security By Design) applies to Design (Section 3.5), Implementation (Section 4.1), and Execution (Sections 5.3–5.5). SAF-P11 (Privacy By Design) applies to Design (Section 3.5) and propagates through all phases. SAF-P07 (loosely coupled) governs the State #1 handover interface to VS-02.0.</p>
+</div>
+</div>
+</section>
+<section id="capability-foundations" class="level3">
+<h3 class="anchored" data-anchor-id="capability-foundations">Capability Foundations</h3>
+<p>This table is reference material: it shows which abilities from the SAF capability model the domain relies on, so you can map them to your own organization. It is safe to skip on a first read.</p>
+<p>VS-01.0 draws on the following SAF capabilities:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Capability Group</th>
+<th>Capabilities</th>
+<th>Role in VS-01.0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1.1 Statistical design and build</strong></td>
+<td>1.1.1 Needs inventory, 1.1.2 Design statistics product, 1.1.3 Build statistics product</td>
+<td>Design the data requirements, collection methodology, and build the acquisition pipeline</td>
+</tr>
+<tr class="even">
+<td><strong>1.2 Data collection</strong></td>
+<td>1.2.1 Primary data collection, 1.2.2 Secondary data collection</td>
+<td>Execute the collection — surveys, administrative data intake, API extraction</td>
+</tr>
+<tr class="odd">
+<td><strong>2.1 Data management</strong></td>
+<td>2.1.1 Data lifecycle management, 2.1.2 Metadata management, 2.1.3 Statistical quality management, 2.1.4 Statistical register management</td>
+<td>Manage the data and metadata throughout ingestion, assess quality, maintain registers</td>
+</tr>
+<tr class="even">
+<td><strong>3.1 Business operations</strong></td>
+<td>3.1.2 Purchasing &amp; contract management</td>
+<td>Manage data sharing agreements and provider contracts</td>
+</tr>
+<tr class="odd">
+<td><strong>3.2 Computerization and automation</strong></td>
+<td>3.2.1 Application development, 3.2.2 Functional management</td>
+<td>Build and maintain collection instruments and ingestion systems</td>
+</tr>
+<tr class="even">
+<td><strong>3.3 Security and Privacy</strong></td>
+<td>3.3.1 Privacy management, 3.3.2 Security planning</td>
+<td>Ensure privacy and security by design in all acquisition processes</td>
+</tr>
+<tr class="odd">
+<td><strong>4.1 Governance</strong></td>
+<td>4.1.1 Strategy and governance, 4.1.2 Policy and planning, 4.1.4 Improve management, 4.1.5 Accountability</td>
+<td>Govern the domain, plan improvements, report on compliance</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="metadata-perspective" class="level3">
+<h3 class="anchored" data-anchor-id="metadata-perspective">Metadata Perspective</h3>
+<p>Metadata is produced in every phase, not only in Design. The table below shows what each process type contributes — both data metadata (describing the datasets) and process metadata, also called <em>paradata</em> (describing how the process itself ran: who, when, with which tools).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Process Type</th>
+<th>Data Metadata Produced</th>
+<th>Process Metadata (Paradata) Produced</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Design</strong></td>
+<td>Data models, variable definitions, classification schemes, expected formats, quality thresholds</td>
+<td>Design decisions log, methodology version, review and approval records</td>
+</tr>
+<tr class="even">
+<td><strong>Implement</strong></td>
+<td>Schema configurations, validation rule parameters, catalog templates, instrument-to-metadata mappings</td>
+<td>Build log, test results, configuration change records, deployment approvals</td>
+</tr>
+<tr class="odd">
+<td><strong>Execute</strong></td>
+<td>Per-dataset provenance, source, timestamp, file hash, volume, quality indicator values, agreement reference</td>
+<td>Operator identity, timing, volumes, errors, collection mode, instrument version</td>
+</tr>
+<tr class="even">
+<td><strong>Manage</strong></td>
+<td>Quality scores, lineage assessments, completeness reports, lifecycle status, trend analyses</td>
+<td>KPI dashboards, quality trend analyses, improvement decisions, audit findings</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="business-roles-and-actors" class="level2">
+<h2 class="anchored" data-anchor-id="business-roles-and-actors">Business Roles and Actors</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 14%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Process Orientation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Data Provider</strong></td>
+<td>External</td>
+<td>Supplies data to the NSO under a data sharing agreement (government agency, business, individual)</td>
+</tr>
+<tr class="even">
+<td><strong>Survey Respondent</strong></td>
+<td>External</td>
+<td>Provides data through survey instruments — web (CAWI), face-to-face (CAPI), telephone (CATI), or paper</td>
+</tr>
+<tr class="odd">
+<td><strong>Legal Authority</strong></td>
+<td>External</td>
+<td>Grants legal basis for data collection (e.g., statistics law, GDPR authorization)</td>
+</tr>
+<tr class="even">
+<td><strong>Metadata Architect</strong></td>
+<td>Design</td>
+<td>Designs data models, metadata schemas, and classification mappings</td>
+</tr>
+<tr class="odd">
+<td><strong>Data Engineer</strong></td>
+<td>Implementation</td>
+<td>Builds and configures ingestion pipelines, collection instruments, and data channels</td>
+</tr>
+<tr class="even">
+<td><strong>System Configurator</strong></td>
+<td>Implementation</td>
+<td>Configures platforms, SFTP endpoints, API connectors, and access controls</td>
+</tr>
+<tr class="odd">
+<td><strong>Test Manager</strong></td>
+<td>Implementation</td>
+<td>Plans and executes testing of the acquisition pipeline (technical, field, integration)</td>
+</tr>
+<tr class="even">
+<td><strong>Process Owner</strong></td>
+<td>Management</td>
+<td>Accountable for the end-to-end performance of the data acquisition domain</td>
+</tr>
+<tr class="odd">
+<td><strong>Compliance Officer</strong></td>
+<td>Management</td>
+<td>Ensures legal and regulatory compliance, produces audit reports</td>
+</tr>
+<tr class="even">
+<td><strong>Quality Manager</strong></td>
+<td>Management</td>
+<td>Monitors KPIs, produces quality reports, and drives continuous improvement</td>
+</tr>
+<tr class="odd">
+<td><strong>Methodologist</strong></td>
+<td>Design</td>
+<td>Designs collection methodology, sampling strategies, and questionnaire content</td>
+</tr>
+<tr class="even">
+<td><strong>Statistical Designer</strong></td>
+<td>Design</td>
+<td>Translates statistical needs into data requirements and process specifications</td>
+</tr>
+<tr class="odd">
+<td><strong>Data Collection Manager</strong></td>
+<td>Execution</td>
+<td>Oversees operational data collection campaigns and coordinates collection teams</td>
+</tr>
+<tr class="even">
+<td><strong>Data Quality Analyst</strong></td>
+<td>Execution</td>
+<td>Performs validation checks, assesses data quality at intake, and logs exceptions</td>
+</tr>
+<tr class="odd">
+<td><strong>Data Steward</strong></td>
+<td>Execution</td>
+<td>Registers datasets in the catalog, manages metadata entries, and applies access controls</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-processes-provides-metadata" class="level2">
+<h2 class="anchored" data-anchor-id="design-processes-provides-metadata">Design Processes — “provides metadata”</h2>
+<p><em>Framework alignment: GSBPM Phases 1–2 — see <a href="#framework-mappings">Framework Mappings</a>.</em></p>
+<p>The design phase produces the <strong>metadata artefacts</strong> that govern all subsequent phases. Without a well-designed acquisition pipeline, execution becomes ad-hoc, implementation becomes inconsistent, and management has nothing to measure against.</p>
+<section id="design-data-requirements-and-source-strategy" class="level3">
+<h3 class="anchored" data-anchor-id="design-data-requirements-and-source-strategy">Design Data Requirements and Source Strategy</h3>
+<p>The starting point of any data acquisition effort is understanding what data is needed and where it can be obtained. This sub-process translates statistical objectives — target populations, required variables, reference periods, and quality expectations — into a concrete source strategy. The team inventories and evaluates potential data sources across the full spectrum: surveys, administrative registers, APIs, web sources, sensors, and commercial data. Each source is assessed for relevance, quality, accessibility, cost, timeliness, and legal availability. The outcome is a strategic decision on the collection approach: primary collection (run a survey), secondary collection (reuse administrative data), or a multi-source combination. The trade-offs behind that decision are documented (GSBPM phases 1.1–1.3 and 1.5–1.6).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define statistical needs: target population, variables, reference period, quality expectations</td>
+<td>Data Requirements Specification</td>
+<td>GSBPM 1.1–1.3</td>
+</tr>
+<tr class="even">
+<td>Inventory and evaluate potential data sources across all types</td>
+<td>Source Assessment Report</td>
+<td>GSBPM 1.5</td>
+</tr>
+<tr class="odd">
+<td>Assess each source for relevance, quality, accessibility, cost, timeliness, legal availability</td>
+<td>Source Assessment Report</td>
+<td>GSBPM 1.5</td>
+</tr>
+<tr class="even">
+<td>Decide collection strategy: primary vs.&nbsp;secondary vs.&nbsp;multi-source</td>
+<td>Collection Strategy Decision Record</td>
+<td>GSBPM 1.6</td>
+</tr>
+<tr class="odd">
+<td>Document trade-offs between source options</td>
+<td>Collection Strategy Decision Record</td>
+<td>GSBPM 1.6</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Population Census:**">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><strong>NSO Example — Population Census:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A national statistical organization designing its next census decides on a register-first approach: use the population register as the primary source, supplement with a sample survey for variables not available in registers (housing conditions, commuting patterns), and validate against municipal records. The design phase produces the variable mapping from registers to census variables, the sample design for the supplementary survey, and the quality criteria for register data acceptance.</p>
+</div>
+</div>
+</section>
+<section id="design-collection-methodology-and-instruments" class="level3">
+<h3 class="anchored" data-anchor-id="design-collection-methodology-and-instruments">Design Collection Methodology and Instruments</h3>
+<p>Once the source strategy is set, the methodology team designs how data will actually be collected. This involves selecting collection modes — web, face-to-face, or telephone interviewing (CAWI/CAPI/CATI), secure file transfer (SFTP), automated machine-to-machine interfaces (API), data space connectors, or web scraping — and defining how each mode operates within the overall design. For survey-based collection, this includes questionnaire design: variable definitions, question wording, skip logic, and code lists. The sampling frame and sample selection methodology are designed to ensure statistical representativeness. Where multiple modes are used, the team specifies which respondents receive which mode and the fallback sequence for non-response. A respondent communication strategy — invitation letters, reminders, and help desk scripts — rounds out the design, aligned with GSBPM phases 2.2–2.4.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design collection modes (CAWI, CAPI, CATI, SFTP, API, web scraping, etc.)</td>
+<td>Collection Methodology Document</td>
+<td>GSBPM 2.3</td>
+</tr>
+<tr class="even">
+<td>Design questionnaire content: variable definitions, question wording, skip logic, code lists</td>
+<td>Questionnaire Design (per mode)</td>
+<td>GSBPM 2.2</td>
+</tr>
+<tr class="odd">
+<td>Design sampling frame and sample selection methodology</td>
+<td>Sample Design and Selection Criteria</td>
+<td>GSBPM 2.4</td>
+</tr>
+<tr class="even">
+<td>Define multi-mode strategy and fallback sequences</td>
+<td>Collection Methodology Document</td>
+<td>GSBPM 2.3</td>
+</tr>
+<tr class="odd">
+<td>Design respondent communication strategy</td>
+<td>Respondent Communication Plan</td>
+<td>GSBPM 2.3</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Labour Force Survey:**">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><strong>NSO Example — Labour Force Survey:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The LFS design team specifies a mixed-mode approach: first CAWI invitation by email, CATI follow-up after 2 weeks for non-respondents, CAPI for hard-to-reach populations. A rotation panel design (2-2-2) ensures longitudinal tracking. The questionnaire is designed with adaptive questioning to minimize response burden.</p>
+</div>
+</div>
+</section>
+<section id="design-data-model-and-metadata-schema" class="level3">
+<h3 class="anchored" data-anchor-id="design-data-model-and-metadata-schema">Design Data Model and Metadata Schema</h3>
+<p>This sub-process defines the target data structure for Raw Data (State #1) and the metadata that must accompany every dataset at the point of ingestion. The data model specifies fields, types, formats, and constraints for the storage area where incoming data first lands (the “landing zone”). Equally important is the ingestion metadata model. It prescribes what must be captured at each point of receipt: provenance information (source organization, contact, agreement reference), method details (collection mode, instrument version, sampling parameters), timing information (collection period, delivery and processing timestamps), and quality indicators (completeness rate, delivery timeliness, format conformance). Classification and coding schemes are defined to ensure consistency with national and international standards. Finally, the metadata catalog structure is designed so that datasets are discoverable, linked, and traceable — making active metadata a foundation for downstream automation, as emphasized by the CSDA (Common Statistical Data Architecture) Metadata Management capability.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define target data structure for Raw Data (State #1) — fields, types, formats, constraints</td>
+<td>Raw Data Schema Definition</td>
+<td>GSBPM 2.1</td>
+</tr>
+<tr class="even">
+<td>Define ingestion metadata model: provenance, method, timing, quality indicators</td>
+<td>Ingestion Metadata Model</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="odd">
+<td>Define classification and coding schemes</td>
+<td>Classification Mapping Rules</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Design metadata catalog structure for dataset registration and discovery</td>
+<td>Catalog Registration Template</td>
+<td>CSDA Metadata Mgmt</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-validation-rules-and-quality-criteria" class="level3">
+<h3 class="anchored" data-anchor-id="design-validation-rules-and-quality-criteria">Design Validation Rules and Quality Criteria</h3>
+<p>Before any data enters the system, the acceptance criteria and exception handling rules must be clearly defined. This sub-process establishes completeness thresholds (minimum record counts, required field coverage percentages), SLA parameters (delivery windows, response times, format specifications), and structural validation rules (field types, value ranges, referential integrity, format conformance). Security and integrity check specifications — virus scan requirements, checksum algorithms, and encryption standards — are defined in line with SAF-P10. Quality dimensions to track (completeness, timeliness, conformance, integrity) are agreed upon, and exception handling rules are designed to distinguish between outright rejection, conditional acceptance with quality flags, and routing to manual review. The GAMSO Quality Management capability provides the overarching control framework.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define completeness thresholds and SLA parameters</td>
+<td>Quality Criteria Document, SLA Template</td>
+<td>GSBPM 2.5</td>
+</tr>
+<tr class="even">
+<td>Define structural validation rules: field types, value ranges, referential integrity</td>
+<td>Validation Rule Set</td>
+<td>GSBPM 2.5</td>
+</tr>
+<tr class="odd">
+<td>Define security and integrity check specifications</td>
+<td>Validation Rule Set</td>
+<td>SAF-P10</td>
+</tr>
+<tr class="even">
+<td>Define quality dimensions to track</td>
+<td>Quality Criteria Document</td>
+<td>GAMSO QM</td>
+</tr>
+<tr class="odd">
+<td>Design exception handling rules: rejection vs.&nbsp;conditional acceptance vs.&nbsp;manual review</td>
+<td>Exception Handling Policy</td>
+<td>GSBPM 2.5</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-access-control-and-privacy-framework" class="level3">
+<h3 class="anchored" data-anchor-id="design-access-control-and-privacy-framework">Design Access Control and Privacy Framework</h3>
+<p>The final design sub-process ensures that security and privacy are embedded from the outset, not bolted on after the fact. Each data source receives a BIV classification (availability, integrity, confidentiality) per SAF-P09. Role-based access controls for the raw data repository are designed in accordance with SAF-P10, specifying who can read, write, and administer. Privacy protection measures follow SAF-P11: pseudonymization timing (when direct identifiers are removed or replaced), purpose limitation (what uses are authorized under each agreement), the GDPR lawful basis (which Article 6 ground applies to each source), and data minimization (whether only necessary data is collected). Audit logging requirements — what access events must be recorded — complete the security design.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define BIV data classification per source</td>
+<td>Data Classification Policy</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Design role-based access control for the raw data repository</td>
+<td>Access Control Design</td>
+<td>SAF-P10</td>
+</tr>
+<tr class="odd">
+<td>Design privacy protection: pseudonymization timing, purpose limitation, GDPR basis, data minimization</td>
+<td>Privacy Impact Assessment Template</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="even">
+<td>Design audit logging requirements</td>
+<td>Audit Logging Specification</td>
+<td>SAF-P10</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-4">flowchart TB
+    subgraph inputs["Inputs"]
+        SN["Statistical Needs"]
+        FW["Framework Standards&lt;br/&gt;&lt;small&gt;GSBPM · GAMSO · CSDA&lt;/small&gt;"]
+        SRC["Data Sources"]
+        LAW["Legal &amp; Privacy"]
+    end
+
+    subgraph design["Design Sub-Processes"]
+        D1["Data requirements&lt;br/&gt;&amp; source strategy (§3.1)"]
+        D2["Collection methodology&lt;br/&gt;&amp; instruments (§3.2)"]
+        D3["Data model &amp;&lt;br/&gt;metadata schema (§3.3)"]
+        D4["Validation rules &amp;&lt;br/&gt;quality criteria (§3.4)"]
+        D5["Access control &amp;&lt;br/&gt;privacy framework (§3.5)"]
+    end
+
+    subgraph outputs["Design documents produced"]
+        O1["Data requirements spec"]
+        O2["Collection &amp; questionnaire"]
+        O3["Raw data schema"]
+        O4["Validation rule set"]
+        O5["Access control &amp;&lt;br/&gt;privacy assessment"]
+    end
+
+    SN --&gt; D1
+    SRC --&gt; D1
+    FW -.-&gt;|inform| design
+    LAW --&gt; D5
+
+    D1 --&gt; D2 --&gt; D3 --&gt; D4 --&gt; D5
+
+    D1 --&gt; O1
+    D2 --&gt; O2
+    D3 --&gt; O3
+    D4 --&gt; O4
+    D5 --&gt; O5
+
+    outputs --&gt;|govern| NEXT["Implementation (§4) · Execution (§5)&lt;br/&gt;measured by Management (§6)"]
+
+    style design fill:#f5f3ff,stroke:#7c3aed
+    style outputs fill:#ede9fe,stroke:#7c3aed
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Design Process Decomposition. Statistical needs and data sources feed the five design sub-processes (run in order, left column to right); each produces a design document. Together these documents govern how the pipeline is built, run, and measured. The dashed arrow means the framework standards inform all five.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="implementation-processes-provides-the-execution-process" class="level2">
+<h2 class="anchored" data-anchor-id="implementation-processes-provides-the-execution-process">Implementation Processes — “provides the execution process”</h2>
+<p><em>Framework alignment: GSBPM Phase 3 (Build) — see <a href="#framework-mappings">Framework Mappings</a>.</em></p>
+<p>The implementation phase takes the metadata artefacts from Design and <strong>builds, configures, and tests</strong> the production-ready acquisition pipeline. Nothing runs operationally until this phase is complete.</p>
+<section id="build-collection-instruments-and-channels" class="level3">
+<h3 class="anchored" data-anchor-id="build-collection-instruments-and-channels">Build Collection Instruments and Channels</h3>
+<p>This sub-process transforms the collection methodology design into operational tools and channels. For survey-based collection, this means building or configuring the instruments themselves: a CAWI web portal with the designed question logic, multi-language support, and responsive layout; a CAPI mobile application with offline capability and the designed questionnaire; CATI call center scripts with designed routing logic; and paper forms laid out for automated scanning (OCR) or manual data entry, all following GSBPM 3.1. For secondary and emerging sources, data receipt channels are configured: SFTP endpoints with the designed encryption and authentication, API connections with rate limiting and error handling, and data space connectors per designed specifications. Secure data transfer channels with end-to-end encryption are set up in line with SAF-P10, and a respondent management system handles invitations, reminders, and tracking.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build/configure survey instruments per mode (CAWI, CAPI, CATI, paper)</td>
+<td>Production-ready instruments</td>
+<td>GSBPM 3.1</td>
+</tr>
+<tr class="even">
+<td>Configure data receipt channels (SFTP, API, data space connectors)</td>
+<td>Configured channel endpoints</td>
+<td>GSBPM 3.1</td>
+</tr>
+<tr class="odd">
+<td>Set up secure transfer channels with end-to-end encryption</td>
+<td>Secure channel configuration</td>
+<td>SAF-P10</td>
+</tr>
+<tr class="even">
+<td>Configure respondent management system (invitations, reminders, tracking)</td>
+<td>Respondent management system</td>
+<td>GSBPM 3.1</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Household Budget Survey:**">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><strong>NSO Example — Household Budget Survey:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The implementation team builds a CAWI portal with diary entry functionality (daily spending log), configures it for 12 languages, implements the designed sampling filter, and sets up an SFTP fallback channel for large retailers providing scanner data as supplementary price information.</p>
+</div>
+</div>
+</section>
+<section id="configure-data-ingestion-workflows" class="level3">
+<h3 class="anchored" data-anchor-id="configure-data-ingestion-workflows">Configure Data Ingestion Workflows</h3>
+<p>The designed validation rules and metadata capture requirements are translated into automated workflows in this sub-process. Structural validation — schema conformance, field types, and required fields — is implemented first. Alongside it come integrity checks (checksum verification, virus scanning, digital signature validation), completeness checks (record counts, field coverage thresholds), and SLA checks (delivery timeliness, format conformance), following GSBPM 3.2. Metadata capture at each ingestion point is automated to extract provenance, format, timestamps, and file hashes without manual intervention. The raw-data landing zone (the repository where incoming data first lands) is set up with the designed access controls and storage policies. Event notifications are configured so that downstream consumers (VS-02.0) are alerted when raw data is registered. Exception handling workflows route rejected data to the appropriate queue — provider notification, manual review, or conditional acceptance — per GSBPM 3.4.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Implement validation rules as automated checks (structural, integrity, completeness, SLA)</td>
+<td>Automated validation pipeline</td>
+<td>GSBPM 3.2</td>
+</tr>
+<tr class="even">
+<td>Configure metadata capture at each ingestion point</td>
+<td>Automated metadata extraction</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="odd">
+<td>Set up raw data landing zone with access controls and storage policies</td>
+<td>Configured repository</td>
+<td>GSBPM 3.2</td>
+</tr>
+<tr class="even">
+<td>Configure event notifications for downstream consumers</td>
+<td>“Raw Data Registered” event publication</td>
+<td>GSBPM 3.2</td>
+</tr>
+<tr class="odd">
+<td>Configure exception handling workflows</td>
+<td>Rejection routing and manual review queues</td>
+<td>GSBPM 3.4</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="build-metadata-registration-and-cataloging" class="level3">
+<h3 class="anchored" data-anchor-id="build-metadata-registration-and-cataloging">Build Metadata Registration and Cataloging</h3>
+<p>This sub-process implements the metadata catalog and the automated registration processes that ensure every dataset is discoverable and traceable. Catalog entries are built based on the designed metadata model (Section 3.3), and automatic metadata propagation is configured from collection instruments (questionnaire metadata: variables, code lists, question wording), transfer channels (source, method, timing), and the validation pipeline (validation results, completeness scores) into the catalog. Metadata quality validation ensures that every registered dataset has all required metadata fields. Search and discovery capabilities are implemented so that downstream consumers can find and access raw data and its associated metadata. As the CSDA emphasizes, active metadata — metadata that can auto-generate collection instruments, validation rules, and processing specifications — is the ultimate goal.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Implement metadata catalog entries based on designed model</td>
+<td>Populated metadata catalog</td>
+<td>GSBPM 3.3</td>
+</tr>
+<tr class="even">
+<td>Configure automatic metadata propagation from instruments, channels, and validation</td>
+<td>Automated metadata pipelines</td>
+<td>CSDA Metadata Mgmt</td>
+</tr>
+<tr class="odd">
+<td>Set up metadata quality validation</td>
+<td>Metadata completeness checks</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Implement metadata search and discovery for downstream consumers</td>
+<td>Discovery interface</td>
+<td>CSDA Metadata Mgmt</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="test-and-validate-the-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="test-and-validate-the-pipeline">Test and Validate the Pipeline</h3>
+<p>Before the pipeline goes into production, it must be rigorously verified. Technical testing covers all individual components — instruments, channels, validators, and catalog (GSBPM 3.5). Integration testing validates the end-to-end flow from data receipt through validation to catalog registration. A field test or pilot with real or synthetic data (GSBPM 3.6) runs a small-scale test with actual data providers to verify that metadata is correctly captured and propagated, quality criteria are enforced at each checkpoint, and exception handling works as designed. Performance testing confirms the pipeline can handle expected volumes within SLA windows. Security testing — penetration testing of transfer channels and access control verification — ensures the pipeline meets SAF-P10 requirements. The phase concludes with finalization of the production system and documentation of operational procedures (GSBPM 3.7).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Technical testing of all individual components</td>
+<td>Unit test reports</td>
+<td>GSBPM 3.5</td>
+</tr>
+<tr class="even">
+<td>Integration testing: end-to-end flow from receipt to registration</td>
+<td>Integration test report</td>
+<td>GSBPM 3.5</td>
+</tr>
+<tr class="odd">
+<td>Field test / pilot with real or synthetic data</td>
+<td>Field test report, validated metadata propagation</td>
+<td>GSBPM 3.6</td>
+</tr>
+<tr class="even">
+<td>Performance testing against expected volumes</td>
+<td>Performance test report</td>
+<td>GSBPM 3.6</td>
+</tr>
+<tr class="odd">
+<td>Security testing: penetration testing, access control verification</td>
+<td>Security test report</td>
+<td>SAF-P10</td>
+</tr>
+<tr class="even">
+<td>Finalize production system and document operational procedures</td>
+<td>Operational Procedures Manual, Production-Ready Pipeline</td>
+<td>GSBPM 3.7</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-5" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-5">flowchart LR
+    subgraph design_artefacts["Design Artefacts (from Section 3)"]
+        DA1["Data Requirements\n&amp; Source Strategy"]
+        DA2["Collection Methodology\n&amp; Instruments"]
+        DA3["Data Model &amp;\nMetadata Schema"]
+        DA4["Validation Rules &amp;\nQuality Criteria"]
+        DA5["Access Control &amp;\nPrivacy Framework"]
+    end
+
+    subgraph build["Build &amp; Configure"]
+        B1["4.1 Build Collection\nInstruments &amp;\nChannels"]
+        B2["4.2 Configure\nIngestion\nWorkflows"]
+        B3["4.3 Build Metadata\nRegistration &amp;\nCataloging"]
+    end
+
+    subgraph test["Test &amp; Validate"]
+        T1["4.4 Technical\nTesting"]
+        T2["4.4 Field\nTest / Pilot"]
+        T3["4.4 Security\n&amp; Performance"]
+    end
+
+    subgraph output["Production-Ready"]
+        PR["Operational\nAcquisition\nPipeline"]
+        OP["Operational\nProcedures"]
+    end
+
+    DA1 &amp; DA2 --&gt; B1
+    DA3 &amp; DA4 &amp; DA5 --&gt; B2
+    DA3 --&gt; B3
+
+    B1 &amp; B2 &amp; B3 --&gt; T1 --&gt; T2 --&gt; T3
+    T3 --&gt; PR &amp; OP
+
+    PR --&gt;|"ready for"| EXEC["Execution\n(Section 5)"]
+
+    style build fill:#eff6ff,stroke:#2563eb
+    style test fill:#dbeafe,stroke:#2563eb
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Implementation Pipeline from design artefacts through build/configure/test to production-ready system.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="execution-processes-provides-the-statistical-data" class="level2">
+<h2 class="anchored" data-anchor-id="execution-processes-provides-the-statistical-data">Execution Processes — “provides the statistical data”</h2>
+<p><em>Framework alignment: GSBPM Phase 4 (Collect) — see <a href="#framework-mappings">Framework Mappings</a>.</em></p>
+<p>The execution phase runs the <strong>designed and implemented pipeline</strong> operationally for each production cycle. This corresponds to the five VS-01 value stream stages. In a mature steady state, much of the work has been pre-designed (Section 3) and pre-built (Section 4) — execution focuses on running the cycle, capturing data and metadata, and ensuring quality gates are passed.</p>
+<section id="identify-data-needs-and-sources" class="level3">
+<h3 class="anchored" data-anchor-id="identify-data-needs-and-sources">Identify Data Needs and Sources</h3>
+<p><strong>Value created:</strong> <em>Clear understanding of what data is needed and where it can be obtained.</em></p>
+<p>In a mature steady state, the design phase (Section 3) has already defined the data requirements and source strategy. Per-cycle execution therefore focuses on confirmation rather than re-creation. The team confirms or updates data requirements for the current production cycle, applying GSBPM 1.1 in its recurrent form. They verify that identified data sources remain available and accessible, check that source metadata is current — contact persons, data formats, delivery schedules — and identify any new sources that may have become available since the last cycle. Significant changes to requirements or source availability trigger a return to the design process rather than ad-hoc adaptation during execution.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Confirm or update data requirements for this production cycle</td>
+<td>Confirmed requirements for cycle</td>
+<td>GSBPM 1.1</td>
+</tr>
+<tr class="even">
+<td>Verify data source availability and accessibility</td>
+<td>Source availability confirmation</td>
+<td>GSBPM 1.5</td>
+</tr>
+<tr class="odd">
+<td>Check that source metadata is current (contacts, formats, schedules)</td>
+<td>Updated source metadata</td>
+<td>GSBPM 1.5</td>
+</tr>
+<tr class="even">
+<td>Identify new sources available since last cycle</td>
+<td>New source assessment (if any)</td>
+<td>GSBPM 1.5</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Annual Census:**">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><strong>NSO Example — Annual Census:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At the start of the reference year, the census team confirms that all 393 municipal registers are available for the current reference year, verifies contact persons and API endpoints, and confirms that the supplementary survey sample frame has been updated with the latest population register extract.</p>
+</div>
+</div>
+</section>
+<section id="establish-data-agreement-and-access-right" class="level3">
+<h3 class="anchored" data-anchor-id="establish-data-agreement-and-access-right">Establish Data Agreement and Access Right</h3>
+<p><strong>Value created:</strong> <em>Legal, ethical, and transparent access to data under controlled conditions.</em></p>
+<p>Before data flows, legal and operational access must be confirmed for the current production cycle. The team activates or renews data sharing agreements, verifies GDPR compliance for the current data scope — checking that processing records (Article 30) are up to date — and confirms that access credentials and security certificates are valid and not expired. For sources new to this cycle, the full agreement process designed in Section 3.5 is executed. The active agreement status is recorded and linked to the upcoming data deliveries, creating a traceable chain from legal authorization to received data.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Activate or renew data sharing agreements for the current cycle</td>
+<td>Active Agreement Record (per source)</td>
+<td>GSBPM 4.1</td>
+</tr>
+<tr class="even">
+<td>Verify GDPR compliance: processing records (Art. 30) up to date</td>
+<td>Compliance Confirmation Log</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="odd">
+<td>Confirm access credentials and security certificates are valid</td>
+<td>Current Access Credentials (verified)</td>
+<td>SAF-P10</td>
+</tr>
+<tr class="even">
+<td>For new sources: execute full agreement process (per Section 3.5)</td>
+<td>New source agreement</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="odd">
+<td>Record active agreement status linked to upcoming deliveries</td>
+<td>Agreement-delivery linkage</td>
+<td>GSBPM 4.1</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Quarterly Tax Data:**">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><strong>NSO Example — Quarterly Tax Data:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before the Q3 delivery window opens, the data management team verifies the SLA with the tax authority (delivery within 45 days of quarter end, minimum 98% of expected records), confirms SFTP credentials are valid, and records the active agreement reference number for linking to the incoming dataset.</p>
+</div>
+</div>
+</section>
+<section id="collect-receive-or-extract-data" class="level3">
+<h3 class="anchored" data-anchor-id="collect-receive-or-extract-data">Collect, Receive, or Extract Data</h3>
+<p><strong>Value created:</strong> <em>Secure and verifiable transfer of authentic data into the organization.</em></p>
+<p>This sub-process is the operational heart of the value stream, where data physically enters NSO custody. Primary data collection runs surveys through the designed and built instruments: CAWI portals open, invitation links are sent, and response rates are monitored; CAPI field interviewers are deployed with managed assignments; CATI call schedules are executed with callback management. Secondary data collection receives administrative data via agreed channels — SFTP accepts scheduled file deliveries, APIs pull data on agreed schedules, and data space connectors facilitate federated exchange. Emerging sources — web scraping, sensor data, commercial feeds — are extracted according to designed specifications, all aligned with GSBPM 4.1–4.3.</p>
+<p>Equally critical is the metadata captured at the point of receipt. For every dataset received, the ingestion system records the source identifier and organization, timestamp of receipt, transfer method and channel, file hash (SHA-256) and format, volume (record count and file size), agreement reference, and — for surveys — the collection mode and instrument version. This metadata capture obligation, required by SAF-P09, ensures that no data enters the system without the context needed to understand its provenance and quality.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 46%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ingestion Metadata Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Source identifier and organization</td>
+<td>Who provided the data</td>
+</tr>
+<tr class="even">
+<td>Timestamp of receipt</td>
+<td>When it was received</td>
+</tr>
+<tr class="odd">
+<td>Transfer method and channel</td>
+<td>How it was delivered (SFTP, API, CAWI, etc.)</td>
+</tr>
+<tr class="even">
+<td>File hash (SHA-256) and format</td>
+<td>Integrity verification and format record</td>
+</tr>
+<tr class="odd">
+<td>Volume (record count, file size)</td>
+<td>Scale of the delivery</td>
+</tr>
+<tr class="even">
+<td>Agreement reference</td>
+<td>Legal basis for the data</td>
+</tr>
+<tr class="odd">
+<td>Collection mode and instrument version</td>
+<td>Survey-specific provenance</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-6" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-6">flowchart LR
+    subgraph channels["Collection Channels"]
+        direction TB
+        S["Survey Collection\n(web / face-to-face / telephone)"]
+        A["Administrative Data\n(file transfer / API / data space)"]
+        W["Emerging Sources\n(web / sensors / commercial)"]
+    end
+
+    subgraph capture["Metadata captured on receipt"]
+        M1["Source ID &amp;\norganization"]
+        M2["Timestamp &amp;\ntransfer method"]
+        M3["File hash &amp;\nformat"]
+        M4["Volume &amp;\nagreement ref"]
+    end
+
+    subgraph ingestion["Ingestion Point"]
+        IP["Raw data storage\n(landing zone)"]
+    end
+
+    S --&gt;|"+ survey paradata"| IP
+    A --&gt;|"+ transfer metadata"| IP
+    W --&gt;|"+ extraction metadata"| IP
+
+    IP --- capture
+
+    IP --&gt;|"to validation\n(§5.4)"| V["Validate &amp; log\nintake (VS-01.4)"]
+
+    style channels fill:#ecfdf5,stroke:#059669
+    style capture fill:#f0fdf4,stroke:#059669
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Collection Channel Architecture. Whatever the channel — surveys, administrative deliveries, or emerging sources — all data arrives at a single landing point, and each channel records its own metadata on the way in.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Multi-Mode Census:**">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><strong>NSO Example — Multi-Mode Census:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The 2026 census runs with CAWI (70% of households), CAPI (25% for non-respondents and hard-to-reach areas), and paper (5% for elderly and institutionalized populations). Each mode generates channel-specific metadata: CAWI records browser type and completion time; CAPI records interviewer ID, GPS coordinates, and interview duration; paper records scanning batch ID and OCR confidence scores.</p>
+</div>
+</div>
+</section>
+<section id="validate-and-log-data-intake" class="level3">
+<h3 class="anchored" data-anchor-id="validate-and-log-data-intake">Validate and Log Data Intake</h3>
+<p><strong>Value created:</strong> <em>Confidence that received data is complete, structured, and fully traceable.</em></p>
+<p>Once data has been received, it must pass through the quality gates before it can be accepted into the system. The validation process checks completeness (expected record counts present, required fields populated, delivery matching SLA), structure and format against the designed schema (Section 3.3), and security and integrity (virus scan, checksum verification via SHA-256, digital signature validation per SAF-P10). A quality assessment is executed against the designed criteria from Section 3.4, producing a completeness rate, timeliness score, and conformance rating. Every validation result, exception, and decision is logged in an audit trail that captures both data metadata (what was validated, what passed, what failed) and process metadata (who validated, when, which rules were applied, which tool version). The outcome is one of two business events: <em>Data Intake Validated</em> (proceed to storage and registration) or <em>Data Intake Rejected</em> (trigger exception handling per the designed rules — notify provider, queue for manual review, or accept conditionally with quality flag).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Verify completeness: record counts, required fields, SLA conformance</td>
+<td>Completeness assessment</td>
+<td>GSBPM 4.4</td>
+</tr>
+<tr class="even">
+<td>Validate structure and format against designed schema</td>
+<td>Structural validation result</td>
+<td>GSBPM 4.4</td>
+</tr>
+<tr class="odd">
+<td>Perform security and integrity checks: virus scan, checksum, signature</td>
+<td>Security verification result</td>
+<td>SAF-P10</td>
+</tr>
+<tr class="even">
+<td>Execute quality assessment against designed criteria</td>
+<td>Quality assessment scores</td>
+<td>GSBPM 4.4</td>
+</tr>
+<tr class="odd">
+<td>Create audit trail: log all validation results, exceptions, and decisions</td>
+<td>Audit trail record</td>
+<td>GAMSO QM</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Boundary:</strong> NO content-level editing occurs at this stage. Only technical and structural validation is performed. Content editing (correction, imputation, harmonization) is the responsibility of VS-03.0 Data Editing and Enrichment.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Tax Authority Quarterly File:**">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><strong>NSO Example — Tax Authority Quarterly File:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Q3 delivery received: 2.3 million records, SHA-256 checksum pass, 47 fields validated against schema (all conform), 0.3% null rate on mandatory fields (within 1% tolerance), delivery received 2 days ahead of SLA deadline. Result: Data Intake Validated. All validation results logged with timestamp, rule version, and operator ID.</p>
+</div>
+</div>
+</section>
+<section id="store-and-register-raw-data-artefacts" class="level3">
+<h3 class="anchored" data-anchor-id="store-and-register-raw-data-artefacts">Store and Register Raw Data Artefacts</h3>
+<p><strong>Value created:</strong> <em>Secure, organized, and traceable storage of raw data.</em></p>
+<p>The final execution sub-process persists validated data and makes it discoverable to the rest of the statistical system. Each dataset version receives a unique persistent identifier (URI/UUID) and is stored in the raw data repository in its original format, in line with SAF-P07’s principle of loose coupling from downstream processing. Metadata is registered in the data catalog per SAF-P09: each dataset is linked to its provenance record (source, method, timing), quality assessment results (from Section 5.4), governing data sharing agreement, and classification and coding scheme references. Data lineage is recorded — Source Data (State #0) to Raw Data (State #1) — and access permissions are applied per the designed framework (Section 3.5, SAF-P10, SAF-P11). The sub-process concludes by publishing a “Raw Data Registered” event, notifying downstream VS-02.0 that new raw data is available for standardization.</p>
+<p><strong>Output:</strong> <strong>Raw Data (Steady State #1)</strong> — the official handover artefact to the rest of the statistical value chain.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Assign unique persistent identifier (URI/UUID) to the dataset version</td>
+<td>Dataset ID</td>
+<td>GSBPM 4.4</td>
+</tr>
+<tr class="even">
+<td>Persist data in raw data repository in original format</td>
+<td>Stored raw data artefact</td>
+<td>SAF-P07</td>
+</tr>
+<tr class="odd">
+<td>Register metadata in the data catalog (provenance, quality, agreement, classification, lineage)</td>
+<td>Catalog registration</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Apply access permissions per designed framework</td>
+<td>Access-controlled dataset</td>
+<td>SAF-P10, SAF-P11</td>
+</tr>
+<tr class="odd">
+<td>Publish “Raw Data Registered” event to notify VS-02.0</td>
+<td>Event notification</td>
+<td>SAF-P07</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-7" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-7">erDiagram
+    RAW_DATA_ARTEFACT {
+        string dataset_id PK "Unique persistent URI/UUID"
+        string dataset_version "Version identifier"
+        string original_format "Format as received"
+        date reference_period "Statistical reference period"
+        datetime registration_timestamp "When registered in catalog"
+    }
+    PROVENANCE_RECORD {
+        string source_organization "Data provider"
+        string collection_mode "CAWI/CAPI/SFTP/API/etc"
+        string instrument_version "Collection instrument version"
+        datetime receipt_timestamp "When data was received"
+        string transfer_method "Channel used"
+        string file_hash "SHA-256 checksum"
+    }
+    QUALITY_ASSESSMENT {
+        float completeness_rate "Percentage of expected records"
+        float field_coverage "Percentage of non-null required fields"
+        string timeliness_rating "Ahead/On-time/Late vs SLA"
+        string conformance_rating "Pass/Conditional/Fail"
+        int validation_errors "Count of validation issues"
+    }
+    AGREEMENT_REFERENCE {
+        string agreement_id "Data sharing agreement ID"
+        string legal_basis "GDPR Article 6 ground"
+        date valid_from "Agreement start date"
+        date valid_until "Agreement end date"
+        string purpose_limitation "Authorized uses"
+    }
+    ACCESS_CONTROL {
+        string biv_classification "Availability/Integrity/Confidentiality"
+        string access_level "Public/Internal/Restricted/Secret"
+        string authorized_roles "Roles with access"
+    }
+
+    RAW_DATA_ARTEFACT ||--|| PROVENANCE_RECORD : "has provenance"
+    RAW_DATA_ARTEFACT ||--|| QUALITY_ASSESSMENT : "has quality record"
+    RAW_DATA_ARTEFACT ||--|| AGREEMENT_REFERENCE : "governed by"
+    RAW_DATA_ARTEFACT ||--|| ACCESS_CONTROL : "protected by"
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Raw Data Artefact Structure. Reading guide: each box is a type of record with its fields; a connecting line means the records are linked one-to-one. Every stored raw dataset carries four linked records: its provenance, its quality assessment, the agreement it was received under, and its access classification.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="management-processes-provides-quality-reports" class="level2">
+<h2 class="anchored" data-anchor-id="management-processes-provides-quality-reports">Management Processes — “provides quality reports”</h2>
+<p><em>Framework alignment: GSBPM overarching Quality/Metadata Management — see <a href="#framework-mappings">Framework Mappings</a>.</em></p>
+<p>The management phase runs <strong>alongside and after</strong> execution. It monitors the acquisition domain’s performance, assesses the quality of ingested data, ensures compliance, and feeds improvement recommendations back into the design phase — closing the governance cycle.</p>
+<section id="monitor-process-performance" class="level3">
+<h3 class="anchored" data-anchor-id="monitor-process-performance">Monitor Process Performance</h3>
+<p>Operational performance of the acquisition domain must be tracked systematically across production cycles. The process owner and quality manager collect and aggregate key performance indicators, monitor SLA compliance with all data providers, and track paradata — who performed each step, when, how long it took, what tools were used, what errors occurred. This information feeds process performance dashboards that give the process owner a real-time view of domain health, aligned with the GAMSO Quality Management capability for monitoring performance across the production lifecycle.</p>
+<p><strong>Key Performance Indicators (KPIs):</strong> these are collected per production cycle and feed the dashboard the process owner reviews.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>KPI</th>
+<th>Description</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Response rate</td>
+<td>Percentage of sample units that provided data (surveys)</td>
+<td>Per survey, per mode, per cycle</td>
+</tr>
+<tr class="even">
+<td>Delivery timeliness</td>
+<td>Whether data providers delivered within SLA windows</td>
+<td>Per source, per cycle</td>
+</tr>
+<tr class="odd">
+<td>Rejection rate</td>
+<td>Percentage of deliveries that failed validation</td>
+<td>Per source, per cycle</td>
+</tr>
+<tr class="even">
+<td>Processing time</td>
+<td>Duration from data receipt to catalog registration</td>
+<td>Per dataset, per cycle</td>
+</tr>
+<tr class="odd">
+<td>Metadata completeness</td>
+<td>Percentage of required metadata fields populated at registration</td>
+<td>Per dataset</td>
+</tr>
+<tr class="even">
+<td>Exception rate</td>
+<td>Frequency of exception handling triggers</td>
+<td>Per validation rule</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Collect and aggregate KPIs per production cycle</td>
+<td>Process Performance Dashboard</td>
+<td>GAMSO QM</td>
+</tr>
+<tr class="even">
+<td>Monitor SLA compliance with all data providers</td>
+<td>SLA Compliance Report</td>
+<td>GAMSO QM</td>
+</tr>
+<tr class="odd">
+<td>Track paradata: operator, timing, tools, errors</td>
+<td>Paradata Records</td>
+<td>GAMSO QM</td>
+</tr>
+<tr class="even">
+<td>Generate process performance dashboards</td>
+<td>Dashboard for Process Owner</td>
+<td>GAMSO QM</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="assess-data-quality" class="level3">
+<h3 class="anchored" data-anchor-id="assess-data-quality">Assess Data Quality</h3>
+<p>Beyond process performance, the quality of the ingested data itself must be evaluated against the criteria established in the design phase. Each ingested dataset is assessed across multiple quality dimensions: completeness (record counts versus expected, field coverage), timeliness (delivery date versus SLA deadline), accuracy in a structural sense (format conformance, valid value ranges), consistency (cross-field consistency, temporal consistency with previous deliveries), and conformance to standards (alignment with designed schema and classification schemes). Results are compared against the designed quality criteria from Section 3.4. Quality indicators are produced per dataset, per source, and per production cycle, and quality trends are tracked to detect deteriorating sources or consistently lower-quality modes. This aligns with the CSDA Data Quality capability and SAF Capability 2.1.3 for statistical quality management.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Evaluate quality dimensions per dataset: completeness, timeliness, accuracy, consistency, conformance</td>
+<td>Data Quality Report (per cycle)</td>
+<td>CSDA Data Quality</td>
+</tr>
+<tr class="even">
+<td>Compare results against designed quality criteria (Section 3.4)</td>
+<td>Quality assessment against baseline</td>
+<td>SAF 2.1.3</td>
+</tr>
+<tr class="odd">
+<td>Produce quality indicators per dataset, per source, per cycle</td>
+<td>Quality Scorecards (per source, per mode)</td>
+<td>CSDA Data Quality</td>
+</tr>
+<tr class="even">
+<td>Identify quality trends across sources and modes</td>
+<td>Quality Trend Analysis</td>
+<td>SAF 2.1.3</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="manage-metadata-lifecycle" class="level3">
+<h3 class="anchored" data-anchor-id="manage-metadata-lifecycle">Manage Metadata Lifecycle</h3>
+<p>The metadata ecosystem supporting data acquisition must remain complete, accurate, and current throughout the data lifecycle. This sub-process verifies metadata completeness — checking that every registered dataset has all required metadata fields as an SAF-P09 compliance check — and assesses metadata quality: are provenance records accurate, are classifications correctly applied, are agreement references current? The metadata catalog is actively maintained: outdated entries are retired, schemas are updated for new source formats, and metadata models are versioned. Metadata lineage from source through ingestion to raw data state is tracked, and reconciliation across systems ensures that catalog entries match actual stored artefacts. As the CSDA emphasizes, metadata conveys all context needed to understand and reuse data — without it, data is effectively useless.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Verify metadata completeness for all registered datasets</td>
+<td>Metadata Quality Report</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Assess metadata quality: accuracy, currency, correct classification</td>
+<td>Metadata Quality Report</td>
+<td>CSDA Metadata Mgmt</td>
+</tr>
+<tr class="odd">
+<td>Maintain and update the metadata catalog: retire, update schemas, version models</td>
+<td>Catalog Maintenance Log</td>
+<td>CSDA Metadata Mgmt</td>
+</tr>
+<tr class="even">
+<td>Track metadata lineage from source through ingestion to raw data</td>
+<td>Metadata Lineage Audit</td>
+<td>CSDA Metadata Mgmt</td>
+</tr>
+<tr class="odd">
+<td>Reconcile metadata across systems</td>
+<td>Catalog-artefact reconciliation</td>
+<td>SAF-P09</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="audit-and-compliance-reporting" class="level3">
+<h3 class="anchored" data-anchor-id="audit-and-compliance-reporting">Audit and Compliance Reporting</h3>
+<p>This sub-process produces the evidence that the acquisition domain operates within legal, regulatory, and organizational requirements. Audit trail reports demonstrate full traceability of every dataset from external source to NSO raw data repository. GDPR compliance reporting covers data processing records (Article 30), Data Protection Impact Assessment reviews for high-risk processing, and the ability to demonstrate which data the NSO holds and why. Agreement compliance reporting confirms that all data uses remain within the terms of governing agreements. Security compliance reporting verifies that all designed security measures have been applied and documents any breaches or incidents. These reports satisfy the SAF Capability 4.1.5 (Accountability) obligation and feed into VS-07.5 Audit, Certify, and Report Compliance.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Produce audit trail reports: full traceability from source to raw data</td>
+<td>Audit Trail Summary</td>
+<td>SAF 4.1.5</td>
+</tr>
+<tr class="even">
+<td>Report on GDPR compliance: Art. 30 records, DPIA reviews, data subject rights</td>
+<td>GDPR Processing Records</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="odd">
+<td>Report on agreement compliance</td>
+<td>Agreement Compliance Report</td>
+<td>SAF 4.1.5</td>
+</tr>
+<tr class="even">
+<td>Report on security compliance: measures applied, breaches, incidents</td>
+<td>Compliance Report (per cycle)</td>
+<td>SAF-P10</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="continuous-improvement" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-improvement">Continuous Improvement</h3>
+<p>The final management sub-process closes the governance loop by analyzing performance and quality data to identify and drive improvements. Quality trends across production cycles are examined: are rejection rates decreasing, is metadata completeness improving, are processing times shortening? Improvement opportunities are identified — new data sources that could replace lower-quality existing ones, better collection modes that reduce burden or increase response rates, automation of manual ingestion steps, and simplification of validation rules that generate too many false positives. These improvement recommendations are fed back to the design processes (Section 3), prioritized based on impact and feasibility, and tracked through subsequent design-implement-execute cycles. This is the SAF Capability 4.1.4 (Improve management) in action, and it connects to the GAMSO concept of identifying mature capabilities from innovation that can be transferred to production.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key Outputs</th>
+<th>Framework Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Analyze quality trends across production cycles</td>
+<td>Improvement Recommendations Report</td>
+<td>SAF 4.1.4</td>
+</tr>
+<tr class="even">
+<td>Identify improvement opportunities: new sources, better modes, automation, rule simplification</td>
+<td>Updated Design Inputs</td>
+<td>SAF 4.1.4</td>
+</tr>
+<tr class="odd">
+<td>Feed recommendations back to design processes (Section 3)</td>
+<td>Design feedback (closing the governance loop)</td>
+<td>SAF 4.1.4</td>
+</tr>
+<tr class="even">
+<td>Prioritize improvements based on impact and feasibility</td>
+<td>Improvement Tracking Log</td>
+<td>GAMSO Capability Mgmt</td>
+</tr>
+<tr class="odd">
+<td>Track implementation of accepted improvements</td>
+<td>Improvement Tracking Log</td>
+<td>GAMSO Capability Mgmt</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-8" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-8">flowchart TD
+    E["Execution\n(Section 5)&lt;br/&gt;&lt;em&gt;data + paradata&lt;/em&gt;"]
+
+    M1["Monitor process&lt;br/&gt;performance (§6.1)&lt;br/&gt;&lt;em&gt;KPIs, SLA compliance&lt;/em&gt;"]
+    M2["Assess data&lt;br/&gt;quality (§6.2)&lt;br/&gt;&lt;em&gt;quality scorecards&lt;/em&gt;"]
+    M3["Manage metadata&lt;br/&gt;lifecycle (§6.3)&lt;br/&gt;&lt;em&gt;catalog maintenance&lt;/em&gt;"]
+    M4["Audit &amp; compliance&lt;br/&gt;reporting (§6.4)&lt;br/&gt;&lt;em&gt;audit trails, GDPR&lt;/em&gt;"]
+    M5["Continuous&lt;br/&gt;improvement (§6.5)&lt;br/&gt;&lt;em&gt;recommendations&lt;/em&gt;"]
+
+    D["Design&lt;br/&gt;(Section 3)&lt;br/&gt;&lt;em&gt;updated requirements&lt;/em&gt;"]
+
+    E --&gt; M1
+    E --&gt; M2
+    M1 --&gt; M2
+    M2 --&gt; M3
+    M3 --&gt; M4
+    M4 --&gt; M5
+    M5 --&gt;|"feedback loop"| D
+
+    M1 --&gt;|"dashboards"| PO["Process Owner"]
+    M2 --&gt;|"quality reports"| QM["Quality Manager"]
+    M4 --&gt;|"compliance reports"| VS07["VS-07.0\nGovernance"]
+
+    style E fill:#ecfdf5,stroke:#059669
+    style D fill:#f5f3ff,stroke:#7c3aed
+    style M5 fill:#fef3c7,stroke:#d97706
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Management Feedback Loop. Execution data flows through monitoring, quality assessment, metadata management, and audit processes. Continuous improvement feeds recommendations back to Design, closing the governance cycle.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="business-services-and-interfaces" class="level2">
+<h2 class="anchored" data-anchor-id="business-services-and-interfaces">Business Services and Interfaces</h2>
+<p>The VS-01.0 business domain exposes the following services:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Service</th>
+<th>Direction</th>
+<th>Consumers</th>
+<th>Mapped Processes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Data Collection Service</strong></td>
+<td>External → NSO</td>
+<td>Survey respondents, data providers</td>
+<td>5.3 Collect or Receive Data</td>
+</tr>
+<tr class="even">
+<td><strong>Data Agreement Management Service</strong></td>
+<td>External ↔︎ NSO</td>
+<td>Data providers, legal authorities</td>
+<td>5.2 Establish Data Agreement</td>
+</tr>
+<tr class="odd">
+<td><strong>Raw Data Provisioning Service</strong></td>
+<td>Internal (NSO → VS-02.0)</td>
+<td>Standardization teams, data analysts</td>
+<td>5.5 Store and Register Raw Data</td>
+</tr>
+<tr class="even">
+<td><strong>Ingestion Monitoring Service</strong></td>
+<td>Internal</td>
+<td>Process owners, quality managers</td>
+<td>6.1 Monitor Performance, 6.2 Assess Quality</td>
+</tr>
+<tr class="odd">
+<td><strong>Metadata Catalog Service</strong></td>
+<td>Internal</td>
+<td>All data consumers across the NSO</td>
+<td>6.3 Manage Metadata Lifecycle</td>
+</tr>
+<tr class="even">
+<td><strong>Design and Methodology Service</strong></td>
+<td>Internal</td>
+<td>Methodologists, statistical designers, data engineers</td>
+<td>3.1–3.5 All design processes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interface specifications:</strong></p>
+<ul>
+<li><strong>Data Collection Service</strong> interfaces include: web portals (CAWI), mobile apps (CAPI), telephone systems (CATI), SFTP endpoints, REST APIs, data space connectors</li>
+<li><strong>Raw Data Provisioning Service</strong> interface: event-driven notification (“Raw Data Registered”) + catalog query API for downstream consumers to discover and access raw datasets</li>
+<li><strong>Metadata Catalog Service</strong> interface: search/browse API for metadata discovery, with metadata exchange compliant with SDMX (the international standard for exchanging statistical data and metadata)</li>
+</ul>
+<section id="boundary-interface-specifications" class="level3">
+<h3 class="anchored" data-anchor-id="boundary-interface-specifications">Boundary Interface Specifications</h3>
+<p>The domain is loosely coupled (SAF-P07) to its neighbors through two boundary interfaces. Specifying each boundary explicitly — the handover artefact, the metadata it must carry, the event that triggers it, and where responsibility transfers — makes the loose-coupling contract concrete and testable.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Boundary</th>
+<th>Handover Artefact</th>
+<th>Required Metadata</th>
+<th>Trigger Event</th>
+<th>Responsibility Transfer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>External provider → VS-01.0</strong> (intake)</td>
+<td>Source Data (State #0) delivery</td>
+<td>Source identifier and organization, transfer method and channel, receipt timestamp, file hash, volume, agreement reference, collection mode and instrument version (surveys)</td>
+<td>Delivery received / survey response submitted</td>
+<td>The provider is responsible up to the point of receipt; VS-01.0 assumes custody and the metadata-capture obligation (SAF-P09) at the ingestion point</td>
+</tr>
+<tr class="even">
+<td><strong>VS-01.0 → VS-02.0</strong> (handover)</td>
+<td>Raw Data (State #1)</td>
+<td>Provenance, source, collection method, receipt timestamp, file hash, agreement reference, quality assessment (completeness, timeliness, conformance), BIV classification</td>
+<td>“Raw Data Registered” event</td>
+<td>VS-01.0 retains custody of the raw artefact; VS-02.0 assumes responsibility for standardization on event receipt</td>
+</tr>
+</tbody>
+</table>
+<p>Each interface exchanges a registered, immutable steady-state artefact plus its metadata — never internal working data — so neither side needs knowledge of the other’s internal processing.</p>
+</section>
+</section>
+<section id="business-objects-and-data-flow" class="level2">
+<h2 class="anchored" data-anchor-id="business-objects-and-data-flow">Business Objects and Data Flow</h2>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-9" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-9">flowchart TB
+    design["🔷 Design Artefacts&lt;br/&gt;&lt;small&gt;Requirements · Methodology · Schema&lt;br/&gt;Metadata Model · Validation Rules · Access Control&lt;/small&gt;"]
+    implement["🔧 Implementation Assets&lt;br/&gt;&lt;small&gt;Instruments · Workflows&lt;br/&gt;Catalog Config · Pipeline&lt;/small&gt;"]
+    execute["⚡ Execution Objects"]
+    manage["📊 Management Reports"]
+
+    design --&gt;|"govern building"| implement
+    implement --&gt;|"produces pipeline&lt;br/&gt;that processes"| execute
+    execute --&gt;|"assessed by"| manage
+    manage --&gt;|"feeds back to"| design
+
+    subgraph execute_detail [" "]
+        direction LR
+        SD["Source Data&lt;br/&gt;(State #0)"]:::bo --&gt;|"ingested as"| RD["Raw Data&lt;br/&gt;(State #1)"]:::bo
+    end
+
+    execute --&gt; execute_detail
+    SD --&gt;|generates| logs["Provenance · QA · Audit"]
+
+    classDef bo fill:#fbbf24,stroke:#b45309,color:#000
+    style design fill:#f5f3ff,stroke:#7c3aed
+    style implement fill:#dbeafe,stroke:#2563eb
+    style execute fill:#fef9c3,stroke:#b45309
+    style manage fill:#dcfce7,stroke:#16a34a
+    style execute_detail fill:none,stroke:none
+    style logs fill:#fff,stroke:#888,stroke-dasharray: 5 5
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Business Object Lifecycle across all four process types. Design objects govern implementation, which produces the pipeline that processes execution objects, which are assessed by management objects, which feed back to design.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="business-events" class="level2">
+<h2 class="anchored" data-anchor-id="business-events">Business Events</h2>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-10" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-10">sequenceDiagram
+    participant DP as Data Provider
+    participant NSO as NSO Teams
+    participant PM as Process Mgmt
+
+    rect rgb(245, 243, 255)
+    Note over NSO: Design Phase
+    NSO-&gt;&gt;NSO: Define requirements, methodology,&lt;br/&gt;schema, validation &amp; privacy rules
+    NSO--&gt;&gt;NSO: Design Artefacts Published
+    end
+
+    rect rgb(239, 246, 255)
+    Note over NSO: Implementation Phase
+    NSO-&gt;&gt;NSO: Build instruments, workflows,&lt;br/&gt;catalog &amp; pipeline
+    NSO--&gt;&gt;NSO: Pipeline Production-Ready
+    end
+
+    rect rgb(236, 253, 245)
+    Note over NSO,DP: Execution Phase (per cycle)
+    NSO-&gt;&gt;DP: Confirm source &amp; activate agreement
+    DP--&gt;&gt;NSO: Agreement Confirmed
+
+    alt Primary Collection
+        NSO-&gt;&gt;DP: Send survey invitation
+        DP--&gt;&gt;NSO: Survey Response
+    else Secondary Collection
+        DP--&gt;&gt;NSO: Data File (SFTP/API)
+    end
+
+    NSO-&gt;&gt;NSO: Validate structure &amp; quality
+
+    alt Validation Passed
+        NSO-&gt;&gt;NSO: Assign ID, store raw data,&lt;br/&gt;register metadata
+    else Validation Failed
+        NSO-&gt;&gt;DP: Request redelivery
+    end
+    end
+
+    rect rgb(254, 243, 199)
+    Note over PM: Management Phase
+    PM-&gt;&gt;PM: Monitor KPIs, assess quality,&lt;br/&gt;produce compliance reports
+    PM--&gt;&gt;NSO: Improvement Recommendations
+    end
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Event-Driven Choreography between Data Provider, NSO teams, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="framework-mappings" class="level2">
+<h2 class="anchored" data-anchor-id="framework-mappings">Framework Mappings</h2>
+<p>This reference table maps each process group of this document to the international frameworks (GSBPM, GAMSO, CSDA) and the SAF capability model. It is intended for architects and auditors; the narrative sections above do not depend on it.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Process group</th>
+<th>GSBPM</th>
+<th>GAMSO</th>
+<th>CSDA</th>
+<th>SAF Capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Design</strong></td>
+<td>Phase 1 (Specify Needs: 1.1–1.6), Phase 2 (Design: 2.1–2.6)</td>
+<td>Production (design activities), Capability Management</td>
+<td>Data Governance, Metadata Management</td>
+<td>1.1.1 Needs inventory, 1.1.2 Design statistics product, 2.1.2 Metadata management</td>
+</tr>
+<tr class="even">
+<td><strong>Implementation</strong></td>
+<td>Phase 3 (Build: 3.1–3.7)</td>
+<td>Capability Management</td>
+<td>Data Ingestion (setup), Data Governance (configuration)</td>
+<td>1.1.3 Build statistics product, 3.2.1 Application development, 3.2.2 Functional management</td>
+</tr>
+<tr class="odd">
+<td><strong>Execution</strong></td>
+<td>Phase 4 (Collect: 4.1–4.4)</td>
+<td>Production (execution)</td>
+<td>Data Ingestion (execution)</td>
+<td>1.2.1 Primary data collection, 1.2.2 Secondary data collection</td>
+</tr>
+<tr class="even">
+<td><strong>Management</strong></td>
+<td>Overarching processes (Quality Management, Metadata Management)</td>
+<td>Corporate Support (Quality, Data, Metadata Management), Capability Management (improvement)</td>
+<td>Data Quality, Data Governance, Traceability</td>
+<td>2.1.3 Statistical quality management, 4.1.4 Improve management, 4.1.5 Accountability</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="applying-this-to-your-nso" class="level2">
+<h2 class="anchored" data-anchor-id="applying-this-to-your-nso">Applying This to Your NSO</h2>
+<section id="maturity-assessment-checklist" class="level3">
+<h3 class="anchored" data-anchor-id="maturity-assessment-checklist">Maturity Assessment Checklist</h3>
+<p>Use this checklist to assess your NSO’s maturity across all four process types — not just execution.</p>
+<p><strong>Design Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we have documented data requirements specifications for each data source?</label></li>
+<li><label><input type="checkbox">Do we have a formal collection methodology document that is reviewed and versioned?</label></li>
+<li><label><input type="checkbox">Do we have a defined metadata schema for raw data, including required metadata fields at ingestion?</label></li>
+<li><label><input type="checkbox">Do we have explicit validation rules and quality criteria documented before collection begins?</label></li>
+<li><label><input type="checkbox">Do we have a privacy impact assessment for each data source?</label></li>
+</ul>
+<p><strong>Implementation Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Are our collection instruments built from design specifications (not ad-hoc)?</label></li>
+<li><label><input type="checkbox">Are validation rules implemented as automated checks (not manual inspection)?</label></li>
+<li><label><input type="checkbox">Is metadata capture automated at each ingestion point?</label></li>
+<li><label><input type="checkbox">Do we have a formal testing process (technical, field, security) before going to production?</label></li>
+<li><label><input type="checkbox">Are operational procedures documented and maintained?</label></li>
+</ul>
+<p><strong>Execution Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we confirm data requirements and source availability at the start of each cycle?</label></li>
+<li><label><input type="checkbox">Are data sharing agreements actively managed and verified per cycle?</label></li>
+<li><label><input type="checkbox">Do we capture ingestion metadata for every dataset received?</label></li>
+<li><label><input type="checkbox">Do we perform automated structural validation before accepting data?</label></li>
+<li><label><input type="checkbox">Do we register every raw dataset in a metadata catalog with provenance links?</label></li>
+</ul>
+<p><strong>Management Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we track KPIs (response rates, rejection rates, timeliness) across cycles?</label></li>
+<li><label><input type="checkbox">Do we produce data quality reports for each ingested dataset?</label></li>
+<li><label><input type="checkbox">Do we regularly assess metadata completeness and quality?</label></li>
+<li><label><input type="checkbox">Do we produce audit and compliance reports?</label></li>
+<li><label><input type="checkbox">Do we have a formal improvement process that feeds back into design?</label></li>
+</ul>
+</section>
+<section id="end-to-end-scenarios" class="level3">
+<h3 class="anchored" data-anchor-id="end-to-end-scenarios">End-to-End Scenarios</h3>
+<p>Each scenario walks through <strong>all four process types</strong>, demonstrating how the governance pattern works in practice.</p>
+<section id="scenario-a-household-budget-survey-primary-collection" class="level4">
+<h4 class="anchored" data-anchor-id="scenario-a-household-budget-survey-primary-collection">Scenario A: Household Budget Survey (Primary Collection)</h4>
+<p><strong>Design Phase:</strong> Statistical designers define the information need — monthly household expenditure by category, income sources, and household composition. Methodologists design a mixed-mode approach: a CAWI diary for daily entry over two weeks, with CAPI follow-up for non-respondents. Metadata architects define the raw data schema: 156 variables across 12 expenditure categories, with code lists from COICOP (the international classification of household expenditure). Quality criteria are set at a minimum 60% response rate, diary completion rate of at least 80% of days, and delivery to processing within 30 days of collection period end. The privacy framework specifies pseudonymization at point of receipt, with purpose limited to expenditure statistics and CPI input.</p>
+<p><strong>Implementation Phase:</strong> Data engineers build the CAWI diary portal — a responsive web app with daily spending entry and barcode scanning for receipts, configured for 12 languages. System configurators set up the CAPI tablet app with offline capability, GPS logging for urban/rural classification, and interview recording consent. Ingestion workflows are configured so that CAWI responses are aggregated daily, CAPI interviews uploaded at the end of the field period, and paper diaries OCR-scanned in batches. The full pipeline is tested with a 200-household pilot in two municipalities, with metadata propagation verified end-to-end.</p>
+<p><strong>Execution Phase:</strong> For cycle Q3-2026, 8,000 households are sampled from the population register. CAWI invitations go out and a response monitoring dashboard tracks daily completion rates. After week two, CAPI is deployed to 2,400 non-responding households. After week four, 312 paper diaries are received from elderly respondents. Each channel generates ingestion metadata, and all 7,240 completed diaries pass structural validation. Raw data is registered in the catalog with full provenance — per household: mode, completion dates, and diary completeness score.</p>
+<p><strong>Management Phase:</strong> Response rate reaches 90.5% against the 60% target. CAWI diary completeness is 87% of days (target 80%). Quality scoring identifies three municipalities with unusually low CAWI completion, suggesting possible broadband issues. Metadata completeness is 99.8%. Improvement recommendations: add SMS reminders for CAWI to improve daily completion; investigate broadband-gap municipalities for a CAPI-first approach next cycle. Recommendations are fed back to the design team for the Q1-2027 methodology update.</p>
+</section>
+<section id="scenario-b-tax-register-administrative-data-secondary-collection" class="level4">
+<h4 class="anchored" data-anchor-id="scenario-b-tax-register-administrative-data-secondary-collection">Scenario B: Tax Register Administrative Data (Secondary Collection)</h4>
+<p><strong>Design Phase:</strong> Statistical designers define the data requirement — quarterly corporate income tax declarations for all legal entities, for use in national accounts and business statistics. The data model maps the tax authority’s XML schema to the NSO’s raw data structure: 47 fields retained, 12 derived, corporate ID as the linkage key. The SLA is set at delivery within 45 calendar days of quarter end, minimum 98% of expected records, in XML format with XSD validation. Validation rules cover XSD schema validation, corporate ID referential integrity against the business register, and amount fields within historical range (plus or minus three standard deviations). Privacy framework: data is received under the Statistics Act mandate, with pseudonymization deferred to the standardization phase (VS-02.0) per agreement.</p>
+<p><strong>Implementation Phase:</strong> System configurators set up a dedicated SFTP endpoint with mutual TLS authentication and IP whitelist. Data engineers configure automated ingestion: file arrival triggers a validation pipeline (XSD check, checksum, virus scan, completeness, referential integrity, range check). Metadata registration is automated — on successful validation, a provenance record is created and linked to the agreement, and quality scores are calculated and stored. The pipeline is tested with Q1-2026 historical data resubmission; all validation rules are verified and one false-positive range check is identified and the threshold adjusted.</p>
+<p><strong>Execution Phase:</strong> Q3-2026: the tax authority delivers the quarterly file via SFTP on day 38 (within the 45-day SLA). The automated pipeline triggers: XSD valid, SHA-256 checksum matches manifest, virus scan clean, 2,347,891 records (99.2% of expected — above the 98% threshold), 14 corporate IDs not in the business register (flagged but not rejected — known lag in register updates). Raw data is stored in original XML format, assigned dataset ID <code>RD-TAX-2026Q3-001</code>. Metadata is registered: provenance, quality assessment (completeness=99.2%, timeliness=OnTime, conformance=Pass with 14 flags), and agreement reference. The “Raw Data Registered” event is published and VS-02.0 is notified.</p>
+<p><strong>Management Phase:</strong> The Q3 quality scorecard shows completeness at 99.2% (stable — consistent with Q1=99.1% and Q2=99.3%) and timeliness on time, seven days ahead of the SLA deadline. The 14 unmatched corporate IDs are all newly registered businesses with a register update lag of two to four weeks, consistent with previous quarters. SLA compliance stands at 100% for 12 consecutive quarters. Metadata completeness is 100%. No improvement recommendations are needed — the process is mature and stable, with an annual agreement renewal review scheduled for Q4.</p>
+</section>
+<section id="scenario-c-web-scraped-price-data-emerging-source" class="level4">
+<h4 class="anchored" data-anchor-id="scenario-c-web-scraped-price-data-emerging-source">Scenario C: Web-Scraped Price Data (Emerging Source)</h4>
+<p><strong>Design Phase:</strong> Statistical designers define the requirement — daily retail prices from major online retailers for CPI basket items covering 500 product categories and 25 retailer websites. The methodology involves no bilateral agreement (public web data), with the legal framework based on the statistics act mandate and a public interest assessment. The data model captures product URL, product name, price, currency, timestamp, retailer, product category (COICOP), and availability status. Validation rules specify that price must be positive, currency must be EUR or local, timestamp must be within 24 hours, the product URL must resolve, and price changes exceeding 50% from the previous day are flagged for review (not rejected). Quality criteria: minimum 85% of target URLs successfully scraped per day, with price change detection within 24 hours. Privacy considerations confirm no personal data is involved, with terms-of-service compliance documented per retailer.</p>
+<p><strong>Implementation Phase:</strong> Data engineers build web scrapers — one module per retailer, headless browser for JavaScript-rendered pages, with proxy rotation to avoid rate limiting. Daily scheduling is configured so that scraping runs at 03:00 local time with results aggregated by 06:00. Volatility handling includes website structure change detection via DOM fingerprinting, with automatic alerts when a scraper breaks. Metadata capture records per-scrape provenance: URL, timestamp, HTTP status, scraper version, and DOM fingerprint. The system is tested with a two-week parallel run comparing scraped prices against manually collected prices for 50 products, achieving 94% agreement (within the acceptance threshold).</p>
+<p><strong>Execution Phase:</strong> Daily operation scrapes 12,500 URLs across 25 retailers. On 2026-03-15, 11,875 URLs are successful (95% — above the 85% threshold), with 625 failures (HTTP 404: product pages removed or restructured). Forty-seven price changes exceeding 50% are flagged for manual review: 41 are confirmed genuine (seasonal sales) and 6 are identified as scraper errors (wrong element selected due to DOM change). Raw data is stored as daily JSON files with full scrape metadata. Metadata is registered: daily provenance, quality scores, scraper version, and DOM fingerprint per retailer.</p>
+<p><strong>Management Phase:</strong> The weekly quality dashboard shows an average daily success rate of 93.2% (above the 85% threshold). Retailer <code>ElectroShop</code> shows a declining success rate from 98% to 72% over three weeks — a website redesign detected by DOM fingerprinting. Monthly price comparison against official CPI field collection shows 96.1% agreement for overlapping products (above the 90% acceptance threshold). Improvement recommendations: rebuild the <code>ElectroShop</code> scraper for the new DOM structure (implementation action), investigate two new retailers for coverage expansion (design action), and evaluate retailer API access as an alternative to scraping for the top five retailers (design action that may lead to a transition from scraping to API-based secondary collection). Recommendations are fed back to the design team, with the <code>ElectroShop</code> scraper rebuild prioritized for the next sprint.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../framework/business-architecture.html" class="pagination-link" aria-label="Business Architecture">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Business Architecture</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../framework/vs-02.html" class="pagination-link" aria-label="VS-02 Data Standardization and Integration">
+        <span class="nav-page-text">VS-02 Data Standardization and Integration</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

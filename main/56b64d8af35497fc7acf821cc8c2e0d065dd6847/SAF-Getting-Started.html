@@ -1,0 +1,1918 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Getting Started with SAF – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-4b8eba7d388032a8ef35e180b04aa314.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./SAF-Getting-Started.html" aria-current="page"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./framework/index.html"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link active" data-scroll-target="#key-concepts">1. Key concepts</a></li>
+  <li><a href="#the-two-datasets-we-follow" id="toc-the-two-datasets-we-follow" class="nav-link" data-scroll-target="#the-two-datasets-we-follow">2. The two datasets we follow</a></li>
+  <li><a href="#the-walk-one-state-at-a-time" id="toc-the-walk-one-state-at-a-time" class="nav-link" data-scroll-target="#the-walk-one-state-at-a-time">3. The walk, one state at a time</a>
+  <ul class="collapse">
+  <li><a href="#state-1-raw-data-vs-01-data-acquisition-and-ingestion" id="toc-state-1-raw-data-vs-01-data-acquisition-and-ingestion" class="nav-link" data-scroll-target="#state-1-raw-data-vs-01-data-acquisition-and-ingestion">State #1 — Raw Data (VS-01 Data Acquisition and Ingestion)</a></li>
+  <li><a href="#state-2-standardized-data-vs-02-data-standardization-and-integration" id="toc-state-2-standardized-data-vs-02-data-standardization-and-integration" class="nav-link" data-scroll-target="#state-2-standardized-data-vs-02-data-standardization-and-integration">State #2 — Standardized Data (VS-02 Data Standardization and Integration)</a></li>
+  <li><a href="#state-3-processed-data-vs-03-data-editing-and-enrichment" id="toc-state-3-processed-data-vs-03-data-editing-and-enrichment" class="nav-link" data-scroll-target="#state-3-processed-data-vs-03-data-editing-and-enrichment">State #3 — Processed Data (VS-03 Data Editing and Enrichment)</a></li>
+  <li><a href="#state-4a-statistics-output-data-analytical-outputs-vs-04-estimation-analysis-and-statistical-modeling" id="toc-state-4a-statistics-output-data-analytical-outputs-vs-04-estimation-analysis-and-statistical-modeling" class="nav-link" data-scroll-target="#state-4a-statistics-output-data-analytical-outputs-vs-04-estimation-analysis-and-statistical-modeling">State #4a — Statistics (Output Data): analytical outputs (VS-04 Estimation, Analysis, and Statistical Modeling)</a></li>
+  <li><a href="#state-4b-statistics-output-data-approved-product-vs-05-statistical-product-composition" id="toc-state-4b-statistics-output-data-approved-product-vs-05-statistical-product-composition" class="nav-link" data-scroll-target="#state-4b-statistics-output-data-approved-product-vs-05-statistical-product-composition">State #4b — Statistics (Output Data): approved product (VS-05 Statistical Product Composition)</a></li>
+  <li><a href="#state-5-released-data-then-6-consumed-data-vs-06-dissemination-and-service-delivery" id="toc-state-5-released-data-then-6-consumed-data-vs-06-dissemination-and-service-delivery" class="nav-link" data-scroll-target="#state-5-released-data-then-6-consumed-data-vs-06-dissemination-and-service-delivery">State #5 — Released Data, then #6 Consumed Data (VS-06 Dissemination and Service Delivery)</a></li>
+  </ul></li>
+  <li><a href="#the-other-three-process-types-worked-once" id="toc-the-other-three-process-types-worked-once" class="nav-link" data-scroll-target="#the-other-three-process-types-worked-once">4. The other three process types, worked once</a></li>
+  <li><a href="#map-your-own-process" id="toc-map-your-own-process" class="nav-link" data-scroll-target="#map-your-own-process">5. Map your own process</a>
+  <ul class="collapse">
+  <li><a href="#step-1-find-your-steady-state-boundaries" id="toc-step-1-find-your-steady-state-boundaries" class="nav-link" data-scroll-target="#step-1-find-your-steady-state-boundaries">Step 1 — Find your steady-state boundaries</a></li>
+  <li><a href="#step-2-a-condensed-self-assessment" id="toc-step-2-a-condensed-self-assessment" class="nav-link" data-scroll-target="#step-2-a-condensed-self-assessment">Step 2 — A condensed self-assessment</a></li>
+  <li><a href="#step-3-walk-one-of-your-own-datasets" id="toc-step-3-walk-one-of-your-own-datasets" class="nav-link" data-scroll-target="#step-3-walk-one-of-your-own-datasets">Step 3 — Walk one of your own datasets</a></li>
+  </ul></li>
+  <li><a href="#where-this-leads" id="toc-where-this-leads" class="nav-link" data-scroll-target="#where-this-leads">6. Where this leads</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="SAF-Getting-Started.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Getting Started with SAF</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>A beginner’s guide. Two processes are followed from start to finish through the steady states, and an exercise helps you map one of your own production processes onto the framework.</em></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="How to use this guide">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>How to use this guide
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There are three ways in:</p>
+<ul>
+<li><strong>Read the walk</strong> (sections 1–4): one survey dataset and one administrative dataset followed through the six steady states, then the governance cycle that runs around each stream.</li>
+<li><strong>Jump to the exercise</strong> (section 5) if you already know SAF and want to map one of your own processes.</li>
+<li><strong>Run it as a workshop:</strong> sections 1–3 as a 45-minute briefing, section 5 as a 90-minute working session.</li>
+</ul>
+<p>The guide assumes you know how statistical production works. It does <strong>not</strong> assume you know architecture; where a word is used in a special sense, the <a href="./glossary.html">Glossary</a> explains it. For the ten-minute overview see <a href="./SAF-in-Brief.html">SAF in Brief</a>; for the full framework see the <a href="./framework/index.html">SAF Framework document</a>.</p>
+<p>Like the framework’s business-architecture chapters, this guide stops at the business layer: it does not cover applications or technology.</p>
+</div>
+</div>
+<section id="key-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="key-concepts">1. Key concepts</h2>
+<ul>
+<li><strong>Value stream</strong>: a sequence of steps that together create a statistical output. Think of it as a production line: VS-01 to VS-06 each add a specific kind of value to the data.</li>
+<li><strong>Value stream stage vs.&nbsp;business process</strong>: the stage (<code>VS-0x.y</code>) says <em>what value</em> is added; the business process describes <em>how</em> your office actually does it. The numbering maps one-to-one, so this guide uses <code>VS-0x.y</code> for both.</li>
+<li><strong>Steady state</strong>: a fixed handover point, where a versioned, quality-assured dataset produced by one stream is consumed by the next. The states are numbered from #0 (source data, still at the provider) to #6 (data in users’ hands).</li>
+<li><strong>The four process types</strong>: every stream is described through the same four groups: <strong>Design</strong> (decide how it should work), <strong>Implementation</strong> (build and test it), <strong>Execution</strong> (run it each production cycle) and <strong>Management</strong> (check quality and feed improvements back).</li>
+<li><strong>Business service / object / event</strong>: what a stream offers to others / the data it works on / the signals streams send each other (for example <em>“Raw Data Registered”</em> tells the next stream new data is ready).</li>
+<li><strong>Artefact</strong>: what is handed over at a steady state, meaning the dataset plus the metadata describing it. It is <strong>immutable</strong>: a correction never overwrites a registered artefact but creates a new version. To <strong>register</strong> an artefact is to catalogue it with an identifier so others can find and cite that exact version. This has nothing to do with a statistical register such as the business or population register.</li>
+</ul>
+<table class="caption-top table">
+<caption>The steady states of data</caption>
+<colgroup>
+<col style="width: 10%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>State</th>
+<th>Name</th>
+<th>Produced by</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(#0)</td>
+<td>Source Data</td>
+<td><em>external providers</em></td>
+<td>Data at the external holder, before it enters the NSO (pre-ingestion; not a numbered SAF state)</td>
+</tr>
+<tr class="even">
+<td>#1</td>
+<td>Raw Data</td>
+<td>VS-01</td>
+<td>Received into NSO custody in original form, with provenance and basic validation</td>
+</tr>
+<tr class="odd">
+<td>#2</td>
+<td>Standardized Data</td>
+<td>VS-02</td>
+<td>Aligned to common structure, format, and classifications; <strong>values unchanged</strong></td>
+</tr>
+<tr class="even">
+<td>#3</td>
+<td>Processed Data</td>
+<td>VS-03</td>
+<td>Content validated, edited, imputed, enriched, integrated; derived variables added</td>
+</tr>
+<tr class="odd">
+<td>#4</td>
+<td>Statistics (Output Data)</td>
+<td>VS-04 → VS-05</td>
+<td>Estimated/aggregated statistics (VS-04), composed into approved products (VS-05)</td>
+</tr>
+<tr class="even">
+<td>#5</td>
+<td>Released Data</td>
+<td>VS-06</td>
+<td>Disclosure-controlled, documented, published or delivered to external parties</td>
+</tr>
+<tr class="odd">
+<td>#6</td>
+<td>Consumed Data</td>
+<td><em>external users</em></td>
+<td>Data in use outside the NSO’s direct control</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-gs-states" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gs-states-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-gs-states">flowchart TD
+    S0["Source Data"]:::ext --&gt;|VS-01| S1["#1 Raw"]
+    S1 --&gt;|VS-02| S2["#2 Standardized"]
+    S2 --&gt;|VS-03| S3["#3 Processed"]
+    S3 --&gt;|VS-04| S4["#4 Statistics"]
+    S4 --&gt;|VS-05| S4b["#4 Approved products"]
+    S4b --&gt;|VS-06| S5["#5 Released"]
+    S5 --&gt; S6["#6 Consumed"]:::ext
+
+    classDef ext fill:#0f766e,color:#fff,stroke:#0f766e
+    style S1 fill:#dbeafe,stroke:#2563eb
+    style S2 fill:#dbeafe,stroke:#2563eb
+    style S3 fill:#dbeafe,stroke:#2563eb
+    style S4 fill:#fef9c3,stroke:#b45309
+    style S4b fill:#fef9c3,stroke:#b45309
+    style S5 fill:#dcfce7,stroke:#16a34a
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gs-states-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Steady-state handover across the chain. Each arrow is a handover between streams, triggered by a registration event. Blue = data states inside the NSO; yellow = statistics; light green = released; dark green = outside the NSO’s control.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Two cross-chain disciplines">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Two cross-chain disciplines
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Metadata everywhere (SAF-P09):</strong> value is only added once its context is recorded: what was done, by which rule or method, with what accuracy, and traceable to its inputs.</p>
+<p><strong>Confidentiality at several points (SAF-P11):</strong> direct identifiers are removed or pseudonymised at standardisation (#2) at the latest, or earlier where that suits the process; disclosure risk is assessed on enrichment (#3); disclosure control is applied to outputs (#4); and a final disclosure check comes before release (#5).</p>
+</div>
+</div>
+</section>
+<section id="the-two-datasets-we-follow" class="level2">
+<h2 class="anchored" data-anchor-id="the-two-datasets-we-follow">2. The two datasets we follow</h2>
+<p>The same architecture serves very different data. To show that, the walk follows two threads side by side:</p>
+<ul>
+<li><strong>A Labour Force Survey (LFS)</strong>, a case of <em>primary</em> data collection (capability 1.2.1): the NSO designs the sample and questionnaire, runs the fieldwork, and collects both the data and its metadata. The LFS uses a mixed-mode design (CAWI invitation by email, CATI follow-up after two weeks for non-respondents, CAPI for hard-to-reach populations) on a 2-2-2 rotation panel.</li>
+<li><strong>A tax register feeding business statistics</strong>, a case of <em>secondary</em> data collection (capability 1.2.2): quarterly corporate income-tax declarations for all legal entities, received from the tax authority under a data-sharing agreement (delivery within 45 days of quarter end, at least 98% of expected records), for use in business statistics and national accounts.</li>
+</ul>
+<p>The tax thread is not purely administrative all the way: at State #3 it is integrated with the structural business survey on the business-register key, and at State #4 register-based and survey-based estimates are composed into one product. This was chosen on purpose. It applies SAF-P08 (<em>data is shared property</em>) and shows how sources that entered the chain separately can be combined once they reach a common state.</p>
+<table class="caption-top table">
+<caption>The two threads</caption>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 14%">
+<col style="width: 20%">
+<col style="width: 14%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Thread</th>
+<th>Source type</th>
+<th>Collection capability</th>
+<th>Cycle</th>
+<th>Identifiers used in this guide</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Labour Force Survey</td>
+<td>Survey (primary)</td>
+<td>1.2.1 Primary data collection</td>
+<td>Quarterly, Q3-2026</td>
+<td><code>RD-LFS-2026Q3-001</code> → <code>SD-LFS-2026Q3-001</code> → <code>PD-LFS-2026Q3-001</code> → <code>OD-LFS-2026Q3</code> → <code>SP-LFS-2026Q3-001</code></td>
+</tr>
+<tr class="even">
+<td>Tax register → business statistics</td>
+<td>Administrative (secondary)</td>
+<td>1.2.2 Secondary data collection</td>
+<td>Quarterly, Q3-2026</td>
+<td><code>RD-TAX-2026Q3-001</code> → <code>SD-BUS-2026Q3-001</code> → <code>PD-BUS-2026Q3-001</code> → <code>OD-BUS-2026Q3-001</code> → <code>SP-BUS-2026Q3-001</code></td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div id="fig-gs-thread-lfs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gs-thread-lfs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-gs-thread-lfs">flowchart TD
+    L0["Survey responses&lt;br/&gt;(#0 Source)"]:::ext --&gt;|"response submitted"| L1["RD-LFS-2026Q3-001&lt;br/&gt;#1 Raw"]:::s
+    L1 --&gt;|"Raw Data Registered"| L2["SD-LFS-2026Q3-001&lt;br/&gt;#2 Standardized"]:::s
+    L2 --&gt;|"Standardized Data Registered"| L3["PD-LFS-2026Q3-001&lt;br/&gt;#3 Processed"]:::s
+    L3 --&gt;|"Processed Data Registered"| L4["OD-LFS-2026Q3&lt;br/&gt;#4 Statistics"]:::o
+    L4 --&gt;|"Output Data Registered"| L5["SP-LFS-2026Q3-001&lt;br/&gt;#4 Approved product"]:::o
+    L5 --&gt;|"Statistical Product Registered"| L6["Labour market release&lt;br/&gt;#5 Released"]:::r
+    L6 --&gt;|"Statistics Released"| L7["Users&lt;br/&gt;#6 Consumed"]:::ext
+
+    classDef ext fill:#0f766e,color:#fff,stroke:#0f766e
+    classDef s fill:#dbeafe,stroke:#2563eb
+    classDef o fill:#fef9c3,stroke:#b45309
+    classDef r fill:#dcfce7,stroke:#16a34a
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gs-thread-lfs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Labour Force Survey — primary collection.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div id="fig-gs-thread-tax" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gs-thread-tax-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-gs-thread-tax">flowchart TD
+    T0["Tax authority file&lt;br/&gt;(#0 Source)"]:::ext --&gt;|"delivery received"| T1["RD-TAX-2026Q3-001&lt;br/&gt;#1 Raw"]:::s
+    T1 --&gt;|"Raw Data Registered"| T2["SD-BUS-2026Q3-001&lt;br/&gt;#2 Standardized"]:::s
+    T2 --&gt;|"Standardized Data Registered"| T3["PD-BUS-2026Q3-001&lt;br/&gt;#3 Processed"]:::s
+    T3 --&gt;|"Processed Data Registered"| T4["OD-BUS-2026Q3-001&lt;br/&gt;#4 Statistics"]:::o
+    T4 --&gt;|"Output Data Registered"| T5["SP-BUS-2026Q3-001&lt;br/&gt;#4 Approved product"]:::o
+    T5 --&gt;|"Statistical Product Registered"| T6["Tables + secure microdata&lt;br/&gt;#5 Released"]:::r
+    T6 --&gt;|"Statistics Released"| T7["Users &amp; researchers&lt;br/&gt;#6 Consumed"]:::ext
+
+    classDef ext fill:#0f766e,color:#fff,stroke:#0f766e
+    classDef s fill:#dbeafe,stroke:#2563eb
+    classDef o fill:#fef9c3,stroke:#b45309
+    classDef r fill:#dcfce7,stroke:#16a34a
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gs-thread-tax-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Tax register → business statistics — secondary collection.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The two threads go through the same seven handovers with the same event names, although their sources are very different.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="The numbers are illustrative">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>The numbers are illustrative
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Volumes, rates, and dates in the walk (42,000 returns, 2,347,891 records, an employment rate of 71.4%, a 09:00 release) are taken from the worked scenarios in the SAF Framework document. They illustrate the mechanism; they are not benchmarks. The tax-thread identifiers (<code>RD-TAX-2026Q3-001</code> … <code>SP-BUS-2026Q3-001</code>) are the ones used there. For the LFS thread, only <code>OD-LFS-2026Q3</code> appears in the framework document; the other LFS identifiers are introduced here so the two threads can be read in parallel.</p>
+</div>
+</div>
+</section>
+<section id="the-walk-one-state-at-a-time" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="the-walk-one-state-at-a-time">3. The walk, one state at a time</h2>
+<p>Each state below is one <strong>handover card</strong>: what arrives, what the stream does, what it deliberately does <em>not</em> do, what it registers, the event it fires, the metadata that travels, and how the two threads differ. The event and metadata rows have the same shape on every card. This is deliberate: a stream only needs to understand that shape, not the work of the stream before it. The cards show each stream’s <strong>Execution</strong> process; section 4 shows the three other process types around it.</p>
+<section id="state-1-raw-data-vs-01-data-acquisition-and-ingestion" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="state-1-raw-data-vs-01-data-acquisition-and-ingestion">State #1 — Raw Data (VS-01 Data Acquisition and Ingestion)</h3>
+<p><em>Source Data → #1 Raw Data. Received into NSO custody in original form, with provenance and basic validation. Nothing about the content is changed here.</em></p>
+<div class="column-page">
+<table class="caption-top table">
+<caption>State #1 handover card</caption>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 41%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Labour Force Survey</th>
+<th>Tax register → business statistics</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>What arrives</strong></td>
+<td>Survey responses from the sampled households: CAWI first, CATI follow-up after two weeks, CAPI for hard-to-reach cases. Trigger: <em>survey response submitted</em>.</td>
+<td>The Q3 quarterly file, delivered via SFTP on day 38 of the 45-day SLA. Before the window opened, the team verified the SLA (≥ 98% of expected records), confirmed the SFTP credentials, and recorded the active agreement reference. Trigger: <em>delivery received</em>.</td>
+</tr>
+<tr class="even">
+<td><strong>What this stream does</strong></td>
+<td>Confirms the round’s needs and sources; activates the legal basis; runs each mode, capturing ingestion metadata at receipt (mode, completion date, instrument version); validates completeness and structure per return; logs every result.</td>
+<td>The automated pipeline fires on arrival: XSD valid, SHA-256 checksum matches the manifest, virus scan clean, 2,347,891 records (99.2% of expected, above the 98% threshold); 14 corporate IDs not in the business register are flagged but not rejected (known register lag).</td>
+</tr>
+<tr class="odd">
+<td><strong>What is <em>not</em> done here</strong></td>
+<td>No coding, editing or change of values: the content is what the respondent gave.</td>
+<td>No pseudonymisation (deferred to VS-02 by agreement); no conversion of amounts; the XML is kept as received.</td>
+</tr>
+<tr class="even">
+<td><strong>What is registered</strong></td>
+<td><code>RD-LFS-2026Q3-001</code>: the ~42,000 returns in original form, with per-return provenance and a completeness score.</td>
+<td><code>RD-TAX-2026Q3-001</code>: the file in original XML, with provenance, a quality assessment (completeness 99.2%, timeliness on time, conformance pass with 14 flags), and the agreement reference.</td>
+</tr>
+<tr class="odd">
+<td><strong>Event fired → who listens</strong></td>
+<td><em>“Raw Data Registered”</em> → VS-02</td>
+<td><em>“Raw Data Registered”</em> → VS-02</td>
+</tr>
+<tr class="even">
+<td><strong>Metadata that travels</strong> (both)</td>
+<td>Provenance, source, collection method, receipt timestamp, file hash, agreement reference, quality assessment (completeness, timeliness, conformance), and a BIV classification (a security label covering availability, integrity and confidentiality; the letters come from the Dutch).</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>What differs</strong></td>
+<td>Primary collection: the NSO designed the instrument and runs the fieldwork; the raw artefact is many submissions across several modes.</td>
+<td>Secondary collection: the NSO negotiated an SLA and receives one file; validation is entirely automated. The contract at the boundary is identical.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Signature discipline — no data without metadata">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Signature discipline — no data without metadata
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Every dataset is enriched at ingestion with provenance, source, method, timestamp, a quality assessment and a BIV classification, as SAF-P09 requires, with security and privacy built in from the start (SAF-P10/P11).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="In the main document">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In the main document
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Full chapter: <a href="./framework/vs-01.html">VS-01 Data Acquisition and Ingestion</a>. Its <em>Steady State Transition</em>, <em>Boundary Interface Specifications</em> and <em>End-to-End Scenarios</em> go further than the card above. Note that the survey scenario there is a Household Budget Survey; the LFS thread above is built from the LFS design example in the same chapter. A one-page summary of this stream also sits in <a href="./framework/business-architecture.html">Business Architecture</a>.</p>
+</div>
+</div>
+</section>
+<section id="state-2-standardized-data-vs-02-data-standardization-and-integration" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="state-2-standardized-data-vs-02-data-standardization-and-integration">State #2 — Standardized Data (VS-02 Data Standardization and Integration)</h3>
+<p><em>#1 Raw → #2 Standardized. Aligned to common structure, format, and classifications, with values unchanged. This is the first point at which data from different domains can be combined.</em></p>
+<div class="column-page">
+<table class="caption-top table">
+<caption>State #2 handover card</caption>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 41%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Labour Force Survey</th>
+<th>Tax register → business statistics</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>What arrives</strong></td>
+<td><em>“Raw Data Registered”</em> for <code>RD-LFS-2026Q3-001</code>, ~42,000 returns.</td>
+<td><em>“Raw Data Registered”</em> for <code>RD-TAX-2026Q3-001</code>, 2,347,891 records.</td>
+</tr>
+<tr class="even">
+<td><strong>What this stream does</strong></td>
+<td>Converts the file into the target structure; maps education codes one-to-one to ISCED-2011 and region codes to NUTS-3 via correspondence tables; records the survey’s employment-status definition difference from ILO <em>as metadata</em>; pseudonymises the personal identifier. Conformance validation passes, including the no-loss-of-content check (42,000 records, no value changed).</td>
+<td>Maps the tax authority’s internal activity codes to NACE Rev.&nbsp;2 (99.4% coverage); converts the XML into the target structure; attaches the statistical business register (SBR) key; records that turnover is in thousands of EUR on a fiscal-year basis <em>as metadata</em>; values are left exactly as received. 14 records without an SBR match are flagged but retained. Conformance passes with every value unchanged.</td>
+</tr>
+<tr class="odd">
+<td><strong>What is <em>not</em> done here</strong></td>
+<td>The 42,000 free-text occupation strings are <strong>not</strong> coded; they are flagged and handed to VS-03 for ISCO-08 coding. The definition difference is not reconciled.</td>
+<td>Turnover is <strong>not</strong> converted to units or to a calendar year; the 0.6% of activity codes with no correspondence are flagged for VS-03.</td>
+</tr>
+<tr class="even">
+<td><strong>What is registered</strong></td>
+<td><code>SD-LFS-2026Q3-001</code>, with mapping lineage to the raw artefact.</td>
+<td><code>SD-BUS-2026Q3-001</code>, with lineage to <code>RD-TAX-2026Q3-001</code> and a note that unit/period conversion remains to be done.</td>
+</tr>
+<tr class="odd">
+<td><strong>Event fired → who listens</strong></td>
+<td><em>“Standardized Data Registered”</em> → VS-03</td>
+<td><em>“Standardized Data Registered”</em> → VS-03</td>
+</tr>
+<tr class="even">
+<td><strong>Metadata that travels</strong> (both)</td>
+<td>Source-to-target mapping lineage, applied classification scheme versions, recorded unit/currency/reference-period bases, the list of unmapped or uncoded values for VS-03 to code, definition-difference records, conformance assessment, pseudonymisation record, BIV classification.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>What differs</strong></td>
+<td>Deterministic mapping of coded answers; pseudonymisation of persons.</td>
+<td>Mapping of an administrative code list to NACE; linkage key attached; the <em>bases</em> of amounts recorded so a later stream can convert them.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Confidentiality step at this state: direct identifiers are replaced by pseudonymous keys before the artefact is registered.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Signature discipline — standardization without loss of content">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Signature discipline — standardization without loss of content
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VS-02 only maps codes one-to-one, reformats the structure, and adds metadata. It <strong>never changes a value</strong>. Recoding through a fixed correspondence table counts as standardisation because the meaning of the value stays the same. Unit/currency conversion, reference-period alignment, value reconciliation and interpretive free-text coding are left to VS-03.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="In the main document">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In the main document
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Full chapter: <a href="./framework/vs-02.html">VS-02 Data Standardization and Integration</a>. See its <em>Steady State Transition</em>, <em>Boundary Interface Specifications</em> and <em>End-to-End Scenarios</em>: Scenario A is the LFS, Scenario B the tax register. A one-page summary of this stream also sits in <a href="./framework/business-architecture.html">Business Architecture</a>.</p>
+</div>
+</div>
+</section>
+<section id="state-3-processed-data-vs-03-data-editing-and-enrichment" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="state-3-processed-data-vs-03-data-editing-and-enrichment">State #3 — Processed Data (VS-03 Data Editing and Enrichment)</h3>
+<p><em>#2 Standardized → #3 Processed. Content validated, edited, imputed, enriched, integrated; derived variables added. This is the only stream that deliberately changes values, and every change must be documented and reversible.</em></p>
+<div class="column-page">
+<table class="caption-top table">
+<caption>State #3 handover card</caption>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 41%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Labour Force Survey</th>
+<th>Tax register → business statistics</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>What arrives</strong></td>
+<td><em>“Standardized Data Registered”</em> for <code>SD-LFS-2026Q3-001</code>, plus the flagged occupation strings and the recorded definition difference.</td>
+<td><em>“Standardized Data Registered”</em> for <code>SD-BUS-2026Q3-001</code>, plus the recorded unit and fiscal-year bases and the unmapped activity codes.</td>
+</tr>
+<tr class="even">
+<td><strong>What this stream does</strong></td>
+<td>Error detection flags inconsistencies and outliers; auto-corrections are applied and high-impact records adjudicated. The 42,000 occupations are coded to ISCO-08 (88% auto-coded, the rest computer-assisted and reviewed). Income non-response (9%) is imputed and flagged. Employment status is harmonised to the ILO definition under the reconciliation rule.</td>
+<td>Outliers and duplicates are detected and corrected with full lineage. Turnover is converted to units on a calendar-year basis (conversion factor and original value stored). The tax data and the structural business survey are integrated on the SBR key, with the reconciliation rule applied where they disagree. Turnover-per-employee is derived.</td>
+</tr>
+<tr class="odd">
+<td><strong>What is <em>not</em> done here</strong></td>
+<td>No weighting or estimation: no statistics are computed here. Observed values are never overwritten: the original is kept beside every edit, and imputed values stay distinguishable.</td>
+<td>Same. Integration does not silently pick one source over the other: reconciliation follows a designed rule and is logged.</td>
+</tr>
+<tr class="even">
+<td><strong>What is registered</strong></td>
+<td><code>PD-LFS-2026Q3-001</code>: an immutable quality version with complete edit lineage.</td>
+<td><code>PD-BUS-2026Q3-001</code>, with lineage to <code>SD-BUS-2026Q3-001</code>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Event fired → who listens</strong></td>
+<td><em>“Processed Data Registered”</em> → VS-04</td>
+<td><em>“Processed Data Registered”</em> → VS-04</td>
+</tr>
+<tr class="even">
+<td><strong>Metadata that travels</strong> (both)</td>
+<td>Edit lineage (original value, rule, reason), imputation flags and methods, derived-variable formulae and classification, integration/linkage lineage, quality-improvement assessment, quality-version identifier, BIV classification.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>What differs</strong></td>
+<td>Interpretive coding and imputation of item non-response dominate.</td>
+<td>Conversion, multi-source integration, and derivation dominate. In both, every change is traceable to its original value.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Confidentiality step at this state: disclosure risk is assessed on enrichment and linkage. In the tax thread, the disclosure-risk report confirms the survey–register linkage stays within assessed bounds.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Signature discipline — full traceability">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Signature discipline — full traceability
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VS-03 is the domain that changes values, under the guarantee of <em>no undocumented or irreversible change</em>: original values are preserved beside edited ones, imputations are flagged, and every version is reproducible.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="In the main document">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In the main document
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Full chapter: <a href="./framework/vs-03.html">VS-03 Data Editing and Enrichment</a>. See its <em>Steady State Transition</em>, <em>Boundary Interface Specifications</em> and <em>End-to-End Scenarios</em>. A one-page summary of this stream also sits in <a href="./framework/business-architecture.html">Business Architecture</a>.</p>
+</div>
+</div>
+</section>
+<section id="state-4a-statistics-output-data-analytical-outputs-vs-04-estimation-analysis-and-statistical-modeling" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="state-4a-statistics-output-data-analytical-outputs-vs-04-estimation-analysis-and-statistical-modeling">State #4a — Statistics (Output Data): analytical outputs (VS-04 Estimation, Analysis, and Statistical Modeling)</h3>
+<p><em>#3 Processed → #4 Statistics. The microdata is not edited further; statistics are computed from it, each with a measure of its accuracy, and disclosure control is applied to the outputs.</em></p>
+<div class="column-page">
+<table class="caption-top table">
+<caption>State #4a handover card</caption>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 41%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Labour Force Survey</th>
+<th>Tax register → business statistics</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>What arrives</strong></td>
+<td><em>“Processed Data Registered”</em> for <code>PD-LFS-2026Q3-001</code>, with its imputation flags.</td>
+<td><em>“Processed Data Registered”</em> for <code>PD-BUS-2026Q3-001</code>, the integrated business dataset.</td>
+</tr>
+<tr class="even">
+<td><strong>What this stream does</strong></td>
+<td>Confirms the pre-approved approach and current calibration totals. Calibration converges and the weighted margins reproduce the population register. The employment rate is estimated at 71.4% (95% CI ± 0.5 pp nationally, wider at NUTS-2), with variance inflated for the imputed values. Coherence checks against Q2 pass. Small NUTS-2 cells are suppressed.</td>
+<td>Aggregates are computed by NACE × region. Unstable small domains are estimated with a small-area model and flagged distinctly from direct aggregates. Dominant-unit cells are suppressed. Coherence with national-accounts inputs is checked.</td>
+</tr>
+<tr class="odd">
+<td><strong>What is <em>not</em> done here</strong></td>
+<td>No microdata is changed. No product is assembled or published.</td>
+<td>Same. Model-based estimates are never presented as if they were direct aggregates.</td>
+</tr>
+<tr class="even">
+<td><strong>What is registered</strong></td>
+<td><code>OD-LFS-2026Q3</code>: the output version with methodology, weights, and accuracy attached.</td>
+<td><code>OD-BUS-2026Q3-001</code>, with methodology and accuracy, linked to <code>PD-BUS-2026Q3-001</code>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Event fired → who listens</strong></td>
+<td><em>“Output Data Registered”</em> → VS-05</td>
+<td><em>“Output Data Registered”</em> → VS-05</td>
+</tr>
+<tr class="even">
+<td><strong>Metadata that travels</strong> (both)</td>
+<td>Methodology and parameters, weights, accuracy measures (sampling error, confidence intervals), model diagnostics, applied disclosure-control record, quality indicators, output-version identifier, lineage to the processed source, BIV classification.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>What differs</strong></td>
+<td>Design-based estimation with calibration to register totals; the variance reflects both the survey design and VS-03’s imputation.</td>
+<td>Register-based aggregation plus a small-area model for thin domains; disclosure control is about dominant units rather than small cells. In both, every figure carries the method and accuracy that produced it and can be regenerated.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Confidentiality step at this state: statistical disclosure control is applied to the outputs, so that they could be released.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Signature discipline — methodological transparency">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Signature discipline — methodological transparency
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Every estimate carries the method, parameters, and accuracy measure that produced it and can be regenerated; imputation uncertainty from VS-03 is reflected in the variance, and disclosure control is applied to the outputs so that they could be released.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="In the main document">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In the main document
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Full chapter: <a href="./framework/vs-04.html">VS-04 Estimation, Analysis, and Statistical Modeling</a>. See its <em>Steady State Transition</em>, <em>Boundary Interface Specifications</em> and <em>End-to-End Scenarios</em>. A one-page summary of this stream also sits in <a href="./framework/business-architecture.html">Business Architecture</a>.</p>
+</div>
+</div>
+</section>
+<section id="state-4b-statistics-output-data-approved-product-vs-05-statistical-product-composition" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="state-4b-statistics-output-data-approved-product-vs-05-statistical-product-composition">State #4b — Statistics (Output Data): approved product (VS-05 Statistical Product Composition)</h3>
+<p><em>Still within State #4. The framework has a single State #4; <strong>#4a / #4b is this guide’s shorthand</strong> for its two halves, because two different streams work on it. VS-04 produced individual validated estimates, and VS-05 now assembles them into an approved product that readers can use. The numbers themselves do not change.</em></p>
+<div class="column-page">
+<table class="caption-top table">
+<caption>State #4b handover card</caption>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 41%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Labour Force Survey</th>
+<th>Tax register → business statistics</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>What arrives</strong></td>
+<td><em>“Output Data Registered”</em> for <code>OD-LFS-2026Q3</code>.</td>
+<td><em>“Output Data Registered”</em> for <code>OD-BUS-2026Q3-001</code>.</td>
+</tr>
+<tr class="even">
+<td><strong>What this stream does</strong></td>
+<td>Integrates the pinned <code>OD-LFS-2026Q3</code> employment and unemployment outputs (national and NUTS-2) and the latest administrative vacancy output, carrying their confidence intervals; constructs the headline series; runs coherence checks (all reconcile; coherent with Q2). The commentary explains the 0.3 pp rise in the employment rate and notes its significance; visualisations are editorially reviewed.</td>
+<td>Integrates the register-based and survey-based turnover and employment estimates for the same NACE × region domains. NACE-class turnover sums to the published total. The components agree within tolerance except one domain, which is <strong>returned to VS-04 for review rather than adjusted</strong>.</td>
+</tr>
+<tr class="odd">
+<td><strong>What is <em>not</em> done here</strong></td>
+<td>Nothing is re-estimated. Discrepancies are explained or sent back, never quietly adjusted.</td>
+<td>Same.</td>
+</tr>
+<tr class="even">
+<td><strong>What is registered</strong></td>
+<td><code>SP-LFS-2026Q3-001</code>: the approved quarterly labour-market product, an immutable version with full lineage to its components.</td>
+<td><code>SP-BUS-2026Q3-001</code>, once the returned domain is resolved, with lineage to its components.</td>
+</tr>
+<tr class="odd">
+<td><strong>Event fired → who listens</strong></td>
+<td><em>“Statistical Product Registered”</em> → VS-06</td>
+<td><em>“Statistical Product Registered”</em> → VS-06</td>
+</tr>
+<tr class="even">
+<td><strong>Metadata that travels</strong> (both)</td>
+<td>Component lineage, composition/indicator method, propagated accuracy, coherence results, interpretive content, approval record, confidentiality status, product-version identifier, BIV classification.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>What differs</strong></td>
+<td>Composes survey and administrative outputs into a publication with narrative.</td>
+<td>Composes register- and survey-based estimates into a structural business statistics composite. In both, component versions are pinned and approval precedes registration.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Confidentiality step at this state: the product is validated against dissemination and confidentiality standards before it is approved.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Signature discipline — coherence and interpretability">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Signature discipline — coherence and interpretability
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VS-05 <strong>composes</strong> validated outputs (it does not re-estimate). Products are internally consistent, coherent with related and prior statistics, carry their components’ accuracy metadata, and are <strong>approved against dissemination and confidentiality standards</strong> before being registered.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="In the main document">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In the main document
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Full chapter: <a href="./framework/vs-05.html">VS-05 Statistical Product Composition</a>. Its <em>Steady State Transition</em> explains why State #4 has two halves. A one-page summary of this stream also sits in <a href="./framework/business-architecture.html">Business Architecture</a>.</p>
+</div>
+</div>
+</section>
+<section id="state-5-released-data-then-6-consumed-data-vs-06-dissemination-and-service-delivery" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="state-5-released-data-then-6-consumed-data-vs-06-dissemination-and-service-delivery">State #5 — Released Data, then #6 Consumed Data (VS-06 Dissemination and Service Delivery)</h3>
+<p><em>#4 Approved product → #5 Released → #6 Consumed. This is where data leaves the office. The key control is a final disclosure check, and nothing is released until it is passed. VS-06 does not alter the statistics; it protects, formats and delivers them.</em></p>
+<div class="column-page">
+<table class="caption-top table">
+<caption>State #5 handover card</caption>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 41%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Labour Force Survey</th>
+<th>Tax register → business statistics</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>What arrives</strong></td>
+<td><em>“Statistical Product Registered”</em> for the Q3-2026 labour-market product.</td>
+<td><em>“Statistical Product Registered”</em> for the SBS product.</td>
+</tr>
+<tr class="even">
+<td><strong>What this stream does</strong></td>
+<td>Confirms the plan; applies final disclosure control (two small NUTS-2 cells suppressed); clears the disclosure-risk gate. At 09:00 the figures publish simultaneously on the website, the API, and the dashboard; embargoed media publish at the same moment. Documentation and methodology notes accompany the release; the helpdesk handles queries; usage and feedback are collected.</td>
+<td>Aggregate tables are disclosure-controlled and published openly. The microdata is de-identified to the agreed standard and made available in a secure research environment (SRE) for accredited researchers, who are onboarded with the data dictionary and methodology. The helpdesk performs output-checking so that results researchers export also meet disclosure rules. SRE usage is logged.</td>
+</tr>
+<tr class="odd">
+<td><strong>What is <em>not</em> done here</strong></td>
+<td>No figure is changed. No release before the gate is passed; no privileged early sight outside policy.</td>
+<td>Same. Researchers work inside the environment; nothing leaves without output-checking.</td>
+</tr>
+<tr class="even">
+<td><strong>What is registered</strong></td>
+<td>The release version, with lineage to <code>SP-LFS-2026Q3-001</code>.</td>
+<td>The release version, with lineage to <code>SP-BUS-2026Q3-001</code>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Event fired → who listens</strong></td>
+<td><em>“Statistics Released”</em> → users and society; feedback returns to VS-06.5 and VS-10.</td>
+<td><em>“Statistics Released”</em> → users and researchers; feedback returns to VS-06.5 and VS-10.</td>
+</tr>
+<tr class="even">
+<td><strong>Metadata that travels</strong> (both)</td>
+<td>Final disclosure-control record, documentation/methodology notes, reference and structural metadata, channel/format, release timestamp, release-version identifier, lineage to the approved product.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>What differs</strong></td>
+<td>An open aggregate release at a fixed minute, with equal access enforced.</td>
+<td>Open tables plus controlled microdata access with output checking. The gate is the same; the channels are not.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Confidentiality step at this state: the final disclosure-control gate. Once released, the data is <strong>Consumed Data (#6)</strong>, used by external parties for their own purposes, outside the NSO’s direct control. The documentation delivered at #5 supports appropriate use at #6.</p>
+<p>In some processes nothing changes between the approved product and the release. A proposal under review allows the #4 artefact to be marked as released in that case, instead of being registered again, provided the release steps are still carried out and recorded. See <a href="./framework/business-architecture.html#pragmatic-steady-states">Applying the steady states pragmatically</a>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Signature discipline — accessibility, trust, and the release gate">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Signature discipline — accessibility, trust, and the release gate
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Accurate, timely, understandable delivery through secure channels, gated by <strong>final statistical disclosure control</strong> (no release without confidentiality clearance) and supported by documentation that enables responsible, equal-access use. VS-06 relies on the supporting streams VS-07 (compliance), VS-09 (platforms), and VS-10 (user needs).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="In the main document">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In the main document
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Full chapter: <a href="./framework/vs-06.html">VS-06 Dissemination and Service Delivery</a>. See its <em>Steady State Transition</em>, <em>Boundary Interface Specifications</em> and <em>End-to-End Scenarios</em>. A one-page summary of this stream also sits in <a href="./framework/business-architecture.html">Business Architecture</a>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="the-other-three-process-types-worked-once" class="level2">
+<h2 class="anchored" data-anchor-id="the-other-three-process-types-worked-once">4. The other three process types, worked once</h2>
+<p>The cards above show the <strong>Execution</strong> process of each stream, which runs every production cycle. Around it, three other process types run in every stream: <strong>Design</strong> decides how the work should be done and provides the metadata; <strong>Implementation</strong> builds and tests the systems and provides the execution process; <strong>Management</strong> checks quality and performance and feeds improvements back to Design. The cycle looks the same in every stream, so it is worked here once, for the tax thread at State #1.</p>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-gs-cycle" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gs-cycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-gs-cycle">flowchart LR
+    D["**Design**
+    _metadata_"] --&gt;|"guides building"| I["**Implement**
+    _execution process_"]
+    I --&gt;|"production-ready"| E["**Execute**
+    _statistical data_"]
+    E --&gt;|"data &amp; process logs"| M["**Manage**
+    _quality reports_"]
+    M --&gt;|"improvement feedback"| D
+
+    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
+    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
+    style E fill:#059669,color:#fff,stroke:#047857
+    style M fill:#d97706,color:#fff,stroke:#b45309
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gs-cycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: The four-process governance pattern. Each of the six primary streams runs this full cycle; the feedback arrow from Management to Design closes the loop.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Design.</strong> Statistical designers define the data requirement: quarterly corporate income-tax declarations for all legal entities, for use in national accounts and business statistics. The data model maps the tax authority’s XML schema to the NSO’s raw-data structure: 47 fields retained, 12 derived, the corporate ID as the linkage key. The SLA is set at delivery within 45 calendar days of quarter end, at least 98% of expected records, in XML with XSD validation. Validation rules cover schema validation, referential integrity of the corporate ID against the business register, and amount fields within historical range. The privacy framework records that data is received under the statistics-act mandate, with pseudonymisation deferred to VS-02 by agreement.</p>
+<p><strong>Implementation.</strong> System configurators set up a dedicated secure file-transfer endpoint, locked down so that only the tax authority’s systems can connect to it. Data engineers configure automated ingestion: file arrival triggers the validation pipeline (XSD check, checksum, virus scan, completeness, referential integrity, range check). Metadata registration is automated: on successful validation a provenance record is created and linked to the agreement, and quality scores are calculated and stored. The pipeline is tested by resubmitting Q1-2026 historical data; one false-positive range check is found and its threshold adjusted.</p>
+<p><strong>Execution.</strong> This is the State #1 card above: the Q3 file arrives on day 38, the pipeline validates it, <code>RD-TAX-2026Q3-001</code> is registered, and <em>“Raw Data Registered”</em> notifies VS-02.</p>
+<p><strong>Management.</strong> The Q3 quality scorecard shows completeness at 99.2% (stable against Q1 = 99.1% and Q2 = 99.3%) and delivery seven days ahead of the SLA deadline. The 14 unmatched corporate IDs are all newly registered businesses, consistent with previous quarters. SLA compliance stands at 100% for 12 consecutive quarters; metadata completeness is 100%. No improvement recommendation is needed this cycle; an annual agreement-renewal review is scheduled for Q4.</p>
+<p>Two things are worth noticing. The Design artefacts (the schema mapping, the validation rules, the SLA) existed <em>before</em> the first file arrived, and Execution follows them. And Management ends with a decision about Design, even when that decision is to change nothing.</p>
+<p>What Design and Management look like in the other five streams, in one line each:</p>
+<table class="caption-top table">
+<caption>Design and Management around each stream</caption>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 44%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stream</th>
+<th>Design prepares</th>
+<th>Management watches and feeds back</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-02 Standardization</td>
+<td>The target data model, deterministic classification correspondences, harmonisation and conformance rules, the privacy framework</td>
+<td>Mapping coverage and the unmapped-value rate; classification versions; extensions to the correspondence tables</td>
+</tr>
+<tr class="even">
+<td>VS-03 Editing &amp; Enrichment</td>
+<td>Error-detection and editing rules with a selective-editing strategy, the imputation methodology, derivation and coding specs, integration rules, the versioning policy</td>
+<td>Edit, imputation, and over-editing rates; quality improvement against the State #2 baseline; audit of the edit lineage</td>
+</tr>
+<tr class="odd">
+<td>VS-04 Estimation</td>
+<td>The estimation strategy and accuracy approach, weighting/calibration methodology, aggregation and model specifications, the validation and disclosure-control policy</td>
+<td>Accuracy, timeliness, and revisions; coherence; reproducibility audits</td>
+</tr>
+<tr class="even">
+<td>VS-05 Composition</td>
+<td>The product portfolio, composite-indicator specs, coherence checks, content templates, the approval/confidentiality/versioning framework</td>
+<td>Coherence-check pass rates and approval iterations; product quality; reproducibility and approval audits</td>
+</tr>
+<tr class="odd">
+<td>VS-06 Dissemination</td>
+<td>The dissemination and access strategy, final disclosure-control and de-identification rules, channel/format/documentation standards, release governance</td>
+<td>Punctuality, usage, and satisfaction; accessibility; disclosure and equal-access compliance, with VS-07</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="map-your-own-process" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="map-your-own-process">5. Map your own process</h2>
+<p>The framework is explicit that “SAF does not prescribe a single operating model, a single technology stack, or a single organisational design”; what it gives you is a shared way of describing the one you have and the one you want. This exercise does that for one production process in three steps. Invite the people who design, build, run and monitor the process; the four process types also make a good attendance list.</p>
+<section id="step-1-find-your-steady-state-boundaries" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="step-1-find-your-steady-state-boundaries">Step 1 — Find your steady-state boundaries</h3>
+<p>Pick one statistical product. For each handover in the chain, answer the questions in the worksheet. Each column is one of the four things the framework says a boundary must specify (the artefact, its metadata, the event, and where responsibility transfers), phrased as a question.</p>
+<p>Filled in for the tax thread, the worksheet reads:</p>
+<div class="column-page">
+<table class="caption-top table">
+<caption>Step 1 worksheet, filled in for the tax thread</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 20%">
+<col style="width: 18%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Handover</th>
+<th>What is the artefact?</th>
+<th>Who produces → who consumes?</th>
+<th>Registered, identified, immutable?</th>
+<th>What signals the next team?</th>
+<th>What metadata travels?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Source → #1</td>
+<td>The tax authority’s quarterly XML file, stored as received</td>
+<td>Tax authority → acquisition team</td>
+<td>Yes: <code>RD-TAX-2026Q3-001</code>, original form kept</td>
+<td><em>“Raw Data Registered”</em></td>
+<td>Provenance, hash, agreement reference, quality assessment, BIV</td>
+</tr>
+<tr class="even">
+<td>#1 → #2</td>
+<td>The same records in the office’s common data model, with NACE codes and the SBR key</td>
+<td>Acquisition team → standardisation team</td>
+<td>Yes: <code>SD-BUS-2026Q3-001</code></td>
+<td><em>“Standardized Data Registered”</em></td>
+<td>Mapping lineage, classification versions, recorded unit/period bases, unmapped list</td>
+</tr>
+<tr class="odd">
+<td>#2 → #3</td>
+<td>The edited, converted, integrated quality version</td>
+<td>Standardization team → editing/integration team</td>
+<td>Yes: <code>PD-BUS-2026Q3-001</code></td>
+<td><em>“Processed Data Registered”</em></td>
+<td>Edit lineage, imputation flags, derivation formulae, linkage lineage</td>
+</tr>
+<tr class="even">
+<td>#3 → #4a</td>
+<td>Aggregates by NACE × region with accuracy and small-area flags</td>
+<td>Editing team → estimation team</td>
+<td>Yes: <code>OD-BUS-2026Q3-001</code></td>
+<td><em>“Output Data Registered”</em></td>
+<td>Methodology, accuracy, model diagnostics, SDC record</td>
+</tr>
+<tr class="odd">
+<td>#4a → #4b</td>
+<td>The approved SBS composite product</td>
+<td>Estimation team → product team</td>
+<td>Yes: <code>SP-BUS-2026Q3-001</code></td>
+<td><em>“Statistical Product Registered”</em></td>
+<td>Component lineage, propagated accuracy, approval record</td>
+</tr>
+<tr class="even">
+<td>#4 → #5</td>
+<td>Published tables and the de-identified SRE microdata</td>
+<td>Product team → dissemination team → users</td>
+<td>Yes: release version</td>
+<td><em>“Statistics Released”</em></td>
+<td>Final SDC record, documentation, channel, release timestamp</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Now blank, for your process:</p>
+<div class="column-page">
+<table class="caption-top table">
+<caption>Step 1 worksheet, blank</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 18%">
+<col style="width: 16%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 16%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Handover</th>
+<th>What is the artefact?</th>
+<th>Who produces → who consumes?</th>
+<th>Registered, identified, immutable?</th>
+<th>What signals the next team?</th>
+<th>What metadata travels?</th>
+<th>Gap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Source → #1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>#1 → #2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>#2 → #3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>#3 → #4a</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>#4a → #4b</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>#4 → #5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Your process does not have to fill every row. If it starts from data another team has already registered, such as a shared #3, begin at that row and note the artefact you start from. If two states hold the same data, for example when nothing changes between #4 and #5, write “same artefact as #4” and give the reason. See <a href="./framework/business-architecture.html#pragmatic-steady-states">Applying the steady states pragmatically</a>, a proposal still under review.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Reading your worksheet: four symptoms and what they mean">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Reading your worksheet: four symptoms and what they mean
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>You cannot name the artefact</strong> at a handover → either the boundary does not exist yet, or two states have been merged or skipped. Both can be legitimate if you can explain why. If you cannot, deciding where the boundary belongs is your first architecture decision.</li>
+<li><strong>The next team has to read the previous team’s code, or ask them how to use the data</strong> → the streams are tightly coupled (SAF-P07). The metadata that should travel with the artefact is living in people’s heads or in scripts.</li>
+<li><strong>The same data is re-collected or re-cleaned by a second team</strong> → the artefact is not shared property (SAF-P08). This is usually a problem of registration or discovery rather than a technical one.</li>
+<li><strong>Values change between #1 and #2</strong> → the standardisation boundary is in the wrong place. Anything that changes a value belongs in VS-03, where every change is logged against its original.</li>
+</ul>
+<p>A boundary is an agreement between streams and does not have to match an organisational unit. One team may own several states, and a central unit may run processing for many domains. The agreement in each row just needs to be written down.</p>
+</div>
+</div>
+</section>
+<section id="step-2-a-condensed-self-assessment" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-a-condensed-self-assessment">Step 2 — A condensed self-assessment</h3>
+<p>The framework provides a maturity checklist of twenty questions for every stream, which is too many for a first pass. The questions follow one pattern: for each process type, one thing must be true. The four tables below condense the six primary streams into that pattern. Score each stream on each process type: <strong>0</strong> absent, <strong>1</strong> partial or ad hoc, <strong>2</strong> systematic. Fill the tables in order, or take one process type at a time across all six streams.</p>
+<section id="design-are-the-rules-written-down-and-versioned-before-the-cycle-runs" class="level4">
+<h4 class="anchored" data-anchor-id="design-are-the-rules-written-down-and-versioned-before-the-cycle-runs">Design — are the rules written down and versioned <em>before</em> the cycle runs?</h4>
+<table class="caption-top table">
+<caption>Design</caption>
+<colgroup>
+<col style="width: 22%">
+<col style="width: 68%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stream</th>
+<th>What “systematic” looks like</th>
+<th style="text-align: center;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-01 Acquisition</td>
+<td>Requirements, collection methodology, raw schema, validation rules, privacy assessment</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td>VS-02 Standardization</td>
+<td>Common data model, agreed code correspondences with a version policy, conformance rules, pseudonymisation design</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td>VS-03 Editing</td>
+<td>Editing rules with a selective-editing strategy, imputation methodology, coding specifications, versioning policy</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td>VS-04 Estimation</td>
+<td>Estimation strategy and accuracy approach, calibration methodology, validation and disclosure-control policy</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td>VS-05 Composition</td>
+<td>Product specifications, composite specifications, coherence tolerances, approval and versioning policy</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td>VS-06 Dissemination</td>
+<td>Access strategy, final disclosure-control and de-identification policy, release governance and calendar</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="implementation-is-it-built-from-those-rules-automated-and-tested" class="level4">
+<h4 class="anchored" data-anchor-id="implementation-is-it-built-from-those-rules-automated-and-tested">Implementation — is it built from those rules, automated, and tested?</h4>
+<table class="caption-top table">
+<caption>Implementation</caption>
+<colgroup>
+<col style="width: 22%">
+<col style="width: 68%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stream</th>
+<th>What “systematic” looks like</th>
+<th style="text-align: center;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-01 Acquisition</td>
+<td>Instruments built from the specifications; validation and metadata capture automated; tested before production</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td>VS-02 Standardization</td>
+<td>Mapping built from the specifications and preserving values; automated check that no value changed; lineage captured</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td>VS-03 Editing</td>
+<td>Edit lineage (original value, rule, reason, who) captured automatically; versions reproducible</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td>VS-04 Estimation</td>
+<td>Variance reflects both the survey design and imputation; outputs reproducible from input plus method</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td>VS-05 Composition</td>
+<td>Composites carry their components’ uncertainty; products reproducible; approval trail tamper-evident</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td>VS-06 Dissemination</td>
+<td>Disclosure-risk gate enforced by the tooling; embargo and equal access enforced; releases rehearsed</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="execution-is-the-signature-work-done-every-cycle-and-the-result-registered" class="level4">
+<h4 class="anchored" data-anchor-id="execution-is-the-signature-work-done-every-cycle-and-the-result-registered">Execution — is the signature work done every cycle, and the result registered?</h4>
+<table class="caption-top table">
+<caption>Execution</caption>
+<colgroup>
+<col style="width: 22%">
+<col style="width: 68%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stream</th>
+<th>What “systematic” looks like</th>
+<th style="text-align: center;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-01 Acquisition</td>
+<td>Ingestion metadata captured for every dataset; every raw dataset registered with its provenance</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td>VS-02 Standardization</td>
+<td>Codes mapped one-to-one with the version recorded; no value changed; mapping lineage registered</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td>VS-03 Editing</td>
+<td>The original kept beside every edit; imputations flagged; every processed dataset an identified version</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td>VS-04 Estimation</td>
+<td>Method, weights and accuracy attached to every estimate; disclosure control applied; output versioned</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td>VS-05 Composition</td>
+<td>The exact component versions used are recorded; nothing re-estimated; approval before registration</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td>VS-06 Dissemination</td>
+<td>The gate passed before publishing; equal-access timing; documentation with every release</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="management-is-quality-measured-and-does-it-change-anything" class="level4">
+<h4 class="anchored" data-anchor-id="management-is-quality-measured-and-does-it-change-anything">Management — is quality measured, and does it change anything?</h4>
+<table class="caption-top table">
+<caption>Management</caption>
+<colgroup>
+<col style="width: 22%">
+<col style="width: 68%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stream</th>
+<th>What “systematic” looks like</th>
+<th style="text-align: center;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-01 Acquisition</td>
+<td>Response, rejection and timeliness tracked; metadata completeness measured; findings fed back to design</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td>VS-02 Standardization</td>
+<td>Mapping coverage and unmapped rate tracked; classification versions governed; correspondence tables improved</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td>VS-03 Editing</td>
+<td>Edit, imputation and over-editing rates tracked; improvement measured against the State #2 baseline; edit lineage audited</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td>VS-04 Estimation</td>
+<td>Accuracy, revisions and reproducibility tracked; coherence assessed; methodology compliance reported</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td>VS-05 Composition</td>
+<td>Coherence pass rate and approval iterations tracked; product lifecycle governed; reproducibility audited</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td>VS-06 Dissemination</td>
+<td>Punctuality, gate pass rate, usage and satisfaction tracked; compliance reported with VS-07; feedback to VS-10</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>The supporting streams have no state transition, so one question each is enough for a first pass:</p>
+<table class="caption-top table">
+<caption>Supporting streams — score 0 / 1 / 2</caption>
+<colgroup>
+<col style="width: 30%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Supporting stream</th>
+<th>The closed-loop question</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-07 Governance &amp; Compliance</td>
+<td>Is there a closed loop that feeds audit findings and regulatory change back into the governance frameworks?</td>
+</tr>
+<tr class="even">
+<td>VS-08 Innovation &amp; Methodology</td>
+<td>Is there a governed transfer gate, with VS-07 approval, for moving new methods into production?</td>
+</tr>
+<tr class="odd">
+<td>VS-09 Infrastructure &amp; Platforms</td>
+<td>Do we provide the integration/orchestration and the event interfaces the streams rely on?</td>
+</tr>
+<tr class="even">
+<td>VS-10 Customer &amp; Stakeholder Engagement</td>
+<td>Do we measure impact and feed insight back into design and innovation?</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="Scoring in a 90-minute workshop">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Scoring in a 90-minute workshop
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ten minutes per stream column, with the people who design, build, run, and monitor that stream in the room. Score by consensus; when the room disagrees, record the lower score and the reason. Precision matters less than the overall pattern. A common result is a stream scoring 2 on Execution but 0 on Design and Management: it runs well, but without design or management artefacts it cannot be changed safely.</p>
+</div>
+</div>
+<p>Any cell scoring 0 or 1 points you at the stream’s full checklist in the SAF Framework document (the <em>Maturity Assessment Checklist</em> under <em>Applying This to Your NSO</em> in that stream’s deep dive), where twenty detailed questions describe what “systematic” looks like.</p>
+</section>
+</section>
+<section id="step-3-walk-one-of-your-own-datasets" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-walk-one-of-your-own-datasets">Step 3 — Walk one of your own datasets</h3>
+<p>Take the blank handover card below and fill it for the product you chose in Step 1, one card per state. Use the six cards in section 3 as the model. If you reach a card where you cannot fill in <em>what is registered</em>, stop there, unless you have deliberately shared or skipped that state and can say why. That gap is your first architecture decision, and the deep dive for that stream is the place to look next.</p>
+<table class="caption-top table">
+<caption>Blank handover card</caption>
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Your dataset</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>What arrives (on which event)</strong></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>What this stream does</strong></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>What is <em>not</em> done here (deferred downstream)</strong></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>What is registered (artefact + identifier)</strong></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>Event fired → who listens</strong></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>Metadata that travels</strong></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>Owner of this state (data steward); criteria a dataset must meet to be in it</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="where-this-leads" class="level2">
+<h2 class="anchored" data-anchor-id="where-this-leads">6. Where this leads</h2>
+<table class="caption-top table">
+<caption>Where to go next</caption>
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>If you want to</th>
+<th>Go to, in the SAF Framework document</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Read the full definition of each state and its quality requirements</td>
+<td><a href="./framework/business-architecture.html#steady-states-of-data">Steady States of Data</a> and the <em>State #1 … #6</em> sections that precede it</td>
+</tr>
+<tr class="even">
+<td>See the chain and the two summary tables</td>
+<td><a href="./framework/business-architecture.html#the-statistical-data-value-chain">The Statistical Data Value Chain</a> and <a href="./framework/business-architecture.html#the-value-chain-at-a-glance">The Value Chain at a Glance</a></td>
+</tr>
+<tr class="odd">
+<td>Specify a boundary contract precisely</td>
+<td>The <em>Boundary Interface Specifications</em> table in each VS deep dive: handover artefact, required metadata, trigger event, responsibility transfer</td>
+</tr>
+<tr class="even">
+<td>Design, build, or govern one stream</td>
+<td>That stream’s deep dive: <em>Design Processes</em>, <em>Implementation Processes</em>, <em>Management Processes</em>, and the <em>Business Roles and Actors</em> section</td>
+</tr>
+<tr class="odd">
+<td>Understand how the supporting streams work</td>
+<td><a href="./framework/business-architecture.html#supporting-value-streams-vs-07-to-vs-10">Supporting Value Streams (VS-07 to VS-10)</a></td>
+</tr>
+<tr class="even">
+<td>Relate this to GSBPM, GAMSO, and CSDA</td>
+<td>The <em>Framework Mappings</em> table in each VS deep dive</td>
+</tr>
+<tr class="odd">
+<td>See which capabilities a stream relies on</td>
+<td>The <em>Capability Foundations</em> table in each VS deep dive, and the <a href="./framework/strategy.html#capability-model">Capability Model</a></td>
+</tr>
+<tr class="even">
+<td>Apply the principles</td>
+<td><a href="./framework/business-architecture.html#principles-to-apply">Principles to Apply</a></td>
+</tr>
+</tbody>
+</table>
+<p>The formal ArchiMate model behind these documents is in the repository’s <code>model/</code> folder and opens in Archi; the capability model, the value streams and their stages, and the steady-state business objects are all there.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>VS-08 Innovation and Methodological Development – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../framework/vs-09.html" rel="next">
+<link href="../framework/vs-07.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4b8eba7d388032a8ef35e180b04aa314.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../framework/index.html" aria-current="page"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-07.html">Supporting value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-08.html">VS-08 Innovation and Methodological Development</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAF Architecture Framework</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and Scope</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/motivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Motivation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/strategy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strategy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Business architecture</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/business-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Architecture</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Production value streams</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-01 Data Acquisition and Ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-02 Data Standardization and Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-03 Data Editing and Enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-04 Estimation, Analysis, and Statistical Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-05 Statistical Product Composition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-06 Dissemination and Service Delivery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Supporting value streams</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-07 Governance and Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-08.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">VS-08 Innovation and Methodological Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-09 Infrastructure and Platform Enablement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-10 Customer and Stakeholder Engagement</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#vs-08.0-innovation-and-methodological-development" id="toc-vs-08.0-innovation-and-methodological-development" class="nav-link active" data-scroll-target="#vs-08.0-innovation-and-methodological-development">VS-08.0 Innovation and Methodological Development</a>
+  <ul class="collapse">
+  <li><a href="#purpose-and-scope" id="toc-purpose-and-scope" class="nav-link" data-scroll-target="#purpose-and-scope">Purpose and Scope</a></li>
+  <li><a href="#position-a-supporting-stream-that-works-across-the-whole-chain" id="toc-position-a-supporting-stream-that-works-across-the-whole-chain" class="nav-link" data-scroll-target="#position-a-supporting-stream-that-works-across-the-whole-chain">Position — a supporting stream that works across the whole chain</a></li>
+  <li><a href="#how-it-interacts-with-the-production-chain" id="toc-how-it-interacts-with-the-production-chain" class="nav-link" data-scroll-target="#how-it-interacts-with-the-production-chain">How It Interacts with the Production Chain</a></li>
+  <li><a href="#framework-alignment-gamso" id="toc-framework-alignment-gamso" class="nav-link" data-scroll-target="#framework-alignment-gamso">Framework Alignment (GAMSO)</a></li>
+  <li><a href="#principles-emphasised" id="toc-principles-emphasised" class="nav-link" data-scroll-target="#principles-emphasised">Principles Emphasised</a></li>
+  </ul></li>
+  <li><a href="#roles-and-actors" id="toc-roles-and-actors" class="nav-link" data-scroll-target="#roles-and-actors">Roles and Actors</a></li>
+  <li><a href="#the-value-stream-flow" id="toc-the-value-stream-flow" class="nav-link" data-scroll-target="#the-value-stream-flow">The Value-Stream Flow</a></li>
+  <li><a href="#capability-governance" id="toc-capability-governance" class="nav-link" data-scroll-target="#capability-governance">Capability Governance</a>
+  <ul class="collapse">
+  <li><a href="#key-performance-indicators" id="toc-key-performance-indicators" class="nav-link" data-scroll-target="#key-performance-indicators">Key Performance Indicators</a></li>
+  </ul></li>
+  <li><a href="#interactions-services-and-events" id="toc-interactions-services-and-events" class="nav-link" data-scroll-target="#interactions-services-and-events">Interactions, Services and Events</a></li>
+  <li><a href="#business-objects-artefacts" id="toc-business-objects-artefacts" class="nav-link" data-scroll-target="#business-objects-artefacts">Business Objects / Artefacts</a></li>
+  <li><a href="#applying-this-to-your-nso" id="toc-applying-this-to-your-nso" class="nav-link" data-scroll-target="#applying-this-to-your-nso">Applying This to Your NSO</a>
+  <ul class="collapse">
+  <li><a href="#maturity-assessment-checklist" id="toc-maturity-assessment-checklist" class="nav-link" data-scroll-target="#maturity-assessment-checklist">Maturity Assessment Checklist</a></li>
+  <li><a href="#scenarios" id="toc-scenarios" class="nav-link" data-scroll-target="#scenarios">Scenarios</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="vs-08.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-07.html">Supporting value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-08.html">VS-08 Innovation and Methodological Development</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">VS-08 Innovation and Methodological Development</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="vs-08.0-innovation-and-methodological-development" class="level2">
+<h2 class="anchored" data-anchor-id="vs-08.0-innovation-and-methodological-development">VS-08.0 Innovation and Methodological Development</h2>
+<section id="purpose-and-scope" class="level3">
+<h3 class="anchored" data-anchor-id="purpose-and-scope">Purpose and Scope</h3>
+<p>VS-08.0 makes sure the statistical organization does not stand still. Its purpose is to discover, test, and introduce new ways of working — new data sources, methods, tools, and technologies — and to move the organization from “we have always done it this way” to “we can do this better, faster, and smarter.” It connects research, methodology, IT, and business users, and it keeps innovation <strong>controlled</strong>, so that only methods that are sound, documented, and compliant end up in production. The value it creates is <strong>continuous improvement</strong> — keeping the SAF future-proof for new data (IoT, administrative, data spaces) and new techniques (ML, small-area estimation).</p>
+<p><em>A note on numbering:</em> each <code>VS-0x.y</code> below is both a value stream stage (<em>what value</em> is added) and a business process (<em>how</em> it is done); the numbering maps one-to-one. See the key-concepts box above.</p>
+</section>
+<section id="position-a-supporting-stream-that-works-across-the-whole-chain" class="level3">
+<h3 class="anchored" data-anchor-id="position-a-supporting-stream-that-works-across-the-whole-chain">Position — a supporting stream that works across the whole chain</h3>
+<p>VS-08 is not a stage in the production line. It runs alongside it as a pipeline that <strong>feeds improvements into</strong> every primary stream and draws its agenda from their needs.</p>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-1">flowchart TD
+    subgraph primary["Primary Value Streams"]
+        direction LR
+        VS01["VS-01"] --&gt; VS02["VS-02"] --&gt; VS03["VS-03"] --&gt; VS04["VS-04"] --&gt; VS05["VS-05"] --&gt; VS06["VS-06"]
+    end
+
+    VS08["**VS-08.0 Innovation &amp;&lt;br/&gt;Methodological Development**"]:::hi
+    primary --&gt;|"improvement needs"| VS08
+    VS08 --&gt;|"validated methods &amp; tools&lt;br/&gt;transferred to production"| primary
+
+    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9,stroke-width:2px
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: VS-08 draws needs from the chain and delivers validated methods back into it.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="How a supporting value stream differs from a primary one">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>How a supporting value stream differs from a primary one
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>No steady-state data transition.</strong> VS-08 does not move data from one state to the next; it improves the <em>methods and tools</em> the production streams use.</li>
+<li><strong>It runs continuously</strong>, as a research-and-development pipeline, not per production cycle.</li>
+<li><strong>Its output is an enabling capability, not a data artefact:</strong> validated methods, documented tools, reference implementations, and trained staff.</li>
+<li><strong>It aligns to GAMSO Capability Management</strong>, not to GSBPM production phases.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="how-it-interacts-with-the-production-chain" class="level3">
+<h3 class="anchored" data-anchor-id="how-it-interacts-with-the-production-chain">How It Interacts with the Production Chain</h3>
+<p>VS-08 has a distinctive two-way relationship with the chain. The improvement recommendations every primary stream produces (their §6.5 continuous-improvement loops), together with user needs surfaced by VS-10, form VS-08’s <strong>innovation backlog</strong>. After research and evaluation, the famous <strong>transfer gate (08.5)</strong> moves a validated method or tool <strong>into</strong> the relevant production stream — gated by VS-07 compliance approval and enabled by VS-09 platforms.</p>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-2">flowchart LR
+    SRC["Improvement needs&lt;br/&gt;(VS-01…06 §6.5)&lt;br/&gt;+ user needs (VS-10)&lt;br/&gt;+ external tech scan"] --&gt; VS08["VS-08&lt;br/&gt;Innovation"]:::hi
+    VS08 --&gt;|"08.5 transfer&lt;br/&gt;(validated method/tool)"| PROD["Target production&lt;br/&gt;stream (e.g. VS-03/04)"]
+    VS07["VS-07 Governance"] -.-&gt;|"compliance approval"| VS08
+    VS09["VS-09 Infrastructure"] -.-&gt;|"sandbox &amp; production platforms"| VS08
+
+    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Interaction with the chain: needs in, validated methods out (through a governed transfer gate).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="framework-alignment-gamso" class="level3">
+<h3 class="anchored" data-anchor-id="framework-alignment-gamso">Framework Alignment (GAMSO)</h3>
+<p>Where the primary streams map to <strong>GSBPM</strong> production phases, VS-08 maps to <strong>GAMSO Capability Management</strong> and the SAF’s research/capability foundations:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>GAMSO area</th>
+<th>Relevance to VS-08</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Capability Management</strong></td>
+<td>Manage research &amp; innovation, develop methodology, manage change, build staff capability</td>
+</tr>
+<tr class="even">
+<td><strong>Strategy and Leadership</strong></td>
+<td>Set the innovation agenda aligned to organizational strategy</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF capabilities</strong></td>
+<td>Statistical design &amp; build (methodology), research; supports all primary capabilities</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="principles-emphasised" class="level3">
+<h3 class="anchored" data-anchor-id="principles-emphasised">Principles Emphasised</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Principle</th>
+<th>Statement</th>
+<th>How VS-08 applies it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAF-P01</strong></td>
+<td>Actively participate in open source to maintain collective control over statistical processes</td>
+<td>Innovate on and contribute to shared, open methods and tools rather than vendor black boxes</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-P05</strong></td>
+<td>IT and technology is everyone’s business</td>
+<td>Connect research, methodology, IT, and business users; build broad capability to adopt new methods</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-P03</strong></td>
+<td>Active Life Cycle management</td>
+<td>Manage methods and tools across their lifecycle, from PoC to production to retirement</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-P04</strong></td>
+<td>Maximize the benefits for the organization</td>
+<td>Prioritize innovations by organization-wide value and scalability, not novelty</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-P07</strong></td>
+<td>Implement loosely coupled processes and systems</td>
+<td>Transfer methods that fit the steady-state interfaces, so production streams stay decoupled</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="roles-and-actors" class="level2">
+<h2 class="anchored" data-anchor-id="roles-and-actors">Roles and Actors</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Head of Methodology / Innovation</strong></td>
+<td>Owns the innovation agenda and the methodological standards</td>
+</tr>
+<tr class="even">
+<td><strong>Researcher / Data Scientist</strong></td>
+<td>Conducts research and proofs-of-concept</td>
+</tr>
+<tr class="odd">
+<td><strong>Methodologist</strong></td>
+<td>Evaluates soundness and feasibility; formalizes validated methods</td>
+</tr>
+<tr class="even">
+<td><strong>Tool / Platform Engineer</strong></td>
+<td>Builds reference implementations and prepares them for production (with VS-09)</td>
+</tr>
+<tr class="odd">
+<td><strong>Subject-Matter Expert (from production streams)</strong></td>
+<td>Brings the real problem and validates fitness for purpose</td>
+</tr>
+<tr class="even">
+<td><strong>Compliance Officer (VS-07)</strong></td>
+<td>Approves a method against compliance criteria before transfer</td>
+</tr>
+<tr class="odd">
+<td><strong>Trainer / Knowledge Manager</strong></td>
+<td>Disseminates results and builds staff competency</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-value-stream-flow" class="level2">
+<h2 class="anchored" data-anchor-id="the-value-stream-flow">The Value-Stream Flow</h2>
+<p>VS-08’s six business processes form a continuous innovation pipeline — <strong>identify → research → evaluate → develop → integrate → share</strong>.</p>
+<div class="cell" data-fig-width="6" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-3">flowchart LR
+    A["08.1 Identify&lt;br/&gt;Needs &amp; Opportunities"] --&gt; B["08.2 Research&lt;br/&gt;&amp; Proof-of-Concept"]
+    B --&gt; C["08.3 Evaluate&lt;br/&gt;Soundness &amp; Feasibility"]
+    C --&gt; D["08.4 Develop &amp;&lt;br/&gt;Document Methods/Tools"]
+    D --&gt; E["08.5 Integrate into&lt;br/&gt;Production"]
+    E --&gt; F["08.6 Promote&lt;br/&gt;Knowledge Sharing"]
+    F -.-&gt;|"feeds the next agenda"| A
+
+    style A fill:#f5f3ff,stroke:#7c3aed
+    style B fill:#f5f3ff,stroke:#7c3aed
+    style C fill:#eff6ff,stroke:#2563eb
+    style D fill:#eff6ff,stroke:#2563eb
+    style E fill:#ecfdf5,stroke:#059669
+    style F fill:#fef3c7,stroke:#d97706
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: The six business processes as a continuous innovation pipeline.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Plan — find what is worth doing.</strong> The pipeline begins by <strong>identifying innovation needs and opportunities</strong> (08.1): scanning technological, methodological, and policy developments (AI, ML, new data sources, cloud) and the chain’s own improvement backlog for things worth pursuing. Candidates then enter <strong>research and proofs-of-concept</strong> (08.2): controlled experiments and pilots that test a new method or technology in limited scope before any commitment.</p>
+<p><strong>Build — make it sound and real.</strong> Promising results are put through <strong>evaluation of methodological soundness and feasibility</strong> (08.3): assessing accuracy, scalability, and alignment with quality and ethical frameworks — the gate that stops attractive-but-unsound ideas. What passes is <strong>developed and documented</strong> (08.4) into standardized procedures, algorithms, or reference implementations, so it is reproducible and ready to hand over rather than living in a researcher’s notebook.</p>
+<p><strong>Operate — put it to work.</strong> The defining step is <strong>integrating innovation into production environments</strong> (08.5): transitioning a validated method or tool from pilot to production in the relevant primary stream, ensuring interoperability and — crucially — passing VS-07 governance approval and running on VS-09 platforms. This is the transfer gate where innovation becomes part of business as usual.</p>
+<p><strong>Improve — spread it.</strong> Finally VS-08 <strong>promotes knowledge sharing and capability building</strong> (08.6): disseminating results, best practices, and guidelines, and growing staff competency so the organization can actually adopt and sustain the new way of working — which in turn surfaces the next round of needs.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Business process</th>
+<th>What it produces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-08.1 Identify Innovation Needs and Opportunities</td>
+<td>Prioritized innovation backlog</td>
+</tr>
+<tr class="even">
+<td>VS-08.2 Conduct Research and Proof-of-Concepts</td>
+<td>Experiment/pilot results</td>
+</tr>
+<tr class="odd">
+<td>VS-08.3 Evaluate Methodological Soundness and Feasibility</td>
+<td>Soundness &amp; feasibility assessment</td>
+</tr>
+<tr class="even">
+<td>VS-08.4 Develop / Document New Methodologies or Tools</td>
+<td>Standardized method + reference implementation + documentation</td>
+</tr>
+<tr class="odd">
+<td>VS-08.5 Integrate Innovation into Production Environments</td>
+<td>Method/tool live in a production stream (governed transfer)</td>
+</tr>
+<tr class="even">
+<td>VS-08.6 Promote Knowledge Sharing and Capability Building</td>
+<td>Disseminated guidance + trained staff</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="capability-governance" class="level2">
+<h2 class="anchored" data-anchor-id="capability-governance">Capability Governance</h2>
+<p>VS-08 is itself a capability that is <strong>designed</strong> (innovation strategy, evaluation criteria), <strong>built</strong> (research/sandbox environments — with VS-09), <strong>operated</strong> (the pipeline runs continuously), and <strong>improved</strong> (08.6 and retrospectives). Unlike a primary stream it produces <strong>methods and capability</strong>, not statistical data, and its cadence is project/pipeline-based, not per production cycle. The GAMSO notion of transferring mature capabilities from innovation into production is exactly step 08.5.</p>
+<section id="key-performance-indicators" class="level3">
+<h3 class="anchored" data-anchor-id="key-performance-indicators">Key Performance Indicators</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>KPI</th>
+<th>Description</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Idea-to-production lead time</td>
+<td>Median time from a backlog item (08.1) to a completed transfer (08.5)</td>
+<td>Per transferred innovation</td>
+</tr>
+<tr class="even">
+<td>Transfer rate and durability</td>
+<td>Methods/tools transferred to production per year, and the share still in use after 12 months</td>
+<td>Annually</td>
+</tr>
+<tr class="odd">
+<td>Gate effectiveness</td>
+<td>Share of PoCs stopped at the 08.3 gate with a documented rationale (a healthy gate stops some)</td>
+<td>Per evaluation</td>
+</tr>
+<tr class="even">
+<td>Backlog responsiveness</td>
+<td>Share of prioritized backlog items reaching a PoC within the agreed time</td>
+<td>Per planning period</td>
+</tr>
+<tr class="odd">
+<td>Capability building</td>
+<td>Staff trained on new methods, and adoption rate in the target streams</td>
+<td>Per year, per transfer</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="interactions-services-and-events" class="level2">
+<h2 class="anchored" data-anchor-id="interactions-services-and-events">Interactions, Services and Events</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Counterpart</th>
+<th>VS-08 provides</th>
+<th>VS-08 receives</th>
+<th>Interaction / event</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>All primary streams (VS-01…06)</strong></td>
+<td>Validated methods/tools transferred to production</td>
+<td>Improvement recommendations (their §6.5); fitness-for-purpose validation</td>
+<td>“Innovation need raised”, “Method transferred to production”</td>
+</tr>
+<tr class="even">
+<td><strong>VS-10 Engagement</strong></td>
+<td>New service/product possibilities</td>
+<td>User needs that imply new methods</td>
+<td>“User-driven innovation need”</td>
+</tr>
+<tr class="odd">
+<td><strong>VS-07 Governance</strong></td>
+<td>Methods for pre-production approval</td>
+<td>Compliance criteria &amp; approval</td>
+<td>“Method compliance assessment”</td>
+</tr>
+<tr class="even">
+<td><strong>VS-09 Infrastructure</strong></td>
+<td>Requirements for sandbox/production platforms</td>
+<td>Research environments and production runtime</td>
+<td>“Platform request”, “Production onboarding”</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="business-objects-artefacts" class="level2">
+<h2 class="anchored" data-anchor-id="business-objects-artefacts">Business Objects / Artefacts</h2>
+<p>VS-08 manages enabling artefacts: the <strong>innovation backlog</strong>, <strong>research findings and PoC results</strong>, <strong>soundness/feasibility assessments</strong>, <strong>validated methods, algorithms, and reference implementations</strong>, and <strong>knowledge assets</strong> (guidelines, training). These are version-managed across their lifecycle (SAF-P03) and, once transferred, become part of a production stream’s design metadata. Each artefact has a designated owner; changes are tracked, prior versions remain identifiable, and superseded methods are formally retired.</p>
+</section>
+<section id="applying-this-to-your-nso" class="level2">
+<h2 class="anchored" data-anchor-id="applying-this-to-your-nso">Applying This to Your NSO</h2>
+<section id="maturity-assessment-checklist" class="level3">
+<h3 class="anchored" data-anchor-id="maturity-assessment-checklist">Maturity Assessment Checklist</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we maintain a prioritized innovation backlog drawn from both technology scanning and the production streams’ improvement needs?</label></li>
+<li><label><input type="checkbox">Do we test new methods in controlled PoCs before committing?</label></li>
+<li><label><input type="checkbox">Do we evaluate soundness, scalability, and ethics before development?</label></li>
+<li><label><input type="checkbox">Is there a governed transfer gate (with VS-07 approval) for moving methods into production?</label></li>
+<li><label><input type="checkbox">Do we disseminate results and build staff capability so innovations are sustained?</label></li>
+</ul>
+</section>
+<section id="scenarios" class="level3">
+<h3 class="anchored" data-anchor-id="scenarios">Scenarios</h3>
+<p><strong>Scenario A — ML-assisted coding.</strong> A production stream (VS-03) repeatedly flags free-text occupation coding as costly. VS-08 picks this up (08.1), pilots an ML coder (08.2), evaluates accuracy and bias (08.3), builds a documented reference implementation (08.4), and — after VS-07 approval and on a VS-09 platform — transfers it into VS-03 (08.5), then trains the coding team (08.6).</p>
+<p><strong>Scenario B — New data source (web-scraped prices).</strong> VS-10 reports demand for more timely price statistics. VS-08 researches web-scraping and multilateral index methods, evaluates feasibility and quality against the official CPI, documents the method, and transfers it into VS-01/VS-04, sharing the methodology across the price-statistics team.</p>
+<p><strong>Scenario C — The gate says no.</strong> A vendor demo convinces a statistical domain that a generative-AI assistant could draft analytical commentary (VS-05). VS-08 takes it through the pipeline: the PoC (08.2) shows impressive fluency, but the evaluation (08.3) finds unexplainable variation between runs and no way to meet the methodological-transparency requirement, and VS-07’s compliance pre-assessment concurs. The idea is stopped at the gate, the rationale is documented and shared (08.6), and a narrower, compliant alternative — template-based drafting with human sign-off — is added to the backlog. A healthy 08.3 gate is one that sometimes says no.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../framework/vs-07.html" class="pagination-link" aria-label="VS-07 Governance and Compliance">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">VS-07 Governance and Compliance</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../framework/vs-09.html" class="pagination-link" aria-label="VS-09 Infrastructure and Platform Enablement">
+        <span class="nav-page-text">VS-09 Infrastructure and Platform Enablement</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

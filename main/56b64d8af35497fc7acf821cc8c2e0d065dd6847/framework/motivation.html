@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Motivation – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../framework/strategy.html" rel="next">
+<link href="../framework/introduction.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4b8eba7d388032a8ef35e180b04aa314.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../framework/index.html" aria-current="page"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/introduction.html">Foundations</a></li><li class="breadcrumb-item"><a href="../framework/motivation.html">Motivation</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAF Architecture Framework</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and Scope</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/motivation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Motivation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/strategy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strategy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Business architecture</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/business-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Architecture</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Production value streams</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-01 Data Acquisition and Ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-02 Data Standardization and Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-03 Data Editing and Enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-04 Estimation, Analysis, and Statistical Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-05 Statistical Product Composition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-06 Dissemination and Service Delivery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Supporting value streams</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-07 Governance and Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-08 Innovation and Methodological Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-09 Infrastructure and Platform Enablement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-10 Customer and Stakeholder Engagement</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation">Motivation</a>
+  <ul class="collapse">
+  <li><a href="#drivers" id="toc-drivers" class="nav-link" data-scroll-target="#drivers">Drivers</a>
+  <ul class="collapse">
+  <li><a href="#saf-d1-evolving-data-ecosystems-and-partnerships" id="toc-saf-d1-evolving-data-ecosystems-and-partnerships" class="nav-link" data-scroll-target="#saf-d1-evolving-data-ecosystems-and-partnerships">SAF-D1 Evolving Data Ecosystems and Partnerships</a></li>
+  <li><a href="#saf-d3-trust-scientific-rigor-and-data-protection" id="toc-saf-d3-trust-scientific-rigor-and-data-protection" class="nav-link" data-scroll-target="#saf-d3-trust-scientific-rigor-and-data-protection">SAF-D3 Trust, Scientific Rigor, and Data Protection</a></li>
+  <li><a href="#saf-d4-uncertain-and-polarized-global-environment" id="toc-saf-d4-uncertain-and-polarized-global-environment" class="nav-link" data-scroll-target="#saf-d4-uncertain-and-polarized-global-environment">SAF-D4 Uncertain and Polarized Global Environment</a></li>
+  <li><a href="#saf-d5-resource-constraints-and-organizational-agility" id="toc-saf-d5-resource-constraints-and-organizational-agility" class="nav-link" data-scroll-target="#saf-d5-resource-constraints-and-organizational-agility">SAF-D5 Resource Constraints and Organizational Agility</a></li>
+  <li><a href="#goals" id="toc-goals" class="nav-link" data-scroll-target="#goals">Goals</a></li>
+  <li><a href="#saf-g1-cost-efficiency-and-resource-sharing" id="toc-saf-g1-cost-efficiency-and-resource-sharing" class="nav-link" data-scroll-target="#saf-g1-cost-efficiency-and-resource-sharing">SAF-G1 Cost Efficiency and Resource Sharing</a></li>
+  <li><a href="#saf-g2-harmonized-reference-framework" id="toc-saf-g2-harmonized-reference-framework" class="nav-link" data-scroll-target="#saf-g2-harmonized-reference-framework">SAF-G2 Harmonized Reference Framework</a></li>
+  <li><a href="#saf-g3-modernization-of-statistical-systems" id="toc-saf-g3-modernization-of-statistical-systems" class="nav-link" data-scroll-target="#saf-g3-modernization-of-statistical-systems">SAF-G3 Modernization of Statistical Systems</a></li>
+  <li><a href="#saf-g4-support-for-data-innovation" id="toc-saf-g4-support-for-data-innovation" class="nav-link" data-scroll-target="#saf-g4-support-for-data-innovation">SAF-G4 Support for Data Innovation</a></li>
+  <li><a href="#saf-g5-sustainable-compliance" id="toc-saf-g5-sustainable-compliance" class="nav-link" data-scroll-target="#saf-g5-sustainable-compliance">SAF-G5 Sustainable Compliance</a></li>
+  </ul></li>
+  <li><a href="#meaning" id="toc-meaning" class="nav-link" data-scroll-target="#meaning">Meaning</a>
+  <ul class="collapse">
+  <li><a href="#saf-m1-bridge-between-strategy-and-technology" id="toc-saf-m1-bridge-between-strategy-and-technology" class="nav-link" data-scroll-target="#saf-m1-bridge-between-strategy-and-technology">SAF-M1 Bridge Between Strategy and Technology</a></li>
+  <li><a href="#saf-m2-catalyst-for-collaboration" id="toc-saf-m2-catalyst-for-collaboration" class="nav-link" data-scroll-target="#saf-m2-catalyst-for-collaboration">SAF-M2 Catalyst for Collaboration</a></li>
+  <li><a href="#saf-m3-foundation-for-digital-transformation" id="toc-saf-m3-foundation-for-digital-transformation" class="nav-link" data-scroll-target="#saf-m3-foundation-for-digital-transformation">SAF-M3 Foundation for Digital Transformation</a></li>
+  <li><a href="#saf-m4-unifying-language-and-notation" id="toc-saf-m4-unifying-language-and-notation" class="nav-link" data-scroll-target="#saf-m4-unifying-language-and-notation">SAF-M4 Unifying Language and Notation</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#outcome" id="toc-outcome" class="nav-link" data-scroll-target="#outcome">Outcome</a>
+  <ul class="collapse">
+  <li><a href="#saf-o1-accelerated-modernization" id="toc-saf-o1-accelerated-modernization" class="nav-link" data-scroll-target="#saf-o1-accelerated-modernization">SAF-O1 Accelerated Modernization</a></li>
+  <li><a href="#saf-o2-enhanced-data-quality" id="toc-saf-o2-enhanced-data-quality" class="nav-link" data-scroll-target="#saf-o2-enhanced-data-quality">SAF-O2 Enhanced Data Quality</a></li>
+  <li><a href="#saf-o3-improved-interoperability" id="toc-saf-o3-improved-interoperability" class="nav-link" data-scroll-target="#saf-o3-improved-interoperability">SAF-O3 Improved Interoperability</a></li>
+  <li><a href="#saf-o4-improved-trust-and-transparency" id="toc-saf-o4-improved-trust-and-transparency" class="nav-link" data-scroll-target="#saf-o4-improved-trust-and-transparency">SAF-O4 Improved Trust and Transparency</a></li>
+  <li><a href="#saf-o5-increased-efficiency" id="toc-saf-o5-increased-efficiency" class="nav-link" data-scroll-target="#saf-o5-increased-efficiency">SAF-O5 Increased Efficiency</a></li>
+  <li><a href="#saf-o6-shared-knowledge-base" id="toc-saf-o6-shared-knowledge-base" class="nav-link" data-scroll-target="#saf-o6-shared-knowledge-base">SAF-O6 Shared Knowledge Base</a></li>
+  </ul></li>
+  <li><a href="#architecture-principles" id="toc-architecture-principles" class="nav-link" data-scroll-target="#architecture-principles">Architecture Principles</a>
+  <ul class="collapse">
+  <li><a href="#saf-p01-reuse-before-open-source-open-source-before-buying-buying-before-making-it-yourself" id="toc-saf-p01-reuse-before-open-source-open-source-before-buying-buying-before-making-it-yourself" class="nav-link" data-scroll-target="#saf-p01-reuse-before-open-source-open-source-before-buying-buying-before-making-it-yourself">SAF-P01 Reuse before open source, open source, before buying, buying before making it yourself</a></li>
+  <li><a href="#saf-p02-active-support" id="toc-saf-p02-active-support" class="nav-link" data-scroll-target="#saf-p02-active-support">SAF-P02 Active support</a></li>
+  <li><a href="#saf-p03-active-life-cycle-management" id="toc-saf-p03-active-life-cycle-management" class="nav-link" data-scroll-target="#saf-p03-active-life-cycle-management">SAF-P03 Active Life Cycle management</a></li>
+  <li><a href="#saf-p04-maximize-the-benefits-for-the-organization" id="toc-saf-p04-maximize-the-benefits-for-the-organization" class="nav-link" data-scroll-target="#saf-p04-maximize-the-benefits-for-the-organization">SAF-P04 Maximize the benefits for the organization</a></li>
+  <li><a href="#saf-p05-it-and-technology-is-everyones-business" id="toc-saf-p05-it-and-technology-is-everyones-business" class="nav-link" data-scroll-target="#saf-p05-it-and-technology-is-everyones-business">SAF-P05 IT and technology is everyone’s business</a></li>
+  <li><a href="#saf-p06-business-continuity" id="toc-saf-p06-business-continuity" class="nav-link" data-scroll-target="#saf-p06-business-continuity">SAF-P06 Business Continuity</a></li>
+  <li><a href="#saf-p07-implement-loosely-coupled-processes-and-systems" id="toc-saf-p07-implement-loosely-coupled-processes-and-systems" class="nav-link" data-scroll-target="#saf-p07-implement-loosely-coupled-processes-and-systems">SAF-P07 Implement loosely coupled processes and systems</a></li>
+  <li><a href="#saf-p08-data-is-shared-property" id="toc-saf-p08-data-is-shared-property" class="nav-link" data-scroll-target="#saf-p08-data-is-shared-property">SAF-P08 Data is shared property</a></li>
+  <li><a href="#saf-p09-no-data-without-metadata-and-classification" id="toc-saf-p09-no-data-without-metadata-and-classification" class="nav-link" data-scroll-target="#saf-p09-no-data-without-metadata-and-classification">SAF-P09 No data without metadata and classification</a></li>
+  <li><a href="#saf-p10-security-by-design" id="toc-saf-p10-security-by-design" class="nav-link" data-scroll-target="#saf-p10-security-by-design">SAF-P10 Security By Design</a></li>
+  <li><a href="#saf-p11-privacy-by-design" id="toc-saf-p11-privacy-by-design" class="nav-link" data-scroll-target="#saf-p11-privacy-by-design">SAF-P11 Privacy By Design</a></li>
+  </ul></li>
+  <li><a href="#value" id="toc-value" class="nav-link" data-scroll-target="#value">Value</a>
+  <ul class="collapse">
+  <li><a href="#saf-v1-cross-border-comparability" id="toc-saf-v1-cross-border-comparability" class="nav-link" data-scroll-target="#saf-v1-cross-border-comparability">SAF-V1 Cross-Border Comparability</a></li>
+  <li><a href="#saf-v2-innovation-enablement" id="toc-saf-v2-innovation-enablement" class="nav-link" data-scroll-target="#saf-v2-innovation-enablement">SAF-V2 Innovation Enablement</a></li>
+  <li><a href="#saf-v3-risk-reduction" id="toc-saf-v3-risk-reduction" class="nav-link" data-scroll-target="#saf-v3-risk-reduction">SAF-V3 Risk Reduction</a></li>
+  <li><a href="#saf-v4-strategic-alignment" id="toc-saf-v4-strategic-alignment" class="nav-link" data-scroll-target="#saf-v4-strategic-alignment">SAF-V4 Strategic Alignment</a></li>
+  <li><a href="#saf-v5-sustainability" id="toc-saf-v5-sustainability" class="nav-link" data-scroll-target="#saf-v5-sustainability">SAF-V5 Sustainability</a></li>
+  <li><a href="#saf-v6-trust-legitimacy" id="toc-saf-v6-trust-legitimacy" class="nav-link" data-scroll-target="#saf-v6-trust-legitimacy">SAF-V6 Trust &amp; Legitimacy</a></li>
+  </ul></li>
+  <li><a href="#stakeholders-roles-and-collaborations" id="toc-stakeholders-roles-and-collaborations" class="nav-link" data-scroll-target="#stakeholders-roles-and-collaborations">Stakeholders, Roles and Collaborations</a>
+  <ul class="collapse">
+  <li><a href="#stakeholders" id="toc-stakeholders" class="nav-link" data-scroll-target="#stakeholders">Stakeholders</a></li>
+  <li><a href="#roles" id="toc-roles" class="nav-link" data-scroll-target="#roles">Roles</a></li>
+  <li><a href="#collaborations" id="toc-collaborations" class="nav-link" data-scroll-target="#collaborations">Collaborations</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="motivation.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/introduction.html">Foundations</a></li><li class="breadcrumb-item"><a href="../framework/motivation.html">Motivation</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Motivation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="motivation" class="level1">
+<h1>Motivation</h1>
+<section id="drivers" class="level2">
+<h2 class="anchored" data-anchor-id="drivers">Drivers</h2>
+<p>Architecture drivers in many ocassions are the same forces that make change necessary. They capture the pressures, trends, and constraints that statistical offices face and which the SAF is designed to address. Drivers can be external, such as technological advancements or new regulations, or internal, such as the need to replace legacy systems or respond to stakeholder demands. By documenting these drivers, SAF ensures that its architecture is not an abstract ideal but a practical response to real-world challenges.</p>
+<p>For statistical organizations, these drivers are particularly intense. Rapid technological change requires continuous adaptation, while political and societal pressures demand timely, relevant, and transparent data. At the same time, many organizations face limited budgets and must balance modernization with cost control.</p>
+<p>Recognizing these drivers helps statistical offices prioritize investments and avoid the pitfalls of reactive decision-making, where short-term fixes can lead to long-term inefficiencies.</p>
+<p>Including architecture drivers in the framework also strengthens communication with stakeholders. By clearly articulating the external and internal factors shaping architecture, CIOs, CTOs, and enterprise architects can build a stronger case for change, justify strategic initiatives, and ensure that all parties understand the urgency of modernization. In this way, SAF creates a shared understanding of why action is necessary and what risks are avoided by adopting a structured framework.</p>
+<section id="saf-d1-evolving-data-ecosystems-and-partnerships" class="level3">
+<h3 class="anchored" data-anchor-id="saf-d1-evolving-data-ecosystems-and-partnerships">SAF-D1 Evolving Data Ecosystems and Partnerships</h3>
+<p>The environment for producing official statistics is shifting from one of isolated data collection toward a complex and interdependent data ecosystem. Traditional surveys, once the cornerstone of statistical production, now coexist with administrative, commercial, platform, and community-driven data sources. This evolution expands opportunities for collaboration but also introduces dependencies on actors, technologies, and infrastructures outside the direct control of statistical organizations.</p>
+<p>Open-source development has become a key element of this ecosystem. It provides a shared foundation for innovation, transparency, and cost efficiency, while fostering cooperation across institutional and national boundaries. As part of a wider collaboration model, open source allows NSIs to co-develop tools and methods with peers, academia, and private partners, ensuring that advances in technology benefit the entire statistical community. SAF addresses this driver by promoting architectures that support secure data sharing, standardized interfaces, and transparent governance models. It enables NSIs to participate confidently in broader ecosystems, from national data platforms to European data spaces, where production may take place across multiple environments and jurisdictions. By combining openness with strong governance and clear accountability, SAF ensures that collaboration and shared development strengthen rather than compromise the integrity of official statistics.</p>
+<section id="saf-d2-artificial-intelligence-and-technological-acceleration" class="level4">
+<h4 class="anchored" data-anchor-id="saf-d2-artificial-intelligence-and-technological-acceleration">SAF-D2 Artificial Intelligence and Technological Acceleration</h4>
+<p>Artificial intelligence, automation, and rapid technological progress are transforming how data is created, processed, and consumed. For statistical organizations, these developments bring both opportunities and dependencies. Emerging tools can automate repetitive tasks, enhance analytical capabilities, and strengthen quality assurance. At the same time, they redefine what it means for official statistics to remain relevant and trusted in an environment increasingly shaped by intelligent systems.</p>
+<p>The accelerating pace of innovation requires statistical offices to be both adopters and enablers of AI. Internally, this means developing architectures and competencies that support automation, machine learning, and advanced analytics within secure and transparent frameworks. Externally, it requires ensuring that official statistics are AI-ready - that is, machine-readable, machine-understandable, and interoperable with the digital platforms and applications used by policymakers, researchers, and citizens.</p>
+<p>SAF addresses this driver by enabling NSIs to adopt a risk-based approach to modernization. It supports architectures where critical processes that demand methodological rigor, transparency, and control can be tightly governed, while areas that are less sensitive can be automated to a higher degree. This balance ensures that innovation strengthens quality and efficiency without compromising security, privacy, or trust.</p>
+<p>Through modular and standards-based design, SAF provides the flexibility needed to integrate emerging technologies at an appropriate pace. It allows NSIs to benefit from automation and AI-driven tools while maintaining full accountability for statistical quality, data protection, and institutional independence.</p>
+</section>
+</section>
+<section id="saf-d3-trust-scientific-rigor-and-data-protection" class="level3">
+<h3 class="anchored" data-anchor-id="saf-d3-trust-scientific-rigor-and-data-protection">SAF-D3 Trust, Scientific Rigor, and Data Protection</h3>
+<p>Trust is the foundation of official statistics. In an environment increasingly challenged by misinformation, privacy concerns, and competition from unregulated data providers, maintaining public confidence requires more than compliance. It depends on scientific rigor, transparency, and clear accountability for how data is handled and communicated.</p>
+<p>SAF addresses this driver by embedding trust and protection directly into architectural design. It promotes governance and technical controls that safeguard confidentiality, ensure methodological integrity, and make processes traceable and transparent. Through a risk-based approach, SAF allows NSIs to apply strict oversight where sensitivity and quality demands are high, while enabling greater automation and shared solutions where risks are lower. This balance ensures that modernization strengthens trust rather than compromising it.</p>
+</section>
+<section id="saf-d4-uncertain-and-polarized-global-environment" class="level3">
+<h3 class="anchored" data-anchor-id="saf-d4-uncertain-and-polarized-global-environment">SAF-D4 Uncertain and Polarized Global Environment</h3>
+<p>Statistical organizations operate in an increasingly complex and uncertain world. Global tensions, political polarization, and shifting power dynamics influence both the demand for and the perception of official statistics. At the same time, digital interdependence and cross-border data flows require statistical systems to remain open and interoperable while safeguarding national and institutional integrity.</p>
+<p>SAF addresses this driver by providing a stable and transparent foundation for cooperation and resilience. It promotes interoperable architectures based on shared standards, enabling NSIs to exchange data and methods securely even in times of uncertainty. By embedding governance and design principles that protect independence and transparency, SAF helps organizations maintain credibility, comparability, and trust in environments where facts themselves are often contested.</p>
+</section>
+<section id="saf-d5-resource-constraints-and-organizational-agility" class="level3">
+<h3 class="anchored" data-anchor-id="saf-d5-resource-constraints-and-organizational-agility">SAF-D5 Resource Constraints and Organizational Agility</h3>
+<p>Many statistical organizations face increasing expectations with limited budgets, aging systems, and challenges in recruiting and retaining specialized skills. At the same time, the demand for more timely, detailed, and multidomain outputs continues to grow. Meeting these needs requires not only efficiency, but the ability to adapt rapidly to changing priorities and technologies.</p>
+<p>SAF addresses this driver by promoting architectures that make flexibility and reuse a core principle. It supports modular designs, shared services, and scalable solutions that reduce duplication and enable more effective use of existing resources. By fostering an agile organizational mindset and clear governance around priorities, SAF allows NSIs to reallocate capacity, modernize incrementally, and continue to deliver high-quality outputs even under financial and staffing constraints.</p>
+</section>
+<section id="goals" class="level3">
+<h3 class="anchored" data-anchor-id="goals">Goals</h3>
+<p>Architecture goals represent the outcomes an organization aims to achieve by adopting and implementing aframework. They define what success looks like and serve as the link between strategy and action. In the case of the SAF, these goals are not just about modernizing IT systems, but about ensuring that national statistical institutes can continue to provide trustworthy, relevant, and high-quality statistics in a rapidly changing environment.</p>
+<p>The goals of SAF address both operational and strategic needs. On one hand, they focus on efficiency, modernization, and compliance, which are essential for ensuring sustainability. On the other hand, they support innovation, adaptability, and collaboration, enabling statistical offices to embrace new opportunities such as integrating alternative data sources or experimenting with advanced analytics. Together, these goals ensure that modernization efforts do not compromise the fundamental values of official statistics, neutrality, accuracy, and reliability.</p>
+<p>By defining goals explicitly, SAF provides a roadmap that can be adapted by each statistical organization according to its maturity and context. This ensures that while each office may have unique challenges and resources, they are all working toward a shared vision that promotes harmonization, comparability, and global collaboration in official statistics.</p>
+</section>
+<section id="saf-g1-cost-efficiency-and-resource-sharing" class="level3">
+<h3 class="anchored" data-anchor-id="saf-g1-cost-efficiency-and-resource-sharing">SAF-G1 Cost Efficiency and Resource Sharing</h3>
+<p>With limited budgets and growing demands, statistical organizations must operate as efficiently as possible. SAF promotes cost optimization and improved effectiveness through shared services, reuse of solutions, and stronger interoperability. By pooling resources and adopting common components, NSIs can access capabilities that would be difficult to develop individually while avoiding duplication of effort. SAF also encourages the use of open-source components and community-driven platforms where this strengthens transparency, collaboration, and cost efficiency. Through modular architectures and clear governance, organizations can adapt to changing needs, reallocate capacity, and modernize incrementally without large-scale reinvestments. This approach ensures that efficiency is achieved in ways that reinforce both quality and long-term sustainability.</p>
+</section>
+<section id="saf-g2-harmonized-reference-framework" class="level3">
+<h3 class="anchored" data-anchor-id="saf-g2-harmonized-reference-framework">SAF-G2 Harmonized Reference Framework</h3>
+<p>Without a shared architectural reference, statistical organizations risk developing isolated solutions that reduce comparability and increase long-term costs. SAF provides a harmonized foundation of standards, patterns, and best practices that can be adapted to local contexts while supporting interoperability across borders and domains. As collaboration increasingly takes place across shared infrastructures such as national data platforms and international data spaces, harmonization also becomes a prerequisite for participation. By promoting transparency and consistent design principles, SAF helps NSIs protect the integrity of official statistics and ensure that shared and open solutions can be reused safely and effectively. A common reference framework enables collaboration, strengthens trust, and supports coherence even as the data landscape evolves.</p>
+</section>
+<section id="saf-g3-modernization-of-statistical-systems" class="level3">
+<h3 class="anchored" data-anchor-id="saf-g3-modernization-of-statistical-systems">SAF-G3 Modernization of Statistical Systems</h3>
+<p>Many statistical organizations continue to rely on fragmented and legacy IT environments that limit innovation and responsiveness. SAF provides guidance for transitioning toward modern, modular, and service-based architectures that are secure, scalable, and easier to maintain. Modernization reduces technical debt, improves reliability, and allows faster delivery of new and higher-quality statistical outputs. Modernization increasingly takes place in environments where multiple actors operate, from national infrastructures to cross-border data spaces. SAF ensures that such settings can be used safely by defining principles for access control, data protection, and accountability. It also supports a risk-based approach to automation and integration of emerging technologies. Critical processes can remain tightly governed to preserve methodological rigor, while less sensitive stages can be automated or shared.</p>
+</section>
+<section id="saf-g4-support-for-data-innovation" class="level3">
+<h3 class="anchored" data-anchor-id="saf-g4-support-for-data-innovation">SAF-G4 Support for Data Innovation</h3>
+<p>Innovation in data and methods is central to the future of official statistics. SAF promotes an environment where experimentation, collaboration, and reuse are encouraged within secure and well-governed boundaries. By providing a clear architectural foundation, SAF enables NSIs to incorporate new data sources, tools, and analytical methods without undermining consistency or quality.</p>
+<p>Innovation is not only about creating new solutions but also about making change possible within production. Many statistical organizations find it difficult to introduce new data sources or develop new statistical products because their production systems are optimized for predictability and stability. While these are necessary principles, they can limit agility. SAF addresses this by supporting architectures that balance robustness with flexibility, allowing new components, data, or workflows to be integrated more rapidly while maintaining full control over quality and compliance.</p>
+<p>To make this possible, the framework emphasizes mechanisms and guardrails that enable controlled integration of innovative methods into production chains. This includes versioning, validation, and automated testing approaches that preserve reliability even as systems evolve. SAF also seeks to narrow the gap between innovation and production by promoting shared platforms and processes that allow prototypes to transition smoothly into operational environments.</p>
+<p>Open source plays a key role in this innovation process. It allows organizations to build on each other’s work, increase transparency, and strengthen the collective capacity of the statistical community. SAF supports this through architectural patterns that enable safe reuse of open components and integration with shared platforms. In doing so, it helps turn innovation into a structured, sustainable part of statistical production.</p>
+</section>
+<section id="saf-g5-sustainable-compliance" class="level3">
+<h3 class="anchored" data-anchor-id="saf-g5-sustainable-compliance">SAF-G5 Sustainable Compliance</h3>
+<p>Compliance with regulations, standards, and ethical principles is fundamental to maintaining the trust and legitimacy of official statistics. SAF ensures that modernization aligns with legal, security, and quality frameworks while promoting transparency and accountability. Within the statistical domain, well-established standards such as GSBPM, GSIM, and SDMX continue to provide a foundation for consistent processes, metadata management, and data exchange. These remain essential for ensuring methodological rigor and comparability across the statistical system.</p>
+<p>However, as the production of statistics becomes increasingly integrated into the broader data and technology ecosystem, compliance must also extend beyond traditional statistical standards. SAF encourages active engagement with and adoption of relevant standards from adjacent fields such as data management, artificial intelligence, and cloud computing. This outward-looking approach ensures that NSIs remain interoperable with modern data platforms and can benefit from technological progress developed outside the statistical community.</p>
+<p>Through consistent governance and the use of open, verifiable technologies, SAF supports compliance as an enabler rather than a constraint. It provides the structures necessary to ensure that innovation, data sharing, and open collaboration occur within controlled and auditable environments. This approach reinforces public trust by embedding transparency, scientific rigor, and privacy-by-design across all processes.</p>
+</section>
+</section>
+<section id="meaning" class="level2">
+<h2 class="anchored" data-anchor-id="meaning">Meaning</h2>
+<p>Architecture meaning provides the “why” behind the framework. While goals and outcomes describe what SAF achieves, meaning explains why it matters. For statistical organizations, architecture is not just a technical exercise but a way of ensuring their continued relevance in a digital society. SAF’s meaning lies in its role as the foundation for modernization, trust, and international collaboration.</p>
+<ul>
+<li>One dimension of this meaning is its role as a bridge between strategy and technology. Without such a framework, investments in IT risk being disconnected from the mission of providing high-quality statistics. SAF ensures that every technological decision, from adopting a new platform to restructuring business processes, can be traced back to strategic objectives, creating a coherent organizational narrative.</li>
+<li>Another dimension is collaboration. The meaning of SAF extends beyond individual organizations: it is a unifying language for the UNECE statistical community. By providing shared models, practices, and principles, SAF fosters international collaboration, reduces duplication, and amplifies collective impact. In this sense, SAF is not just meaningful to IT professionals but to the broader community of statisticians, policymakers, and citizens who depend on trustworthy statistics.</li>
+</ul>
+<section id="saf-m1-bridge-between-strategy-and-technology" class="level3">
+<h3 class="anchored" data-anchor-id="saf-m1-bridge-between-strategy-and-technology">SAF-M1 Bridge Between Strategy and Technology</h3>
+<p>SAF connects high-level strategic objectives, such as improving statistical relevance and efficiency, with concrete technology choices. It ensures that IT investments are always justified by their contribution to the organization’s mission.</p>
+</section>
+<section id="saf-m2-catalyst-for-collaboration" class="level3">
+<h3 class="anchored" data-anchor-id="saf-m2-catalyst-for-collaboration">SAF-M2 Catalyst for Collaboration</h3>
+<p>SAF is a unifying framework for the statistical community. It enables organizations to work together on shared goals, whether through joint platforms, interoperable systems, or harmonized standards, thereby amplifying the collective capacity of UNECE members.</p>
+</section>
+<section id="saf-m3-foundation-for-digital-transformation" class="level3">
+<h3 class="anchored" data-anchor-id="saf-m3-foundation-for-digital-transformation">SAF-M3 Foundation for Digital Transformation</h3>
+<p>SAF is not just a set of technical models; it is the foundation for digital transformation in official statistics. It enables NSIs to embrace innovation without sacrificing methodological rigor or institutional trust.</p>
+</section>
+<section id="saf-m4-unifying-language-and-notation" class="level3">
+<h3 class="anchored" data-anchor-id="saf-m4-unifying-language-and-notation">SAF-M4 Unifying Language and Notation</h3>
+<p>By adopting TOGAF and ArchiMate, SAF ensures that diverse stakeholders can communicate using a consistent language and notation. This reduces misunderstandings, enables shared modelling practices, and promotes architectural maturity across the community.</p>
+</section>
+</section>
+</section>
+<section id="outcome" class="level1">
+<h1>Outcome</h1>
+<p>Architecture outcomes describe the tangible benefits that organizations can expect when adopting SAF. They translate principles, goals, and drivers into measurable impacts such as improved interoperability, reduced costs, and enhanced data quality. Outcomes are critical for demonstrating the value of architecture to stakeholders, as they provide a clear “return on investment” for adopting the framework. In the SAF, outcomes are both technical and societal.</p>
+<p>On the technical side, NSIs benefit from streamlined processes, better metadata management, and more efficient system development. On the societal side, SAF supports trust, transparency, and comparability of statistics, which are essential for informed policy-making and democratic accountability. This dual perspective ensures that SAF delivers benefits beyond IT, directly supporting the mission of statistical organizations.</p>
+<p>By emphasizing outcomes, SAF also reinforces a culture of continuous improvement. Outcomes are not static; rather they evolve as organizations mature and as new challenges emerge. Making outcomes explicit allows NSIs to assess progress, measure success, and adjust their modernization strategies in line with both internal priorities and external demands.</p>
+<section id="saf-o1-accelerated-modernization" class="level2">
+<h2 class="anchored" data-anchor-id="saf-o1-accelerated-modernization">SAF-O1 Accelerated Modernization</h2>
+<p>Embedding governance, metadata, and lineage into architecture ensures that statistical outputs maintain the highest standards of quality and trustworthiness. SAF makes quality an architectural outcome rather than an afterthought.</p>
+</section>
+<section id="saf-o2-enhanced-data-quality" class="level2">
+<h2 class="anchored" data-anchor-id="saf-o2-enhanced-data-quality">SAF-O2 Enhanced Data Quality</h2>
+<p>Embedding governance, metadata, and lineage into architecture ensures that statistical outputs maintain the highest standards of quality and trustworthiness. SAF makes quality an architectural outcome rather than an afterthought.</p>
+</section>
+<section id="saf-o3-improved-interoperability" class="level2">
+<h2 class="anchored" data-anchor-id="saf-o3-improved-interoperability">SAF-O3 Improved Interoperability</h2>
+<p>By adopting SAF, NSIs will achieve higher levels of interoperability across systems, domains, and borders. This facilitates cross-country collaborations, enhances comparability of statistics, and simplifies the integration of external data sources into official workflows.</p>
+</section>
+<section id="saf-o4-improved-trust-and-transparency" class="level2">
+<h2 class="anchored" data-anchor-id="saf-o4-improved-trust-and-transparency">SAF-O4 Improved Trust and Transparency</h2>
+<p>By embedding principles such as openness, security, and transparency, SAF helps to build and maintain public trust in statistics. This outcome strengthens the reputation of NSIs and the legitimacy of their outputs.</p>
+</section>
+<section id="saf-o5-increased-efficiency" class="level2">
+<h2 class="anchored" data-anchor-id="saf-o5-increased-efficiency">SAF-O5 Increased Efficiency</h2>
+<p>SAF reduces duplication of effort by promoting reuse, harmonization, and standardization. This outcome means lower IT costs, faster system development cycles, and more efficient data processing pipelines across the statistical system.</p>
+</section>
+<section id="saf-o6-shared-knowledge-base" class="level2">
+<h2 class="anchored" data-anchor-id="saf-o6-shared-knowledge-base">SAF-O6 Shared Knowledge Base</h2>
+<p>SAF fosters a community of practice across UNECE members. Through shared architectural frameworks, NSIs can exchange lessons learned, reusable components, and knowledge, leading to continuous improvement at lower cost.</p>
+</section>
+</section>
+<section id="architecture-principles" class="level1">
+<h1>Architecture Principles</h1>
+<p>Architecture principles are the basis for any enterprise architecture framework. They provide the guiding rules and fundamental truths that define the way organizations design, implement, and manage their IT landscapes. In the context of official statistics, principles are particularly important because they ensure consistency across an interconnected environment.</p>
+<p>For the SAF, architecture principles act as a compass for decision-making. They ensure that whenever there is a choice to be made between technologies, processes, or solutions, decisions are not taken in isolation but in accordance with the overarching vision of the statistical community. They also prevent short-term convenience from undermining long-term sustainability, a challenge that statistical offices often face given their reliance on legacy systems and resource constraints.</p>
+<p>These principles also provide an element of accountability. When stakeholders understand the principles behind architectural decisions, it becomes easier to justify investments, explain trade-offs, and demonstrate that architecture is not a purely technical exercise but a strategic enabler of the organization’s mission. In this way, principles make architecture transparent, predictable, and anchored in trust.</p>
+<section id="saf-p01-reuse-before-open-source-open-source-before-buying-buying-before-making-it-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="saf-p01-reuse-before-open-source-open-source-before-buying-buying-before-making-it-yourself">SAF-P01 Reuse before open source, open source, before buying, buying before making it yourself</h2>
+<p>In case of equal suitability (Business Case), reuse of (parts of) applications takes precedence. The use of open source software takes precedence over purchasing. Purchasing is then preferred over making it yourself. Non-statistical processes only use standard applications.</p>
+<p>Reuse of an application or parts of that application is sustainable and cost-efficient, and also leads to standardization in service provision and information provision. If reuse is not possible, investigate whether an Open Source solution is available before considering a Closed Source (Commercial) solution.</p>
+</section>
+<section id="saf-p02-active-support" class="level2">
+<h2 class="anchored" data-anchor-id="saf-p02-active-support">SAF-P02 Active support</h2>
+<p>Systems (hardware and software) have an active user community and/or vendor support. The rule of thumb is that we use the latest or the second-to-last major version. Among other things, for business continuity it is necessary to be able to get quick and good support in resolving a disruption in the event of a disruption. It is also important from a security perspective that identified security risks are resolved in a timely manner.</p>
+</section>
+<section id="saf-p03-active-life-cycle-management" class="level2">
+<h2 class="anchored" data-anchor-id="saf-p03-active-life-cycle-management">SAF-P03 Active Life Cycle management</h2>
+<p>With active Life Cycle management we prevent overdue maintenance in the IV landscape so that continuity &amp; security risks are mitigated, among other things. Without Life Cycle management, systems or parts thereof can become outdated and thus become vulnerable in terms of security. Without active Life Cycle management, a technological debt is also built up that, when it eventually has to be repaid, will require disproportionate effort or introduce continuity risks. Keeping systems and components up-to-date in accordance with established LCM policy mitigates these risks.</p>
+</section>
+<section id="saf-p04-maximize-the-benefits-for-the-organization" class="level2">
+<h2 class="anchored" data-anchor-id="saf-p04-maximize-the-benefits-for-the-organization">SAF-P04 Maximize the benefits for the organization</h2>
+<p>IT decisions are made to maximize the benefits of the organization as a whole. This principle embodies ‘service above self’. Decisions made from an organization-wide perspective have greater long-term value than decisions made from a departmental perspective. To maximize the return on the investment, IV decisions must align with the organization-wide mission and priorities.</p>
+</section>
+<section id="saf-p05-it-and-technology-is-everyones-business" class="level2">
+<h2 class="anchored" data-anchor-id="saf-p05-it-and-technology-is-everyones-business">SAF-P05 IT and technology is everyone’s business</h2>
+<p>All departments in the organization participate in IV decisions that are necessary to achieve organizational goals. IT and technology users are the key stakeholders in the application of technology to meet an organization’s needs. To ensure that IT and technology are aligned with business operations, all departments in the organization must be involved in all aspects of the IT and technology landscape. Business experts from across the organization and the technical staff responsible for developing and maintaining the IT and technology capabilities must work together as a team to jointly define the goals and objectives.</p>
+</section>
+<section id="saf-p06-business-continuity" class="level2">
+<h2 class="anchored" data-anchor-id="saf-p06-business-continuity">SAF-P06 Business Continuity</h2>
+<p>Organizational activities are maintained despite system or employee outages. As systems and processes become increasingly important to operations, we become more dependent on them; therefore, we must consider the reliability of such systems and processes in their design and operation. Departments throughout the organization must have the ability to continue their activities, regardless of external events, within agreed lead times. Hardware failures, natural disasters, and data corruption must not disrupt or stop operations. The enterprise must be able to operate on the basis of alternative IV systems/processes.</p>
+</section>
+<section id="saf-p07-implement-loosely-coupled-processes-and-systems" class="level2">
+<h2 class="anchored" data-anchor-id="saf-p07-implement-loosely-coupled-processes-and-systems">SAF-P07 Implement loosely coupled processes and systems</h2>
+<p>Processes and systems should be built as independently as possible. This means that processes and systems are designed in such a way that they are not intertwined and dependent on each other. Functionality and logic should be shared with the rest of the organization via standard interfaces. Loosely coupling processes and systems offers more flexibility to adapt or replace individual processes and systems in the future. In addition, there are advantages in terms of scalability and robustness. Differences in security and privacy requirements can also be better enforced.</p>
+</section>
+<section id="saf-p08-data-is-shared-property" class="level2">
+<h2 class="anchored" data-anchor-id="saf-p08-data-is-shared-property">SAF-P08 Data is shared property</h2>
+<p>Statistical data that has been determined to add value for use by internal or external users is shared. This implies re-use of data, both in observation to reduce the burden and in further processing to prevent duplication of work in improving and analyzing data.</p>
+</section>
+<section id="saf-p09-no-data-without-metadata-and-classification" class="level2">
+<h2 class="anchored" data-anchor-id="saf-p09-no-data-without-metadata-and-classification">SAF-P09 No data without metadata and classification</h2>
+<p>All data that needs to be shared, needs to be provided with metadata information that describes the content and meaning of the data as well as possible. In addition, the data also needs to be classified. Metadata makes it possible to make data FAIR and the BIV classification (Availability, Integrity and Confidentiality) provides direction for the necessary technical and organizational measures. This is to comply with various laws, requirements and security standards.</p>
+</section>
+<section id="saf-p10-security-by-design" class="level2">
+<h2 class="anchored" data-anchor-id="saf-p10-security-by-design">SAF-P10 Security By Design</h2>
+<p>Security should not be an afterthought in IV solutions, but should be part of those solutions. Coherent security mechanisms should span all layers of the architecture and be scalable from small objects to large objects. Security should be designed as an integrated part of the system architecture.</p>
+</section>
+<section id="saf-p11-privacy-by-design" class="level2">
+<h2 class="anchored" data-anchor-id="saf-p11-privacy-by-design">SAF-P11 Privacy By Design</h2>
+<p>Privacy by design should be designed as an integrated part of the system architecture and business processes. Privacy should not be an afterthought in IV solutions, but should be part of those solutions. The result is that privacy becomes an essential part of the core functionality that is delivered. Privacy is an integral part of the system without compromising functionality.</p>
+</section>
+</section>
+<section id="value" class="level1">
+<h1>Value</h1>
+<p>The value of architecture lies in the benefits it creates for stakeholders. While outcomes describe specific impacts, value captures the broader, long-term importance of SAF to statistical organizations and society. It is about demonstrating that investing in architecture is not merely a technical necessity but a strategic decision that creates trust, efficiency, and sustainability. For NSIs, the value of SAF includes reduced risks, greater agility, and improved alignment between IT and business objectives. For international organizations, it provides harmonization and comparability, enabling more effective collaboration across borders. For citizens and policymakers, the value lies in the trustworthiness of the statistics produced, ensuring that public policy and democratic processes are grounded in reliable data. Value is also about sustainability. Without a framework, modernization efforts can be fragmented, costly, and short-lived. SAF provides a stable foundation that reduces technical debt, improves governance, and ensures that investments yield long-term benefits. In doing so, it secures the role of statistical organizations as trusted institutions in the digital age.</p>
+<section id="saf-v1-cross-border-comparability" class="level2">
+<h2 class="anchored" data-anchor-id="saf-v1-cross-border-comparability">SAF-V1 Cross-Border Comparability</h2>
+<p>Statistics gain value when they are comparable across borders. SAF enables this by promoting common standards, models, and processes, ensuring that statistics from different countries can be meaningfully compared.</p>
+</section>
+<section id="saf-v2-innovation-enablement" class="level2">
+<h2 class="anchored" data-anchor-id="saf-v2-innovation-enablement">SAF-V2 Innovation Enablement</h2>
+<p>SAF is designed to support the integration of advanced technologies such as AI/ML, real-time analytics, and big data. By lowering the barriers to innovation, it enables NSIs to experiment safely while maintaining methodological soundness.</p>
+</section>
+<section id="saf-v3-risk-reduction" class="level2">
+<h2 class="anchored" data-anchor-id="saf-v3-risk-reduction">SAF-V3 Risk Reduction</h2>
+<p>By embedding compliance, security, and governance into the architecture, SAF reduces risks associated with system failures, data breaches, or regulatory non-compliance. This value is particularly critical in maintaining the trust of citizens and stakeholders.</p>
+</section>
+<section id="saf-v4-strategic-alignment" class="level2">
+<h2 class="anchored" data-anchor-id="saf-v4-strategic-alignment">SAF-V4 Strategic Alignment</h2>
+<p>SAF ensures that all IT initiatives within NSIs directly contribute to their mission of producing official statistics. This alignment improves governance, prioritization, and the impact of IT investments.</p>
+</section>
+<section id="saf-v5-sustainability" class="level2">
+<h2 class="anchored" data-anchor-id="saf-v5-sustainability">SAF-V5 Sustainability</h2>
+<p>SAF promotes efficiency and modernization while reducing technical debt. By providing clear pathways for evolution, it ensures that NSIs can sustain their IT landscapes without repeated costly overhauls.</p>
+</section>
+<section id="saf-v6-trust-legitimacy" class="level2">
+<h2 class="anchored" data-anchor-id="saf-v6-trust-legitimacy">SAF-V6 Trust &amp; Legitimacy</h2>
+<p>The value of SAF lies in enhancing trust in official statistics. By ensuring transparency, ethical practices, and robust security, SAF reinforces the legitimacy of NSIs as authoritative providers of public data.</p>
+</section>
+</section>
+<section id="stakeholders-roles-and-collaborations" class="level1">
+<h1>Stakeholders, Roles and Collaborations</h1>
+<section id="stakeholders" class="level3">
+<h3 class="anchored" data-anchor-id="stakeholders">Stakeholders</h3>
+<p>Architecture is never developed in isolation. Stakeholders - , as individuals, groups, or organizations that influence or are influenced by architecture - are central to its success. In the SAF, stakeholders range from technical experts and CIOs within NSIs to international organizations, policymakers, researchers, and ultimately, society at large. Each of these stakeholders has unique interests, expectations, and contributions, and the framework must balance these to be effective.</p>
+<p>Identifying stakeholders clarifies who should be involved in governance, decision-making, and implementation. For example, IT professionals are responsible for translating SAF principles into concrete systems, while policymakers are concerned with the outcomes those systems enable. International organizations such as UNECE play a custodial role, ensuring that SAF remains harmonized and relevant across countries. By mapping these roles, SAF ensures that no perspective is overlooked and that architecture decisions are inclusive and robust.</p>
+<p>Engaging stakeholders also strengthens legitimacy. When those affected by architecture decisions are part of the conversation, they are more likely to support the outcomes. For statistical organizations, where public trust is essential, engaging stakeholders such as researchers, academia, and citizens indirectly ensures that the architecture remains aligned with societal expectations of transparency, security, and fairness.</p>
+<section id="saf-st01-cios-ctos-of-nsis" class="level4">
+<h4 class="anchored" data-anchor-id="saf-st01-cios-ctos-of-nsis">SAF-ST01 CIOs &amp; CTOs of NSIs</h4>
+<p>Technology leaders within NSIs need to make strategic IT investment decisions. SAF supports them by providing a clear framework to evaluate options, align IT with business goals, and ensure compliance with international standards.</p>
+</section>
+<section id="saf-st02-citizens-society" class="level4">
+<h4 class="anchored" data-anchor-id="saf-st02-citizens-society">SAF-ST02 Citizens &amp; Society</h4>
+<p>Ultimately, society is the beneficiary of SAF, as it ensures that statistical organizations produce trustworthy, transparent, and modern statistics that support democratic accountability and informed public discourse.</p>
+</section>
+<section id="saf-st03-government-policy-makers" class="level4">
+<h4 class="anchored" data-anchor-id="saf-st03-government-policy-makers">SAF-ST03 Government Policy Makers</h4>
+<p>Policy makers rely on official statistics to design, implement, and evaluate policies. SAF indirectly benefits them by ensuring that NSIs deliver timely, accurate, and comparable data in formats that are accessible and actionable.</p>
+</section>
+<section id="saf-st04-it-data-professionals" class="level4">
+<h4 class="anchored" data-anchor-id="saf-st04-it-data-professionals">SAF-ST04 IT &amp; Data Professionals</h4>
+<p>Architects, engineers, and data scientists will use SAF to guide their daily work in designing, implementing, and managing systems. SAF provides them with common patterns, tools, and practices that increase efficiency and reduce the learning curve when collaborating across institutions.</p>
+</section>
+<section id="saf-st05-national-statistical-institutes-nsis" class="level4">
+<h4 class="anchored" data-anchor-id="saf-st05-national-statistical-institutes-nsis">SAF-ST05 National Statistical Institutes (NSIs)</h4>
+<p>NSIs are the primary beneficiaries of SAF, as it provides them with structured guidance for their enterprise architecture. By using SAF, NSIs can align with international practices, improve efficiency, and strengthen their ability to deliver high-quality statistics to stakeholders.</p>
+</section>
+<section id="saf-st06-researchers-academia" class="level4">
+<h4 class="anchored" data-anchor-id="saf-st06-researchers-academia">SAF-ST06 Researchers &amp; Academia</h4>
+<p>Research communities increasingly rely on official data for scientific inquiry and innovation. SAF supports them by ensuring that statistical systems are designed with openness, data sharing, and high-quality metadata in mind, facilitating advanced research use cases.</p>
+</section>
+<section id="saf-st07-unece-other-international-bodies" class="level4">
+<h4 class="anchored" data-anchor-id="saf-st07-unece-other-international-bodies">SAF-ST07 UNECE &amp; Other International Bodies</h4>
+<p>UNECE acts as a custodian of SAF, ensuring that it remains relevant, comprehensive, and widely adopted. Other bodies, such as Eurostat or the UN Statistics Division, are also stakeholders, as SAF complements their work in statistical modernization.</p>
+</section>
+</section>
+<section id="roles" class="level3">
+<h3 class="anchored" data-anchor-id="roles">Roles</h3>
+<p><em>This section has not been written yet.</em></p>
+</section>
+<section id="collaborations" class="level3">
+<h3 class="anchored" data-anchor-id="collaborations">Collaborations</h3>
+<p><em>This section has not been written yet.</em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../framework/introduction.html" class="pagination-link" aria-label="Introduction and Scope">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction and Scope</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../framework/strategy.html" class="pagination-link" aria-label="Strategy">
+        <span class="nav-page-text">Strategy</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

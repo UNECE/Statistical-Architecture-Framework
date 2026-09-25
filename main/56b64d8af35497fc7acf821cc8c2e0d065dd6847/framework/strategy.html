@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Strategy – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../framework/business-architecture.html" rel="next">
+<link href="../framework/motivation.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4b8eba7d388032a8ef35e180b04aa314.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../framework/index.html" aria-current="page"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/introduction.html">Foundations</a></li><li class="breadcrumb-item"><a href="../framework/strategy.html">Strategy</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAF Architecture Framework</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and Scope</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/motivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Motivation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/strategy.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Strategy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Business architecture</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/business-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Architecture</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Production value streams</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-01 Data Acquisition and Ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-02 Data Standardization and Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-03 Data Editing and Enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-04 Estimation, Analysis, and Statistical Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-05 Statistical Product Composition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-06 Dissemination and Service Delivery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Supporting value streams</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-07 Governance and Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-08 Innovation and Methodological Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-09 Infrastructure and Platform Enablement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-10 Customer and Stakeholder Engagement</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#strategy" id="toc-strategy" class="nav-link active" data-scroll-target="#strategy">Strategy</a>
+  <ul class="collapse">
+  <li><a href="#capability-model" id="toc-capability-model" class="nav-link" data-scroll-target="#capability-model">Capability Model</a>
+  <ul class="collapse">
+  <li><a href="#capability-model-main-level" id="toc-capability-model-main-level" class="nav-link" data-scroll-target="#capability-model-main-level">Capability Model Main-level</a></li>
+  <li><a href="#capability-model-sub-levels" id="toc-capability-model-sub-levels" class="nav-link" data-scroll-target="#capability-model-sub-levels">Capability Model Sub-levels</a></li>
+  </ul></li>
+  <li><a href="#value-streams" id="toc-value-streams" class="nav-link" data-scroll-target="#value-streams">Value Streams</a>
+  <ul class="collapse">
+  <li><a href="#primary-value-streams" id="toc-primary-value-streams" class="nav-link" data-scroll-target="#primary-value-streams">Primary Value Streams</a></li>
+  <li><a href="#vs-01.0-data-acquisition-and-ingestion-value-stream" id="toc-vs-01.0-data-acquisition-and-ingestion-value-stream" class="nav-link" data-scroll-target="#vs-01.0-data-acquisition-and-ingestion-value-stream">VS-01.0 Data Acquisition and Ingestion Value Stream</a></li>
+  <li><a href="#vs-02.0-data-standardization-and-integration-value-stream" id="toc-vs-02.0-data-standardization-and-integration-value-stream" class="nav-link" data-scroll-target="#vs-02.0-data-standardization-and-integration-value-stream">VS-02.0 Data Standardization and Integration Value Stream</a></li>
+  <li><a href="#vs-03.0-data-editing-and-enrichment-value-stream" id="toc-vs-03.0-data-editing-and-enrichment-value-stream" class="nav-link" data-scroll-target="#vs-03.0-data-editing-and-enrichment-value-stream">VS-03.0 Data Editing and Enrichment Value Stream</a></li>
+  <li><a href="#vs-04.0-estimation-analysis-and-statistical-modeling-value-stream" id="toc-vs-04.0-estimation-analysis-and-statistical-modeling-value-stream" class="nav-link" data-scroll-target="#vs-04.0-estimation-analysis-and-statistical-modeling-value-stream">VS-04.0 Estimation, Analysis, and Statistical Modeling Value Stream</a></li>
+  <li><a href="#vs-05.0-statistical-product-composition-value-stream" id="toc-vs-05.0-statistical-product-composition-value-stream" class="nav-link" data-scroll-target="#vs-05.0-statistical-product-composition-value-stream">VS-05.0 Statistical Product Composition Value Stream</a></li>
+  </ul></li>
+  <li><a href="#supporting-cross-domain-value-streams" id="toc-supporting-cross-domain-value-streams" class="nav-link" data-scroll-target="#supporting-cross-domain-value-streams">Supporting Cross Domain Value-Streams</a>
+  <ul class="collapse">
+  <li><a href="#vs-07.0-governance-and-compliance-value-stream" id="toc-vs-07.0-governance-and-compliance-value-stream" class="nav-link" data-scroll-target="#vs-07.0-governance-and-compliance-value-stream">VS-07.0 Governance and Compliance Value Stream</a></li>
+  <li><a href="#vs-08.0-innovation-and-methodological-development-value-stream" id="toc-vs-08.0-innovation-and-methodological-development-value-stream" class="nav-link" data-scroll-target="#vs-08.0-innovation-and-methodological-development-value-stream">VS-08.0 Innovation and Methodological Development Value Stream</a></li>
+  <li><a href="#vs-09.0-infrastructure-and-platform-enablement-value-stream" id="toc-vs-09.0-infrastructure-and-platform-enablement-value-stream" class="nav-link" data-scroll-target="#vs-09.0-infrastructure-and-platform-enablement-value-stream">VS-09.0 Infrastructure and Platform Enablement Value Stream</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="strategy.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/introduction.html">Foundations</a></li><li class="breadcrumb-item"><a href="../framework/strategy.html">Strategy</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Strategy</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="strategy" class="level1">
+<h1>Strategy</h1>
+<section id="capability-model" class="level2">
+<h2 class="anchored" data-anchor-id="capability-model">Capability Model</h2>
+<p>Within the Statistical Architecture Framework (SAF), business capabilities define the fundamental abilities of a statistical organization to perform its mission , independent of processes, organizational structures, or technologies. A business capability represents what the organization must be able to do to deliver value and achieve its objectives, providing a stable and long-term view of the enterprise’s functional landscape.</p>
+<p>Capabilities serve as the enabling building blocks of the statistical enterprise. They do not change frequently, even when the underlying processes, applications, or organizational units evolve. For example, the capability “Manage Statistical Data Quality” remains essential regardless of whether data validation is manual, automated, or AI-driven. This stability makes capabilities the preferred unit of analysis for strategic planning, transformation roadmaps, and architecture alignment within the SAF.</p>
+<p>Each capability encapsulates a specific business purpose and outcome, which is realized through one or more business functions and operationalized by business processes. Capabilities therefore serve as the conceptual bridge between strategy and execution: they translate strategic goals into operational competence. Within the SAF, capabilities are often organized hierarchically, showing decomposition from high-level domains (such as Data Governance or Statistical Production) into more granular sub-capabilities (such as Metadata Management or Sampling Design).</p>
+<p>A capability-based view enables statistical organizations to assess maturity, identify gaps, and prioritize modernization efforts systematically. By mapping capabilities to the supporting processes, services, and technologies, the SAF facilitates a traceable and measurable link between strategic drivers and operational implementation. This approach supports architectural coherence across business, information, application, and technology layers, ensuring that investments in modernization or digitalization strengthen the organization’s ability to deliver trusted, high-quality statistical outputs.</p>
+<p>In essence, business capabilities in the SAF define the functional DNA of the statistical system, the core abilities that enable it to collect, manage, analyze, and disseminate data in alignment with legal, ethical, and methodological standards. They provide the foundation upon which processes, roles, and value streams are built and integrated into a unified, resilient, and future-oriented architecture.</p>
+<section id="capability-model-main-level" class="level3">
+<h3 class="anchored" data-anchor-id="capability-model-main-level">Capability Model Main-level</h3>
+<p>The capability model provides a structured, visual overview of the organization’s core abilities required to achieve its mission of producing and disseminating official statistics. This map displays capabilities as stable, business-centric building blocks, grouped to align with strategic goals and is useful to highlight areas for development and investment. The capability model helps a statistical bureau assess and communicate its strengths, gaps, and areas needing improvement to support organizational objectives such as delivering high-quality, timely statistics, maintaining the trust of data providers, and promoting innovation in data processing. On the highest level, four main capabilities are defined. The next paragraph will describe the more detailed capabilities.</p>
+<ol type="1">
+<li>Primary statistical capabilities Description: Contains all capacities required to perform the legally required tasks of a Statistical Institute.Source: GAMSO</li>
+<li>Supporting Data capabilities Description: Includes additional statistical capabilities such as managing statistical data and conducting statistical research.</li>
+<li>Supporting business capacities Description: Includes the capabilities that ensure that the right people, information and resources are available to implement and support the statistical domains and the governing domain.</li>
+<li>Governance capabilities Description: Includes the capabilities that provide direction to the organization by determining the desired strategy and the framework within which changes must take place. Source: GAMSO 1.2, Strategy and Leadership</li>
+</ol>
+</section>
+<section id="capability-model-sub-levels" class="level3">
+<h3 class="anchored" data-anchor-id="capability-model-sub-levels">Capability Model Sub-levels</h3>
+<section id="primary-statistical-capabilities" class="level4">
+<h4 class="anchored" data-anchor-id="primary-statistical-capabilities">1. Primary statistical capabilities</h4>
+<section id="statistical-design-and-build" class="level5">
+<h5 class="anchored" data-anchor-id="statistical-design-and-build">1.1. Statistical design and build</h5>
+<p>The ability to map information needs and set up statistical processes for this purpose. Source: GSBPM 5.2, Design Link: https://unece.github.io/GSBPM-5.2/#design-phase</p>
+</section>
+<section id="needs-inventory" class="level5">
+<h5 class="anchored" data-anchor-id="needs-inventory">1.1.1 Needs inventory</h5>
+<p>The ability to map out the information requirement (demand for information) and translate it into social tasks that we want to respond to (supply). Explanation: We often do this through strategic relationships, see the social tasks mentioned in the MJP and the process preceding it. Source: GSBPM</p>
+</section>
+<section id="design-statistics-product" class="level5">
+<h5 class="anchored" data-anchor-id="design-statistics-product">1.1.2. Design statistics product</h5>
+<p>The ability to translate information needs into concrete designs consisting of datasets, process and workflow models and rule sets/methodology. This for the datasets that are released Explanation: This concerns both the statistical product itself and the process that produces this product. Components of the process are various process steps, rule sets for the various process steps, methodology used, the process flow, the designs of the required datasets and the designs for the shared connection points for reuse. If the required datasets are not available, an observation assignment can follow. For primary observation, designs can then follow regarding sampling, questionnaire, etc. Source: GSBPM Design phase</p>
+</section>
+<section id="build-statistics-product" class="level5">
+<h5 class="anchored" data-anchor-id="build-statistics-product">1.1.3. Build statistics product</h5>
+<p>Building, testing, and managing a statistical product to the point where the product lifecycle ends Explanation: The output from the “Design” phase is assembled and configured in this phase to create the complete operational environment to execute the process. Source: GSBPM</p>
+</section>
+</section>
+<section id="data-collection" class="level4">
+<h4 class="anchored" data-anchor-id="data-collection">1.2. Data collection</h4>
+<p>The ability to collect data for official statistics. Source: GSBPM 5.2, Collect Link : https://unece.github.io/GSBPM-5.2/#collect-phase</p>
+<section id="primary-data-collection" class="level5">
+<h5 class="anchored" data-anchor-id="primary-data-collection">1.2.1. Primary data collection</h5>
+<p>Primary observation describes the ability to set up and manage surveys, through to completion and transfer for processing and analysis. Primary observation collects both the data and the associated metadata.</p>
+<p>Explanation: Primary observation is a domain within data collection and performs observations via one or more modes. The research population and the size of the sample are determined together with the client based on the needs. A distinction is made between personal surveys and company surveys. Components of surveys include samples, questionnaires, approach strategies. Source: ESS capability model</p>
+</section>
+<section id="secondary-data-collection" class="level5">
+<h5 class="anchored" data-anchor-id="secondary-data-collection">1.2.2. Secondary data collection</h5>
+<p>Secondary observation is the activity that describes the work required to collect data and associated metadata from third parties for the production of statistics. Explanation: Within secondary observation, sources with data collected by third parties are used as much as possible. Source: ESS capability model</p>
+</section>
+</section>
+<section id="processing" class="level4">
+<h4 class="anchored" data-anchor-id="processing">1.3. Processing</h4>
+<p>The ability to process raw data into statistical microdata and statistics.Source : GSBPM Process Phase</p>
+<section id="data-standardization-the-ability-to-standardize-data-without-loss-of-content." class="level5">
+<h5 class="anchored" data-anchor-id="data-standardization-the-ability-to-standardize-data-without-loss-of-content.">1.3.1. Data standardization The ability to standardize data without loss of content.</h5>
+<p>Explanation: This includes standardization of data format, codes for categories, (link) keys, possible units of measurement (for weight, distance, time). Data standardization without loss of content takes place immediately after receipt of the raw data because we want this standardization as early as possible in the processing process for efficiency reasons.</p>
+</section>
+<section id="deriving-variables-and-units" class="level5">
+<h5 class="anchored" data-anchor-id="deriving-variables-and-units">1.3.2. Deriving variables and units</h5>
+<p>The ability to create new units and values of new variables from existing units and values of existing variables. Explanation: We generally derive new variables with the aim of better describing reality; something the data source was not originally intended for.</p>
+</section>
+<section id="check-content" class="level5">
+<h5 class="anchored" data-anchor-id="check-content">1.3.3. Check content</h5>
+<p>The ability to check datasets for irregularities, such as missing data, possible errors and outliers. Explanation: discovering possible errors can lead to adjustment, see also capacity “Adjust and impute”, but can also lead to a quality indicator on the basis of which quality reports can be made. Discovering outliers leads to an ‘outlier indicator’ and is important for a good estimation method, see also capacity “Estimate population parameter”. Source: GSBPM</p>
+</section>
+<section id="adjusting-and-imputing" class="level5">
+<h5 class="anchored" data-anchor-id="adjusting-and-imputing">1.3.4. Adjusting and imputing</h5>
+<p>The ability to adjust possible incorrect values and missing values. Explanation: together with the “Content check” capacity, this capacity is often called editing. The check is then carried out using editing rules. The adjustment is then often based on imputation. The imputed values do not yet have to comply with the editing rules. To this end, a final ‘adjustment’ often takes place with the editing rules as a restriction. Source: GSBPM, ESS capability model</p>
+</section>
+<section id="estimating-population-parameters" class="level5">
+<h5 class="anchored" data-anchor-id="estimating-population-parameters">1.3.5. Estimating population parameters</h5>
+<p>The ability to estimate population parameters from microdata. Explanation: estimated population parameters often manifest themselves as observations (the cells) in a dimensional dataset (table). There are several estimation methods, including the traditional ‘weight and aggregate’. There are several techniques to arrive at the weights. Sometimes weights are adjusted to give found outliers a smaller weight.</p>
+</section>
+<section id="integrate-statistics" class="level5">
+<h5 class="anchored" data-anchor-id="integrate-statistics">1.3.6. Integrate statistics</h5>
+<p>The ability to integrate separate statistics into one consistent whole. Explanation: We know integration systems for, for example, the national accounts, sector accounts and labour accounts</p>
+</section>
+<section id="statistical-disclosure" class="level5">
+<h5 class="anchored" data-anchor-id="statistical-disclosure">1.3.7. Statistical disclosure</h5>
+<p>The ability to check datasets for privacy sensitivity and to adjust them in case of violation. Source: GSBPM 6.4</p>
+</section>
+</section>
+<section id="analysis" class="level4">
+<h4 class="anchored" data-anchor-id="analysis">1.4. Analysis</h4>
+<p>The ability to examine and understand data before it is disseminated. Explanation: Within statistical institutes, statistical analysis is also known as statistical research in which certain connections or conclusions can be drawn on the basis of relationships (such as correlation). Source: GSBPM 5.2, Analyse Link : https://unece.github.io/GSBPM-5.2/#analyse-phase</p>
+<section id="statistical-output-analysis" class="level5">
+<h5 class="anchored" data-anchor-id="statistical-output-analysis">1.4.1. Statistical (output) analysis</h5>
+<p>The ability to validate output, interpret and explain statistical data and finalize output for dissemination using shared methodologies and processes. Source: ESS capability model</p>
+</section>
+</section>
+<section id="dissemination" class="level4">
+<h4 class="anchored" data-anchor-id="dissemination">1.5. Dissemination</h4>
+<p>The ability to manage the release of statistical products to users. Explanation: This applies to both internal and external users. Source: GSBPM 5.2, Disseminate Link: https://unece.github.io/GSBPM-5.2/#disseminate-phase</p>
+<section id="publication-management" class="level5">
+<h5 class="anchored" data-anchor-id="publication-management">1.5.1. Publication management</h5>
+<p>The ability to manage the release of statistical output and associated content according to release schedules, so that users have predictable and equal access to data. Source: ESS capability model</p>
+</section>
+<section id="promotion-to-use" class="level5">
+<h5 class="anchored" data-anchor-id="promotion-to-use">1.5.2. Promotion to use</h5>
+<p>The ability to promote the statistical output to potential users and to inform the press and other interested parties about the statistical output. Source: ESS capability model</p>
+</section>
+<section id="facilitate-data-access" class="level5">
+<h5 class="anchored" data-anchor-id="facilitate-data-access">1.5.3. Facilitate data access</h5>
+<p>The ability to make statistical data and metadata available to humans and machines through multiple channels. Source: ESS capability model</p>
+</section>
+<section id="statistical-information-management" class="level5">
+<h5 class="anchored" data-anchor-id="statistical-information-management">1.5.4. Statistical information management</h5>
+<p>The ability to prepare and distribute publications related to statistical output. Explanation: This includes press releases, interpretations and reports. Source: ESS capability model</p>
+</section>
+</section>
+<section id="supporting-data-capabilities" class="level4">
+<h4 class="anchored" data-anchor-id="supporting-data-capabilities">2. Supporting Data capabilities</h4>
+<p>Includes additional statistical capabilities such as managing statistical data and conducting statistical research.</p>
+</section>
+<section id="data-management" class="level4">
+<h4 class="anchored" data-anchor-id="data-management">2.1. Data management</h4>
+<p>The ability to manage data and metadata.</p>
+<section id="data-lifecycle-management" class="level5">
+<h5 class="anchored" data-anchor-id="data-lifecycle-management">2.1.1. Data lifecycle management</h5>
+<p>The ability to manage data throughout its entire lifecycle.</p>
+</section>
+<section id="metadata-management" class="level5">
+<h5 class="anchored" data-anchor-id="metadata-management">2.1.2. Metadata management</h5>
+<p>The ability to manage metadata throughout the lifecycle. Source: ESS Capabilities</p>
+</section>
+<section id="statistical-quality-management" class="level5">
+<h5 class="anchored" data-anchor-id="statistical-quality-management">2.1.3. Statistical quality management</h5>
+<p>The ability to perform quality assessments, implement control mechanisms and initiate quality improvement mechanisms for the statistical value chain.</p>
+</section>
+<section id="statistical-register-management" class="level5">
+<h5 class="anchored" data-anchor-id="statistical-register-management">2.1.4. Statistical register management</h5>
+<p>The ability to set up, maintain and make available “registry”-like services for collecting and integrating data. Explanation: Master Data Source: ESS capability model</p>
+</section>
+</section>
+<section id="research" class="level4">
+<h4 class="anchored" data-anchor-id="research">2.2. Research</h4>
+<p>Includes acquiring and recording knowledge in relation to statistical methods, products, sources and techniques.</p>
+<section id="data-source-exploration" class="level5">
+<h5 class="anchored" data-anchor-id="data-source-exploration">2.2.1. Data source exploration</h5>
+<p>Exploring new data sources Source: ESS</p>
+</section>
+<section id="product-innovation" class="level5">
+<h5 class="anchored" data-anchor-id="product-innovation">2.2.2. Product Innovation</h5>
+<p>The ability to innovate, i.e.&nbsp;create new statistical products based on existing data sources and explore new data sources that are useful and important to users. Explanation: A design phase may be preceded by product innovation. Source: ESS</p>
+</section>
+<section id="methodology" class="level5">
+<h5 class="anchored" data-anchor-id="methodology">2.2.3. Methodology</h5>
+<p>The ability to investigate new methods for the statistical process.</p>
+</section>
+<section id="data-services" class="level5">
+<h5 class="anchored" data-anchor-id="data-services">2.2.4. Data services</h5>
+<p>The ability to provide data for statistical or scientific research. Explanation: This applies to both internal and external datasets. These services are realized with, among other things, Microdata services. Source: local laws and regulations ?</p>
+</section>
+<section id="user-research" class="level5">
+<h5 class="anchored" data-anchor-id="user-research">2.2.5. User research</h5>
+<p>The ability to collect, assess and translate user needs into statistical output</p>
+</section>
+</section>
+<section id="supporting-business-capacities" class="level4">
+<h4 class="anchored" data-anchor-id="supporting-business-capacities">3. Supporting business capacities</h4>
+<p>Includes the capabilities that ensure that the right people, information and resources are available to implement and support the statistical domains and the governing domain.</p>
+<section id="business-operations" class="level5">
+<h5 class="anchored" data-anchor-id="business-operations">3.1. Business operations</h5>
+<p>Contains all activities required for managing personnel, purchasing &amp; contracts, finances and housing and the associated systems and communication.</p>
+</section>
+<section id="personnel-management-hr" class="level5">
+<h5 class="anchored" data-anchor-id="personnel-management-hr">3.1.1. Personnel management (HR)</h5>
+<p>Ensuring that sufficient qualified employees are available to carry out all business processes.</p>
+</section>
+<section id="purchasing-contract-management" class="level5">
+<h5 class="anchored" data-anchor-id="purchasing-contract-management">3.1.2. Purchasing &amp; contract management</h5>
+<p>Acquiring goods and services and monitoring the agreements made with suppliers.</p>
+</section>
+<section id="financial-management" class="level5">
+<h5 class="anchored" data-anchor-id="financial-management">3.1.3. Financial management</h5>
+<p>Includes the planning, organization, design, recording and control of the financial activities of the organization.</p>
+</section>
+<section id="communication-management" class="level5">
+<h5 class="anchored" data-anchor-id="communication-management">3.1.4. Communication management</h5>
+<p>Ensuring that the organization communicates correctly to internal and external parties.</p>
+</section>
+<section id="administrative-support" class="level5">
+<h5 class="anchored" data-anchor-id="administrative-support">3.1.5. Administrative support</h5>
+<p>Providing support with administrative tasks.</p>
+</section>
+<section id="facility-management" class="level5">
+<h5 class="anchored" data-anchor-id="facility-management">3.1.6. Facility management</h5>
+<p>Organizational function that integrates people, place and process within the built environment. Explanation: Description based on ISO 41011. The purpose of facility management is to improve the quality of life of people and the productivity of the core activity. Source: ISO 41011</p>
+</section>
+<section id="legal-support" class="level5">
+<h5 class="anchored" data-anchor-id="legal-support">3.1.7. Legal support</h5>
+<p>Handling requests and applications, assessing agreements and advising on relevant legislation and regulations.</p>
+</section>
+<section id="information-management-and-archive-management" class="level5">
+<h5 class="anchored" data-anchor-id="information-management-and-archive-management">3.1.8. Information management and archive management</h5>
+<p>Includes the activities to bring, maintain and preserve the organization’s information in a state of sustainable accessibility (FAIR). Explanation: This concerns information created in the supporting and management processes, not statistical information from the primary statistical process.</p>
+</section>
+</section>
+<section id="computerization-and-automation" class="level4">
+<h4 class="anchored" data-anchor-id="computerization-and-automation">3.2. Computerization and automation</h4>
+<p>Ensuring that the information needs of the organization are translated into desired functionalities of the information provision and ensuring that the information systems are available to support the business processes.</p>
+<section id="application-development" class="level5">
+<h5 class="anchored" data-anchor-id="application-development">3.2.1. Application development</h5>
+<p>The ability to develop applications yourself. Explanation: This skill is needed to fill gaps in functionality that are missing in the statistical process.</p>
+</section>
+<section id="functional-management" class="level5">
+<h5 class="anchored" data-anchor-id="functional-management">3.2.2. Functional management</h5>
+<p>Performing management tasks so that applications optimally support business processes. Explanation: For example, by collecting existing user requirements and translating them into new application functionality.</p>
+</section>
+<section id="technical-management" class="level5">
+<h5 class="anchored" data-anchor-id="technical-management">3.2.3. Technical management</h5>
+<p>Performing management tasks regarding system software and applications. Explanation: Installing and configuring hardware and software. Managing this hardware and software to ensure that it continues to function correctly, including all measures to help resolve disruptions in a timely manner.</p>
+</section>
+<section id="digital-workplace-management" class="level5">
+<h5 class="anchored" data-anchor-id="digital-workplace-management">3.2.4. Digital workplace management</h5>
+<p>Management of the resources and services that the employee uses for his digital workplace. Explanation: Examples are: (Develop) Laptop / Desktops, Mobile devices, Virtual desktops, Video / audio conferencing, Printing, VPN, proxy services, all for the benefit of the workplace.</p>
+</section>
+<section id="it-infrastructure" class="level5">
+<h5 class="anchored" data-anchor-id="it-infrastructure">3.2.5. IT infrastructure</h5>
+<p>Developing, maintaining and managing IT infrastructure</p>
+</section>
+</section>
+<section id="security-and-privacy" class="level4">
+<h4 class="anchored" data-anchor-id="security-and-privacy">3.3. Security and Privacy</h4>
+<p>Contains all security and privacy related activities</p>
+<section id="privacy-management" class="level5">
+<h5 class="anchored" data-anchor-id="privacy-management">3.3.1. Privacy management</h5>
+<p>Developing, managing, applying and testing the privacy policy of Statistics Netherlands in order to comply with, among other things, legislation and regulations in the field of privacy protection.</p>
+</section>
+<section id="security-planning" class="level5">
+<h5 class="anchored" data-anchor-id="security-planning">3.3.2. Security planning</h5>
+<p>Includes the activities of identifying, analyzing, and planning measures to ensure the security of a system, network, organization, and facility.</p>
+</section>
+<section id="security-incident-management" class="level5">
+<h5 class="anchored" data-anchor-id="security-incident-management">3.3.3. Security incident management</h5>
+<p>Includes the activities of identifying, analyzing, responding to, and recovering from security incidents within an organization.</p>
+</section>
+<section id="logical-identity-and-access-control" class="level5">
+<h5 class="anchored" data-anchor-id="logical-identity-and-access-control">3.3.4. Logical identity and access control</h5>
+<p>Includes all activities that ensure that a person, organization or IT facility can only use automated functions for which it has been granted access rights through an application process.</p>
+</section>
+<section id="physical-security-access-control" class="level5">
+<h5 class="anchored" data-anchor-id="physical-security-access-control">3.3.5. Physical security &amp; access control</h5>
+<p>Includes all activities that ensure controlled and safe access to buildings and spaces and that people and goods in these buildings and spaces are safe.</p>
+</section>
+<section id="it-security-services" class="level5">
+<h5 class="anchored" data-anchor-id="it-security-services">3.3.6. IT Security services</h5>
+<p>IT services that serve to support information security. Explanation: Examples include:Endpoint protection, PKI, network security management,</p>
+</section>
+</section>
+<section id="customer-and-chain-interaction" class="level4">
+<h4 class="anchored" data-anchor-id="customer-and-chain-interaction">3.4. Customer and chain interaction</h4>
+<p>The ability to interact with the customer and chain partners, ensuring that they have the correct data and information and receiving notifications, requests and data.</p>
+<section id="services-management" class="level5">
+<h5 class="anchored" data-anchor-id="services-management">3.4.1. Services management</h5>
+<p>Includes the design, development, implementation and management of services that the organization (parts) provides to customers and chain partners.</p>
+</section>
+<section id="contact-management" class="level5">
+<h5 class="anchored" data-anchor-id="contact-management">3.4.2. Contact management</h5>
+<p>Maintaining relationships with customers and chain partners. Source: GSBPM 1.2 Link: https://statswiki.unece.org/spaces/GAMSO/pages/247302304/Corporate+Support#CorporateSupport-GAMSOv1.2ManageConsumersManageConsumers</p>
+</section>
+<section id="service-agreement" class="level5">
+<h5 class="anchored" data-anchor-id="service-agreement">3.4.3. Service Agreement</h5>
+<p>Includes drawing up, managing and enforcing service agreements with clients and chain partners. Explanation: These contracts apply to clients to whom NSO’s provide services such as access for external researchers or for additional statistical Services, but also to parties that supply information for primary or secondary observation. If these parties fail to comply, the NSO can take enforcement action.</p>
+</section>
+<section id="self-service" class="level5">
+<h5 class="anchored" data-anchor-id="self-service">3.4.4. Self-service</h5>
+<p>Offers the opportunity to customers and chain partners to find solutions to questions about the services purchased themselves or to make justified adjustments to these services without the intervention of an employee.</p>
+</section>
+</section>
+<section id="governance-capabilities" class="level4">
+<h4 class="anchored" data-anchor-id="governance-capabilities">4. Governance capabilities</h4>
+<p>Includes the capabilities that provide direction to the organization by determining the desired strategy and the framework within which changes must take place. Source: GAMSO 1.2, Strategy and Leadership”</p>
+<section id="strategy-and-governance" class="level5">
+<h5 class="anchored" data-anchor-id="strategy-and-governance">4.1.1. Strategy and governance</h5>
+<p>Developing a vision and setting up and monitoring the organization and its management.</p>
+</section>
+<section id="policy-and-planning" class="level5">
+<h5 class="anchored" data-anchor-id="policy-and-planning">4.1.2. Policy and planning</h5>
+<p>Translating the strategy into more concrete objectives, principles and plans.</p>
+</section>
+<section id="change-management" class="level5">
+<h5 class="anchored" data-anchor-id="change-management">4.1.3. Change management</h5>
+<p>Determining and managing major changes so that maximum contribution is made to the objectives.</p>
+</section>
+<section id="improvement-management" class="level5">
+<h5 class="anchored" data-anchor-id="improvement-management">4.1.4. Improvement management</h5>
+<p>Managing the daily operation and working on identifying areas for improvement and implementing improvement measures based on daily operations.</p>
+</section>
+<section id="accountability" class="level5">
+<h5 class="anchored" data-anchor-id="accountability">4.1.5. Accountability</h5>
+<p>Reporting to stakeholders inside and outside the organization on the extent to which obligations and agreements are met.</p>
+</section>
+<section id="collaboration" class="level5">
+<h5 class="anchored" data-anchor-id="collaboration">4.1.6. Collaboration</h5>
+<p>The ability to maintain and consolidate strategic relationships with external stakeholders. Explanation: These activities involve collaboration and coordination with other statistical organizations and other external stakeholders. They may involve coordination within a statistical system, which may be based on a geographical hierarchy of entities (local, regional, national, multinational), or a division of responsibilities between organizations based on activities. They include activities undertaken to identify new opportunities for data exchange or integration. They provide opportunities for the statistical community to exchange knowledge, improve statistical infrastructure and practices, and influence statistical standards.</p>
+<p>Source: GAMSO 1.2, Manage Strategic Collaboration and Cooperation</p>
+</section>
+</section>
+</section>
+</section>
+<section id="value-streams" class="level2">
+<h2 class="anchored" data-anchor-id="value-streams">Value Streams</h2>
+<section id="primary-value-streams" class="level3">
+<h3 class="anchored" data-anchor-id="primary-value-streams">Primary Value Streams</h3>
+</section>
+<section id="vs-01.0-data-acquisition-and-ingestion-value-stream" class="level3">
+<h3 class="anchored" data-anchor-id="vs-01.0-data-acquisition-and-ingestion-value-stream">VS-01.0 Data Acquisition and Ingestion Value Stream</h3>
+<p>The Data Acquisition &amp; Ingestion Value Stream is the first step in the statistical value chain. It focuses on bringing raw data into the statistical system in a secure, traceable, and compliant way. The purpose of this value stream is to make sure that data, no matter where the data comes from, enters the organization in a state that is authentic, well-documented, and ready for use. This value stream sets the foundation for everything that follows. It makes sure that the right data is collected, that legal requirements and ethical guidelines are observed, and that the data is safely stored and traceable from its source.</p>
+<p>This value chain identifies the following value steps: - Identify Data Needs and Sources: Define the statistical or analytical requirement and identify potential data sources (surveys, registers, administrative systems, sensors, commercial or open data). - Establish Data Agreements and Access Rights: Negotiate and formalize data-sharing agreements, define legal and ethical frameworks, and ensure privacy and compliance. - Collect or Receive Data: Execute data collection through surveys, APIs, secure data transfers, or data space connectors. Capture metadata during ingestion. - Validate and Log Data Intake: Verify completeness, structural integrity, and compliance with expected formats; log the ingestion process for traceability. - Store and Register Raw Data Artefacts: Persist data in controlled repositories, assign identifiers, and register associated metadata, ownership, and provenance.</p>
+<p>The value created here lies in trust and readiness , trust that the data has been acquired correctly, and readiness for the data to move forward into later stages of the statistical process.</p>
+<p>Once data has been safely acquired and registered, it is ready to move into the next phase - the Data Standardization &amp; Integration Value Stream. Here, the focus shifts from collecting data to structuring it, ensuring that all incoming data can be compared, combined, and analyzed.</p>
+</section>
+<section id="vs-02.0-data-standardization-and-integration-value-stream" class="level3">
+<h3 class="anchored" data-anchor-id="vs-02.0-data-standardization-and-integration-value-stream">VS-02.0 Data Standardization and Integration Value Stream</h3>
+<p>The Data Standardization &amp; Integration Value Stream is the second step in the statistical value chain. After raw data has been collected and securely stored, it now needs to be standardized, harmonized, and prepared for further processing. In this value stream, the organization ensures that data from different sources - surveys, administrative registers, or external datasets - can work together seamlessly. This is achieved through consistent structures, common formats, and shared definitions. The main goal is interoperability: data that looks different at the source must be aligned so it can be understood, compared, and reused across systems, domains, and time periods. This value chain identifies the following value steps: - Profile and Assess Data Structure: Analyze data structure, identify inconsistencies, and align schema with target models. - Apply Standard Classifications and Formats: Map variables, codes, and identifiers to standardized taxonomies and reference data (e.g., NACE, ISCO, SDMX, GSIM concepts). - Align Metadata and Semantics: Harmonize descriptive metadata, ensuring coherence in definitions, classifications, and quality descriptors. - Validate Structural and Semantic Conformance: Execute validation routines to ensure the data conforms to standards and classifications. - Register Standardized Artefacts: Store the standardized dataset and update the metadata catalogue to reflect structural and semantic alignment.</p>
+<p>The value created here is coherence and comparability, transforming raw data into a structured and standardized asset that can flow smoothly into editing, analysis, and modeling.</p>
+<p>Once data is standardized and validated, it can safely move to the Data Editing &amp; Enrichment Value Stream. In that stage, attention shifts from structure and standards to quality and completeness.</p>
+<p>The organization begins improving data accuracy, filling gaps, and enriching datasets with derived or corrected information.</p>
+</section>
+<section id="vs-03.0-data-editing-and-enrichment-value-stream" class="level3">
+<h3 class="anchored" data-anchor-id="vs-03.0-data-editing-and-enrichment-value-stream">VS-03.0 Data Editing and Enrichment Value Stream</h3>
+<p>The Data Editing &amp; Enrichment Value Stream is the third step in the statistical value chain. After data has been standardized and aligned, the next task is to improve its quality, completeness, and usability. At this stage, the organization focuses on cleaning, correcting, and enriching data so that it becomes trustworthy and analytically sound. Errors are detected, inconsistencies are corrected, missing values are filled, and new variables are derived to add more meaning and analytical value. This is where raw, standardized data begins to transform into high-quality statistical input , ready for estimation, modeling, and analysis.</p>
+<p>This value chain identifies the following value steps: - Conduct Error Detection and Quality Diagnostics: Identify logical errors, duplicates, missing values, or outliers through rule-based or machine-learning validation. - Perform Data Editing and Correction: Apply predefined rules and algorithms to correct errors or replace invalid entries. - Impute Missing or Non-Response Data: Estimate missing values using statistical imputation techniques or external data sources. - Derive Additional Variables and Indicators: Enrich datasets by calculating derived measures or additional analytical variables. - Perform Quality Evaluation and Versioning: Assess improvement in data quality, document changes, and create traceable versions of edited datasets.</p>
+<p>The main value created here is data reliability and analytical readiness. By systematically improving data quality, the organization ensures that every subsequent result , every estimate, model, and publication, rests on a solid foundation.</p>
+</section>
+<section id="vs-04.0-estimation-analysis-and-statistical-modeling-value-stream" class="level3">
+<h3 class="anchored" data-anchor-id="vs-04.0-estimation-analysis-and-statistical-modeling-value-stream">VS-04.0 Estimation, Analysis, and Statistical Modeling Value Stream</h3>
+<p>The Estimation &amp; Analysis Value Stream is the fourth stage of the statistical value chain. Here, the focus shifts from improving data quality to extracting insight and meaning. At this stage, the organization applies statistical methods, estimation techniques, and analytical models to transform edited and enriched data into representative results that describe real-world phenomena. This is where data becomes statistical information, summarized, interpreted, and validated to reflect populations, trends, and behaviors. Every decision taken in this stage must balance methodological detail with transparency and reproducibility. This value chain identifies the following value steps: - Design Estimation and Analytical Approach: Select methodology, model type, and parameters based on survey design and analytical objectives. - Apply Weighting and Calibration: Adjust for sample bias, non-response, or coverage errors through statistical weighting or calibration methods. - Estimate and Aggregate Data: Generate aggregated statistics, measures, and derived indicators. - Perform Model-Based Analysis: Conduct modeling, regression, or forecasting analyses as applicable to the domain. - Validate and Document Results: Review statistical soundness, check for consistency, document methodology and quality metrics.</p>
+<p>The main value created here is analytical insight and statistical credibility. Through careful estimation and analysis, data is turned into knowledge that policymakers, researchers, and society can trust.</p>
+<p>After estimation and analysis, the organization moves to the Statistical Product Composition Value Stream. Here, the focus shifts from individual analyses to building integrated and composite products. In that next stage, data from multiple sources and analyses are combined into coherent statistical publications, dashboards, and reports, turning analytical results into accessible products that provide a complete picture.</p>
+</section>
+<section id="vs-05.0-statistical-product-composition-value-stream" class="level3">
+<h3 class="anchored" data-anchor-id="vs-05.0-statistical-product-composition-value-stream">VS-05.0 Statistical Product Composition Value Stream</h3>
+<p>The Statistical Product Composition Value Stream is the fifth stage in the statistical value chain. After estimation and analysis, the focus now shifts to bringing multiple analytical results together to create coherent, meaningful, and high-value statistical products. At this stage, data from different sources, domains, and analyses are combined, refined, and formatted into composite datasets, time series, and indicators that can be used for reporting, policymaking, and research. This value stream transforms intermediate analytical outputs into final statistical products , ready for validation, interpretation, and dissemination. This value chain identifies the following value steps: - Select and Integrate Source Datasets: Combine outputs from multiple domains, surveys, or time periods. - Construct Composite Indicators or Indices: Create derived measures such as indices, ratios, or time-series aggregates. - Perform Consistency and Coherence Checks: Ensure integrated datasets are internally consistent and methodologically sound. - Generate Analytical and Interpretive Outputs: Produce thematic reports, visualizations, or analytical interpretations. - Approve and Register Statistical Products: Validate products against dissemination and confidentiality standards and register them for publication.</p>
+<p>The key value created here is coherence and interpretability. Through careful composition, integration, and quality control, statistical outputs become consistent, accessible, and ready to serve their intended purpose.</p>
+<p>After products are approved and registered, they move into the Dissemination &amp; Service Delivery Value Stream. Here, the focus shifts from producing statistics to sharing them, making them available through publications, APIs, dashboards, and data services. That next stage ensures that the work done throughout the entire value chain ultimately reaches users in a secure, accessible, and user-friendly way.</p>
+<section id="vs-06.0-dissemination-and-service-delivery-value-stream" class="level4">
+<h4 class="anchored" data-anchor-id="vs-06.0-dissemination-and-service-delivery-value-stream">VS-06.0 Dissemination and Service Delivery Value Stream</h4>
+<p>The Dissemination &amp; Service Delivery Value Stream is the final stage in the statistical value chain. At this point, the statistical products created in the previous stages are published, distributed, and made accessible to users through trusted and secure channels. The main goal of this value stream is to ensure that information reaches users in a way that is accurate, timely, and easy to understand. This includes policymakers, researchers, journalists, businesses, and the general public. Dissemination is not only about releasing data, it is about providing services that help users access, interpret, and apply statistical information responsibly. This step transforms statistical outputs into societal value by enabling informed decision-making, evidence-based policy, and transparency. This value chain identifies the following value steps: - Plan Dissemination and Access Strategy: Define target users, access channels, and release formats (open data, API, research access, publications). - Prepare Data for Dissemination: Apply disclosure control, anonymization, and formatting for publication or access. - Publish and Provide Access Services: Release data and metadata via portals, APIs, dashboards, or secure research environments. - Support and Engage Users: Provide user documentation, helpdesk support, and training for correct interpretation and use. - Monitor Usage and Feedback: Track user interactions, collect feedback, and feed insights into continuous improvement loops.</p>
+<p>The key value created here is impact and accessibility, ensuring that statistics and data services are usable, trusted, and beneficial to all. The Dissemination &amp; Service Delivery Value Stream relies heavily on several cross-cutting value streams: - Governance and Compliance ensures that all dissemination complies with data protection and confidentiality laws. - Infrastructure and Platform Enablement provides the technical platforms for portals, Customer and Stakeholder Engagement ensures that dissemination services meet real user needs and expectations. Together, these supporting streams ensure that dissemination is not just a technical process , but a strategic, user-centered activity that delivers societal value through trustworthy data.</p>
+</section>
+</section>
+</section>
+<section id="supporting-cross-domain-value-streams" class="level2">
+<h2 class="anchored" data-anchor-id="supporting-cross-domain-value-streams">Supporting Cross Domain Value-Streams</h2>
+<section id="vs-07.0-governance-and-compliance-value-stream" class="level3">
+<h3 class="anchored" data-anchor-id="vs-07.0-governance-and-compliance-value-stream">VS-07.0 Governance and Compliance Value Stream</h3>
+<p>The Governance and Compliance Value Stream runs horizontally across all stages of the statistical value chain. Its purpose is to make sure that every process, dataset, and product within the organization operates under clear rules, standards, and accountability mechanisms. This value stream builds trust , both inside and outside the organization , by ensuring that all data activities are ethical, transparent, and compliant with legal, methodological, and quality requirements. It provides the framework of control and assurance that keeps the statistical system reliable, consistent, and aligned with national and international standards such as the European Statistics Code of Practice, GDPR, GSBPM, GAMSO and ISO data quality principles. This value chain identifies the following value steps: - Define Governance Frameworks and Policies: Establish overarching governance structures, charters, and principles covering data, metadata, ethics, confidentiality, and statistical quality. - Establish Legal and Regulatory Compliance Mechanisms: Identify applicable regulations (GDPR, official statistics legislation, data-sharing agreements) and define procedures to ensure compliance across all processes. - Implement Data and Metadata Governance: Define roles (data owner, steward, custodian) and processes for metadata creation, maintenance, and lineage tracking. - Monitor Quality and Compliance Indicators: Measure process and output quality (accuracy, timeliness, comparability) and track compliance status using formal scorecards or dashboards. - Audit, Certify, and Report Compliance: Conduct internal or external audits, perform quality reviews, and document adherence to governance frameworks. - Update and Improve Governance Mechanisms: Incorporate feedback, regulatory changes, and lessons learned into policies and control frameworks.</p>
+<p>The value created here is integrity and accountability making sure that the NSI acts responsibly, protects privacy, and delivers products users can trust.</p>
+<p>The Governance and Compliance Value Stream supports all other value streams by acting as the foundation of trust and assurance. It ensures that Data Acquisition &amp; Ingestion follows lawful and ethical standards. It guarantees that Editing, Estimation, and Dissemination meet quality benchmarks. It provides the governance structure for Infrastructure, Innovation, and Stakeholder Engagement. In short, it supports the entire SAF value chain, ensuring that every activity is compliant, transparent, and aligned with the mission of producing trustworthy statistics.</p>
+</section>
+<section id="vs-08.0-innovation-and-methodological-development-value-stream" class="level3">
+<h3 class="anchored" data-anchor-id="vs-08.0-innovation-and-methodological-development-value-stream">VS-08.0 Innovation and Methodological Development Value Stream</h3>
+<p>The Innovation and Methodological Development Value Stream makes sure the statistical organization does not stand still. Its purpose is to discover, test, and introduce new ways of working , new data sources, new methods, new tools, and new technologies. This value stream helps the organization move from “we have always done it this way” to “we can do this better, faster, and smarter.” It connects research, methodology, IT, and business users. It also makes sure that innovation is controlled , so that only methods that are sound, documented, and compliant end up in production. This value chain identifies the following value steps: - Identify Innovation Needs and Opportunities: Scan technological, methodological, and policy developments (AI, ML, new data sources, cloud computing) for potential improvements in statistical production. - Conduct Research and Proof-of-Concepts: Perform controlled experiments and pilot studies to test new methodologies or technologies in limited scope. - Evaluate Methodological Soundness and Feasibility: Assess research outcomes for accuracy, scalability, and alignment with quality frameworks and ethical principles. - Develop and Document New Methodologies or Tools: Formalize validated innovations into standardized procedures, algorithms, or reference implementations. - Integrate Innovation into Production Environments: Transition successful methods or technologies from pilot to production, ensuring interoperability and governance compliance. - Promote Knowledge Sharing and Capability Building: Disseminate results, best practices, and guidelines across teams; build staff competencies to adopt new methods.</p>
+<p>The value created here is continuous improvement. Thanks to this stream, the SAF remains future-proof, able to work with new data (IoT, admin, data spaces), new techniques (ML, small-area estimation), and new operating models (secure processing environments, data sharing). How This Supports the Other Value Streams. - It gives Data Acquisition new ways to connect to data spaces and new sources. - It gives Standardization &amp; Integration new mapping or classification techniques. - It gives Editing &amp; Enrichment smarter imputation and outlier detection. - It gives Estimation &amp; Analysis new models and ML-based methods. - It gives Dissemination new channels (APIs, linked data, interactive views).</p>
+<p>So, this value stream keeps the entire SAF alive and evolving.</p>
+</section>
+<section id="vs-09.0-infrastructure-and-platform-enablement-value-stream" class="level3">
+<h3 class="anchored" data-anchor-id="vs-09.0-infrastructure-and-platform-enablement-value-stream">VS-09.0 Infrastructure and Platform Enablement Value Stream</h3>
+<p>The Infrastructure and Platform Enablement Value Stream provides the technical and digital foundation that supports every part of the statistical organization. Where the other value streams focus on data, methods, or governance, this one ensures that all those activities can actually run safely, efficiently, and at scale. It delivers the IT environments, data platforms, tools, and integration services that make statistical production possible, from data collection to dissemination. It ensures that the systems are secure, resilient, and compliant, while also flexible enough to handle new technologies and data sources as the organization modernizes. This value stream enables the organization to work faster, smarter, and with confidence. It transforms infrastructure from a background function into an active enabler of the statistical mission, ensuring that every user, process, and dataset has the tools and environment it needs to perform reliably. This value chain identifies the following value steps: - Define Digital and Technical Requirements: Identify infrastructure needs arising from business capabilities, data volumes, and analytical complexity. - Design Platform and Infrastructure Architecture: Develop architectural blueprints for data storage, processing, integration, and secure access (data fabric, data market, compute platforms). - Provision and Configure Platforms: Deploy and configure environments (on-premise, hybrid, or cloud) with necessary governance, monitoring, and security controls. - Enable Integration and Orchestration Services: Implement APIs, workflow engines, and automation frameworks to connect business services and processes. - Ensure Performance, Security, and Continuity: Monitor platform performance, implement data protection, manage incidents, and guarantee availability and disaster recovery. - Evolve and Modernize the Technical Ecosystem: Introduce new technologies, upgrade components, and decommission obsolete infrastructure in alignment with modernization strategy. The value created here is operational capability and continuity, a stable, modern, and adaptive foundation for the entire SAF ecosystem.</p>
+<p>Connecting to Other Value Streams The Infrastructure and Platform Enablement Value Stream supports every other part of the SAF. It underpins the business and data processes by providing the digital environment in which they operate. - It gives Data Acquisition the secure pipelines and storage needed for data collection. - It gives Standardization, Editing, and Analysis the computing and orchestration needed to process large datasets efficiently. - It gives Dissemination the platforms, portals, and APIs through which users access results. - It ensures Governance and Compliance have the tools to monitor security, quality, and data lineage, and - It enables Innovation by offering scalable, modern platforms for experimentation and research.</p>
+<section id="vs-10.0-customer-and-stakeholder-engagement-value-stream" class="level4">
+<h4 class="anchored" data-anchor-id="vs-10.0-customer-and-stakeholder-engagement-value-stream">VS-10.0 Customer and Stakeholder Engagement Value Stream</h4>
+<p>The Customer and Stakeholder Engagement Value Stream ensures that the statistical organization remains connected, relevant, and responsive to the needs of those it serves. It focuses on building and maintaining mutual understanding and trust between the organization and its users, data providers, partners, and policy stakeholders. In the SAF, this value stream is essential because official statistics exist to create public value. To achieve that, the organization must understand what stakeholders need, communicate transparently, and ensure that products, data services, and policies remain aligned with real-world demands.</p>
+<p>This value stream is not a one-way process. It is a continuous dialogue, listening to users, understanding their challenges, and translating those insights into better products, improved services, and stronger relationships. This value chain identifies the following value steps: - Identify and Segment Stakeholders: Map the organization’s ecosystem of users, data providers, partners, and policymakers; understand their roles and expectations. - Collect and Analyze User Needs: Gather feedback, conduct consultations, and translate stakeholder needs into data or service requirements. - Define and Manage Service Portfolios: Develop catalogues of business services and data products that address stakeholder needs and align with strategic goals. - Deliver Services and Manage Relationships: Operate customer support, service desks, and account management; monitor satisfaction and service performance. - Engage and Communicate with Stakeholders: Conduct outreach, workshops, and knowledge-sharing events to promote awareness and understanding of statistical outputs. - Monitor Impact and Satisfaction: Measure how data and services are used, assess societal impact, and feed insights back into planning and innovation.</p>
+<p>The value created here is relevance and trust, ensuring that the organization’s work is understood, used, and appreciated by its partners, users, and society at large.</p>
+<p>Connecting to Other Value Streams The Customer and Stakeholder Engagement Value Stream is the voice and mirror of the statistical organization. - It connects external expectations with internal capabilities, closing the feedback loop across the SAF. - It informs Data Acquisition by revealing what data sources or topics matter most to users. - It influences Product Composition and Dissemination by identifying which outputs and formats users prefer. - It strengthens Governance and Compliance through transparent communication about data ethics, confidentiality, and quality. It supports Innovation and Methodology by gathering ideas and feedback from real users and partners.</p>
+<p>Through this value stream, the organization ensures that it doesn’t just produce data, it produces public value. It turns statistics into impact by aligning what the organization creates with what stakeholders need.</p>
+<p>Value Stream to Process Realization TBD – this view shows the difference - but also the relationship - between the business processes that drive the steady-state architecture and the value that is being created.</p>
+
+
+</section>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../framework/motivation.html" class="pagination-link" aria-label="Motivation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Motivation</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../framework/business-architecture.html" class="pagination-link" aria-label="Business Architecture">
+        <span class="nav-page-text">Business Architecture</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
