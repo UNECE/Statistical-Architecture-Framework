@@ -63,12 +63,10 @@ jobs:
       # force: false rebases rather than force-pushing, which also preserves
       # previews on the shared branch.
       - name: Deploy to GitHub Pages
-        uses: rajyan/preview-pages@v1
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          source-dir: site/_site
-          target-branch: gh-pages
-          target-dir: .
+          branch: gh-pages
+          folder: site/_site
           clean: true
           clean-exclude: pr-preview
           force: false
-          branch-comment: none
