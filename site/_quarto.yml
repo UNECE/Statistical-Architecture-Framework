@@ -52,36 +52,6 @@ website:
 format:
   html:
     theme: [yeti, custom.scss]
-    # quarto-nav.js rewrites every ".../index.html" link to "/..." (it assumes the
-    # host serves index.html for a folder). MinIO does NOT, so those links 403.
-    # Inline a restore (independent of page depth, unlike <script src=../...>)
-    # that reads the original href quarto-nav.js saved in data-original-href and
-    # re-applies it; a MutationObserver re-fixes any later re-strip. No-op on
-    # hosts that serve index.html for a folder (every data-original-href ends in
-    # /index.html, so nothing is restored).
-    include-in-header:
-      - text: |
-          <script>
-          (function () {
-            if (typeof window === "undefined" || window.__s3FixInstalled) return;
-            window.__s3FixInstalled = true;
-            function fix() {
-              document.querySelectorAll("a[data-original-href]").forEach(function (a) {
-                var o = a.getAttribute("data-original-href");
-                if (o && /\/index\.html(?=[?#]|$)/.test(o) && a.href !== o) a.href = o;
-              });
-            }
-            function go() {
-              fix();
-              if (window.MutationObserver) {
-                new MutationObserver(fix).observe(document.documentElement,
-                  { subtree: true, attributes: true, attributeFilter: ["href"] });
-              }
-            }
-            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go);
-            else go();
-          })();
-          </script>
     toc: true
     toc-depth: 3
     toc-expand: 2
