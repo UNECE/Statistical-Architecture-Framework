@@ -57,7 +57,13 @@ jobs:
             libasound2t64 \
             fonts-liberation fonts-noto-color-emoji
 
+      # Give Quarto its own headless browser for mermaid -> image conversion in
+      # the PDF output, instead of relying on whatever Chrome the runner has.
+      - name: Install headless Chrome for Quarto
+        run: quarto install chrome-headless-shell --no-prompt
+
       - name: Render Quarto website
+        timeout-minutes: 20
         uses: quarto-dev/quarto-actions/render@v2
         with:
           path: site
