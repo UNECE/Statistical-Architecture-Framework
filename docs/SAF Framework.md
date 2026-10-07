@@ -837,7 +837,7 @@ To realize statistical value within a business domain, execution processes (incl
 
 ![Generic Business Architecture](images/Business%20Architecture_GSBPM_Data%20Steady%20State_visual_v0.1.png)
 
-The execution processes between the business domains are loosely coupled. Each has its own design and implementation. For the mutual exchange of data, they are loosely linked via steady state interfaces. To this end, five steady state phases are recognized that exist between the business domains: 
+The execution processes between the business domains are loosely coupled. Each has its own design and implementation. For the mutual exchange of data, they are loosely linked via steady state interfaces. To this end, five steady state phases are recognized as handover points at business-domain boundaries: 
 1. raw data,
 2. standardized data without loss of content, 
 3. processed data, 
@@ -925,6 +925,8 @@ The business architecture leverages a data value chain approach where data progr
 
 **Reusability Focus:** Processed data aims to be as reusable as possible for other processes or units, reducing duplication of data and processing effort while increasing transparency.
 
+**Long-term retention:** Processed data is typically the steady state that national archival requirements apply to: it is the microdata that must be preserved long-term, and without it the statistics built on it cannot be re-verified.
+
 ### State #4: Output Data (Statistics)
 
 **Business Domain Links:** Estimation and closed-loop + Statistically composed and composite statistical products
@@ -992,7 +994,7 @@ This documentation uses a handful of architecture terms. Here is what they mean 
 
 - **Value stream** — a sequence of steps that together create a statistical output. Think of it as a production line: VS-01 to VS-06 each add a specific kind of value to the data.
 - **Value stream stage vs. business process** — the stage (`VS-0x.y`) says *what value* is added; the business process describes *how* your office actually does it. The numbering maps one-to-one.[^archimate]
-- **Steady state** — a fixed handover point: a versioned, quality-assured dataset that one stream produces and the next one consumes. The six states are numbered #0 (source data, still at the provider) to #5 (published statistics).
+- **Steady state** — a fixed handover point: a versioned, quality-assured dataset that one stream produces and the next one consumes. The framework defines five numbered steady states, #1 to #5; data still at the external provider (#0) and data in users' hands (#6) sit outside the NSO's control and are boundary positions, not numbered states.
 - **The four process types** — every domain is described through the same four groups: **Design** (decide how it should work), **Implementation** (build and test it), **Execution** (run it each production cycle), **Management** (check quality and feed improvements back).
 - **Business service / object / event** — what a domain offers to others / the data artefacts it works on / the signals streams send each other (e.g. *"Raw Data Registered"* tells the next stream new data is ready).
 - **NSO** — National Statistical Office.
@@ -1037,7 +1039,9 @@ flowchart TB
 
 The streams work independently of each other (in architecture terms: they are **loosely coupled**). They exchange data only at defined **steady states** — points where a high-quality, versioned dataset is handed over. Each primary stream consumes one steady state and produces the next, so a stream needs no knowledge of its neighbors' internals (SAF-P07). The handover works through events: when a stream registers a finished dataset, a notification tells the next stream that new data is ready.
 
-The table lists the steady states in the order data passes through them — from data still at the provider (#0) to data in users' hands (#6):
+Of the five, **processed data (#3) is the only steady state mandatory for all production** — it is the microdata on which everything downstream is verifiably built. **Raw Data (#1)** is also mandatory when a product collects its own data, but not for a macro statistic that starts entirely from another domain's data. **Standardized data (#2)** is always optional, and **Statistics (#4)** may share its artefact with **Released data (#5)** when the two are identical.
+
+The table lists the five numbered steady states (#1–#5) in the order data passes through them, with the two boundary positions (#0 and #6) outside the NSO's control shown for context:
 
 | State | Name | Produced by | Meaning |
 |---|---|---|---|
@@ -7610,6 +7614,10 @@ flowchart LR
 ```
 
 **Plan — understand what is needed.** The lifecycle begins by **defining digital and technical requirements** (09.1): identifying the infrastructure needs arising from business capabilities, data volumes, and analytical complexity across the streams. These feed the **design of the platform and infrastructure architecture** (09.2): blueprints for data storage, processing, integration, and secure access (data fabric, data market, compute platforms).
+
+::: {.callout-note title="On the Medallion architecture"}
+A platform team may use Bronze, Silver, and Gold to organize storage, staging, and table optimization inside the platform. That is an engineering pattern, not a governance model: it describes how data has been refined, not what the data means, what methodological state it is in, or what another statistical process may rely on. The steady states remain the governance model; Medallion, if used at all, sits underneath it as a storage convention.
+:::
 
 **Build — stand it up.** The architecture is realized by **provisioning and configuring platforms** (09.3): deploying environments (on-premise, hybrid, or cloud) with the necessary governance, monitoring, and security controls, and by **enabling integration and orchestration services** (09.4): the APIs, workflow engines, and automation that connect the business services and processes — including the steady-state event interfaces the primary streams rely on.
 

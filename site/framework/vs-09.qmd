@@ -120,6 +120,10 @@ flowchart LR
 
 **Plan — understand what is needed.** The lifecycle begins by **defining digital and technical requirements** (09.1): identifying the infrastructure needs arising from business capabilities, data volumes, and analytical complexity across the streams. These feed the **design of the platform and infrastructure architecture** (09.2): blueprints for data storage, processing, integration, and secure access (data fabric, data market, compute platforms).
 
+::: {.callout-note title="On the Medallion architecture"}
+A platform team may use Bronze, Silver, and Gold to organize storage, staging, and table optimization inside the platform. That is an engineering pattern, not a governance model: it describes how data has been refined, not what the data means, what methodological state it is in, or what another statistical process may rely on. The steady states remain the governance model; Medallion, if used at all, sits underneath it as a storage convention.
+:::
+
 **Build — stand it up.** The architecture is realized by **provisioning and configuring platforms** (09.3): deploying environments (on-premise, hybrid, or cloud) with the necessary governance, monitoring, and security controls, and by **enabling integration and orchestration services** (09.4): the APIs, workflow engines, and automation that connect the business services and processes — including the steady-state event interfaces the primary streams rely on.
 
 **Operate — keep it running and safe.** Day to day, VS-09 **ensures performance, security, and continuity** (09.5): monitoring platform performance, implementing data protection, managing incidents, and guaranteeing availability and disaster recovery — the assurance that the whole chain can run reliably.
