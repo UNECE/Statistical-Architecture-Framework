@@ -59,7 +59,7 @@ SAF is a living framework. It is expected to evolve through implementation exper
 
 # Acknowledgements
 
-*This section has not been written yet.*
+TODO
 
 # Introduction
 
@@ -70,7 +70,7 @@ Statistical organisations are facing a period of accelerated change. Data ecosys
 SAF replaces earlier reference documentation by consolidating core architectural ideas into a single framework that is more usable in practice. It is not designed as a theoretical reference alone. It is designed to be applied. SAF supports the translation of strategy into capabilities, services, and implementation choices. It supports alignment across business, methodology, data, applications, and technology. It also supports collaboration between organisations by promoting common patterns, shared viewpoints, and comparable architectural descriptions.
 
 # Activity Proposal
-*This section has not been written yet.*
+TODO
 
 # Purpose
 
@@ -103,7 +103,7 @@ In providing a common framework with practical orientation, SAF aims to help sta
 
 # Constraints & Assumptions
 
-*This section has not been written yet.*
+TODO
 
 # Motivation
 
@@ -332,10 +332,10 @@ Research communities increasingly rely on official data for scientific inquiry a
 UNECE acts as a custodian of SAF, ensuring that it remains relevant, comprehensive, and widely adopted. Other bodies, such as Eurostat or the UN Statistics Division, are also stakeholders, as SAF complements their work in statistical modernization.
 
 ### Roles
-*This section has not been written yet.*
+TODO
 
 ### Collaborations
-*This section has not been written yet.*
+TODO
 
 # Strategy
 

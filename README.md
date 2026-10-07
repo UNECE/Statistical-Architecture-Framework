@@ -16,6 +16,12 @@ Please refer to the [Getting Started](docs/GettingStarted.md) in the docs folder
 - `/docs/` — Documentation and rendered views
 - `/model/` — Archi contents
 
+## Contributing to the framework
+
+The framework chapters on the website are generated from the single file, `docs/SAF Framework.md`. Edit only that file. A script runs automatically before every publication and writes the chapter pages into `site/framework/`.
+
+The other site pages are edited directly in `site/`.
+
 ## References
 
 - [UNECE Statistical Architecture Framework](https://statswiki.unece.org/display/arch)
