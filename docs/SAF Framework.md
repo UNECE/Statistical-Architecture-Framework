@@ -112,13 +112,13 @@ SAF replaces the earlier Common Statistical Production Architecture (CSPA) and t
 
 The framework builds on the assumption that, in statistical organisations, data and metadata are central assets of the organisation, and not just enablers of processes. SAF therefore treats data and metadata as managed assets across the full statistical lifecycle. It supports architectures that can work with both traditional and newdata sources. It also provides practical guidance for designing capabilities for acquisition, integration, production, and dissemination, in a way that strengthens quality, transparency, and repeatability. SAF also carries forward the capability-centric, service-based and component-oriented direction introduced in CSDA and CSPA. It promotes modular design and reuse within and across organisations. This is intended to reduce duplication, improve maintainability, and make change more manageable. It also supports a clearer separation of concerns between business methods, data, applications, and technology, which is essential for scaling and for governing complex landscapes.
 The framework is designed to support multiple types of use in parallel. It can be applied for strategic planning and capability development, for solution design and architecture governance, and for portfolio alignment and implementation guidance. It can be used at enterprise level, at programme level, and within specific initiatives. This includes initiatives focused on data sharing across organizations, secure processing environments, and regulated access workflows, where security, trust, and accountability are important requirements.
- 
+
 SAF is intended to work alongside established statistical standards and models. It does not replace statistical business and information models. Instead, it provides the architectural link between strategy, capabilities, processes, services, and technology. This “glue” helps organisations make consistent decisions, improve traceability from policy to implementation, and reduce fragmentation across projects and teams. To support communication and shared understanding, SAF uses a set of architecture viewpoints. Visual models are included to clarify scope, responsibilities, and dependencies. Where appropriate, a consistent modelling notation is used so that organisations can compare, reuse, and extend the content in a disciplined way.
 SAF is a living framework. It is expected to evolve through implementation experience, community feedback, and changes in the external environment. Its value depends on active use and continuous improvement across the community it serves, so that the framework remains both credible and practical over time.
 
 ## Acknowledgements
 
-TODO
+*This section has not been written yet.*
 
 # Introduction
 
@@ -2558,7 +2558,7 @@ The mapping connects the Strategy layer to the business layer. A value stream st
 
 ## Business Objects, Contracts, Representations and Products
 
-## Reference Models for the Statistical Data Value Chain 
+## Reference Models for the Statistical Data Value Chain
 **Why the SAF offers more than one model**
 NSIs differ in size, mandate, legal context, data volumes, and technology platform. A single prescribed arrangement would fit some offices well and others poorly. The SAF therefore describes reference models: alternative, internally consistent ways of organising the value chain. Each model answers the same four questions:
 
@@ -2640,14 +2640,14 @@ The statistical process is divided into three main business domains (Observation
 | 6 | Dissemination | Disclosure-safe, accessible released data | Data Delivery, Data Publication | VS-06 | 6.4, 7.3–7.5 | #4 → #5 |
 | — | Consumption (external) | Use of statistics by society | Data Consumption, Consumption Optimization | VS-10 (feedback) | 8 | #5 → (#6) |
 
-The execution processes between the business domains are loosely coupled. Each has its own design and implementation. For the mutual exchange of data, they are loosely linked via steady state interfaces. To this end, five steady state phases are recognized as handover points at the business-domain boundaries described above. This means that the business domain "Observation" produces "Raw Data", business domain "Standardization without loss of content" produces "standardized data" etc.  
+The execution processes between the business domains are loosely coupled. Each has its own design and implementation. For the mutual exchange of data, they are loosely linked via steady state interfaces. To this end, five steady state phases are recognized as handover points at the business-domain boundaries described above. This means that the business domain "Observation" produces "Raw Data", business domain "Standardization without loss of content" produces "standardized data" etc.
 1. raw data,
-2. standardized data, 
-3. processed data, 
-4. statistics, 
+2. standardized data,
+3. processed data,
+4. statistics,
 5. released data, and
 6. Consumable data products.
- 
+
 A steady state phase is therefore an environment where high-quality versions of data are brought together for exchange, but it also represents a value in the value chain of this data.
 
 ### The four process types
@@ -2981,7 +2981,7 @@ The diagram below shows the whole business layer in one picture: data enters fro
 %%| fig-cap: "The six primary value streams as a production chain, delivering to users and society. Purple = the four supporting streams (they enable the chain, dashed arrow); dark green = parties outside the NSI."
 flowchart TB
     EXT["External data providers"]:::ext --> chain
-    subgraph chain["Primary value streams — the production chain"]
+    subgraph chain["Primary value streams"]
         direction LR
         VS01["VS-01<br/>Acquisition &<br/>Ingestion"] --> VS02["VS-02<br/>Standardization &<br/>Integration"] --> VS03["VS-03<br/>Editing &<br/>Enrichment"] --> VS04["VS-04<br/>Estimation &<br/>Modeling"] --> VS05["VS-05<br/>Product<br/>Composition"] --> VS06["VS-06<br/>Dissemination &<br/>Service Delivery"]
     end
@@ -3001,7 +3001,7 @@ flowchart TB
 
 ## Steady States of Data
 
-The streams work independently of each other (in architecture terms: they are **loosely coupled**). They exchange data only at defined **steady states** — points where a high-quality, versioned dataset is handed over. Each primary stream consumes one steady state and produces the next, so a stream needs no knowledge of its neighbors' internals (SAF-P07). The handover works through events: when a stream registers a finished dataset, a notification tells the next stream that new data is ready.
+The streams work independently of each other (in architecture terms: they are **loosely coupled**). They exchange data only at defined **steady states** — points where a high-quality, versioned dataset is handed over. In the usual case each primary stream consumes one steady state and produces the next, so a stream needs no knowledge of its neighbors' internals (SAF-P07). The handover works through events: when a stream registers a finished dataset, a notification tells the next stream that new data is ready. Not every process has to pass through every state; see [Applying the steady states pragmatically](#pragmatic-steady-states).
 
 Of the five, **processed data (#3) is the only steady state mandatory for all production** — it is the microdata on which everything downstream is verifiably built. **Raw Data (#1)** is also mandatory when a product collects its own data, but not for a macro statistic that starts entirely from another domain's data. **Standardized data (#2)** is always optional, and **Statistics (#4)** may share its artefact with **Released data (#5)** when the two are identical.
 
@@ -3039,6 +3039,17 @@ flowchart TD
     style S4b fill:#fef9c3,stroke:#b45309
     style S5 fill:#dcfce7,stroke:#16a34a
 ```
+
+### Applying the steady states pragmatically {#pragmatic-steady-states}
+
+
+A steady state is an agreement about data: the quality it has reached, who owns it, how it is identified and what metadata comes with it. It does not require a separate physical copy at every state, and it does not require every process to pass through all six. An office may depart from the usual sequence in the three cases below, provided it records the choice (which state was shared or skipped, and why) in the catalogue entry. In other words, the rule is "comply or explain".
+
+1. **Two states can share one artefact.** If nothing happens between State #4 and State #5 (no transformation and no further disclosure control), the #4 artefact does not have to be registered again as a new dataset; it is marked as released instead. The release steps still take place: release authorisation is obtained and the final disclosure check is carried out, and both are recorded even when the check changes nothing.
+2. **A process can start downstream.** Not every production process begins at VS-01. Macro statistics, for example, are often built on Processed Data (#3) or Statistics (#4) that another team has already registered, and State #4 above can already be "shared internally for use as input data in other statistical processes". Such a process starts from the registered artefact and its lineage points to it; there is no need to create placeholder #1 or #2 artefacts. Data that comes from outside the office still enters through VS-01 and State #1.
+3. **Lineage is about traceability, not duplication.** SAF-P09 requires that every value can be traced back to where it came from. When a stream uses an artefact without changing any values, a logged process event that refers to the existing artefact version meets this requirement, and no identical copy needs to be registered. As soon as a value changes, a new version is registered.
+
+One limit applies to all three cases. States must not be merged where this would hide a change of values (for example, standardisation at #2 and editing at #3 carried out as a single undocumented step) or a disclosure-control step (for example, #4 and #5 when additional disclosure control is applied before release).
 
 ## The Four-Process Governance Pattern
 
@@ -3106,7 +3117,7 @@ The SAF defines eleven architecture principles, labeled SAF-P01 to SAF-P11. The 
 ::: {.callout-important title="Two cross-chain disciplines"}
 **Metadata everywhere (SAF-P09):** value is only added once its context is captured — what was done, by which rule/method, with what accuracy, and traceable to its inputs.
 
-**Confidentiality progressively applied (SAF-P11):** identifiers are removed/pseudonymized at standardization (#2), disclosure risk is assessed on enrichment (#3), initial disclosure control is applied to outputs (#4), and final disclosure control gates release (#5).
+**Confidentiality progressively applied (SAF-P11):** identifiers are removed/pseudonymized at standardization (#2) at the latest, or earlier where that suits the process; disclosure risk is assessed on enrichment (#3), disclosure control is applied to outputs (#4), and a final disclosure check gates release (#5).
 :::
 
 ## VS-01.0 — Data Acquisition and Ingestion
@@ -3158,7 +3169,7 @@ VS-02 makes data from different sources speak the same language. After raw data 
 **How the business processes work.** The stream first **profiles and assesses the incoming structure**, comparing it against the target data model to see which fields map directly, which simply need reformatting, which source codes have a standard correspondence, and which values are uncoded. It then **applies standard classifications and formats**: source codes are mapped one-to-one to standards (for example a source activity code to NACE, the European industry classification) through maintained correspondence tables, and the layout is coerced into the common format (renaming, restructuring, type-casting, e.g. CSV→XML). The original values are preserved, and anything that has no deterministic correspondence — or is free text needing interpretation — is flagged and passed downstream to VS-03. Next it **aligns metadata and semantics**: variables are linked to canonical concepts, and each variable's unit, currency, and reference-period basis (and any differing cross-source definitions) are *recorded as metadata* rather than converted. The result is **checked for structural and semantic conformance**, including a no-loss-of-content check confirming that record counts and key measures are unchanged. Conformant data is then **registered as a standardized artefact** with its mapping lineage, and a "Standardized Data Registered" event notifies VS-03.
 
 ::: {.callout-note title="Signature discipline — standardization without loss of content"}
-VS-02 only maps codes 1-to-1, coerces format/structure, and annotates metadata. It **never changes a value**; unit/currency conversion, reference-period alignment, value reconciliation, and interpretive free-text coding are deliberately deferred to VS-03.
+VS-02 only maps codes 1-to-1, reformats structure, and annotates metadata. It **never changes a value**; unit/currency conversion, reference-period alignment, value reconciliation, and interpretive free-text coding are deliberately deferred to VS-03.
 :::
 
 Around this, **Design** defines the target data model, the deterministic classification correspondences, the harmonization and conformance rules, and the privacy framework; **Implementation** builds the mapping & format-coercion component, the classification-mapping services, the conformance pipeline, and identifier pseudonymization; **Management** tracks mapping coverage and the unmapped-value rate, governs classification versions, and improves the correspondences.
@@ -3452,9 +3463,9 @@ Use these two tables as a quick reference: the first summarizes the six producti
 | VS | Domain | State in → out | Trigger out | Signature discipline |
 |---|---|---|---|---|
 | **01** | Acquisition & Ingestion | Source → #1 Raw | Raw Data Registered | Metadata & validation at ingestion |
-| **02** | Standardization & Integration | #1 → #2 Standardized | Standardized Data Registered | No loss of content — map, coerce, annotate |
+| **02** | Standardization & Integration | #1 → #2 Standardized | Standardized Data Registered | No loss of content: map, reformat, annotate |
 | **03** | Editing & Enrichment | #2 → #3 Processed | Processed Data Registered | Full traceability of every value change |
-| **04** | Estimation & Modeling | #3 → #4 Statistics | Output Data Registered | Methodological transparency + accuracy + initial disclosure control |
+| **04** | Estimation & Modeling | #3 → #4 Statistics | Output Data Registered | Methodological transparency + accuracy + disclosure control on outputs |
 | **05** | Product Composition | within #4 (→ approved) | Statistical Product Registered | Coherence & interpretability; approval before registration |
 | **06** | Dissemination & Service Delivery | #4 → #5 Released → #6 | Statistics Released | Accessibility & trust; final disclosure-control gate |
 
@@ -3471,7 +3482,7 @@ The four supporting streams work differently — they have no state transition; 
 This consolidated view omits the per-stream **"Applying This to Your NSI"** maturity checklists and scenarios. For those, and for the full Design / Implementation / Management detail, diagrams, and boundary-interface tables, see the individual documents `VS-01.0` … `VS-10.0` in this folder.
 :::
 
-## VS-01.0 Data Acquisition and Ingestion 
+## VS-01.0 Data Acquisition and Ingestion
 
 ### Purpose and Scope
 
@@ -6310,7 +6321,7 @@ Each scenario walks through **all four process types**, demonstrating how the go
 
 **Management Phase:** Coding completion 99.2%, imputation rate (carry-forward) 4.8% with staleness within limits, conversion applied to all prices with originals preserved. A holdout check on classification shows 93% accuracy. Improvement recommendations: retrain the classifier for one recurring misclassified category; tighten the carry-forward staleness limit. Recommendations fed back to design.
 
-## VS-04.0 Estimation, Analysis, and Statistical Modeling 
+## VS-04.0 Estimation, Analysis, and Statistical Modeling
 
 ### Purpose and Scope
 
