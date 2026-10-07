@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-4b8eba7d388032a8ef35e180b04aa314.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -575,6 +575,19 @@ Figure&nbsp;3: The six business processes as a continuous enablement lifecycle.
 </div>
 </div>
 <p><strong>Plan — understand what is needed.</strong> The lifecycle begins by <strong>defining digital and technical requirements</strong> (09.1): identifying the infrastructure needs arising from business capabilities, data volumes, and analytical complexity across the streams. These feed the <strong>design of the platform and infrastructure architecture</strong> (09.2): blueprints for data storage, processing, integration, and secure access (data fabric, data market, compute platforms).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="On the Medallion architecture">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>On the Medallion architecture
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A platform team may use Bronze, Silver, and Gold to organize storage, staging, and table optimization inside the platform. That is an engineering pattern, not a governance model: it describes how data has been refined, not what the data means, what methodological state it is in, or what another statistical process may rely on. The steady states remain the governance model; Medallion, if used at all, sits underneath it as a storage convention.</p>
+</div>
+</div>
 <p><strong>Build — stand it up.</strong> The architecture is realized by <strong>provisioning and configuring platforms</strong> (09.3): deploying environments (on-premise, hybrid, or cloud) with the necessary governance, monitoring, and security controls, and by <strong>enabling integration and orchestration services</strong> (09.4): the APIs, workflow engines, and automation that connect the business services and processes — including the steady-state event interfaces the primary streams rely on.</p>
 <p><strong>Operate — keep it running and safe.</strong> Day to day, VS-09 <strong>ensures performance, security, and continuity</strong> (09.5): monitoring platform performance, implementing data protection, managing incidents, and guaranteeing availability and disaster recovery — the assurance that the whole chain can run reliably.</p>
 <p><strong>Improve — modernize.</strong> Finally it <strong>evolves and modernizes the technical ecosystem</strong> (09.6): introducing new technologies (often transferred from VS-08), retiring obsolete components, and keeping the foundation flexible for new data sources and operating models.</p>

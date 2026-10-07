@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-4b8eba7d388032a8ef35e180b04aa314.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -483,7 +483,7 @@ Caution
 <li><strong>An owner and quality criteria for each state.</strong> Someone, often called a data steward, is accountable for each state, and a dataset must meet explicit criteria to <em>be</em> in that state.</li>
 <li><strong>Security built in.</strong> Access control, integrity checks and tamper-evident audit trails are part of every pipeline from the start (SAF-P10).</li>
 <li><strong>Confidentiality at several points.</strong> Direct identifiers are removed or pseudonymised at standardisation (#2) at the latest, and earlier where that suits the process. Disclosure risk is assessed on enrichment (#3), disclosure control is applied to outputs (#4), and a final disclosure check comes before release (#5); nothing is released until it passes (SAF-P11). Other methods, such as input privacy for data integration, synthetic data or differential privacy, can also be used.</li>
-<li><strong>Design and management of artefacts, as well as execution.</strong> Rules, methods and specifications exist and are versioned (for example in a Git repository) before a cycle runs; quality reports and improvement recommendations feed back into design afterwards.</li>
+<li><strong>Design and management of artefacts, as well as execution.</strong> Rules, methods and specifications exist and are versioned (for example in a Git repository) before a cycle runs; every transformation is itself versioned code, and the code is the process. Quality reports and improvement recommendations feed back into design afterwards.</li>
 <li><strong>Events.</strong> A handover is announced by a registration event, so the next stream does not have to ask.</li>
 <li><strong>Open tooling where it carries statistical method.</strong> Methods that produce official figures are built on shared, open components, and improvements are contributed back, so the statistical community keeps collective control of them instead of depending on a vendor (SAF-P01). See <a href="./open-source.html">Open Source in SAF</a>.</li>
 </ul>
@@ -491,7 +491,7 @@ Caution
 </div>
 <p>Registered artefacts are also <strong>immutable</strong>: they are not changed once registered. A correction produces a new version instead of overwriting the old one, which makes it possible, years later, to show the data behind a published figure.</p>
 <p>None of these commitments prescribes <em>how</em> you meet it. A boundary is an agreement between streams and does not have to match an organisational unit: one team may own several states, and a central unit may run processing for many domains. SAF only requires that the agreement exists and is written down.</p>
-<p>Nor does every process have to pass through all six states. A process that builds on data another team has already registered (macro statistics built on shared Processed Data, for example) starts from that data without creating earlier artefacts. When nothing changes between two states, as can happen between #4 and #5, one artefact can serve both. When a step uses data without changing its values, a logged event pointing to the existing version is enough for lineage. In each case the choice is recorded in the catalogue: comply or explain. These rules are set out in <a href="./framework/business-architecture.html#pragmatic-steady-states">Applying the steady states pragmatically</a>.</p>
+<p>Nor does every process have to pass through all five numbered states. A process that builds on data another team has already registered (macro statistics built on shared Processed Data, for example) starts from that data without creating earlier artefacts. When nothing changes between two states, as can happen between #4 and #5, one artefact can serve both. When a step uses data without changing its values, a logged event pointing to the existing version is enough for lineage. In each case the choice is recorded in the catalogue: comply or explain. These rules are set out in <a href="./framework/business-architecture.html#pragmatic-steady-states">Applying the steady states pragmatically</a>.</p>
 </section>
 <section id="reading-paths-by-role" class="level2">
 <h2 class="anchored" data-anchor-id="reading-paths-by-role">Reading paths by role</h2>

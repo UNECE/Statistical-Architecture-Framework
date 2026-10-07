@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-4b8eba7d388032a8ef35e180b04aa314.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -207,7 +207,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><strong>Value stream</strong>: a sequence of steps that together create a statistical output. Think of it as a production line: VS-01 to VS-06 each add a specific kind of value to the data.</li>
 <li><strong>Value stream stage vs.&nbsp;business process</strong>: the stage (<code>VS-0x.y</code>) says <em>what value</em> is added; the business process describes <em>how</em> your office actually does it. The numbering maps one-to-one, so this guide uses <code>VS-0x.y</code> for both.</li>
-<li><strong>Steady state</strong>: a fixed handover point, where a versioned, quality-assured dataset produced by one stream is consumed by the next. The states are numbered from #0 (source data, still at the provider) to #6 (data in users’ hands).</li>
+<li><strong>Steady state</strong>: a fixed handover point, where a versioned, quality-assured dataset produced by one stream is consumed by the next. The framework defines five numbered steady states, #1 to #5; data still at the external provider (#0) and data in users’ hands (#6) sit outside the NSO’s control and are boundary positions, not numbered states.</li>
 <li><strong>The four process types</strong>: every stream is described through the same four groups: <strong>Design</strong> (decide how it should work), <strong>Implementation</strong> (build and test it), <strong>Execution</strong> (run it each production cycle) and <strong>Management</strong> (check quality and feed improvements back).</li>
 <li><strong>Business service / object / event</strong>: what a stream offers to others / the data it works on / the signals streams send each other (for example <em>“Raw Data Registered”</em> tells the next stream new data is ready).</li>
 <li><strong>Artefact</strong>: what is handed over at a steady state, meaning the dataset plus the metadata describing it. It is <strong>immutable</strong>: a correction never overwrites a registered artefact but creates a new version. To <strong>register</strong> an artefact is to catalogue it with an identifier so others can find and cite that exact version. This has nothing to do with a statistical register such as the business or population register.</li>

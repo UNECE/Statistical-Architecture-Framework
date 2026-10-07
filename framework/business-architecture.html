@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-4b8eba7d388032a8ef35e180b04aa314.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -378,7 +378,7 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>Generic Business Architecture</figcaption>
 </figure>
 </div>
-<p>The execution processes between the business domains are loosely coupled. Each has its own design and implementation. For the mutual exchange of data, they are loosely linked via steady state interfaces. To this end, five steady state phases are recognized that exist between the business domains: 1. raw data, 2. standardized data without loss of content, 3. processed data, 4. statistics, and 5. released data.</p>
+<p>The execution processes between the business domains are loosely coupled. Each has its own design and implementation. For the mutual exchange of data, they are loosely linked via steady state interfaces. To this end, five steady state phases are recognized as handover points at business-domain boundaries: 1. raw data, 2. standardized data without loss of content, 3. processed data, 4. statistics, and 5. released data.</p>
 <p>A steady state phase is therefore an environment where high-quality versions of data are brought together for exchange, but it also represents a value in the value chain of this data.</p>
 <p>Each of the mentioned business domains can be linked to a GSBPM phase.</p>
 </section>
@@ -411,6 +411,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Key Processing Activities:</strong> - Data cleansing and editing (content-related standardization) - Integration with other datasets - Validity checking and error correction - Imputation of missing values - Creation of new variables through calculation or derivation - Flagging of problematic values</p>
 <p><strong>Domain Responsibility:</strong> While this processing is primarily driven by individual statistical domains, depending on the data type, it may be performed by a central unit for efficiency and consistency.</p>
 <p><strong>Reusability Focus:</strong> Processed data aims to be as reusable as possible for other processes or units, reducing duplication of data and processing effort while increasing transparency.</p>
+<p><strong>Long-term retention:</strong> Processed data is typically the steady state that national archival requirements apply to: it is the microdata that must be preserved long-term, and without it the statistics built on it cannot be re-verified.</p>
 </section>
 <section id="state-4-output-data-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="state-4-output-data-statistics">State #4: Output Data (Statistics)</h3>
@@ -456,7 +457,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><strong>Value stream</strong> — a sequence of steps that together create a statistical output. Think of it as a production line: VS-01 to VS-06 each add a specific kind of value to the data.</li>
 <li><strong>Value stream stage vs.&nbsp;business process</strong> — the stage (<code>VS-0x.y</code>) says <em>what value</em> is added; the business process describes <em>how</em> your office actually does it. The numbering maps one-to-one.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
-<li><strong>Steady state</strong> — a fixed handover point: a versioned, quality-assured dataset that one stream produces and the next one consumes. The six states are numbered #0 (source data, still at the provider) to #5 (published statistics).</li>
+<li><strong>Steady state</strong> — a fixed handover point: a versioned, quality-assured dataset that one stream produces and the next one consumes. The framework defines five numbered steady states, #1 to #5; data still at the external provider (#0) and data in users’ hands (#6) sit outside the NSO’s control and are boundary positions, not numbered states.</li>
 <li><strong>The four process types</strong> — every domain is described through the same four groups: <strong>Design</strong> (decide how it should work), <strong>Implementation</strong> (build and test it), <strong>Execution</strong> (run it each production cycle), <strong>Management</strong> (check quality and feed improvements back).</li>
 <li><strong>Business service / object / event</strong> — what a domain offers to others / the data artefacts it works on / the signals streams send each other (e.g.&nbsp;<em>“Raw Data Registered”</em> tells the next stream new data is ready).</li>
 <li><strong>NSO</strong> — National Statistical Office.</li>
@@ -508,7 +509,8 @@ Figure&nbsp;1: The six primary value streams as a production chain, delivering t
 <section id="steady-states-of-data" class="level2">
 <h2 class="anchored" data-anchor-id="steady-states-of-data">Steady States of Data</h2>
 <p>The streams work independently of each other (in architecture terms: they are <strong>loosely coupled</strong>). They exchange data only at defined <strong>steady states</strong> — points where a high-quality, versioned dataset is handed over. In the usual case each primary stream consumes one steady state and produces the next, so a stream needs no knowledge of its neighbors’ internals (SAF-P07). The handover works through events: when a stream registers a finished dataset, a notification tells the next stream that new data is ready. Not every process has to pass through every state; see <a href="#pragmatic-steady-states">Applying the steady states pragmatically</a>.</p>
-<p>The table lists the steady states in the order data passes through them — from data still at the provider (#0) to data in users’ hands (#6):</p>
+<p>Of the five, <strong>processed data (#3) is the only steady state mandatory for all production</strong> — it is the microdata on which everything downstream is verifiably built. <strong>Raw Data (#1)</strong> is also mandatory when a product collects its own data, but not for a macro statistic that starts entirely from another domain’s data. <strong>Standardized data (#2)</strong> is always optional, and <strong>Statistics (#4)</strong> may share its artefact with <strong>Released data (#5)</strong> when the two are identical (case 1 below).</p>
+<p>The table lists the five numbered steady states (#1–#5) in the order data passes through them, with the two boundary positions (#0 and #6) outside the NSO’s control shown for context:</p>
 <table class="caption-top table">
 <caption>Steady States of data</caption>
 <colgroup>
@@ -604,10 +606,10 @@ Figure&nbsp;2: Steady-state handover across the chain. Each arrow is a handover 
 </div>
 <section id="pragmatic-steady-states" class="level3">
 <h3 class="anchored" data-anchor-id="pragmatic-steady-states">Applying the steady states pragmatically</h3>
-<p>A steady state is an agreement about data: the quality it has reached, who owns it, how it is identified and what metadata comes with it. It does not require a separate physical copy at every state, and it does not require every process to pass through all six. An office may depart from the usual sequence in the three cases below, provided it records the choice (which state was shared or skipped, and why) in the catalogue entry. In other words, the rule is “comply or explain”.</p>
+<p>A steady state is an agreement about data: the quality it has reached, who owns it, how it is identified and what metadata comes with it. It does not require a separate physical copy at every state, and it does not require every process to pass through all five numbered states. An office may depart from the usual sequence in the three cases below, provided it records the choice (which state was shared or skipped, and why) in the catalogue entry. In other words, the rule is “comply or explain”.</p>
 <ol type="1">
 <li><strong>Two states can share one artefact.</strong> If nothing happens between State #4 and State #5 (no transformation and no further disclosure control), the #4 artefact does not have to be registered again as a new dataset; it is marked as released instead. The release steps still take place: release authorisation is obtained and the final disclosure check is carried out, and both are recorded even when the check changes nothing.</li>
-<li><strong>A process can start downstream.</strong> Not every production process begins at VS-01. Macro statistics, for example, are often built on Processed Data (#3) or Statistics (#4) that another team has already registered, and State #4 above can already be “shared internally for use as input data in other statistical processes”. Such a process starts from the registered artefact and its lineage points to it; there is no need to create placeholder #1 or #2 artefacts. Data that comes from outside the office still enters through VS-01 and State #1.</li>
+<li><strong>A process can start downstream.</strong> Not every production process begins at VS-01. What a production run begins from — its own standardized data, or data shared by another team, such as their processed data or statistics — is called <strong>start data</strong>. Start data is not a steady state: it is whatever registered artefact the run starts with, and a dataset’s steady state does not change when it is used as start data (processed data remains processed data). Macro statistics, for example, are often built on Processed Data (#3) or Statistics (#4) that another team has already registered. Such a run starts from the registered artefact and its lineage points to it; there is no need to create placeholder #1 or #2 artefacts. Data that comes from outside the office still enters through VS-01 and State #1.</li>
 <li><strong>Lineage is about traceability, not duplication.</strong> SAF-P09 requires that every value can be traced back to where it came from. When a stream uses an artefact without changing any values, a logged process event that refers to the existing artefact version meets this requirement, and no identical copy needs to be registered. As soon as a value changes, a new version is registered.</li>
 </ol>
 <p>One limit applies to all three cases. States must not be merged where this would hide a change of values (for example, standardisation at #2 and editing at #3 carried out as a single undocumented step) or a disclosure-control step (for example, #4 and #5 when additional disclosure control is applied before release).</p>
