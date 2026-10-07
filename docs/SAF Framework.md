@@ -118,7 +118,7 @@ SAF is a living framework. It is expected to evolve through implementation exper
 
 ## Acknowledgements
 
-*This section has not been written yet.*
+TODO
 
 # Introduction
 

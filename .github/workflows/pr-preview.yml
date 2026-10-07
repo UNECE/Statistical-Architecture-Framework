@@ -16,6 +16,7 @@ on:
     types: [opened, synchronize, reopened, closed]
     paths:
       - "site/**"
+      - "docs/**"
       - ".github/workflows/pr-preview.yml"
 
 permissions:
