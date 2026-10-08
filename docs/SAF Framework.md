@@ -604,7 +604,7 @@ Link: https://statswiki.unece.org/spaces/GAMSO/pages/247302304/Corporate+Support
 
 ##### 3.4.3. Service Agreement
 Includes drawing up, managing and enforcing service agreements with clients and chain partners.
-Explanation: These contracts apply to clients to whom NSO’s provide services such as access for external researchers or for additional statistical Services, but also to parties that supply information for primary or secondary observation. If these parties fail to comply, the NSO can take enforcement action.
+Explanation: These contracts apply to clients to whom NSI’s provide services such as access for external researchers or for additional statistical Services, but also to parties that supply information for primary or secondary observation. If these parties fail to comply, the NSI can take enforcement action.
  
 ##### 3.4.4. Self-service
 Offers the opportunity to customers and chain partners to find solutions to questions about the services purchased themselves or to make justified adjustments to these services without the intervention of an employee.
@@ -849,11 +849,11 @@ To realize statistical value within a business domain, execution processes (incl
 | **Quality gate** | The set of entry criteria data must meet before it may be registered in a state. |
 | **Quality version** | An immutable, identified version of a dataset that has passed a quality gate. |
 | **Handover interface** | The contract between a producing and a consuming domain: the artefact, its required metadata, the triggering event, and the transfer of responsibility. |
-| **Reference model** | A generic arrangement of domains, states, and handover points that an NSO can adopt and adapt. |
+| **Reference model** | A generic arrangement of domains, states, and handover points that an NSI can adopt and adapt. |
 
 ## Reference Models for the Statistical Data Value Chain 
 **Why the SAF offers more than one model**
-NSOs differ in size, mandate, legal context, data volumes, and technology platform. A single prescribed arrangement would fit some offices well and others poorly. The SAF therefore describes reference models: alternative, internally consistent ways of organising the value chain. Each model answers the same four questions:
+NSIs differ in size, mandate, legal context, data volumes, and technology platform. A single prescribed arrangement would fit some offices well and others poorly. The SAF therefore describes reference models: alternative, internally consistent ways of organising the value chain. Each model answers the same four questions:
 
 1. At which points is data persisted and made available for reuse?
 2. Which quality criteria must data meet at each point?
@@ -864,7 +864,7 @@ The SAF currently describes two reference models. Both follow the same underlyin
 
 **Model A: Steady-State Architecture**
 
-The Steady-State Architecture organises the value chain into business domains that are loosely coupled through five numbered steady states (#1 Raw, #2 Standardized, #3 Processed, #4 Statistics, #5 Released). Each state represents a specific kind of statistical value and has its own quality gate, ownership, and handover interface. The model is derived from production practice in NSOs with many statistical domains and extensive microdata reuse. It is described in full in the remainder of this chapter.
+The Steady-State Architecture organises the value chain into business domains that are loosely coupled through five numbered steady states (#1 Raw, #2 Standardized, #3 Processed, #4 Statistics, #5 Released). Each state represents a specific kind of statistical value and has its own quality gate, ownership, and handover interface. The model is derived from production practice in NSIs with many statistical domains and extensive microdata reuse. It is described in full in the remainder of this chapter.
 
 **Model B: Medallion Architecture**
 
@@ -883,11 +883,11 @@ As a data-engineering pattern, Medallion does not by itself define statistical s
 | Separation of internal statistics and released data | Explicit (#4 vs. #5) | Combined in Gold unless subdivided |
 | Governance overhead | Higher: more states to own, register, and audit | Lower |
 | Fit with platform tooling | Platform-neutral; mapping required | Native in lakehouse platforms |
-| Typical adopters | Larger NSOs, many domains, high microdata reuse | Smaller NSOs, platform-led modernisation |
+| Typical adopters | Larger NSIs, many domains, high microdata reuse | Smaller NSIs, platform-led modernisation |
 
 ### Selection criteria
 
-The criteria below help an NSO decide which model fits best. They are indicative. No single criterion is decisive, and the SAF toolkit will provide a structured assessment.
+The criteria below help an NSI decide which model fits best. They are indicative. No single criterion is decisive, and the SAF toolkit will provide a structured assessment.
 
 | Criterion | Points towards Steady-State | Points towards Medallion |
 |---|---|---|
@@ -900,11 +900,11 @@ The criteria below help an NSO decide which model fits best. They are indicative
 | Technology platform | Heterogeneous landscape, on-premises and private cloud | Single lakehouse platform |
 | Participation in international data exchange | Many handover points to external partners | Exchange concentrated on final outputs |
 
-Practice within the SAF community indicates that smaller NSOs often adopt a Medallion arrangement, while larger NSOs with many domains tend towards finer-grained states. This observation is to be substantiated through the SAF toolkit assessments.
+Practice within the SAF community indicates that smaller NSIs often adopt a Medallion arrangement, while larger NSIs with many domains tend towards finer-grained states. This observation is to be substantiated through the SAF toolkit assessments.
 
 ### Combining the models
 
-The models are not mutually exclusive. The steady states can be mapped onto Medallion layers, which allows an NSO to use Medallion as its platform convention while governing data through steady states, or to start with Medallion and introduce finer states as it grows.
+The models are not mutually exclusive. The steady states can be mapped onto Medallion layers, which allows an NSI to use Medallion as its platform convention while governing data through steady states, or to start with Medallion and introduce finer states as it grows.
 
 | Steady state | Medallion layer | Note |
 |---|---|---|
@@ -924,7 +924,7 @@ The statistical process is divided into three main business domains (Observation
 
 | # | Business domain | Value added | Business functions (ArchiMate view) | Value stream | GSBPM | State in → out |
 |---|---|---|---|---|---|---|
-| 1 | Observation/Collection | Data in NSO custody, authentic and traceable | Receive Data, Extract Data, Collect Survey | VS-01 | 4 | #0 → #1 |
+| 1 | Observation/Collection | Data in NSI custody, authentic and traceable | Receive Data, Extract Data, Collect Survey | VS-01 | 4 | #0 → #1 |
 | 2 | Standardization without loss of content | Common structure, format, and classifications | Transform Data, Anonymize Data, Classify Data | VS-02 | 5.1–5.2 | #1 → #2 |
 | 3 | Editing, derivation, and non-response correction | Reliable, complete, enriched microdata | Imputate Data, Integrate Data | VS-03 | 5.3–5.5, 5.8 | #2 → #3 |
 | 4 | Estimation and balancing **[C5]** | Representative statistics with accuracy | Estimate Data, Aggregate Data | VS-04 | 5.6–5.7, 6.1–6.4 | #3 → #4 |
@@ -950,7 +950,7 @@ Each business domain uses the same four process types:
 3. **Execution** of the execution processes, which provides the statistical data.
 4. **Management** of the execution processes, which provides quality reports.
 
-How an execution process adds statistical value, and therefore how it is designed and implemented, falls outside the scope of the SAF business architecture. That design follows from, among other things, the NSO's methodology.
+How an execution process adds statistical value, and therefore how it is designed and implemented, falls outside the scope of the SAF business architecture. That design follows from, among other things, the NSI's methodology.
 
 ### Design rules of the steady-state model
 
@@ -986,35 +986,151 @@ Every steady state follows the same lifecycle:
 5. **Revision.** A correction produces a new version that passes the same gate. Consumers are notified and decide whether to reprocess. Earlier versions remain available for as long as statistics depend on them.
 6. **Retirement.** A version is disposed of according to the retention policy of the state, after its lineage obligations have been met.
 
+### How each state is described
 
-## Steady States of Data and Their Business Process Links
+Each state below is described with the same ten attributes. NSIs can use this template to document their own implementation; the SAF toolkit will provide it as a fill-in form.
 
-The business architecture leverages a data value chain approach where data progresses through predefined steady states, each representing a stage where data meets specific quality criteria and is ready for exchange between business domains. These steady states serve as handover points in the statistical production process, ensuring consistency, reusability, and quality control as well as interoperability across other ONS.
+| # | Attribute | Question it answers |
+|---|---|---|
+| 1 | Definition and value added | What is this state and why does it exist? |
+| 2 | Producing and consuming domains | Who creates it, and who may use it? |
+| 3 | Quality gate | What must data satisfy to be registered? |
+| 4 | Data and metadata characteristics | What does the data look like, and which metadata must accompany it? |
+| 5 | Security, privacy, and access | How is the data protected, and who may see it? |
+| 6 | Ownership and governance | Who is accountable? |
+| 7 | Versioning, retention, and lineage | How are versions managed, how long are they kept, and how is the trace preserved? |
+| 8 | Reuse and handover | How is the state made available to consumers? |
+| 9 | Traceability to the framework | Which capabilities, value-stream stages, and GSBPM sub-processes relate to it? |
+| 10 | Examples and anti-patterns | What does good practice look like, and what should be avoided? |
+
+## Boundary Position #0: Source Data
+
+**Description:** Source data is data as it exists at the data holder, before it enters the NSI: a register at a government agency, a company's accounting system, a respondent's answers before submission, or a web page. The NSI has no custody of source data and cannot guarantee its quality. It can influence it only through agreements, questionnaire design, and cooperation with the data holder.
+
+**Why it is described:** The SAF describes #0 so that the boundary of the NSIs responsibility is explicit. Everything the NSI knows about source data is captured as metadata when the data crosses into #1: who provided it, under which agreement, through which channel, and in what condition.
+
+## State #1: Raw Data
+
+### 1. Definition and value added
+
+Raw data is data received from an external data holder or respondent, placed under NSI custody in its original form, and verified for technical integrity and authenticity. It is the first point of possession. At this moment the NSI does not have access to the data at the source, so #1 is the earliest point at which the NSI can guarantee what it holds.
+
+The value of #1 is **authentic custody**. It proves that the NSI holds exactly what the provider delivered, when it was delivered, under which legal basis, and through which channel. That proof is the foundation for all downstream traceability. If a statistic is ever questioned, the chain of evidence ends here.
+
+### 2. Producing and consuming domains
+
+| Role | Domain | Note |
+|---|---|---|
+| Producer | Observation/Collection (VS-01) | Functions: Receive Data, Extract Data, Collect Survey |
+| Primary consumer | Standardization (VS-02) | Triggered by the *Raw Data Registered* event |
+| Secondary consumer | Editing (VS-03) | Only where #2 is skipped for this product |
+| Occasional consumer | Innovation and Methodology (VS-08) | Source exploration, under specific authorisation |
+| Assurance | Governance and Compliance (VS-07) | Audit of provenance and legal basis |
+
+### 3. Quality gate
+
+The gate for #1 checks technical and legal conditions only. It does not assess content; content quality is the concern of #3.
+
+| Criterion | Check | Typical outcome on failure |
+|---|---|---|
+| Legal basis | A valid agreement or statutory basis covers this delivery | Reject; escalate to legal |
+| Sender authenticity | Sender verified (certificate, credentials, signed delivery) | Reject |
+| Integrity | Checksum or digital signature matches | Reject; request redelivery |
+| Security | Malware and security scan passed | Quarantine; reject |
+| Structural conformance | Delivery matches the agreed technical specification (file format, schema, encoding) | Reject or conditionally accept with flag |
+| Completeness against agreement | Record counts and delivery scope within agreed tolerance | Conditionally accept with flag, or reject |
+| Timeliness | Delivered within the agreed window | Accept with flag; report to relationship management |
+| Metadata | Minimum metadata set captured (see attribute 4) | Hold until complete |
+
+Conditional acceptance is a deliberate option. A late or slightly incomplete delivery may still be the best available data. The flag ensures every downstream user knows this.
+
+### 4. Data and metadata characteristics
+
+**Data.** Raw data is stored in its original format, or in a lossless technical equivalent **[C9]**. Permitted technical operations are those that change representation without changing content and that can be reversed: decryption, decompression, character-encoding normalisation, and container conversion. Operations that change values, codes, or record selection are not permitted at #1. The original byte stream, or a verifiable hash of it, is retained.
+
+**Minimum metadata set.**
+
+| Metadata element | Description |
+|---|---|
+| Persistent identifier and version | Unique identifier of this delivery version |
+| Provider | Organisation or respondent group that supplied the data |
+| Agreement reference and legal basis | Agreement identifier and the applicable legal ground |
+| Channel and method | Transfer channel (file transfer, API, data space connector, survey mode) and instrument version |
+| Receipt timestamp | Moment of receipt into NSI custody |
+| Integrity proof | Checksum or signature value and algorithm |
+| Volume | Record count and size |
+| Reference period | Period the data describes, as stated by the provider |
+| Structural description | Schema or technical specification the delivery conforms to |
+| Gate outcome | Accepted or conditionally accepted, with quality flags |
+| Classification | Availability, integrity, and confidentiality rating |
+
+In GSIM terms, #1 typically instantiates a *Data Set* received from an *Information Provider* through an *Exchange Channel* under a *Provision Agreement*.
+
+### 5. Security, privacy, and access
+
+Raw data usually contains direct identifiers and therefore carries the highest confidentiality rating in the chain. Access is limited to the roles that operate the intake and the standardization process. Analysts and subject-matter staff do not work on #1.
+
+Pseudonymisation is normally applied at the transition to #2. Some NSIs pseudonymise at the intake boundary, or receive data already pseudonymised by a trusted third party. Both variants are compatible with the model, provided the choice is documented and the key management is separated from the data. Data minimisation starts before #1: the agreement and the collection design determine that only necessary data is received.
+
+### 6. Ownership and governance
+
+| Role | Responsibility for #1 |
+|---|---|
+| Data owner | Process owner of Observation/Collection; accountable for lawful acquisition and fitness of the intake |
+| Data steward | Maintains metadata and catalogue entries; resolves gate exceptions |
+| Data custodian | Operates storage, access control, and retention |
+| Relationship manager | Handles provider follow-up on rejected or flagged deliveries (with VS-10) |
+
+### 7. Versioning, retention, and lineage
+
+Every delivery, including a redelivery or correction by the provider, is a new immutable version. A redelivery never overwrites an earlier version, because statistics may already be built on it.
+
+Retention of #1 is governed by two needs that pull in opposite directions. Reproducibility and audit favour keeping raw data; data minimisation and storage cost favour disposal. A common arrangement is to keep #1 until the dependent #3 version is verified and the audit period has passed, while #3 is the state subject to long-term archival requirements. The exact period is set by national law and NSI policy.
+
+Lineage at #1 is the provenance record: the link from the registered version to the provider, the agreement, and the delivery event. Every downstream state must be able to trace back to a #1 version or, where a product starts from another domain's data, to the state it consumed.
+
+### 8. Reuse and handover
+
+Registration of #1 publishes the *Raw Data Registered* event and a catalogue entry. Consumers discover the delivery through the catalogue and access it through the handover interface, never through direct access to the intake system.
+
+One delivery can serve several statistical products. The register-based census and the labour market statistics may both draw on the same population register delivery. Under SAF-P08, products reuse the registered delivery rather than requesting the same data again from the provider. This also reduces response burden.
+
+| Handover element | Content |
+|---|---|
+| Artefact | Registered Raw Data version |
+| Required metadata | Minimum metadata set (attribute 4) |
+| Trigger event | *Raw Data Registered* |
+| Responsibility transfer | VS-01 keeps custody; the consumer takes responsibility for further processing on receipt of the event |
+
+### 9. Traceability to the framework
+
+| Framework element | References |
+|---|---|
+| Capabilities | 1.2.1 Primary data collection, 1.2.2 Secondary data collection, 2.1.1 Data lifecycle management, 2.1.2 Metadata management, 3.3.4 Logical identity and access control, 3.4.3 Service agreement |
+| Value-stream stages | VS-01.3 Collect, Receive, or Extract Data; VS-01.4 Validate and Log Data Intake; VS-01.5 Store and Register Raw Data Artefacts |
+| GSBPM | 4.3 Run collection, 4.4 Finalise collection |
+| Principles | SAF-P07, SAF-P08, SAF-P09, SAF-P10, SAF-P11 |
+
+### 10. Examples and anti-patterns
+
+**Examples**
+
+- *Survey.* Responses from a web questionnaire are received with paradata (mode, completion time, instrument version). The delivery is registered as one #1 version per collection batch.
+- *Administrative register.* A quarterly tax file arrives by file transfer, with a manifest. Checksum, schema, and record count are checked against the agreement; 14 unknown business identifiers are not a #1 issue and pass through for handling downstream.
+- *Web data.* Daily scraped price data is registered with the scraper version and page fingerprint per retailer, so a change in a website's structure can be traced to the affected deliveries.
+
+**Anti-patterns**
+
+- Correcting obvious errors "while the file is open" at intake. Any value change belongs in #3, where it is documented.
+- Overwriting a delivery with the provider's corrected version. Statistics built on the first version lose their trace.
+- Giving analysts direct access to raw data for convenience. This bypasses the pseudonymisation at #2.
+- Keeping only a converted copy and discarding the original. The proof of authentic custody is lost.
+- Registering a delivery without its agreement reference. The legal basis can no longer be demonstrated in an audit.
 
 
 
 
 
-
-### State #1: Raw Data
-
-**Business Domain Link:** Observation/Collection
-
-**Description:** Raw data represents the initial entry point where data has been received from external data holders and checked for basic safety and validation. At this stage, data has entered the NSO system in its original form as received from the data provider.
-
-**Quality Requirements:**
-- File integrity checks completed
-- Virus and security scans performed
-- SLA requirements verified with the data provider (e.g., completeness, delivery time)
-- Data stored in its original format or equivalent
-
-**Usage:** Raw data for the raw source data in its original form as received from the data holder. The ONS does not have access to the data at the source; this is the first point of possession.
-
-**Key Characteristics:**
-- Data has not been further validated for content
-- Sender verification completed
-- Technical checks and transformations on the technical level only (not content level)
-- Forms the baseline for all subsequent processing
 
 ### State #2: Standardized Data
 
@@ -1034,7 +1150,7 @@ The business architecture leverages a data value chain approach where data progr
 
 **Key Processing Activities:**
 - Application of reference data and master data
-- Restructuring and reformatting to NSO's standard storage format
+- Restructuring and reformatting to NSI's standard storage format
 - Recoding of variables to align with enterprise standards
 - Pseudonymisation and encryption where required
 - Value sets adapted to organizational standards
@@ -1115,11 +1231,11 @@ The business architecture leverages a data value chain approach where data progr
 **Key Characteristics:**
 - All requirements for confidentiality taken care of
 - May be further processed compared to State #4 for additional confidentiality protection
-- Published by the NSO or delivered to external parties
+- Published by the NSI or delivered to external parties
 - Includes both published statistical values and delivered microdata (de-identified)
 - Strict documentation requirements to support user understanding and data reuse
 
-**External Consumption:** This is the final state in the value chain where statistical information fulfills the core mission of the NSO—delivering trusted statistics to society.
+**External Consumption:** This is the final state in the value chain where statistical information fulfills the core mission of the NSI—delivering trusted statistics to society.
 
 ### State #6: Consumed Data
 
@@ -1127,21 +1243,21 @@ The business architecture leverages a data value chain approach where data progr
 
 **Usage:** - None - Consumed data is data used by external data consumers for their analyses and decision-making.
 
-**Key Characteristic:** This state recognizes that once data is published, it enters the public domain and is used in ways that may be beyond the NSO's direct oversight, though the quality and documentation provided in State #5 support appropriate use.
+**Key Characteristic:** This state recognizes that once data is published, it enters the public domain and is used in ways that may be beyond the NSI's direct oversight, though the quality and documentation provided in State #5 support appropriate use.
 
 ## The Statistical Data Value Chain
 
-The SAF business layer describes how a National Statistical Office (NSO) turns externally-held data into trusted statistics that serve society. Six **primary** value streams form a linear production chain, each adding a specific kind of statistical value, and four **supporting** value streams enable them across the board.
+The SAF business layer describes how a National Statistical Office (NSI) turns externally-held data into trusted statistics that serve society. Six **primary** value streams form a linear production chain, each adding a specific kind of statistical value, and four **supporting** value streams enable them across the board.
 
 ::: {.callout-note title="Key concepts — if you are new to architecture documents" collapse="true"}
 This documentation uses a handful of architecture terms. Here is what they mean in plain language:
 
 - **Value stream** — a sequence of steps that together create a statistical output. Think of it as a production line: VS-01 to VS-06 each add a specific kind of value to the data.
 - **Value stream stage vs. business process** — the stage (`VS-0x.y`) says *what value* is added; the business process describes *how* your office actually does it. The numbering maps one-to-one.[^archimate]
-- **Steady state** — a fixed handover point: a versioned, quality-assured dataset that one stream produces and the next one consumes. The framework defines five numbered steady states, #1 to #5; data still at the external provider (#0) and data in users' hands (#6) sit outside the NSO's control and are boundary positions, not numbered states.
+- **Steady state** — a fixed handover point: a versioned, quality-assured dataset that one stream produces and the next one consumes. The framework defines five numbered steady states, #1 to #5; data still at the external provider (#0) and data in users' hands (#6) sit outside the NSI's control and are boundary positions, not numbered states.
 - **The four process types** — every domain is described through the same four groups: **Design** (decide how it should work), **Implementation** (build and test it), **Execution** (run it each production cycle), **Management** (check quality and feed improvements back).
 - **Business service / object / event** — what a domain offers to others / the data artefacts it works on / the signals streams send each other (e.g. *"Raw Data Registered"* tells the next stream new data is ready).
-- **NSO** — National Statistical Office.
+- **NSI** — National Statistical Office.
 - **GSBPM** — the *Generic Statistical Business Process Model*: the standard, internationally agreed description of the phases of statistical production (specify needs, design, build, collect, process, analyse, disseminate, evaluate).
 - **GAMSO** — the *Generic Activity Model for Statistical Organizations*: the companion standard describing management and support activities (strategy, capability development, corporate support).
 - **SAF-P01 … SAF-P11** — the eleven SAF architecture **p**rinciples, defined in the SAF Framework document and referenced throughout.
@@ -1150,7 +1266,7 @@ This documentation uses a handful of architecture terms. Here is what they mean 
 :::
 
 
-This document is the consolidated, easier-to-read view of all ten streams. The shared concepts the primary streams rely on — the chain itself, the steady states of data, the four-process governance pattern, and the principles — are explained once below; each **primary** stream is then summarized compactly, keeping its execution detail. The four **supporting** streams follow at the end, in a section that first explains how a supporting stream differs from a production stream. For the full design, implementation, and management detail, and for NSO-application guidance, see the individual `VS-0x` business-layer documents.
+This document is the consolidated, easier-to-read view of all ten streams. The shared concepts the primary streams rely on — the chain itself, the steady states of data, the four-process governance pattern, and the principles — are explained once below; each **primary** stream is then summarized compactly, keeping its execution detail. The four **supporting** streams follow at the end, in a section that first explains how a supporting stream differs from a production stream. For the full design, implementation, and management detail, and for NSI-application guidance, see the individual `VS-0x` business-layer documents.
 
 *A note on numbering:* each `VS-0x.y` you see below is both a value stream stage (*what value* is added) and a business process (*how* it is done). The numbering maps one-to-one; this document uses the business-process view. See the key-concepts box above for the distinction.
 
@@ -1158,7 +1274,7 @@ The diagram below shows the whole business layer in one picture: data enters fro
 
 ```{mermaid}
 %%| label: fig-overview
-%%| fig-cap: "The six primary value streams as a production chain, delivering to users and society. Purple = the four supporting streams (they enable the chain, dashed arrow); dark green = parties outside the NSO."
+%%| fig-cap: "The six primary value streams as a production chain, delivering to users and society. Purple = the four supporting streams (they enable the chain, dashed arrow); dark green = parties outside the NSI."
 flowchart TB
     EXT["External data providers"]:::ext --> chain
     subgraph chain["Primary value streams — the production chain"]
@@ -1185,22 +1301,22 @@ The streams work independently of each other (in architecture terms: they are **
 
 Of the five, **processed data (#3) is the only steady state mandatory for all production** — it is the microdata on which everything downstream is verifiably built. **Raw Data (#1)** is also mandatory when a product collects its own data, but not for a macro statistic that starts entirely from another domain's data. **Standardized data (#2)** is always optional, and **Statistics (#4)** may share its artefact with **Released data (#5)** when the two are identical.
 
-The table lists the five numbered steady states (#1–#5) in the order data passes through them, with the two boundary positions (#0 and #6) outside the NSO's control shown for context:
+The table lists the five numbered steady states (#1–#5) in the order data passes through them, with the two boundary positions (#0 and #6) outside the NSI's control shown for context:
 
 | State | Name | Produced by | Meaning |
 |---|---|---|---|
-| (#0) | Source Data | *external providers* | Data at the external holder, before it enters the NSO (pre-ingestion; not a numbered SAF state) |
-| #1 | Raw Data | VS-01 | Received into NSO custody in original form, with provenance (a record of where it came from and how) and basic validation |
+| (#0) | Source Data | *external providers* | Data at the external holder, before it enters the NSI (pre-ingestion; not a numbered SAF state) |
+| #1 | Raw Data | VS-01 | Received into NSI custody in original form, with provenance (a record of where it came from and how) and basic validation |
 | #2 | Standardized Data | VS-02 | Aligned to common structure, format, and classifications — **values unchanged** |
 | #3 | Processed Data | VS-03 | Content validated, edited, imputed, enriched, integrated; derived variables added |
 | #4 | Statistics (Output Data) | VS-04 → VS-05 | Estimated/aggregated statistics (VS-04), composed into approved products (VS-05) |
 | #5 | Released Data | VS-06 | Disclosure-controlled, documented, published/delivered to external parties |
-| #6 | Consumed Data | *external users* | Data in use outside the NSO's direct control |
+| #6 | Consumed Data | *external users* | Data in use outside the NSI's direct control |
 : Steady States of data {tbl-colwidths="[10,20,20,50]"}
 
 ```{mermaid}
 %%| label: fig-1
-%%| fig-cap: "Steady-state handover across the chain. Each arrow is a handover between streams, triggered by a registration event. Blue = data states inside the NSO; yellow = statistics; light green = released; dark green = outside the NSO's control."
+%%| fig-cap: "Steady-state handover across the chain. Each arrow is a handover between streams, triggered by a registration event. Blue = data states inside the NSI; yellow = statistics; light green = released; dark green = outside the NSI's control."
 %%| fig-width: 10
 flowchart TD
     S0["Source Data"]:::ext -->|VS-01| S1["#1 Raw"]
@@ -1268,7 +1384,7 @@ The SAF defines eleven architecture principles, labeled SAF-P01 to SAF-P11. The 
 
 | Principle | Statement | How to apply across the value chain |
 |---|---|---|
-| **SAF-P01** ★ | Actively participate in open source to maintain collective control over statistical processes | Build statistical capabilities on shared, open tooling; contribute back, so NSOs keep collective control of critical methods rather than depending on vendors. |
+| **SAF-P01** ★ | Actively participate in open source to maintain collective control over statistical processes | Build statistical capabilities on shared, open tooling; contribute back, so NSIs keep collective control of critical methods rather than depending on vendors. |
 | **SAF-P07** ★ | Implement loosely coupled processes and systems | Exchange data only at steady-state interfaces; each stream consumes one state and produces the next without knowing the others' internals. |
 | **SAF-P08** ★ | Data is shared property | Once an artefact is registered at a steady state, make it available to all authorized consumers; avoid duplicating collection, processing, or analysis. |
 | **SAF-P09** ★ | No data without metadata and classification | Every artefact carries provenance (origin), methodology, accuracy, classification, and lineage (the trace back to its inputs) — captured at the point each value is created or changed. |
@@ -1291,9 +1407,9 @@ The SAF defines eleven architecture principles, labeled SAF-P01 to SAF-P11. The 
 
 ## VS-01.0 — Data Acquisition and Ingestion
 
-**Domain:** Observation/Collection · **State transition:** Source Data → **#1 Raw Data** · **Value:** all data enters NSO custody, verifiably and with provenance.
+**Domain:** Observation/Collection · **State transition:** Source Data → **#1 Raw Data** · **Value:** all data enters NSI custody, verifiably and with provenance.
 
-VS-01 is the front door of the statistical system. Its job is to bring data from the outside world — survey respondents, administrative registers, and emerging sources such as web or sensor data — into the NSO safely and with a complete record of where it came from. Nothing about the data's content is changed here; the point is to receive it, prove it is what it claims to be, and register it so the rest of the chain can find and trust it. The output is **Raw Data**: the data in its original form, under NSO custody, accompanied by provenance.
+VS-01 is the front door of the statistical system. Its job is to bring data from the outside world — survey respondents, administrative registers, and emerging sources such as web or sensor data — into the NSI safely and with a complete record of where it came from. Nothing about the data's content is changed here; the point is to receive it, prove it is what it claims to be, and register it so the rest of the chain can find and trust it. The output is **Raw Data**: the data in its original form, under NSI custody, accompanied by provenance.
 
 **Business processes**
 
@@ -1303,7 +1419,7 @@ VS-01 is the front door of the statistical system. Its job is to bring data from
 - VS-01.4 Validate and Log Data Intake
 - VS-01.5 Store and Register Raw Data Artefacts
 
-**How the business processes work.** The cycle starts by **identifying the data needs and sources** for the round — confirming what variables and populations are required and that the chosen sources are available and accessible. Once the source is settled, the team **establishes the data agreement and access rights**: activating or renewing the legal basis (a data-sharing agreement, or the relevant GDPR ground) and checking that credentials are valid, so collection is lawful and controlled. Data is then **collected, received, or extracted** through the appropriate channel — a survey instrument, an administrative file transfer, or an API/scraping job — and at the moment of receipt the ingestion metadata (source, method, timestamp, file hash, volume) is captured. Each delivery is **validated and logged**: completeness, structure, and integrity are checked and every result written to an audit trail, so the NSO can be confident the intake is whole and traceable. Finally the dataset is **stored and registered as a raw-data artefact** — given a persistent identifier, kept in its original form, and cataloged with its provenance — and a "Raw Data Registered" event tells VS-02 that new data is ready.
+**How the business processes work.** The cycle starts by **identifying the data needs and sources** for the round — confirming what variables and populations are required and that the chosen sources are available and accessible. Once the source is settled, the team **establishes the data agreement and access rights**: activating or renewing the legal basis (a data-sharing agreement, or the relevant GDPR ground) and checking that credentials are valid, so collection is lawful and controlled. Data is then **collected, received, or extracted** through the appropriate channel — a survey instrument, an administrative file transfer, or an API/scraping job — and at the moment of receipt the ingestion metadata (source, method, timestamp, file hash, volume) is captured. Each delivery is **validated and logged**: completeness, structure, and integrity are checked and every result written to an audit trail, so the NSI can be confident the intake is whole and traceable. Finally the dataset is **stored and registered as a raw-data artefact** — given a persistent identifier, kept in its original form, and cataloged with its provenance — and a "Raw Data Registered" event tells VS-02 that new data is ready.
 
 ::: {.callout-note title="Signature discipline — no data without metadata"}
 Every dataset is enriched at ingestion with provenance, source, method, timestamp, and a quality and BIV classification — availability, integrity, confidentiality — per SAF-P09, with security and privacy applied by design (SAF-P10/P11).
@@ -1315,7 +1431,7 @@ Around this per-cycle run, **Design** prepares the data requirements, collection
 |---|---|
 | VS-01.1 Identify Data Needs and Sources | Confirmed requirements and available sources for the cycle |
 | VS-01.2 Establish Data Agreement and Access Right | Active, lawful access (agreements, GDPR basis, credentials) |
-| VS-01.3 Collect, Receive, or Extract Data | Data in NSO custody + captured ingestion metadata |
+| VS-01.3 Collect, Receive, or Extract Data | Data in NSI custody + captured ingestion metadata |
 | VS-01.4 Validate and Log Data Intake | Validated intake + audit trail |
 | VS-01.5 Store and Register Raw Data Artefacts | Registered Raw Data artefact + "Raw Data Registered" event |
 
@@ -1325,7 +1441,7 @@ Around this per-cycle run, **Design** prepares the data requirements, collection
 
 **Domain:** Standardization without loss of content · **State transition:** #1 Raw → **#2 Standardized** · **Value:** coherence and comparability across sources.
 
-VS-02 makes data from different sources speak the same language. After raw data is in custody, this stream aligns its structure, format, and codes to the NSO's agreed standards so that datasets which looked different at the source can be compared and combined. Crucially it does this **without changing any value** — it re-expresses and annotates, it does not transform. The output is **Standardized Data**: the same information, now in a common shape, expressed in standard classifications, and carrying rich metadata.
+VS-02 makes data from different sources speak the same language. After raw data is in custody, this stream aligns its structure, format, and codes to the NSI's agreed standards so that datasets which looked different at the source can be compared and combined. Crucially it does this **without changing any value** — it re-expresses and annotates, it does not transform. The output is **Standardized Data**: the same information, now in a common shape, expressed in standard classifications, and carrying rich metadata.
 
 **Business processes**
 
@@ -1453,7 +1569,7 @@ Around this, **Design** defines the product portfolio, the composite-indicator s
 
 **Domain:** Dissemination (final stage) · **State transition:** #4 Approved products → **#5 Released** → #6 Consumed · **Value:** impact and accessibility.
 
-VS-06 is the chain's exit point — where approved products become public value. It publishes and delivers statistics to policymakers, researchers, journalists, businesses, and the public through trusted, secure channels, and supports users in interpreting them correctly. The decisive control here is confidentiality: a final disclosure-control gate stands between an approved product and release. The output is **Released Data** (State #5); once in users' hands it becomes **Consumed Data** (State #6), beyond the NSO's direct control.
+VS-06 is the chain's exit point — where approved products become public value. It publishes and delivers statistics to policymakers, researchers, journalists, businesses, and the public through trusted, secure channels, and supports users in interpreting them correctly. The decisive control here is confidentiality: a final disclosure-control gate stands between an approved product and release. The output is **Released Data** (State #5); once in users' hands it becomes **Consumed Data** (State #6), beyond the NSI's direct control.
 
 **Business processes**
 
@@ -1648,7 +1764,7 @@ The four supporting streams work differently — they have no state transition; 
 | **10** | Customer & Stakeholder Engagement | Strategy & Leadership; Corporate Support | Understood needs, service portfolio, relationships, impact | P04, P08, P02 |
 
 ::: {.callout-note}
-This consolidated view omits the per-stream **"Applying This to Your NSO"** maturity checklists and scenarios. For those, and for the full Design / Implementation / Management detail, diagrams, and boundary-interface tables, see the individual documents `VS-01.0` … `VS-10.0` in this folder.
+This consolidated view omits the per-stream **"Applying This to Your NSI"** maturity checklists and scenarios. For those, and for the full Design / Implementation / Management detail, diagrams, and boundary-interface tables, see the individual documents `VS-01.0` … `VS-10.0` in this folder.
 :::
 
 ## VS-01.0 Data Acquisition and Ingestion 
@@ -1739,11 +1855,11 @@ flowchart TD
 
 ### Steady State Transition
 
-VS-01.0 transitions data from **Steady State #0 (Source Data)** — data at the external provider — to **Steady State #1 (Raw Data)** — data under NSO custody in its original form, with provenance metadata and basic quality verification completed.
+VS-01.0 transitions data from **Steady State #0 (Source Data)** — data at the external provider — to **Steady State #1 (Raw Data)** — data under NSI custody in its original form, with provenance metadata and basic quality verification completed.
 
 ```{mermaid}
 %%| label: fig-2
-%%| fig-cap: "Steady State Transition. Source Data is external data in its original form; the ingestion service at the NSO boundary validates and documents it; Raw Data is the same data under NSO custody, ready for downstream use."
+%%| fig-cap: "Steady State Transition. Source Data is external data in its original form; the ingestion service at the NSI boundary validates and documents it; Raw Data is the same data under NSI custody, ready for downstream use."
 %%| fig-width: 6
 flowchart LR
     subgraph external["External Domain"]
@@ -1751,12 +1867,12 @@ flowchart LR
         (State #0)"]
     end
 
-    subgraph boundary["NSO Boundary"]
+    subgraph boundary["NSI Boundary"]
         QG["Ingestion Service
         (Metadata addition, Quality/Schema check)"]
     end
 
-    subgraph internal["NSO Domain"]
+    subgraph internal["NSI Domain"]
         RD["Raw Data
         (State #1)"]
     end
@@ -1832,10 +1948,10 @@ The following principles directly govern the VS-01.0 business domain:
 
 | Principle | Statement | Application to VS-01.0 |
 |---|---|---|
-| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSOs should contribute to open source communities for collection and ingestion tooling, ensuring collective control over critical capabilities rather than vendor dependence. |
+| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSIs should contribute to open source communities for collection and ingestion tooling, ensuring collective control over critical capabilities rather than vendor dependence. |
 | **SAF-P07** | Implement loosely coupled processes and systems | The data acquisition domain must be independent from downstream processing. Raw Data (State #1) serves as a decoupling interface — downstream consumers access it without knowledge of how it was collected. |
 | **SAF-P08** | Data is shared property | Raw data, once registered, is available to all authorized consumers. Collection efforts should not be duplicated across statistical products when the same source data can serve multiple purposes. |
-| **SAF-P09** | No data without metadata and classification | At the point of ingestion, every dataset must be enriched with provenance (where it came from and how), source, method, timestamp, quality indicators, and a BIV classification (availability, integrity, confidentiality). This is not a precondition that blocks ingestion, but an obligation the NSO fulfills during acquisition. |
+| **SAF-P09** | No data without metadata and classification | At the point of ingestion, every dataset must be enriched with provenance (where it came from and how), source, method, timestamp, quality indicators, and a BIV classification (availability, integrity, confidentiality). This is not a precondition that blocks ingestion, but an obligation the NSI fulfills during acquisition. |
 | **SAF-P10** | Security By Design | Security is embedded in the acquisition pipeline — encrypted transfer channels, virus scanning, checksum verification, access controls — not added as an afterthought. |
 | **SAF-P11** | Privacy By Design | Privacy protection (pseudonymization timing, purpose limitation, GDPR lawful basis) is designed into the acquisition process from the start, not retrofitted after data enters the system. |
 
@@ -1877,7 +1993,7 @@ Metadata is produced in every phase, not only in Design. The table below shows w
 
 | Role                        | Process Orientation | Description                                                                                       |
 |-----------------------------|---------------------|---------------------------------------------------------------------------------------------------|
-| **Data Provider**           | External            | Supplies data to the NSO under a data sharing agreement (government agency, business, individual) |
+| **Data Provider**           | External            | Supplies data to the NSI under a data sharing agreement (government agency, business, individual) |
 | **Survey Respondent**       | External            | Provides data through survey instruments — web (CAWI), face-to-face (CAPI), telephone (CATI), or paper |
 | **Legal Authority**         | External            | Grants legal basis for data collection (e.g., statistics law, GDPR authorization)                 |
 | **Metadata Architect**      | Design              | Designs data models, metadata schemas, and classification mappings                                |
@@ -1913,7 +2029,7 @@ The starting point of any data acquisition effort is understanding what data is 
 | Decide collection strategy: primary vs. secondary vs. multi-source | Collection Strategy Decision Record | GSBPM 1.6 |
 | Document trade-offs between source options | Collection Strategy Decision Record | GSBPM 1.6 |
 
-::: {.callout-tip title="**NSO Example — Population Census:**"}
+::: {.callout-tip title="**NSI Example — Population Census:**"}
 A national statistical organization designing its next census decides on a register-first approach: use the population register as the primary source, supplement with a sample survey for variables not available in registers (housing conditions, commuting patterns), and validate against municipal records. The design phase produces the variable mapping from registers to census variables, the sample design for the supplementary survey, and the quality criteria for register data acceptance.
 :::
 
@@ -1930,7 +2046,7 @@ Once the source strategy is set, the methodology team designs how data will actu
 | Define multi-mode strategy and fallback sequences | Collection Methodology Document | GSBPM 2.3 |
 | Design respondent communication strategy | Respondent Communication Plan | GSBPM 2.3 |
 
-::: {.callout-tip title="**NSO Example — Labour Force Survey:**"}
+::: {.callout-tip title="**NSI Example — Labour Force Survey:**"}
 The LFS design team specifies a mixed-mode approach: first CAWI invitation by email, CATI follow-up after 2 weeks for non-respondents, CAPI for hard-to-reach populations. A rotation panel design (2-2-2) ensures longitudinal tracking. The questionnaire is designed with adaptive questioning to minimize response burden.
 :::
 
@@ -2034,7 +2150,7 @@ This sub-process transforms the collection methodology design into operational t
 | Set up secure transfer channels with end-to-end encryption | Secure channel configuration | SAF-P10 |
 | Configure respondent management system (invitations, reminders, tracking) | Respondent management system | GSBPM 3.1 |
 
-::: {.callout-tip title="**NSO Example — Household Budget Survey:**"}
+::: {.callout-tip title="**NSI Example — Household Budget Survey:**"}
  The implementation team builds a CAWI portal with diary entry functionality (daily spending log), configures it for 12 languages, implements the designed sampling filter, and sets up an SFTP fallback channel for large retailers providing scanner data as supplementary price information.
 :::
 
@@ -2136,7 +2252,7 @@ In a mature steady state, the design phase (Section 3) has already defined the d
 | Check that source metadata is current (contacts, formats, schedules) | Updated source metadata | GSBPM 1.5 |
 | Identify new sources available since last cycle | New source assessment (if any) | GSBPM 1.5 |
 
-::: {.callout-tip title="**NSO Example — Annual Census:**"}
+::: {.callout-tip title="**NSI Example — Annual Census:**"}
 At the start of the reference year, the census team confirms that all 393 municipal registers are available for the current reference year, verifies contact persons and API endpoints, and confirms that the supplementary survey sample frame has been updated with the latest population register extract.
 :::
 
@@ -2154,7 +2270,7 @@ Before data flows, legal and operational access must be confirmed for the curren
 | For new sources: execute full agreement process (per Section 3.5) | New source agreement | SAF-P11 |
 | Record active agreement status linked to upcoming deliveries | Agreement-delivery linkage | GSBPM 4.1 |
 
-::: {.callout-tip title='**NSO Example — Quarterly Tax Data:**'}
+::: {.callout-tip title='**NSI Example — Quarterly Tax Data:**'}
 Before the Q3 delivery window opens, the data management team verifies the SLA with the tax authority (delivery within 45 days of quarter end, minimum 98% of expected records), confirms SFTP credentials are valid, and records the active agreement reference number for linking to the incoming dataset.
 :::
 
@@ -2163,7 +2279,7 @@ Before the Q3 delivery window opens, the data management team verifies the SLA w
 
 **Value created:** *Secure and verifiable transfer of authentic data into the organization.*
 
-This sub-process is the operational heart of the value stream, where data physically enters NSO custody. Primary data collection runs surveys through the designed and built instruments: CAWI portals open, invitation links are sent, and response rates are monitored; CAPI field interviewers are deployed with managed assignments; CATI call schedules are executed with callback management. Secondary data collection receives administrative data via agreed channels — SFTP accepts scheduled file deliveries, APIs pull data on agreed schedules, and data space connectors facilitate federated exchange. Emerging sources — web scraping, sensor data, commercial feeds — are extracted according to designed specifications, all aligned with GSBPM 4.1–4.3.
+This sub-process is the operational heart of the value stream, where data physically enters NSI custody. Primary data collection runs surveys through the designed and built instruments: CAWI portals open, invitation links are sent, and response rates are monitored; CAPI field interviewers are deployed with managed assignments; CATI call schedules are executed with callback management. Secondary data collection receives administrative data via agreed channels — SFTP accepts scheduled file deliveries, APIs pull data on agreed schedules, and data space connectors facilitate federated exchange. Emerging sources — web scraping, sensor data, commercial feeds — are extracted according to designed specifications, all aligned with GSBPM 4.1–4.3.
 
 Equally critical is the metadata captured at the point of receipt. For every dataset received, the ingestion system records the source identifier and organization, timestamp of receipt, transfer method and channel, file hash (SHA-256) and format, volume (record count and file size), agreement reference, and — for surveys — the collection mode and instrument version. This metadata capture obligation, required by SAF-P09, ensures that no data enters the system without the context needed to understand its provenance and quality.
 
@@ -2213,7 +2329,7 @@ flowchart LR
 ```
 
 
-::: {.callout-tip title='**NSO Example — Multi-Mode Census:**'}
+::: {.callout-tip title='**NSI Example — Multi-Mode Census:**'}
 The 2026 census runs with CAWI (70% of households), CAPI (25% for non-respondents and hard-to-reach areas), and paper (5% for elderly and institutionalized populations). Each mode generates channel-specific metadata: CAWI records browser type and completion time; CAPI records interviewer ID, GPS coordinates, and interview duration; paper records scanning batch ID and OCR confidence scores.
 :::
 
@@ -2236,7 +2352,7 @@ Once data has been received, it must pass through the quality gates before it ca
 **Boundary:** NO content-level editing occurs at this stage. Only technical and structural validation is performed. Content editing (correction, imputation, harmonization) is the responsibility of VS-03.0 Data Editing and Enrichment.
 :::
 
-::: {.callout-tip title="**NSO Example — Tax Authority Quarterly File:**"}
+::: {.callout-tip title="**NSI Example — Tax Authority Quarterly File:**"}
 Q3 delivery received: 2.3 million records, SHA-256 checksum pass, 47 fields validated against schema (all conform), 0.3% null rate on mandatory fields (within 1% tolerance), delivery received 2 days ahead of SLA deadline. Result: Data Intake Validated. All validation results logged with timestamp, rule version, and operator ID.
 :::
 
@@ -2355,7 +2471,7 @@ The metadata ecosystem supporting data acquisition must remain complete, accurat
 
 ### Audit and Compliance Reporting
 
-This sub-process produces the evidence that the acquisition domain operates within legal, regulatory, and organizational requirements. Audit trail reports demonstrate full traceability of every dataset from external source to NSO raw data repository. GDPR compliance reporting covers data processing records (Article 30), Data Protection Impact Assessment reviews for high-risk processing, and the ability to demonstrate which data the NSO holds and why. Agreement compliance reporting confirms that all data uses remain within the terms of governing agreements. Security compliance reporting verifies that all designed security measures have been applied and documents any breaches or incidents. These reports satisfy the SAF Capability 4.1.5 (Accountability) obligation and feed into VS-07.5 Audit, Certify, and Report Compliance.
+This sub-process produces the evidence that the acquisition domain operates within legal, regulatory, and organizational requirements. Audit trail reports demonstrate full traceability of every dataset from external source to NSI raw data repository. GDPR compliance reporting covers data processing records (Article 30), Data Protection Impact Assessment reviews for high-risk processing, and the ability to demonstrate which data the NSI holds and why. Agreement compliance reporting confirms that all data uses remain within the terms of governing agreements. Security compliance reporting verifies that all designed security measures have been applied and documents any breaches or incidents. These reports satisfy the SAF Capability 4.1.5 (Accountability) obligation and feed into VS-07.5 Audit, Certify, and Report Compliance.
 
 | Activity | Key Outputs | Framework Ref |
 |---|---|---|
@@ -2414,11 +2530,11 @@ The VS-01.0 business domain exposes the following services:
 
 | Service | Direction | Consumers | Mapped Processes |
 |---|---|---|---|
-| **Data Collection Service** | External → NSO | Survey respondents, data providers | 5.3 Collect or Receive Data |
-| **Data Agreement Management Service** | External ↔ NSO | Data providers, legal authorities | 5.2 Establish Data Agreement |
-| **Raw Data Provisioning Service** | Internal (NSO → VS-02.0) | Standardization teams, data analysts | 5.5 Store and Register Raw Data |
+| **Data Collection Service** | External → NSI | Survey respondents, data providers | 5.3 Collect or Receive Data |
+| **Data Agreement Management Service** | External ↔ NSI | Data providers, legal authorities | 5.2 Establish Data Agreement |
+| **Raw Data Provisioning Service** | Internal (NSI → VS-02.0) | Standardization teams, data analysts | 5.5 Store and Register Raw Data |
 | **Ingestion Monitoring Service** | Internal | Process owners, quality managers | 6.1 Monitor Performance, 6.2 Assess Quality |
-| **Metadata Catalog Service** | Internal | All data consumers across the NSO | 6.3 Manage Metadata Lifecycle |
+| **Metadata Catalog Service** | Internal | All data consumers across the NSI | 6.3 Manage Metadata Lifecycle |
 | **Design and Methodology Service** | Internal | Methodologists, statistical designers, data engineers | 3.1–3.5 All design processes |
 
 **Interface specifications:**
@@ -2477,51 +2593,51 @@ flowchart TB
 
 ```{mermaid}
 %%| label: fig-10
-%%| fig-cap: "Event-Driven Choreography between Data Provider, NSO teams, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design."
+%%| fig-cap: "Event-Driven Choreography between Data Provider, NSI teams, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design."
 %%| fig-width: 6
 
 sequenceDiagram
     participant DP as Data Provider
-    participant NSO as NSO Teams
+    participant NSI as NSI Teams
     participant PM as Process Mgmt
 
     rect rgb(245, 243, 255)
-    Note over NSO: Design Phase
-    NSO->>NSO: Define requirements, methodology,<br/>schema, validation & privacy rules
-    NSO-->>NSO: Design Artefacts Published
+    Note over NSI: Design Phase
+    NSI->>NSI: Define requirements, methodology,<br/>schema, validation & privacy rules
+    NSI-->>NSI: Design Artefacts Published
     end
 
     rect rgb(239, 246, 255)
-    Note over NSO: Implementation Phase
-    NSO->>NSO: Build instruments, workflows,<br/>catalog & pipeline
-    NSO-->>NSO: Pipeline Production-Ready
+    Note over NSI: Implementation Phase
+    NSI->>NSI: Build instruments, workflows,<br/>catalog & pipeline
+    NSI-->>NSI: Pipeline Production-Ready
     end
 
     rect rgb(236, 253, 245)
-    Note over NSO,DP: Execution Phase (per cycle)
-    NSO->>DP: Confirm source & activate agreement
-    DP-->>NSO: Agreement Confirmed
+    Note over NSI,DP: Execution Phase (per cycle)
+    NSI->>DP: Confirm source & activate agreement
+    DP-->>NSI: Agreement Confirmed
 
     alt Primary Collection
-        NSO->>DP: Send survey invitation
-        DP-->>NSO: Survey Response
+        NSI->>DP: Send survey invitation
+        DP-->>NSI: Survey Response
     else Secondary Collection
-        DP-->>NSO: Data File (SFTP/API)
+        DP-->>NSI: Data File (SFTP/API)
     end
 
-    NSO->>NSO: Validate structure & quality
+    NSI->>NSI: Validate structure & quality
 
     alt Validation Passed
-        NSO->>NSO: Assign ID, store raw data,<br/>register metadata
+        NSI->>NSI: Assign ID, store raw data,<br/>register metadata
     else Validation Failed
-        NSO->>DP: Request redelivery
+        NSI->>DP: Request redelivery
     end
     end
 
     rect rgb(254, 243, 199)
     Note over PM: Management Phase
     PM->>PM: Monitor KPIs, assess quality,<br/>produce compliance reports
-    PM-->>NSO: Improvement Recommendations
+    PM-->>NSI: Improvement Recommendations
     end
 ```
 
@@ -2536,11 +2652,11 @@ This reference table maps each process group of this document to the internation
 | **Execution** | Phase 4 (Collect: 4.1–4.4) | Production (execution) | Data Ingestion (execution) | 1.2.1 Primary data collection, 1.2.2 Secondary data collection |
 | **Management** | Overarching processes (Quality Management, Metadata Management) | Corporate Support (Quality, Data, Metadata Management), Capability Management (improvement) | Data Quality, Data Governance, Traceability | 2.1.3 Statistical quality management, 4.1.4 Improve management, 4.1.5 Accountability |
 
-## Applying This to Your NSO
+## Applying This to Your NSI
 
 ### Maturity Assessment Checklist
 
-Use this checklist to assess your NSO's maturity across all four process types — not just execution.
+Use this checklist to assess your NSI's maturity across all four process types — not just execution.
 
 **Design Maturity**
 
@@ -2590,7 +2706,7 @@ Each scenario walks through **all four process types**, demonstrating how the go
 
 #### Scenario B: Tax Register Administrative Data (Secondary Collection)
 
-**Design Phase:** Statistical designers define the data requirement — quarterly corporate income tax declarations for all legal entities, for use in national accounts and business statistics. The data model maps the tax authority's XML schema to the NSO's raw data structure: 47 fields retained, 12 derived, corporate ID as the linkage key. The SLA is set at delivery within 45 calendar days of quarter end, minimum 98% of expected records, in XML format with XSD validation. Validation rules cover XSD schema validation, corporate ID referential integrity against the business register, and amount fields within historical range (plus or minus three standard deviations). Privacy framework: data is received under the Statistics Act mandate, with pseudonymization deferred to the standardization phase (VS-02.0) per agreement.
+**Design Phase:** Statistical designers define the data requirement — quarterly corporate income tax declarations for all legal entities, for use in national accounts and business statistics. The data model maps the tax authority's XML schema to the NSI's raw data structure: 47 fields retained, 12 derived, corporate ID as the linkage key. The SLA is set at delivery within 45 calendar days of quarter end, minimum 98% of expected records, in XML format with XSD validation. Validation rules cover XSD schema validation, corporate ID referential integrity against the business register, and amount fields within historical range (plus or minus three standard deviations). Privacy framework: data is received under the Statistics Act mandate, with pseudonymization deferred to the standardization phase (VS-02.0) per agreement.
 
 **Implementation Phase:** System configurators set up a dedicated SFTP endpoint with mutual TLS authentication and IP whitelist. Data engineers configure automated ingestion: file arrival triggers a validation pipeline (XSD check, checksum, virus scan, completeness, referential integrity, range check). Metadata registration is automated — on successful validation, a provenance record is created and linked to the agreement, and quality scores are calculated and stored. The pipeline is tested with Q1-2026 historical data resubmission; all validation rules are verified and one false-positive range check is identified and the threshold adjusted.
 
@@ -2695,7 +2811,7 @@ flowchart TD
 
 ### Steady State Transition
 
-VS-02.0 transitions data from **Steady State #1 (Raw Data)** — data under NSO custody in its original form — to **Steady State #2 (Standardized Data)** — data aligned to common structures, formats, classifications, and semantics, with direct identifiers removed, so that it is interoperable and comparable across sources, domains, and time.
+VS-02.0 transitions data from **Steady State #1 (Raw Data)** — data under NSI custody in its original form — to **Steady State #2 (Standardized Data)** — data aligned to common structures, formats, classifications, and semantics, with direct identifiers removed, so that it is interoperable and comparable across sources, domains, and time.
 
 ```{mermaid}
 %%| label: fig-2
@@ -2794,7 +2910,7 @@ The following principles directly govern the VS-02.0 business domain:
 
 | Principle | Statement | Application to VS-02.0 |
 |---|---|---|
-| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSOs should contribute to open source communities for classification, coding, and mapping tooling (e.g., libraries for SDMX, the statistical data-exchange standard, or coding engines), ensuring collective control over critical standardization capabilities rather than vendor dependence. |
+| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSIs should contribute to open source communities for classification, coding, and mapping tooling (e.g., libraries for SDMX, the statistical data-exchange standard, or coding engines), ensuring collective control over critical standardization capabilities rather than vendor dependence. |
 | **SAF-P07** | Implement loosely coupled processes and systems | The standardization domain must be independent from upstream acquisition and downstream editing. Standardized Data (State #2) serves as a decoupling interface — downstream consumers access standardized, classified data without knowledge of the original source structure. |
 | **SAF-P08** | Data is shared property | Standardized data, once registered, is available to all authorized consumers. Standardization should not be duplicated across statistical products when the same standardized asset can serve multiple purposes. |
 | **SAF-P09** | No data without metadata and classification | Standardization is where classification is applied as a first-class activity. Every standardized dataset carries source-to-target mappings, classification scheme versions, harmonized definitions, units, and a BIV classification (availability, integrity, confidentiality). The principle does not require raw inputs to *arrive* already classified — it requires that data **handed over from State #2 onward** carries the required metadata and classification. This domain is the principal fulfillment point of that obligation. |
@@ -2835,8 +2951,8 @@ It is considered that metadata is an essential product of the Design phase and a
 
 | Role                        | Process Orientation | Description                                                                                       |
 |-----------------------------|---------------------|---------------------------------------------------------------------------------------------------|
-| **Upstream Data Provider (VS-01.0)** | External (internal NSO) | Supplies Raw Data (State #1) and its provenance metadata to the standardization domain |
-| **Standards Body**          | External            | Maintains classification and exchange standards the NSO conforms to (e.g., Eurostat, UNSD for NACE, ISCO, COICOP, SDMX) |
+| **Upstream Data Provider (VS-01.0)** | External (internal NSI) | Supplies Raw Data (State #1) and its provenance metadata to the standardization domain |
+| **Standards Body**          | External            | Maintains classification and exchange standards the NSI conforms to (e.g., Eurostat, UNSD for NACE, ISCO, COICOP, SDMX) |
 | **Data Architect**          | Design              | Designs the target data models, canonical schemas, and structural conformance rules               |
 | **Classification Steward**  | Design              | Owns classification strategy, code lists, and the 1-to-1 correspondence/lookup tables from source codes to standards |
 | **Metadata Architect**      | Design              | Designs harmonized definitions, semantic mappings, unit/period metadata, and the standardized metadata schema |
@@ -2869,14 +2985,14 @@ The starting point of standardization is defining the canonical structure that a
 | Define structural conformance contract and referential constraints | Structural Conformance Rules | GSBPM 2.5 |
 | Define integration/linkage key structure for multi-source alignment | Integration Key Design | SAF 2.1.4 |
 
-::: {.callout-tip title="**NSO Example — Business Statistics:**"}
+::: {.callout-tip title="**NSI Example — Business Statistics:**"}
 A national statistical organization designing its business statistics data model defines the statistical business register identifier as the canonical linkage key, requires that each turnover figure carry its currency and reference-period basis as metadata (values are recorded as received, not converted), and specifies that economic activity is expressed in NACE Rev. 2 via a maintained correspondence table. The design produces the target schema against which survey returns, VAT register data, and structural business statistics are all aligned.
 :::
 
 
 ### Design Classification Mapping Strategy
 
-Once the target structure is set, the classification steward designs how **source codes are mapped one-to-one to standard classifications**. This sub-process selects the authoritative classifications and code lists the NSO conforms to — NACE, ISCO, COICOP, NUTS, SDMX code lists, and GSIM-aligned concepts — and defines the version policy (which version applies, how transitions between versions are handled). The mapping is **deterministic**: maintained correspondence/lookup tables translate a value that already carries a source code into the corresponding standard code, with the original value preserved. The design also specifies how **unmapped or uncoded values are handled** — they are flagged and passed to VS-03 (Editing & Enrichment), which performs any interpretive coding of free text. Reference and master data sources are identified so that mapping is anchored to authoritative registers, aligned with GSBPM 2.5 (Design processing and analysis).
+Once the target structure is set, the classification steward designs how **source codes are mapped one-to-one to standard classifications**. This sub-process selects the authoritative classifications and code lists the NSI conforms to — NACE, ISCO, COICOP, NUTS, SDMX code lists, and GSIM-aligned concepts — and defines the version policy (which version applies, how transitions between versions are handled). The mapping is **deterministic**: maintained correspondence/lookup tables translate a value that already carries a source code into the corresponding standard code, with the original value preserved. The design also specifies how **unmapped or uncoded values are handled** — they are flagged and passed to VS-03 (Editing & Enrichment), which performs any interpretive coding of free text. Reference and master data sources are identified so that mapping is anchored to authoritative registers, aligned with GSBPM 2.5 (Design processing and analysis).
 
 ::: {.callout-note}
 Interpretive coding of free-text values (e.g., coding a written job title to ISCO) is **not** a VS-02 activity — it requires judgement that can change informational content and is therefore performed in VS-03. VS-02 only applies deterministic source-code → standard-code correspondences.
@@ -2890,7 +3006,7 @@ Interpretive coding of free-text values (e.g., coding a written job title to ISC
 | Define handling of unmapped/uncoded values (flag and route to VS-03) | Unmapped-Value Routing Rules | GSBPM 2.5 |
 | Identify reference and master data sources for mapping | Reference Data Catalog | CSDA Reference Data |
 
-::: {.callout-tip title="**NSO Example — Labour Statistics:**"}
+::: {.callout-tip title="**NSI Example — Labour Statistics:**"}
 The labour statistics team designs deterministic correspondence tables: source education codes from the Labour Force Survey map one-to-one to ISCED-2011, and source region codes map to NUTS-3. Free-text job titles are **not** coded here — they are flagged and handed to VS-03, where occupation is coded to ISCO-08. VS-02 only re-expresses values that already carry a source code.
 :::
 
@@ -2994,7 +3110,7 @@ This sub-process turns the target data model and mapping designs into operationa
 | Configure lineage capture for every mapping/coercion operation | Lineage-aware mapping modules | CSDA Traceability |
 | Version-control all mapping & format-coercion logic | Versioned mapping repository | SAF-P10 |
 
-::: {.callout-tip title="**NSO Example — Price Statistics:**"}
+::: {.callout-tip title="**NSI Example — Price Statistics:**"}
 The implementation team builds a component that coerces heterogeneous retailer price feeds into the canonical price record structure — reshaping fields and casting types — and records each item's currency, unit (e.g., price-per-kilogram), and scrape timestamp **as metadata**. Prices are stored exactly as received. Converting currencies/units to a common basis and coding each product to its COICOP item require judgement and are performed in VS-03; VS-02 only re-structures and annotates. Lineage is captured so every standardized record links back to the exact raw scrape record.
 :::
 
@@ -3096,7 +3212,7 @@ When a "Raw Data Registered" event is received from VS-01.0, the standardization
 | Identify required format coercion and code mappings to apply | Mapping Plan (per dataset) | GSBPM 5.1 |
 | Flag unexpected structural deviations for design review | Schema-change exception (if any) | GSBPM 5.1 |
 
-::: {.callout-tip title="**NSO Example — Tax Register Intake:**"}
+::: {.callout-tip title="**NSI Example — Tax Register Intake:**"}
 The quarterly corporate tax file (Raw Data registered by VS-01.0) is profiled on arrival: 47 fields detected, corporate identifier present at 99.8% coverage, economic activity supplied as the tax authority's internal code (which has a maintained correspondence to NACE), and turnover provided in thousands of euro. The structure-gap assessment flags the activity-code correspondence mapping and the format coercion of the XML as the VS-02 work; it records that turnover's unit basis ("thousands of EUR") must travel as metadata and that converting it to a common unit is a VS-03 activity.
 :::
 
@@ -3148,7 +3264,7 @@ flowchart LR
 ```
 
 
-::: {.callout-tip title='**NSO Example — Labour Force Survey Standardization:**'}
+::: {.callout-tip title='**NSI Example — Labour Force Survey Standardization:**'}
 The LFS returns are standardized in VS-02 by deterministic mapping only: source education codes map one-to-one to ISCED-2011 and source region codes map to NUTS-3 via correspondence tables, and the XML is coerced to the target schema. The 42,000 free-text occupation strings are **not** coded here — they are flagged and handed to VS-03, where occupation is coded to ISCO-08. No response value is altered — values are only re-expressed in standard codes where a deterministic correspondence exists.
 :::
 
@@ -3166,7 +3282,7 @@ Once structure and codes are standardized, the descriptive metadata and semantic
 | Record differing cross-source definitions as metadata and flag them for VS-03 | Definition-difference record | SAF 2.1.4 |
 | Standardize and attach quality descriptors | Harmonized quality metadata | CSDA Metadata Mgmt |
 
-::: {.callout-tip title="**NSO Example — Multi-Source Business Statistics:**"}
+::: {.callout-tip title="**NSI Example — Multi-Source Business Statistics:**"}
 Turnover arrives from the structural business survey, the VAT register, and a commercial dataset. VS-02 links each turnover variable to the canonical concept and **records** each source's currency, unit, and reference-period basis as metadata — noting, for instance, that the VAT register reports on a fiscal-year basis and the survey on a calendar-year basis. VS-02 does **not** adjust the values to a common basis; the period and unit differences are carried as metadata and the alignment/conversion is performed downstream in VS-03, keeping the difference transparent and the original values intact.
 :::
 
@@ -3188,7 +3304,7 @@ Before standardized data can be accepted, it must pass the conformance gates. Th
 **Boundary:** NO value is changed at this stage. Standardization re-expresses structure and format, adds standard codes by 1-to-1 mapping, and attaches metadata — nothing more. The following are explicitly the responsibility of **VS-03.0 Data Editing and Enrichment**, not VS-02: content correction, imputation, enrichment, **unit and currency conversion, reference-period alignment, value reconciliation across sources, derivation of new variables, and interpretive coding of free text**.
 :::
 
-::: {.callout-tip title="**NSO Example — Price Data Conformance:**"}
+::: {.callout-tip title="**NSI Example — Price Data Conformance:**"}
 The standardized daily price dataset is validated: all 11,875 records conform structurally to the canonical price record, every product whose source code has a COICOP correspondence is mapped (the rest are flagged for VS-03), each price carries its currency and unit as metadata with the value left exactly as received, and the record count and observed price points match the raw scrape exactly (no-loss-of-content confirmed). Result: Standardization Conformed. All results logged with rule version, engine version, and operator ID.
 :::
 
@@ -3366,12 +3482,12 @@ The VS-02.0 business domain exposes the following services:
 
 | Service | Direction | Consumers | Mapped Processes |
 |---|---|---|---|
-| **Standardization Service** | Internal (VS-01.0 → NSO) | Raw data consumers, standardization teams | 5.1 Profile, 5.2 Apply Classifications |
+| **Standardization Service** | Internal (VS-01.0 → NSI) | Raw data consumers, standardization teams | 5.1 Profile, 5.2 Apply Classifications |
 | **Classification Mapping Service** | Internal | Standardization teams, methodologists, other domains needing code mapping | 5.2 Apply Standard Classifications |
 | **Semantic Harmonization Service** | Internal | Metadata architects, downstream analysts | 5.3 Align Metadata and Semantics |
 | **Conformance Validation Service** | Internal | Process owners, quality managers | 5.4 Validate Conformance |
-| **Standardized Data Provisioning Service** | Internal (NSO → VS-03.0) | Editing & enrichment teams, data analysts | 5.5 Register Standardized Artefacts |
-| **Classification Catalog Service** | Internal | All data consumers across the NSO | 6.3 Manage Classification & Metadata Lifecycle |
+| **Standardized Data Provisioning Service** | Internal (NSI → VS-03.0) | Editing & enrichment teams, data analysts | 5.5 Register Standardized Artefacts |
+| **Classification Catalog Service** | Internal | All data consumers across the NSI | 6.3 Manage Classification & Metadata Lifecycle |
 | **Design and Methodology Service** | Internal | Methodologists, data architects, classification stewards | 3.1–3.5 All design processes |
 
 **Interface specifications:**
@@ -3430,46 +3546,46 @@ flowchart TB
 
 ```{mermaid}
 %%| label: fig-10
-%%| fig-cap: "Event-Driven Choreography between the upstream domain (VS-01.0) and NSO teams, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design."
+%%| fig-cap: "Event-Driven Choreography between the upstream domain (VS-01.0) and NSI teams, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design."
 %%| fig-width: 6
 
 sequenceDiagram
     participant US as Upstream (VS-01.0)
-    participant NSO as NSO Teams
+    participant NSI as NSI Teams
     participant PM as Process Mgmt
 
     rect rgb(245, 243, 255)
-    Note over NSO: Design Phase
-    NSO->>NSO: Define target model, classification strategy,<br/>harmonization & conformance rules
-    NSO-->>NSO: Design Artefacts Published
+    Note over NSI: Design Phase
+    NSI->>NSI: Define target model, classification strategy,<br/>harmonization & conformance rules
+    NSI-->>NSI: Design Artefacts Published
     end
 
     rect rgb(239, 246, 255)
-    Note over NSO: Implementation Phase
-    NSO->>NSO: Build mapping & format-coercion, mapping services,<br/>conformance pipeline & catalog
-    NSO-->>NSO: Pipeline Production-Ready
+    Note over NSI: Implementation Phase
+    NSI->>NSI: Build mapping & format-coercion, mapping services,<br/>conformance pipeline & catalog
+    NSI-->>NSI: Pipeline Production-Ready
     end
 
     rect rgb(236, 253, 245)
-    Note over NSO,US: Execution Phase (per cycle)
-    US-->>NSO: Raw Data Registered event
-    NSO->>NSO: Profile & assess structure
-    NSO->>NSO: Map codes 1-to-1 & coerce format; record unit/period metadata
+    Note over NSI,US: Execution Phase (per cycle)
+    US-->>NSI: Raw Data Registered event
+    NSI->>NSI: Profile & assess structure
+    NSI->>NSI: Map codes 1-to-1 & coerce format; record unit/period metadata
 
-    NSO->>NSO: Validate structural & semantic conformance
+    NSI->>NSI: Validate structural & semantic conformance
 
     alt Conformance Passed
-        NSO->>NSO: Assign ID, store standardized data,<br/>register lineage & metadata
-        NSO-->>NSO: Standardized Data Registered event
+        NSI->>NSI: Assign ID, store standardized data,<br/>register lineage & metadata
+        NSI-->>NSI: Standardized Data Registered event
     else Conformance Failed
-        NSO->>NSO: Re-map / route unmapped values to VS-03
+        NSI->>NSI: Re-map / route unmapped values to VS-03
     end
     end
 
     rect rgb(254, 243, 199)
     Note over PM: Management Phase
     PM->>PM: Monitor KPIs, assess mapping quality,<br/>produce compliance reports
-    PM-->>NSO: Improvement Recommendations
+    PM-->>NSI: Improvement Recommendations
     end
 ```
 
@@ -3484,11 +3600,11 @@ This reference table maps each process group of this document to the internation
 | **Execution** | Phase 5 (Process: 5.1 Integrate, 5.2 Classify & code, 5.3 Review & validate) | Production (execution) | Data Integration (execution) | 2.1.2 Metadata management, 2.1.4 Statistical register management |
 | **Management** | Overarching processes (Quality Management, Metadata Management) | Corporate Support (Quality Management, Data Management, Metadata Management), Capability Management (improvement) | Data Quality, Data Governance, Traceability | 2.1.3 Statistical quality management, 4.1.4 Improve management, 4.1.5 Accountability |
 
-## Applying This to Your NSO
+## Applying This to Your NSI
 
 ### Maturity Assessment Checklist
 
-Use this checklist to assess your NSO's maturity across all four process types — not just execution.
+Use this checklist to assess your NSI's maturity across all four process types — not just execution.
 
 **Design Maturity**
 
@@ -3743,7 +3859,7 @@ The following principles directly govern the VS-03.0 business domain:
 
 | Principle | Statement | Application to VS-03.0 |
 |---|---|---|
-| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSOs should contribute to open source communities for editing, imputation, and coding tooling (e.g., selective-editing engines, imputation libraries), ensuring collective control over critical methodological capabilities rather than vendor dependence. |
+| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSIs should contribute to open source communities for editing, imputation, and coding tooling (e.g., selective-editing engines, imputation libraries), ensuring collective control over critical methodological capabilities rather than vendor dependence. |
 | **SAF-P07** | Implement loosely coupled processes and systems | The editing domain must be independent from upstream standardization and downstream estimation. Processed Data (State #3) serves as a decoupling interface — downstream consumers access edited, enriched microdata without knowledge of how it was corrected or imputed. |
 | **SAF-P08** | Data is shared property | Processed data, once versioned, is available to all authorized consumers. Editing and enrichment should not be duplicated across statistical products when the same processed asset can serve multiple purposes. |
 | **SAF-P09** | No data without metadata and classification | Every edit, imputation, and derived variable carries metadata: the rule applied, the original value, the imputation method and flag, the derivation formula, and a classification for derived variables. This is what makes the changes transparent and reproducible. |
@@ -3784,8 +3900,8 @@ It is considered that metadata is an essential product of the Design phase and a
 
 | Role                        | Process Orientation | Description                                                                                       |
 |-----------------------------|---------------------|---------------------------------------------------------------------------------------------------|
-| **Upstream Data Provider (VS-02.0)** | External (internal NSO) | Supplies Standardized Data (State #2) and its mapping/metadata to the editing domain |
-| **Methodology Authority**   | External            | Sets the editing, imputation, and derivation methods the NSO conforms to (e.g., methodology unit, Eurostat guidance) |
+| **Upstream Data Provider (VS-02.0)** | External (internal NSI) | Supplies Standardized Data (State #2) and its mapping/metadata to the editing domain |
+| **Methodology Authority**   | External            | Sets the editing, imputation, and derivation methods the NSI conforms to (e.g., methodology unit, Eurostat guidance) |
 | **Editing Methodologist**   | Design              | Designs error-detection and editing rules, selective-editing strategy, and quality criteria        |
 | **Imputation Specialist**   | Design              | Designs imputation methodology, models, donor strategies, and imputation flags                     |
 | **Derivation Designer**     | Design              | Specifies derived variables and indicators, formulae, and required inputs                          |
@@ -3819,7 +3935,7 @@ The starting point of editing is defining what counts as an error. This sub-proc
 | Design selective-editing score functions and review thresholds | Selective-Editing Strategy | GSBPM 2.5 |
 | Define error taxonomy and disposition options (auto-correct / review / accept) | Error Taxonomy & Disposition Policy | GSBPM 2.5 |
 
-::: {.callout-tip title="**NSO Example — Structural Business Statistics:**"}
+::: {.callout-tip title="**NSI Example — Structural Business Statistics:**"}
 The SBS team designs consistency rules (turnover ≥ 0, employees ≥ 0, turnover-per-employee within a plausible band by NACE class), outlier rules using a Hidiroglou–Berthelot test on year-on-year ratios, and a selective-editing score that flags only units whose potential error would move a published aggregate by more than a set threshold. Everything else is accepted without manual touch.
 :::
 
@@ -3835,7 +3951,7 @@ This sub-process designs how missing and non-response values are completed. The 
 | Specify use of external/administrative sources for imputation | External-Source Imputation Rules | GSBPM 2.5 |
 | Mandate imputation flags and method codes on every imputed value | Imputation Flagging Standard | SAF-P09 |
 
-::: {.callout-tip title="**NSO Example — Labour Force Survey:**"}
+::: {.callout-tip title="**NSI Example — Labour Force Survey:**"}
 For item non-response on income, the LFS design specifies regression imputation using age, education (ISCED), occupation (ISCO), and region as predictors, with a constraint that imputed income remains within the valid range for the respondent's earnings bracket. Every imputed value receives a flag and a method code so analysts can exclude or down-weight imputed values if needed.
 :::
 
@@ -3936,7 +4052,7 @@ This sub-process turns the validation and editing rule designs into operational 
 | Configure edit-lineage capture (original value, rule, reason, actor) for every change | Edit audit-trail capture | SAF-P10 |
 | Version-control all editing logic | Versioned editing repository | SAF-P10 |
 
-::: {.callout-tip title="**NSO Example — Price Statistics:**"}
+::: {.callout-tip title="**NSI Example — Price Statistics:**"}
 The implementation team builds an outlier detector for daily price changes, an editing engine that applies designed corrections (e.g., decimal-point fixes), and a review queue for flagged price jumps. Every correction stores the original scraped price, the rule, and the analyst's adjudication, so the edit can be audited and reversed.
 :::
 
@@ -4037,7 +4153,7 @@ When a "Standardized Data Registered" event is received from VS-02.0, the editin
 | Assign disposition (auto-correct / flag for review / accept) | Disposition list | GSBPM 5.3 |
 | Log all detected issues to the edit audit trail | Audit trail entries | SAF-P10 |
 
-::: {.callout-tip title="**NSO Example — Structural Business Statistics:**"}
+::: {.callout-tip title="**NSI Example — Structural Business Statistics:**"}
 The SBS file (Standardized Data registered by VS-02.0) is diagnosed: 312 units fail the turnover-per-employee plausibility band, 47 are duplicates, 1,204 have missing employee counts. Selective-editing scores prioritize 89 units whose potential error would materially affect a published aggregate; the remaining low-impact flags are scheduled for automatic treatment.
 :::
 
@@ -4089,7 +4205,7 @@ flowchart LR
 ```
 
 
-::: {.callout-tip title='**NSO Example — Labour Force Survey Coding:**'}
+::: {.callout-tip title='**NSI Example — Labour Force Survey Coding:**'}
 The 42,000 free-text occupation strings handed over from VS-02 are coded to ISCO-08: 88% are auto-coded at or above the 0.85 confidence threshold, 5,040 go to computer-assisted coding, and 1,200 ambiguous cases to expert manual coding. Each coded value records the source text, the assigned code, the method, and the confidence — fully auditable as an editing decision.
 :::
 
@@ -4107,7 +4223,7 @@ This sub-process fills missing and non-response values using the designed imputa
 | Flag every imputed value with method code and record inputs | Imputation flags & lineage | SAF-P09 |
 | Log imputation actions to the edit audit trail | Audit trail entries | SAF-P10 |
 
-::: {.callout-tip title="**NSO Example — Labour Force Survey:**"}
+::: {.callout-tip title="**NSI Example — Labour Force Survey:**"}
 Item non-response on income (about 9% of records) is imputed by the designed regression model using age, ISCED, ISCO, and region; each imputed income carries an `imputed=true` flag and method code `REG-01`, and the predictor values used are recorded so the imputation can be reproduced or revised.
 :::
 
@@ -4124,7 +4240,7 @@ This sub-process calculates the derived variables and indicators specified in de
 | Integrate/link datasets on designed keys where applicable | Integrated dataset (+ linkage lineage) | GSBPM 5.1 |
 | Record derivation/conversion formulae and inputs as lineage | Derivation lineage | SAF-P09 |
 
-::: {.callout-tip title="**NSO Example — Tax Register to Business Statistics:**"}
+::: {.callout-tip title="**NSI Example — Tax Register to Business Statistics:**"}
 Turnover, recorded by VS-02 as "thousands of EUR" on a fiscal-year basis, is converted here to units on a calendar-year basis using the designed conversion and apportionment rules; the conversion factor and the original value are stored in lineage. Turnover-per-employee is then derived as a new indicator with its formula and inputs recorded.
 :::
 
@@ -4300,12 +4416,12 @@ The VS-03.0 business domain exposes the following services:
 
 | Service | Direction | Consumers | Mapped Processes |
 |---|---|---|---|
-| **Error-Detection Service** | Internal (VS-02.0 → NSO) | Standardized data consumers, editing teams | 5.1 Conduct Error Detection |
+| **Error-Detection Service** | Internal (VS-02.0 → NSI) | Standardized data consumers, editing teams | 5.1 Conduct Error Detection |
 | **Editing and Correction Service** | Internal | Editing teams, subject-matter analysts | 5.2 Perform Data Editing and Correction |
 | **Imputation Service** | Internal | Editing teams, methodologists | 5.3 Impute Missing or Non-Response Data |
 | **Derivation and Integration Service** | Internal | Editing teams, downstream analysts | 5.4 Derive Additional Variables |
-| **Processed-Data Provisioning Service** | Internal (NSO → VS-04.0) | Estimation & modeling teams, data analysts | 5.5 Perform Quality Evaluation and Versioning |
-| **Quality-Version Catalog Service** | Internal | All data consumers across the NSO | 6.3 Manage Methodology & Version Lifecycle |
+| **Processed-Data Provisioning Service** | Internal (NSI → VS-04.0) | Estimation & modeling teams, data analysts | 5.5 Perform Quality Evaluation and Versioning |
+| **Quality-Version Catalog Service** | Internal | All data consumers across the NSI | 6.3 Manage Methodology & Version Lifecycle |
 | **Design and Methodology Service** | Internal | Methodologists, editing/imputation designers | 3.1–3.5 All design processes |
 
 **Interface specifications:**
@@ -4364,46 +4480,46 @@ flowchart TB
 
 ```{mermaid}
 %%| label: fig-10
-%%| fig-cap: "Event-Driven Choreography between the upstream domain (VS-02.0) and NSO teams, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design."
+%%| fig-cap: "Event-Driven Choreography between the upstream domain (VS-02.0) and NSI teams, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design."
 %%| fig-width: 6
 
 sequenceDiagram
     participant US as Upstream (VS-02.0)
-    participant NSO as NSO Teams
+    participant NSI as NSI Teams
     participant PM as Process Mgmt
 
     rect rgb(245, 243, 255)
-    Note over NSO: Design Phase
-    NSO->>NSO: Define editing & validation rules, imputation<br/>methodology, derivation specs & versioning policy
-    NSO-->>NSO: Design Artefacts Published
+    Note over NSI: Design Phase
+    NSI->>NSI: Define editing & validation rules, imputation<br/>methodology, derivation specs & versioning policy
+    NSI-->>NSI: Design Artefacts Published
     end
 
     rect rgb(239, 246, 255)
-    Note over NSO: Implementation Phase
-    NSO->>NSO: Build editing/imputation engines, derivation<br/>& integration pipelines, versioning store
-    NSO-->>NSO: Pipeline Production-Ready
+    Note over NSI: Implementation Phase
+    NSI->>NSI: Build editing/imputation engines, derivation<br/>& integration pipelines, versioning store
+    NSI-->>NSI: Pipeline Production-Ready
     end
 
     rect rgb(236, 253, 245)
-    Note over NSO,US: Execution Phase (per cycle)
-    US-->>NSO: Standardized Data Registered event
-    NSO->>NSO: Detect errors & diagnose quality
-    NSO->>NSO: Edit, code & reconcile; impute gaps
+    Note over NSI,US: Execution Phase (per cycle)
+    US-->>NSI: Standardized Data Registered event
+    NSI->>NSI: Detect errors & diagnose quality
+    NSI->>NSI: Edit, code & reconcile; impute gaps
 
-    NSO->>NSO: Derive variables, convert units, integrate
+    NSI->>NSI: Derive variables, convert units, integrate
 
     alt Quality version accepted
-        NSO->>NSO: Evaluate quality, create immutable version,<br/>register lineage & metadata
-        NSO-->>NSO: Processed Data Registered event
+        NSI->>NSI: Evaluate quality, create immutable version,<br/>register lineage & metadata
+        NSI-->>NSI: Processed Data Registered event
     else Quality insufficient
-        NSO->>NSO: Re-edit / re-impute per review
+        NSI->>NSI: Re-edit / re-impute per review
     end
     end
 
     rect rgb(254, 243, 199)
     Note over PM: Management Phase
     PM->>PM: Monitor edit/imputation rates, assess quality<br/>improvement, produce audit reports
-    PM-->>NSO: Improvement Recommendations
+    PM-->>NSI: Improvement Recommendations
     end
 ```
 
@@ -4418,11 +4534,11 @@ This reference table maps each process group of this document to the internation
 | **Execution** | Phase 5 (Process: 5.3 Review & validate, 5.4 Edit & impute, 5.5 Derive new variables, 5.8 Finalise data files; 5.1 Integrate) | Production (execution) | Data Processing (execution) | 2.1.2 Metadata management, 2.1.3 Statistical quality management |
 | **Management** | Overarching processes (Quality Management, Metadata Management) | Corporate Support (Quality Management, Data Management, Metadata Management), Capability Management (improvement) | Data Quality, Data Governance, Traceability | 2.1.3 Statistical quality management, 4.1.4 Improve management, 4.1.5 Accountability |
 
-## Applying This to Your NSO
+## Applying This to Your NSI
 
 ### Maturity Assessment Checklist
 
-Use this checklist to assess your NSO's maturity across all four process types — not just execution.
+Use this checklist to assess your NSI's maturity across all four process types — not just execution.
 
 **Design Maturity**
 
@@ -4671,7 +4787,7 @@ The following principles directly govern the VS-04.0 business domain:
 
 | Principle | Statement | Application to VS-04.0 |
 |---|---|---|
-| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSOs should contribute to open source communities for estimation, weighting, and modeling tooling (e.g., calibration and variance-estimation libraries), ensuring collective control over critical methodological capabilities rather than vendor dependence. |
+| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSIs should contribute to open source communities for estimation, weighting, and modeling tooling (e.g., calibration and variance-estimation libraries), ensuring collective control over critical methodological capabilities rather than vendor dependence. |
 | **SAF-P07** | Implement loosely coupled processes and systems | The estimation domain must be independent from upstream editing and downstream composition. Output Data (State #4) serves as a decoupling interface — downstream consumers access validated statistics without knowledge of the estimation internals. |
 | **SAF-P08** | Data is shared property | Output statistics and output microdata, once validated, are available to all authorized consumers. Estimation should not be duplicated across products when the same validated output can serve multiple purposes. |
 | **SAF-P09** | No data without metadata and classification | Every estimate carries metadata: the methodology and parameters applied, the weights used, accuracy measures (sampling error, confidence interval), the reference population, and a classification for derived statistics. This is what makes results transparent and reproducible. |
@@ -4712,8 +4828,8 @@ It is considered that metadata is an essential product of the Design phase and a
 
 | Role                        | Process Orientation | Description                                                                                       |
 |-----------------------------|---------------------|---------------------------------------------------------------------------------------------------|
-| **Upstream Data Provider (VS-03.0)** | External (internal NSO) | Supplies Processed Data (State #3) with edit/imputation lineage to the estimation domain |
-| **Methodology Authority**   | External            | Sets the estimation, weighting, and analytical methods the NSO conforms to (e.g., methodology unit, Eurostat guidance) |
+| **Upstream Data Provider (VS-03.0)** | External (internal NSI) | Supplies Processed Data (State #3) with edit/imputation lineage to the estimation domain |
+| **Methodology Authority**   | External            | Sets the estimation, weighting, and analytical methods the NSI conforms to (e.g., methodology unit, Eurostat guidance) |
 | **Estimation Methodologist**| Design              | Designs the estimation strategy, weighting/calibration methodology, and accuracy-measurement approach |
 | **Model Designer**          | Design              | Specifies analytical and forecasting models, their inputs, assumptions, and diagnostics            |
 | **Disclosure-Control Designer** | Design          | Designs the statistical disclosure control rules and disclosure-risk criteria for outputs           |
@@ -4747,7 +4863,7 @@ The starting point is choosing how the statistics will be estimated. This sub-pr
 | Define accuracy-measurement approach (sampling error, CI), reflecting imputation uncertainty | Accuracy Measurement Plan | GSBPM 2.5 |
 | Define coherence criteria with related and prior statistics | Coherence Criteria | GAMSO QM |
 
-::: {.callout-tip title="**NSO Example — Labour Force Survey:**"}
+::: {.callout-tip title="**NSI Example — Labour Force Survey:**"}
 The LFS team designs a design-based estimation strategy for the employment rate, with calibration to population totals by age, sex, and region, and a variance estimator (e.g., a linearization or replication method) that accounts for the survey design and for income/non-response imputation flagged in VS-03. Target parameters and the domains of estimation (national and NUTS-2) are specified.
 :::
 
@@ -4763,7 +4879,7 @@ This sub-process designs how sample bias, non-response, and coverage errors are 
 | Define weight bounds and acceptance constraints | Weight Constraint Policy | GSBPM 2.5 |
 | Define the authoritative source and version for calibration totals | Calibration-Total Source Register | CSDA Reference Data |
 
-::: {.callout-tip title="**NSO Example — Household Survey:**"}
+::: {.callout-tip title="**NSI Example — Household Survey:**"}
 The household survey calibration is designed to population totals by age × sex × region drawn from the population register, with a generalized regression (GREG) calibration and weight bounds to cap the calibration factor, so that weighted demographic margins reproduce the register while extreme weights are avoided.
 :::
 
@@ -4864,7 +4980,7 @@ This sub-process turns the weighting and calibration designs into operational to
 | Configure calibration-total connections (versioned register sources) | Calibration-total integration | CSDA Reference Data |
 | Version-control all weighting/calibration logic | Versioned methodology repository | SAF-P10 |
 
-::: {.callout-tip title="**NSO Example — Household Survey:**"}
+::: {.callout-tip title="**NSI Example — Household Survey:**"}
 The team configures a GREG calibration engine that pulls age × sex × region totals from a pinned version of the population register, applies weight bounds, and records the calibration totals and convergence diagnostics with every run so the weighting is reproducible.
 :::
 
@@ -4966,7 +5082,7 @@ When a "Processed Data Registered" event is received from VS-03.0, execution beg
 | Confirm target parameters and domains of estimation | Confirmed estimation scope | GSBPM 5.6 |
 | Flag methodology changes for design review | Methodology-change exception (if any) | GAMSO QM |
 
-::: {.callout-tip title="**NSO Example — Labour Force Survey:**"}
+::: {.callout-tip title="**NSI Example — Labour Force Survey:**"}
 For cycle Q3-2026 the LFS team confirms the design-based estimation strategy and the calibration totals (latest population-register extract by age × sex × region), and confirms the domains (national and NUTS-2). No methodology change is needed, so the cycle proceeds without a return to design.
 :::
 
@@ -4983,7 +5099,7 @@ This sub-process computes the weights, aligned with GSBPM 5.6 (Calculate weights
 | Check convergence and weight distribution against bounds | Weight diagnostics | GSBPM 5.6 |
 | Record calibration totals, auxiliaries, and diagnostics as lineage | Weighting lineage | SAF-P09 |
 
-::: {.callout-tip title="**NSO Example — Household Survey:**"}
+::: {.callout-tip title="**NSI Example — Household Survey:**"}
 The GREG calibration converges in 6 iterations; weighted margins reproduce the register totals by age × sex × region, the calibration factor stays within the designed bounds, and the totals and diagnostics are stored with the run.
 :::
 
@@ -5035,7 +5151,7 @@ flowchart LR
 ```
 
 
-::: {.callout-tip title='**NSO Example — Labour Force Survey:**'}
+::: {.callout-tip title='**NSI Example — Labour Force Survey:**'}
 The Q3-2026 employment rate is estimated at 71.4% with a 95% CI of ±0.5pp at national level and wider intervals at NUTS-2; the variance estimate is inflated appropriately for the income/non-response imputation flagged in VS-03. Each published cell carries its estimate, CV, and the method that produced it.
 :::
 
@@ -5053,7 +5169,7 @@ This sub-process conducts the designed model-based analyses, aligned with GSBPM 
 | Apply seasonal adjustment / time-series treatment where applicable | Adjusted series | GSBPM 6.1 |
 | Interpret results; document assumptions and limitations | Analytical commentary | GSBPM 6.3 |
 
-::: {.callout-tip title="**NSO Example — Tax Register to Business Statistics:**"}
+::: {.callout-tip title="**NSI Example — Tax Register to Business Statistics:**"}
 For small NACE × region domains where the direct register aggregate is unstable, a small-area model borrows strength across domains to produce more reliable estimates; model diagnostics (fit, prediction intervals) are recorded, and the model-based cells are flagged distinctly from direct aggregates.
 :::
 
@@ -5226,12 +5342,12 @@ The VS-04.0 business domain exposes the following services:
 
 | Service | Direction | Consumers | Mapped Processes |
 |---|---|---|---|
-| **Weighting and Calibration Service** | Internal (VS-03.0 → NSO) | Processed data consumers, estimation teams | 5.2 Apply Weighting and Calibration |
+| **Weighting and Calibration Service** | Internal (VS-03.0 → NSI) | Processed data consumers, estimation teams | 5.2 Apply Weighting and Calibration |
 | **Estimation and Aggregation Service** | Internal | Estimation teams, analysts | 5.3 Estimate and Aggregate Data |
 | **Modeling and Analysis Service** | Internal | Analysts, methodologists | 5.4 Perform Model-Based Analysis |
 | **Validation and Disclosure-Control Service** | Internal | Quality managers, disclosure-control officers | 5.5 Validate and Document Results |
-| **Output-Data Provisioning Service** | Internal (NSO → VS-05.0) | Product composition teams, data analysts | 5.5 Validate and Document Results |
-| **Output-Version Catalog Service** | Internal | All data consumers across the NSO | 6.3 Manage Methodology & Version Lifecycle |
+| **Output-Data Provisioning Service** | Internal (NSI → VS-05.0) | Product composition teams, data analysts | 5.5 Validate and Document Results |
+| **Output-Version Catalog Service** | Internal | All data consumers across the NSI | 6.3 Manage Methodology & Version Lifecycle |
 | **Design and Methodology Service** | Internal | Methodologists, estimation/model designers | 3.1–3.5 All design processes |
 
 **Interface specifications:**
@@ -5290,46 +5406,46 @@ flowchart TB
 
 ```{mermaid}
 %%| label: fig-10
-%%| fig-cap: "Event-Driven Choreography between the upstream domain (VS-03.0) and NSO teams, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design."
+%%| fig-cap: "Event-Driven Choreography between the upstream domain (VS-03.0) and NSI teams, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design."
 %%| fig-width: 6
 
 sequenceDiagram
     participant US as Upstream (VS-03.0)
-    participant NSO as NSO Teams
+    participant NSI as NSI Teams
     participant PM as Process Mgmt
 
     rect rgb(245, 243, 255)
-    Note over NSO: Design Phase
-    NSO->>NSO: Define estimation & weighting methodology,<br/>model specs, validation & SDC policy
-    NSO-->>NSO: Design Artefacts Published
+    Note over NSI: Design Phase
+    NSI->>NSI: Define estimation & weighting methodology,<br/>model specs, validation & SDC policy
+    NSI-->>NSI: Design Artefacts Published
     end
 
     rect rgb(239, 246, 255)
-    Note over NSO: Implementation Phase
-    NSO->>NSO: Build weighting/estimation engines, modeling<br/>environment, variance & SDC tooling
-    NSO-->>NSO: Pipeline Production-Ready
+    Note over NSI: Implementation Phase
+    NSI->>NSI: Build weighting/estimation engines, modeling<br/>environment, variance & SDC tooling
+    NSI-->>NSI: Pipeline Production-Ready
     end
 
     rect rgb(236, 253, 245)
-    Note over NSO,US: Execution Phase (per cycle)
-    US-->>NSO: Processed Data Registered event
-    NSO->>NSO: Confirm approach; apply weighting & calibration
-    NSO->>NSO: Estimate & aggregate; run model-based analysis
+    Note over NSI,US: Execution Phase (per cycle)
+    US-->>NSI: Processed Data Registered event
+    NSI->>NSI: Confirm approach; apply weighting & calibration
+    NSI->>NSI: Estimate & aggregate; run model-based analysis
 
-    NSO->>NSO: Validate soundness & coherence; apply disclosure control
+    NSI->>NSI: Validate soundness & coherence; apply disclosure control
 
     alt Output version accepted
-        NSO->>NSO: Document methodology, create immutable version,<br/>register accuracy & lineage
-        NSO-->>NSO: Output Data Registered event
+        NSI->>NSI: Document methodology, create immutable version,<br/>register accuracy & lineage
+        NSI-->>NSI: Output Data Registered event
     else Validation failed
-        NSO->>NSO: Re-estimate / revise per review
+        NSI->>NSI: Re-estimate / revise per review
     end
     end
 
     rect rgb(254, 243, 199)
     Note over PM: Management Phase
     PM->>PM: Monitor accuracy & timeliness, assess coherence<br/>& revisions, produce audit reports
-    PM-->>NSO: Improvement Recommendations
+    PM-->>NSI: Improvement Recommendations
     end
 ```
 
@@ -5344,11 +5460,11 @@ This reference table maps each process group of this document to the internation
 | **Execution** | Phase 5 (Process: 5.6 Calculate weights, 5.7 Calculate aggregates) + Phase 6 (Analyze: 6.1 Prepare draft outputs, 6.2 Validate outputs, 6.3 Interpret & explain, 6.4 Apply disclosure control, 6.5 Finalise outputs) | Production (execution) | Data Analysis (execution) | 2.1.2 Metadata management, 2.1.3 Statistical quality management |
 | **Management** | Overarching processes (Quality Management, Metadata Management) | Corporate Support (Quality Management, Data Management, Metadata Management), Capability Management (improvement) | Data Quality, Data Governance, Traceability | 2.1.3 Statistical quality management, 4.1.4 Improve management, 4.1.5 Accountability |
 
-## Applying This to Your NSO
+## Applying This to Your NSI
 
 ### Maturity Assessment Checklist
 
-Use this checklist to assess your NSO's maturity across all four process types — not just execution.
+Use this checklist to assess your NSI's maturity across all four process types — not just execution.
 
 **Design Maturity**
 
@@ -5597,7 +5713,7 @@ The following principles directly govern the VS-05.0 business domain:
 
 | Principle | Statement | Application to VS-05.0 |
 |---|---|---|
-| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSOs should contribute to open source communities for composition, indicator-construction, and reporting/visualization tooling, ensuring collective control over critical product capabilities rather than vendor dependence. |
+| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSIs should contribute to open source communities for composition, indicator-construction, and reporting/visualization tooling, ensuring collective control over critical product capabilities rather than vendor dependence. |
 | **SAF-P07** | Implement loosely coupled processes and systems | The composition domain must be independent from upstream estimation and downstream dissemination. The approved statistical product serves as a decoupling interface — dissemination accesses it without knowledge of how it was composed. |
 | **SAF-P08** | Data is shared property | Approved statistical products and their components, once registered, are available to all authorized consumers. Composition should reuse existing validated outputs rather than duplicate analysis. |
 | **SAF-P09** | No data without metadata and classification | Every composite product carries metadata: its component outputs and their accuracy, the composition/indicator methodology, coherence-check results, classification, and the approval record. This is what makes products interpretable and trustworthy. |
@@ -5638,8 +5754,8 @@ It is considered that metadata is an essential product of the Design phase and a
 
 | Role                        | Process Orientation | Description                                                                                       |
 |-----------------------------|---------------------|---------------------------------------------------------------------------------------------------|
-| **Upstream Data Provider (VS-04.0)** | External (internal NSO) | Supplies Output Data (State #4) with methodology/accuracy metadata to the composition domain |
-| **Standards Body**          | External            | Maintains product, indicator, and exchange standards the NSO conforms to (e.g., SDMX, index manuals) |
+| **Upstream Data Provider (VS-04.0)** | External (internal NSI) | Supplies Output Data (State #4) with methodology/accuracy metadata to the composition domain |
+| **Standards Body**          | External            | Maintains product, indicator, and exchange standards the NSI conforms to (e.g., SDMX, index manuals) |
 | **Product Manager**         | Design              | Designs the statistical product portfolio, product specifications, and release content             |
 | **Indicator/Index Methodologist** | Design        | Specifies composite indicators, indices, and time-series construction methods                       |
 | **Coherence Designer**      | Design              | Designs the consistency and coherence checks across sources and time                               |
@@ -5673,7 +5789,7 @@ The starting point is defining what products will be produced. This sub-process 
 | Define how component accuracy/quality metadata is carried into the product | Metadata-Propagation Rules | SAF-P09 |
 | Define product classification and versioning identity | Product Metadata Standard | SAF-P09 |
 
-::: {.callout-tip title="**NSO Example — Labour Market Publication:**"}
+::: {.callout-tip title="**NSI Example — Labour Market Publication:**"}
 The labour-market quarterly publication is specified to combine the LFS employment-rate estimates (national and NUTS-2), the unemployment series, and administrative job-vacancy figures into a single coherent release, carrying each component's confidence intervals into the published tables.
 :::
 
@@ -5786,7 +5902,7 @@ This sub-process turns the product and integration designs into operational tool
 | Configure pinned connections to the State #4 output catalog | Output-source integration | CSDA Metadata Mgmt |
 | Version-control all composition logic | Versioned composition repository | SAF-P10 |
 
-::: {.callout-tip title="**NSO Example — Business Statistics Product:**"}
+::: {.callout-tip title="**NSI Example — Business Statistics Product:**"}
 The SBS composite product engine is configured to integrate the register-based aggregates and the survey-based estimates for the same NACE × region domains, pinning the exact `OD-BUS` output versions and carrying their accuracy metadata into the combined tables.
 :::
 
@@ -5886,7 +6002,7 @@ When an "Output Data Registered" event is received from VS-04.0, execution begin
 | Carry component accuracy/methodology metadata into the product | Propagated metadata | SAF-P09 |
 | Record component lineage (which output versions were used) | Component lineage | CSDA Traceability |
 
-::: {.callout-tip title="**NSO Example — Labour Market Publication:**"}
+::: {.callout-tip title="**NSI Example — Labour Market Publication:**"}
 For Q3-2026 the team selects the validated `OD-LFS-2026Q3` employment and unemployment outputs (national and NUTS-2) and the latest administrative vacancy output, pinning their exact versions and carrying their confidence intervals into the integrated product base.
 :::
 
@@ -5903,7 +6019,7 @@ This sub-process computes the designed composite indicators, indices, and time-s
 | Derive composite uncertainty from component accuracy | Composite accuracy measures | SAF-P09 |
 | Record composition method and inputs as lineage | Composite lineage | SAF-P09 |
 
-::: {.callout-tip title="**NSO Example — CPI Headline Index:**"}
+::: {.callout-tip title="**NSI Example — CPI Headline Index:**"}
 The headline CPI is composed from the validated item indices using the designed weighting and chaining; the all-items index and its main divisions are constructed, with each carrying its method and the period weights used.
 :::
 
@@ -5952,7 +6068,7 @@ flowchart LR
 ```
 
 
-::: {.callout-tip title='**NSO Example — Business Statistics Product:**'}
+::: {.callout-tip title='**NSI Example — Business Statistics Product:**'}
 The composite SBS product is checked: NACE-class turnover sums to the published total, the survey- and register-based components agree within tolerance for overlapping domains, and the series is coherent with the prior year; one domain exceeds tolerance and is returned to VS-04 for review rather than silently adjusted.
 :::
 
@@ -5970,7 +6086,7 @@ This sub-process produces the human-facing content, aligned with GSBPM 6.3 (Inte
 | Produce tables and visualizations | Visualizations & tables | GSBPM 6.3 |
 | Run editorial and quality review of content | Reviewed content | GAMSO QM |
 
-::: {.callout-tip title="**NSO Example — Labour Market Publication:**"}
+::: {.callout-tip title="**NSI Example — Labour Market Publication:**"}
 The quarterly commentary explains the 0.3pp rise in the employment rate, notes it is within the confidence interval, and presents a regional map and a time-series chart; the editorial review confirms the wording does not overstate a movement that is not statistically significant.
 :::
 
@@ -6143,12 +6259,12 @@ The VS-05.0 business domain exposes the following services:
 
 | Service | Direction | Consumers | Mapped Processes |
 |---|---|---|---|
-| **Integration and Composition Service** | Internal (VS-04.0 → NSO) | Output data consumers, composition teams | 5.1 Select and Integrate Source Datasets |
+| **Integration and Composition Service** | Internal (VS-04.0 → NSI) | Output data consumers, composition teams | 5.1 Select and Integrate Source Datasets |
 | **Indicator and Index Service** | Internal | Composition teams, methodologists | 5.2 Construct Composite Indicators or Indices |
 | **Coherence Validation Service** | Internal | Quality managers, subject-matter authors | 5.3 Perform Consistency and Coherence Checks |
 | **Analytical Content Service** | Internal | Authors, editors, downstream dissemination | 5.4 Generate Analytical and Interpretive Outputs |
-| **Product Provisioning Service** | Internal (NSO → VS-06.0) | Dissemination teams | 5.5 Approve and Register Statistical Products |
-| **Product Catalog Service** | Internal | All data consumers across the NSO | 6.3 Manage Product & Version Lifecycle |
+| **Product Provisioning Service** | Internal (NSI → VS-06.0) | Dissemination teams | 5.5 Approve and Register Statistical Products |
+| **Product Catalog Service** | Internal | All data consumers across the NSI | 6.3 Manage Product & Version Lifecycle |
 | **Design and Methodology Service** | Internal | Product managers, indicator methodologists | 3.1–3.5 All design processes |
 
 **Interface specifications:**
@@ -6207,46 +6323,46 @@ flowchart TB
 
 ```{mermaid}
 %%| label: fig-10
-%%| fig-cap: "Event-Driven Choreography between the upstream domain (VS-04.0) and NSO teams, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design."
+%%| fig-cap: "Event-Driven Choreography between the upstream domain (VS-04.0) and NSI teams, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design."
 %%| fig-width: 6
 
 sequenceDiagram
     participant US as Upstream (VS-04.0)
-    participant NSO as NSO Teams
+    participant NSI as NSI Teams
     participant PM as Process Mgmt
 
     rect rgb(245, 243, 255)
-    Note over NSO: Design Phase
-    NSO->>NSO: Define product specs, composite indicators,<br/>coherence checks & approval policy
-    NSO-->>NSO: Design Artefacts Published
+    Note over NSI: Design Phase
+    NSI->>NSI: Define product specs, composite indicators,<br/>coherence checks & approval policy
+    NSI-->>NSI: Design Artefacts Published
     end
 
     rect rgb(239, 246, 255)
-    Note over NSO: Implementation Phase
-    NSO->>NSO: Build integration/composition engines,<br/>coherence, content & approval tooling
-    NSO-->>NSO: Pipeline Production-Ready
+    Note over NSI: Implementation Phase
+    NSI->>NSI: Build integration/composition engines,<br/>coherence, content & approval tooling
+    NSI-->>NSI: Pipeline Production-Ready
     end
 
     rect rgb(236, 253, 245)
-    Note over NSO,US: Execution Phase (per cycle)
-    US-->>NSO: Output Data Registered event
-    NSO->>NSO: Select & integrate components; construct composites
-    NSO->>NSO: Run coherence checks; produce interpretive content
+    Note over NSI,US: Execution Phase (per cycle)
+    US-->>NSI: Output Data Registered event
+    NSI->>NSI: Select & integrate components; construct composites
+    NSI->>NSI: Run coherence checks; produce interpretive content
 
-    NSO->>NSO: Validate against standards; submit for approval
+    NSI->>NSI: Validate against standards; submit for approval
 
     alt Approved
-        NSO->>NSO: Create immutable product version,<br/>register lineage & metadata
-        NSO-->>NSO: Statistical Product Registered event
+        NSI->>NSI: Create immutable product version,<br/>register lineage & metadata
+        NSI-->>NSI: Statistical Product Registered event
     else Not approved
-        NSO->>NSO: Revise / return component to VS-04
+        NSI->>NSI: Revise / return component to VS-04
     end
     end
 
     rect rgb(254, 243, 199)
     Note over PM: Management Phase
     PM->>PM: Monitor coherence & timeliness, assess product<br/>quality, produce audit reports
-    PM-->>NSO: Improvement Recommendations
+    PM-->>NSI: Improvement Recommendations
     end
 ```
 
@@ -6261,11 +6377,11 @@ This reference table maps each process group of this document to the internation
 | **Execution** | Phase 6 (Analyze: 6.2 Validate outputs, 6.3 Interpret & explain, 6.5 Finalise outputs) + Phase 7 (7.1 Update output systems, 7.2 Produce dissemination products) | Production (execution) | Data Analysis / Dissemination preparation (execution) | 2.1.2 Metadata management, 2.1.3 Statistical quality management |
 | **Management** | Overarching processes (Quality Management, Metadata Management) | Corporate Support (Quality Management, Data Management, Metadata Management), Capability Management (improvement) | Data Quality, Data Governance, Traceability | 2.1.3 Statistical quality management, 4.1.4 Improve management, 4.1.5 Accountability |
 
-## Applying This to Your NSO
+## Applying This to Your NSI
 
 ### Maturity Assessment Checklist
 
-Use this checklist to assess your NSO's maturity across all four process types — not just execution.
+Use this checklist to assess your NSI's maturity across all four process types — not just execution.
 
 **Design Maturity**
 
@@ -6415,7 +6531,7 @@ flowchart TD
 
 ### Steady State Transition
 
-VS-06.0 transitions data from **Steady State #4 (approved statistical products)** to **Steady State #5 (Released Data)** — products that have undergone final disclosure control (additional confidentiality protection beyond State #4), are documented for correct interpretation, and are published or delivered to external parties via trusted channels. Once released, data is used externally as **Steady State #6 (Consumed Data)**, outside the NSO's direct control.
+VS-06.0 transitions data from **Steady State #4 (approved statistical products)** to **Steady State #5 (Released Data)** — products that have undergone final disclosure control (additional confidentiality protection beyond State #4), are documented for correct interpretation, and are published or delivered to external parties via trusted channels. Once released, data is used externally as **Steady State #6 (Consumed Data)**, outside the NSI's direct control.
 
 ```{mermaid}
 %%| label: fig-2
@@ -6526,7 +6642,7 @@ The following principles directly govern the VS-06.0 business domain:
 
 | Principle | Statement | Application to VS-06.0 |
 |---|---|---|
-| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSOs should contribute to open source communities for dissemination platforms, APIs, and visualization tooling, ensuring collective control over critical delivery capabilities rather than vendor dependence. |
+| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSIs should contribute to open source communities for dissemination platforms, APIs, and visualization tooling, ensuring collective control over critical delivery capabilities rather than vendor dependence. |
 | **SAF-P07** | Implement loosely coupled processes and systems | The dissemination domain consumes approved products through the State #4 interface without knowledge of how they were composed, and exposes released data through stable, versioned access services. |
 | **SAF-P08** | Data is shared property | Released data is made broadly and equally available to all authorized users through open and standard channels, maximising reuse while respecting confidentiality. |
 | **SAF-P09** | No data without metadata and classification | Every released product carries the metadata, methodology notes, and documentation users need to interpret it correctly; released datasets are accompanied by structural and reference metadata (e.g., SDMX). |
@@ -6567,7 +6683,7 @@ It is considered that metadata is an essential product of the Design phase and a
 
 | Role                        | Process Orientation | Description                                                                                       |
 |-----------------------------|---------------------|---------------------------------------------------------------------------------------------------|
-| **Upstream Data Provider (VS-05.0)** | External (internal NSO) | Supplies approved statistical products (State #4) with their metadata and approval record |
+| **Upstream Data Provider (VS-05.0)** | External (internal NSI) | Supplies approved statistical products (State #4) with their metadata and approval record |
 | **Data User**               | External            | Consumes released data — policymakers, researchers, journalists, businesses, the public            |
 | **Dissemination Manager**   | Design              | Designs the dissemination and access strategy, product/service portfolio, and release calendar     |
 | **Disclosure-Control Designer** | Design          | Designs the final disclosure-control rules and de-identification standards for release              |
@@ -6602,7 +6718,7 @@ The starting point is deciding who the products are for and how they will be rea
 | Define the release calendar and equal-access/embargo policy | Release Calendar & Access Policy | SAF 4.1.5 |
 | Map each product to its channels and formats | Product-Channel Map | GSBPM 2.5 |
 
-::: {.callout-tip title="**NSO Example — Labour Market Statistics:**"}
+::: {.callout-tip title="**NSI Example — Labour Market Statistics:**"}
 The labour-market dissemination strategy targets policymakers (press release + commentary on the release date), researchers (API + downloadable series), and the public (interactive dashboard). The release calendar is published in advance and an embargo gives accredited media pre-access under agreement, ensuring equal access at the release moment.
 :::
 
@@ -6715,8 +6831,8 @@ This sub-process turns the channel and format designs into operational services.
 | Configure secure research environment access | Research-access service | SAF-P10 |
 | Configure SDMX-compliant dataset and metadata exchange | Standard exchange interfaces | CSDA Dissemination |
 
-::: {.callout-tip title="**NSO Example — Open Data and API:**"}
-The team configures an SDMX-based API and a bulk open-data download for the labour-market series on the NSO's VS-09 platform, with rate-limiting and machine-readable metadata, plus a public dashboard fed from the same released datasets.
+::: {.callout-tip title="**NSI Example — Open Data and API:**"}
+The team configures an SDMX-based API and a bulk open-data download for the labour-market series on the NSI's VS-09 platform, with rate-limiting and machine-readable metadata, plus a public dashboard fed from the same released datasets.
 :::
 
 ### Configure Disclosure-Control and Release Tooling
@@ -6816,7 +6932,7 @@ When a "Statistical Product Registered" event is received from VS-05.0, executio
 | Confirm target user groups and communication plan | Confirmed audience & comms | GSBPM 7.4 |
 | Flag plan changes for design review | Plan-change exception (if any) | GAMSO QM |
 
-::: {.callout-tip title="**NSO Example — Labour Market Release:**"}
+::: {.callout-tip title="**NSI Example — Labour Market Release:**"}
 For the Q3-2026 labour-market release the team confirms the release date and slot, the press embargo for accredited media, and the channels (press release, API, dashboard), with no change to the strategy this cycle.
 :::
 
@@ -6886,7 +7002,7 @@ flowchart LR
 ```
 
 
-::: {.callout-tip title='**NSO Example — Multi-Channel Release:**'}
+::: {.callout-tip title='**NSI Example — Multi-Channel Release:**'}
 At 09:00 on the release date the Q3-2026 labour-market figures go live simultaneously on the website, the API, and the dashboard; accredited media that received the embargoed copy may publish at the same moment. Equal access is enforced — no figure is available before the release time.
 :::
 
@@ -6904,7 +7020,7 @@ This sub-process supports users, aligned with GSBPM 7.5 (Manage user support). D
 | Provide training/guidance for correct interpretation | User guidance | GSBPM 7.5 |
 | Issue errata/clarifications per the correction policy | Corrections (if any) | SAF 4.1.5 |
 
-::: {.callout-tip title="**NSO Example — Research Microdata:**"}
+::: {.callout-tip title="**NSI Example — Research Microdata:**"}
 Researchers accessing de-identified business microdata via the secure research environment receive the data dictionary, methodology notes, and an onboarding session; the helpdesk handles output-checking requests so that researchers' exported results also meet disclosure rules.
 :::
 
@@ -7077,11 +7193,11 @@ The VS-06.0 business domain exposes the following services:
 
 | Service | Direction | Consumers | Mapped Processes |
 |---|---|---|---|
-| **Dissemination Preparation Service** | Internal (VS-05.0 → NSO) | Approved-product consumers, release teams | 5.2 Prepare Data for Dissemination |
-| **Publication and Open-Data Service** | NSO → External | Data users, the public, businesses | 5.3 Publish and Provide Access Services |
-| **API and Dashboard Service** | NSO → External | Researchers, developers, analysts | 5.3 Publish and Provide Access Services |
-| **Secure Research Access Service** | NSO → External (mediated) | Accredited researchers | 5.3 Publish and Provide Access Services |
-| **User Support Service** | NSO → External | All data users | 5.4 Support and Engage Users |
+| **Dissemination Preparation Service** | Internal (VS-05.0 → NSI) | Approved-product consumers, release teams | 5.2 Prepare Data for Dissemination |
+| **Publication and Open-Data Service** | NSI → External | Data users, the public, businesses | 5.3 Publish and Provide Access Services |
+| **API and Dashboard Service** | NSI → External | Researchers, developers, analysts | 5.3 Publish and Provide Access Services |
+| **Secure Research Access Service** | NSI → External (mediated) | Accredited researchers | 5.3 Publish and Provide Access Services |
+| **User Support Service** | NSI → External | All data users | 5.4 Support and Engage Users |
 | **Usage and Feedback Service** | Internal ↔ External | Process owners, VS-10, the wider chain | 5.5 Monitor Usage and Feedback |
 | **Design and Strategy Service** | Internal | Dissemination managers, channel designers | 3.1–3.5 All design processes |
 
@@ -7098,7 +7214,7 @@ The domain is loosely coupled (SAF-P07) to its neighbor upstream and to external
 | Boundary | Handover Artefact | Required Metadata | Trigger Event | Responsibility Transfer |
 |---|---|---|---|---|
 | **VS-05.0 → VS-06.0** (intake) | Approved Statistical Product (State #4) | Component lineage, composition method, propagated accuracy, coherence results, approval record, confidentiality status, product-version identifier, BIV classification | "Statistical Product Registered" event | VS-05.0 retains custody of the product version; VS-06.0 assumes responsibility for preparation, release, and service delivery on event receipt |
-| **VS-06.0 → Users/Society** (release) | Released Data (State #5): published statistics + de-identified microdata + access services | Final disclosure-control record, documentation/methodology notes, reference & structural metadata, channel/format, release timestamp, release-version identifier, lineage to approved product | "Statistics Released" event | NSO publishes/serves; external users consume the data as **State #6 (Consumed)**, outside NSO control. Usage and feedback flow back to VS-06.5 and VS-10. |
+| **VS-06.0 → Users/Society** (release) | Released Data (State #5): published statistics + de-identified microdata + access services | Final disclosure-control record, documentation/methodology notes, reference & structural metadata, channel/format, release timestamp, release-version identifier, lineage to approved product | "Statistics Released" event | NSI publishes/serves; external users consume the data as **State #6 (Consumed)**, outside NSI control. Usage and feedback flow back to VS-06.5 and VS-10. |
 
 Each interface exchanges a registered, immutable steady-state artefact plus its metadata — never internal working data — so neither side needs knowledge of the other's internal processing.
 
@@ -7142,47 +7258,47 @@ flowchart TB
 
 ```{mermaid}
 %%| label: fig-10
-%%| fig-cap: "Event-Driven Choreography between the upstream domain (VS-05.0), NSO teams, and users, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design and to VS-10."
+%%| fig-cap: "Event-Driven Choreography between the upstream domain (VS-05.0), NSI teams, and users, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design and to VS-10."
 %%| fig-width: 6
 
 sequenceDiagram
     participant US as Upstream (VS-05.0)
-    participant NSO as NSO Teams
+    participant NSI as NSI Teams
     participant USR as Users
     participant PM as Process Mgmt
 
     rect rgb(245, 243, 255)
-    Note over NSO: Design Phase
-    NSO->>NSO: Define access strategy, release & disclosure<br/>policy, channels & support model
-    NSO-->>NSO: Design Artefacts Published
+    Note over NSI: Design Phase
+    NSI->>NSI: Define access strategy, release & disclosure<br/>policy, channels & support model
+    NSI-->>NSI: Design Artefacts Published
     end
 
     rect rgb(239, 246, 255)
-    Note over NSO: Implementation Phase
-    NSO->>NSO: Build publication/API channels, SDC &<br/>release tooling, support & monitoring
-    NSO-->>NSO: Pipeline Production-Ready
+    Note over NSI: Implementation Phase
+    NSI->>NSI: Build publication/API channels, SDC &<br/>release tooling, support & monitoring
+    NSI-->>NSI: Pipeline Production-Ready
     end
 
     rect rgb(236, 253, 245)
-    Note over NSO,USR: Execution Phase (per release)
-    US-->>NSO: Statistical Product Registered event
-    NSO->>NSO: Confirm plan; apply final disclosure control
+    Note over NSI,USR: Execution Phase (per release)
+    US-->>NSI: Statistical Product Registered event
+    NSI->>NSI: Confirm plan; apply final disclosure control
 
     alt Disclosure gate passed
-        NSO->>USR: Publish via channels (managed timing, equal access)
-        NSO-->>NSO: Statistics Released event
-        USR-->>NSO: Usage & feedback
+        NSI->>USR: Publish via channels (managed timing, equal access)
+        NSI-->>NSI: Statistics Released event
+        USR-->>NSI: Usage & feedback
     else Disclosure gate failed
-        NSO->>NSO: Return for additional protection
+        NSI->>NSI: Return for additional protection
     end
 
-    NSO->>USR: Provide documentation & support
+    NSI->>USR: Provide documentation & support
     end
 
     rect rgb(254, 243, 199)
     Note over PM: Management Phase
     PM->>PM: Monitor usage & punctuality, assess accessibility,<br/>produce compliance reports
-    PM-->>NSO: Improvement Recommendations (to design & VS-10)
+    PM-->>NSI: Improvement Recommendations (to design & VS-10)
     end
 ```
 
@@ -7197,11 +7313,11 @@ This reference table maps each process group of this document to the internation
 | **Execution** | Phase 6 (6.4 Apply disclosure control) + Phase 7 (7.2 Produce dissemination products, 7.3 Manage release, 7.4 Promote, 7.5 Manage user support) + Phase 8 (Evaluate) for usage monitoring | Production (execution), Corporate Support (communication) | Dissemination (execution) | 2.1.2 Metadata management, 3.3.1 Privacy management |
 | **Management** | Phase 8 (Evaluate) + Overarching processes (Quality Management, Metadata Management) | Corporate Support (Quality Management, Communication), Capability Management (improvement) | Data Quality, Data Governance, Traceability | 2.1.3 Statistical quality management, 4.1.4 Improve management, 4.1.5 Accountability |
 
-## Applying This to Your NSO
+## Applying This to Your NSI
 
 ### Maturity Assessment Checklist
 
-Use this checklist to assess your NSO's maturity across all four process types — not just execution.
+Use this checklist to assess your NSI's maturity across all four process types — not just execution.
 
 **Design Maturity**
 
@@ -7273,7 +7389,7 @@ Each scenario walks through **all four process types**, demonstrating how the go
 
 ### Purpose and Scope
 
-VS-07.0 makes sure that every process, dataset, and product in the organization operates under clear rules, standards, and accountability. It builds trust — inside and outside the NSO — by ensuring all data activities are ethical, transparent, and compliant with legal, methodological, and quality requirements, aligned with standards such as the **European Statistics Code of Practice, GDPR, GSBPM, GAMSO, and ISO** data-quality principles. The value it creates is **integrity and accountability**.
+VS-07.0 makes sure that every process, dataset, and product in the organization operates under clear rules, standards, and accountability. It builds trust — inside and outside the NSI — by ensuring all data activities are ethical, transparent, and compliant with legal, methodological, and quality requirements, aligned with standards such as the **European Statistics Code of Practice, GDPR, GSBPM, GAMSO, and ISO** data-quality principles. The value it creates is **integrity and accountability**.
 
 This document covers the business layer only: the governance capabilities, how they are established and operated, and how they interact with the rest of the value chain. The specific application and technology controls that implement them are out of scope (provided with VS-09).
 
@@ -7447,7 +7563,7 @@ VS-07 offers governance and assurance as a service to every other stream.
 
 VS-07 manages enabling artefacts, not data states: the **governance framework & policy set**, the **regulatory compliance register**, the **data-governance role assignments and metadata/lineage rules**, the **quality & compliance dashboards**, and the **audit/certification reports**. These are referenced by every stream. Each artefact has a designated owner and is version-managed across its lifecycle (SAF-P03): changes are tracked, prior versions remain identifiable, and obsolete policies and controls are formally retired.
 
-## Applying This to Your NSO
+## Applying This to Your NSI
 
 ### Maturity Assessment Checklist
 
@@ -7623,7 +7739,7 @@ VS-08 is itself a capability that is **designed** (innovation strategy, evaluati
 
 VS-08 manages enabling artefacts: the **innovation backlog**, **research findings and PoC results**, **soundness/feasibility assessments**, **validated methods, algorithms, and reference implementations**, and **knowledge assets** (guidelines, training). These are version-managed across their lifecycle (SAF-P03) and, once transferred, become part of a production stream's design metadata. Each artefact has a designated owner; changes are tracked, prior versions remain identifiable, and superseded methods are formally retired.
 
-## Applying This to Your NSO
+## Applying This to Your NSI
 
 ### Maturity Assessment Checklist
 
@@ -7806,7 +7922,7 @@ VS-09 is itself a capability that is **designed** (architecture and operating mo
 
 VS-09 manages enabling artefacts: **technical requirements**, **architecture blueprints**, **provisioned environments and platforms**, **integration/orchestration services and event interfaces**, **monitoring/security/continuity controls**, and the **modernization roadmap**. These underpin every stream and are managed across their lifecycle (SAF-P03), with security and continuity (SAF-P10/P06) built in. Each artefact has a designated owner; changes are tracked, prior versions remain identifiable, and obsolete components are formally retired.
 
-## Applying This to Your NSO
+## Applying This to Your NSI
 
 ### Maturity Assessment Checklist
 
@@ -7829,7 +7945,7 @@ VS-09 manages enabling artefacts: **technical requirements**, **architecture blu
 
 ### Purpose and Scope
 
-VS-10.0 ensures the statistical organization remains connected, relevant, and responsive to the needs of those it serves. It builds and maintains mutual understanding and trust between the NSO and its users, data providers, partners, and policy stakeholders. Because official statistics exist to create **public value**, the organization must understand what stakeholders need, communicate transparently, and keep products, services, and policies aligned with real-world demand. It is **not a one-way process** — it is a continuous dialogue that turns stakeholder insight into better products, improved services, and stronger relationships. The value it creates is **relevance and public value**.
+VS-10.0 ensures the statistical organization remains connected, relevant, and responsive to the needs of those it serves. It builds and maintains mutual understanding and trust between the NSI and its users, data providers, partners, and policy stakeholders. Because official statistics exist to create **public value**, the organization must understand what stakeholders need, communicate transparently, and keep products, services, and policies aligned with real-world demand. It is **not a one-way process** — it is a continuous dialogue that turns stakeholder insight into better products, improved services, and stronger relationships. The value it creates is **relevance and public value**.
 
 
 
@@ -7908,7 +8024,7 @@ Where the primary streams map to **GSBPM** production phases, VS-10 maps to **GA
 ## Roles and Actors
 
 ::: {.callout-note title="Indicative, not prescriptive"}
-The roles below are indicative, not a mandated organizational structure. The SAF deliberately leaves organization design to each NSO — assign these responsibilities to fit your own size, culture, and operating model.
+The roles below are indicative, not a mandated organizational structure. The SAF deliberately leaves organization design to each NSI — assign these responsibilities to fit your own size, culture, and operating model.
 :::
 
 
@@ -7990,7 +8106,7 @@ VS-10 is itself a capability that is **designed** (engagement strategy, portfoli
 
 VS-10 manages enabling artefacts: the **stakeholder map and segments**, the **user-needs register**, the **service and product portfolio**, **relationship and support records**, and **impact and satisfaction metrics**. These carry user insight into the rest of the chain and are maintained continuously rather than versioned per production cycle. Each artefact nevertheless has a designated owner and a managed lifecycle (SAF-P03): changes are tracked and outdated entries are retired.
 
-## Applying This to Your NSO
+## Applying This to Your NSI
 
 ### Maturity Assessment Checklist
 
