@@ -927,10 +927,10 @@ The statistical process is divided into three main business domains (Observation
 | 1 | Observation/Collection | Data in NSI custody, authentic and traceable | Receive Data, Extract Data, Collect Survey | VS-01 | 4 | #0 → #1 |
 | 2 | Standardization without loss of content | Common structure, format, and classifications | Transform Data, Anonymize Data, Classify Data | VS-02 | 5.1–5.2 | #1 → #2 |
 | 3 | Editing, derivation, and non-response correction | Reliable, complete, enriched microdata | Imputate Data, Integrate Data | VS-03 | 5.3–5.5, 5.8 | #2 → #3 |
-| 4 | Estimation and balancing **[C5]** | Representative statistics with accuracy | Estimate Data, Aggregate Data | VS-04 | 5.6–5.7, 6.1–6.4 | #3 → #4 |
+| 4 | Estimation and balancing | Representative statistics with accuracy | Estimate Data, Aggregate Data | VS-04 | 5.6–5.7, 6.1–6.4 | #3 → #4 |
 | 5 | Statistically composed and composite products | Coherent, approved products | Compose Data | VS-05 | 6.5, 7.1–7.2 | #4 → #4 (approved) |
 | 6 | Dissemination | Disclosure-safe, accessible released data | Data Delivery, Data Publication | VS-06 | 6.4, 7.3–7.5 | #4 → #5 |
-| — | Consumption (external) **[C6]** | Use of statistics by society | Data Consumption, Consumption Optimization | VS-10 (feedback) | 8 | #5 → (#6) |
+| — | Consumption (external) | Use of statistics by society | Data Consumption, Consumption Optimization | VS-10 (feedback) | 8 | #5 → (#6) |
 
 The execution processes between the business domains are loosely coupled. Each has its own design and implementation. For the mutual exchange of data, they are loosely linked via steady state interfaces. To this end, five steady state phases are recognized as handover points at business-domain boundaries: 
 1. raw data,
@@ -967,13 +967,13 @@ The model rests on six design rules. They apply the SAF architecture principles 
 
 | Position | Name | Produced by | Kind of value | Mandatory? |
 |---|---|---|---|---|
-| (#0) | Source Data | External provider | Outside NSI custody, boundary position **[C7]** | n/a |
+| (#0) | Source Data | External provider | Outside NSI custody, boundary position | n/a |
 | #1 | Raw Data | VS-01 | Authentic, traceable custody | When the product collects its own data |
 | #2 | Standardized Data | VS-02 | Comparability, values unchanged | Optional |
 | #3 | Processed Data | VS-03 | Reliability and completeness of microdata | Always |
 | #4 | Statistics | VS-04, VS-05 | Representative, approved statistics | Always |
 | #5 | Released Data | VS-06 | Disclosure-safe, accessible output | When output is released |
-| (#6) | Consumed Data | External users | Outside NSI control, boundary position **[C7]** | n/a |
+| (#6) | Consumed Data | External users | Outside NSI control, boundary position | n/a |
 
 ### State lifecycle
 
@@ -1046,7 +1046,7 @@ Conditional acceptance is a deliberate option. A late or slightly incomplete del
 
 ### 4. Data and metadata characteristics
 
-**Data.** Raw data is stored in its original format, or in a lossless technical equivalent **[C9]**. Permitted technical operations are those that change representation without changing content and that can be reversed: decryption, decompression, character-encoding normalisation, and container conversion. Operations that change values, codes, or record selection are not permitted at #1. The original byte stream, or a verifiable hash of it, is retained.
+**Data.** Raw data is stored in its original format, or in a lossless technical equivalent. Permitted technical operations are those that change representation without changing content and that can be reversed: decryption, decompression, character-encoding normalisation, and container conversion. Operations that change values, codes, or record selection are not permitted at #1. The original byte stream, or a verifiable hash of it, is retained.
 
 **Minimum metadata set.**
 
@@ -1127,10 +1127,7 @@ One delivery can serve several statistical products. The register-based census a
 - Keeping only a converted copy and discarding the original. The proof of authentic custody is lost.
 - Registering a delivery without its agreement reference. The legal basis can no longer be demonstrated in an audit.
 
-
-
-
-
+### BE AWARE - State #0 and #1 are updated. The other states will be described the same! TO DO
 
 ### State #2: Standardized Data
 
