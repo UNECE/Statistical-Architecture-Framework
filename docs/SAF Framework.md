@@ -812,8 +812,12 @@ TBD – this view shows the difference - but also the relationship - between the
 
 # Business Architecture
 
-## Overview 
+## Introduction
+The business architecture describes how a statistical organisation is structured to turn data into official statistics: which business domains exist, which business functions and processes they perform, which business objects they create and exchange, and who is accountable for them. Where the Strategy layer answers what the organisation must be able to do (capabilities) and what value it creates (value streams), the business architecture answers how that work is organised and where responsibility for data passes from one part of the organisation to another.
 
+That last question is central for official statistics. A statistical value chain is long, involves many teams, and processes data that is often confidential. Errors, untraceable changes, or uncontrolled reuse at any point undermine trust in every statistic built on top of it. The SAF business architecture therefore pays explicit attention to the points at which data is persisted, quality-assured, and handed over. These handover points form the backbone of every reference model in this chapter.
+
+## The Statistical Proces ##
 The statistical process is divided into three main business domains (observation, processing/analysis, and dissemination), with processing/analysis further divided into four subdomains. This results in a total of six business domains:
 
 - Observation/Collection
@@ -826,16 +830,107 @@ The statistical process is divided into three main business domains (observation
 
 Each of the business domains use the following processes :
 
-- Design of the execution processes; provides metadata
-- Implementation of the execution processes; provides the execution process
-- Execution of the execution processes; provides the statistical data
-- Management of the execution processes; provides quality reports
+1. Design of the execution processes; provides metadata
+2. Implementation of the execution processes; provides the execution process
+3. Execution of the execution processes; provides the statistical data
+4. Management of the execution processes; provides quality reports
 
 Each domain focuses on adding a specific statistical value to some data. Once sufficient value has been added, a so-called quality version is versioned that must be kept and potentially shared to some consumers. This careful approach is crucial due to the growing interest in our microdata, combined with the increasing focus on privacy. If we combine the added values of the six business domains, a value chain of statistical data is created.
-
 To realize statistical value within a business domain, execution processes (including governance) have been designed and implemented. How an execution process adds statistical value, and is therefore designed and implemented, falls outside the scope of the B&I architecture. This framework must stem from, among other things, the methodology set.
 
-![Generic Business Architecture](images/Business%20Architecture_GSBPM_Data%20Steady%20State_visual_v0.1.png)
+### Key concepts
+
+| Concept | Definition |
+|---|---|
+| **Business domain** | A coherent part of the statistical process that adds one specific kind of statistical value to data and is governed as a unit (e.g., Standardization). |
+| **Business function** | A stable grouping of behaviour within a domain, independent of organisation and technology (e.g., *Classify Data*). |
+| **Data state** | A defined condition of data, characterised by the processing it has undergone and the quality criteria it meets. |
+| **Steady state** | A data state that is persisted, versioned, quality-assured, and registered so it can be handed over and reused. |
+| **Quality gate** | The set of entry criteria data must meet before it may be registered in a state. |
+| **Quality version** | An immutable, identified version of a dataset that has passed a quality gate. |
+| **Handover interface** | The contract between a producing and a consuming domain: the artefact, its required metadata, the triggering event, and the transfer of responsibility. |
+| **Reference model** | A generic arrangement of domains, states, and handover points that an NSO can adopt and adapt. |
+
+## Reference Models for the Statistical Data Value Chain 
+**Why the SAF offers more than one model**
+NSOs differ in size, mandate, legal context, data volumes, and technology platform. A single prescribed arrangement would fit some offices well and others poorly. The SAF therefore describes reference models: alternative, internally consistent ways of organising the value chain. Each model answers the same four questions:
+
+1. At which points is data persisted and made available for reuse?
+2. Which quality criteria must data meet at each point?
+3. Who is accountable for the data at each point?
+4. How are confidentiality and traceability guaranteed along the chain?
+
+The SAF currently describes two reference models. Both follow the same underlying idea, progressive improvement of data through defined layers, but they differ in granularity and in where they place governance.
+
+**Model A: Steady-State Architecture**
+
+The Steady-State Architecture organises the value chain into business domains that are loosely coupled through five numbered steady states (#1 Raw, #2 Standardized, #3 Processed, #4 Statistics, #5 Released). Each state represents a specific kind of statistical value and has its own quality gate, ownership, and handover interface. The model is derived from production practice in NSOs with many statistical domains and extensive microdata reuse. It is described in full in the remainder of this chapter.
+
+**Model B: Medallion Architecture**
+
+The Medallion Architecture organises data into three layers of increasing quality, usually called Bronze (raw), Silver (cleansed and conformed), and Gold (curated for consumption). The pattern originates from lakehouse platforms and is a logical design pattern rather than a product. Its strength lays in its simplicity. There are three layers, a clear direction of flow, and the ability to rebuild any layer from the one below it.
+
+As a data-engineering pattern, Medallion does not by itself define statistical semantics, accountability, or confidentiality rules per layer.
+
+### Comparison
+
+| Characteristic | Steady-State Architecture | Medallion Architecture |
+|---|---|---|
+| Number of governed handover points | Five (#1 to #5) | Three (Bronze, Silver, Gold) |
+| Origin | Statistical production practice | Lakehouse data engineering |
+| Granularity of quality gates | Fine: one gate per kind of statistical value | Coarse: several kinds of value combined per layer |
+| Separation of standardization and editing | Explicit (#2 vs. #3) | Combined in Silver |
+| Separation of internal statistics and released data | Explicit (#4 vs. #5) | Combined in Gold unless subdivided |
+| Governance overhead | Higher: more states to own, register, and audit | Lower |
+| Fit with platform tooling | Platform-neutral; mapping required | Native in lakehouse platforms |
+| Typical adopters | Larger NSOs, many domains, high microdata reuse | Smaller NSOs, platform-led modernisation |
+
+### Selection criteria
+
+The criteria below help an NSO decide which model fits best. They are indicative. No single criterion is decisive, and the SAF toolkit will provide a structured assessment.
+
+| Criterion | Points towards Steady-State | Points towards Medallion |
+|---|---|---|
+| Organisational size and number of statistical domains | Many domains, many teams handing over data | Few domains, small central data team |
+| Reuse of intermediate microdata across domains | High; standardized and processed microdata reused by several products | Limited; most data flows within one product chain |
+| Legal requirements on pseudonymisation timing | Law or policy requires a separate, auditable pseudonymisation point | Pseudonymisation can be applied at the Silver boundary |
+| Archival and reproducibility obligations | Specific states (e.g., processed microdata) must be retained long term | Retention can be defined per layer |
+| Separation of internal statistics from released data | Required (embargo, different confidentiality thresholds per use) | Achievable by subdividing Gold |
+| Metadata and governance maturity | Mature data ownership and catalogue practices in place | Governance capacity is limited and must stay lean |
+| Technology platform | Heterogeneous landscape, on-premises and private cloud | Single lakehouse platform |
+| Participation in international data exchange | Many handover points to external partners | Exchange concentrated on final outputs |
+
+Practice within the SAF community indicates that smaller NSOs often adopt a Medallion arrangement, while larger NSOs with many domains tend towards finer-grained states. This observation is to be substantiated through the SAF toolkit assessments.
+
+### Combining the models
+
+The models are not mutually exclusive. The steady states can be mapped onto Medallion layers, which allows an NSO to use Medallion as its platform convention while governing data through steady states, or to start with Medallion and introduce finer states as it grows.
+
+| Steady state | Medallion layer | Note |
+|---|---|---|
+| #1 Raw Data | Bronze | Direct correspondence |
+| #2 Standardized Data | Silver (lower sub-layer) | In Medallion often merged with #3 |
+| #3 Processed Data | Silver | Main reusable microdata layer |
+| #4 Statistics | Gold (internal sub-layer) | Not yet released |
+| #5 Released Data | Gold (published sub-layer) | Released after final disclosure control |
+
+# Steady-State Architecture
+
+## Overview
+
+### Business domains
+
+The statistical process is divided into three main business domains (Observation, Processing/Analysis, and Dissemination). Processing/Analysis is divided into four subdomains, which results in six business domains. Each domain adds one specific kind of statistical value and produces one steady state.
+
+| # | Business domain | Value added | Business functions (ArchiMate view) | Value stream | GSBPM | State in → out |
+|---|---|---|---|---|---|---|
+| 1 | Observation/Collection | Data in NSO custody, authentic and traceable | Receive Data, Extract Data, Collect Survey | VS-01 | 4 | #0 → #1 |
+| 2 | Standardization without loss of content | Common structure, format, and classifications | Transform Data, Anonymize Data, Classify Data | VS-02 | 5.1–5.2 | #1 → #2 |
+| 3 | Editing, derivation, and non-response correction | Reliable, complete, enriched microdata | Imputate Data, Integrate Data | VS-03 | 5.3–5.5, 5.8 | #2 → #3 |
+| 4 | Estimation and balancing **[C5]** | Representative statistics with accuracy | Estimate Data, Aggregate Data | VS-04 | 5.6–5.7, 6.1–6.4 | #3 → #4 |
+| 5 | Statistically composed and composite products | Coherent, approved products | Compose Data | VS-05 | 6.5, 7.1–7.2 | #4 → #4 (approved) |
+| 6 | Dissemination | Disclosure-safe, accessible released data | Data Delivery, Data Publication | VS-06 | 6.4, 7.3–7.5 | #4 → #5 |
+| — | Consumption (external) **[C6]** | Use of statistics by society | Data Consumption, Consumption Optimization | VS-10 (feedback) | 8 | #5 → (#6) |
 
 The execution processes between the business domains are loosely coupled. Each has its own design and implementation. For the mutual exchange of data, they are loosely linked via steady state interfaces. To this end, five steady state phases are recognized as handover points at business-domain boundaries: 
 1. raw data,
@@ -844,13 +939,62 @@ The execution processes between the business domains are loosely coupled. Each h
 4. statistics, and 
 5. released data. 
  
- A steady state phase is therefore an environment where high-quality versions of data are brought together for exchange, but it also represents a value in the value chain of this data.
+A steady state phase is therefore an environment where high-quality versions of data are brought together for exchange, but it also represents a value in the value chain of this data.
 
-Each of the mentioned business domains can be linked to a GSBPM phase.
+### The four process types
+
+Each business domain uses the same four process types:
+
+1. **Design** of the execution processes, which provides metadata.
+2. **Implementation** of the execution processes, which provides the execution process.
+3. **Execution** of the execution processes, which provides the statistical data.
+4. **Management** of the execution processes, which provides quality reports.
+
+How an execution process adds statistical value, and therefore how it is designed and implemented, falls outside the scope of the SAF business architecture. That design follows from, among other things, the NSO's methodology.
+
+### Design rules of the steady-state model
+
+The model rests on six design rules. They apply the SAF architecture principles to the data value chain.
+
+1. **Loose coupling through states (SAF-P07).** Domains exchange data only through registered steady states, never through each other's internal working data. A domain can change its methods or systems without affecting its neighbours, as long as the state it produces meets its quality gate.
+2. **One state, one kind of value.** Each state represents exactly one kind of added statistical value. This keeps quality gates testable and accountability unambiguous.
+3. **Immutable quality versions.** Data registered in a state is never overwritten. Corrections and redeliveries create a new version, so every statistic can be traced to the exact data it was built on.
+4. **No state without metadata (SAF-P09).** Registration requires the minimum metadata set of the state. Data without it does not enter the state.
+5. **Progressive confidentiality (SAF-P11).** Protection increases along the chain: direct identifiers are removed or pseudonymised at #2, disclosure risk is assessed at #3, initial disclosure control is applied at #4, and final disclosure control gates #5.
+6. **Reuse before reprocessing (SAF-P08).** An authorised consumer that needs data at a given level of value reuses the registered state rather than repeating the upstream processing.
+
+### Steady states at a glance
+
+| Position | Name | Produced by | Kind of value | Mandatory? |
+|---|---|---|---|---|
+| (#0) | Source Data | External provider | Outside NSI custody, boundary position **[C7]** | n/a |
+| #1 | Raw Data | VS-01 | Authentic, traceable custody | When the product collects its own data |
+| #2 | Standardized Data | VS-02 | Comparability, values unchanged | Optional |
+| #3 | Processed Data | VS-03 | Reliability and completeness of microdata | Always |
+| #4 | Statistics | VS-04, VS-05 | Representative, approved statistics | Always |
+| #5 | Released Data | VS-06 | Disclosure-safe, accessible output | When output is released |
+| (#6) | Consumed Data | External users | Outside NSI control, boundary position **[C7]** | n/a |
+
+### State lifecycle
+
+Every steady state follows the same lifecycle:
+
+1. **Promotion.** The producing domain submits a dataset to the quality gate of the target state.
+2. **Gate outcome.** The dataset is accepted, conditionally accepted with explicit quality flags, or rejected. Rejected data does not enter the state; it returns to the producing domain or, for #1, to the provider.
+3. **Registration.** An accepted dataset receives a persistent identifier, its metadata is registered in the catalogue, and a registration event notifies consuming domains.
+4. **Consumption.** Authorised consuming domains read the registered version. Responsibility for further processing transfers on receipt of the event; custody of the registered version stays with the producer.
+5. **Revision.** A correction produces a new version that passes the same gate. Consumers are notified and decide whether to reprocess. Earlier versions remain available for as long as statistics depend on them.
+6. **Retirement.** A version is disposed of according to the retention policy of the state, after its lineage obligations have been met.
+
 
 ## Steady States of Data and Their Business Process Links
 
 The business architecture leverages a data value chain approach where data progresses through predefined steady states, each representing a stage where data meets specific quality criteria and is ready for exchange between business domains. These steady states serve as handover points in the statistical production process, ensuring consistency, reusability, and quality control as well as interoperability across other ONS.
+
+
+
+
+
 
 ### State #1: Raw Data
 
