@@ -913,6 +913,7 @@ The models are not mutually exclusive. The steady states can be mapped onto Meda
 | #3 Processed Data | Silver | Main reusable microdata layer |
 | #4 Statistics | Gold (internal sub-layer) | Not yet released |
 | #5 Released Data | Gold (published sub-layer) | Released after final disclosure control |
+| #6 Data Products | Gold (consumption product sub-layer) | Packaged for consumption |
 
 # Steady-State Architecture
 
@@ -932,12 +933,13 @@ The statistical process is divided into three main business domains (Observation
 | 6 | Dissemination | Disclosure-safe, accessible released data | Data Delivery, Data Publication | VS-06 | 6.4, 7.3–7.5 | #4 → #5 |
 | — | Consumption (external) | Use of statistics by society | Data Consumption, Consumption Optimization | VS-10 (feedback) | 8 | #5 → (#6) |
 
-The execution processes between the business domains are loosely coupled. Each has its own design and implementation. For the mutual exchange of data, they are loosely linked via steady state interfaces. To this end, five steady state phases are recognized as handover points at business-domain boundaries: 
+The execution processes between the business domains are loosely coupled. Each has its own design and implementation. For the mutual exchange of data, they are loosely linked via steady state interfaces. To this end, five steady state phases are recognized as handover points at the business-domain boundaries described above. This means that the business domain "Observation" produces "Raw Data", business domain "Standardization without loss of content" produces "standardized data" etc.  
 1. raw data,
-2. standardized data without loss of content, 
+2. standardized data, 
 3. processed data, 
-4. statistics, and 
-5. released data. 
+4. statistics, 
+5. released data, and
+6. Consumable data products.
  
 A steady state phase is therefore an environment where high-quality versions of data are brought together for exchange, but it also represents a value in the value chain of this data.
 
