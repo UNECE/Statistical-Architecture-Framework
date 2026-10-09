@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: _site
+  # framework/*.qmd (except index.qmd) are generated from docs/SAF Framework.md
+  pre-render: python3 scripts/split-framework.py
 
 website:
   title: "Statistical Architecture Framework"
