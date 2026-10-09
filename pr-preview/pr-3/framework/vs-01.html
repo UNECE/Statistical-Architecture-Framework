@@ -339,7 +339,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#business-objects-and-data-flow" id="toc-business-objects-and-data-flow" class="nav-link" data-scroll-target="#business-objects-and-data-flow">Business Objects and Data Flow</a></li>
   <li><a href="#business-events" id="toc-business-events" class="nav-link" data-scroll-target="#business-events">Business Events</a></li>
   <li><a href="#framework-mappings" id="toc-framework-mappings" class="nav-link" data-scroll-target="#framework-mappings">Framework Mappings</a></li>
-  <li><a href="#applying-this-to-your-nso" id="toc-applying-this-to-your-nso" class="nav-link" data-scroll-target="#applying-this-to-your-nso">Applying This to Your NSO</a>
+  <li><a href="#applying-this-to-your-nsi" id="toc-applying-this-to-your-nsi" class="nav-link" data-scroll-target="#applying-this-to-your-nsi">Applying This to Your NSI</a>
   <ul class="collapse">
   <li><a href="#maturity-assessment-checklist" id="toc-maturity-assessment-checklist" class="nav-link" data-scroll-target="#maturity-assessment-checklist">Maturity Assessment Checklist</a></li>
   <li><a href="#end-to-end-scenarios" id="toc-end-to-end-scenarios" class="nav-link" data-scroll-target="#end-to-end-scenarios">End-to-End Scenarios</a></li>
@@ -481,7 +481,7 @@ Figure&nbsp;1: Value Stream Context Map. VS-01.0 (highlighted) is the entry poin
 </section>
 <section id="steady-state-transition" class="level3">
 <h3 class="anchored" data-anchor-id="steady-state-transition">Steady State Transition</h3>
-<p>VS-01.0 transitions data from <strong>Steady State #0 (Source Data)</strong> — data at the external provider — to <strong>Steady State #1 (Raw Data)</strong> — data under NSO custody in its original form, with provenance metadata and basic quality verification completed.</p>
+<p>VS-01.0 transitions data from <strong>Steady State #0 (Source Data)</strong> — data at the external provider — to <strong>Steady State #1 (Raw Data)</strong> — data under NSI custody in its original form, with provenance metadata and basic quality verification completed.</p>
 <div class="cell" data-fig-width="6" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -494,12 +494,12 @@ Figure&nbsp;1: Value Stream Context Map. VS-01.0 (highlighted) is the entry poin
         (State #0)"]
     end
 
-    subgraph boundary["NSO Boundary"]
+    subgraph boundary["NSI Boundary"]
         QG["Ingestion Service
         (Metadata addition, Quality/Schema check)"]
     end
 
-    subgraph internal["NSO Domain"]
+    subgraph internal["NSI Domain"]
         RD["Raw Data
         (State #1)"]
     end
@@ -514,7 +514,7 @@ Figure&nbsp;1: Value Stream Context Map. VS-01.0 (highlighted) is the entry poin
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Steady State Transition. Source Data is external data in its original form; the ingestion service at the NSO boundary validates and documents it; Raw Data is the same data under NSO custody, ready for downstream use.
+Figure&nbsp;2: Steady State Transition. Source Data is external data in its original form; the ingestion service at the NSI boundary validates and documents it; Raw Data is the same data under NSI custody, ready for downstream use.
 </figcaption>
 </figure>
 </div>
@@ -614,7 +614,7 @@ Figure&nbsp;3: The Four-Process Governance Pattern. Each process type produces a
 <tr class="odd">
 <td><strong>SAF-P01</strong></td>
 <td>Actively participate in open source to maintain collective control over statistical processes</td>
-<td>NSOs should contribute to open source communities for collection and ingestion tooling, ensuring collective control over critical capabilities rather than vendor dependence.</td>
+<td>NSIs should contribute to open source communities for collection and ingestion tooling, ensuring collective control over critical capabilities rather than vendor dependence.</td>
 </tr>
 <tr class="even">
 <td><strong>SAF-P07</strong></td>
@@ -629,7 +629,7 @@ Figure&nbsp;3: The Four-Process Governance Pattern. Each process type produces a
 <tr class="even">
 <td><strong>SAF-P09</strong></td>
 <td>No data without metadata and classification</td>
-<td>At the point of ingestion, every dataset must be enriched with provenance (where it came from and how), source, method, timestamp, quality indicators, and a BIV classification (availability, integrity, confidentiality). This is not a precondition that blocks ingestion, but an obligation the NSO fulfills during acquisition.</td>
+<td>At the point of ingestion, every dataset must be enriched with provenance (where it came from and how), source, method, timestamp, quality indicators, and a BIV classification (availability, integrity, confidentiality). This is not a precondition that blocks ingestion, but an obligation the NSI fulfills during acquisition.</td>
 </tr>
 <tr class="odd">
 <td><strong>SAF-P10</strong></td>
@@ -773,7 +773,7 @@ Figure&nbsp;3: The Four-Process Governance Pattern. Each process type produces a
 <tr class="odd">
 <td><strong>Data Provider</strong></td>
 <td>External</td>
-<td>Supplies data to the NSO under a data sharing agreement (government agency, business, individual)</td>
+<td>Supplies data to the NSI under a data sharing agreement (government agency, business, individual)</td>
 </tr>
 <tr class="even">
 <td><strong>Survey Respondent</strong></td>
@@ -896,13 +896,13 @@ Figure&nbsp;3: The Four-Process Governance Pattern. Each process type produces a
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Population Census:**">
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSI Example — Population Census:**">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><strong>NSO Example — Population Census:</strong>
+<span class="screen-reader-only">Tip</span><strong>NSI Example — Population Census:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -954,13 +954,13 @@ Figure&nbsp;3: The Four-Process Governance Pattern. Each process type produces a
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Labour Force Survey:**">
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSI Example — Labour Force Survey:**">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><strong>NSO Example — Labour Force Survey:</strong>
+<span class="screen-reader-only">Tip</span><strong>NSI Example — Labour Force Survey:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1194,13 +1194,13 @@ Figure&nbsp;4: Design Process Decomposition. Statistical needs and data sources 
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Household Budget Survey:**">
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSI Example — Household Budget Survey:**">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><strong>NSO Example — Household Budget Survey:</strong>
+<span class="screen-reader-only">Tip</span><strong>NSI Example — Household Budget Survey:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1441,13 +1441,13 @@ Figure&nbsp;5: Implementation Pipeline from design artefacts through build/confi
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Annual Census:**">
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSI Example — Annual Census:**">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><strong>NSO Example — Annual Census:</strong>
+<span class="screen-reader-only">Tip</span><strong>NSI Example — Annual Census:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1500,13 +1500,13 @@ Figure&nbsp;5: Implementation Pipeline from design artefacts through build/confi
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Quarterly Tax Data:**">
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSI Example — Quarterly Tax Data:**">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><strong>NSO Example — Quarterly Tax Data:</strong>
+<span class="screen-reader-only">Tip</span><strong>NSI Example — Quarterly Tax Data:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1517,7 +1517,7 @@ Figure&nbsp;5: Implementation Pipeline from design artefacts through build/confi
 <section id="collect-receive-or-extract-data" class="level3">
 <h3 class="anchored" data-anchor-id="collect-receive-or-extract-data">Collect, Receive, or Extract Data</h3>
 <p><strong>Value created:</strong> <em>Secure and verifiable transfer of authentic data into the organization.</em></p>
-<p>This sub-process is the operational heart of the value stream, where data physically enters NSO custody. Primary data collection runs surveys through the designed and built instruments: CAWI portals open, invitation links are sent, and response rates are monitored; CAPI field interviewers are deployed with managed assignments; CATI call schedules are executed with callback management. Secondary data collection receives administrative data via agreed channels — SFTP accepts scheduled file deliveries, APIs pull data on agreed schedules, and data space connectors facilitate federated exchange. Emerging sources — web scraping, sensor data, commercial feeds — are extracted according to designed specifications, all aligned with GSBPM 4.1–4.3.</p>
+<p>This sub-process is the operational heart of the value stream, where data physically enters NSI custody. Primary data collection runs surveys through the designed and built instruments: CAWI portals open, invitation links are sent, and response rates are monitored; CAPI field interviewers are deployed with managed assignments; CATI call schedules are executed with callback management. Secondary data collection receives administrative data via agreed channels — SFTP accepts scheduled file deliveries, APIs pull data on agreed schedules, and data space connectors facilitate federated exchange. Emerging sources — web scraping, sensor data, commercial feeds — are extracted according to designed specifications, all aligned with GSBPM 4.1–4.3.</p>
 <p>Equally critical is the metadata captured at the point of receipt. For every dataset received, the ingestion system records the source identifier and organization, timestamp of receipt, transfer method and channel, file hash (SHA-256) and format, volume (record count and file size), agreement reference, and — for surveys — the collection mode and instrument version. This metadata capture obligation, required by SAF-P09, ensures that no data enters the system without the context needed to understand its provenance and quality.</p>
 <table class="caption-top table">
 <colgroup>
@@ -1606,13 +1606,13 @@ Figure&nbsp;6: Collection Channel Architecture. Whatever the channel — surveys
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Multi-Mode Census:**">
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSI Example — Multi-Mode Census:**">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><strong>NSO Example — Multi-Mode Census:</strong>
+<span class="screen-reader-only">Tip</span><strong>NSI Example — Multi-Mode Census:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1678,13 +1678,13 @@ Important
 <p><strong>Boundary:</strong> NO content-level editing occurs at this stage. Only technical and structural validation is performed. Content editing (correction, imputation, harmonization) is the responsibility of VS-03.0 Data Editing and Enrichment.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Tax Authority Quarterly File:**">
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSI Example — Tax Authority Quarterly File:**">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><strong>NSO Example — Tax Authority Quarterly File:</strong>
+<span class="screen-reader-only">Tip</span><strong>NSI Example — Tax Authority Quarterly File:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1974,7 +1974,7 @@ Figure&nbsp;7: Raw Data Artefact Structure. Reading guide: each box is a type of
 </section>
 <section id="audit-and-compliance-reporting" class="level3">
 <h3 class="anchored" data-anchor-id="audit-and-compliance-reporting">Audit and Compliance Reporting</h3>
-<p>This sub-process produces the evidence that the acquisition domain operates within legal, regulatory, and organizational requirements. Audit trail reports demonstrate full traceability of every dataset from external source to NSO raw data repository. GDPR compliance reporting covers data processing records (Article 30), Data Protection Impact Assessment reviews for high-risk processing, and the ability to demonstrate which data the NSO holds and why. Agreement compliance reporting confirms that all data uses remain within the terms of governing agreements. Security compliance reporting verifies that all designed security measures have been applied and documents any breaches or incidents. These reports satisfy the SAF Capability 4.1.5 (Accountability) obligation and feed into VS-07.5 Audit, Certify, and Report Compliance.</p>
+<p>This sub-process produces the evidence that the acquisition domain operates within legal, regulatory, and organizational requirements. Audit trail reports demonstrate full traceability of every dataset from external source to NSI raw data repository. GDPR compliance reporting covers data processing records (Article 30), Data Protection Impact Assessment reviews for high-risk processing, and the ability to demonstrate which data the NSI holds and why. Agreement compliance reporting confirms that all data uses remain within the terms of governing agreements. Security compliance reporting verifies that all designed security measures have been applied and documents any breaches or incidents. These reports satisfy the SAF Capability 4.1.5 (Accountability) obligation and feed into VS-07.5 Audit, Certify, and Report Compliance.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -2121,19 +2121,19 @@ Figure&nbsp;8: Management Feedback Loop. Execution data flows through monitoring
 <tbody>
 <tr class="odd">
 <td><strong>Data Collection Service</strong></td>
-<td>External → NSO</td>
+<td>External → NSI</td>
 <td>Survey respondents, data providers</td>
 <td>5.3 Collect or Receive Data</td>
 </tr>
 <tr class="even">
 <td><strong>Data Agreement Management Service</strong></td>
-<td>External ↔︎ NSO</td>
+<td>External ↔︎ NSI</td>
 <td>Data providers, legal authorities</td>
 <td>5.2 Establish Data Agreement</td>
 </tr>
 <tr class="odd">
 <td><strong>Raw Data Provisioning Service</strong></td>
-<td>Internal (NSO → VS-02.0)</td>
+<td>Internal (NSI → VS-02.0)</td>
 <td>Standardization teams, data analysts</td>
 <td>5.5 Store and Register Raw Data</td>
 </tr>
@@ -2146,7 +2146,7 @@ Figure&nbsp;8: Management Feedback Loop. Execution data flows through monitoring
 <tr class="odd">
 <td><strong>Metadata Catalog Service</strong></td>
 <td>Internal</td>
-<td>All data consumers across the NSO</td>
+<td>All data consumers across the NSI</td>
 <td>6.3 Manage Metadata Lifecycle</td>
 </tr>
 <tr class="even">
@@ -2258,52 +2258,52 @@ Figure&nbsp;9: Business Object Lifecycle across all four process types. Design o
 <div>
 <pre class="mermaid mermaid-js" data-label="fig-10">sequenceDiagram
     participant DP as Data Provider
-    participant NSO as NSO Teams
+    participant NSI as NSI Teams
     participant PM as Process Mgmt
 
     rect rgb(245, 243, 255)
-    Note over NSO: Design Phase
-    NSO-&gt;&gt;NSO: Define requirements, methodology,&lt;br/&gt;schema, validation &amp; privacy rules
-    NSO--&gt;&gt;NSO: Design Artefacts Published
+    Note over NSI: Design Phase
+    NSI-&gt;&gt;NSI: Define requirements, methodology,&lt;br/&gt;schema, validation &amp; privacy rules
+    NSI--&gt;&gt;NSI: Design Artefacts Published
     end
 
     rect rgb(239, 246, 255)
-    Note over NSO: Implementation Phase
-    NSO-&gt;&gt;NSO: Build instruments, workflows,&lt;br/&gt;catalog &amp; pipeline
-    NSO--&gt;&gt;NSO: Pipeline Production-Ready
+    Note over NSI: Implementation Phase
+    NSI-&gt;&gt;NSI: Build instruments, workflows,&lt;br/&gt;catalog &amp; pipeline
+    NSI--&gt;&gt;NSI: Pipeline Production-Ready
     end
 
     rect rgb(236, 253, 245)
-    Note over NSO,DP: Execution Phase (per cycle)
-    NSO-&gt;&gt;DP: Confirm source &amp; activate agreement
-    DP--&gt;&gt;NSO: Agreement Confirmed
+    Note over NSI,DP: Execution Phase (per cycle)
+    NSI-&gt;&gt;DP: Confirm source &amp; activate agreement
+    DP--&gt;&gt;NSI: Agreement Confirmed
 
     alt Primary Collection
-        NSO-&gt;&gt;DP: Send survey invitation
-        DP--&gt;&gt;NSO: Survey Response
+        NSI-&gt;&gt;DP: Send survey invitation
+        DP--&gt;&gt;NSI: Survey Response
     else Secondary Collection
-        DP--&gt;&gt;NSO: Data File (SFTP/API)
+        DP--&gt;&gt;NSI: Data File (SFTP/API)
     end
 
-    NSO-&gt;&gt;NSO: Validate structure &amp; quality
+    NSI-&gt;&gt;NSI: Validate structure &amp; quality
 
     alt Validation Passed
-        NSO-&gt;&gt;NSO: Assign ID, store raw data,&lt;br/&gt;register metadata
+        NSI-&gt;&gt;NSI: Assign ID, store raw data,&lt;br/&gt;register metadata
     else Validation Failed
-        NSO-&gt;&gt;DP: Request redelivery
+        NSI-&gt;&gt;DP: Request redelivery
     end
     end
 
     rect rgb(254, 243, 199)
     Note over PM: Management Phase
     PM-&gt;&gt;PM: Monitor KPIs, assess quality,&lt;br/&gt;produce compliance reports
-    PM--&gt;&gt;NSO: Improvement Recommendations
+    PM--&gt;&gt;NSI: Improvement Recommendations
     end
 </pre>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: Event-Driven Choreography between Data Provider, NSO teams, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design.
+Figure&nbsp;10: Event-Driven Choreography between Data Provider, NSI teams, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design.
 </figcaption>
 </figure>
 </div>
@@ -2362,11 +2362,11 @@ Figure&nbsp;10: Event-Driven Choreography between Data Provider, NSO teams, show
 </tbody>
 </table>
 </section>
-<section id="applying-this-to-your-nso" class="level2">
-<h2 class="anchored" data-anchor-id="applying-this-to-your-nso">Applying This to Your NSO</h2>
+<section id="applying-this-to-your-nsi" class="level2">
+<h2 class="anchored" data-anchor-id="applying-this-to-your-nsi">Applying This to Your NSI</h2>
 <section id="maturity-assessment-checklist" class="level3">
 <h3 class="anchored" data-anchor-id="maturity-assessment-checklist">Maturity Assessment Checklist</h3>
-<p>Use this checklist to assess your NSO’s maturity across all four process types — not just execution.</p>
+<p>Use this checklist to assess your NSI’s maturity across all four process types — not just execution.</p>
 <p><strong>Design Maturity</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox">Do we have documented data requirements specifications for each data source?</label></li>
@@ -2412,7 +2412,7 @@ Figure&nbsp;10: Event-Driven Choreography between Data Provider, NSO teams, show
 </section>
 <section id="scenario-b-tax-register-administrative-data-secondary-collection" class="level4">
 <h4 class="anchored" data-anchor-id="scenario-b-tax-register-administrative-data-secondary-collection">Scenario B: Tax Register Administrative Data (Secondary Collection)</h4>
-<p><strong>Design Phase:</strong> Statistical designers define the data requirement — quarterly corporate income tax declarations for all legal entities, for use in national accounts and business statistics. The data model maps the tax authority’s XML schema to the NSO’s raw data structure: 47 fields retained, 12 derived, corporate ID as the linkage key. The SLA is set at delivery within 45 calendar days of quarter end, minimum 98% of expected records, in XML format with XSD validation. Validation rules cover XSD schema validation, corporate ID referential integrity against the business register, and amount fields within historical range (plus or minus three standard deviations). Privacy framework: data is received under the Statistics Act mandate, with pseudonymization deferred to the standardization phase (VS-02.0) per agreement.</p>
+<p><strong>Design Phase:</strong> Statistical designers define the data requirement — quarterly corporate income tax declarations for all legal entities, for use in national accounts and business statistics. The data model maps the tax authority’s XML schema to the NSI’s raw data structure: 47 fields retained, 12 derived, corporate ID as the linkage key. The SLA is set at delivery within 45 calendar days of quarter end, minimum 98% of expected records, in XML format with XSD validation. Validation rules cover XSD schema validation, corporate ID referential integrity against the business register, and amount fields within historical range (plus or minus three standard deviations). Privacy framework: data is received under the Statistics Act mandate, with pseudonymization deferred to the standardization phase (VS-02.0) per agreement.</p>
 <p><strong>Implementation Phase:</strong> System configurators set up a dedicated SFTP endpoint with mutual TLS authentication and IP whitelist. Data engineers configure automated ingestion: file arrival triggers a validation pipeline (XSD check, checksum, virus scan, completeness, referential integrity, range check). Metadata registration is automated — on successful validation, a provenance record is created and linked to the agreement, and quality scores are calculated and stored. The pipeline is tested with Q1-2026 historical data resubmission; all validation rules are verified and one false-positive range check is identified and the threshold adjusted.</p>
 <p><strong>Execution Phase:</strong> Q3-2026: the tax authority delivers the quarterly file via SFTP on day 38 (within the 45-day SLA). The automated pipeline triggers: XSD valid, SHA-256 checksum matches manifest, virus scan clean, 2,347,891 records (99.2% of expected — above the 98% threshold), 14 corporate IDs not in the business register (flagged but not rejected — known lag in register updates). Raw data is stored in original XML format, assigned dataset ID <code>RD-TAX-2026Q3-001</code>. Metadata is registered: provenance, quality assessment (completeness=99.2%, timeliness=OnTime, conformance=Pass with 14 flags), and agreement reference. The “Raw Data Registered” event is published and VS-02.0 is notified.</p>
 <p><strong>Management Phase:</strong> The Q3 quality scorecard shows completeness at 99.2% (stable — consistent with Q1=99.1% and Q2=99.3%) and timeliness on time, seven days ahead of the SLA deadline. The 14 unmatched corporate IDs are all newly registered businesses with a register update lag of two to four weeks, consistent with previous quarters. SLA compliance stands at 100% for 12 consecutive quarters. Metadata completeness is 100%. No improvement recommendations are needed — the process is mature and stable, with an annual agreement renewal review scheduled for Q4.</p>

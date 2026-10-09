@@ -339,7 +339,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#business-objects-and-data-flow" id="toc-business-objects-and-data-flow" class="nav-link" data-scroll-target="#business-objects-and-data-flow">Business Objects and Data Flow</a></li>
   <li><a href="#business-events" id="toc-business-events" class="nav-link" data-scroll-target="#business-events">Business Events</a></li>
   <li><a href="#framework-mappings" id="toc-framework-mappings" class="nav-link" data-scroll-target="#framework-mappings">Framework Mappings</a></li>
-  <li><a href="#applying-this-to-your-nso" id="toc-applying-this-to-your-nso" class="nav-link" data-scroll-target="#applying-this-to-your-nso">Applying This to Your NSO</a>
+  <li><a href="#applying-this-to-your-nsi" id="toc-applying-this-to-your-nsi" class="nav-link" data-scroll-target="#applying-this-to-your-nsi">Applying This to Your NSI</a>
   <ul class="collapse">
   <li><a href="#maturity-assessment-checklist" id="toc-maturity-assessment-checklist" class="nav-link" data-scroll-target="#maturity-assessment-checklist">Maturity Assessment Checklist</a></li>
   <li><a href="#end-to-end-scenarios" id="toc-end-to-end-scenarios" class="nav-link" data-scroll-target="#end-to-end-scenarios">End-to-End Scenarios</a></li>
@@ -464,7 +464,7 @@ Figure&nbsp;1: Value Stream Context Map. VS-06.0 is highlighted as the dissemina
 </section>
 <section id="steady-state-transition" class="level3">
 <h3 class="anchored" data-anchor-id="steady-state-transition">Steady State Transition</h3>
-<p>VS-06.0 transitions data from <strong>Steady State #4 (approved statistical products)</strong> to <strong>Steady State #5 (Released Data)</strong> — products that have undergone final disclosure control (additional confidentiality protection beyond State #4), are documented for correct interpretation, and are published or delivered to external parties via trusted channels. Once released, data is used externally as <strong>Steady State #6 (Consumed Data)</strong>, outside the NSO’s direct control.</p>
+<p>VS-06.0 transitions data from <strong>Steady State #4 (approved statistical products)</strong> to <strong>Steady State #5 (Released Data)</strong> — products that have undergone final disclosure control (additional confidentiality protection beyond State #4), are documented for correct interpretation, and are published or delivered to external parties via trusted channels. Once released, data is used externally as <strong>Steady State #6 (Consumed Data)</strong>, outside the NSI’s direct control.</p>
 <div class="cell" data-fig-width="6" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -642,7 +642,7 @@ Figure&nbsp;3: The Four-Process Governance Pattern. Each process type produces a
 <tr class="odd">
 <td><strong>SAF-P01</strong></td>
 <td>Actively participate in open source to maintain collective control over statistical processes</td>
-<td>NSOs should contribute to open source communities for dissemination platforms, APIs, and visualization tooling, ensuring collective control over critical delivery capabilities rather than vendor dependence.</td>
+<td>NSIs should contribute to open source communities for dissemination platforms, APIs, and visualization tooling, ensuring collective control over critical delivery capabilities rather than vendor dependence.</td>
 </tr>
 <tr class="even">
 <td><strong>SAF-P07</strong></td>
@@ -789,7 +789,7 @@ Figure&nbsp;3: The Four-Process Governance Pattern. Each process type produces a
 <tbody>
 <tr class="odd">
 <td><strong>Upstream Data Provider (VS-05.0)</strong></td>
-<td>External (internal NSO)</td>
+<td>External (internal NSI)</td>
 <td>Supplies approved statistical products (State #4) with their metadata and approval record</td>
 </tr>
 <tr class="even">
@@ -908,13 +908,13 @@ Figure&nbsp;3: The Four-Process Governance Pattern. Each process type produces a
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Labour Market Statistics:**">
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSI Example — Labour Market Statistics:**">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><strong>NSO Example — Labour Market Statistics:</strong>
+<span class="screen-reader-only">Tip</span><strong>NSI Example — Labour Market Statistics:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1183,17 +1183,17 @@ Figure&nbsp;4: Design Process Decomposition. Approved products, user needs, and 
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Open Data and API:**">
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSI Example — Open Data and API:**">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><strong>NSO Example — Open Data and API:</strong>
+<span class="screen-reader-only">Tip</span><strong>NSI Example — Open Data and API:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The team configures an SDMX-based API and a bulk open-data download for the labour-market series on the NSO’s VS-09 platform, with rate-limiting and machine-readable metadata, plus a public dashboard fed from the same released datasets.</p>
+<p>The team configures an SDMX-based API and a bulk open-data download for the labour-market series on the NSI’s VS-09 platform, with rate-limiting and machine-readable metadata, plus a public dashboard fed from the same released datasets.</p>
 </div>
 </div>
 </section>
@@ -1425,13 +1425,13 @@ Figure&nbsp;5: Implementation Pipeline from design artefacts through build/confi
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Labour Market Release:**">
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSI Example — Labour Market Release:**">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><strong>NSO Example — Labour Market Release:</strong>
+<span class="screen-reader-only">Tip</span><strong>NSI Example — Labour Market Release:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1578,13 +1578,13 @@ Figure&nbsp;6: Release Architecture. The approved product is disclosure-controll
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Multi-Channel Release:**">
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSI Example — Multi-Channel Release:**">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><strong>NSO Example — Multi-Channel Release:</strong>
+<span class="screen-reader-only">Tip</span><strong>NSI Example — Multi-Channel Release:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1632,13 +1632,13 @@ Figure&nbsp;6: Release Architecture. The approved product is disclosure-controll
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-tip callout-titled" title="**NSO Example — Research Microdata:**">
+<div class="callout callout-style-default callout-tip callout-titled" title="**NSI Example — Research Microdata:**">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><strong>NSO Example — Research Microdata:</strong>
+<span class="screen-reader-only">Tip</span><strong>NSI Example — Research Microdata:</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -2063,31 +2063,31 @@ Figure&nbsp;8: Management Feedback Loop. Execution releases and usage data flow 
 <tbody>
 <tr class="odd">
 <td><strong>Dissemination Preparation Service</strong></td>
-<td>Internal (VS-05.0 → NSO)</td>
+<td>Internal (VS-05.0 → NSI)</td>
 <td>Approved-product consumers, release teams</td>
 <td>5.2 Prepare Data for Dissemination</td>
 </tr>
 <tr class="even">
 <td><strong>Publication and Open-Data Service</strong></td>
-<td>NSO → External</td>
+<td>NSI → External</td>
 <td>Data users, the public, businesses</td>
 <td>5.3 Publish and Provide Access Services</td>
 </tr>
 <tr class="odd">
 <td><strong>API and Dashboard Service</strong></td>
-<td>NSO → External</td>
+<td>NSI → External</td>
 <td>Researchers, developers, analysts</td>
 <td>5.3 Publish and Provide Access Services</td>
 </tr>
 <tr class="even">
 <td><strong>Secure Research Access Service</strong></td>
-<td>NSO → External (mediated)</td>
+<td>NSI → External (mediated)</td>
 <td>Accredited researchers</td>
 <td>5.3 Publish and Provide Access Services</td>
 </tr>
 <tr class="odd">
 <td><strong>User Support Service</strong></td>
-<td>NSO → External</td>
+<td>NSI → External</td>
 <td>All data users</td>
 <td>5.4 Support and Engage Users</td>
 </tr>
@@ -2144,7 +2144,7 @@ Figure&nbsp;8: Management Feedback Loop. Execution releases and usage data flow 
 <td>Released Data (State #5): published statistics + de-identified microdata + access services</td>
 <td>Final disclosure-control record, documentation/methodology notes, reference &amp; structural metadata, channel/format, release timestamp, release-version identifier, lineage to approved product</td>
 <td>“Statistics Released” event</td>
-<td>NSO publishes/serves; external users consume the data as <strong>State #6 (Consumed)</strong>, outside NSO control. Usage and feedback flow back to VS-06.5 and VS-10.</td>
+<td>NSI publishes/serves; external users consume the data as <strong>State #6 (Consumed)</strong>, outside NSI control. Usage and feedback flow back to VS-06.5 and VS-10.</td>
 </tr>
 </tbody>
 </table>
@@ -2207,48 +2207,48 @@ Figure&nbsp;9: Business Object Lifecycle across all four process types. Design o
 <div>
 <pre class="mermaid mermaid-js" data-label="fig-10">sequenceDiagram
     participant US as Upstream (VS-05.0)
-    participant NSO as NSO Teams
+    participant NSI as NSI Teams
     participant USR as Users
     participant PM as Process Mgmt
 
     rect rgb(245, 243, 255)
-    Note over NSO: Design Phase
-    NSO-&gt;&gt;NSO: Define access strategy, release &amp; disclosure&lt;br/&gt;policy, channels &amp; support model
-    NSO--&gt;&gt;NSO: Design Artefacts Published
+    Note over NSI: Design Phase
+    NSI-&gt;&gt;NSI: Define access strategy, release &amp; disclosure&lt;br/&gt;policy, channels &amp; support model
+    NSI--&gt;&gt;NSI: Design Artefacts Published
     end
 
     rect rgb(239, 246, 255)
-    Note over NSO: Implementation Phase
-    NSO-&gt;&gt;NSO: Build publication/API channels, SDC &amp;&lt;br/&gt;release tooling, support &amp; monitoring
-    NSO--&gt;&gt;NSO: Pipeline Production-Ready
+    Note over NSI: Implementation Phase
+    NSI-&gt;&gt;NSI: Build publication/API channels, SDC &amp;&lt;br/&gt;release tooling, support &amp; monitoring
+    NSI--&gt;&gt;NSI: Pipeline Production-Ready
     end
 
     rect rgb(236, 253, 245)
-    Note over NSO,USR: Execution Phase (per release)
-    US--&gt;&gt;NSO: Statistical Product Registered event
-    NSO-&gt;&gt;NSO: Confirm plan; apply final disclosure control
+    Note over NSI,USR: Execution Phase (per release)
+    US--&gt;&gt;NSI: Statistical Product Registered event
+    NSI-&gt;&gt;NSI: Confirm plan; apply final disclosure control
 
     alt Disclosure gate passed
-        NSO-&gt;&gt;USR: Publish via channels (managed timing, equal access)
-        NSO--&gt;&gt;NSO: Statistics Released event
-        USR--&gt;&gt;NSO: Usage &amp; feedback
+        NSI-&gt;&gt;USR: Publish via channels (managed timing, equal access)
+        NSI--&gt;&gt;NSI: Statistics Released event
+        USR--&gt;&gt;NSI: Usage &amp; feedback
     else Disclosure gate failed
-        NSO-&gt;&gt;NSO: Return for additional protection
+        NSI-&gt;&gt;NSI: Return for additional protection
     end
 
-    NSO-&gt;&gt;USR: Provide documentation &amp; support
+    NSI-&gt;&gt;USR: Provide documentation &amp; support
     end
 
     rect rgb(254, 243, 199)
     Note over PM: Management Phase
     PM-&gt;&gt;PM: Monitor usage &amp; punctuality, assess accessibility,&lt;br/&gt;produce compliance reports
-    PM--&gt;&gt;NSO: Improvement Recommendations (to design &amp; VS-10)
+    PM--&gt;&gt;NSI: Improvement Recommendations (to design &amp; VS-10)
     end
 </pre>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: Event-Driven Choreography between the upstream domain (VS-05.0), NSO teams, and users, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design and to VS-10.
+Figure&nbsp;10: Event-Driven Choreography between the upstream domain (VS-05.0), NSI teams, and users, showing events across the Design → Implement → Execute → Manage cycle. The management phase closes the loop by feeding improvements back to design and to VS-10.
 </figcaption>
 </figure>
 </div>
@@ -2307,11 +2307,11 @@ Figure&nbsp;10: Event-Driven Choreography between the upstream domain (VS-05.0),
 </tbody>
 </table>
 </section>
-<section id="applying-this-to-your-nso" class="level2">
-<h2 class="anchored" data-anchor-id="applying-this-to-your-nso">Applying This to Your NSO</h2>
+<section id="applying-this-to-your-nsi" class="level2">
+<h2 class="anchored" data-anchor-id="applying-this-to-your-nsi">Applying This to Your NSI</h2>
 <section id="maturity-assessment-checklist" class="level3">
 <h3 class="anchored" data-anchor-id="maturity-assessment-checklist">Maturity Assessment Checklist</h3>
-<p>Use this checklist to assess your NSO’s maturity across all four process types — not just execution.</p>
+<p>Use this checklist to assess your NSI’s maturity across all four process types — not just execution.</p>
 <p><strong>Design Maturity</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox">Do we have a documented dissemination and access strategy mapped to user groups and channels?</label></li>
