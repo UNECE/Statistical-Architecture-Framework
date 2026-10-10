@@ -869,314 +869,198 @@ An NSI maps the SAF stakeholders onto its own stakeholder landscape. It identifi
 | **SAF-ST06** | Researchers and academia | Society | Access to high-quality data and metadata for research | Systems designed for openness, data sharing and rich metadata |
 | **SAF-ST07** | UNECE and other international bodies | Statistical community | Relevance, coherence and adoption of the framework | A custodial role for UNECE; alignment with the modernisation work of Eurostat and the UN Statistics Division |
 
-## Roles
-
-|**PLACEHOLDER: Roles section to be added**|
-|---|
-
-## Collaborations
-
-|**PLACEHOLDER: Collaborations section to be added**|
-|---|
-
-
-
 # Strategy
+
+## Purpose of this chapter **[S1]**
+
+The Strategy chapter translates motivation into what an NSI must be able to do and how it creates value. Motivation explains *why* change is needed. Strategy describes *what* the organisation needs: its capabilities, the resources behind them, the value streams they support and the courses of action that develop them.
+
+These elements are deliberately independent of organisation structure, processes and systems. Departments, processes and applications change often. Capabilities and value streams change slowly. Anchoring architecture work in this layer lets an NSI compare itself with peers, plan investments over several years, and reorganise or replace technology without losing sight of what it must deliver.
+
+## Position in the framework
+
+The Strategy layer shares the Strategy & Motivation area of the TOGAF ADM with the Motivation layer (see *Position in the framework* in the Motivation chapter). It receives direction from goals and outcomes. It gives direction to the business architecture: value stream stages are realised by business processes, and capabilities are realised by people, processes, information and technology in the lower layers.
+
+|**PLACEHOLDER: Position of the Strategy layer between Motivation and the architecture domains**|
+|---|
+
+In TOGAF terms, the Strategy chapter supports capability-based planning. Capabilities and value streams are part of the Architecture Vision (Phase A) and of the baseline and target Business Architecture (Phase B). Courses of action and resources return in Phases E and F, where the NSI decides how and in which order capabilities are developed.
+
+## How NSIs use this chapter
+
+The capability model and the value streams in this chapter are a reference. Most NSIs perform the same core activities, so these elements are largely shared across the community. An NSI uses them in the same three ways as the motivation elements: adopt, adapt or extend.
+
+The capability model is the most practical starting point. An NSI can assess the maturity of each capability, mark where its goals require improvement, and use the result to prioritise investment. Value streams show where in the production chain a capability creates value, and which stakeholders notice a weak capability first.
+
+Resources and courses of action are specific to each NSI. The SAF explains these concepts and gives examples. The toolkit provides templates to record them.
+
+|**PLACEHOLDER: Capability maturity assessment and capability heatmap to be added to the toolkit**|
+|---|
+
+## Strategy concepts in the SAF **[S2]**
+
+| SAF section | ArchiMate element | Question it answers | Identifier |
+|---|---|---|---|
+| Capability Model | Capability | What must the NSI be able to do? | Capability number (e.g. 1.2.1) |
+| Value Streams | Value Stream | Which sequence of stages creates value for a stakeholder? | VS-01 to VS-10 |
+| Value Streams | Value Stream (stage) | Which value does each step add? | VS-01.1, VS-01.2, … |
+| Resources | Resource | Which assets does the NSI have or need to perform its capabilities? | Defined by the NSI |
+| Courses of Action | Course of Action | Which approach will the NSI take to develop its capabilities and reach its goals? | Defined by the NSI |
+
+The concepts form a chain. Capabilities are what the NSI can do. Resources are what it uses to do it: people, data, knowledge, technology and money. Value streams show where capabilities create value for a stakeholder. Courses of action describe how the NSI will strengthen its capabilities and resources to reach its goals.
 
 ## Capability Model
 
+### The concept
+
 Within the Statistical Architecture Framework (SAF), business capabilities define the fundamental abilities of a statistical organization to perform its mission , independent of processes, organizational structures, or technologies. A business capability represents what the organization must be able to do to deliver value and achieve its objectives, providing a stable and long-term view of the enterprise’s functional landscape.
 
-Capabilities serve as the enabling building blocks of the statistical enterprise. They do not change frequently, even when the underlying processes, applications, or organizational units evolve. For example, the capability “Manage Statistical Data Quality” remains essential regardless of whether data validation is manual, automated, or AI-driven. This stability makes capabilities the preferred unit of analysis for strategic planning, transformation roadmaps, and architecture alignment within the SAF.
+Capabilities serve as the enabling building blocks of the statistical organization. They do not change frequently, even when the underlying processes, applications, or organizational units evolve. For example, the capability “Manage Statistical Data Quality” remains essential regardless of whether data validation is manual, automated, or AI-driven. This stability makes capabilities the preferred unit of analysis for strategic planning, transformation roadmaps, and architecture alignment within the SAF.
 
-Each capability encapsulates a specific business purpose and outcome, which is realized through one or more business functions and operationalized by business processes. Capabilities therefore serve as the conceptual bridge between strategy and execution: they translate strategic goals into operational competence. Within the SAF, capabilities are often organized hierarchically, showing decomposition from high-level domains (such as Data Governance or Statistical Production) into more granular sub-capabilities (such as Metadata Management or Sampling Design).
+Three characteristics set capabilities apart:
 
-A capability-based view enables statistical organizations to assess maturity, identify gaps, and prioritize modernization efforts systematically. By mapping capabilities to the supporting processes, services, and technologies, the SAF facilitates a traceable and measurable link between strategic drivers and operational implementation. This approach supports architectural coherence across business, information, application, and technology layers, ensuring that investments in modernization or digitalization strengthen the organization’s ability to deliver trusted, high-quality statistical outputs.
+- **They are stable.** Statistical quality management (2.1.3) remains essential whether quality checks are manual, automated or AI-supported. Processes and applications change; the capability stays.
+- **They are independent of organisation.** A capability can be spread over several departments, or one department can hold several capabilities. The capability model does not follow the organisation chart.
+- **They are hierarchical.** High-level capabilities are decomposed into more detailed ones. In the SAF, *Data management* (2.1) is decomposed into, among others, *Metadata management* (2.1.2).
 
-In essence, business capabilities in the SAF define the functional DNA of the statistical system, the core abilities that enable it to collect, manage, analyze, and disseminate data in alignment with legal, ethical, and methodological standards. They provide the foundation upon which processes, roles, and value streams are built and integrated into a unified, resilient, and future-oriented architecture.
- 
-### Capability Model Main-level
-The capability model provides a structured, visual overview of the organization’s core abilities required to achieve its mission of producing and disseminating official statistics. This map displays capabilities as stable, business-centric building blocks, grouped to align with strategic goals and is useful to highlight areas for development and investment. The capability model helps a statistical bureau assess and communicate its strengths, gaps, and areas needing improvement to support organizational objectives such as delivering high-quality, timely statistics, maintaining the trust of data providers, and promoting innovation in data processing.
-On the highest level, four main capabilities are defined. The next paragraph will describe the more detailed capabilities.
+Each capability describes a specific business purpose and outcome, which is realized through one or more business functions and operationalized by business processes. Capabilities therefore serve as the conceptual bridge between strategy and execution. They translate strategic goals into operational competence. Within the SAF, capabilities are often organized hierarchically, showing decomposition from high-level domains (such as Data Governance or Statistical Production) into more granular sub-capabilities (such as Metadata Management or Sampling Design).
 
-1. Primary statistical capabilities
-Description: Contains all capacities required to perform the legally required tasks of a Statistical Institute.Source: GAMSO
-2. Supporting Data capabilities
-Description: Includes additional statistical capabilities such as managing statistical data and conducting statistical research.
-3. Supporting business capacities
-Description: Includes the capabilities that ensure that the right people, information and resources are available to implement and support the statistical domains and the governing domain.
-4. Governance capabilities
-Description: Includes the capabilities that provide direction to the organization by determining the desired strategy and the framework within which changes must take place.
-Source: GAMSO 1.2, Strategy and Leadership
+### How the SAF applies capabilities
 
-### Capability Model Sub-levels
+**Why the SAF uses a capability model**
+
+Capabilities are the preferred unit for strategic planning in the SAF. Because they are stable, they make a reliable basis for multi-annual roadmaps. Because they are independent of organisation and technology, they let NSIs compare themselves with each other. A capability view also makes gaps visible: where a goal requires a capability that is weak or missing, investment is needed.
+
+**How capabilities fit into an NSI's own architecture**
+
+An NSI maps the SAF capability model onto its own organisation. It checks which capabilities it has, which it lacks and which are specific to its mandate. It then assesses the maturity of each relevant capability and links capabilities to its goals and outcomes. Capabilities with a low maturity and a high contribution to goals become candidates for investment. Each capability can then be traced to the processes, applications and platforms that realise it.
+
+**Relationships with other concepts**
+
+| Related concept | Relationship | Example in the SAF |
+|---|---|---|
+| Goals and outcomes (Motivation) | Capabilities realise goals and outcomes | Metadata management (2.1.2) realises enhanced data quality (SAF-O2) |
+| Assessment (Motivation) | A capability maturity assessment is a structured form of assessment | A low maturity score for Statistical quality management (2.1.3) |
+| Value Streams | Capabilities enable value stream stages | Primary data collection (1.2.1) enables stage *Collect or Receive Data* of VS-01 |
+| Resources | Capabilities are performed with resources | Methodology (2.2.3) depends on staff with methodological expertise |
+| Courses of Action | Courses of action develop capabilities | A shared platform with partner NSIs develops IT infrastructure (3.2.5) |
+| Business functions and processes (Business Architecture) | Business functions and processes realise capabilities | Business function *Classify Data* realises Data standardisation (1.3.1) |
+| Steady states (Business Architecture) | Capabilities produce or govern steady states | Data standardisation (1.3.1) produces State #2 Standardized Data |
+
+### Capability map
+
+The SAF capability model has four main levels.
+
+|**PLACEHOLDER: SAF capability map (ArchiMate)**|
+|---|
+
+| ID | Main level | Description | Reference |
+|---|---|---|---|
+| **1** | Primary statistical capabilities | The ability to perform the statutory statistical tasks of an NSI. | GAMSO |
+| **2** | Supporting data capabilities | The ability to manage statistical data and to carry out statistical research. | |
+| **3** | Supporting business capabilities | The ability to make sure that the right people, information and resources are available to support the statistical and governance capabilities. | |
+| **4** | Governance capabilities | The ability to give direction to the organisation, by setting its strategy and the framework within which change takes place. | GAMSO 1.2, Strategy and Leadership |
+
+### Capability catalogue **[S5]** **[S6]**
 
 #### 1. Primary statistical capabilities
 
-##### 1.1. Statistical design and build
-The ability to map information needs and set up statistical processes for this purpose.
-Source: GSBPM 5.2, Design
-Link: https://unece.github.io/GSBPM-5.2/#design-phase
- 
-##### 1.1.1 Needs inventory      	
-The ability to map out the information requirement (demand for information) and translate it into social tasks that we want to respond to (supply). 
-Explanation: We often do this through strategic relationships, see the social tasks mentioned in the MJP and the process preceding it.
-Source: GSBPM
+| ID | Capability | Description | Reference |
+|---|---|---|---|
+| **1.1** | **Statistical design and build** | The ability to identify information needs and set up statistical processes to meet them. | [GSBPM 5.2, Design](https://unece.github.io/GSBPM-5.2/#design-phase) |
+| 1.1.1 | Needs inventory | The ability to identify the demand for statistical information and translate it into the societal questions the NSI will respond to. Needs are often identified through strategic relationships with users and stakeholders. The result is usually laid down in the NSI's multi-annual programme and the process that prepares it **[S7]**. | GSBPM |
+| 1.1.2 | Design statistics product | The ability to translate information needs into concrete designs of datasets, process and workflow models, and rule sets and methodology, for the datasets that are released. This covers both the statistical product and the process that produces it. The process consists of process steps, rule sets for each step, the methodology, the process flow, the designs of the required datasets and the designs of shared connection points for reuse. If a required dataset is not available, a data collection assignment can follow. For primary data collection, designs then follow for sampling, questionnaires and similar instruments. | GSBPM, Design phase |
+| 1.1.3 | Build statistics product | The ability to build, test and manage a statistical product until the end of its life cycle. The outputs of the design are assembled and configured into a complete operational environment in which the process can run. | GSBPM |
+| **1.2** | **Data collection** | The ability to collect data for official statistics. | [GSBPM 5.2, Collect](https://unece.github.io/GSBPM-5.2/#collect-phase) |
+| 1.2.1 | Primary data collection | The ability to set up and manage surveys up to completion, and to transfer the collected data and metadata for processing and analysis. Primary data collection uses one or more collection modes. The target population and sample size are set together with the client, based on the information need. Person surveys and business surveys are distinguished. A survey consists of, among other things, a sample, a questionnaire and an approach strategy. | ESS capability model |
+| 1.2.2 | Secondary data collection | The ability to collect data and metadata from third parties for the production of statistics. Data that third parties have already collected is used as much as possible. | ESS capability model |
+| **1.3** | **Processing** | The ability to process raw data into statistical microdata and statistics. | GSBPM, Process phase |
+| 1.3.1 | Data standardisation | The ability to standardise data without loss of content. Standardisation covers data formats, category codes, linkage keys and units of measurement, such as weight, distance and time. It takes place directly after the raw data is received. Standardising as early as possible makes the rest of the process more efficient. | |
+| 1.3.2 | Deriving variables and units | The ability to create new units, and values of new variables, from existing units and values of existing variables. New variables are usually derived to describe reality better. The data source was often not designed for that purpose. | |
+| 1.3.3 | Check content | The ability to check datasets for irregularities, such as missing data, possible errors and outliers. Detected errors can lead to adjustment (see 1.3.4). They can also lead to a quality indicator that is used in quality reporting. Detected outliers lead to an outlier indicator, which matters for a good estimation method (see 1.3.5). | GSBPM |
+| 1.3.4 | Adjusting and imputing | The ability to adjust incorrect values and to fill in missing values. Together with *Check content* (1.3.3), this capability is often called editing. Checks use editing rules, and adjustment is often based on imputation. Imputed values do not yet have to meet the editing rules. A final adjustment therefore often follows, with the editing rules as constraints. | GSBPM, ESS capability model |
+| 1.3.5 | Estimating population parameters | The ability to estimate population parameters from microdata. Estimated population parameters often appear as observations, the cells, in a dimensional dataset such as a table. There are several estimation methods, including the traditional "weight and aggregate". Weights can be derived with several techniques. Sometimes weights are adjusted to give detected outliers less influence. | |
+| 1.3.6 | Integrate statistics | The ability to integrate separate statistics into one consistent whole. Examples are integration systems such as the national accounts, sector accounts and labour accounts. | |
+| 1.3.7 | Statistical disclosure | The ability to check datasets for privacy sensitivity and to adjust them where confidentiality would be violated. | GSBPM 6.4 |
+| **1.4** | **Analysis** | The ability to examine and understand data before it is disseminated. In NSIs, statistical analysis is also called statistical research. It draws connections or conclusions from relationships in the data, such as correlations. | [GSBPM 5.2, Analyse](https://unece.github.io/GSBPM-5.2/#analyse-phase) |
+| 1.4.1 | Statistical (output) analysis | The ability to validate, interpret and explain statistical output, and to finalise it for dissemination using shared methods and processes. | ESS capability model |
+| **1.5** | **Dissemination** | The ability to manage the release of statistical products to internal and external users. | [GSBPM 5.2, Disseminate](https://unece.github.io/GSBPM-5.2/#disseminate-phase) |
+| 1.5.1 | Publication management | The ability to manage the release of statistical output and related content according to release calendars, so that users have predictable and equal access. | ESS capability model |
+| 1.5.2 | Promotion to use | The ability to promote statistical output to potential users, and to inform the press and other interested parties about it. | ESS capability model |
+| 1.5.3 | Facilitate data access | The ability to make statistical data and metadata available to people and machines through multiple channels. | ESS capability model |
+| 1.5.4 | Statistical information management | The ability to prepare and distribute publications about statistical output, such as press releases, interpretations and reports. | ESS capability model |
 
-##### 1.1.2. Design statistics product
-The ability to translate information needs into concrete designs consisting of datasets, process and workflow models and rule sets/methodology. This for the datasets that are released
-Explanation: This concerns both the statistical product itself and the process that produces this product. Components of the process are various process steps, rule sets for the various process steps, methodology used, the process flow, the designs of the required datasets and the designs for the shared connection points for reuse. If the required datasets are not available, an observation assignment can follow. For primary observation, designs can then follow regarding sampling, questionnaire, etc.
-Source: GSBPM Design phase
+#### 2. Supporting data capabilities
 
-##### 1.1.3. Build statistics product
-Building, testing, and managing a statistical product to the point where the product lifecycle ends
-Explanation: The output from the "Design" phase is assembled and configured in this phase to create the complete operational environment to execute the process.
-Source: GSBPM
+| ID | Capability | Description | Reference |
+|---|---|---|---|
+| **2.1** | **Data management** | The ability to manage data and metadata. | |
+| 2.1.1 | Data lifecycle management | The ability to manage data throughout its life cycle. | |
+| 2.1.2 | Metadata management | The ability to manage metadata throughout its life cycle. | ESS capability model |
+| 2.1.3 | Statistical quality management | The ability to assess quality, put control mechanisms in place and start quality improvements across the statistical value chain. | |
+| 2.1.4 | Statistical register management | The ability to set up, maintain and provide register services for collecting and integrating data. This includes the management of master data. | ESS capability model |
+| **2.2** | **Research** | The ability to build and record knowledge about statistical methods, products, sources and techniques. | |
+| 2.2.1 | Data source exploration | The ability to explore new data sources. | ESS capability model |
+| 2.2.2 | Product innovation | The ability to create new statistical products from existing data sources, and to explore new data sources that are useful and important to users. Product innovation can precede the design of a statistical product (see 1.1.2). | ESS capability model |
+| 2.2.3 | Methodology | The ability to investigate new methods for the statistical process. | |
+| 2.2.4 | Data services | The ability to provide data for statistical or scientific research. This applies to both internal and external datasets. These services are provided through, among other things, microdata services. | **[S10]** |
+| 2.2.5 | User research | The ability to collect and assess user needs, and translate them into statistical output. | |
 
-#### 1.2. Data collection
-The ability to collect data for official statistics.
-Source: GSBPM 5.2, Collect
-Link : https://unece.github.io/GSBPM-5.2/#collect-phase 
- 
-##### 1.2.1. Primary data collection
-Primary observation describes the ability to set up and manage surveys, through to completion and transfer for processing and analysis. Primary observation collects both the data and the associated metadata. 
+#### 3. Supporting business capabilities
 
-Explanation: Primary observation is a domain within data collection and performs observations via one or more modes. The research population and the size of the sample are determined together with the client based on the needs. A distinction is made between personal surveys and company surveys. Components of surveys include samples, questionnaires, approach strategies. 
-Source: ESS capability model
-
-##### 1.2.2. Secondary data collection
-Secondary observation is the activity that describes the work required to collect data and associated metadata from third parties for the production of statistics. 
-Explanation: Within secondary observation, sources with data collected by third parties are used as much as possible. 
-Source: ESS capability model
-
-#### 1.3. Processing
-The ability to process raw data into statistical microdata and statistics.Source : GSBPM Process Phase
- 
-##### 1.3.1. Data standardization	The ability to standardize data without loss of content.
-Explanation: This includes standardization of data format, codes for categories, (link) keys, possible units of measurement (for weight, distance, time). Data standardization without loss of content takes place immediately after receipt of the raw data because we want this standardization as early as possible in the processing process for efficiency reasons.
- 
-##### 1.3.2. Deriving variables and units
-The ability to create new units and values of new variables from existing units and values of existing variables. 
-Explanation: We generally derive new variables with the aim of better describing reality; something the data source was not originally intended for.
- 
-##### 1.3.3. Check content
-The ability to check datasets for irregularities, such as missing data, possible errors and outliers. 
-Explanation: discovering possible errors can lead to adjustment, see also capacity "Adjust and impute", but can also lead to a quality indicator on the basis of which quality reports can be made. Discovering outliers leads to an 'outlier indicator' and is important for a good estimation method, see also capacity "Estimate population parameter". 
-Source: GSBPM 
- 
-##### 1.3.4. Adjusting and imputing    	
-The ability to adjust possible incorrect values and missing values. 
-Explanation: together with the "Content check" capacity, this capacity is often called editing. The check is then carried out using editing rules. The adjustment is then often based on imputation. The imputed values do not yet have to comply with the editing rules. To this end, a final 'adjustment' often takes place with the editing rules as a restriction.
-Source: GSBPM, ESS capability model
-
-##### 1.3.5. Estimating population parameters
-The ability to estimate population parameters from microdata.
-Explanation: estimated population parameters often manifest themselves as observations (the cells) in a dimensional dataset (table). There are several estimation methods, including the traditional 'weight and aggregate'. There are several techniques to arrive at the weights. Sometimes weights are adjusted to give found outliers a smaller weight.
-
-##### 1.3.6. Integrate statistics
-The ability to integrate separate statistics into one consistent whole.
-Explanation: We know integration systems for, for example, the national accounts, sector accounts and labour accounts
-
-##### 1.3.7. Statistical disclosure
-The ability to check datasets for privacy sensitivity and to adjust them in case of violation.
-Source: GSBPM 6.4
-
-#### 1.4. Analysis
-The ability to examine and understand data before it is disseminated. 
-Explanation: Within statistical institutes, statistical analysis is also known as statistical research in which certain connections or conclusions can be drawn on the basis of relationships (such as correlation).
-Source: GSBPM 5.2, Analyse
- Link : https://unece.github.io/GSBPM-5.2/#analyse-phase
-
-##### 1.4.1. Statistical (output) analysis
-The ability to validate output, interpret and explain statistical data and finalize output for dissemination using shared methodologies and processes.
-Source: ESS capability model
-
-#### 1.5. Dissemination
-The ability to manage the release of statistical products to users.
-Explanation: This applies to both internal and external users.
-Source: GSBPM 5.2, Disseminate
-Link: https://unece.github.io/GSBPM-5.2/#disseminate-phase
- 
-##### 1.5.1. Publication management
-The ability to manage the release of statistical output and associated content according to release schedules, so that users have predictable and equal access to data.
-Source: ESS capability model
-
-##### 1.5.2. Promotion to use
-The ability to promote the statistical output to potential users and to inform the press and other interested parties about the statistical output.
-Source: ESS capability model
-
-##### 1.5.3. Facilitate data access
-The ability to make statistical data and metadata available to humans and machines through multiple channels.
-Source: ESS capability model
-
-##### 1.5.4. Statistical information management
-The ability to prepare and distribute publications related to statistical output. 
-Explanation: This includes press releases, interpretations and reports. 
-Source: ESS capability model
- 
-#### 2. Supporting Data capabilities
-Includes additional statistical capabilities such as managing statistical data and conducting statistical research.
- 
-#### 2.1. Data management
-The ability to manage data and metadata.
-
-##### 2.1.1. Data lifecycle management
-The ability to manage data throughout its entire lifecycle.
- 
-##### 2.1.2. Metadata management      	
-The ability to manage metadata throughout the lifecycle.
-Source: ESS Capabilities
- 
-##### 2.1.3. Statistical quality management   	
-The ability to perform quality assessments, implement control mechanisms and initiate quality improvement mechanisms for the statistical value chain.
- 
-##### 2.1.4. Statistical register management
-The ability to set up, maintain and make available "registry"-like services for collecting and integrating data.
-Explanation: Master Data
-Source: ESS capability model
-
-#### 2.2. Research
-Includes acquiring and recording knowledge in relation to statistical methods, products, sources and techniques.
-
-##### 2.2.1. Data source exploration
-Exploring new data sources
-Source: ESS
- 
-##### 2.2.2. Product Innovation
-The ability to innovate, i.e. create new statistical products based on existing data sources and explore new data sources that are useful and important to users.
-Explanation: A design phase may be preceded by product innovation.
-Source: ESS
- 
-##### 2.2.3. Methodology
-The ability to investigate new methods for the statistical process.
- 
-##### 2.2.4. Data services
-The ability to provide data for statistical or scientific research.
-Explanation: This applies to both internal and external datasets. These services are realized with, among other things, Microdata services.
-Source: local laws and regulations ?
-
-##### 2.2.5. User research
-The ability to collect, assess and translate user needs into statistical output
-
-#### 3. Supporting business capacities 	
-Includes the capabilities that ensure that the right people, information and resources are available to implement and support the statistical domains and the governing domain.
-
-##### 3.1. Business operations
-Contains all activities required for managing personnel, purchasing & contracts, finances and housing and the associated systems and communication.
-
-##### 3.1.1. Personnel management (HR)
-Ensuring that sufficient qualified employees are available to carry out all business processes.
- 
-##### 3.1.2. Purchasing & contract management
-Acquiring goods and services and monitoring the agreements made with suppliers.
- 
-##### 3.1.3. Financial management
-Includes the planning, organization, design, recording and control of the financial activities of the organization.
- 
-##### 3.1.4. Communication management
-Ensuring that the organization communicates correctly to internal and external parties.
- 
-##### 3.1.5. Administrative support
-Providing support with administrative tasks.
- 
-##### 3.1.6. Facility management
-Organizational function that integrates people, place and process within the built environment.
-Explanation: Description based on ISO 41011. The purpose of facility management is to improve the quality of life of people and the productivity of the core activity.
-Source: ISO 41011
- 
-##### 3.1.7. Legal support
-Handling requests and applications, assessing agreements and advising on relevant legislation and regulations.
- 
-##### 3.1.8. Information management and archive management
-Includes the activities to bring, maintain and preserve the organization's information in a state of sustainable accessibility (FAIR).
-Explanation: This concerns information created in the supporting and management processes, not statistical information from the primary statistical process.
-
-#### 3.2. Computerization and automation
-Ensuring that the information needs of the organization are translated into desired functionalities of the information provision and ensuring that the information systems are available to support the business processes.
-
-##### 3.2.1. Application development
-The ability to develop applications yourself.
-Explanation: This skill is needed to fill gaps in functionality that are missing in the statistical process.
- 
-##### 3.2.2. Functional management
-Performing management tasks so that applications optimally support business processes.
-Explanation: For example, by collecting existing user requirements and translating them into new application functionality.
-
-##### 3.2.3. Technical management
-Performing management tasks regarding system software and applications.
-Explanation: Installing and configuring hardware and software. Managing this hardware and software to ensure that it continues to function correctly, including all measures to help resolve disruptions in a timely manner.
- 
-##### 3.2.4. Digital workplace management
-Management of the resources and services that the employee uses for his digital workplace.
-Explanation: Examples are: (Develop) Laptop / Desktops, Mobile devices, Virtual desktops, Video / audio conferencing, Printing, VPN, proxy services, all for the benefit of the workplace.
- 
-##### 3.2.5. IT infrastructure     	
-Developing, maintaining and managing IT infrastructure
-
-#### 3.3. Security and Privacy
-Contains all security and privacy related activities
-
-##### 3.3.1. Privacy management
-Developing, managing, applying and testing the privacy policy of Statistics Netherlands in order to comply with, among other things, legislation and regulations in the field of privacy protection.
-
-##### 3.3.2. Security planning
-Includes the activities of identifying, analyzing, and planning measures to ensure the security of a system, network, organization, and facility.
-
-##### 3.3.3. Security incident management    	
-Includes the activities of identifying, analyzing, responding to, and recovering from security incidents within an organization.
-
-##### 3.3.4. Logical identity and access control
-Includes all activities that ensure that a person, organization or IT facility can only use automated functions for which it has been granted access rights through an application process.
-
-##### 3.3.5. Physical security & access control
-Includes all activities that ensure controlled and safe access to buildings and spaces and that people and goods in these buildings and spaces are safe.
-
-##### 3.3.6. IT Security services
-IT services that serve to support information security. 
-Explanation: Examples include:Endpoint protection, PKI, network security management,
-
-#### 3.4. Customer and chain interaction
-The ability to interact with the customer and chain partners, ensuring that they have the correct data and information and receiving notifications, requests and data.
-
-##### 3.4.1. Services management
-Includes the design, development, implementation and management of services that the organization (parts) provides to customers and chain partners.
- 
-##### 3.4.2. Contact management
-Maintaining relationships with customers and chain partners.
-Source: GSBPM 1.2
-Link: https://statswiki.unece.org/spaces/GAMSO/pages/247302304/Corporate+Support#CorporateSupport-GAMSOv1.2ManageConsumersManageConsumers
-
-##### 3.4.3. Service Agreement
-Includes drawing up, managing and enforcing service agreements with clients and chain partners.
-Explanation: These contracts apply to clients to whom NSI’s provide services such as access for external researchers or for additional statistical Services, but also to parties that supply information for primary or secondary observation. If these parties fail to comply, the NSI can take enforcement action.
- 
-##### 3.4.4. Self-service
-Offers the opportunity to customers and chain partners to find solutions to questions about the services purchased themselves or to make justified adjustments to these services without the intervention of an employee.
+| ID | Capability | Description | Reference |
+|---|---|---|---|
+| **3.1** | **Business operations** | The ability to manage personnel, purchasing and contracts, finance and housing, including the related systems and communication. | |
+| 3.1.1 | Personnel management (HR) | The ability to make sure that enough qualified staff are available to carry out all business processes. | |
+| 3.1.2 | Purchasing and contract management | The ability to acquire goods and services, and to monitor the agreements made with suppliers. | |
+| 3.1.3 | Financial management | The ability to plan, organise, design, record and control the financial activities of the organisation. | |
+| 3.1.4 | Communication management | The ability to communicate correctly with internal and external parties. | |
+| 3.1.5 | Administrative support | The ability to support administrative tasks. | |
+| 3.1.6 | Facility management | The ability to integrate people, place and process within the built environment. The description is based on ISO 41011. Facility management aims to improve the quality of life of people and the productivity of the core business. | ISO 41011 |
+| 3.1.7 | Legal support | The ability to handle requests and applications, assess agreements and advise on relevant laws and regulations. | |
+| 3.1.8 | Information management and archive management | The ability to keep the organisation's information sustainably accessible (FAIR). This concerns information created in supporting and management processes, not statistical information from the primary statistical process. | |
+| **3.2** | **Computerisation and automation** | The ability to translate the organisation's information needs into functionality of the information provision, and to keep information systems available to support business processes. | |
+| 3.2.1 | Application development | The ability to develop applications in-house. This capability is needed to fill gaps in functionality that the statistical process requires. | |
+| 3.2.2 | Functional management | The ability to manage applications so that they support business processes as well as possible. An example is collecting user requirements and translating them into new application functionality. | |
+| 3.2.3 | Technical management | The ability to manage system software and applications. This covers installing, configuring and managing hardware and software so that it keeps working correctly, including all measures to resolve disruptions in time. | |
+| 3.2.4 | Digital workplace management | The ability to manage the resources and services that staff use in their digital workplace. Examples are laptops and desktops, mobile devices, virtual desktops, video and audio conferencing, printing, VPN and proxy services. | |
+| 3.2.5 | IT infrastructure | The ability to develop, maintain and manage IT infrastructure. | |
+| **3.3** | **Security and privacy** | The ability to carry out all security and privacy activities. | |
+| 3.3.1 | Privacy management **[S7]** | The ability to develop, manage, apply and test the NSI's privacy policy, in order to comply with privacy laws and regulations. | |
+| 3.3.2 | Security planning | The ability to identify, analyse and plan measures to secure systems, networks, the organisation and its facilities. | |
+| 3.3.3 | Security incident management | The ability to identify, analyse, respond to and recover from security incidents. | |
+| 3.3.4 | Logical identity and access control | The ability to make sure that a person, organisation or IT facility can only use the automated functions for which access rights have been granted. | |
+| 3.3.5 | Physical security and access control | The ability to provide controlled and safe access to buildings and spaces, and to keep the people and goods in them safe. | |
+| 3.3.6 | IT security services | The ability to provide IT services that support information security. Examples are endpoint protection, PKI and network security management. | |
+| **3.4** | **Customer and chain interaction** | The ability to interact with customers and chain partners: providing them with the right data and information, and receiving notifications, requests and data. | |
+| 3.4.1 | Services management | The ability to design, develop, implement and manage the services that the organisation provides to customers and chain partners. | |
+| 3.4.2 | Contact management | The ability to maintain relationships with customers and chain partners. | [GAMSO 1.2, Manage Consumers](https://statswiki.unece.org/spaces/GAMSO/pages/247302304/Corporate+Support#CorporateSupport-GAMSOv1.2ManageConsumersManageConsumers) **[S9]** |
+| 3.4.3 | Service agreement | The ability to draw up, manage and enforce service agreements with clients and chain partners. Service agreements apply to clients that receive services from the NSI, such as access for external researchers or additional statistical services. They also apply to parties that supply data for primary or secondary data collection. If a party does not comply, the NSI can take enforcement action. | |
+| 3.4.4 | Self-service | The ability to let customers and chain partners answer questions about the services they use, or make justified changes to them, without help from staff. | |
 
 #### 4. Governance capabilities
-Includes the capabilities that provide direction to the organization by determining the desired strategy and the framework within which changes must take place.
-Source: GAMSO 1.2, Strategy and Leadership"
- 
-##### 4.1.1. Strategy and governance
-Developing a vision and setting up and monitoring the organization and its management.
- 
-##### 4.1.2. Policy and planning
-Translating the strategy into more concrete objectives, principles and plans.
- 
-##### 4.1.3. Change management
-Determining and managing major changes so that maximum contribution is made to the objectives.
 
-##### 4.1.4. Improvement management
-Managing the daily operation and working on identifying areas for improvement and implementing improvement measures based on daily operations.
+| ID | Capability | Description | Reference |
+|---|---|---|---|
+| **4.1** | **Strategy and leadership** **[S11]** | The ability to set the direction of the organisation and to manage change towards it. | GAMSO 1.2, Strategy and Leadership |
+| 4.1.1 | Strategy and governance | The ability to develop a vision, and to set up and monitor the organisation and its management. | |
+| 4.1.2 | Policy and planning | The ability to translate the strategy into concrete objectives, principles and plans. | |
+| 4.1.3 | Change management | The ability to define and manage major changes, so that they contribute as much as possible to the objectives. | |
+| 4.1.4 | Improvement management | The ability to manage daily operations, identify areas for improvement and implement improvements based on daily operations. | |
+| 4.1.5 | Accountability | The ability to report to stakeholders inside and outside the organisation on how far obligations and agreements are met. | |
+| 4.1.6 | Collaboration | The ability to maintain and strengthen strategic relationships with external stakeholders. Collaboration covers coordination with other statistical organisations and other external stakeholders. Within a statistical system, this coordination can follow a geographical hierarchy (local, regional, national, multinational) or a division of responsibilities between organisations. It includes identifying new opportunities for data exchange and integration. It also gives the statistical community opportunities to exchange knowledge, improve statistical infrastructure and practice, and influence statistical standards. | GAMSO 1.2, Manage Strategic Collaboration and Cooperation |
 
-##### 4.1.5. Accountability
-Reporting to stakeholders inside and outside the organization on the extent to which obligations and agreements are met.
+|**PLACEHOLDER: Capability Model Template and the application of Capabilities to be added to the toolkit**|
+|---|
 
-##### 4.1.6. Collaboration
-The ability to maintain and consolidate strategic relationships with external stakeholders.
-Explanation: These activities involve collaboration and coordination with other statistical organizations and other external stakeholders. They may involve coordination within a statistical system, which may be based on a geographical hierarchy of entities (local, regional, national, multinational), or a division of responsibilities between organizations based on activities. They include activities undertaken to identify new opportunities for data exchange or integration. They provide opportunities for the statistical community to exchange knowledge, improve statistical infrastructure and practices, and influence statistical standards.
- 
-Source: GAMSO 1.2, Manage Strategic Collaboration and Cooperation
+
+
+
+
+
+
+
+
 
 ## Value Streams
 
