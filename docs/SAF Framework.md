@@ -21,11 +21,11 @@ Current version: 0.5
 
 [Introduction](#introduction)
 
--   Activity Proposal [TODO]
 -   [Purpose](#purpose)
 -   [Definition of Scope](#definition-of-scope)
 -   [Target Audience](#target-audience)
--   Constraints & Assumptions [TODO]
+-   [Expected Value]
+-   [Constraints & Assumptions]
 
 [Motivation](#motivation)
 
@@ -36,9 +36,12 @@ Current version: 0.5
 -   [Drivers](#drivers)
 -   [Goals](#goals)
 -   [Meaning](#meaning)
--   [Outcome](#outcome)
+-   [Outcomes](#outcomes)
 -   [Architecture Principles](#architecture-principles)
 -   [Value](#value)
+-   [Assessment](#assessment)
+-   [Requirements](#requirements)
+-   [Constraints](#constraints)
 -   [Stakeholders](#stakeholders)
 
 [Strategy](#strategys)
@@ -64,7 +67,7 @@ The framework is designed to support multiple types of use in parallel. It can b
 SAF is intended to work alongside established statistical standards and models. It does not replace statistical business and information models. Instead, it provides the architectural link between strategy, capabilities, processes, services, and technology. This “glue” helps organisations make consistent decisions, improve traceability from policy to implementation, and reduce fragmentation across projects and teams. To support communication and shared understanding, SAF uses a set of architecture viewpoints. Visual models are included to clarify scope, responsibilities, and dependencies. Where appropriate, a consistent modelling notation is used so that organisations can compare, reuse, and extend the content in a disciplined way.
 SAF is a living framework. It is expected to evolve through implementation experience, community feedback, and changes in the external environment. Its value depends on active use and continuous improvement across the community it serves, so that the framework remains both credible and practical over time.
 
-# Acknowledgements
+## Acknowledgements
 
 TODO
 
@@ -107,7 +110,7 @@ In providing a common framework with practical orientation, SAF aims to help sta
 
 ## Constraints & Assumptions
 
-### Use of TOGAF and ArchiMate
+### Use of TOGAF and ArchiMate in SAF
 
 The SAF builds on two open standards of The Open Group, a global, vendor-neutral consortium that develops technology and architecture standards: the TOGAF® Standard and the ArchiMate® Specification. This section explains what these standards are, why the SAF uses them, and how they relate to each other and to the statistical standards of the UNECE community.
 
@@ -169,13 +172,15 @@ TOGAF and ArchiMate are registered trademarks of The Open Group.
 
 ## Purpose of this chapter
 
-The Motivation chapter explains why the Statistical Architecture Framework exists and why architecture decisions in an NSI are taken the way they are. It records the forces that act on statistical organisations, the results they want to achieve, the rules that guide their decisions, and the parties whose concerns must be addressed.
+The Motivation chapter explains why the SAF exists. It also explains why architecture decisions in an NSI are taken the way they are. It records the forces that act on statistical organisations, the results they want to achieve, the rules that guide their decisions, and the parties whose concerns must be addressed.
 
-Without an explicit motivation, architecture becomes a collection of models without a reason. With it, every capability, process, data state, application, or platform choice can be traced back to a need that someone recognises and a result that someone values. This traceability is what makes architecture defensible in a governance board, a budget discussion, or an international review.
+Without an explicit motivation, architecture is a set of models without a reason. With it, every capability, process, data state, application or platform choice can be traced back to a need and a result. That traceability makes architecture defensible, whether in a governance board, a budget discussion or an international review.
 
 ## Position in the framework
 
-The SAF is structured according to TOGAF and modelled in ArchiMate. @fig-mot-togaf shows how the phases of the TOGAF Architecture Development Method (ADM) relate to the layers of ArchiMate. The figure has three areas:
+Motivation is the first layer of the SAF and the foundation for the other layers. The Strategy layer translates motivation into capabilities and value streams. The architecture domains (business, data, application and technology) then translate strategy into design.
+
+The SAF is structured according to TOGAF and modelled in ArchiMate. The figure below shows how the phases of the TOGAF Architecture Development Method (ADM) relate to the ArchiMate layers. The figure has three areas:
 
 - **Strategy & Motivation:** the Preliminary Phase, Phase A (Architecture Vision), and Requirements Management.
 - **Core layers:** Phases B, C, and D, which produce the Business, Application (Information Systems), and Technology architectures.
@@ -184,40 +189,39 @@ The SAF is structured according to TOGAF and modelled in ArchiMate. @fig-mot-tog
 |**PLACEHOLDER: Logical model of the different layers to be added**|
 |---|
 
-The Motivation layer sits in the Strategy & Motivation area, at the start of the ADM cycle. It captures the content that TOGAF produces before any architecture domain is designed, and that keeps steering the architecture during all later phases.
+The Motivation layer sits in the Strategy & Motivation area, at the start of the ADM cycle. It holds the content that TOGAF produces before any architecture domain is designed. That content keeps steering the architecture in all later phases.
 
 | ADM phase | Role of motivation in this phase | SAF sections |
 |---|---|---|
 | Preliminary | Establish the architecture capability: who the architecture serves and which rules guide decisions | Stakeholders, Architecture Principles |
-| A. Architecture Vision | Explain why change is needed, what must be achieved, and what value it brings | Drivers, Goals, Outcome, Meaning, Value |
-| Requirements Management | Turn goals into requirements and constraints, and keep them traceable through every phase | Link between Goals and Outcomes and the architecture domains |
-| B, C, D. Core architectures | Justify design choices in business, application, and technology architecture | Traceability from each design decision back to a goal and a driver |
-| E to H. Implementation & Migration | Prioritise solutions and work packages; reassess when drivers change | Drivers and Goals as criteria for prioritisation and change requests |
+| A. Architecture Vision | Explain why change is needed, what must be achieved and what value it brings | Drivers, Goals, Outcomes, Meaning, Value |
+| Requirements Management | Turn goals into requirements and constraints, and keep them traceable through every phase | Requirements, Constraints |
+| B, C, D. Core architectures | Justify design choices in business, application and technology architecture | Traceability from each design decision back to a goal and a driver |
+| E to H. Implementation & Migration | Prioritise solutions and work packages; reassess when drivers change | Drivers and goals as criteria for prioritisation and change requests |
 
 Three consequences follow from this position.
 
-- **Motivation comes first:** In TOGAF, an architecture domain is not designed until stakeholders, drivers, goals, and principles are agreed. The SAF follows the same order: the Motivation chapter precedes the Strategy chapter and the architecture domains, and every later element must be traceable to it.
+- **Motivation comes first.** In TOGAF, no architecture domain is designed until stakeholders, drivers, goals and principles are agreed. The SAF follows the same order. Every later element must be traceable to the motivation.
+- **Motivation stays active throughout the cycle.** Requirements Management sits at the centre of the ADM. Goals are refined into requirements there, and those requirements are checked in every phase. Motivation is the reference against which each architecture decision is tested, not a one-off introduction.
+- **Motivation closes the loop.** In Phase H (Architecture Change Management), a new or changed driver triggers a change request. Examples are a new regulation or a new data source. The cycle then returns to the Preliminary Phase or Phase A, and the motivation elements become the starting point of the next iteration.
 
-- **Motivation stays active throughout the cycle:** Requirements Management sits at the centre of the ADM and overlaps the Strategy & Motivation area. Goals are refined into requirements there, and those requirements are checked in every phase. Motivation is therefore not a one-off introduction, but the reference against which each architecture decision is tested.
-
-- **Motivation closes the loop:** In Phase H (Architecture Change Management), a new or changed driver, such as a new regulation or a new data source, triggers a change request. The cycle then returns to the Preliminary Phase or Phase A. In this way, the SAF motivation elements are the starting point of every new iteration of the architecture.
-
-The Strategy layer shares the Strategy & Motivation area with the Motivation layer. Where Motivation explains *why*, Strategy describes *what* the NSI must be able to do (capabilities) and *how* it creates value (value streams). It forms the bridge to Phase B, Business Architecture.
-Motivation is the first layer of the SAF and the foundation for all other layers. It precedes the Strategy layer, which translates motivation into capabilities and value streams, and the architecture domains (business, data, application, technology), which translate strategy into design.
+The Strategy layer shares the Strategy & Motivation area with the Motivation layer. Motivation explains *why*. Strategy describes *what* the NSI must be able to do (capabilities) and *how* it creates value (value streams). Strategy is the bridge to Phase B, Business Architecture.
 
 ## How NSIs use this chapter
 
-The motivation elements in this chapter are to be concidered a **reference set**. They describe internal and external forces and intentions that are common to NSIs in general. Modelling the motivation layer is not mandatory but strongly recommanded by the SAF. Many NSIs name their motivation implicitly. It is the basis , the reasoning why NSIs define a strategy, how they make board decisions, and in the experience of individual staff, but it is rarely written down in a form that connects it to architecture decisions. Making the motivation explicit, in the terms of the SAF, helps NSIs in several ways.
+The motivation elements in this chapter are a reference set. They describe internal and external forces and intentions that most NSIs share. Modelling the motivation layer is not mandatory, but the SAF strongly recommends it.
 
-First, it justifies investment. When every programme can be traced to a driver and a goal, investment proposals rest on shared reasoning rather than individual preference. Boards and ministries can see what a proposal responds to and what is at stake if it is not funded. The same reasoning also supports prioritisation. Resources are always limited, and documented drivers and goals provide a common measure for choosing between initiatives. In this way work that addresses multiple drivers or contributes to a key outcome deserves priority over work that addresses none.
+Most NSIs have a motivation, but it is implicit. It lives in strategy documents, board decisions and the experience of staff. It is rarely written down in a way that connects it to architecture decisions. Making it explicit, in SAF terms, helps an NSI in four ways.
 
-Second, it makes decisions consistent. Principles are taken from the motivation and turn the intention to do something into a decision. In this way similar questions receive similar answers regardless of which team or architect is involved. When circumstances change, for example through new legislation or a new data source, the documented links to the motivation layer show which goals, principles, and capabilities are affected. The NSI can then review those decisions very specifically rather than redo the work.
+First, it justifies investment. If every programme can be traced to a driver and a goal, an investment proposal rests on shared reasoning, not on individual preference. Boards and ministries can see what a proposal responds to, and what is at stake if it is not funded. The same links help to set priorities. Work that addresses several drivers, or contributes to a key outcome, comes before work that addresses none.
 
-Third, it preserves knowledge over time. Enployees change, people retire of find new jobs and projects come to an end. A documented motivation keeps the reasoning behind decisions in the past available to the organization so that the next generation statistician or IT specialist understand why the architecture looks the way it does.
+Second, it makes decisions consistent. Principles are derived from the motivation and turn intentions into decision rules. Similar questions then get similar answers, whichever team or architect is involved. When circumstances change, for example through new legislation, the documented links show which goals, principles and capabilities are affected. The NSI can review those specific decisions instead of starting over.
 
-Finally, it strengthens collaboration between NSIs. When NSIs describe their motivation with the same concepts and identifiers, they can quickly see where their work and interests overlap. This will make it easier to start joint projects, share components, and compare approaches. A documented motivation also provides structured evidence for external assessments, such as peer reviews.
+Third, it preserves knowledge. Staff move on and projects end. A documented motivation keeps the reasoning behind past decisions available. New statisticians and IT specialists can see why the architecture looks the way it does.
 
-NSIs can use the SAF motivation in three ways:
+Fourth, it supports collaboration between NSIs. When NSIs use the same concepts and identifiers, they can quickly see where their interests overlap. That makes it easier to start joint projects, share components and compare approaches. A documented motivation is also useful evidence in external assessments, such as peer reviews.
+
+An NSI can use each SAF motivation element in one of three ways:
 1. **Adopt.** Use an SAF element as is, when it matches the national situation.
 2. **Adapt.** Refine an SAF element with national specifics, such as a national statistics act or a government-wide digital strategy.
 3. **Extend.** Add elements that are specific to the NSI, while keeping a reference to the closest SAF element where one exists.
@@ -230,96 +234,102 @@ NSIs can use the SAF motivation in three ways:
 
 | SAF section | ArchiMate element | Question it answers | Identifier |
 |---|---|---|---|
-| Stakeholders | Stakeholder | Whose concerns must the architecture address? | SAF-ST |
 | Drivers | Driver | Which forces make change necessary? | SAF-D |
 | Goals | Goal | What does the NSI intend to achieve? | SAF-G |
-| Outcome | Outcome | Which concrete results will show that a goal is achieved? | SAF-O |
-| Architecture Principles | Principle | Which rules guide architecture decisions? | SAF-P |
 | Meaning | Meaning | What does the framework signify to its users? | SAF-M |
+| Outcomes | Outcome | Which concrete results show that a goal is achieved? | SAF-O |
+| Architecture Principles | Principle | Which rules guide architecture decisions? | SAF-P |
 | Value | Value | What is the framework worth, and to whom? | SAF-V |
-| Requirement | Requirement | xxx | SAF-REQ |
-| Constraint | Constraint | xxx | SAF-CN |
-| Assessement | Assessement | xxx | SAF-AS |
+| Assessment | Assessment | What does a driver mean for this NSI? | *TBD by NSI* |
+| Requirements | Requirement | What must a solution do or provide to realise a goal? | *TBD by NSI* |
+| Constraints | Constraint | Which limits apply to the design or its realisation? | *TBD by NSI* |
+| Stakeholders | Stakeholder | Whose concerns must the architecture address? | SAF-ST |
 
-The concepts form a chain. Stakeholders are concerned with drivers. Drivers motivate goals. Goals are made measurable through outcomes. Principles constrain how goals are pursued. Meaning and value express why the result matters to stakeholders.
+The concepts form a chain. Stakeholders have concerns about drivers. An assessment records what a driver means for one NSI. Drivers motivate goals. Outcomes make goals measurable. Principles guide how goals are pursued, and requirements and constraints make them concrete for a solution. Meaning and value express why the result matters to stakeholders.
 
 ## Drivers
 
 ### The concept
-A **driver** is an external or internal condition that motivates an organisation to define its goals and to change. Drivers describe forces, not problems and not solutions. "Rapid technological change" is a driver. "Our methods cannot use administrative data" is an assessment of that driver for one NSI. "Integrate new data sources into production" is a goal.
 
-Drivers have three characteristics that distinguish them from other motivation elements:
+A **driver** is an external or internal condition that motivates an organisation to set goals and to change. A driver is a force, not a problem and not a solution. "Rapid technological change" is a driver. "Our methods cannot use administrative data" is an assessment of that driver for one NSI. "Integrate new data sources into production" is a goal.
 
-- **They exist independently of the NSI's intentions:** An NSI can respond to a driver, but cannot decide whether it exists.
-- **They are either external or internal:** External drivers originate in the environment (technology, legislation, society, politics, economy). Internal drivers originate within the organisation (legacy systems, skills, organisational structure).
-- **They are relatively stable:** A driver typically remains relevant for several years. Short-lived events, such as a single incident or budget round, are better recorded as assessments.
+Three characteristics set drivers apart from other motivation elements:
+
+- **They exist independently of the NSI.** An NSI can respond to a driver, but cannot decide whether it exists.
+- **They are external or internal.** External drivers come from the environment: technology, legislation, society, politics or the economy. Internal drivers come from within: legacy systems, skills or organisational structure.
+- **They are relatively stable.** A driver usually stays relevant for several years. Short-lived events, such as an incident or a budget round, are better recorded as assessments.
 
 ### How the SAF applies drivers
 
-**Why the SAF records drivers** 
-Drivers make the framework a response to real pressures instead of an abstract ideal. They allow an NSI to explain to its board, its ministry, or an international peer review why architectural change is needed and what happens if it does not take place. They also give a basis for prioritisation: an investment that responds to several drivers at once deserves more attention than one that responds to none.
+**Why the SAF records drivers**
 
-**How drivers fit into an NSI's own architecture** 
-The SAF drivers are generic to the UNECE statistical community. An NSI applies them in four steps:
+Drivers make the SAF a response to real pressures instead of an abstract ideal. With them, an NSI can explain to its board, its ministry or a peer review why change is needed, and what happens without it. Drivers also help to set priorities. An investment that responds to several drivers deserves more attention than one that responds to none.
 
-1. **Recognise**
-   Determine which SAF drivers apply to the national situation, and add national drivers where needed.
-2. **Assess**
-   Analyse what each driver means for the NSI: strengths, weaknesses, risks, and opportunities.
-3. **Respond**
-   Derive or confirm the goals that answer the assessed drivers.
-4. **Trace**
-   Link capabilities, programmes, and architecture decisions back to the drivers they address.
+**How drivers fit into an NSI's own architecture**
 
-**Relationships with other concepts.**
+The SAF drivers are common to the UNECE statistical community. An NSI applies them in four steps:
+
+1. **Recognise.** Decide which SAF drivers apply to the national situation, and add national drivers where needed.
+2. **Assess.** Analyse what each driver means for the NSI: strengths, weaknesses, risks and opportunities.
+3. **Respond.** Derive or confirm the goals that answer the assessed drivers.
+4. **Trace.** Link capabilities, programmes and architecture decisions to the drivers they address.
+
+**Relationships with other concepts**
 
 | Related concept | Relationship | Example in the SAF |
 |---|---|---|
-| Stakeholders (SAF-ST) | Stakeholders are concerned with drivers and often raise them | CIOs and CTOs (SAF-ST01) raise resource constraints (SAF-D5) |
+| Stakeholders (SAF-ST) | Stakeholders have concerns about drivers and often raise them | CIOs and CTOs (SAF-ST01) raise resource constraints (SAF-D5) |
+| Assessment | An assessment records what a driver means for one NSI | "Two thirds of our processing runs on platforms out of vendor support" assesses SAF-D5 |
 | Goals (SAF-G) | Drivers motivate goals | Resource constraints (SAF-D5) motivate cost efficiency (SAF-G1) |
-| Assessment (candidate) | An assessment records what a driver means for one NSI | "Two thirds of our processing runs on platforms out of vendor support" assesses SAF-D5 |
-| Principles (SAF-P) | Drivers explain why a principle exists | Trust and data protection (SAF-D3) explain Privacy by Design (SAF-P11) |
-| Capabilities (Strategy) | Capabilities are developed to respond to drivers, via goals | AI and technological acceleration (SAF-D2) drives investment in methodology (capability 2.2.3) |
+| Principles (SAF-P) | Drivers explain why a principle exists | Trust and data protection (SAF-D3) explain privacy by design (SAF-P11) |
+| Capabilities (Strategy) | Capabilities are developed in response to drivers, through goals | AI and technological acceleration (SAF-D2) drives investment in methodology (capability 2.2.3) |
 | Value streams (Strategy) | Value streams show where a driver affects the production chain | Evolving data ecosystems (SAF-D1) affect data acquisition (VS-01) |
 
 ### SAF drivers
 
 | ID | Driver | Type | Description | Architectural response in the SAF |
 |---|---|---|---|---|
-| **SAF-D1** | Evolving data ecosystems and partnerships | External | Official statistics shift from isolated survey collection to interdependent ecosystems of administrative, commercial, platform, and community data. This creates opportunities and dependencies on actors outside the NSI's control. | Secure data sharing, standardised interfaces, open-source collaboration, and transparent governance for participation in national data platforms and European data spaces. |
-| **SAF-D2** | Artificial intelligence and technological acceleration | External | AI, automation, and rapid technological change transform how data is created, processed, and consumed. NSIs must both adopt these technologies and make their own outputs AI-ready. | A risk-based approach: tight governance for methodologically critical processes, more automation where risk is lower; modular, standards-based design to integrate new technology at a controlled pace. |
-| **SAF-D3** | Trust, scientific rigour, and data protection | External | Public confidence is challenged by misinformation, privacy concerns, and unregulated data providers. Trust requires more than compliance: rigour, transparency, and accountability. | Trust and protection embedded in design: confidentiality controls, methodological integrity, traceability, and proportional oversight based on sensitivity. |
-| **SAF-D4** | Uncertain and polarised global environment | External | Global tensions and political polarisation affect demand for and perception of official statistics, while cross-border data flows require openness and interoperability. | Interoperable architectures based on shared standards, and design principles that protect independence, comparability, and credibility. |
-| **SAF-D5** | Resource constraints and organisational agility | Internal and external | Budgets are limited, systems are ageing, and specialised skills are scarce, while demand for timely and detailed outputs grows. | Modular design, shared services, reuse, and incremental modernisation so that capacity can be reallocated without large-scale reinvestment. |
+| **SAF-D1** | Evolving data ecosystems and partnerships | External | Statistics no longer rely on surveys alone. They draw on administrative, commercial, platform and community data. This creates opportunities, but also dependencies on actors outside the NSI's control. | Secure data sharing, standard interfaces, open-source collaboration and transparent governance, so that NSIs can take part in national data platforms and European data spaces. |
+| **SAF-D2** | Artificial intelligence and technological acceleration | External | AI, automation and fast technological change alter how data is created, processed and used. NSIs must adopt these technologies and make their own outputs AI-ready. | A risk-based approach: tight control of methodologically critical processes, more automation where risk is lower. Modular, standards-based design to adopt new technology at a controlled pace. |
+| **SAF-D3** | Trust, scientific rigour and data protection | External | Misinformation, privacy concerns and unregulated data providers put public confidence under pressure. Trust needs more than compliance. It needs rigour, transparency and accountability. | Protection built into the design: confidentiality controls, methodological integrity, traceability, and oversight in proportion to sensitivity. |
+| **SAF-D4** | Uncertain and polarised global environment | External | Global tensions and political polarisation affect how official statistics are demanded and perceived. Cross-border data flows require openness and interoperability. | Interoperable architectures based on shared standards. Design principles that protect independence, comparability and credibility. |
+| **SAF-D5** | Resource constraints and organisational agility | Internal and external | Budgets are tight, systems are ageing and specialist skills are scarce. Demand for timely and detailed output keeps growing. | Modular design, shared services, reuse and step-by-step modernisation, so that capacity can be shifted without large reinvestment. |
 
 ### Driver details
 
-**SAF-D1 Evolving Data Ecosystems and Partnerships**
+**SAF-D1 Evolving data ecosystems and partnerships**
 
-The environment for producing official statistics is shifting from isolated data collection toward a complex and interdependent data ecosystem. Traditional surveys, once the cornerstone of statistical production, now coexist with administrative, commercial, platform, and community-driven data sources. This expands opportunities for collaboration but also introduces dependencies on actors, technologies, and infrastructures outside the direct control of statistical organisations.
-Open-source development has become a key element of this ecosystem. It provides a shared foundation for innovation, transparency, and cost efficiency, and it fosters cooperation across institutional and national boundaries. Open source allows NSIs to co-develop tools and methods with peers, academia, and private partners.
-The SAF responds by promoting architectures that support secure data sharing, standardised interfaces, and transparent governance. It enables NSIs to participate in broader ecosystems, from national data platforms to European data spaces, where production may take place across multiple environments and jurisdictions. Combining openness with strong governance and clear accountability ensures that collaboration strengthens rather than compromises the integrity of official statistics.
+Official statistics are moving from isolated data collection to a wider data ecosystem. Surveys used to be the main source. Now they sit next to administrative, commercial, platform and community data. This opens up new forms of collaboration. It also makes NSIs dependent on actors, technologies and infrastructures they do not control.
 
-**SAF-D2 Artificial Intelligence and Technological Acceleration**
+Open source is part of this ecosystem. It gives NSIs a shared base for innovation, transparency and lower costs. NSIs can develop tools and methods together with peers, academia and private partners.
 
-Artificial intelligence, automation, and rapid technological progress are transforming how data is created, processed, and consumed. Emerging tools can automate repetitive tasks, enhance analytical capabilities, and strengthen quality assurance. At the same time, they redefine what it means for official statistics to remain relevant and trusted in an environment shaped by intelligent systems.
-NSIs must be both adopters and enablers of AI. Internally, this means developing architectures and competencies that support automation, machine learning, and advanced analytics within secure and transparent boundaries. Externally, official statistics must be AI-ready: machine-readable, machine-understandable, and interoperable with the platforms used by policymakers, researchers, and citizens.
-The SAF responds with a risk-based approach. Processes that demand methodological rigour, transparency, and control are tightly governed, while less sensitive areas can be automated to a higher degree. Modular, standards-based design lets NSIs integrate new technology at an appropriate pace while keeping full accountability for quality, data protection, and institutional independence.
+The SAF responds with architectures for secure data sharing, standard interfaces and transparent governance. These let NSIs take part in national data platforms and European data spaces, where production may span several environments and jurisdictions. Openness is combined with strong governance and clear accountability, so that collaboration does not compromise the integrity of official statistics.
 
-**SAF-D3 Trust, Scientific Rigour, and Data Protection**
+**SAF-D2 Artificial intelligence and technological acceleration**
 
-Trust is the foundation of official statistics. In an environment challenged by misinformation, privacy concerns, and competition from unregulated data providers, maintaining public confidence requires more than compliance. It depends on scientific rigour, transparency, and clear accountability for how data is handled and communicated.
-The SAF responds by embedding trust and protection into architectural design. It promotes governance and technical controls that safeguard confidentiality, ensure methodological integrity, and make processes traceable. Through a risk-based approach, NSIs apply strict oversight where sensitivity and quality demands are high, and allow more automation and shared solutions where risks are lower.
+AI, automation and rapid technological progress are changing how data is created, processed and used. New tools can automate routine tasks, improve analysis and strengthen quality assurance. They also raise the question of what relevant and trusted statistics mean when users rely on intelligent systems.
 
-**SAF-D4 Uncertain and Polarised Global Environment**
+NSIs must both use AI and make their outputs usable by AI. Internally, that requires architectures and skills for automation, machine learning and advanced analytics, within secure and transparent limits. Externally, statistics must be machine-readable, machine-understandable and interoperable with the platforms that policy makers, researchers and citizens use.
 
-Global tensions, political polarisation, and shifting power dynamics influence both the demand for and the perception of official statistics. At the same time, digital interdependence and cross-border data flows require statistical systems to remain open and interoperable while safeguarding national and institutional integrity.
-The SAF responds by providing a stable and transparent foundation for cooperation and resilience. It promotes interoperable architectures based on shared standards, so that NSIs can exchange data and methods securely in uncertain times. Governance and design principles that protect independence and transparency help NSIs maintain credibility and comparability where facts themselves are contested.
+The SAF takes a risk-based approach. Processes that demand methodological rigour and control stay tightly governed. Less sensitive areas can be automated further. Modular, standards-based design lets an NSI adopt new technology at its own pace, while it stays fully accountable for quality, data protection and independence.
 
-**SAF-D5 Resource Constraints and Organisational Agility**
+**SAF-D3 Trust, scientific rigour and data protection**
 
-Many NSIs face increasing expectations with limited budgets, ageing systems, and difficulty recruiting and retaining specialised skills. At the same time, demand for timely, detailed, and multi-domain outputs continues to grow. Meeting these needs requires efficiency and the ability to adapt quickly to changing priorities and technologies.
-The SAF responds by making flexibility and reuse core principles. It supports modular designs, shared services, and scalable solutions that reduce duplication and use existing resources more effectively. Clear governance around priorities allows NSIs to reallocate capacity, modernise incrementally, and keep delivering high-quality outputs under financial and staffing constraints.
+Trust is the basis of official statistics. Misinformation, privacy concerns and unregulated data providers put it under pressure. Compliance alone does not maintain public confidence. Scientific rigour, transparency and clear accountability for the handling of data are also needed.
+
+The SAF builds trust and protection into the architecture. It promotes governance and technical controls that protect confidentiality, keep methods sound and make processes traceable. Oversight is strict where sensitivity and quality demands are high. Where risks are lower, more automation and shared solutions are possible.
+
+**SAF-D4 Uncertain and polarised global environment**
+
+Global tensions, political polarisation and shifting power relations affect how official statistics are demanded and perceived. At the same time, cross-border data flows require statistical systems to stay open and interoperable, without giving up national and institutional integrity.
+
+The SAF offers a stable base for cooperation. Interoperable architectures based on shared standards let NSIs exchange data and methods securely. Design principles that protect independence and transparency help NSIs stay credible and comparable, even when facts themselves are contested.
+
+**SAF-D5 Resource constraints and organisational agility**
+
+Many NSIs must do more with limited budgets, ageing systems and a shortage of specialist staff. Demand for timely, detailed and cross-domain output keeps growing. Meeting that demand requires efficiency and the ability to adapt quickly.
+
+The SAF makes flexibility and reuse core principles. It supports modular design, shared services and scalable solutions that reduce duplication. Clear governance of priorities lets NSIs shift capacity, modernise step by step and keep delivering quality output under financial and staffing pressure.
 
 |**PLACEHOLDER: Drivers Template and Application of Drivers to be added to the toolkit**|
 |---|
@@ -327,75 +337,83 @@ The SAF responds by making flexibility and reuse core principles. It supports mo
 ## Goals
 
 ### The concept
-Architecture goals represent the outcomes an organization aims to achieve by adopting and implementing aframework. They define what success looks like and serve as the link between strategy and action. In the case of the SAF, these goals are not just about modernizing IT systems, but about ensuring that national statistical institutes can continue to provide trustworthy, relevant, and high-quality statistics in a rapidly changing environment. The goals of SAF address both operational and strategic needs. On one hand, they focus on efficiency, modernization, and compliance, which are essential for ensuring sustainability. On the other hand, they support innovation, adaptability, and collaboration, enabling statistical offices to embrace new opportunities such as integrating alternative data sources or experimenting with advanced analytics. Together, these goals ensure that modernization efforts do not compromise the fundamental values of official statistics, neutrality, accuracy, and reliability.
 
-Goals have three characteristics:
+A goal is a statement of intent. It is the direction or end state an organisation wants to achieve. A goal says *what* the organisation wants to achieve. It does not say *how*, or *how much*.
 
-- **They are qualitative and directional:** "Modernise statistical systems" for example sets a direction. A measurable result such as "retire all processing platforms out of vendor support by 2029" is an outcome.
-- **They are relatively long-term:** A goal usually spans several planning cycles and survives changes in programmes and projects.
-- **They are owned by stakeholders:** A goal is meaningful only if a stakeholder recognises it as their intention.
+Three characteristics set goals apart:
 
-By defining goals explicitly, SAF provides a roadmap that can be adapted by each statistical organization according to its maturity and context. This ensures that while each office may have unique challenges and resources, they are all working toward a shared vision that promotes harmonization, comparability, and global collaboration in official statistics.
+- **They are qualitative and directional.** "Modernise statistical systems" sets a direction. A measurable result, such as "retire all platforms out of vendor support by 2029", is an outcome.
+- **They are long-term.** A goal usually spans several planning cycles and outlives individual programmes and projects.
+- **They are owned by stakeholders.** A goal only has meaning if a stakeholder recognises it as their intention.
+
+The SAF goals cover operational and strategic needs. Some focus on efficiency, modernisation and compliance, which keep an NSI sustainable. Others support innovation and collaboration, such as the use of new data sources or advanced analytics. Together these goals make sure that modernisation does not weaken the core values of official statistics: neutrality, accuracy and reliability.
 
 ### How the SAF applies goals
 
 **Why the SAF records goals**
 
-Goals define what success looks like for the framework and for the NSIs that apply it. They give direction to the Strategy layer where capabilities and value streams are developed because they contribute to a specific goal. Without explicit goals, modernisation risks becoming a series of technical upgrades that cannot be explained.
+Goals define what success looks like, for the SAF and for the NSIs that apply it. They give direction to the Strategy layer: capabilities and value streams are developed because they contribute to a goal. Without explicit goals, modernisation can turn into a series of technical upgrades that nobody can explain.
 
-**How goals fit into an NSI's own architecture** 
+**How goals fit into an NSI's own architecture**
 
-The SAF goals are shared by the UNECE statistical community. An NSI relates them to their own strategic planning. It then adapts each relevant goal into a measurable outcomes and, where needed, into specific objectives for programmes and projects. Goals that matter nationally but have no SAF counterpart are added as national goals.
+The SAF goals are shared by the UNECE statistical community. An NSI relates them to its own strategic plan. It then translates each relevant goal into measurable outcomes and, where needed, into objectives for programmes and projects. Goals that matter nationally but have no SAF counterpart are added as national goals. Each NSI can follow this path at its own pace, while working towards the same shared direction.
 
-**Relationships with other concepts.**
+**Relationships with other concepts**
 
 | Related concept | Relationship | Example in the SAF |
 |---|---|---|
 | Drivers (SAF-D) | Drivers motivate goals | Resource constraints (SAF-D5) motivate cost efficiency (SAF-G1) |
 | Outcomes (SAF-O) | Outcomes make goals measurable | Increased efficiency (SAF-O5) shows progress on cost efficiency (SAF-G1) |
 | Principles (SAF-P) | Principles guide how goals are pursued | Reuse before buying (SAF-P01) guides how cost efficiency is achieved |
-| Stakeholders (SAF-ST) | Stakeholders own and recognise goals | CIOs and CTOs (SAF-ST01) own modernisation (SAF-G3) |
+| Stakeholders (SAF-ST) | Stakeholders own goals | CIOs and CTOs (SAF-ST01) own modernisation (SAF-G3) |
 | Capabilities (Strategy) | Capabilities are developed to realise goals | Methodology (capability 2.2.3) supports data innovation (SAF-G4) |
-| Value streams (Strategy) | Value streams show where a goal changes the production chain | Sustainable compliance (SAF-G5) is operationalised in VS-07 |
+| Value streams (Strategy) | Value streams show where a goal changes the production chain | Sustainable compliance (SAF-G5) is put into practice in VS-07 |
 
 ### SAF goals
 
 | ID | Goal | Description | Architectural direction in the SAF |
 |---|---|---|---|
-| **SAF-G1** | Cost efficiency and resource sharing | Operate as efficiently as possible under limited budgets and growing demands, by sharing services, reusing solutions, and pooling resources. | Shared services, reusable and open-source components, modular architectures, and incremental modernisation without large reinvestments. |
-| **SAF-G2** | Harmonised reference framework | Provide a shared foundation of standards, patterns, and practices that NSIs adapt locally while staying interoperable. | Common reference models, consistent design principles, and harmonisation as a prerequisite for shared infrastructures and data spaces. |
-| **SAF-G3** | Modernisation of statistical systems | Move from fragmented legacy environments to modular, service-based architectures that are secure, scalable, and maintainable. | Service-based design, risk-based automation, and principles for access control, data protection, and accountability in multi-actor environments. |
-| **SAF-G4** | Support for data innovation | Make it possible to introduce new data sources, methods, and products into production without undermining quality or consistency. | Guardrails for controlled integration (versioning, validation, automated testing), shared platforms that bridge innovation and production, and safe reuse of open components. |
-| **SAF-G5** | Sustainable compliance | Align modernisation with legal, security, quality, and ethical frameworks, inside and beyond the statistical domain. | Statistical standards (GSBPM, GSIM, SDMX) combined with standards from data management, AI, and cloud; compliance designed in as an enabler. |
+| **SAF-G1** | Cost efficiency and resource sharing | Work as efficiently as possible with limited budgets and growing demand, by sharing services, reusing solutions and pooling resources. | Shared services, reusable and open-source components, modular architectures and step-by-step modernisation. |
+| **SAF-G2** | Harmonised reference framework | Provide shared standards, patterns and practices that NSIs adapt locally while staying interoperable. | Common reference models, consistent design principles, and harmonisation as a condition for shared infrastructures and data spaces. |
+| **SAF-G3** | Modernisation of statistical systems | Move from fragmented legacy environments to modular, service-based architectures that are secure, scalable and maintainable. | Service-based design, risk-based automation, and principles for access control, data protection and accountability where several parties work together. |
+| **SAF-G4** | Support for data innovation | Bring new data sources, methods and products into production without loss of quality or consistency. | Controlled integration (versioning, validation, automated testing), shared platforms that link innovation and production, and safe reuse of open components. |
+| **SAF-G5** | Sustainable compliance | Align modernisation with legal, security, quality and ethical frameworks, inside and outside the statistical domain. | Statistical standards (GSBPM, GSIM, SDMX) combined with standards for data management, AI and cloud. Compliance is designed in from the start. |
 
 ### Goal details
 
-**SAF-G1 Cost Efficiency and Resource Sharing**
+**SAF-G1 Cost efficiency and resource sharing**
 
-With limited budgets and growing demands, statistical organizations must operate as efficiently as possible. SAF promotes cost optimization and improved effectiveness through shared services, reuse of solutions, and stronger interoperability. By pooling resources and adopting common components, NSIs can access capabilities that would be difficult to develop individually while avoiding duplication of effort.
-SAF also encourages the use of open-source components and community-driven platforms where this strengthens transparency, collaboration, and cost efficiency. Through modular architectures and clear governance, organizations can adapt to changing needs, reallocate capacity, and modernize incrementally without large-scale reinvestments. This approach ensures that efficiency is achieved in ways that reinforce both quality and long-term sustainability.
- 
-**SAF-G2 Harmonized Reference Framework**
+Budgets are limited and demand keeps growing. NSIs must therefore work as efficiently as possible. The SAF promotes shared services, reuse of solutions and better interoperability. By pooling resources and using common components, NSIs gain capabilities they could not build alone, and they avoid duplicate work.
 
-Without a shared architectural reference, statistical organizations risk developing isolated solutions that reduce comparability and increase long-term costs. SAF provides a harmonized foundation of standards, patterns, and best practices that can be adapted to local contexts while supporting interoperability across borders and domains. As collaboration increasingly takes place across shared infrastructures such as national data platforms and international data spaces, harmonization also becomes a prerequisite for participation. By promoting transparency and consistent design principles, SAF helps NSIs protect the integrity of official statistics and ensure that shared and open solutions can be reused safely and effectively. A common reference framework enables collaboration, strengthens trust, and supports coherence even as the data landscape evolves.
- 
-**SAF-G3 Modernization of Statistical Systems**
+The SAF also encourages open-source components and community platforms where they improve transparency, collaboration and cost. Modular architectures and clear governance let NSIs adapt to new needs, shift capacity and modernise step by step, without large reinvestments. Efficiency then supports quality and long-term sustainability instead of competing with them.
 
-Many statistical organizations continue to rely on fragmented and legacy IT environments that limit innovation and responsiveness. SAF provides guidance for transitioning toward modern, modular, and service-based architectures that are secure, scalable, and easier to maintain. Modernization reduces technical debt, improves reliability, and allows faster delivery of new and higher-quality statistical outputs.
-Modernization increasingly takes place in environments where multiple actors operate, from national infrastructures to cross-border data spaces. SAF ensures that such settings can be used safely by defining principles for access control, data protection, and accountability. It also supports a risk-based approach to automation and integration of emerging technologies. Critical processes can remain tightly governed to preserve methodological rigor, while less sensitive stages can be automated or shared.
- 
-**SAF-G4 Support for Data Innovation**
+**SAF-G2 Harmonised reference framework**
 
-Innovation in data and methods is central to the future of official statistics. SAF promotes an environment where experimentation, collaboration, and reuse are encouraged within secure and well-governed boundaries. By providing a clear architectural foundation, SAF enables NSIs to incorporate new data sources, tools, and analytical methods without undermining consistency or quality.
-Innovation is not only about creating new solutions but also about making change possible within production. Many statistical organizations find it difficult to introduce new data sources or develop new statistical products because their production systems are optimized for predictability and stability. While these are necessary principles, they can limit agility. SAF addresses this by supporting architectures that balance robustness with flexibility, allowing new components, data, or workflows to be integrated more rapidly while maintaining full control over quality and compliance.
-To make this possible, the framework emphasizes mechanisms and guardrails that enable controlled integration of innovative methods into production chains. This includes versioning, validation, and automated testing approaches that preserve reliability even as systems evolve. SAF also seeks to narrow the gap between innovation and production by promoting shared platforms and processes that allow prototypes to transition smoothly into operational environments.
-Open source plays a key role in this innovation process. It allows organizations to build on each other’s work, increase transparency, and strengthen the collective capacity of the statistical community. SAF supports this through architectural patterns that enable safe reuse of open components and integration with shared platforms. In doing so, it helps turn innovation into a structured, sustainable part of statistical production.
- 
-**SAF-G5 Sustainable Compliance**
+Without a shared architectural reference, NSIs build isolated solutions. These reduce comparability and raise long-term costs. The SAF offers a common base of standards, patterns and practices. NSIs adapt it to their own context and stay interoperable across borders and domains.
 
-Compliance with regulations, standards, and ethical principles is fundamental to maintaining the trust and legitimacy of official statistics. SAF ensures that modernization aligns with legal, security, and quality frameworks while promoting transparency and accountability. Within the statistical domain, well-established standards such as GSBPM, GSIM, and SDMX continue to provide a foundation for consistent processes, metadata management, and data exchange. These remain essential for ensuring methodological rigor and comparability across the statistical system.
-However, as the production of statistics becomes increasingly integrated into the broader data and technology ecosystem, compliance must also extend beyond traditional statistical standards. SAF encourages active engagement with and adoption of relevant standards from adjacent fields such as data management, artificial intelligence, and cloud computing. This outward-looking approach ensures that NSIs remain interoperable with modern data platforms and can benefit from technological progress developed outside the statistical community.
-Through consistent governance and the use of open, verifiable technologies, SAF supports compliance as an enabler rather than a constraint. It provides the structures necessary to ensure that innovation, data sharing, and open collaboration occur within controlled and auditable environments. This approach reinforces public trust by embedding transparency, scientific rigor, and privacy-by-design across all processes.
+More and more collaboration takes place on shared infrastructures, such as national data platforms and international data spaces. Harmonisation is a condition for taking part. Consistent design principles help NSIs protect the integrity of official statistics, and reuse shared and open solutions safely.
+
+**SAF-G3 Modernisation of statistical systems**
+
+Many NSIs still depend on fragmented legacy IT that slows down innovation and response. The SAF guides the move to modular, service-based architectures that are secure, scalable and easier to maintain. Modernisation reduces technical debt, improves reliability and speeds up the delivery of new and better statistics.
+
+Modernisation more often happens in settings with several parties, from national infrastructures to cross-border data spaces. The SAF sets principles for access control, data protection and accountability in those settings. It also takes a risk-based approach to automation and new technology. Critical processes stay tightly governed to protect methodological rigour. Less sensitive steps can be automated or shared.
+
+**SAF-G4 Support for data innovation**
+
+New data and methods are central to the future of official statistics. Yet many NSIs struggle to introduce a new data source or product. Their production systems are built for predictability and stability. Those qualities are necessary, but they slow down change.
+
+The SAF supports architectures that combine robustness with flexibility. New components, data and workflows can then enter production faster, while quality and compliance stay under control. Versioning, validation and automated testing keep production reliable as it changes. Shared platforms and processes help prototypes move into operational use.
+
+Open source matters here too. NSIs can build on each other's work, which increases transparency and the collective capacity of the community. The SAF supports this with patterns for the safe reuse of open components.
+
+**SAF-G5 Sustainable compliance**
+
+Compliance with laws, standards and ethical principles underpins the trust in and legitimacy of official statistics. Within the statistical domain, GSBPM, GSIM and SDMX remain the basis for consistent processes, metadata management and data exchange.
+
+Statistical production is now part of a wider data and technology ecosystem. Compliance must therefore extend beyond statistical standards. The SAF encourages the use of relevant standards from data management, artificial intelligence and cloud computing. NSIs then stay interoperable with modern platforms and benefit from progress made elsewhere.
+
+With consistent governance and open, verifiable technology, compliance becomes an enabler instead of a brake. Innovation, data sharing and collaboration take place in controlled and auditable environments. Transparency, scientific rigour and privacy by design are part of every process.
 
 |**PLACEHOLDER: Goals Template and Application of Goals to be added to the toolkit**|
 |---|
@@ -403,65 +421,67 @@ Through consistent governance and the use of open, verifiable technologies, SAF 
 ## Meaning
 
 ### The concept
-Architecture meaning provides the “why” behind the framework. While goals and outcomes describe what SAF achieves, meaning explains why it matters. For statistical organizations, architecture is not just a technical exercise but a way of ensuring their continued relevance in a digital society. SAF’s meaning lies in its role as the foundation for modernization, trust, and international collaboration.
-One way of looking at this meaning is its role as it connects strategy and technology. Without meaning investments in for example IT risk being disconnected from the mission of providing high-quality statistics. SAF ensures that every technological decision, from adopting a new platform to restructuring business processes, can be traced back to strategic objectives, creating a consistent story. 
-Another wat we use meaning is in the collaboration with others. The meaning of SAF goes beyond an individual organization. It is a unifying language for the UNECE statistical community. By providing shared models, practices, and principles, SAF aims to support international collaboration, reduces duplication, and increases collective impact of the NSI community. In this sense, SAF is not just meaningful to IT professionals but to the broader community of statisticians, policymakers, and citizens who depend on trustworthy statistics.
+
+Meaning is the knowledge or interpretation that a concept has in a given context. Meaning answers the question *what does this signify?* Value answers a different question: *what is it worth, and to whom?*
+
+The SAF uses meaning at the level of the framework itself. The meaning elements describe how the statistical community should understand the SAF. Two interpretations matter most. First, the SAF connects strategy and technology. Every technology decision, from a new platform to a redesigned process, can be traced to a strategic objective. Next, the SAF is a common language for the UNECE statistical community. Shared models, practices and principles reduce duplicate work and make collaboration easier. This makes the SAF relevant beyond IT, to statisticians, policy makers and the citizens who depend on reliable statistics and information.
 
 ### How the SAF applies meaning
 
 **Why the SAF records meaning**
 
-Architecture frameworks are easily misread. IT staff may see a technical blueprint; managers may see an administrative burden. Explicit meaning elements set the intended interpretation, so that all stakeholders understand the framework in the same way.
+Architecture frameworks are easily misread. IT staff may see a technical blueprint. Managers may see administrative overhead. Explicit meaning elements set the intended interpretation, so that all stakeholders read the framework in the same way.
 
 **How meaning fits into an NSI's own architecture**
 
-An NSI uses the meaning elements when it introduces the SAF internally, for example in an architecture charter, an onboarding programme, or communication to management. NSIs may also record meaning for their own core concepts, such as what "a statistical product" or "a steady state" means in their organisation. That use is closer to the glossary.
+An NSI uses the meaning elements when it introduces the SAF internally, for example in an architecture charter, an onboarding programme or a management briefing. An NSI may also record what its own core concepts mean, such as "statistical product" or "steady state". That use belongs in the glossary.
 
-**Relationships with other concepts.**
+**Relationships with other concepts**
 
 | Related concept | Relationship | Example in the SAF |
 |---|---|---|
 | Value (SAF-V) | Meaning explains how value is interpreted | The SAF as common language (SAF-M4) explains why cross-border comparability (SAF-V1) is achievable |
-| Stakeholders (SAF-ST) | Meaning is shaped for and by stakeholders | IT and data professionals (SAF-ST04) interpret the SAF through its notation (SAF-M4) |
+| Stakeholders (SAF-ST) | Meaning is shaped for and by stakeholders | IT and data professionals (SAF-ST04) read the SAF through its notation (SAF-M4) |
 | Goals (SAF-G) | Meaning frames how goals are understood | The SAF as a foundation for transformation (SAF-M3) frames modernisation (SAF-G3) |
-| Glossary | Meaning of individual terms is recorded in the glossary | The definition of "steady state" |
+| Glossary | The meaning of individual terms is recorded in the glossary | The definition of "steady state" |
 
 ### SAF meaning elements
 
 | ID | Meaning | Description |
 |---|---|---|
-| **SAF-M1** | Bridge between strategy and technology | The SAF connects strategic objectives, such as relevance and efficiency, with concrete technology choices, so that IT investments are justified by their contribution to the mission. |
-| **SAF-M2** | Catalyst for collaboration | The SAF is a unifying framework for the statistical community. It enables joint platforms, interoperable systems, and harmonised standards, and amplifies the collective capacity of UNECE members. |
-| **SAF-M3** | Foundation for digital transformation | The SAF is not a set of technical models alone, but the foundation for digital transformation in official statistics, without loss of methodological rigour or institutional trust. |
-| **SAF-M4** | Unifying language and notation | By adopting TOGAF and ArchiMate, the SAF lets diverse stakeholders communicate with a consistent language and notation, reducing misunderstanding and promotes architectural maturity across the community. |
+| **SAF-M1** | Bridge between strategy and technology | The SAF links strategic objectives, such as relevance and efficiency, to technology choices. IT investments are justified by what they contribute to the mission. |
+| **SAF-M2** | Catalyst for collaboration | The SAF is a common framework for the statistical community. It makes joint platforms, interoperable systems and harmonised standards possible, and strengthens what UNECE members can do together. |
+| **SAF-M3** | Foundation for digital transformation | The SAF is more than a set of technical models. It is the basis for digital transformation in official statistics, without loss of methodological rigour or institutional trust. |
+| **SAF-M4** | Common language and notation | Through TOGAF and ArchiMate, stakeholders share one language and notation. This reduces misunderstanding and raises architectural maturity across the community. |
 
 |**PLACEHOLDER: Meaning Template and Application of Meaning to be added to the toolkit**|
 |---|
 
-## Outcome
+## Outcomes
 
 ### The concept
-Architecture outcomes describe the  benefits that NSIs can expect when adopting SAF. They translate principles, goals, and drivers into measurable impacts such as improved interoperability, reduced costs or a better data quality. Outcomes are important for showing the value of architecture to stakeholders. Outcomes provide a clear “return on investment” for adopting the framework. In the SAF outcomes can be both technical and societal.
-On the technical side, NSIs benefit from streamlined processes, better metadata management, and more efficient system development. On the societal side, SAF supports trust, transparency, and comparability of statistics, which are essential for informed policy-making and accountability. This two-sided perspective makes sure that SAF delivers benefits that go much further than IT as it directly supports the mission of statistical organizations.
-By emphasizing outcomes, SAF also promotes a culture of continuous improvement. Outcomes are never static but rather evolve as organizations mature and as they face new challenges. By making outcomes explicit a NSIs is able to assess progress, measure success and adjust their strategies in line with both internal priorities and external demands.
 
-Outcomes have three characteristics:
+An outcome is an end result that has been, or is intended to be, achieved. Outcomes are more concrete than goals. A goal sets a direction. An outcome describes what will be different once that direction has been followed.
 
-- **They are results, not activities:** "Introduce a metadata catalogue" is an activity. "Every registered dataset carries complete metadata and lineage" is an outcome.
-- **They are measurable or at least observable:** An outcome without any indicator cannot be used to steer.
-- **They are realised by the strategy and architecture layers:** Capabilities, value streams, and solutions exist to produce outcomes.
+Three characteristics set outcomes apart:
+
+- **They are results, not activities.** "Introduce a metadata catalogue" is an activity. "Every registered dataset has complete metadata and lineage" is an outcome.
+- **They are measurable, or at least observable.** An outcome without an indicator cannot be used to steer.
+- **They are realised by the strategy and architecture layers.** Capabilities, value streams and solutions exist to produce outcomes.
+
+SAF outcomes are technical as well as societal. On the technical side, NSIs gain simpler processes, better metadata management and faster system development. On the societal side, the SAF supports trust, transparency and comparability, which informed policy and public accountability depend on. Outcomes also change over time. As an NSI matures, it sets new targets and adjusts its course.
 
 ### How the SAF applies outcomes
 
 **Why the SAF records outcomes**
 
-Outcomes show stakeholders the return on adopting the framework. They are the link between the long-term goals and the concrete changes in capabilities, processes, and systems. They also allow progress to be assessed, both by an individual NSI and across the community.
+Outcomes show stakeholders what adopting the framework returns. They connect long-term goals to concrete changes in capabilities, processes and systems. They also make progress measurable, for one NSI and across the community.
 
-**How outcomes fit into an NSI's own architecture** 
+**How outcomes fit into an NSI's own architecture**
 
-An NSI selects the SAF outcomes that correspond to its goals, defines indicators and target values for its own context, and monitors them in its planning and control cycle. The indicative measures below are examples. The SAF toolkit will offer them as a starting point for maturity assessments.
+An NSI selects the SAF outcomes that match its goals. It defines indicators and target values for its own context, and monitors them in its planning and control cycle. The indicative measures below are examples. The SAF toolkit will offer them as a starting point for maturity assessments.
 
-**Relationships with other concepts.**
+**Relationships with other concepts**
 
 | Related concept | Relationship | Example in the SAF |
 |---|---|---|
@@ -469,219 +489,396 @@ An NSI selects the SAF outcomes that correspond to its goals, defines indicators
 | Value (SAF-V) | Outcomes deliver value to stakeholders | Enhanced data quality (SAF-O2) delivers trust and legitimacy (SAF-V6) |
 | Capabilities (Strategy) | Capabilities realise outcomes | Metadata management (capability 2.1.2) realises enhanced data quality (SAF-O2) |
 | Value streams (Strategy) | Value streams produce outcomes in the production chain | The steady-state handovers in VS-01 to VS-06 contribute to improved interoperability (SAF-O3) |
-| Steady states (Business Architecture) | Quality gates make outcomes observable per state | Lineage and metadata requirements per state evidence SAF-O2 |
+| Steady states (Business Architecture) | Quality gates make outcomes observable per state | Lineage and metadata requirements per state provide evidence for SAF-O2 |
 
-### SAF Outcomes
+### SAF outcomes
+
 | ID | Outcome | Description | Indicative measures (illustrative) |
 |---|---|---|---|
-| **SAF-O1** | Accelerated modernisation | Embedding governance, metadata, and lineage into architecture ensures that statistical outputs maintain the highest standards of quality and trustworthiness. SAF makes quality an architectural outcome rather than an afterthought. | Lead time from decision to production for a new statistical product; share of solution designs reusing SAF building blocks |
-| **SAF-O2** | Enhanced data quality | Embedding governance, metadata, and lineage into architecture ensures that statistical outputs maintain the highest standards of quality and trustworthiness. SAF makes quality an architectural outcome rather than an afterthought. | Share of datasets with complete metadata and lineage; revision rate of published figures |
-| **SAF-O3** | Improved interoperability | By adopting SAF, NSIs will achieve higher levels of interoperability across systems, domains, and borders. This facilitates cross-country collaborations, enhances comparability of statistics, and simplifies the integration of external data sources into official workflows. | Share of data exchanges using standard interfaces (e.g. SDMX); number of components shared between NSIs |
-| **SAF-O4** | Improved trust and transparency | By embedding principles such as openness, security, and transparency, SAF helps to build and maintain public trust in statistics. This outcome strengthens the reputation of NSIs and the legitimacy of their outputs. | Results of public trust surveys; number of confidentiality or security incidents |
-| **SAF-O5** | Increased efficiency | SAF reduces duplication of effort by promoting reuse, harmonization, and standardization. This outcome means lower IT costs, faster system development cycles, and more efficient data processing pipelines across the statistical system. | Number of redundant systems retired; processing time per production cycle; IT cost per statistical product |
-| **SAF-O6** | Shared knowledge base | SAF fosters a community of practice across UNECE members. Through shared architectural frameworks, NSIs can exchange lessons learned, reusable components, and knowledge, leading to continuous improvement at lower cost. | Number of reusable components and patterns published; number of NSIs contributing |
+| **SAF-O1** | Accelerated modernisation | NSIs modernise faster and with less rework, because they start from shared reference models, patterns and building blocks instead of designing from scratch. | Lead time from decision to production for a new statistical product; share of solution designs that reuse SAF building blocks |
+| **SAF-O2** | Enhanced data quality | Governance, metadata and lineage are part of the architecture. Statistical output therefore meets high standards of quality and reliability. Quality is designed in, not checked afterwards. | Share of datasets with complete metadata and lineage; revision rate of published figures |
+| **SAF-O3** | Improved interoperability | NSIs reach higher interoperability across systems, domains and borders. This makes international collaboration easier, improves comparability and simplifies the use of external data sources. | Share of data exchanges using standard interfaces (e.g. SDMX); number of components shared between NSIs |
+| **SAF-O4** | Improved trust and transparency | Openness, security and transparency in the architecture help to build and keep public trust. This strengthens the reputation of NSIs and the legitimacy of their output. | Results of public trust surveys; number of confidentiality or security incidents |
+| **SAF-O5** | Increased efficiency | Reuse, harmonisation and standardisation reduce duplicate work. The result is lower IT costs, shorter development cycles and more efficient processing. | Number of redundant systems retired; processing time per production cycle; IT cost per statistical product |
+| **SAF-O6** | Shared knowledge base | A community of practice across UNECE members exchanges lessons learned, reusable components and knowledge. This leads to continuous improvement at lower cost. | Number of reusable components and patterns published; number of NSIs contributing |
 
 |**PLACEHOLDER: Outcome Template and the application of Outcomes to be added to the toolkit**|
-|---| 
+|---|
 
 ## Architecture Principles
 
 ### The concept
-Architecture principles are the basis for any enterprise architecture framework. They provide the guiding rules and fundamental truths that define the way organizations design, implement, and manage their IT landscapes. In the context of official statistics, principles are particularly important because they ensure consistency across an interconnected environment. For the SAF, architecture principles act as a compass for decision-making. They ensure that whenever there is a choice to be made between technologies, processes, or solutions, decisions are not taken in isolation but in accordance with the overarching vision of the statistical community. They also prevent short-term convenience from undermining long-term sustainability, a challenge that statistical offices often face given their reliance on legacy systems and resource constraints.
 
-These principles also provide an element of accountability. When stakeholders understand the principles behind architectural decisions, it becomes easier to justify investments, explain trade-offs, and demonstrate that architecture is not a purely technical exercise but a strategic enabler of the organization’s mission. In this way, principles make architecture transparent and predictable.
+An **architecture principle** is a general rule that guides how an organisation designs, builds and changes its information provision. Principles are durable and rarely change. They apply to all architecture decisions within their scope, not to one project only.
 
-TOGAF recommends describing each principle with four parts:
+Principles matter in official statistics because production runs in a closely connected environment. A choice in one place affects many others. Principles keep such choices consistent. They also prevent short-term convenience from undermining long-term sustainability, a real risk for NSIs with legacy systems and tight budgets. Finally, principles create accountability. When stakeholders know the principles behind a decision, investments and trade-offs are easier to explain.
 
-- **Name:** a short, memorable label.
-- **Statement:** the rule itself, in one or two sentences.
-- **Rationale:** why the rule exists and which benefits it brings.
-- **Implications:** what following the rule requires, in terms of cost, resources, and activities.
+TOGAF recommends describing each principle in four parts:
 
-The SAF follows this template. Principles are only useful if they are applied in decisions: a principle that never leads to a different choice is not a principle but a slogan.
+- **Name**: a short, memorable label.
+- **Statement**: the rule itself, in one or two sentences.
+- **Rationale**: why the rule exists and what it brings.
+- **Implications**: what following the rule requires in cost, resources and activities.
+
+The SAF follows this template. A principle is only useful if it is applied. A principle that never changes a decision is a slogan.
 
 ### How the SAF applies principles
 
-**Why the SAF records principles:**
+**Why the SAF records principles**
 
-Principles turn goals into decision rules. When an NSI must choose between technologies, solutions, or designs, principles make the choice consistent and explainable, and they prevent short-term convenience from undermining long-term sustainability. They also give an architecture board a shared basis for reviewing projects.
+Principles turn goals into decision rules. When an NSI chooses between technologies, solutions or designs, principles make the choice consistent and explainable. They also give an architecture board a shared basis for reviewing projects.
 
 **How principles fit into an NSI's own architecture**
 
-An NSI adopts the SAF principles into its own principle set, adapts their wording to national policy where needed, and adds national principles. Principles take effect when they are embedded in governance: architecture reviews test compliance, and deviations follow a documented dispensation process. The business layer of the SAF shows how each value stream applies the principles in practice.
-
-**Relationships with other concepts.**
-
-| Related concept | Relationship | Example in the SAF |
-|---|---|---|
-| Goals (SAF-G) | Principles guide how goals are pursued | Loose coupling (SAF-P07) guides modernisation (SAF-G3) |
-| Drivers (SAF-D) | Drivers explain why a principle exists | Trust and data protection (SAF-D3) explain Privacy by Design (SAF-P11) |
-| Requirements (candidate) | Principles are refined into concrete requirements | SAF-P09 becomes the minimum metadata set of each steady state |
-| Steady states (Business Architecture) | Principles shape the design rules of the steady-state model | SAF-P07, P08, P09, and P11 underpin the six design rules |
-| Value streams (Business Architecture) | Each value stream applies a subset of principles | VS-07 enforces SAF-P09, P10, and P11 across the chain |
-
-### SAF architecture principles
-
-| ID | Principle | Statement |
-|---|---|---|
-| **SAF-P01** | Reuse before open source, open source before buying, buying before building | When options are equally suitable, reuse takes precedence over open source, open source over purchase, and purchase over own development. |
-| **SAF-P02** | Active support | Systems have an active user community or vendor support. As a rule of thumb, the latest or second-to-last major version is used. |
-| **SAF-P03** | Active life cycle management | Systems and components are kept up to date according to an established life cycle management policy. |
-| **SAF-P04** | Maximise the benefits for the organisation | IT decisions are made to maximise the benefit for the organisation as a whole. |
-| **SAF-P05** | IT and technology is everyone's business | All parts of the organisation take part in the IT decisions needed to achieve organisational goals. |
-| **SAF-P06** | Business continuity | Organisational activities continue despite system or staff outages. |
-| **SAF-P07** | Implement loosely coupled processes and systems | Processes and systems are built as independently as possible and share functionality through standard interfaces. |
-| **SAF-P08** | Data is shared property | Statistical data that adds value for internal or external users is shared. |
-| **SAF-P09** | No data without metadata and classification | All data that is shared carries metadata describing its content and meaning, and an AIC classification **[M15]**. |
-| **SAF-P10** | Security by design | Security is an integrated part of solutions across all layers of the architecture. |
-| **SAF-P11** | Privacy by design | Privacy is an integrated part of system architecture and business processes. |
-
-### Principle details
-
-**SAF-P01 Reuse before open source, open source, before buying, buying before making it yourself**
-
-In case of equal suitability (Business Case), reuse of (parts of) applications takes precedence. The use of open source software takes precedence over purchasing. Purchasing is then preferred over making it yourself. Non-statistical processes only use standard applications.
-Reuse of an application or parts of that application is sustainable and cost-efficient, and also leads to standardization in service provision and information provision. If reuse is not possible, investigate whether an Open Source solution is available before considering a Closed Source (Commercial) solution.
- 
-**SAF-P02 Active support**
-
-Systems (hardware and software) have an active user community and/or vendor support. The rule of thumb is that we use the latest or the second-to-last major version. Among other things, for business continuity it is necessary to be able to get quick and good support in resolving a disruption in the event of a disruption. It is also important from a security perspective that identified security risks are resolved in a timely manner.
- 
-**SAF-P03 Active Life Cycle management**
-
-With active Life Cycle management we prevent overdue maintenance in the IV landscape so that continuity & security risks are mitigated, among other things. Without Life Cycle management, systems or parts thereof can become outdated and thus become vulnerable in terms of security. Without active Life Cycle management, a  technological debt is also built up that, when it eventually has to be repaid, will require disproportionate effort or introduce continuity risks. Keeping systems and components up-to-date in accordance with established LCM policy mitigates these risks.
- 
-**SAF-P04 Maximize the benefits for the organization**
-
-IT decisions are made to maximize the benefits of the organization as a whole. This principle embodies 'service above self'. Decisions made from an organization-wide perspective have greater long-term value than decisions made from a departmental perspective. To maximize the return on the investment, IV decisions must align with the organization-wide mission and priorities.
- 
-**SAF-P05 IT and technology is everyone's business**
-
-All departments in the organization participate in IV decisions that are necessary to achieve organizational goals. IT and technology users are the key stakeholders in the application of technology to meet an organization's needs. To ensure that IT and technology are aligned with business operations, all departments in the organization must be involved in all aspects of the IT and technology landscape. Business experts from across the organization and the technical staff responsible for developing and maintaining the IT and technology capabilities must work together as a team to jointly define the goals and objectives.
- 
-**SAF-P06 Business Continuity**
-
-Organizational activities are maintained despite system or employee outages. As systems and processes become increasingly important to operations, we become more dependent on them; therefore, we must consider the reliability of such systems and processes in their design and operation. Departments throughout the organization must have the ability to continue their activities, regardless of external events, within agreed lead times. Hardware failures, natural disasters, and data corruption must not disrupt or stop operations. The enterprise must be able to operate on the basis of alternative IV systems/processes.
- 
-**SAF-P07 Implement loosely coupled processes and systems**
-
-Processes and systems should be built as independently as possible. This means that processes and systems are designed in such a way that they are not intertwined and dependent on each other. Functionality and logic should be shared with the rest of the organization via standard interfaces. Loosely coupling processes and systems offers more flexibility to adapt or replace individual processes and systems in the future. In addition, there are advantages in terms of scalability and robustness. Differences in security and privacy requirements can also be better enforced.
- 
-**SAF-P08 Data is shared property**
-
-Statistical data that has been determined to add value for use by internal or external users is shared. This implies re-use of data, both in observation to reduce the burden and in further processing to prevent duplication of work in improving and analyzing data.
- 
-**SAF-P09 No data without metadata and classification**
-
-All data that needs to be shared, needs to be provided with metadata information that describes the content and meaning of the data as well as possible. In addition, the data also needs to be classified. Metadata makes it possible to make data FAIR and the BIV classification (Availability, Integrity and Confidentiality) provides direction for the necessary technical and organizational measures. This is to comply with various laws, requirements and security standards.
- 
-**SAF-P10 Security By Design**
-
-Security should not be an afterthought in IV solutions, but should be part of those solutions. Coherent security mechanisms should span all layers of the architecture and be scalable from small objects to large objects. Security should be designed as an integrated part of the system architecture.
- 
-**SAF-P11 Privacy By Design**
-
-Privacy by design should be designed as an integrated part of the system architecture and business processes. Privacy should not be an afterthought in IV solutions, but should be part of those solutions. The result is that privacy becomes an essential part of the core functionality that is delivered. Privacy is an integral part of the system without compromising functionality.
-
-|**PLACEHOLDER: Principles Template and the application of Principles to be added to the toolkit**|
-|---| 
-
-## Value
-
-### The concept
-The value of architecture lies in the benefits it creates for stakeholders. While outcomes describe specific impacts, value captures the broader, long-term importance of SAF to statistical organizations and society. It is about demonstrating that investing in architecture is not merely a technical necessity but a strategic decision that creates trust, efficiency, and sustainability.
-For NSIs, the value of SAF includes reduced risks, greater agility, and improved alignment between IT and business objectives. For international organizations, it provides harmonization and comparability, enabling more effective collaboration across borders. For citizens and policymakers, the value lies in the trustworthiness of the statistics produced, ensuring that public policy and democratic processes are grounded in reliable data.
-
-Value is also about sustainability. Without a framework, modernization efforts can be fragmented, costly, and short-lived. SAF provides a stable foundation that reduces technical debt, improves governance, and ensures that investments yield long-term benefits. In doing so, it secures the role of statistical organizations as trusted institutions in the digital age.
-
-Value differs from the other motivation elements:
-
-An **outcome** is a result. **Value** is the worth of that result as perceived by a stakeholder.
-A **goal** is an intention of the organisation. **Value** is the reason a stakeholder cares whether the goal is reached.
-**Meaning** is how something is interpreted. **Value** is how much it is worth.
-
-### How the SAF applies value
-
-**Why the SAF records value**
-
-Value makes the case for architecture in terms that stakeholders recognise. Investment in architecture competes with other priorities, and it is supported only when its long-term worth is clear. Value statements also prevent modernisation from becoming fragmented and short-lived, by showing what is lost when there is no coherent framework.
-
-**How value fits into an NSI's own architecture**
-
-An NSI uses the SAF value elements to build the business case for architecture work: in investment proposals, in annual reports, and in communication with its ministry or board. It selects the values that matter to its key stakeholders and links them to the outcomes it measures.
+An NSI takes the SAF principles into its own principle set, adapts the wording to national policy where needed, and adds national principles. Principles only take effect when they are part of governance. Architecture reviews test compliance, and deviations follow a documented dispensation process. The business layer of the SAF shows how each value stream applies the principles.
 
 **Relationships with other concepts**
 
 | Related concept | Relationship | Example in the SAF |
 |---|---|---|
-| Stakeholders (SAF-ST) | Value is perceived by stakeholders | Policy makers (SAF-ST03) value trust and legitimacy (SAF-V6) |
+| Goals (SAF-G) | Principles guide how goals are pursued | Loose coupling (SAF-P07) guides modernisation (SAF-G3) |
+| Drivers (SAF-D) | Drivers explain why a principle exists | Trust and data protection (SAF-D3) explain privacy by design (SAF-P11) |
+| Requirements (SAF-REQ) **[R5]** | Principles are refined into concrete requirements | SAF-P09 becomes the minimum metadata set of each steady state |
+| Steady states (Business Architecture) | Principles shape the design rules of the steady-state model | SAF-P07, P08, P09 and P11 underpin the six design rules |
+| Value streams (Business Architecture) | Each value stream applies a subset of the principles | VS-07 enforces SAF-P09, P10 and P11 across the chain |
+
+### SAF architecture principles
+
+| ID | Principle | Statement |
+|---|---|---|
+| **SAF-P01** | Reuse before open source, open source before buying, buying before building | When options are equally suitable, reuse comes before open source, open source before purchase, and purchase before own development. |
+| **SAF-P02** | Active support | Systems have an active user community or vendor support. As a rule of thumb, the latest or second-to-last major version is used. |
+| **SAF-P03** | Active life cycle management | Systems and components are kept up to date according to an agreed life cycle management policy. |
+| **SAF-P04** | Maximise the benefits for the organisation | IT decisions maximise the benefit for the organisation as a whole. |
+| **SAF-P05** | IT and technology is everyone's business | All parts of the organisation take part in the IT decisions needed to reach organisational goals. |
+| **SAF-P06** | Business continuity | Work continues despite system or staff outages. |
+| **SAF-P07** | Implement loosely coupled processes and systems | Processes and systems are built as independently as possible and share functionality through standard interfaces. |
+| **SAF-P08** | Data is shared property | Statistical data that adds value for internal or external users is shared. |
+| **SAF-P09** | No data without metadata and classification | All shared data has metadata describing its content and meaning. |
+| **SAF-P10** | Security by design | Security is an integral part of solutions across all layers of the architecture. |
+| **SAF-P11** | Privacy by design | Privacy is an integral part of system architecture and business processes. |
+
+### Principle details
+
+**SAF-P01 Reuse before open source, open source before buying, buying before building**
+
+- *Statement.* When options are equally suitable according to the business case, reuse of (parts of) existing applications comes first. Open-source software comes before purchase, and purchase comes before own development. Non-statistical processes use standard applications only.
+- *Rationale.* Reuse is sustainable and cost-efficient, and it leads to standardisation of services and information provision. Open source increases transparency and avoids vendor lock-in.
+- *Implications.* Each solution choice records the options considered, in this order. Own development requires explicit justification. Reusable components must be easy to find, for example in a shared catalogue.
+
+**SAF-P02 Active support**
+
+- *Statement.* Hardware and software have an active user community or vendor support. As a rule of thumb, the latest or second-to-last major version is used.
+- *Rationale.* Business continuity requires fast and competent support when something breaks. Security requires that known vulnerabilities are fixed in time.
+- *Implications.* Support status is a selection criterion for every component. Components that approach end of support are flagged in the life cycle plan.
+
+**SAF-P03 Active life cycle management**
+
+- *Statement.* Systems and components are kept up to date according to an agreed life cycle management (LCM) policy.
+- *Rationale.* Without LCM, systems become outdated and vulnerable, and technical debt builds up. Paying off that debt later takes disproportionate effort and creates continuity risks.
+- *Implications.* Every component has an owner and a life cycle plan. LCM has a structural budget, not only when problems arise.
+
+**SAF-P04 Maximise the benefits for the organisation**
+
+- *Statement.* IT decisions maximise the benefit for the organisation as a whole.
+- *Rationale.* Decisions taken from an organisation-wide view have more long-term value than decisions taken from a departmental view. The principle stands for "service above self".
+- *Implications.* Local optimisations need justification against organisation-wide priorities. Shared solutions are preferred over departmental ones, even when they fit one department less well.
+
+**SAF-P05 IT and technology is everyone's business**
+
+- *Statement.* All parts of the organisation take part in the IT decisions needed to reach organisational goals.
+- *Rationale.* The users of IT are its main stakeholders. IT only fits the business when business experts and technical staff set goals and objectives together.
+- *Implications.* Business ownership of each information system is assigned explicitly. Architecture and change decisions are taken in joint business and IT forums.
+
+**SAF-P06 Business continuity**
+
+- *Statement.* Work continues despite system or staff outages.
+- *Rationale.* The more an NSI depends on its systems, the more their reliability matters. Hardware failures, disasters and data corruption must not stop statistical production or release.
+- *Implications.* Continuity requirements are part of every design. Critical processes have fallback arrangements, and recovery is tested regularly.
+
+**SAF-P07 Implement loosely coupled processes and systems**
+
+- *Statement.* Processes and systems are built as independently as possible. They share functionality and logic through standard interfaces.
+- *Rationale.* Loose coupling makes it easier to change or replace a single process or system. It also improves scalability and robustness, and it makes different security and privacy requirements easier to enforce.
+- *Implications.* Domains exchange data through defined interfaces, such as the steady-state handovers in the business architecture. Direct dependencies on another domain's internal data or logic are avoided.
+
+**SAF-P08 Data is shared property**
+
+- *Statement.* Statistical data that adds value for internal or external users is shared.
+- *Rationale.* Sharing enables reuse. In data collection, reuse reduces response burden. In processing, it avoids duplicate work on cleaning and analysing data.
+- *Implications.* Data is registered and findable in a catalogue. Before new data is collected, reuse of existing data is checked. Access is governed, not withheld by default.
+
+**SAF-P09 No data without metadata and classification**
+
+- *Statement.* All shared data has metadata that describes its content and meaning as well as possible, and an AIC classification (availability, integrity, confidentiality).
+- *Rationale.* Metadata makes data FAIR. An AIC classification sets the technical and organisational measures that laws, regulations and security standards require.
+- *Implications.* Metadata and classification are recorded when data is registered, not afterwards. Data without the required metadata is not handed over.
+
+**SAF-P10 Security by design**
+
+- *Statement.* Security is an integral part of every solution. Security mechanisms are consistent across all layers of the architecture and scale from small to large objects.
+- *Rationale.* Security added afterwards costs more, works less well and leaves gaps between layers.
+- *Implications.* Security requirements are set in the design phase of every solution and tested before production.
+
+**SAF-P11 Privacy by design**
+
+- *Statement.* Privacy is an integral part of system architecture and business processes.
+- *Rationale.* Privacy added afterwards conflicts with functionality and leaves risks. Built in from the start, it becomes part of the core functionality without limiting it.
+- *Implications.* Privacy impact is assessed in the design phase. Measures such as pseudonymisation, data minimisation and disclosure control are placed at defined points in the value chain.
+
+|**PLACEHOLDER: Principles Template and the application of Principles to be added to the toolkit**|
+|---|
+
+## Value
+
+### The concept
+
+**Value** is the worth, usefulness or importance of something to a stakeholder. Value is always value *for someone*. The same outcome can be worth a lot to one stakeholder and little to another.
+
+Value differs from the other motivation elements:
+
+- An outcome is a result. Value is what that result is worth to a stakeholder.
+- A goal is an intention of the organisation. Value is the reason a stakeholder cares whether the goal is reached.
+- Meaning is how something is interpreted. Value is how much it is worth.
+
+The SAF creates value at several levels. For NSIs, it means lower risk, more agility and better alignment between IT and business. For international organisations, it means harmonisation and comparability. For citizens and policy makers, it means statistics they can rely on. Value also has a time dimension. Without a framework, modernisation tends to be fragmented, costly and short-lived. The SAF gives a stable base that reduces technical debt and makes investments last.
+
+### How the SAF applies value
+
+**Why the SAF records value**
+
+Value makes the case for architecture in terms that stakeholders recognise. Architecture competes with other priorities for money and attention. It only gets support when its long-term worth is clear.
+
+**How value fits into an NSI's own architecture**
+
+An NSI uses the SAF value elements to build the business case for architecture work: in investment proposals, annual reports and briefings for its ministry or board. It selects the values that matter to its key stakeholders and links them to the outcomes it measures.
+
+**Relationships with other concepts**
+
+| Related concept | Relationship | Example in the SAF |
+|---|---|---|
+| Stakeholders (SAF-ST) | Stakeholders perceive value | Policy makers (SAF-ST03) value trust and legitimacy (SAF-V6) |
 | Outcomes (SAF-O) | Outcomes deliver value | Improved interoperability (SAF-O3) delivers cross-border comparability (SAF-V1) |
 | Meaning (SAF-M) | Meaning explains how value is interpreted | The SAF as bridge between strategy and technology (SAF-M1) underpins strategic alignment (SAF-V4) |
 | Value streams (Strategy) | Value streams create value for stakeholders, stage by stage | VS-06 delivers released statistics to users and society |
 
-### SAF value elements 
+### SAF value elements
 
 | ID | Value | Description |
 |---|---|---|
-| **SAF-V1** | Cross-border comparability | Statistics gain value when they are comparable across borders. Common standards, models, and processes make a meaningful comparison possible. |
-| **SAF-V2** | Innovation enablement | SAF is designed to support the integration of advanced technologies such as AI/ML, real-time analytics, and big data. By lowering the barriers to innovation, it enables NSIs to experiment safely while maintaining methodological soundness. |
-| **SAF-V3** | Risk reduction | By embedding compliance, security, and governance into the architecture, SAF reduces risks associated with system failures, data breaches, or regulatory non-compliance. This value is particularly critical in maintaining the trust of citizens and stakeholders. |
-| **SAF-V4** | Strategic alignment | SAF ensures that all IT initiatives within NSIs directly contribute to their mission of producing official statistics. This alignment improves governance, prioritization, and the impact of IT investments. |
-| **SAF-V5** | Sustainability | SAF promotes efficiency and modernization while reducing technical debt. By providing clear pathways for evolution, it ensures that NSIs can sustain their IT landscapes without repeated costly overhauls. |
-| **SAF-V6** | Trust and legitimacy | The value of SAF lies in enhancing trust in official statistics. By ensuring transparency, ethical practices, and robust security, SAF reinforces the legitimacy of NSIs as authoritative providers of public data. |
+| **SAF-V1** | Cross-border comparability | Statistics are worth more when they can be compared across borders. Common standards, models and processes make that comparison meaningful. |
+| **SAF-V2** | Innovation enablement | The SAF lowers the barriers for AI, machine learning, real-time analytics and big data. NSIs can experiment safely and keep their methods sound. |
+| **SAF-V3** | Risk reduction | Compliance, security and governance are built into the architecture. This reduces the risk of system failures, data breaches and regulatory non-compliance, and protects the trust of citizens and stakeholders. |
+| **SAF-V4** | Strategic alignment | IT initiatives contribute directly to the mission of producing official statistics. This improves governance, prioritisation and the impact of IT investments. |
+| **SAF-V5** | Sustainability | Efficient, modern architectures with less technical debt give NSIs a clear path forward, without repeated and costly overhauls. |
+| **SAF-V6** | Trust and legitimacy | Transparency, ethical practice and robust security strengthen the position of NSIs as authoritative providers of public data. |
 
 |**PLACEHOLDER: Value Template and the application of Values to be added to the toolkit**|
-|---| 
+|---|
 
+## Assessment
+
+### The concept
+
+An assessment is the result of analysing a driver for one specific organisation. It records what the driver means for that organisation: a strength, a weakness, an opportunity or a threat. A driver describes a force. An assessment describes how that force affects this NSI, today.
+
+Three characteristics set assessments apart:
+
+- **They are specific to one organisation.** "Resource constraints" is a driver for many NSIs. "Two thirds of our processing runs on platforms out of vendor support" is an assessment for one NSI.
+- **They are based on evidence.** An assessment rests on facts, such as an application portfolio scan, an audit finding, a maturity assessment or a staff survey. An opinion without evidence is not an assessment.
+- **They change over time.** A driver often stays the same for years. An assessment changes as the NSI acts on it. It is therefore reviewed regularly, for example once a year.
+
+The SAF does not define assessments. A generic assessment would contradict the concept itself. This section explains how assessments are used, and the toolkit provides a template to record them.
+
+### How the SAF applies assessments
+
+**Why the SAF uses assessments**
+
+Assessments are the link between the generic SAF drivers and the goals of an NSI. Without them, an NSI jumps from "the world is changing" straight to "we must modernise", and nobody can see why this particular goal has priority. An assessment makes that step explicit. It also gives a baseline: if the next assessment of the same driver is better, the NSI can show progress.
+
+**How assessments fit into an NSI's own architecture**
+
+An NSI writes one or more assessments for each driver it recognises. The second step of applying drivers, *Assess*, produces them (see *Drivers*). A SWOT analysis is a common format: each finding is recorded as a strength, weakness, opportunity or threat. Assessments then feed the third step, *Respond*, in which the NSI derives or confirms its goals. In TOGAF terms, assessments are part of Phase A, Architecture Vision, and of the baseline description of each architecture domain.
+
+**Relationships with other concepts**
+
+| Related concept | Relationship | Example |
+|---|---|---|
+| Drivers (SAF-D) | An assessment analyses a driver for one NSI | An assessment of SAF-D5 records the share of platforms out of vendor support |
+| Stakeholders (SAF-ST) | Stakeholders contribute evidence and recognise the findings | CIOs and CTOs (SAF-ST01) own the assessment of the application portfolio |
+| Goals (SAF-G) | Assessments influence which goals an NSI sets and how it prioritises them | A weakness on SAF-D5 makes modernisation (SAF-G3) a priority |
+| Outcomes (SAF-O) | A new assessment shows whether outcomes have been reached | The share of unsupported platforms falls after a modernisation programme (SAF-O1) |
+| Capability Model (Strategy) | A capability maturity assessment is a structured form of assessment | A low score on metadata management (capability 2.1.2) |
+
+### Examples (illustrative)
+
+The examples show the form of an assessment and its links. They are not SAF assessments and do not apply to every NSI.
+
+| Driver | Assessment | Type | Evidence | Leads to |
+|---|---|---|---|---|
+| SAF-D5 Resource constraints and organisational agility | Two thirds of our processing runs on platforms that are out of vendor support | Weakness | Application portfolio scan | Priority for SAF-G3 Modernisation of statistical systems |
+| SAF-D1 Evolving data ecosystems and partnerships | A national data space is being set up, and our NSI is invited to join as a participant | Opportunity | Government programme plan | Priority for SAF-G2 Harmonised reference framework |
+| SAF-D3 Trust, scientific rigour and data protection | We cannot show, for each published figure, which source data version it is based on | Weakness | Internal audit finding | Priority for SAF-O2 Enhanced data quality (lineage) |
+
+|**PLACEHOLDER: Assessment Template and the application of Assessments to be added to the toolkit**|
+|---|
+
+## Requirements
+
+### The concept
+
+A requirement is a statement of need that a solution must meet. A goal says what the NSI wants to achieve. A requirement says what a specific solution, process or platform must do or provide to contribute to that goal.
+
+Three characteristics set requirements apart:
+
+- **They apply to a specific solution.** "Modernise statistical systems" is a goal. "The new processing platform records the lineage of every registered dataset" is a requirement.
+- **They are testable.** It must be possible to check whether a solution meets the requirement, for example in an architecture review or an acceptance test.
+- **They are derived, not invented.** A good requirement can be traced to a goal, an outcome or a principle. A requirement without that trace needs a justification.
+
+The SAF does not define requirements for NSIs. Requirements depend on the solution, the context and the maturity of each NSI. This section explains how requirements relate to the other motivation elements. The toolkit provides a template to derive and record them.
+
+### How the SAF applies requirements
+
+**Why the SAF uses requirements**
+
+Principles and goals are deliberately general. They only change a design when they are made concrete. Requirements are that concrete form. They connect the motivation layer to the architecture domains, and they let an architecture board test whether a solution really contributes to the goals it claims to serve.
+
+**How requirements fit into an NSI's own architecture**
+
+In TOGAF, requirements are managed in Requirements Management, at the centre of the ADM. They are identified in every phase and checked against each architecture decision. An NSI derives its requirements from three sources:
+
+1. **Goals and outcomes.** What must the solution provide to contribute to a goal, and how will the outcome be measured?
+2. **Principles.** What does each relevant SAF principle mean for this solution?
+3. **SAF reference content.** Which SAF building blocks apply, and what do they require?
+
+The SAF already contains content that works as a set of requirements. The steady states in the business architecture each have quality criteria and a minimum metadata set. An NSI that adopts the steady-state model can use these directly as requirements for the processes and platforms that produce and store each state. The same applies to the principle tables in each value stream. They show which principles apply at which stage of the production chain.
+
+**Relationships with other concepts**
+
+| Related concept | Relationship | Example |
+|---|---|---|
+| Goals (SAF-G) | Requirements make goals concrete for a solution | SAF-G4 Support for data innovation leads to a requirement for automated testing in the production pipeline |
+| Outcomes (SAF-O) | Requirements contribute to outcomes and make them measurable in a solution | Lineage recording contributes to SAF-O2 Enhanced data quality |
+| Principles (SAF-P) | Requirements apply principles to a specific solution | SAF-P09 becomes the requirement that no dataset is handed over without its minimum metadata |
+| Constraints | Requirements describe what a solution must do; constraints limit how it may be done | A requirement for scalable processing within the constraint that data stays on premises |
+| Steady states (Business Architecture) | Quality criteria and minimum metadata per state work as reusable requirements | The criteria for registering data in State #1 Raw Data |
+
+### Examples (illustrative)
+
+The examples show how a requirement is derived and traced. They are not SAF requirements.
+
+| Source | Requirement | Applies to | How to verify |
+|---|---|---|---|
+| SAF-P09 No data without metadata and classification | No dataset is registered in a steady state without its minimum metadata set and an AIC classification | Data catalogue and registration process | Registration is refused when mandatory metadata is missing |
+| SAF-G4 Support for data innovation | A new method can move from the innovation environment to production without manual re-implementation | Analytical platform and deployment pipeline | Time and effort for one pilot method to reach production |
+| SAF-P07 Implement loosely coupled processes and systems | Business domains exchange data only through registered steady states, not through each other's internal data | All production processes | Architecture review of data flows between domains |
+
+|**PLACEHOLDER: Requirements Template and the application of Requirements to be added to the toolkit**|
+|---|
+
+## Constraints
+
+### The concept
+
+A constraint is a factor that limits how goals can be realised. A requirement describes what a solution must do. A constraint describes the boundaries within which it must be done. Constraints are usually not chosen by the architect. They are given by law, policy, budget, existing contracts or the current landscape.
+
+Three characteristics set constraints apart:
+
+- **They limit the solution space.** A constraint rules out options. "Personal data may not be processed outside the EU" excludes certain cloud services, whatever their other merits.
+- **They come from outside the design.** Typical sources are legislation, government policy, budget, staffing, existing contracts and technical dependencies.
+- **They differ in how fixed they are.** A legal constraint cannot be negotiated. A budget or policy constraint may change. Recording the source of a constraint shows which ones can be challenged.
+
+This section is about constraints on an NSI's own architecture. It is different from the *Constraints & Assumptions* in the Introduction, which describe the boundaries of the SAF itself (for example SAF-C1 and SAF-C2).
+
+The SAF does not define constraints for NSIs, because legal and organisational contexts differ. Some constraints, however, apply to almost every NSI, such as data protection law and the statistical confidentiality required by national statistical law. They are used below as examples.
+
+### How the SAF applies constraints
+
+**Why the SAF uses constraints**
+
+Constraints that stay implicit cause late surprises. A design that looks right fails in a procurement, a privacy assessment or a security review, because a limit was not known in time. Recording constraints early, and linking them to the goals they affect, keeps the architecture realistic. It also makes trade-offs visible: when a constraint blocks a goal, the board can decide whether to accept that or to challenge the constraint.
+
+**How constraints fit into an NSI's own architecture**
+
+In TOGAF, constraints are identified in Phase A, Architecture Vision, and managed together with requirements in Requirements Management. An NSI records its constraints with their source and whether they are fixed or negotiable. Each constraint is linked to the goals, requirements or solutions it affects. Constraints are reviewed when their source changes, for example after new legislation or a new government policy on cloud use.
+
+Several parts of the SAF help to identify constraints. *Definition of Scope* states that the SAF does not prescribe a technology stack or organisational design, so those choices are left to the NSI and its constraints. The principles on security and privacy by design (SAF-P10 and SAF-P11) point to the legal and security frameworks that usually impose constraints.
+
+**Relationships with other concepts**
+
+| Related concept | Relationship | Example |
+|---|---|---|
+| Drivers (SAF-D) | Some drivers are the origin of constraints | SAF-D3 Trust, scientific rigour and data protection is the origin of data protection constraints |
+| Goals (SAF-G) | Constraints limit how goals can be realised | A ban on public cloud for statistical microdata limits how SAF-G3 Modernisation is realised |
+| Requirements | Constraints bound the solutions that can meet a requirement | A scalability requirement must be met within on-premises infrastructure |
+| Principles (SAF-P) | Principles are applied within the limits that constraints set | SAF-P01 Reuse before buying applies within public procurement rules |
+| Stakeholders (SAF-ST) | Stakeholders often own or impose constraints | A privacy officer applies data protection law; a ministry sets the budget |
+
+### Examples (illustrative)
+
+The examples show the form of a constraint. They are not SAF constraints, and their content differs per country.
+
+| Constraint | Source | Fixed or negotiable | Affects |
+|---|---|---|---|
+| Statistical microdata is processed only within the NSI's own controlled environment | National statistical law and confidentiality policy | Fixed | Platform and hosting choices for SAF-G3; data sharing under SAF-G2 |
+| Personal data is processed in line with the GDPR, including data minimisation and purpose limitation | EU legislation | Fixed | Design of data acquisition and standardisation; SAF-P11 Privacy by design |
+| Public cloud services are used only for business support functions, not for statistical production | Government or NSI cloud policy | Negotiable | Technology choices for SAF-G3 and SAF-G4 |
+
+|**PLACEHOLDER: Constraints Template and the application of Constraints to be added to the toolkit**|
+|---|
 
 ## Stakeholders
 
 ### The concept
-Architecture is never developed in isolation. Stakeholders - , as individuals, groups, or organizations that influence or are influenced by architecture - are central to its success. In the SAF, stakeholders range from technical experts and CIOs within NSIs to international organizations, policymakers, researchers, and ultimately, society at large. Each of these stakeholders has unique interests, expectations, and contributions, and the framework must balance these to be effective.
-Identifying stakeholders clarifies who should be involved in governance, decision-making, and implementation. For example, IT professionals are responsible for translating SAF principles into concrete systems, while policymakers are concerned with the outcomes those systems enable. International organizations such as UNECE play a custodial role, ensuring that SAF remains harmonized and relevant across countries. By mapping these roles, SAF ensures that no perspective is overlooked and that architecture decisions are inclusive and robust.
-Engaging stakeholders also strengthens legitimacy. When those affected by architecture decisions are part of the conversation, they are more likely to support the outcomes. For statistical organizations, where public trust is essential, engaging stakeholders such as researchers, academia, and citizens indirectly ensures that the architecture remains aligned with societal expectations of transparency, security, and fairness.
+
+A **stakeholder** is an individual, group or organisation with an interest in the effects of the architecture **[R8]**. Stakeholders have *concerns*: questions or interests they want the architecture to address, such as cost, risk, quality or compliance.
+
+A stakeholder is not the same as a business actor or role. An actor or role performs work in the architecture, for example a data steward who registers datasets. A stakeholder has an interest in the architecture, whether or not it performs work in it. The same person or organisation can be both.
+
+SAF stakeholders range from CIOs and technical experts within NSIs to international organisations, policy makers, researchers and society as a whole. Their interests differ, and the framework has to balance them. IT professionals turn SAF principles into systems. Policy makers care about the results those systems make possible. UNECE keeps the SAF harmonised and relevant across countries.
 
 ### How the SAF applies stakeholders
 
 **Why the SAF records stakeholders**
 
-Architecture is never developed in isolation. Identifying stakeholders clarifies whose concerns the architecture must address, who should be involved in governance and decisions, and which views of the architecture each audience needs. Engaging stakeholders also strengthens legitimacy: those involved in architecture decisions are more likely to support them.
+Architecture is never developed in isolation. Knowing the stakeholders makes clear whose concerns the architecture must address, who should take part in governance and decisions, and which views each audience needs. Involvement also builds support. People who take part in architecture decisions are more likely to back them.
 
 **How stakeholders fit into an NSI's own architecture**
 
-An NSI maps the SAF stakeholders onto its own stakeholder landscape, identifies the people or bodies who represent each one, and records their concerns. The concerns determine which viewpoints the NSI produces: a CIO needs a capability and investment view, a privacy officer a view of data flows and protection measures. The stakeholder map is reviewed at the start of each architecture cycle.
+An NSI maps the SAF stakeholders onto its own stakeholder landscape. It identifies who represents each stakeholder and records their concerns. The concerns determine which views the NSI produces. A CIO needs a capability and investment view. A privacy officer needs a view of data flows and protection measures. The stakeholder map is reviewed at the start of each architecture cycle.
 
-**Relationships with other concepts.**
+**Relationships with other concepts**
 
 | Related concept | Relationship | Example in the SAF |
 |---|---|---|
-| Drivers (SAF-D) | Stakeholders are concerned with drivers and raise them | CIOs and CTOs (SAF-ST01) raise resource constraints (SAF-D5) |
+| Drivers (SAF-D) | Stakeholders have concerns about drivers and raise them | CIOs and CTOs (SAF-ST01) raise resource constraints (SAF-D5) |
 | Goals (SAF-G) | Stakeholders own goals | NSIs (SAF-ST05) own modernisation (SAF-G3) |
 | Value (SAF-V) | Stakeholders perceive value | Researchers and academia (SAF-ST06) value innovation enablement (SAF-V2) |
 | Viewpoints | Stakeholder concerns determine which views are produced | Privacy officers need data-flow and protection views |
 | Business actors and roles (Business Architecture) | A stakeholder may also act in the architecture | Data providers are stakeholders and actors in VS-01 |
 
-### SAF stakeholders
+### SAF stakeholders **[R16]**
 
 | ID | Stakeholder | Category | Key concerns | What the SAF offers |
 |---|---|---|---|---|
-| **SAF-ST01** | CIOs and CTOs of NSIs | Within the NSI | Strategic IT investment, alignment of IT with business goals, compliance | SAF supports them by providing a clear framework to evaluate options, align IT with business goals, and ensure compliance with international standards. |
-| **SAF-ST02** | Citizens and society | Society | Trustworthy, transparent, modern statistics | SAF ensures that statistical organizations produce trustworthy, transparent, and modern statistics that support democratic accountability and informed public discourse. |
-| **SAF-ST03** | Government policy makers | Society | Timely, accurate, comparable data in accessible formats | Indirect benefit through better-designed statistical production and dissemination |
-| **SAF-ST04** | IT and data professionals | Within the NSI | Common patterns, tools, and practices; collaboration across institutions | Shared patterns and practices that increase efficiency and shorten the learning curve |
-| **SAF-ST05** | National Statistical Institutes (NSIs) | Statistical community | Structured guidance for enterprise architecture; efficiency; quality | Alignment with international practice and guidance tailored to official statistics |
-| **SAF-ST06** | Researchers and academia | Society | Access to high-quality data and metadata for research | Systems designed for openness, data sharing, and rich metadata |
-| **SAF-ST07** | UNECE and other international bodies | Statistical community | Relevance, coherence, and adoption of the framework | A custodial role for UNECE; complementarity with the modernisation work of Eurostat and the UN Statistics Division |
+| **SAF-ST01** | CIOs and CTOs of NSIs | Within the NSI | Strategic IT investment, alignment of IT with business goals, compliance | A framework to compare options, align IT with business goals and show compliance with international standards |
+| **SAF-ST02** | Citizens and society | Society | Trustworthy, transparent and modern statistics | Statistics that support democratic accountability and informed public debate |
+| **SAF-ST03** | Government policy makers | Society | Timely, accurate and comparable data in accessible formats | Better statistical production and dissemination (indirect benefit) |
+| **SAF-ST04** | IT and data professionals | Within the NSI | Common patterns, tools and practices; collaboration across institutions | Shared patterns and practices that save effort and shorten the learning curve |
+| **SAF-ST05** | National Statistical Institutes (NSIs) | Statistical community | Structured guidance for enterprise architecture; efficiency; quality | Guidance tailored to official statistics and aligned with international practice |
+| **SAF-ST06** | Researchers and academia | Society | Access to high-quality data and metadata for research | Systems designed for openness, data sharing and rich metadata |
+| **SAF-ST07** | UNECE and other international bodies | Statistical community | Relevance, coherence and adoption of the framework | A custodial role for UNECE; alignment with the modernisation work of Eurostat and the UN Statistics Division |
 
 ## Roles
 
 |**PLACEHOLDER: Roles section to be added**|
-|---| 
+|---|
 
 ## Collaborations
 
 |**PLACEHOLDER: Collaborations section to be added**|
-|---|  
+|---|
+
 
 
 # Strategy
