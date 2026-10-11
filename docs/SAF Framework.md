@@ -17,19 +17,23 @@ Current version: 0.5
 ## Content
 [Preface](#preface)
 
--   Acknowledgements [TODO]
+-   [Acknowledgements](#acknowledgements)
 
 [Introduction](#introduction)
 
 -   [Purpose](#purpose)
 -   [Definition of Scope](#definition-of-scope)
 -   [Target Audience](#target-audience)
--   [Expected Value]
--   [Constraints & Assumptions]
--   [Reading Guide]
+-   [Expected value](#expected-value)
+-   [Constraints & Assumptions](#constraints-assumptions)
+    -   [Use of TOGAF and ArchiMate in SAF](#use-of-togaf-and-archimate-in-saf)
+-   [Reading guide](#reading-guide)
 
 [Motivation](#motivation)
 
+-   [Purpose of this chapter](#purpose-of-this-chapter)
+-   [Position in the framework](#position-in-the-framework)
+-   [How NSIs use this chapter](#how-nsis-use-this-chapter)
 -   [Motivation concepts in the SAF](#motivation-concepts-in-the-saf)
 -   [Drivers](#drivers)
 -   [Goals](#goals)
@@ -44,6 +48,9 @@ Current version: 0.5
 
 [Strategy](#strategy)
 
+-   [Purpose of this chapter](#purpose-of-this-chapter-1)
+-   [Position in the framework](#position-in-the-framework-1)
+-   [How NSIs use this chapter](#how-nsis-use-this-chapter-1)
 -   [Strategy concepts in the SAF](#strategy-concepts-in-the-saf)
 -   [Capability Model](#capability-model)
 -   [Value Streams](#value-streams)
@@ -51,8 +58,48 @@ Current version: 0.5
 -   [Courses of Action](#courses-of-action)
 
 [Business Architecture](#business-architecture)
+
+-   [Purpose of this chapter](#purpose-of-this-chapter-2)
+-   [Position in the framework](#position-in-the-framework-2)
+-   [How NSIs use this chapter](#how-nsis-use-this-chapter-2)
+-   [Relationship with the statistical standards](#relationship-with-the-statistical-standards)
+-   [Business architecture concepts in the SAF](#business-architecture-concepts-in-the-saf)
+-   [How the business architecture is built up](#how-the-business-architecture-is-built-up)
+-   [Structure of this chapter](#structure-of-this-chapter)
+-   [Business Actors, Business Roles and Business Collaborations](#business-actors-business-roles-and-business-collaborations)
+-   [Business Processes](#business-processes)
+    -   [A. Statistical production processes](#a.-statistical-production-processes)
+    -   [B. Overarching processes](#b.-overarching-processes)
+    -   [C. Data management and lifecycle processes](#c.-data-management-and-lifecycle-processes)
+    -   [D. Microdata services processes](#d.-microdata-services-processes)
+    -   [E. Data space processes](#e.-data-space-processes)
+-   [Business Functions](#business-functions)
+    -   [Process and function mapping](#process-and-function-mapping)
+    -   [Mapping to value stream stages](#mapping-to-value-stream-stages)
+-   [Business Services and Business Interfaces](#business-services-and-business-interfaces)
+-   [Business Events](#business-events)
+-   [Business Objects, Contracts, Representations and Products](#business-objects-contracts-representations-and-products)
+-   [Reference Models for the Statistical Data Value Chain](#reference-models-for-the-statistical-data-value-chain)
+    -   [Comparison](#comparison)
+    -   [Selection criteria](#selection-criteria)
+    -   [Combining the models](#combining-the-models)
+
+[Steady-State Architecture](#steady-state-architecture)
+
 -   [Overview](#overview)
--   [Steady States](#steady-states-of-data-and-their-business-process-links)
+    -   [Business domains](#business-domains)
+    -   [The four process types](#the-four-process-types)
+    -   [Design rules of the steady-state model](#design-rules-of-the-steady-state-model)
+    -   [Steady states at a glance](#steady-states-at-a-glance)
+    -   [State lifecycle](#state-lifecycle)
+    -   [How each state is described](#how-each-state-is-described)
+-   [Boundary Position #0: Source Data](#boundary-position-0-source-data)
+-   [State #1: Raw Data](#state-1-raw-data)
+-   [State #2: Standardized Data](#state-2-standardized-data)
+-   [State #3: Processed Data](#state-3-processed-data)
+-   [State #4: Output Data (Statistics)](#state-4-output-data-statistics)
+-   [State #5: Published Output Data (Released Data)](#state-5-published-output-data-released-data)
+-   [State #6: Consumed Data](#state-6-consumed-data)
 
 
 
