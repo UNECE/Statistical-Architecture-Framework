@@ -1674,44 +1674,882 @@ The following published strategies and guidance documents can serve as reference
 
 # Business Architecture
 
-## Introduction
-The business architecture describes how a statistical organisation is structured to turn data into official statistics: which business domains exist, which business functions and processes they perform, which business objects they create and exchange, and who is accountable for them. Where the Strategy layer answers what the organisation must be able to do (capabilities) and what value it creates (value streams), the business architecture answers how that work is organised and where responsibility for data passes from one part of the organisation to another.
+## Purpose of this chapter
 
-That last question is central for official statistics. A statistical value chain is long, involves many teams, and processes data that is often confidential. Errors, untraceable changes, or uncontrolled reuse at any point undermine trust in every statistic built on top of it. The SAF business architecture therefore pays explicit attention to the points at which data is persisted, quality-assured, and handed over. These handover points form the backbone of every reference model in this chapter.
+The business architecture describes how a statistical organisation is organised to turn data into official statistics. It shows who is involved, which processes and functions they perform, which services they offer, what triggers their work, and which information they create and exchange.
 
-## The Statistical Proces ##
-The statistical process is divided into three main business domains (observation, processing/analysis, and dissemination), with processing/analysis further divided into four subdomains. This results in a total of six business domains:
+The Strategy layer describes *what* the NSI must be able to do and *where* it creates value. The business architecture describes *how* that work is organised. It is the layer where capabilities and value streams become concrete: in roles that people take on, processes they carry out, and information they hand over to each other.
 
-- Observation/Collection
-- Processing/analysis
-    - Standardization without loss of content
-    - Editing, derivation, and non-response correction
-    - Estimation and closed-loop
-    - Statistically composed and composite statistical products
-- Dissemination
+For official statistics, one question deserves special attention: where does responsibility for data pass from one part of the organisation to another? A statistical value chain is long. It involves many teams and often confidential data. An untraceable change or uncontrolled reuse at any point can undermine every statistic built on that data. The SAF business architecture therefore pays explicit attention to the points where data is stored, quality-assured and handed over. These handover points are the backbone of the reference models at the end of this chapter.
 
-Each of the business domains use the following processes :
+The business architecture is independent of technology. It does not describe applications or platforms. It does describe the business needs that applications and platforms must support, and it is the starting point for the data, application and technology architecture.
 
-1. Design of the execution processes; provides metadata
-2. Implementation of the execution processes; provides the execution process
-3. Execution of the execution processes; provides the statistical data
-4. Management of the execution processes; provides quality reports
+## Position in the framework
 
-Each domain focuses on adding a specific statistical value to some data. Once sufficient value has been added, a so-called quality version is versioned that must be kept and potentially shared to some consumers. This careful approach is crucial due to the growing interest in our microdata, combined with the increasing focus on privacy. If we combine the added values of the six business domains, a value chain of statistical data is created.
-To realize statistical value within a business domain, execution processes (including governance) have been designed and implemented. How an execution process adds statistical value, and is therefore designed and implemented, falls outside the scope of the B&I architecture. This framework must stem from, among other things, the methodology set.
+The business architecture is the first of the core layers in TOGAF and ArchiMate (see *Position in the framework* in the Motivation chapter). In the TOGAF Architecture Development Method, it is developed in Phase B, Business Architecture. It receives direction from the Strategy layer and gives direction to the layers below it.
 
-### Key concepts
+|**PLACEHOLDER: Position of the Business Architecture between the Strategy layer and the data, application and technology layers**|
+|---|
+
+| Direction | Relationship | Example in the SAF |
+|---|---|---|
+| From Strategy | Business processes realise value stream stages | The execution processes of the Standardization domain realise the stages of VS-02 |
+| From Strategy | Business functions and processes realise capabilities | The function *Classify Data* realises Data standardisation (1.3.1) |
+| From Motivation | Principles and requirements shape the business design | SAF-P07 leads to loose coupling of domains through steady states |
+| To Data Architecture | Business objects are realised by data objects | A registered *Raw Data* version is realised by a dataset in a data store |
+| To Application Architecture | Business processes are served by application services | Data validation at intake is served by a validation service |
+| To Technology Architecture | Business requirements drive platform requirements | Retention and versioning per steady state drive storage requirements |
+
+In TOGAF, Phase B produces a baseline and a target business architecture, and the gap between them. The SAF provides a reference for the target. An NSI describes its own baseline and uses the SAF to define where it wants to go.
+
+## How NSIs use this chapter
+
+The SAF business architecture contains two kinds of content.
+
+**Reference content.** Most NSIs perform the same statistical work and follow a comparable production process. The SAF therefore offers reference content for business processes, business functions, business services and business roles. NSIs use this content in the same three ways as the other SAF elements: adopt, adapt or extend.
+
+**Concepts with examples.** Business events, business objects, contracts, representations and products are specific to each NSI. They depend on its products, its legal basis and its users. For these elements, the SAF explains the concept, how it is used, and gives examples. The toolkit provides templates.
+
+The data value chain needs a separate choice. NSIs organise their chain in different ways, depending on their size, legal context and platforms. The SAF therefore offers more than one reference model for the chain: the Steady-State Architecture and the Medallion Architecture. An NSI chooses the model that fits, or combines them. This choice is a course of action in the sense of the Strategy chapter.
+
+The business architecture is also the place where the NSI's own organisation meets the framework. An NSI maps its departments, teams and job profiles onto the SAF actors, roles and functions. The mapping shows which parts of the organisation carry which responsibilities, where they overlap, and where they are missing.
+
+|**PLACEHOLDER: Business architecture templates and mapping instruments to be added to the toolkit**|
+|---|
+
+## Relationship with the statistical standards
+
+The SAF business architecture builds on two models that the statistical community already uses.
+
+**GSBPM**, the Generic Statistical Business Process Model, describes statistical production in phases and sub-processes, from *Specify Needs* to *Evaluate*. The SAF process model is based on GSBPM.
+
+**GAMSO**, the Generic Activity Model for Statistical Organisations, describes the activities of a statistical organisation as a whole: strategy and leadership, capability development, production, and the activities that support them. GAMSO places GSBPM in a wider context: GSBPM describes the production activities of GAMSO in detail. The SAF uses GAMSO as the frame of reference for its business functions. The functions are described in SAF terms, so that NSIs can apply them together with their own national function models. An NSI that already works with GAMSO will recognise the main areas.
+
+**GSIM**, the Generic Statistical Information Model, describes the information objects used in statistical production. It is the reference for the SAF business objects.
+
+## Business architecture concepts in the SAF
+
+The SAF uses the business layer elements of ArchiMate, and adds concepts that are specific to the statistical data value chain.
+
+**ArchiMate business elements used in the SAF**
+
+| Concept | ArchiMate element | Question it answers | Example | SAF content |
+|---|---|---|---|---|
+| Business actor | Business Actor | Who is involved: a person, team or organisation? | Data provider, NSI, research institute | Reference |
+| Business role | Business Role | Which responsibility does an actor take on? | Data owner, data steward, methodologist | Reference |
+| Business collaboration | Business Collaboration | Which actors or roles work together? | A data sharing partnership between an NSI and a register holder | Reference |
+| Business process | Business Process | Which sequence of activities produces a defined result? | Collect, Process, Disseminate | Reference |
+| Business function | Business Function | What does the organisation do continuously, grouped by required knowledge and skills? | Manage Quality | Reference |
+| Business service | Business Service | Which behaviour does the organisation offer to others? | Microdata access for researchers | Reference |
+| Business interface | Business Interface | Through which channel is a service offered? | A web portal, a secure data transfer channel, a helpdesk | Reference |
+| Business event | Business Event | What triggers a process, or marks its result? | *Raw Data Registered*; start of a reference period | Concept and examples |
+| Business object | Business Object | Which information does the business use and produce? | Raw Data, Statistical Product, Classification | Concept and examples |
+| Contract | Contract | Which formal agreement governs a service or exchange? | A data provision agreement with a register holder | Concept and examples |
+| Representation | Representation | In which perceptible form is information made available? | A press release, a statistical table, an API response | Concept and examples |
+| Product | Product | Which coherent set of services and information is offered to users? | A statistical product with its publication and data services | Concept and examples |
+
+**SAF-specific concepts for the data value chain**
 
 | Concept | Definition |
 |---|---|
-| **Business domain** | A coherent part of the statistical process that adds one specific kind of statistical value to data and is governed as a unit (e.g., Standardization). |
-| **Business function** | A stable grouping of behaviour within a domain, independent of organisation and technology (e.g., *Classify Data*). |
+| **Business domain** | A coherent part of the statistical process that adds one specific kind of statistical value to data and is governed as a unit. In ArchiMate, a business domain is modelled as a grouping. |
 | **Data state** | A defined condition of data, characterised by the processing it has undergone and the quality criteria it meets. |
-| **Steady state** | A data state that is persisted, versioned, quality-assured, and registered so it can be handed over and reused. |
-| **Quality gate** | The set of entry criteria data must meet before it may be registered in a state. |
+| **Steady state** | A data state that is stored, versioned, quality-assured and registered, so that it can be handed over and reused. |
+| **Quality gate** | The set of criteria that data must meet before it may be registered in a state. |
 | **Quality version** | An immutable, identified version of a dataset that has passed a quality gate. |
-| **Handover interface** | The contract between a producing and a consuming domain: the artefact, its required metadata, the triggering event, and the transfer of responsibility. |
-| **Reference model** | A generic arrangement of domains, states, and handover points that an NSI can adopt and adapt. |
+| **Handover interface** | The agreement between a producing and a consuming domain: the artefact, its required metadata, the triggering event and the transfer of responsibility. |
+| **Reference model** | A generic arrangement of domains, states and handover points that an NSI can adopt and adapt, such as the Steady-State or Medallion Architecture. |
+
+## How the business architecture is built up
+
+ArchiMate describes each layer with three aspects: *who* acts (active structure), *what* happens (behaviour) and *what* is acted upon (passive structure). The SAF business architecture follows these aspects, and then brings them together in two integrating views.
+
+|**PLACEHOLDER: Structure of the SAF business architecture: three ArchiMate aspects and two integrating views**|
+|---|
+
+| Part | Elements | Question |
+|---|---|---|
+| Active structure | Actors, roles, collaborations, interfaces | *Who* does the work, and through which channels? |
+| Behaviour | Processes, functions, services, events | *What* happens, in which order, and what triggers it? |
+| Passive structure | Business objects, contracts, representations, products | *Which* information is used, agreed and delivered? |
+| Integrating view 1 | Process and function architecture and value chain | *How* do processes, functions and value streams fit together? |
+| Integrating view 2 | Steady-State and Medallion Architectures | *Where* is data handed over, and with which quality? |
+
+### Functions and processes
+
+Functions and processes are easily confused, but they are different.
+
+A **business function** groups behaviour by the knowledge, skills and resources it needs. Functions are stable. They have no start or end, and they do not depend on the order of work. *Manage Quality* is a function: it exists as long as the NSI exists.
+
+A **business process** is a sequence of activities that leads to a defined result. A process has a trigger, a start and an end. *Collect* is a process: it starts when a collection period opens and ends when the data is stored and checked.
+
+The two cross each other. One process uses several functions, and one function contributes to several processes. In ArchiMate, functions and processes are connected through realisation and assignment relationships. Statistical production is the clearest example: the production function is realised by the production process, which the SAF describes in detail.
+
+### Processes and the data value chain
+
+The process view and the data value chain look at the same production from two angles. The process follows the life cycle of one statistical product, from need to evaluation. The data value chain follows the data, from source to release, across products.
+
+In the Steady-State Architecture, each business domain uses four process types. They connect the two angles:
+
+| Process type in a business domain | Provides | Corresponding GSBPM phases |
+|---|---|---|
+| Design | Metadata: designs, rules, specifications | 2 Design |
+| Implementation | The execution process: instruments, components, configured workflows | 3 Build |
+| Execution | Statistical data, registered in a steady state | 4 Collect, 5 Process, 6 Analyse, 7 Disseminate |
+| Management | Quality reports and improvements | 8 Evaluate, and the overarching quality and metadata management |
+
+The GSBPM phases 4 to 7 run across several business domains. *Process* (phase 5), for example, spans standardization, editing and part of estimation. The steady states mark where, within that flow, data is handed over with a defined quality.
+
+### Generic and model-specific content
+
+Actors, roles, processes, functions, services, events and objects are generic. They apply to every NSI, whatever reference model it chooses for its data value chain.
+
+The data value chain is model-specific. The business domains, steady states and quality gates differ between the Steady-State and the Medallion Architecture. That is why the SAF describes them per reference model, at the end of this chapter.
+
+## Structure of this chapter
+
+| Section | Content | SAF content |
+|---|---|---|
+| Business Actors, Business Roles and Business Collaborations | Who is involved in statistical production, and with which responsibilities | Reference |
+| Business Processes | The SAF process model, based on GSBPM | Reference |
+| Business Functions | The SAF function model | Reference |
+| Business Services and Business Interfaces | The services an NSI offers, and the channels through which it offers them | Reference |
+| Business Events | Triggering events: what they are, how they are used, examples | Concept and examples |
+| Business Objects, Contracts, Representations and Products | Information objects, agreements, forms of output and products: what they are, how they are used, examples | Concept and examples |
+| Process and Function Architecture and Value Chain | How processes, functions and value streams fit together, per value stream | Reference |
+| Steady-State and Medallion Architectures | Reference models for the data value chain: comparison, selection criteria, combination, and each model in detail | Reference |
+
+Readers who want to understand the statistical data value chain can go straight to the last section. Readers who want to map their own organisation onto the SAF start with actors and roles, and with the function model.
+
+## Business Actors, Business Roles and Business Collaborations
+
+### The concepts
+
+A **business actor** is a person, team or organisation that can perform behaviour. An actor is a real entity. It exists whether or not it takes part in a specific process. Examples are a ministry that supplies a register, a research institute, or the NSI itself. In the SAF, actors are described as types, not as named organisations.
+
+A **business role** is a responsibility for performing specific behaviour. A role says what someone is accountable for, not who that someone is. One actor can take on several roles, and one role can be filled by several actors. A methodologist in a small NSI may also act as statistical designer. A large NSI may have a whole team in the role of data steward.
+
+A **business collaboration** is a group of actors or roles that work together for a shared purpose. A collaboration performs behaviour that none of its members can perform alone. It can be permanent, such as a data governance board, or temporary, such as a project team. Collaborations can also cross the boundaries of the NSI. A data sharing partnership between an NSI and a register holder is an example.
+
+Actors, roles and collaborations are different from stakeholders (see *Stakeholders* in the Motivation chapter). A stakeholder has an interest in the architecture. An actor or role performs work in it. The same organisation can be both. A data provider is a stakeholder with concerns about burden, and an actor that delivers data in VS-01.
+
+### How the SAF applies actors, roles and collaborations
+
+**Why the SAF describes actors, roles and collaborations**
+
+Roles make responsibilities explicit. A steady state needs a data owner. A quality gate needs someone who decides. A release needs someone who approves. Without defined roles, these decisions are taken by whoever happens to be involved. That makes accountability unclear and audits difficult. Defined roles also make NSIs comparable. When two NSIs both use the role *data steward*, they can compare practices and share solutions.
+
+**How actors, roles and collaborations fit into an NSI's own architecture**
+
+The SAF offers a reference set of actor types, roles and collaborations. An NSI maps its own organisation onto this set. It links its departments and teams to actor types, and its job profiles to roles. One job profile often covers several SAF roles, especially in small NSIs. The mapping shows which roles are filled, which are combined, and which are missing. An NSI can then assign roles to processes, for example with a RACI matrix (responsible, accountable, consulted, informed).
+
+The SAF roles are deliberately generic. The value streams use more specific role names, such as *Estimation Methodologist* or *Imputation Specialist*. These are specialisations of the reference roles. The mapping table at the end of this section shows how they relate.
+
+**Relationships with other concepts**
+
+| Related concept | Relationship | Example in the SAF |
+|---|---|---|
+| Stakeholders (Motivation) | A stakeholder can also be an actor | A data provider is a stakeholder and an actor in VS-01 |
+| Business processes | Roles are assigned to processes | The data steward is assigned to *Register Raw Data* |
+| Business functions | Roles are assigned to functions | The quality manager is assigned to *Manage Quality* |
+| Business services and interfaces | Actors and roles offer or use services through interfaces | A researcher uses the microdata access service through a secure portal |
+| Steady states | Each steady state has an owner, a steward and a custodian | The data owner of State #3 decides on access to processed microdata |
+| Capabilities (Strategy) | Roles are part of the resources that realise capabilities | Methodologists are a key resource for Methodology (2.2.3) |
+
+|**PLACEHOLDER: ArchiMate view of SAF actors, roles and collaborations**|
+|---|
+
+### SAF business actors
+
+The SAF distinguishes nine actor types. They are grouped by their position relative to the NSI.
+
+| ID | Actor | Position | Description |
+|---|---|---|---|
+| **ACT-01** | National Statistical Institute | Internal | The NSI is the organisation that produces official statistics under a legal mandate. It is the central actor in the SAF. The NSI owns the statistical processes and is accountable for the quality and confidentiality of its output. It enters into agreements with data providers, users and partners. In the architecture, the NSI as a whole is the actor that offers business services to society. |
+| **ACT-02** | Organisational unit | Internal | An organisational unit is a department, division or team within the NSI. Units are the actors that actually carry out the work. Each unit fills one or more roles, such as data collection, methodology or dissemination. The SAF does not prescribe an organisation structure. An NSI maps its own units onto the SAF roles, so that it can see which unit is responsible for which part of the chain. |
+| **ACT-03** | Data provider | External, supplies data | A data provider is an organisation that supplies data it holds to the NSI. Examples are government agencies with administrative registers, businesses with transaction data, and platform operators. The data is collected for another purpose and reused for statistics. Delivery usually takes place under a legal obligation or a data provision agreement. The NSI cannot control the quality at the source, but it can influence it through agreements and feedback. |
+| **ACT-04** | Respondent | External, supplies data | A respondent is a person, household or business that provides data directly to the NSI, usually through a survey. Respondents answer questionnaires on the web, by telephone, face to face or on paper. Their burden is a constant concern for the NSI. Respondents are protected by statistical confidentiality: the NSI may not disclose their individual data. The NSI also has a duty to explain why it needs the data and how it uses it. |
+| **ACT-05** | Data user | External, uses output | A data user is a person or organisation that uses the output of the NSI. Users include policy makers, researchers, journalists, businesses and members of the public. Their needs differ widely. A minister needs a clear figure, a researcher needs microdata under strict conditions, and a developer needs a reliable API. The NSI groups users into segments, so that it can design services and channels for each segment. |
+| **ACT-06** | Other producer of official statistics | Statistical system | Many countries have more than one producer of official statistics. Examples are central banks, ministries with statistical units and regional statistical offices. The NSI often coordinates this national statistical system. Producers exchange data, align methods and share infrastructure. In the architecture, they are partners in collaborations and sometimes providers or users of each other's data. |
+| **ACT-07** | International statistical organisation | Statistical system | International statistical organisations set standards, coordinate statistics across countries and collect national data. Examples are UNECE, Eurostat, the OECD, the IMF and the UN Statistics Division. They require NSIs to deliver data in agreed formats and on agreed dates. They also develop the shared models that the SAF builds on, such as GSBPM and GSIM. For the NSI, they are users, standard setters and partners in collaboration. |
+| **ACT-08** | Supervisory and legal authority | External, oversees | A supervisory or legal authority oversees whether the NSI acts within the law. Examples are the data protection authority, a national statistics council, the national audit office and the courts. Some authorities grant the legal basis for data collection. Others assess compliance after the fact. The NSI must be able to show these authorities how it handles data, which is one reason why traceability is a core concern of the SAF. |
+| **ACT-09** | Supplier and service provider | External, supports | A supplier delivers goods or services that the NSI needs but does not produce itself. Examples are software vendors, cloud and hosting providers, field work agencies and trusted third parties for pseudonymisation. Suppliers work under contracts that set requirements for security, confidentiality and continuity. When a supplier processes statistical data, the NSI remains accountable for it. The choice of suppliers is guided by SAF-P01 and by the NSI's sourcing strategy. |
+
+### SAF business roles
+
+The SAF reference set contains 24 roles in seven groups. The column *Process type* shows in which of the four process types of a business domain (design, implementation, execution, management) the role mainly works.
+
+#### Governance and accountability
+
+| ID | Role | Process type | Description |
+|---|---|---|---|
+| **ROL-01** | Process owner | Management | The process owner is accountable for the end-to-end performance of a business domain or value stream. This role sets the objectives of the process and decides on changes to it. The process owner makes sure the process has the people, methods and systems it needs. The role receives the quality reports of the management process and acts on them. In the steady-state model, each business domain has one process owner. |
+| **ROL-02** | Data owner | Management | The data owner is accountable for a dataset or a steady state. This role decides who may access the data, for which purpose and under which conditions. The data owner also approves the retention period and the classification of the data. The role is usually held by a manager in the domain that produces the data. Data ownership is a business role, not an IT role: the data owner answers for the content, not for the storage. |
+| **ROL-03** | Data steward | Execution | The data steward takes care of data on behalf of the data owner. This role registers datasets in the catalogue and maintains their metadata. The data steward checks that data meets the quality gate before it is registered. The role also handles questions from users and resolves exceptions. Data stewards are the daily point of contact for anyone who wants to find or use a dataset. |
+| **ROL-04** | Data custodian | Execution | The data custodian is responsible for the safe storage and technical management of data. This role runs storage, backup and access control according to the decisions of the data owner. The custodian carries out retention and disposal. The role does not decide on the use of the data, but makes sure that decisions are applied correctly. In many NSIs, the custodian role is held by an IT or platform team. |
+| **ROL-05** | Chief data officer | Management | The chief data officer is accountable for data governance across the whole NSI. This role sets the data policy and the governance framework. It assigns the data owner, steward and custodian roles to people and units. The chief data officer chairs or supports the data governance board. The role is the escalation point for conflicts about data that cross domain boundaries. |
+
+#### Design
+
+| ID | Role | Process type | Description |
+|---|---|---|---|
+| **ROL-06** | Statistical designer | Design | The statistical designer translates information needs into the design of a statistical product. This role defines the outputs, the variables, the population and the required data. The designer specifies the processes that produce the product, in close cooperation with the methodologist. The role is the link between users and production. In some NSIs this role is called product manager. |
+| **ROL-07** | Methodologist | Design | The methodologist designs and assesses the statistical methods. This role covers sampling, collection methods, editing and imputation, estimation and quality measurement. The methodologist makes sure methods are sound, documented and reproducible. The role also evaluates new methods before they enter production. Specialisations exist for each step of the chain, such as estimation or editing. |
+| **ROL-08** | Metadata and data architect | Design | The metadata and data architect designs the structure of data and metadata. This role defines data models, metadata schemas and the minimum metadata set of each steady state. The architect makes sure that data from different sources can be combined and compared. The role works with standards such as GSIM and SDMX. It is the bridge between the business architecture and the data architecture. |
+| **ROL-09** | Classification steward | Design | The classification steward manages the classifications and code lists that the NSI uses. This role maintains national versions of international classifications, such as NACE or ISCO. The steward manages correspondence tables between versions. The role makes sure that all domains use the same version at the same time. Changes to a classification are announced and documented before they take effect. |
+
+#### Implementation
+
+| ID | Role | Process type | Description |
+|---|---|---|---|
+| **ROL-10** | Data engineer | Implementation | The data engineer builds the technical processes that move and transform data. This role develops ingestion pipelines, collection channels and processing workflows. The data engineer implements the designs of the statistical designer and the methodologist. The role also builds the automated checks that support the quality gates. The data engineer works closely with the platform engineer, who provides the environment. |
+| **ROL-11** | Platform engineer | Implementation | The platform engineer provides and runs the environments in which the processes operate. This role configures platforms, storage, connectors and access controls. The platform engineer keeps environments secure, available and up to date. The role supports all value streams but is anchored in VS-09. In many NSIs, the role is also called system configurator or DevOps engineer. |
+| **ROL-12** | Test manager | Implementation | The test manager plans and coordinates the testing of new or changed processes. This role covers technical tests, integration tests and field tests. The test manager checks that a process produces the expected result before it goes into production. The role reports test results to the process owner. Testing is required before any change to a process that produces a steady state. |
+
+#### Execution
+
+| ID | Role | Process type | Description |
+|---|---|---|---|
+| **ROL-13** | Data collection manager | Execution | The data collection manager runs data collection campaigns. This role plans the collection period, coordinates field staff and monitors response. The manager follows up on non-response and late deliveries. The role also handles contacts with respondents and data providers during collection. The data collection manager reports on collection progress and quality to the process owner. |
+| **ROL-14** | Data quality analyst | Execution | The data quality analyst checks data during processing. This role runs validation checks, assesses results against the quality gate and logs exceptions. The analyst investigates errors and outliers and proposes corrections. The role documents quality indicators for each version of a dataset. Data quality analysts are active at every handover point in the chain. |
+| **ROL-15** | Subject-matter statistician | Execution | The subject-matter statistician has in-depth knowledge of a statistical domain, such as labour market or prices. This role interprets results, checks plausibility and explains developments. The statistician carries out or supervises editing, estimation and analysis in the domain. The role writes or reviews the texts that accompany a release. Subject-matter statisticians are the experts that users and journalists turn to. |
+| **ROL-16** | Disclosure control specialist | Design, Execution | The disclosure control specialist protects the confidentiality of respondents in the output. This role designs and applies disclosure control methods, such as suppression, rounding and noise. The specialist assesses the disclosure risk of tables, microdata and services. The role works at State #4 and at the gate to State #5. No output is released without a disclosure check that this role has approved. |
+| **ROL-17** | Release manager | Execution | The release manager controls the publication of statistical output. This role makes sure that releases follow the release calendar and the embargo rules. The release manager checks that the output has been approved and has passed disclosure control. The role coordinates the release across channels, such as the website, the API and press releases. Equal access for all users at the moment of release is a key responsibility. |
+
+#### Assurance
+
+| ID | Role | Process type | Description |
+|---|---|---|---|
+| **ROL-18** | Quality manager | Management | The quality manager is responsible for the quality framework of the NSI. This role defines quality indicators and monitors them across the chain. The quality manager produces quality reports and leads improvement actions. The role supports process owners in the management process of their domains. It also prepares the NSI for quality reviews, such as peer reviews against the European Statistics Code of Practice. |
+| **ROL-19** | Compliance officer | Management | The compliance officer makes sure that the NSI complies with laws and regulations. This role covers statistical law, data protection law and other applicable rules. The officer checks new processes and methods against compliance criteria before they go into production. The role keeps the legal register up to date. In many NSIs the data protection officer is a specific form of this role. |
+| **ROL-20** | Security officer | Management | The security officer is responsible for information security and continuity. This role defines security measures and monitors their application. The officer manages security incidents and leads recovery when something goes wrong. The role assesses the security of new solutions and suppliers. It works closely with the platform engineer and the compliance officer. |
+| **ROL-21** | Auditor | Management | The auditor checks independently whether processes and controls work as intended. This role can be internal, such as an internal audit department, or external, such as the national audit office or a certification body. The auditor reviews evidence, such as logs, quality reports and lineage records. The role reports findings to management and to supervisory authorities. Its work depends on the traceability that the SAF builds into the chain. |
+
+#### Users and partners
+
+| ID | Role | Process type | Description |
+|---|---|---|---|
+| **ROL-22** | Dissemination and service manager | Design, Execution | The dissemination and service manager designs and manages the services through which users receive output. This role covers publications, open data, APIs and microdata access. The manager defines channels and formats for each user segment. The role manages the portfolio of services and their service levels. It works with the release manager on the timing and with the relationship manager on user needs. |
+| **ROL-23** | Relationship manager | Execution | The relationship manager maintains the relationships with key external actors. These include data providers, major users, partners and international organisations. The manager collects needs, feedback and complaints, and passes them to the right roles. The role negotiates and maintains agreements, such as data provision agreements. Relationship managers make sure that the NSI speaks with one voice to each partner. |
+
+#### Support
+
+| ID | Role | Process type | Description |
+|---|---|---|---|
+| **ROL-24** | Enterprise architect | Design, Management | The enterprise architect develops and maintains the enterprise architecture of the NSI. This role translates strategy into architecture and uses the SAF as its reference. The architect advises on investments and reviews projects against the architecture principles. The role supports the architecture board and keeps the architecture repository up to date. It is the role that realises the capability *Architecture management*. |
+
+### SAF business collaborations
+
+| ID | Collaboration | Members | Type | Description |
+|---|---|---|---|---|
+| **COL-01** | Data provision partnership | NSI, data provider, relationship manager, data owner | External, permanent | A data provision partnership is the long-term cooperation between the NSI and a data provider. It goes beyond a single delivery. The partners agree on content, format, timing and quality of the data. They also agree on how to handle changes at the source, such as a new system or a new definition. A good partnership reduces the burden for the provider and improves the quality for the NSI. |
+| **COL-02** | National statistical system | NSI, other producers of official statistics | External, permanent | The national statistical system is the cooperation between all producers of official statistics in one country. The NSI usually coordinates it. The members align methods, classifications and release practices, so that national statistics are consistent. They exchange data and sometimes share infrastructure. The cooperation is often based on the national statistics law. |
+| **COL-03** | International statistical cooperation | NSI, international statistical organisations, other NSIs | External, permanent | International statistical cooperation is the collaboration between NSIs and international organisations. It covers the development of standards, the exchange of data and the joint development of tools. The SAF itself is a product of this cooperation. Members take part in working groups, such as those of UNECE and the European Statistical System. The cooperation helps NSIs avoid building the same solution many times. |
+| **COL-04** | Research access partnership | NSI, research institutes, data owner, disclosure control specialist | External, permanent | A research access partnership gives researchers access to microdata under strict conditions. The NSI, research institutes and sometimes funding bodies take part. The partners agree on who may access which data, for which purpose and in which environment. Output is checked for disclosure risk before it leaves the secure environment. The partnership supports science while protecting the confidentiality of respondents. |
+| **COL-05** | Statistical product team | Statistical designer, methodologist, data engineer, subject-matter statistician | Internal, permanent or temporary | A statistical product team brings together the roles needed to design, build and run a statistical product. It typically includes a statistical designer, a methodologist, a data engineer and a subject-matter statistician. The team can be permanent for a product or temporary for a redesign. Working as one team shortens the path from design to production. It also makes sure that methodological and technical choices are made together. |
+| **COL-06** | Data governance board | Chief data officer, data owners, data stewards, compliance officer | Internal, permanent | The data governance board steers data management across the NSI. The chief data officer chairs it, and data owners, data stewards and the compliance officer take part. The board sets data policies, resolves conflicts between domains and monitors compliance. It decides on access requests that cross domain boundaries. The board makes sure that the steady-state model is applied consistently. |
+| **COL-07** | Architecture board | Enterprise architect, process owners, CIO or CTO | Internal, permanent | The architecture board steers the enterprise architecture of the NSI. The enterprise architect, process owners and the CIO or CTO take part. The board reviews projects against the architecture principles and the target architecture. It decides on deviations through a documented dispensation process. The board keeps the architecture aligned with the strategy and with the SAF. |
+
+### Role names in the value streams
+
+The value streams use specific role names that fit their context. The table shows how they relate to the reference roles. A specialised role inherits the responsibilities of its reference role and adds those specific to its value stream.
+
+| Role name in the value streams | Reference role |
+|---|---|
+| Process Owner; Process Owners (VS-01…VS-10) | ROL-01 Process owner |
+| Data Owner / Steward / Custodian | ROL-02 Data owner; ROL-03 Data steward; ROL-04 Data custodian |
+| Chief Data / Governance Officer | ROL-05 Chief data officer |
+| Statistical Designer; Product Manager; Model Designer; Derivation Designer; Coherence Designer | ROL-06 Statistical designer |
+| Methodologist; Estimation Methodologist; Editing Methodologist; Imputation Specialist; Indicator/Index Methodologist; Head of Methodology / Innovation | ROL-07 Methodologist |
+| Metadata Architect; Data Architect | ROL-08 Metadata and data architect |
+| Classification Steward; Coding Specialist | ROL-09 Classification steward |
+| Data Engineer; Integration Specialist; Integration Engineer; Tool / Platform Engineer | ROL-10 Data engineer |
+| System Configurator; DevOps / Platform Engineer; Platform / Cloud Architect; Service Desk / Operations | ROL-11 Platform engineer |
+| Test Manager | ROL-12 Test manager |
+| Data Collection Manager | ROL-13 Data collection manager |
+| Data Quality Analyst | ROL-14 Data quality analyst |
+| Subject-Matter Analyst; Subject-Matter Reviewer; Subject-Matter Author; Subject-Matter Expert; Survey Statistician; Analyst / Modeler; Researcher / Data Scientist | ROL-15 Subject-matter statistician |
+| Disclosure-Control Designer | ROL-16 Disclosure control specialist |
+| Release Manager; Approval Authority | ROL-17 Release manager |
+| Quality Manager | ROL-18 Quality manager |
+| Compliance Officer; Legal Counsel | ROL-19 Compliance officer |
+| Security & Continuity Officer | ROL-20 Security officer |
+| Internal / External Auditor | ROL-21 Auditor |
+| Dissemination Manager; Channel/Service Designer; Open-Data / API Product Owner; Service / Product Portfolio Manager; User-Support Lead; Service Desk / User Support | ROL-22 Dissemination and service manager |
+| Account / Relationship Manager; Engagement / Communications Officer; Communications / Outreach Officer; Head of Communication / Engagement; User Researcher; Impact Analyst | ROL-23 Relationship manager |
+| Chief Technology / Infrastructure Officer | Actor: management of the NSI (ACT-01); member of COL-07 |
+| Trainer / Knowledge Manager | Not included in the reference set |
+| Data Provider; Survey Respondent; Data User; Legal Authority; Standards Body; Methodology Authority | Actors ACT-03, ACT-04, ACT-05, ACT-08, ACT-07 |
+
+|**PLACEHOLDER: Role mapping and RACI templates to be added to the toolkit**|
+|---|
+
+## Business Processes
+
+### The concept
+
+A **business process** is a sequence of activities that produces a defined result for a customer, a stakeholder or another process. A process has a trigger, a start and an end. It has inputs and outputs, and it uses the knowledge and resources of one or more business functions. Processes describe *how* work flows, step by step. They are the part of the business architecture that people recognise most directly in their daily work.
+
+Processes can be decomposed. A high-level process consists of sub-processes, which can in turn be broken down further. The SAF describes processes at two levels: process phases or process groups, and the sub-processes within them. More detailed levels, such as work instructions, are specific to each NSI and fall outside the SAF.
+
+A process is not the same as a value stream stage. A value stream stage describes the value that is added. A process describes the work that adds it. One stage is usually realised by several processes, and one process can contribute to several stages.
+
+### How the SAF applies business processes
+
+**Why the SAF describes business processes**
+
+Processes are where architecture meets daily operations. A shared process model lets NSIs compare how they work, reuse each other's solutions and discuss improvements in the same terms. It also links the strategic layer to the systems: value streams are realised by processes, and processes are supported by application services. Without a process model, it is hard to show which system supports which part of the work, or where a change in method affects other steps.
+
+**How business processes fit into an NSI's own architecture**
+
+The core of the SAF process model is GSBPM, which most NSIs already know. The SAF adds three process groups that GSBPM does not describe in detail: data management and lifecycle, microdata services and data spaces. An NSI adopts the process model as a reference, maps its own processes onto it and adds its own lower levels. A national process for, say, the monthly price index can then be traced to the SAF sub-processes it implements. The SAF does not prescribe the order of sub-processes. GSBPM is not a strict sequence: sub-processes can be skipped, repeated or run in parallel.
+
+**Relationships with other concepts**
+
+| Related concept | Relationship | Example in the SAF |
+|---|---|---|
+| Value streams (Strategy) | Processes realise value stream stages | PRD-4.3 *Run collection* realises VS-01.3 *Collect or Receive Data* |
+| Capabilities (Strategy) | Processes realise capabilities | PRD-5.4 *Edit and impute* realises Adjusting and imputing (1.3.4) |
+| Business functions | Processes realise functions; functions are assigned to processes | The production process realises the production function |
+| Business roles | Roles are assigned to processes | ROL-14 *Data quality analyst* is assigned to PRD-5.3 *Review and validate* |
+| Business events | Events trigger processes and mark their results | *Collection period opened* triggers PRD-4.3 |
+| Business objects | Processes access business objects | PRD-5.8 *Finalise data files* writes the processed microdata |
+| Steady states | Processes produce and consume steady states | DLM-3 *Register and catalogue data* registers a dataset in a steady state |
+| Application services | Application services serve processes | A validation service serves PRD-5.3 |
+
+**Process groups**
+
+| Group | IDs | Basis | Scope |
+|---|---|---|---|
+| A. Statistical production | PRD-1 to PRD-8 | GSBPM phases and sub-processes | The production of a statistical product, from need to evaluation |
+| B. Overarching processes | OVA-1 to OVA-6 | GSBPM overarching processes | Activities that run across all production phases |
+| C. Data management and lifecycle | DLM-1 to DLM-11 | SAF | The management of data assets and steady states across products |
+| D. Microdata services | MDS-1 to MDS-9 | SAF | Controlled access to microdata for research |
+| E. Data spaces | DSP-1 to DSP-6 | SAF | Participation in data spaces, as data provider and data user |
+
+|**PLACEHOLDER: ArchiMate view of the SAF process model**|
+|---|
+
+### A. Statistical production processes
+
+The statistical production processes follow the eight phases of GSBPM. Each phase is described first, followed by its sub-processes. The descriptions are paraphrased from GSBPM, a model of UNECE published under the Creative Commons Attribution 4.0 licence (CC BY 4.0).
+
+#### PRD-1 Specify Needs
+
+| ID | Process | Description |
+|---|---|---|
+| **PRD-1** | **Specify Needs** | This phase starts when a new statistical need is identified, or when an existing product needs review. It establishes what users need and whether the NSI can meet that need. The phase explores options, including the use of data that already exists. It ends with a decision on whether to proceed, based on a business case. For existing products that run regularly, this phase is usually carried out only when a review is due. |
+| PRD-1.1 | Identify needs | This sub-process investigates which statistics are needed and what they are needed for. The trigger can be a new policy question, a legal requirement or a user request. It also looks at changes in the needs for existing statistics. Input comes from users, stakeholders, legislation and earlier evaluations. The result is a first description of the need. |
+| PRD-1.2 | Consult and confirm needs | This sub-process consults users and stakeholders to understand the need in detail. It checks what exactly they want to know, at which level of detail and how often. It also explores which constraints apply, such as timing or budget. The NSI and the users confirm the need together. The result is a confirmed and documented set of needs. |
+| PRD-1.3 | Establish output objectives | This sub-process translates the confirmed needs into output objectives. It defines which statistics will be produced and which quality they must meet. Legal and confidentiality constraints are taken into account. The objectives are realistic for the data and resources that are available. The result is the basis for the design of the outputs. |
+| PRD-1.4 | Identify concepts | This sub-process clarifies the concepts to be measured, from the point of view of the users. A concept such as "household income" or "unemployment" needs a clear meaning. The sub-process checks whether existing statistical concepts can be reused. Concepts may not yet match the definitions that data sources use. That mismatch is resolved later, in the design phase. |
+| PRD-1.5 | Check data availability and suitability | This sub-process checks whether existing data sources can meet the need. It looks at internal data, administrative data, data spaces and other external sources. For each source, it assesses quality, coverage, timeliness and legal conditions. Reusing existing data comes before new collection, in line with SAF-P08. The result shows which gaps remain that new data must fill. |
+| PRD-1.6 | Prepare and submit business case | This sub-process documents the findings of the phase in a business case. The business case describes the need, the proposed solution, the costs and the benefits. It also lists risks and alternatives. The business case is submitted to management for a decision. Approval starts the design phase. |
+
+#### PRD-2 Design
+
+| ID | Process | Description |
+|---|---|---|
+| **PRD-2** | **Design** | This phase designs the statistical product and the process that produces it. It covers outputs, variables, collection, sampling, processing, analysis and dissemination. It also defines the metadata and the quality criteria. Designs reuse existing standards, methods and components wherever possible. The results are the specifications for the build phase. |
+| PRD-2.1 | Design outputs and dissemination | This sub-process designs the statistical outputs in detail. It defines tables, datasets, indicators and their metadata. It also designs how and through which channels the outputs will be disseminated. Disclosure control requirements are taken into account from the start. The design follows the output objectives from PRD-1.3. |
+| PRD-2.2 | Design variables | This sub-process defines the variables to be collected and to be derived. It specifies their definitions, the types of statistical units and the classifications that apply. Existing variables and classifications are reused where possible. Each variable gets metadata that describes its meaning. The result is a variable list that all later phases use. |
+| PRD-2.3 | Design collection | This sub-process determines how the data will be collected. It chooses the sources, the collection modes and the instruments, such as questionnaires or data interfaces. For administrative data and data spaces, it designs the agreements and delivery formats. Respondent burden is kept as low as possible. The design also covers the metadata and paradata to be captured. |
+| PRD-2.4 | Design frame and sample | This sub-process defines the target population and the frame from which units are selected. It designs the sampling method and the sample size, where a sample is used. For register-based statistics, it defines how the population is derived from the registers. Coverage problems in the frame are identified and addressed. The result is the method used later in PRD-4.1. |
+| PRD-2.5 | Design processing and analysis | This sub-process designs the methods for processing and analysis. It covers integration, coding, validation, editing, imputation, derivation, weighting and estimation. It also designs the methods for disclosure control. Methods are documented so that results can be reproduced. The designs are reviewed by methodologists before they are built. |
+| PRD-2.6 | Design production systems and workflows | This sub-process designs the end-to-end workflow of the statistical process. It defines which systems and components are needed for each step. It avoids gaps and duplication between steps. Reuse of existing components and shared platforms comes first, in line with SAF-P01. The result is the blueprint for the build phase. |
+
+#### PRD-3 Build
+
+| ID | Process | Description |
+|---|---|---|
+| **PRD-3** | **Build** | This phase builds and tests the production solution. It assembles the components, configures the workflows and tests the whole process. Components are reused where possible and built only where needed. The phase ends when the process is ready for production. For regular products, this phase is only needed when something changes. |
+| PRD-3.1 | Reuse or build collection instruments | This sub-process builds or reuses the instruments for data collection. Examples are electronic questionnaires, data delivery interfaces and connectors to data spaces. It follows the design from PRD-2.3. Instruments are tested for usability and correctness. The result is a set of instruments ready for collection. |
+| PRD-3.2 | Reuse or build processing and analysis components | This sub-process builds or reuses the components for processing and analysis. Examples are validation rules, imputation routines and estimation programs. The components implement the methods designed in PRD-2.5. Shared components that other products already use are preferred. Each component is documented and version-controlled. |
+| PRD-3.3 | Reuse or build dissemination components | This sub-process builds or reuses the components for dissemination. Examples are table templates, publication workflows and API endpoints. It follows the design from PRD-2.1. Shared dissemination platforms are used where possible. The components are tested together with the output systems. |
+| PRD-3.4 | Configure workflows | This sub-process configures the workflows that connect the components. It sets up the order of steps, the data flows and the transformations. It also configures the registration of data in the steady states. Configuration is preferred over custom code. The result is an executable workflow. |
+| PRD-3.5 | Test production systems | This sub-process tests the assembled systems and their interactions. It checks that components work together and handle errors correctly. It also tests performance and security. Test results are documented and reported to the process owner. Defects are fixed before the process goes live. |
+| PRD-3.6 | Test statistical business process | This sub-process tests the whole statistical process in practice. It can take the form of a pilot or a field test with real data. It checks that the process produces results of the expected quality. Problems found in the test lead to changes in design or build. The process owner decides whether the process is ready. |
+| PRD-3.7 | Finalise production systems | This sub-process puts the process and its systems into production. It completes the documentation and trains the staff involved. It transfers the systems to the teams that will run and maintain them. The metadata of the process is registered. From this moment, the process can run in the collect to disseminate phases. |
+
+#### PRD-4 Collect
+
+| ID | Process | Description |
+|---|---|---|
+| **PRD-4** | **Collect** | This phase collects or acquires the data, metadata and paradata needed for the product. It covers surveys, administrative data, data from data spaces and other sources. Data is received securely and checked for completeness. The phase ends when the data is stored and registered as raw data. In the steady-state model, this phase produces State #1. |
+| PRD-4.1 | Create frame and select sample | This sub-process creates the frame for this iteration of the process. It applies the method designed in PRD-2.4 to the current population. Where a sample is used, it draws the sample. The quality of the frame and the sample is checked. The result is the list of units from which data will be collected. |
+| PRD-4.2 | Set up collection | This sub-process makes sure that people, processes and systems are ready to collect. It prepares the instruments, trains interviewers and informs respondents or data providers. It checks that agreements and access rights are in place. Collection channels are tested before collection starts. The collection period is planned and communicated. |
+| PRD-4.3 | Run collection | This sub-process carries out the collection. Respondents complete questionnaires, and data providers deliver their data. Progress and response are monitored continuously. Non-response is followed up within the agreed strategy. Paradata about the collection is recorded. |
+| PRD-4.4 | Finalise collection | This sub-process loads the collected data and metadata into a secure environment. It checks integrity, completeness and structure at intake. It registers the data as a new version of raw data. Delivery problems are reported to the data provider. The collection is closed when all expected data has been received or written off. |
+
+#### PRD-5 Process
+
+| ID | Process | Description |
+|---|---|---|
+| **PRD-5** | **Process** | This phase turns the collected data into microdata that is ready for analysis. It integrates, classifies, checks, corrects and derives data. It also calculates weights and aggregates. The phase runs across several business domains of the steady-state model. It produces States #2 and #3, and the first aggregates of State #4. |
+| PRD-5.1 | Integrate data | This sub-process combines data from one or more sources into a consistent dataset. It links records that describe the same unit, using agreed keys. It resolves overlaps and conflicts between sources. Linkage uses pseudonymised keys where personal data is involved. The result is an integrated dataset with documented linkage quality. |
+| PRD-5.2 | Classify and code | This sub-process assigns codes from standard classifications to the data. Examples are codes for economic activity, occupation or region. Coding can be automatic, manual or a mix of both. The classification versions used are recorded in the metadata. Coding quality is checked and documented. |
+| PRD-5.3 | Review and validate | This sub-process checks the data for errors, outliers and inconsistencies. It applies the validation rules designed in PRD-2.5. It flags records that need attention. Some checks run automatically, others need expert review. The result is a dataset with quality flags and a list of issues. |
+| PRD-5.4 | Edit and impute | This sub-process corrects incorrect values and fills in missing values. Corrections follow editing rules, and missing values are imputed with documented methods. Every change is recorded, so that the original value can always be traced. The impact of editing and imputation on the results is measured. The result is a complete and consistent dataset. |
+| PRD-5.5 | Derive new variables and units | This sub-process creates variables and units that were not collected directly. Examples are age groups, household composition or enterprise groups. Derivations follow the specifications from PRD-2.2. Derived variables get their own metadata. The derivation rules are documented and reusable. |
+| PRD-5.6 | Calculate weights | This sub-process calculates weights for the records in the dataset. Weights correct for the sample design, non-response and coverage. They follow the method designed in PRD-2.5. The quality of the weights is checked. The weights are stored with the microdata. |
+| PRD-5.7 | Calculate aggregates | This sub-process calculates totals and other aggregates from the microdata. It applies the weights and the estimation methods. It can also combine lower-level aggregates into higher levels. Accuracy measures are calculated alongside the estimates. The result is the first version of the statistics. |
+| PRD-5.8 | Finalise data files | This sub-process combines the results of the phase into the files used for analysis. It checks that the files are complete and consistent. It registers the processed microdata as a new version in the steady state. The metadata of the files is completed. The files are now ready for the analysis phase. |
+
+#### PRD-6 Analyse
+
+| ID | Process | Description |
+|---|---|---|
+| **PRD-6** | **Analyse** | This phase turns the processed data into statistical outputs and checks that they are fit for release. It prepares draft outputs, validates them and explains them. It also applies disclosure control. The phase ends with the approval of the content for release. In the steady-state model, it completes State #4. |
+| PRD-6.1 | Prepare draft outputs | This sub-process transforms the data files into draft statistical outputs. Examples are tables, indicators, time series and charts. It also prepares the methodological notes that go with them. Drafts follow the output design from PRD-2.1. They are the input for validation and interpretation. |
+| PRD-6.2 | Validate outputs | This sub-process checks the draft outputs for quality and plausibility. It compares results with earlier periods, other sources and expectations. It checks them against the quality framework. Unexpected results are investigated before they are accepted. The result is a set of validated outputs with documented quality. |
+| PRD-6.3 | Interpret and explain outputs | This sub-process interprets the outputs and explains what they mean. Subject-matter experts describe developments and their causes. Deeper analyses may be carried out to support the explanation. The interpretation must be neutral and based on the data. The result is the content for publications and press releases. |
+| PRD-6.4 | Apply disclosure control | This sub-process makes sure that outputs do not reveal information about individual respondents. It applies the disclosure control methods designed in PRD-2.5. Examples are suppression of cells, rounding and adding noise. The disclosure risk is assessed and documented. No output is released without passing this check. |
+| PRD-6.5 | Finalise outputs | This sub-process makes sure that the statistics are fit for use. It completes the outputs and their metadata. It checks that all quality and confidentiality requirements are met. The content is approved for release by the responsible role. The approved outputs are registered as statistics ready for dissemination. |
+
+#### PRD-7 Disseminate
+
+| ID | Process | Description |
+|---|---|---|
+| **PRD-7** | **Disseminate** | This phase publishes the statistical products and supports users. It updates the output systems, produces the products and releases them. It also promotes the products and answers user questions. Equal access for all users at the moment of release is a core rule. In the steady-state model, this phase produces State #5. |
+| PRD-7.1 | Update output systems | This sub-process loads the approved data and metadata into the systems used for dissemination. Examples are databases behind the website, open data portals and APIs. It checks that the data is loaded correctly and remains embargoed until release. Format and structure follow the dissemination design. The result is output that is ready for release. |
+| PRD-7.2 | Produce dissemination products | This sub-process produces the products that users receive. Examples are press releases, publications, tables, visualisations and datasets. It follows the design from PRD-2.1. Products are checked for correctness and consistency before release. The result is a set of products ready to publish. |
+| PRD-7.3 | Release dissemination products | This sub-process releases the products to users. It follows the release calendar and the embargo rules. All channels are updated at the same moment, so that no user gets an advantage. Errors found after release are corrected openly. The release is logged for accountability. |
+| PRD-7.4 | Promote dissemination products | This sub-process brings the products to the attention of users. It uses channels such as social media, newsletters and events. It targets the user segments that have an interest in the product. Promotion helps users find and understand the statistics. Its effect is monitored. |
+| PRD-7.5 | Provide user support | This sub-process answers questions and requests from users. Questions are registered and answered within agreed times. Frequent questions lead to better documentation or products. Requests for tailor-made data are handled according to confidentiality rules. Feedback from users is passed on to the product owners. |
+
+#### PRD-8 Evaluate
+
+| ID | Process | Description |
+|---|---|---|
+| **PRD-8** | **Evaluate** | This phase evaluates a specific run of the statistical process. It collects evidence, assesses quality and performance, and agrees on improvements. Evaluation can take place after every run or at set intervals. Its results feed back into the next run or into a redesign. The phase is part of the management process type of each business domain. |
+| PRD-8.1 | Gather evaluation inputs | This sub-process collects the material for the evaluation. Examples are quality indicators, paradata, process logs, user feedback and staff comments. The inputs come from all earlier phases. They are brought together in one place. The result is a complete evidence base for the evaluation. |
+| PRD-8.2 | Conduct evaluation | This sub-process analyses the inputs and draws conclusions. It assesses the quality of the outputs and the efficiency of the process. It compares results with targets and with earlier runs. Strengths and weaknesses are identified. The result is an evaluation report or dashboard. |
+| PRD-8.3 | Agree an action plan | This sub-process agrees on actions to improve the process. It sets priorities, owners and deadlines. Actions can lead to small changes or to a full redesign. Progress on the actions is monitored. The action plan is the input for the next cycle. |
+
+### B. Overarching processes
+
+Overarching processes run across all phases of statistical production. They are not steps in the sequence. They apply to every phase, and to every product. They are based on the overarching processes of GSBPM.
+
+| ID | Process | Description |
+|---|---|---|
+| **OVA-1** | Quality Management | This process assesses and controls the quality of products and processes. It applies the quality framework of the NSI in every phase. It defines quality indicators, measures them and reports on them. Quality problems lead to corrective actions. The process supports the NSI-wide quality management function. |
+| **OVA-2** | Metadata Management | This process creates, updates, uses and archives statistical metadata in all phases. Metadata describes concepts, variables, classifications, methods and processes. It is captured when it is created, not afterwards. Metadata is shared through a catalogue, so that others can find and understand the data. The process applies SAF-P09 *No data without metadata and classification*. |
+| **OVA-3** | Data Management | This process manages data throughout its life cycle in production. It covers storage, security, versioning, retention and disposal. It makes sure that data is available to the right people at the right time. The SAF details this process in group C, *Data management and lifecycle processes*. The process applies the design rules of the steady-state model. |
+| **OVA-4** | Process Data Management | This process records and uses data about the execution of the statistical process. Examples are paradata from collection, logs of processing steps and timings. Process data shows how the process actually ran. It is used for monitoring, evaluation and audit. It is also the basis for lineage: the trace from output back to source. |
+| **OVA-5** | Knowledge Management | This process maintains the knowledge needed to run the production process. It keeps documentation, methods and procedures up to date. It makes sure that recurring processes can be repeated in the same way. It also captures lessons learned from evaluations. Knowledge management reduces the dependence on individual staff members. |
+| **OVA-6** | Data Supplier Management | This process manages the technical and operational relationship with data suppliers during production. It covers delivery schedules, formats, quality feedback and problem resolution. It keeps track of the burden placed on suppliers. It works within the agreements made at corporate level. Good supplier management improves data quality and reduces delays. |
+
+### C. Data management and lifecycle processes
+
+These processes manage data as an asset, across products and over its whole life. They detail the overarching process OVA-3 *Data Management*. They follow the life cycle of a steady state: promotion, gate, registration, use, revision and retirement. They apply to every reference model for the data value chain.
+
+| ID | Process | Description |
+|---|---|---|
+| **DLM-1** | Plan and design data assets | This process decides which data assets the NSI needs and how they are structured. It defines datasets, their owners, their classification and their place in the steady states. It is triggered by a new product, a new source or a change in the data architecture. Planning prevents duplicate datasets and unclear ownership. The result is a documented design for each data asset. |
+| **DLM-2** | Promote data through a quality gate | This process submits a dataset to the quality gate of a steady state. It checks the dataset against the gate criteria, such as completeness, structure and required metadata. The outcome is acceptance, conditional acceptance with quality flags, or rejection. Rejected data returns to the producing domain or the data provider. The process makes sure that only data of known quality enters a steady state. |
+| **DLM-3** | Register and catalogue data | This process registers an accepted dataset as a new, immutable version. It assigns a persistent identifier and records the metadata in the catalogue. It publishes an event that tells consuming domains a new version is available. Registration makes the data findable for authorised users. Without registration, data cannot be handed over. |
+| **DLM-4** | Classify and protect data | This process assigns a security classification to each dataset, for availability, integrity and confidentiality. It applies the protection measures that follow from the classification. It also applies pseudonymisation or other privacy measures where required. Classification is reviewed when data moves to the next steady state. The process applies SAF-P09, SAF-P10 and SAF-P11. |
+| **DLM-5** | Store and version data | This process stores each registered version of a dataset safely. Earlier versions are kept, not overwritten. Backups and recovery are arranged according to the availability requirements. Storage follows the retention policy of each steady state. The process makes it possible to reproduce any statistic from the data it was built on. |
+| **DLM-6** | Provide data for reuse | This process gives authorised internal users access to registered data. A user requests access, and the data owner decides on the request. Access is granted for a stated purpose and a set period. Use is logged. The process applies SAF-P08 *Data is shared property*, within the limits of confidentiality. |
+| **DLM-7** | Revise data | This process handles corrections and redeliveries of data that is already registered. A correction creates a new version that passes the same quality gate. Consumers of the earlier version are notified. They decide whether to reprocess their own data. The reason for each revision is recorded. |
+| **DLM-8** | Monitor data quality, lineage and use | This process monitors registered data over time. It tracks quality indicators, the lineage from source to output, and how the data is used. It detects problems, such as declining quality or unauthorised use. It reports to data owners and the data governance board. The results feed into improvements and audits. |
+| **DLM-9** | Manage reference and master data | This process manages the data that other data depends on. Examples are classifications, code lists, statistical registers and population frames. It controls versions and publishes changes in advance. It makes sure that all domains use the same version at the same time. Errors in reference data affect many products, so changes are tested carefully. |
+| **DLM-10** | Archive and preserve data | This process transfers data that must be kept long-term to an archive. It selects what must be preserved, based on legal obligations and reproducibility needs. It makes sure that archived data remains readable and understandable, with its metadata. Access to archived data is controlled. The process follows national archives legislation. |
+| **DLM-11** | Dispose of data | This process deletes data at the end of its retention period. It checks that no statistic or obligation still depends on the data. Deletion covers all copies, including backups and working copies. Keys used for pseudonymisation are destroyed when they are no longer needed. Each disposal is recorded, so that it can be shown in an audit. |
+
+### D. Microdata services processes
+
+Microdata services give researchers controlled access to microdata for statistical and scientific research. Access takes place under strict conditions, usually in a secure processing environment. The NSI remains responsible for confidentiality throughout. These processes realise part of VS-06 *Dissemination and Service Delivery* and work within the collaboration COL-04 *Research access partnership*.
+
+| ID | Process | Description |
+|---|---|---|
+| **MDS-1** | Authorise institutions and researchers | This process decides which institutions and researchers may use microdata services. It checks the legal status of the institution and the qualifications of the researchers. Authorised institutions sign an agreement that sets the conditions of use. Researchers confirm that they will respect confidentiality. Authorisations are reviewed periodically and can be withdrawn. |
+| **MDS-2** | Assess access applications | This process handles an application to use microdata for a specific research project. The applicant describes the purpose, the data needed and the expected outputs. The NSI checks the legal basis, the public interest and whether the data requested is necessary. It also checks for special categories of data that need extra approval. The result is an approval with conditions, or a reasoned refusal. |
+| **MDS-3** | Prepare research datasets | This process prepares the datasets for an approved project. It selects only the data that the project needs. It replaces identifiers with project-specific pseudonyms, so that data cannot be linked across projects. Where the project brings its own data, the NSI links it under the same rules. The prepared dataset is registered with its metadata and lineage. |
+| **MDS-4** | Provide a secure processing environment | This process sets up the environment in which researchers work with the data. The environment prevents data from leaving without control. Access is limited to the authorised researchers of the project. Tools and computing power are provided as agreed. All activity in the environment is logged. |
+| **MDS-5** | Facilitate privacy-preserving analysis | This process supports analysis without moving the data into one place. Examples are federated analysis, where the algorithm goes to the data, and secure multi-party computation. These techniques are used when partners cannot or may not share their data. The NSI defines the trust model, the linkage method and the output rules for each setup. The process extends microdata services to data that the NSI does not hold itself. |
+| **MDS-6** | Support researchers | This process helps researchers use the data and the environment correctly. It answers questions about content, metadata and methods. It explains the rules for confidentiality and output. It handles technical problems in the environment. Good support reduces errors and speeds up research. |
+| **MDS-7** | Check and release output | This process checks every output before it leaves the secure environment. It applies disclosure control rules to tables, models and other results. It also checks for risks across outputs, such as differencing between similar results. Outputs that pass are released to the researcher. Outputs that fail are returned with an explanation. |
+| **MDS-8** | Monitor use and compliance | This process monitors whether institutions and researchers follow the conditions of use. It reviews logs, outputs and incidents. It also tracks the use of query or disclosure budgets where these apply. Breaches lead to measures, up to withdrawal of the authorisation. The results are reported to the data owner and to supervisory authorities where required. |
+| **MDS-9** | Close projects | This process ends a research project in a controlled way. It removes the project's data and workspace. It destroys the project-specific pseudonymisation keys. It archives what must be kept for reproducibility, such as the code and the approved outputs. The closure is recorded, so that it can be shown in an audit. |
+
+### E. Data space processes
+
+A data space is a shared environment in which organisations exchange data under common rules, while each keeps control over its own data. Examples are the European data spaces for health, mobility or public administration. An NSI can take part as a data provider, as a data user, or both. Some NSIs also act as an access body that grants access to data on behalf of other data holders. That role is not covered by the SAF reference processes. The data space processes realise parts of VS-01 *Data Acquisition and Ingestion* and VS-06 *Dissemination and Service Delivery*.
+
+| ID | Process | Description |
+|---|---|---|
+| **DSP-1** | Join a data space | This process prepares the NSI to take part in a data space. It assesses the rules of the data space against the NSI's legal mandate and policies. It signs the participation agreement and obtains the required identity and trust credentials. It sets up the technical connection, for example through a connector. The NSI decides in advance whether it joins as provider, as user, or as both. |
+| **DSP-2** | Publish data offerings | This process makes NSI data visible in the data space. It describes datasets in the data space catalogue, using agreed metadata standards. It states the conditions under which the data may be used. Only data that the NSI may share under its legal mandate is offered. The offering is kept up to date when the data or the conditions change. |
+| **DSP-3** | Agree data use conditions | This process agrees on the terms of a specific data exchange. Provider and user agree on purpose, duration, permitted use and security measures. The terms are recorded in a contract or usage policy that machines can check where possible. The NSI checks that the terms fit its confidentiality rules. Without agreed terms, no data is exchanged. |
+| **DSP-4** | Exchange data under usage control | This process carries out the agreed data exchange. Data is transferred securely, or analysed where it resides without transfer. Usage control enforces the agreed conditions where the technology allows it. Every exchange is logged. Incoming data enters the NSI through the data acquisition process and is registered as raw data. |
+| **DSP-5** | Monitor compliance and report | This process monitors whether the NSI's own exchanges follow the rules of the data space. It checks agreements, logs, incidents and the use of data. It reports security incidents within the legal deadlines. It also checks whether partners respect the conditions agreed for NSI data. Breaches lead to measures, including suspension of the exchange. |
+| **DSP-6** | Participate in data space governance | This process covers the NSI's role in steering the data space. The NSI takes part in governance bodies and contributes to the rules and standards. It brings in statistical expertise on metadata, classifications, quality and confidentiality. It also evaluates whether participation still serves its mandate. When the NSI leaves a data space, this process arranges a controlled exit. |
+
+|**PLACEHOLDER: Process templates and process mapping instruments to be added to the toolkit**|
+|---|
+
+## Business Functions
+
+### The concept
+
+A **business function** is a grouping of behaviour based on the knowledge, skills and resources it needs. A function describes *what* the organisation does on a continuous basis. It has no start or end, and it does not depend on the order in which work is done. *Manage metadata* is a function: it exists as long as the NSI exists, whatever process happens to use it. Functions are stable, because the competences an organisation needs change much more slowly than its procedures.
+
+Functions differ from processes. A process is a sequence of activities with a trigger and a result. A function is a lasting area of competence that processes draw on. One process uses several functions, and one function serves several processes. The mapping at the end of this section shows how they relate.
+
+Functions also differ from capabilities. A capability, in the Strategy layer, describes an *ability* the NSI has or needs. A function, in the business layer, describes the *behaviour* that delivers that ability. Functions realise capabilities. In practice, the two often have similar names, but they serve different purposes: capabilities support planning and investment, functions support the design of the organisation and its processes.
+
+### How the SAF applies business functions
+
+**Why the SAF describes business functions**
+
+Functions give a stable picture of the organisation that does not change with every reorganisation or new system. They are the natural basis for assigning responsibilities: each function has an owner who maintains the competence. They also help to compare NSIs. Two NSIs may have very different processes and departments, but they will recognise the same functions. Finally, functions make gaps visible. A function that no one owns is a competence that the organisation risks losing.
+
+**How business functions fit into an NSI's own architecture**
+
+An NSI maps its departments and teams onto the SAF functions. The mapping shows which unit carries which function, and where functions are spread over several units. An NSI can also map the SAF functions onto a national function model, such as a government-wide model for business support. Functions that are specific to the NSI's mandate are added as extensions. The SAF function areas for statistical production, data management, microdata services and data spaces are specific to official statistics. The business support area is generic and can be replaced by a national model where one exists.
+
+**Relationships with other concepts**
+
+| Related concept | Relationship | Example in the SAF |
+|---|---|---|
+| Capabilities (Strategy) | Functions realise capabilities | FUN-7.2 *Manage metadata* realises Metadata management (2.1.2) |
+| Business processes | Processes realise functions; functions are assigned to processes | PRD-5.4 *Edit and impute* uses FUN-3.3 *Process statistical data* |
+| Business roles | Roles are assigned to functions | ROL-03 *Data steward* is assigned to FUN-7.3 *Manage data lifecycle and storage* |
+| Business actors | Organisational units carry functions | A methodology department carries FUN-4.1 |
+| Business services | Functions realise business services | FUN-8.1 realises the microdata access service |
+| Application services | Application services serve functions | A metadata catalogue serves FUN-7.2 |
+
+**Function areas**
+
+| Area | Name | Scope |
+|---|---|---|
+| FUN-1 | Strategy and Leadership | Direction, governance and strategic relations of the NSI |
+| FUN-2 | Capability Development | Planning, developing and maintaining the abilities of the NSI, including architecture |
+| FUN-3 | Statistical Production | Designing, producing and disseminating statistics |
+| FUN-4 | Methodology and Research | Statistical methods, research and innovation |
+| FUN-5 | Quality Management | The quality framework and quality assurance |
+| FUN-6 | Data Supplier Management | Relations, agreements and burden for data providers and respondents |
+| FUN-7 | Data Management | Data and metadata as managed assets across their life cycle |
+| FUN-8 | Microdata Services | Controlled access to microdata for research |
+| FUN-9 | Data Space Participation | Taking part in data spaces as provider and user |
+| FUN-10 | Business Support | The generic support functions of the organisation |
+
+|**PLACEHOLDER: ArchiMate view of the SAF function model**|
+|---|
+
+### FUN-1 Strategy and Leadership
+
+| ID | Function | Description | Capabilities |
+|---|---|---|---|
+| **FUN-1** | **Strategy and Leadership** | This area gives direction to the NSI. It sets the vision, the strategy and the priorities. It governs the organisation and accounts for its results. It maintains relationships with the government, the statistical community and society. All other functions work within the direction this area sets. | 4.1 |
+| FUN-1.1 | Define vision and strategy | This function defines the mission, vision, goals and values of the NSI. It analyses the national and international environment, including the drivers in the Motivation layer. It translates the vision into a strategy and domain strategies. It sets priorities for the product and service portfolio. The results guide investment and change for several years. | 4.1.1, 4.1.2 |
+| FUN-1.2 | Govern and steer the organisation | This function makes sure the NSI is run according to its strategy and its legal mandate. It sets up governance bodies, decision rights and the planning and control cycle. It allocates resources to programmes and departments. It monitors performance and intervenes when needed. It also accounts to the ministry, supervisory bodies and the public. | 4.1.1, 4.1.5 |
+| FUN-1.3 | Manage strategic collaboration | This function maintains the strategic relationships of the NSI with other organisations. It covers the national statistical system, international statistical organisations and other governments. It identifies opportunities for joint work, data exchange and shared solutions. It represents the NSI in working groups and governance bodies. It makes sure the NSI speaks with one voice. | 4.1.6 |
+| FUN-1.4 | Build public confidence | This function builds and protects public trust in official statistics. It explains the role and independence of the NSI to the public. It promotes the value of statistics and of providing data to the NSI. It responds to misuse or misinterpretation of statistics. Trust is the basis for both response and use, so this function supports the whole chain. | 1.5.2, 4.1.5 |
+
+### FUN-2 Capability Development
+
+| ID | Function | Description | Capabilities |
+|---|---|---|---|
+| **FUN-2** | **Capability Development** | This area develops and improves the abilities of the NSI. It plans improvements, carries them out and checks whether they deliver. It covers methods, processes, data, systems and skills. It also maintains the enterprise architecture that keeps improvements coherent. This area turns the strategy into concrete change. | 4.1.3, 4.1.4 |
+| FUN-2.1 | Plan capability improvements | This function identifies which capabilities need to improve and in which order. It uses capability assessments, evaluations and strategic priorities. It proposes programmes and projects with a business case. It coordinates the plans across the organisation to avoid overlap. The result is a prioritised portfolio of improvements. | 4.1.3 |
+| FUN-2.2 | Develop capability improvements | This function carries out approved improvements. It specifies, designs, builds and tests the change. It follows the architecture principles and reuses existing solutions where possible. It involves the people who will use the result. The function ends when the improvement is ready to be taken into use. | 4.1.3, 3.2.1 |
+| FUN-2.3 | Monitor capabilities | This function checks whether capabilities perform as intended. It measures maturity and the benefits of past investments. It identifies capabilities that are declining or no longer needed. It reports to management and feeds the next planning round. Without monitoring, investments cannot be shown to pay off. | 4.1.4 |
+| FUN-2.4 | Transfer capability improvements to operations | This function hands over a finished improvement to the teams that will run and support it. It arranges documentation, training and support agreements. It checks that the operating teams are ready before the handover. It closes the project or programme. A clean transfer prevents improvements from falling back into project mode. | 3.2.2 |
+| FUN-2.5 | Manage enterprise architecture | This function develops and maintains the enterprise architecture of the NSI. It uses the SAF as its reference. It advises on strategy, investments and projects, and reviews them against the architecture principles. It supports the architecture board and keeps the architecture repository up to date. It keeps the NSI architecture aligned with the SAF as both evolve. | |
+
+### FUN-3 Statistical Production
+
+| ID | Function | Description | Capabilities |
+|---|---|---|---|
+| **FUN-3** | **Statistical Production** | This area produces official statistics, from the first design to the release. It is the core of the NSI's mandate. The statistical production processes (PRD) realise this area. Its functions follow the main kinds of statistical work: design, collection, processing, estimation, confidentiality and dissemination. Each function brings together the specialist knowledge for that kind of work. | 1 |
+| FUN-3.1 | Design and build statistical products | This function designs statistical products and the processes that produce them. It translates information needs into outputs, variables, methods and workflows. It also builds and tests the production solution. It works closely with methodology and with the users of the product. The function owns the design of each product over its life cycle. | 1.1 |
+| FUN-3.2 | Collect and acquire data | This function obtains the data that statistical products need. It runs surveys, receives administrative data and acquires data from other sources, including data spaces. It makes sure that data arrives complete, on time and under the right agreements. It keeps respondent burden as low as possible. The function delivers data into the first steady state. | 1.2 |
+| FUN-3.3 | Process statistical data | This function turns raw data into reliable microdata. It integrates, standardises, codes, validates, edits and imputes data. It also derives new variables and units. It applies the methods designed for each product. The function produces standardized and processed microdata. | 1.3.1, 1.3.2, 1.3.3, 1.3.4 |
+| FUN-3.4 | Estimate and analyse | This function produces statistics from microdata and checks that they are sound. It calculates weights, estimates and aggregates. It integrates statistics into consistent wholes, such as the national accounts. It validates and interprets the results. The function produces the statistics that are ready for release. | 1.3.5, 1.3.6, 1.4 |
+| FUN-3.5 | Protect statistical confidentiality | This function makes sure that no output reveals information about individual respondents. It sets the confidentiality rules and the methods for disclosure control. It applies them to tables, microdata files and services. It assesses disclosure risks in new types of output. The function works across all products and channels. | 1.3.7 |
+| FUN-3.6 | Disseminate statistics | This function brings statistics to users. It manages the release calendar, the publication channels and the products. It makes sure that all users get access at the same moment. It also supports users in finding and understanding the statistics. The function produces released data. | 1.5 |
+
+### FUN-4 Methodology and Research
+
+| ID | Function | Description | Capabilities |
+|---|---|---|---|
+| **FUN-4** | **Methodology and Research** | This area provides the scientific basis for statistical production. It develops and maintains statistical methods. It explores new data sources, new techniques and new products. It makes sure that innovations are sound before they enter production. This area protects the methodological quality that makes official statistics credible. | 2.2 |
+| FUN-4.1 | Manage statistical and analytical methodology | This function develops, documents and maintains the methods used in production. It covers sampling, collection, editing, imputation, estimation, disclosure control and analysis. It includes methods based on machine learning and AI. It advises production teams and reviews their methods. Methods are standardised and shared across products where possible. | 2.2.3 |
+| FUN-4.2 | Research and innovate | This function explores new possibilities for statistics. It investigates new data sources and new ways to use existing data. It develops prototypes of new products and methods. It evaluates whether innovations are feasible and sound. Successful innovations are handed over to production through capability development. | 2.2.1, 2.2.2 |
+
+### FUN-5 Quality Management
+
+| ID | Function | Description | Capabilities |
+|---|---|---|---|
+| **FUN-5** | **Quality Management** | This area makes sure that the NSI delivers statistics of the required quality. It maintains the quality framework and the tools to apply it. It assures quality in products and processes. It prepares the NSI for reviews and audits. This area is the corporate counterpart of the quality management process in production. | 2.1.3 |
+| FUN-5.1 | Manage the quality framework | This function sets the quality standards of the NSI. It defines quality dimensions, indicators and reporting requirements. It aligns the framework with international standards, such as the European Statistics Code of Practice. It provides tools and guidance to production teams. The framework is reviewed and improved regularly. | 2.1.3 |
+| FUN-5.2 | Assure and review quality | This function checks whether products and processes meet the quality standards. It monitors quality indicators and reviews quality reports. It carries out quality reviews and self-assessments. It follows up on findings with improvement actions. It also supports external reviews, such as peer reviews. | 2.1.3, 4.1.5 |
+
+### FUN-6 Data Supplier Management
+
+| ID | Function | Description | Capabilities |
+|---|---|---|---|
+| **FUN-6** | **Data Supplier Management** | This area manages the relationships with everyone who supplies data to the NSI. It covers respondents, administrative data holders and other data providers. It sets up and maintains agreements. It monitors the burden that the NSI places on suppliers. Good supplier management improves both the quality of data and the willingness to provide it. | 3.4 |
+| FUN-6.1 | Manage data supplier relationships | This function maintains contact with data providers and respondent groups. It explains why the NSI needs the data and how it is used. It handles questions, complaints and feedback on data quality. It coordinates all contacts, so that a supplier deals with one NSI and not with many departments. The function builds long-term cooperation. | 3.4.2 |
+| FUN-6.2 | Manage data provision agreements | This function draws up, maintains and enforces agreements with data providers. Agreements cover content, format, timing, quality, security and legal basis. The function keeps a register of all agreements. It renews or adjusts agreements when sources or needs change. It also handles enforcement when obligations are not met. | 3.4.3 |
+| FUN-6.3 | Manage response burden | This function measures and limits the burden of statistical data collection. It tracks how much time and effort respondents and data providers spend. It looks for ways to reduce burden, such as reusing existing data. It coordinates surveys so that the same units are not approached too often. It reports on burden to management and government. | 1.2, 2.2.5 |
+
+### FUN-7 Data Management
+
+| ID | Function | Description | Capabilities |
+|---|---|---|---|
+| **FUN-7** | **Data Management** | This area manages data and metadata as assets of the NSI. It covers governance, metadata, the data life cycle, reference data and data protection. It works across all statistical products and domains. It makes sure that data can be found, understood, trusted and reused. The data lifecycle management processes (DLM) realise this area. | 2.1 |
+| FUN-7.1 | Govern data | This function sets the rules for data management in the NSI. It defines data policies, standards and responsibilities. It assigns data owners, data stewards and data custodians. It resolves issues that cross domain boundaries. It monitors compliance with the data policies. | 2.1.1, 4.1.2 |
+| FUN-7.2 | Manage metadata | This function captures, maintains and publishes metadata. Metadata describes concepts, variables, classifications, datasets, methods and processes. The function maintains the catalogue in which data can be found. It makes sure that metadata is captured when data is created. It applies international standards, such as GSIM and SDMX. | 2.1.2 |
+| FUN-7.3 | Manage data lifecycle and storage | This function manages data from creation to disposal. It covers quality gates, registration, versioning, storage, retention and disposal. It keeps track of lineage, from output back to source. It makes sure that earlier versions remain available when they are needed. The function applies the design rules of the steady-state model. | 2.1.1 |
+| FUN-7.4 | Manage reference and master data | This function manages the data that other data depends on. Examples are classifications, code lists, statistical registers and population frames. It controls versions and announces changes in advance. It makes sure that all domains use the same version. The function is the single source of truth for reference data. | 2.1.4 |
+| FUN-7.5 | Protect data | This function protects data according to its classification. It applies measures for availability, integrity and confidentiality. It manages pseudonymisation and the keys used for it. It keeps keys separate from the data they protect. The function works closely with information security and privacy management. | 3.3.1, 3.3.4 |
+
+### FUN-8 Microdata Services
+
+| ID | Function | Description | Capabilities |
+|---|---|---|---|
+| **FUN-8** | **Microdata Services** | This area gives researchers controlled access to microdata. It covers authorisation, data preparation, secure environments and output control. It also supports analysis without moving data, using privacy-preserving techniques. The NSI remains responsible for confidentiality throughout. The microdata services processes (MDS) realise this area. | 2.2.4 |
+| FUN-8.1 | Manage research access | This function decides who may use microdata, for which purpose and under which conditions. It authorises institutions and researchers. It assesses applications for research projects. It monitors whether users keep to the conditions. It withdraws access when rules are broken. | 2.2.4, 3.4.3 |
+| FUN-8.2 | Prepare research data | This function prepares the datasets for each approved project. It selects only the data that the project needs. It applies project-specific pseudonyms, so that data cannot be linked across projects. It links data that researchers bring in, under the same rules. It documents the prepared data with metadata and lineage. | 2.2.4, 3.3.1 |
+| FUN-8.3 | Operate secure research environments | This function provides and runs the environments in which researchers work. It controls who may enter and what may leave. It provides tools and computing power. It logs all activity. It removes data and workspaces when projects end. | 2.2.4, 3.2.5 |
+| FUN-8.4 | Control research output | This function checks all results before they leave the secure environment. It applies disclosure control rules to tables, models and other output. It checks for risks across outputs, such as differencing between similar results. It keeps a record of every release. The function protects respondents while allowing research to proceed. | 1.3.7 |
+| FUN-8.5 | Enable privacy-preserving analysis | This function makes analysis possible without bringing all data together. It uses techniques such as federated analysis and secure multi-party computation. It defines the trust model, the linkage method and the output rules for each setup. It works with partners who cannot or may not share their data. The function extends microdata services beyond the data the NSI holds itself. | 2.2.4, 2.2.3 |
+
+### FUN-9 Data Space Participation
+
+| ID | Function | Description | Capabilities |
+|---|---|---|---|
+| **FUN-9** | **Data Space Participation** | This area enables the NSI to take part in data spaces. The NSI can act as a data provider, as a data user, or both. The area covers agreements, technical connection and governance. It makes sure that participation fits the NSI's legal mandate and confidentiality rules. The data space processes (DSP) realise this area. | 4.1.6, 3.4 |
+| FUN-9.1 | Manage data space participation | This function decides in which data spaces the NSI takes part, and in which role. It assesses the rules of each data space against the NSI's mandate. It manages participation agreements, data offerings and usage conditions. It monitors whether exchanges follow the agreed rules. It reviews participation regularly. | 4.1.6, 3.4.3 |
+| FUN-9.2 | Operate data space connectivity | This function provides the technical connection to data spaces. It runs the connectors, identity credentials and catalogue entries. It carries out data exchanges under the agreed usage conditions. It logs every exchange. Incoming data is passed on to data collection and enters the first steady state. | 3.4.1, 3.2.5 |
+| FUN-9.3 | Contribute to data space governance | This function represents the NSI in the governance of data spaces. It contributes to rules, standards and rulebooks. It brings in statistical expertise on metadata, classifications, quality and confidentiality. It aligns positions with other NSIs where possible. It also arranges a controlled exit when participation ends. | 4.1.6 |
+
+### FUN-10 Business Support
+
+| ID | Function | Description | Capabilities |
+|---|---|---|---|
+| **FUN-10** | **Business Support** | This area provides the people, money, information, technology and facilities that the other functions need. Its functions are similar in every public organisation. The SAF describes them only at a high level. An NSI can replace this area with the function model of its own government. The functions are still part of the SAF, because statistical work depends on them. | 3 |
+| FUN-10.1 | Manage human resources | This function makes sure the NSI has enough qualified staff. It covers recruitment, development, performance and the departure of staff. It plans the skills the NSI will need in the future. It supports managers in leading their teams. Skills such as data science and methodology are scarce, which makes this function critical. | 3.1.1 |
+| FUN-10.2 | Manage finance and procurement | This function manages the budget, the accounts and the purchase of goods and services. It plans and controls spending. It runs procurement procedures and manages supplier contracts. It reports on the financial position to management and government. It makes sure that spending follows the rules for public money. | 3.1.2, 3.1.3 |
+| FUN-10.3 | Manage information technology | This function provides and manages the IT the NSI needs. It covers applications, platforms, infrastructure and the digital workplace. It develops, configures and maintains systems. It runs IT services and resolves disruptions. It plans the evolution of the technical landscape. | 3.2 |
+| FUN-10.4 | Manage information and records | This function manages the information created in management and support processes. It keeps records according to archives legislation. It makes information findable and accessible over time. It also manages the knowledge base of the organisation. Statistical data itself is managed by FUN-7 *Data Management*. | 3.1.8 |
+| FUN-10.5 | Manage legal affairs | This function provides legal advice and support. It interprets the statistics law, data protection law and other rules. It assesses agreements and contracts. It handles legal procedures and objections. It keeps the overview of legal obligations, for example in a legal register. | 3.1.7 |
+| FUN-10.6 | Manage communication | This function manages internal and external communication. It covers press relations, the website, social media and internal information. It makes sure the NSI communicates clearly and consistently. It supports the release of statistics with press releases and explanations. It also handles questions from the media. | 3.1.4 |
+| FUN-10.7 | Manage facilities | This function provides the buildings, workplaces and physical services the NSI needs. It covers housing, maintenance, catering and physical access. It makes sure that buildings and spaces are safe. It supports field staff with the means they need. It plans facilities in line with ways of working, such as hybrid work. | 3.1.6, 3.3.5 |
+| FUN-10.8 | Manage information security and privacy | This function protects the NSI's information and the privacy of the people it concerns. It sets security and privacy policies and monitors compliance. It manages incidents and leads recovery. It assesses risks in new solutions and suppliers. It includes the role of the data protection officer. | 3.3 |
+| FUN-10.9 | Manage users and services | This function manages the relationship with the users of statistics. It identifies user groups and their needs. It manages the portfolio of products and services and their service levels. It handles questions, requests and complaints. It measures user satisfaction and passes feedback on to production. | 3.4.1, 3.4.2, 2.2.5 |
+
+### Process and function mapping
+
+The table shows which functions each process uses. The *main function* carries the knowledge the process mainly depends on. *Supporting functions* contribute specific expertise or resources. In ArchiMate, the process realises part of the main function, and the supporting functions are related through assignment or serving relationships.
+
+|**PLACEHOLDER: ArchiMate view of the process and function mapping**|
+|---|
+
+#### A. Statistical production processes
+
+| Process | Name | Main function | Supporting functions |
+|---|---|---|---|
+| **PRD-1** | **Specify Needs** | FUN-3.1 | FUN-10.9 |
+| PRD-1.1 | Identify needs | FUN-3.1 | FUN-10.9 |
+| PRD-1.2 | Consult and confirm needs | FUN-3.1 | FUN-10.9 |
+| PRD-1.3 | Establish output objectives | FUN-3.1 | FUN-5.1 |
+| PRD-1.4 | Identify concepts | FUN-3.1 | FUN-4.1 |
+| PRD-1.5 | Check data availability and suitability | FUN-3.1 | FUN-6.1, FUN-7.2 |
+| PRD-1.6 | Prepare and submit business case | FUN-3.1 | FUN-1.2, FUN-2.1 |
+| **PRD-2** | **Design** | FUN-3.1 | FUN-4.1 |
+| PRD-2.1 | Design outputs and dissemination | FUN-3.1 | FUN-3.5, FUN-3.6 |
+| PRD-2.2 | Design variables | FUN-3.1 | FUN-7.2, FUN-7.4 |
+| PRD-2.3 | Design collection | FUN-3.1 | FUN-3.2, FUN-6.1 |
+| PRD-2.4 | Design frame and sample | FUN-3.1 | FUN-4.1, FUN-7.4 |
+| PRD-2.5 | Design processing and analysis | FUN-4.1 | FUN-3.1, FUN-3.5 |
+| PRD-2.6 | Design production systems and workflows | FUN-3.1 | FUN-2.5, FUN-10.3 |
+| **PRD-3** | **Build** | FUN-3.1 | FUN-10.3 |
+| PRD-3.1 | Reuse or build collection instruments | FUN-3.1 | FUN-3.2 |
+| PRD-3.2 | Reuse or build processing and analysis components | FUN-3.1 | FUN-4.1, FUN-10.3 |
+| PRD-3.3 | Reuse or build dissemination components | FUN-3.1 | FUN-3.6, FUN-10.3 |
+| PRD-3.4 | Configure workflows | FUN-3.1 | FUN-7.3, FUN-10.3 |
+| PRD-3.5 | Test production systems | FUN-3.1 | FUN-10.3 |
+| PRD-3.6 | Test statistical business process | FUN-3.1 | FUN-5.2 |
+| PRD-3.7 | Finalise production systems | FUN-3.1 | FUN-2.4, FUN-7.2 |
+| **PRD-4** | **Collect** | FUN-3.2 | FUN-6.1 |
+| PRD-4.1 | Create frame and select sample | FUN-3.2 | FUN-4.1, FUN-7.4 |
+| PRD-4.2 | Set up collection | FUN-3.2 | FUN-6.2 |
+| PRD-4.3 | Run collection | FUN-3.2 | FUN-6.1, FUN-6.3 |
+| PRD-4.4 | Finalise collection | FUN-3.2 | FUN-7.3 |
+| **PRD-5** | **Process** | FUN-3.3 | FUN-3.4 |
+| PRD-5.1 | Integrate data | FUN-3.3 | FUN-7.4, FUN-7.5 |
+| PRD-5.2 | Classify and code | FUN-3.3 | FUN-7.4 |
+| PRD-5.3 | Review and validate | FUN-3.3 | FUN-5.2 |
+| PRD-5.4 | Edit and impute | FUN-3.3 | FUN-4.1 |
+| PRD-5.5 | Derive new variables and units | FUN-3.3 | FUN-7.2 |
+| PRD-5.6 | Calculate weights | FUN-3.4 | FUN-4.1 |
+| PRD-5.7 | Calculate aggregates | FUN-3.4 | FUN-4.1 |
+| PRD-5.8 | Finalise data files | FUN-3.3 | FUN-7.3 |
+| **PRD-6** | **Analyse** | FUN-3.4 | FUN-3.5 |
+| PRD-6.1 | Prepare draft outputs | FUN-3.4 | FUN-3.6 |
+| PRD-6.2 | Validate outputs | FUN-3.4 | FUN-5.2 |
+| PRD-6.3 | Interpret and explain outputs | FUN-3.4 | FUN-10.6 |
+| PRD-6.4 | Apply disclosure control | FUN-3.5 | FUN-4.1 |
+| PRD-6.5 | Finalise outputs | FUN-3.4 | FUN-5.2 |
+| **PRD-7** | **Disseminate** | FUN-3.6 | FUN-10.9 |
+| PRD-7.1 | Update output systems | FUN-3.6 | FUN-10.3 |
+| PRD-7.2 | Produce dissemination products | FUN-3.6 | FUN-10.6 |
+| PRD-7.3 | Release dissemination products | FUN-3.6 | FUN-1.4 |
+| PRD-7.4 | Promote dissemination products | FUN-3.6 | FUN-10.6, FUN-1.4 |
+| PRD-7.5 | Provide user support | FUN-10.9 | FUN-3.6 |
+| **PRD-8** | **Evaluate** | FUN-5.2 | FUN-2.3 |
+| PRD-8.1 | Gather evaluation inputs | FUN-5.2 | FUN-7.3 |
+| PRD-8.2 | Conduct evaluation | FUN-5.2 | FUN-2.3 |
+| PRD-8.3 | Agree an action plan | FUN-2.1 | FUN-5.2 |
+
+#### B. Overarching processes
+
+| Process | Name | Main function | Supporting functions |
+|---|---|---|---|
+| OVA-1 | Quality Management | FUN-5.2 | FUN-5.1 |
+| OVA-2 | Metadata Management | FUN-7.2 | FUN-7.4 |
+| OVA-3 | Data Management | FUN-7.3 | FUN-7.1 |
+| OVA-4 | Process Data Management | FUN-7.3 | FUN-5.2 |
+| OVA-5 | Knowledge Management | FUN-10.4 | FUN-4.1 |
+| OVA-6 | Data Supplier Management | FUN-6.1 | FUN-6.3 |
+
+#### C. Data lifecycle management processes
+
+| Process | Name | Main function | Supporting functions |
+|---|---|---|---|
+| DLM-1 | Plan and design data assets | FUN-7.1 | FUN-2.5 |
+| DLM-2 | Promote data through a quality gate | FUN-7.3 | FUN-5.2 |
+| DLM-3 | Register and catalogue data | FUN-7.2 | FUN-7.3 |
+| DLM-4 | Classify and protect data | FUN-7.5 | FUN-10.8 |
+| DLM-5 | Store and version data | FUN-7.3 | FUN-10.3 |
+| DLM-6 | Provide data for reuse | FUN-7.1 | FUN-7.3 |
+| DLM-7 | Revise data | FUN-7.3 | FUN-7.2 |
+| DLM-8 | Monitor data quality, lineage and use | FUN-7.1 | FUN-5.2 |
+| DLM-9 | Manage reference and master data | FUN-7.4 | FUN-7.2 |
+| DLM-10 | Archive and preserve data | FUN-10.4 | FUN-7.3 |
+| DLM-11 | Dispose of data | FUN-7.3 | FUN-7.5 |
+
+#### D. Microdata services processes
+
+| Process | Name | Main function | Supporting functions |
+|---|---|---|---|
+| MDS-1 | Authorise institutions and researchers | FUN-8.1 | FUN-10.5 |
+| MDS-2 | Assess access applications | FUN-8.1 | FUN-10.5, FUN-7.1 |
+| MDS-3 | Prepare research datasets | FUN-8.2 | FUN-7.5 |
+| MDS-4 | Provide a secure processing environment | FUN-8.3 | FUN-10.3, FUN-10.8 |
+| MDS-5 | Facilitate privacy-preserving analysis | FUN-8.5 | FUN-4.1, FUN-7.5 |
+| MDS-6 | Support researchers | FUN-8.3 | FUN-10.9 |
+| MDS-7 | Check and release output | FUN-8.4 | FUN-3.5 |
+| MDS-8 | Monitor use and compliance | FUN-8.1 | FUN-10.8 |
+| MDS-9 | Close projects | FUN-8.3 | FUN-7.3, FUN-7.5 |
+
+#### E. Data space processes
+
+| Process | Name | Main function | Supporting functions |
+|---|---|---|---|
+| DSP-1 | Join a data space | FUN-9.1 | FUN-10.5, FUN-10.8 |
+| DSP-2 | Publish data offerings | FUN-9.1 | FUN-7.2 |
+| DSP-3 | Agree data use conditions | FUN-9.1 | FUN-10.5 |
+| DSP-4 | Exchange data under usage control | FUN-9.2 | FUN-3.2, FUN-7.3 |
+| DSP-5 | Monitor compliance and report | FUN-9.1 | FUN-10.8 |
+| DSP-6 | Participate in data space governance | FUN-9.3 | FUN-1.3 |
+
+#### Functions without a reference process
+
+Six functions are not used by any SAF reference process. They are carried out through management, change or support processes that are specific to each NSI. Many other functions appear only as supporting functions, which is normal for strategic and support functions.
+
+| Function | Carried out through |
+|---|---|
+| FUN-1.1 Define vision and strategy | The strategic planning cycle of the NSI |
+| FUN-2.2 Develop capability improvements | Change programmes and projects |
+| FUN-4.2 Research and innovate | Innovation projects (see VS-08) |
+| FUN-10.1 Manage human resources | Generic business support processes |
+| FUN-10.2 Manage finance and procurement | Generic business support processes |
+| FUN-10.7 Manage facilities | Generic business support processes |
+
+### Mapping to value stream stages
+
+The mapping connects the Strategy layer to the business layer. A value stream stage describes the value that is added. The processes describe the work that adds it. The functions describe the competences that the work depends on.
+
+|**PLACEHOLDER: ArchiMate view of value stream stages, processes and functions**|
+|---|
+
+#### Primary value streams
+
+| Stage | Name | Realised by processes | Main functions |
+|---|---|---|---|
+| VS-01.1 | Identify Data Needs and Sources | PRD-1.1, PRD-1.5, PRD-2.3 | FUN-3.1, FUN-6.1 |
+| VS-01.2 | Establish Data Agreements and Access Rights | OVA-6, DSP-1, DSP-3 | FUN-6.2, FUN-9.1, FUN-10.5 |
+| VS-01.3 | Collect or Receive Data | PRD-4.1, PRD-4.2, PRD-4.3, DSP-4 | FUN-3.2, FUN-9.2 |
+| VS-01.4 | Validate and Log Data Intake | PRD-4.4, DLM-2 | FUN-3.2, FUN-7.3 |
+| VS-01.5 | Store and Register Raw Data Artefacts | DLM-3, DLM-4, DLM-5 | FUN-7.2, FUN-7.3, FUN-7.5 |
+| VS-02.1 | Profile and Assess Data Structure | PRD-5.3 | FUN-3.3 |
+| VS-02.2 | Apply Standard Classifications and Formats | PRD-5.2, DLM-9 | FUN-3.3, FUN-7.4 |
+| VS-02.3 | Align Metadata and Semantics | OVA-2 | FUN-7.2 |
+| VS-02.4 | Validate Structural and Semantic Conformance | PRD-5.3, DLM-2 | FUN-3.3, FUN-7.3 |
+| VS-02.5 | Register Standardized Artefacts | DLM-3, DLM-4, DLM-5 | FUN-7.2, FUN-7.3, FUN-7.5 |
+| VS-03.1 | Conduct Error Detection and Quality Diagnostics | PRD-5.3 | FUN-3.3 |
+| VS-03.2 | Perform Data Editing and Correction | PRD-5.4 | FUN-3.3 |
+| VS-03.3 | Impute Missing or Non-Response Data | PRD-5.4 | FUN-3.3, FUN-4.1 |
+| VS-03.4 | Derive Additional Variables and Indicators | PRD-5.1, PRD-5.5 | FUN-3.3 |
+| VS-03.5 | Perform Quality Evaluation and Versioning | PRD-5.8, DLM-2, DLM-3 | FUN-3.3, FUN-5.2, FUN-7.3 |
+| VS-04.1 | Design Estimation and Analytical Approach | PRD-2.4, PRD-2.5 | FUN-3.1, FUN-4.1 |
+| VS-04.2 | Apply Weighting and Calibration | PRD-5.6 | FUN-3.4 |
+| VS-04.3 | Estimate and Aggregate Data | PRD-5.7 | FUN-3.4 |
+| VS-04.4 | Perform Model-Based Analysis | PRD-6.1, PRD-6.3 | FUN-3.4 |
+| VS-04.5 | Validate and Document Results | PRD-6.2, OVA-2 | FUN-3.4, FUN-7.2 |
+| VS-05.1 | Select and Integrate Source Datasets | PRD-5.1, PRD-6.1 | FUN-3.4 |
+| VS-05.2 | Construct Composite Indicators or Indices | PRD-5.5, PRD-5.7 | FUN-3.3, FUN-3.4 |
+| VS-05.3 | Perform Consistency and Coherence Checks | PRD-6.2 | FUN-3.4, FUN-5.2 |
+| VS-05.4 | Generate Analytical and Interpretive Outputs | PRD-6.3, PRD-7.2 | FUN-3.4, FUN-3.6 |
+| VS-05.5 | Approve and Register Statistical Products | PRD-6.4, PRD-6.5, DLM-3 | FUN-3.4, FUN-3.5, FUN-7.2 |
+| VS-06.1 | Plan Dissemination and Access Strategy | PRD-2.1 | FUN-3.1, FUN-3.6 |
+| VS-06.2 | Prepare Data for Dissemination | PRD-6.4, PRD-7.1 | FUN-3.5, FUN-3.6 |
+| VS-06.3 | Publish and Provide Access Services | PRD-7.2, PRD-7.3, MDS-1 to MDS-5, MDS-7, DSP-2 | FUN-3.6, FUN-8.1 to FUN-8.5, FUN-9.1 |
+| VS-06.4 | Support and Engage Users | PRD-7.4, PRD-7.5, MDS-6 | FUN-3.6, FUN-8.3, FUN-10.9 |
+| VS-06.5 | Monitor Usage and Feedback | PRD-8.1, MDS-8, MDS-9 | FUN-8.1, FUN-8.3, FUN-10.9 |
+
+#### Supporting value streams
+
+| Stage | Name | Realised by processes | Main functions |
+|---|---|---|---|
+| VS-07.1 | Define Governance Frameworks and Policies | DLM-1 | FUN-1.2, FUN-5.1, FUN-7.1 |
+| VS-07.2 | Establish Legal and Regulatory Compliance Mechanisms | DLM-4 | FUN-10.5, FUN-10.8 |
+| VS-07.3 | Implement Data and Metadata Governance | OVA-2, OVA-3, DLM-1, DLM-6 | FUN-7.1, FUN-7.2 |
+| VS-07.4 | Monitor Quality and Compliance Indicators | OVA-1, DLM-8, MDS-8, DSP-5 | FUN-5.2, FUN-7.1 |
+| VS-07.5 | Audit, Certify and Report Compliance | OVA-1, PRD-8.2 | FUN-1.2, FUN-5.2 |
+| VS-07.6 | Update and Improve Governance Mechanisms | PRD-8.3, DLM-10, DLM-11 | FUN-2.1, FUN-7.1 |
+| VS-08.1 | Identify Innovation Needs and Opportunities | PRD-1.5 | FUN-4.2 |
+| VS-08.2 | Conduct Research and Proof-of-Concepts | No reference process (NSI-specific) | FUN-4.2 |
+| VS-08.3 | Evaluate Methodological Soundness and Feasibility | PRD-3.6 | FUN-4.1, FUN-5.2 |
+| VS-08.4 | Develop and Document New Methodologies or Tools | PRD-3.2, OVA-5 | FUN-4.1, FUN-10.4 |
+| VS-08.5 | Integrate Innovation into Production Environments | PRD-3.7 | FUN-2.4, FUN-3.1 |
+| VS-08.6 | Promote Knowledge Sharing and Capability Building | OVA-5 | FUN-10.1, FUN-10.4 |
+| VS-09.1 | Define Digital and Technical Requirements | PRD-2.6 | FUN-2.5, FUN-3.1 |
+| VS-09.2 | Design Platform and Infrastructure Architecture | PRD-2.6 | FUN-2.5, FUN-10.3 |
+| VS-09.3 | Provision and Configure Platforms | PRD-3.4, MDS-4 | FUN-8.3, FUN-10.3 |
+| VS-09.4 | Enable Integration and Orchestration Services | PRD-3.4, DSP-4 | FUN-9.2, FUN-10.3 |
+| VS-09.5 | Ensure Performance, Security and Continuity | PRD-3.5, DLM-5 | FUN-10.3, FUN-10.8 |
+| VS-09.6 | Evolve and Modernise the Technical Ecosystem | No reference process (NSI-specific) | FUN-2.2, FUN-10.3 |
+| VS-10.1 | Identify and Segment Stakeholders | PRD-1.2, DSP-6 | FUN-1.3, FUN-10.9 |
+| VS-10.2 | Collect and Analyse User Needs | PRD-1.1, PRD-1.2 | FUN-3.1, FUN-10.9 |
+| VS-10.3 | Define and Manage Service Portfolios | PRD-2.1 | FUN-10.9 |
+| VS-10.4 | Deliver Services and Manage Relationships | PRD-7.5, MDS-6, OVA-6 | FUN-6.1, FUN-10.9 |
+| VS-10.5 | Engage and Communicate with Stakeholders | PRD-7.4 | FUN-1.4, FUN-10.6 |
+| VS-10.6 | Monitor Impact and Satisfaction | PRD-8.1, PRD-8.2 | FUN-5.2, FUN-10.9 |
+
+|**PLACEHOLDER: Function templates and organisation-to-function mapping instruments to be added to the toolkit**|
+|---|
+
+## Business Services and Business Interfaces
+
+## Business Events
+
+## Business Objects, Contracts, Representations and Products
 
 ## Reference Models for the Statistical Data Value Chain 
 **Why the SAF offers more than one model**
@@ -1990,8 +2828,6 @@ One delivery can serve several statistical products. The register-based census a
 - Giving analysts direct access to raw data for convenience. This bypasses the pseudonymisation at #2.
 - Keeping only a converted copy and discarding the original. The proof of authentic custody is lost.
 - Registering a delivery without its agreement reference. The legal basis can no longer be demonstrated in an audit.
-
-### BE AWARE - State #0 and #1 are updated. The other states will be described the same! TO DO
 
 ### State #2: Standardized Data
 
