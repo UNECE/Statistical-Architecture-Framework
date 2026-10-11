@@ -26,12 +26,10 @@ Current version: 0.5
 -   [Target Audience](#target-audience)
 -   [Expected Value]
 -   [Constraints & Assumptions]
+-   [Reading Guide]
 
 [Motivation](#motivation)
 
--   [Purpose of this chapter](#purpose-of-this-chapter)
--   [Position in the framework](#position-in-the-framework)
--   [How NSIs use this chapter](#how-nsis-use-this-chapter)
 -   [Motivation concepts in the SAF](#motivation-concepts-in-the-saf)
 -   [Drivers](#drivers)
 -   [Goals](#goals)
@@ -44,9 +42,13 @@ Current version: 0.5
 -   [Constraints](#constraints)
 -   [Stakeholders](#stakeholders)
 
-[Strategy](#strategys)
+[Strategy](#strategy)
+
+-   [Strategy concepts in the SAF](#strategy-concepts-in-the-saf)
 -   [Capability Model](#capability-model)
--   [Valuestreams](#value-streams)
+-   [Value Streams](#value-streams)
+-   [Resources](#resources)
+-   [Courses of Action](#courses-of-action)
 
 [Business Architecture](#business-architecture)
 -   [Overview](#overview)
@@ -167,6 +169,202 @@ TOGAF and ArchiMate are generic standards. The SAF complements them with the sta
 | SAF-C2 | Constraint | The SAF does not prescribe a technology stack, tool, or organisational design (see *Definition of Scope*). |
 
 TOGAF and ArchiMate are registered trademarks of The Open Group.
+
+## Reading guide
+
+This reading guide explains how the SAF is built, in which order to read it, and how an NSI can start using it. It also explains how the SAF fits into an NSI's own architecture, how it combines with other reference models, and how legislation enters the architecture.
+
+### 1. How the SAF is structured
+
+The SAF follows the layers of TOGAF and ArchiMate (see *Constraints & Assumptions*). Each layer answers one question. Each layer is justified by the layer above it, and each layer gives direction to the layer below it.
+
+|**PLACEHOLDER: Overview of the SAF layers and chapters**|
+|---|
+
+| Chapter | Question it answers | Main content | Status **[RG4]** |
+|---|---|---|---|
+| Motivation | *Why* does the NSI change, and what does it want to achieve? | Stakeholders, drivers, assessments, goals, outcomes, principles, requirements, constraints, meaning, value | Developed |
+| Strategy | *What* must the NSI be able to do, and how does it get there? | Capability model, value streams, resources, courses of action and strategies | Developed |
+| Business Architecture | *How* is the statistical work organised? | Business domains, reference models for the data value chain (Steady-State, Medallion), steady states, value stream detail, roles | In development |
+| Data Architecture | *Which* data and metadata are needed, and how are they structured? | To be developed | Planned |
+| Application Architecture | *Which* applications and services support the work? | To be developed | Planned |
+| Technology Architecture | *On which* platforms and infrastructure does it run? | To be developed | Planned |
+| Implementation and Tooling | *How* is the architecture realised and governed? | To be developed | Planned |
+
+Every section that describes an architecture concept follows the same pattern:
+
+1. **The concept.** What the concept means, based on ArchiMate and TOGAF.
+2. **How the SAF applies it.** Why the SAF uses the concept, and how it fits into an NSI's own architecture.
+3. **Relationships with other concepts.** How the concept connects to the rest of the framework.
+4. **SAF elements or examples.** The reference content of the SAF, or illustrative examples where the content is specific to each NSI.
+5. **Toolkit.** A reference to templates and instruments in the SAF toolkit.
+
+This pattern makes it possible to read a single section without reading the whole document, and still see how it connects to the rest.
+
+The SAF contains two kinds of content. **Reference content** is shared by most NSIs and can be adopted directly, such as the drivers, goals, principles, capability model and value streams. **Illustrative content** shows the form of elements that each NSI defines for itself, such as assessments, requirements, constraints, resources and courses of action. Illustrative content is never a requirement.
+
+### 2. Reading order
+
+The SAF is best read top-down, at least once: from Motivation, through Strategy, to the architecture domains. This order follows the logic of the framework. A business architecture choice only makes sense once the goals and capabilities behind it are clear.
+
+Applying the SAF is different from reading it. Application is iterative. An NSI does not complete the Motivation layer before it starts on its business architecture. It works in cycles, like the TOGAF Architecture Development Method: each cycle refines the motivation, strategy and architecture a little further, and each change in a driver or goal can start a new cycle.
+
+Different readers can follow different routes through the document (see *Target Audience* for the roles).
+
+| Reader | Start with | Then read | Focus |
+|---|---|---|---|
+| CIO, CTO, board member | Introduction, Motivation | Strategy: capability model, courses of action | Why change is needed, what it delivers, how to prioritise |
+| Enterprise or data architect | Introduction, Motivation | Strategy, Business Architecture, later domains | The full chain, and how to adopt it in the NSI architecture |
+| IT architect, delivery team | Motivation: principles | Business Architecture, later domains | Design rules and reference models for solutions |
+| Methodologist | Strategy: value streams | Business Architecture: steady states | Where methods are applied, and how quality and lineage are secured |
+| Privacy officer, auditor | Motivation: principles, constraints | Business Architecture: steady states; VS-07 | Where protection and compliance are built into the chain |
+| Policy maker, manager | Introduction, Motivation: goals, value | Strategy: courses of action | What the framework means for the organisation |
+
+### 3. Where to start as an NSI
+
+There is no single starting point. The right entry depends on what the NSI wants to achieve and how mature its architecture practice is. Three entries are common.
+
+**Strategic entry.** The NSI starts with the Motivation layer. It recognises and assesses the SAF drivers, relates the SAF goals to its own strategic plan, and adopts or adapts the principles. It then assesses its capabilities against the SAF capability model and decides on courses of action. This entry suits an NSI that is preparing a new multi-annual strategy or modernisation programme.
+
+**Problem-driven entry.** The NSI starts where it has a concrete problem, for example in data acquisition, metadata or dissemination. It uses the relevant value stream and steady states to analyse the problem, and works back to the capabilities and principles involved. This entry suits an NSI that wants quick, visible results and builds its architecture practice step by step.
+
+**Project entry.** The NSI uses the SAF in one project, for example the design of a new data platform. The project applies the SAF principles and the business architecture as design guidance. The results are then reused in other projects. This entry suits an NSI with a small or new architecture function.
+
+The three entries lead to the same place. Over time, the NSI builds a complete and connected architecture, regardless of where it started.
+
+| Situation of the NSI | Suggested entry | First steps |
+|---|---|---|
+| New strategy or modernisation programme | Strategic | Drivers and assessments; goals; capability assessment |
+| Urgent problem in one part of the chain | Problem-driven | Relevant value stream; steady states; capabilities involved |
+| New or small architecture function | Project | Principles; business architecture for one project |
+| Mature architecture function | Strategic, combined with an alignment check | Map the existing architecture onto the SAF elements |
+
+|**PLACEHOLDER: Getting started with the SAF to be added to the toolkit**|
+|---|
+
+### 4. What an NSI needs to use the SAF
+
+Using the SAF requires an architecture function. That function does not have to be large, but some elements must be in place. TOGAF calls this the *architecture capability*.
+
+| Element | Minimal setup | Mature setup |
+|---|---|---|
+| Roles | One or two architects with a mandate from management | A team of enterprise, domain and solution architects |
+| Governance | Architecture topics on the agenda of an existing management meeting | An architecture board with a clear mandate and a dispensation process |
+| Principles | The SAF principles adopted, with a simple way to record deviations | A maintained principle set, tested in every project review |
+| Repository and tooling | A shared folder with ArchiMate models made in a free tool | A managed architecture repository with versioning and reports |
+| Knowledge | Basic knowledge of TOGAF and ArchiMate | Certified architects and an internal training offer |
+| Involvement of the business | Key decisions discussed with business owners | Business owners for each capability and value stream |
+
+In the SAF capability model, this function is the capability **Architecture management** **[RG1]**: the ability to develop, maintain and govern the enterprise architecture of the NSI, and to use it in decisions on strategy, investment and change. It is closely related to *Policy and planning* (4.1.2) and *Change management* (4.1.3).
+
+> **Note:** *Architecture management* is not yet part of the SAF capability model and the capability map. It will be added in a next version.
+
+An NSI does not need all elements before it starts. A minimal setup is enough for the project entry. The function can then grow with the use of the framework.
+
+### 5. Positioning the SAF in your own architecture
+
+TOGAF describes a range of architectures, from generic to specific, called the *Enterprise Continuum* **[RG2]**. It runs from foundation architectures, which apply to any organisation, through common systems and industry architectures, to the architecture of one specific organisation.
+
+| Level in the Enterprise Continuum | Example | Who owns it |
+|---|---|---|
+| Foundation architecture | TOGAF, ArchiMate | The Open Group |
+| Common systems architecture | Generic reference architectures for, for example, data platforms or identity management | Industry and standards bodies |
+| Industry architecture | **The SAF**, for official statistics | UNECE statistical community |
+| Organisation-specific architecture | The enterprise architecture of an NSI | The NSI |
+
+The SAF is an industry architecture. It is not the architecture of any single NSI. Each NSI builds its own organisation-specific architecture, using the SAF as its reference. In practice, this works as follows:
+
+1. **Adopt, adapt or extend.** For each SAF element, the NSI decides whether to adopt it as it is, adapt it to the national context, or add NSI-specific elements (see *How NSIs use this chapter* in the Motivation chapter).
+2. **Keep the SAF identifiers.** When an NSI adapts an SAF element, it keeps a reference to the SAF identifier, for example SAF-P07 or capability 2.1.2. This keeps the NSI architecture comparable with the SAF and with other NSIs, and makes it easier to adopt future SAF versions.
+3. **Layer the architecture.** The NSI enterprise architecture sets the direction for solution architectures in programmes and projects. Solution architectures do not refer to the SAF directly, but to the NSI architecture that applies it.
+
+|**PLACEHOLDER: From SAF reference architecture to NSI enterprise architecture to solution architecture**|
+|---|
+
+### 6. Combining the SAF with other reference models
+
+The SAF rarely stands alone. NSIs also work with statistical standards, with reference models of their own government, and with generic frameworks. These models complement each other, but they can also overlap or conflict.
+
+| Family | Examples | Role next to the SAF |
+|---|---|---|
+| Statistical standards and models | GSBPM, GAMSO, GSIM, SDMX; the ESS Enterprise Architecture Reference Framework (ESS EARF) | Provide the statistical domain content. The SAF connects them in one architecture |
+| Government reference models | The European Interoperability Framework (EIF) and Reference Architecture (EIRA); national reference models such as those listed below | Often mandatory or leading for public organisations. The SAF fits within them |
+| Generic frameworks and bodies of knowledge | TOGAF, ArchiMate, DAMA-DMBOK | Provide structure, notation and professional practice |
+
+Examples of national government reference models **[RG3]**:
+
+| Country | Reference model | Owner |
+|---|---|---|
+| Netherlands | NORA, Netherlands Government Reference Architecture | Dutch government (ICTU) |
+| United Kingdom | GovS 005 Digital, Government Functional Standard | Cabinet Office, Government Digital and Data |
+| Canada | Government of Canada Enterprise Architecture Framework | Treasury Board of Canada Secretariat |
+| Australia | Australian Government Architecture (AGA) | Digital Transformation Agency |
+| New Zealand | Government Enterprise Architecture for New Zealand (GEA-NZ) | Government Chief Digital Officer |
+| Norway | National architecture principles for digitalisation of the public sector | Norwegian Digitalisation Agency (Digdir) |
+| United States | Federal Enterprise Architecture Framework (FEAF) | Office of Management and Budget |
+
+The SAF works best when the NSI combines models at the level of elements, not documents:
+
+- **Principles.** Map the SAF principles to the principles of the national reference model. Many will be equivalent. Where both exist, the NSI uses one set and records the mapping.
+- **Capabilities and functions.** Map the SAF capability model to the capability or function model of the national framework, where one exists. This makes the NSI comparable with other government organisations as well as with other NSIs.
+- **Standards.** Check which standards the national model prescribes, for example for exchange formats, identity or security. These standards become requirements or constraints in the NSI architecture.
+
+When models conflict, a simple order of precedence helps:
+
+1. Legislation comes first.
+2. Mandatory government standards and reference models come next.
+3. Within the statistical domain, the SAF and the statistical standards apply.
+4. Generic frameworks and practices fill the remaining gaps.
+
+A deviation from a higher level is a decision for the NSI's architecture governance, and is documented.
+
+|**PLACEHOLDER: Mapping templates for SAF and national reference models to be added to the toolkit**|
+|---|
+
+### 7. Legislation and regulation
+
+Official statistics operate under strict legal frameworks. Legislation shapes what an NSI may collect, how it must protect data, and how it must publish. The SAF does not describe legislation, because it differs per country. It does describe where legislation enters the architecture.
+
+Legislation enters the architecture through the motivation elements:
+
+| A legal provision that… | Is recorded as… | Example |
+|---|---|---|
+| Creates pressure to change | Driver | A new regulation that requires access to privately held data for statistics |
+| Sets a limit on the design | Constraint | Statistical microdata may only be processed within the NSI's controlled environment |
+| Imposes an obligation on a solution | Requirement | Personal data in a data acquisition process is minimised to what is needed |
+| Expresses a lasting rule for all decisions | Principle | Privacy by design (SAF-P11) |
+
+This approach makes legislation traceable. From a legal provision, the NSI can follow the path to the requirements and constraints it creates, to the solutions that meet them, and to the evidence that shows compliance. In the other direction, every design decision that is driven by law can be traced back to its legal basis.
+
+Three levels of legislation are relevant for most NSIs:
+
+| Level | Examples |
+|---|---|
+| International statistical frameworks | UN Fundamental Principles of Official Statistics; European Statistics Code of Practice; Regulation (EC) No 223/2009 on European statistics |
+| Horizontal EU legislation | GDPR; Data Governance Act; Data Act; AI Act; NIS2 Directive; Interoperable Europe Act (Regulation (EU) 2024/903) |
+| National legislation | National statistics act; archives legislation; national rules on government information security and open government |
+
+For NSIs outside the EU, the horizontal level consists of the corresponding national or regional legislation.
+
+Compliance is not a separate layer. It is built into the architecture: legal requirements are part of the quality gates of the steady states, of the principles, and of the governance in value stream VS-07 *Governance and Compliance*. A legal register helps to keep the overview: a list of applicable legal provisions, with the drivers, constraints, requirements and principles they lead to.
+
+|**PLACEHOLDER: Legal register template to be added to the toolkit**|
+|---|
+
+### 8. Conventions used in this document
+
+| Convention | Meaning |
+|---|---|
+| SAF-ST, SAF-D, SAF-G, SAF-O, SAF-P, SAF-M, SAF-V | Identifiers of reference elements in the Motivation layer |
+| 1.2.1, 2.1.2, … | Capability numbers in the capability model |
+| VS-01 to VS-10, VS-01.1, … | Value streams and their stages |
+| #0 to #6 | Steady states of data and their boundary positions |
+| SAF-A, SAF-C | Assumptions and constraints of the SAF itself (see *Constraints & Assumptions*) |
+| *Illustrative* | Examples that show the form of an element. They are not requirements |
+| PLACEHOLDER | Content that will be added, such as an ArchiMate view or a toolkit reference |
+| Toolkit | The SAF toolkit, a separate set of templates and instruments for applying the framework |
+
+Terms are defined in the SAF glossary, which takes precedence over definitions in this document (SAF-A4). The SAF uses British English spelling.
 
 # Motivation
 
@@ -857,7 +1055,7 @@ An NSI maps the SAF stakeholders onto its own stakeholder landscape. It identifi
 | Viewpoints | Stakeholder concerns determine which views are produced | Privacy officers need data-flow and protection views |
 | Business actors and roles (Business Architecture) | A stakeholder may also act in the architecture | Data providers are stakeholders and actors in VS-01 |
 
-### SAF stakeholders **[R16]**
+### SAF stakeholders
 
 | ID | Stakeholder | Category | Key concerns | What the SAF offers |
 |---|---|---|---|---|
@@ -871,7 +1069,7 @@ An NSI maps the SAF stakeholders onto its own stakeholder landscape. It identifi
 
 # Strategy
 
-## Purpose of this chapter **[S1]**
+## Purpose of this chapter
 
 The Strategy chapter translates motivation into what an NSI must be able to do and how it creates value. Motivation explains *why* change is needed. Strategy describes *what* the organisation needs: its capabilities, the resources behind them, the value streams they support and the courses of action that develop them.
 
@@ -897,13 +1095,12 @@ Resources and courses of action are specific to each NSI. The SAF explains these
 |**PLACEHOLDER: Capability maturity assessment and capability heatmap to be added to the toolkit**|
 |---|
 
-## Strategy concepts in the SAF **[S2]**
+## Strategy concepts in the SAF
 
 | SAF section | ArchiMate element | Question it answers | Identifier |
 |---|---|---|---|
 | Capability Model | Capability | What must the NSI be able to do? | Capability number (e.g. 1.2.1) |
 | Value Streams | Value Stream | Which sequence of stages creates value for a stakeholder? | VS-01 to VS-10 |
-| Value Streams | Value Stream (stage) | Which value does each step add? | VS-01.1, VS-01.2, … |
 | Resources | Resource | Which assets does the NSI have or need to perform its capabilities? | Defined by the NSI |
 | Courses of Action | Course of Action | Which approach will the NSI take to develop its capabilities and reach its goals? | Defined by the NSI |
 
@@ -961,14 +1158,14 @@ The SAF capability model has four main levels.
 | **3** | Supporting business capabilities | The ability to make sure that the right people, information and resources are available to support the statistical and governance capabilities. | |
 | **4** | Governance capabilities | The ability to give direction to the organisation, by setting its strategy and the framework within which change takes place. | GAMSO 1.2, Strategy and Leadership |
 
-### Capability catalogue **[S5]** **[S6]**
+### Capability catalogue
 
 #### 1. Primary statistical capabilities
 
 | ID | Capability | Description | Reference |
 |---|---|---|---|
 | **1.1** | **Statistical design and build** | The ability to identify information needs and set up statistical processes to meet them. | [GSBPM 5.2, Design](https://unece.github.io/GSBPM-5.2/#design-phase) |
-| 1.1.1 | Needs inventory | The ability to identify the demand for statistical information and translate it into the societal questions the NSI will respond to. Needs are often identified through strategic relationships with users and stakeholders. The result is usually laid down in the NSI's multi-annual programme and the process that prepares it **[S7]**. | GSBPM |
+| 1.1.1 | Needs inventory | The ability to identify the demand for statistical information and translate it into the societal questions the NSI will respond to. Needs are often identified through strategic relationships with users and stakeholders. The result is usually laid down in the NSI's multi-annual programme and the process that prepares it. | GSBPM |
 | 1.1.2 | Design statistics product | The ability to translate information needs into concrete designs of datasets, process and workflow models, and rule sets and methodology, for the datasets that are released. This covers both the statistical product and the process that produces it. The process consists of process steps, rule sets for each step, the methodology, the process flow, the designs of the required datasets and the designs of shared connection points for reuse. If a required dataset is not available, a data collection assignment can follow. For primary data collection, designs then follow for sampling, questionnaires and similar instruments. | GSBPM, Design phase |
 | 1.1.3 | Build statistics product | The ability to build, test and manage a statistical product until the end of its life cycle. The outputs of the design are assembled and configured into a complete operational environment in which the process can run. | GSBPM |
 | **1.2** | **Data collection** | The ability to collect data for official statistics. | [GSBPM 5.2, Collect](https://unece.github.io/GSBPM-5.2/#collect-phase) |
@@ -1003,7 +1200,7 @@ The SAF capability model has four main levels.
 | 2.2.1 | Data source exploration | The ability to explore new data sources. | ESS capability model |
 | 2.2.2 | Product innovation | The ability to create new statistical products from existing data sources, and to explore new data sources that are useful and important to users. Product innovation can precede the design of a statistical product (see 1.1.2). | ESS capability model |
 | 2.2.3 | Methodology | The ability to investigate new methods for the statistical process. | |
-| 2.2.4 | Data services | The ability to provide data for statistical or scientific research. This applies to both internal and external datasets. These services are provided through, among other things, microdata services. | **[S10]** |
+| 2.2.4 | Data services | The ability to provide data for statistical or scientific research. This applies to both internal and external datasets. These services are provided through, among other things, microdata services. | |
 | 2.2.5 | User research | The ability to collect and assess user needs, and translate them into statistical output. | |
 
 #### 3. Supporting business capabilities
@@ -1042,7 +1239,7 @@ The SAF capability model has four main levels.
 
 | ID | Capability | Description | Reference |
 |---|---|---|---|
-| **4.1** | **Strategy and leadership** **[S11]** | The ability to set the direction of the organisation and to manage change towards it. | GAMSO 1.2, Strategy and Leadership |
+| **4.1** | **Strategy and leadership** | The ability to set the direction of the organisation and to manage change towards it. | GAMSO 1.2, Strategy and Leadership |
 | 4.1.1 | Strategy and governance | The ability to develop a vision, and to set up and monitor the organisation and its management. | |
 | 4.1.2 | Policy and planning | The ability to translate the strategy into concrete objectives, principles and plans. | |
 | 4.1.3 | Change management | The ability to define and manage major changes, so that they contribute as much as possible to the objectives. | |
@@ -1053,134 +1250,221 @@ The SAF capability model has four main levels.
 |**PLACEHOLDER: Capability Model Template and the application of Capabilities to be added to the toolkit**|
 |---|
 
+## Value Streams **[T1]**
 
+### The concept
 
+A value stream is a sequence of stages that together create an overall result for a stakeholder. Each stage adds a specific piece of value. The value stream ends when the stakeholder receives the result.
 
+Three characteristics set value streams apart:
 
+- **They are seen from the stakeholder.** A value stream starts with a need and ends with value for someone. It does not follow the organisation chart or the order of systems.
+- **They describe value, not work.** A stage says *what value* is added. *How* the work is done is described by business processes in the Business Architecture.
+- **They are enabled by capabilities.** Each stage needs one or more capabilities. A weak capability shows up as a weak stage.
 
+Value streams and capabilities are two views on the same organisation. Capabilities show *what* the NSI can do. Value streams show *where* that ability turns into value.
 
+### How the SAF applies value streams
 
+**Why the SAF uses value streams**
 
+Value streams connect the capability model to the stakeholders. They make clear which capabilities matter for which result, and which stakeholders notice a weak capability first. They also give the Business Architecture its structure: each stage is realised by business processes, and the primary value streams follow the steady states of data.
 
-## Value Streams
+**How value streams fit into an NSI's own architecture**
+
+Most NSIs produce statistics in a similar sequence, so the SAF value streams fit most of them. An NSI checks whether the stages match its own production chain, adapts names where needed, and links its own capabilities to each stage. It can then use the value streams to assess where in the chain improvements create the most value for users.
+
+**Relationships with other concepts**
+
+| Related concept | Relationship | Example in the SAF |
+|---|---|---|
+| Stakeholders (Motivation) | A value stream creates value for a stakeholder | VS-06 creates value for users of statistics (SAF-ST02, SAF-ST03, SAF-ST06) |
+| Value (Motivation) | A value stream delivers value elements | VS-06 contributes to trust and legitimacy (SAF-V6) |
+| Capability Model | Capabilities enable value stream stages | Primary data collection (1.2.1) enables VS-01.3 *Collect or Receive Data* |
+| Courses of Action | Courses of action improve value streams by developing capabilities | A web-first collection strategy improves VS-01 |
+| Steady states (Business Architecture) | Each primary value stream produces one steady state | VS-02 produces State #2 Standardized Data |
+| Business processes (Business Architecture) | Business processes realise value stream stages | The execution processes of the Standardization domain realise the stages of VS-02 |
+
+The processes that realise each stage, and the steady states between them, are described in the Business Architecture chapter.
+
+### Value stream overview **[T2]** **[T3]**
+
+The SAF has ten value streams. Six primary value streams form the statistical value chain. Four supporting value streams run across the chain.
+
+| ID | Value stream | Type | Receives value | Value created | Steady state in → out |
+|---|---|---|---|---|---|
+| VS-01 | Data Acquisition and Ingestion | Primary | Statistical production; data providers | Trust and readiness: data acquired correctly and ready for use | #0 → #1 |
+| VS-02 | Data Standardization and Integration | Primary | Statistical production; reusers of microdata | Coherence and comparability | #1 → #2 |
+| VS-03 | Data Editing and Enrichment | Primary | Statistical production; methodologists | Reliability and analytical readiness | #2 → #3 |
+| VS-04 | Estimation, Analysis and Statistical Modeling | Primary | Statistical product owners | Analytical insight and statistical credibility | #3 → #4 |
+| VS-05 | Statistical Product Composition | Primary | Statistical product owners; users | Coherence and interpretability | #4 → #4 (approved) |
+| VS-06 | Dissemination and Service Delivery | Primary | Users: policy makers, researchers, media, businesses, the public | Impact and accessibility | #4 → #5 |
+| VS-07 | Governance and Compliance | Supporting | Management, supervisory bodies, society | Integrity and accountability | Across all states |
+| VS-08 | Innovation and Methodological Development | Supporting | Statistical production | Continuous improvement | Across all states |
+| VS-09 | Infrastructure and Platform Enablement | Supporting | All value streams | Operational capability and continuity | Across all states |
+| VS-10 | Customer and Stakeholder Engagement | Supporting | Users, data providers, partners | Relevance and trust | #5 → (#6), feedback to VS-01 |
+
+### Capabilities per value stream **[T4]**
+
+|**PLACEHOLDER: ArchiMate view of capabilities serving value stream stages**|
+|---|
 
 ### Primary Value Streams
 
-### VS-01.0 Data Acquisition and Ingestion Value Stream
- 
+**VS-01 Data Acquisition and Ingestion**
+
 The Data Acquisition & Ingestion Value Stream is the first step in the statistical value chain. It focuses on bringing raw data into the statistical system in a secure, traceable, and compliant way. The purpose of this value stream is to make sure that data, no matter where the data comes from, enters the organization in a state that is authentic, well-documented, and ready for use. This value stream sets the foundation for everything that follows. It makes sure that the right data is collected, that legal requirements and ethical guidelines are observed, and that the data is safely stored and traceable from its source.
 
-This value chain identifies the following value steps:
-- Identify Data Needs and Sources: Define the statistical or analytical requirement and identify potential data sources (surveys, registers, administrative systems, sensors, commercial or open data).
-- Establish Data Agreements and Access Rights: Negotiate and formalize data-sharing agreements, define legal and ethical frameworks, and ensure privacy and compliance.
-- Collect or Receive Data: Execute data collection through surveys, APIs, secure data transfers, or data space connectors. Capture metadata during ingestion.
-- Validate and Log Data Intake: Verify completeness, structural integrity, and compliance with expected formats; log the ingestion process for traceability.
-- Store and Register Raw Data Artefacts: Persist data in controlled repositories, assign identifiers, and register associated metadata, ownership, and provenance.
+|**PLACEHOLDER: Add ArchiMate view of VS-01 **|
+|---|
+
+| Stage | Name | Value added |
+|---|---|---|
+| VS-01.1 | Identify Data Needs and Sources | The information need is clear, and suitable sources are known |
+| VS-01.2 | Establish Data Agreements and Access Rights | Data can be obtained lawfully, under agreed conditions |
+| VS-01.3 | Collect or Receive Data | Data and its metadata are in NSI custody |
+| VS-01.4 | Validate and Log Data Intake | The delivery is complete, intact and traceable |
+| VS-01.5 | Store and Register Raw Data Artefacts | Raw data is registered and available for reuse (State #1) |
 
 The value created here lies in trust and readiness , trust that the data has been acquired correctly, and readiness for the data to move forward into later stages of the statistical process.
 
 Once data has been safely acquired and registered, it is ready to move into the next phase - the Data Standardization & Integration Value Stream. Here, the focus shifts from collecting data to structuring it, ensuring that all incoming data can be compared, combined, and analyzed.
 
-### VS-02.0 Data Standardization and Integration Value Stream
+**VS-02 Data Standardization and Integration**
 
 The Data Standardization & Integration Value Stream is the second step in the statistical value chain. After raw data has been collected and securely stored, it now needs to be standardized, harmonized, and prepared for further processing. In this value stream, the organization ensures that data from different sources - surveys, administrative registers, or external datasets - can work together seamlessly.
 This is achieved through consistent structures, common formats, and shared definitions. The main goal is interoperability: data that looks different at the source must be aligned so it can be understood, compared, and reused across systems, domains, and time periods.
-This value chain identifies the following value steps:
-- Profile and Assess Data Structure: Analyze data structure, identify inconsistencies, and align schema with target models.
-- Apply Standard Classifications and Formats: Map variables, codes, and identifiers to standardized taxonomies and reference data (e.g., NACE, ISCO, SDMX, GSIM concepts).
-- Align Metadata and Semantics: Harmonize descriptive metadata, ensuring coherence in definitions, classifications, and quality descriptors.
-- Validate Structural and Semantic Conformance: Execute validation routines to ensure the data conforms to standards and classifications.
-- Register Standardized Artefacts: Store the standardized dataset and update the metadata catalogue to reflect structural and semantic alignment.
+
+|**PLACEHOLDER: Add ArchiMate view of VS-02 **|
+|---|
+
+| Stage | Name | Value added |
+|---|---|---|
+| VS-02.1 | Profile and Assess Data Structure | Differences from the target model are known |
+| VS-02.2 | Apply Standard Classifications and Formats | Data uses common codes, formats and identifiers |
+| VS-02.3 | Align Metadata and Semantics | Definitions and descriptions are consistent |
+| VS-02.4 | Validate Structural and Semantic Conformance | Conformance to standards is confirmed |
+| VS-02.5 | Register Standardized Artefacts | Standardized data is registered and available for reuse (State #2) |
 
 The value created here is coherence and comparability, transforming raw data into a structured and standardized asset that can flow smoothly into editing, analysis, and modeling.
 
-Once data is standardized and validated, it can safely move to the Data Editing & Enrichment Value Stream. In that stage, attention shifts from structure and standards to quality and completeness.
+Once data is standardized and validated, it can safely move to the Data Editing & Enrichment Value Stream. In that stage, attention shifts from structure and standards to quality and completeness. Here the organization begins improving data accuracy, filling gaps, and enriching datasets with derived or corrected information.
 
-The organization begins improving data accuracy, filling gaps, and enriching datasets with derived or corrected information.
-
-### VS-03.0 Data Editing and Enrichment Value Stream
+**VS-03 Data Editing and Enrichment**
 
 The Data Editing & Enrichment Value Stream is the third step in the statistical value chain. After data has been standardized and aligned, the next task is to improve its quality, completeness, and usability. At this stage, the organization focuses on cleaning, correcting, and enriching data so that it becomes trustworthy and analytically sound. Errors are detected, inconsistencies are corrected, missing values are filled, and new variables are derived to add more meaning and analytical value. This is where raw, standardized data begins to transform into high-quality statistical input , ready for estimation, modeling, and analysis.
 
-This value chain identifies the following value steps:
-- Conduct Error Detection and Quality Diagnostics: Identify logical errors, duplicates, missing values, or outliers through rule-based or machine-learning validation.
-- Perform Data Editing and Correction: Apply predefined rules and algorithms to correct errors or replace invalid entries.
-- Impute Missing or Non-Response Data: Estimate missing values using statistical imputation techniques or external data sources.
-- Derive Additional Variables and Indicators: Enrich datasets by calculating derived measures or additional analytical variables.
-- Perform Quality Evaluation and Versioning: Assess improvement in data quality, document changes, and create traceable versions of edited datasets.
+|**PLACEHOLDER: Add ArchiMate view of VS-03 **|
+|---|
+
+| Stage | Name | Value added |
+|---|---|---|
+| VS-03.1 | Conduct Error Detection and Quality Diagnostics | Errors, duplicates, gaps and outliers are known |
+| VS-03.2 | Perform Data Editing and Correction | Incorrect values are corrected |
+| VS-03.3 | Impute Missing or Non-Response Data | Missing values are filled with documented methods |
+| VS-03.4 | Derive Additional Variables and Indicators | Data describes reality better than the source alone |
+| VS-03.5 | Perform Quality Evaluation and Versioning | Quality is documented, and processed microdata is registered (State #3) |
 
 The main value created here is data reliability and analytical readiness. By systematically improving data quality, the organization ensures that every subsequent result , every estimate, model, and publication, rests on a solid foundation.
 
-### VS-04.0 Estimation, Analysis, and Statistical Modeling Value Stream
+**VS-04 Estimation, Analysis and Statistical Modeling**
 
 The Estimation & Analysis Value Stream is the fourth stage of the statistical value chain. Here, the focus shifts from improving data quality to extracting insight and meaning. At this stage, the organization applies statistical methods, estimation techniques, and analytical models to transform edited and enriched data into representative results that describe real-world phenomena. This is where data becomes statistical information, summarized, interpreted, and validated to reflect populations, trends, and behaviors. Every decision taken in this stage must balance methodological detail with transparency and reproducibility.
-This value chain identifies the following value steps:
-- Design Estimation and Analytical Approach: Select methodology, model type, and parameters based on survey design and analytical objectives.
-- Apply Weighting and Calibration: Adjust for sample bias, non-response, or coverage errors through statistical weighting or calibration methods.
-- Estimate and Aggregate Data: Generate aggregated statistics, measures, and derived indicators.
-- Perform Model-Based Analysis: Conduct modeling, regression, or forecasting analyses as applicable to the domain.
-- Validate and Document Results: Review statistical soundness, check for consistency, document methodology and quality metrics.
+
+|**PLACEHOLDER: Add ArchiMate view of VS-04 **|
+|---|
+
+| Stage | Name | Value added |
+|---|---|---|
+| VS-04.1 | Design Estimation and Analytical Approach | The method fits the design and the purpose |
+| VS-04.2 | Apply Weighting and Calibration | Bias from sampling, non-response and coverage is reduced |
+| VS-04.3 | Estimate and Aggregate Data | Statistics and indicators are available |
+| VS-04.4 | Perform Model-Based Analysis | Model-based results complement direct estimates |
+| VS-04.5 | Validate and Document Results | Results are sound and documented (State #4) |
 
 The main value created here is analytical insight and statistical credibility. Through careful estimation and analysis, data is turned into knowledge that policymakers, researchers, and society can trust.
 
 After estimation and analysis, the organization moves to the Statistical Product Composition Value Stream. Here, the focus shifts from individual analyses to building integrated and composite products. In that next stage, data from multiple sources and analyses are combined into coherent statistical publications, dashboards, and reports, turning analytical results into accessible products that provide a complete picture.
 
-### VS-05.0 Statistical Product Composition Value Stream
- 
+**VS-05 Statistical Product Composition**
+
 The Statistical Product Composition Value Stream is the fifth stage in the statistical value chain. After estimation and analysis, the focus now shifts to bringing multiple analytical results together to create coherent, meaningful, and high-value statistical products. At this stage, data from different sources, domains, and analyses are combined, refined, and formatted into composite datasets, time series, and indicators that can be used for reporting, policymaking, and research. This value stream transforms intermediate analytical outputs into final statistical products , ready for validation, interpretation, and dissemination.
-This value chain identifies the following value steps:
-- Select and Integrate Source Datasets: Combine outputs from multiple domains, surveys, or time periods.
-- Construct Composite Indicators or Indices: Create derived measures such as indices, ratios, or time-series aggregates.
-- Perform Consistency and Coherence Checks: Ensure integrated datasets are internally consistent and methodologically sound.
-- Generate Analytical and Interpretive Outputs: Produce thematic reports, visualizations, or analytical interpretations.
-- Approve and Register Statistical Products: Validate products against dissemination and confidentiality standards and register them for publication.
+
+|**PLACEHOLDER: Add ArchiMate view of VS-05 **|
+|---|
+
+| Stage | Name | Value added |
+|---|---|---|
+| VS-05.1 | Select and Integrate Source Datasets | Relevant results are brought together |
+| VS-05.2 | Construct Composite Indicators or Indices | Indices, ratios and aggregates are available |
+| VS-05.3 | Perform Consistency and Coherence Checks | The product is internally consistent |
+| VS-05.4 | Generate Analytical and Interpretive Outputs | Results are explained and visualised |
+| VS-05.5 | Approve and Register Statistical Products | The product is approved for release (State #4, approved) |
 
 The key value created here is coherence and interpretability. Through careful composition, integration, and quality control, statistical outputs become consistent, accessible, and ready to serve their intended purpose.
 
 After products are approved and registered, they move into the Dissemination & Service Delivery Value Stream. Here, the focus shifts from producing statistics to sharing them, making them available through publications, APIs, dashboards, and data services. That next stage ensures that the work done throughout the entire value chain ultimately reaches users in a secure, accessible, and user-friendly way.
- 
-#### VS-06.0 Dissemination and Service Delivery Value Stream
+
+**VS-06 Dissemination and Service Delivery**
 
 The Dissemination & Service Delivery Value Stream is the final stage in the statistical value chain. At this point, the statistical products created in the previous stages are published, distributed, and made accessible to users through trusted and secure channels. The main goal of this value stream is to ensure that information reaches users in a way that is accurate, timely, and easy to understand. This includes policymakers, researchers, journalists, businesses, and the general public. Dissemination is not only about releasing data, it is about providing services that help users access, interpret, and apply statistical information responsibly. This step transforms statistical outputs into societal value by enabling informed decision-making, evidence-based policy, and transparency.
-This value chain identifies the following value steps:
-- Plan Dissemination and Access Strategy: Define target users, access channels, and release formats (open data, API, research access, publications).
-- Prepare Data for Dissemination: Apply disclosure control, anonymization, and formatting for publication or access.
-- Publish and Provide Access Services: Release data and metadata via portals, APIs, dashboards, or secure research environments.
-- Support and Engage Users: Provide user documentation, helpdesk support, and training for correct interpretation and use.
-- Monitor Usage and Feedback: Track user interactions, collect feedback, and feed insights into continuous improvement loops.
+
+|**PLACEHOLDER: Add ArchiMate view of VS-06 **|
+|---|
+
+| Stage | Name | Value added |
+|---|---|---|
+| VS-06.1 | Plan Dissemination and Access Strategy | Target users, channels and formats are set |
+| VS-06.2 | Prepare Data for Dissemination | Output is disclosure-safe and in the right format |
+| VS-06.3 | Publish and Provide Access Services | Users can find and access the output (State #5) |
+| VS-06.4 | Support and Engage Users | Users understand and use the output correctly |
+| VS-06.5 | Monitor Usage and Feedback | The NSI knows how its output is used |
 
 The key value created here is impact and accessibility, ensuring that statistics and data services are usable, trusted, and beneficial to all. The Dissemination & Service Delivery Value Stream relies heavily on several cross-cutting value streams:
+
 - Governance and Compliance ensures that all dissemination complies with data protection and confidentiality laws.
 - Infrastructure and Platform Enablement provides the technical platforms for portals, Customer and Stakeholder Engagement ensures that dissemination services meet real user needs and expectations.
-Together, these supporting streams ensure that dissemination is not just a technical process , but a strategic, user-centered activity that delivers societal value through trustworthy data.
- 
 
-## Supporting Cross Domain Value-Streams
-### VS-07.0 Governance and Compliance Value Stream
+Together, these supporting streams ensure that dissemination is not just a technical process , but a strategic, user-centered activity that delivers societal value through trustworthy data.
+
+### Supporting value streams
+
+**VS-07 Governance and Compliance**
 
 The Governance and Compliance Value Stream runs horizontally across all stages of the statistical value chain. Its purpose is to make sure that every process, dataset, and product within the organization operates under clear rules, standards, and accountability mechanisms. This value stream builds trust , both inside and outside the organization , by ensuring that all data activities are ethical, transparent, and compliant with legal, methodological, and quality requirements. It provides the framework of control and assurance that keeps the statistical system reliable, consistent, and aligned with national and international standards such as the European Statistics Code of Practice, GDPR, GSBPM, GAMSO and ISO data quality principles.
-This value chain identifies the following value steps:
-- Define Governance Frameworks and Policies: Establish overarching governance structures, charters, and principles covering data, metadata, ethics, confidentiality, and statistical quality.
-- Establish Legal and Regulatory Compliance Mechanisms: Identify applicable regulations (GDPR, official statistics legislation, data-sharing agreements) and define procedures to ensure compliance across all processes.
-- Implement Data and Metadata Governance: Define roles (data owner, steward, custodian) and processes for metadata creation, maintenance, and lineage tracking.
-- Monitor Quality and Compliance Indicators: Measure process and output quality (accuracy, timeliness, comparability) and track compliance status using formal scorecards or dashboards.
-- Audit, Certify, and Report Compliance: Conduct internal or external audits, perform quality reviews, and document adherence to governance frameworks.
-- Update and Improve Governance Mechanisms: Incorporate feedback, regulatory changes, and lessons learned into policies and control frameworks.
+
+|**PLACEHOLDER: Add ArchiMate view of VS-07 **|
+|---|
+
+| Stage | Name | Value added |
+|---|---|---|
+| VS-07.1 | Define Governance Frameworks and Policies | Rules for data, metadata, ethics, confidentiality and quality are set |
+| VS-07.2 | Establish Legal and Regulatory Compliance Mechanisms | Applicable rules are known and translated into procedures |
+| VS-07.3 | Implement Data and Metadata Governance | Ownership, stewardship and lineage are assigned |
+| VS-07.4 | Monitor Quality and Compliance Indicators | Quality and compliance status is visible |
+| VS-07.5 | Audit, Certify and Report Compliance | Compliance is demonstrated |
+| VS-07.6 | Update and Improve Governance Mechanisms | Governance keeps up with new rules and lessons learned |
 
 The value created here is integrity and accountability making sure that the NSI acts responsibly, protects privacy, and delivers products users can trust.
 
 The Governance and Compliance Value Stream supports all other value streams by acting as the foundation of trust and assurance. It ensures that Data Acquisition & Ingestion follows lawful and ethical standards. It guarantees that Editing, Estimation, and Dissemination meet quality benchmarks. It provides the governance structure for Infrastructure, Innovation, and Stakeholder Engagement. In short, it supports the entire SAF value chain, ensuring that every activity is compliant, transparent, and aligned with the mission of producing trustworthy statistics.
 
-### VS-08.0 Innovation and Methodological Development Value Stream
+**VS-08 Innovation and Methodological Development**
 
 The Innovation and Methodological Development Value Stream makes sure the statistical organization does not stand still. Its purpose is to discover, test, and introduce new ways of working , new data sources, new methods, new tools, and new technologies. This value stream helps the organization move from “we have always done it this way” to “we can do this better, faster, and smarter.”
-It connects research, methodology, IT, and business users. It also makes sure that innovation is controlled , so that only methods that are sound, documented, and compliant end up in production. This value chain identifies the following value steps:
-- Identify Innovation Needs and Opportunities: Scan technological, methodological, and policy developments (AI, ML, new data sources, cloud computing) for potential improvements in statistical production.
-- Conduct Research and Proof-of-Concepts: Perform controlled experiments and pilot studies to test new methodologies or technologies in limited scope.
-- Evaluate Methodological Soundness and Feasibility: Assess research outcomes for accuracy, scalability, and alignment with quality frameworks and ethical principles.
-- Develop and Document New Methodologies or Tools: Formalize validated innovations into standardized procedures, algorithms, or reference implementations.
-- Integrate Innovation into Production Environments: Transition successful methods or technologies from pilot to production, ensuring interoperability and governance compliance.
-- Promote Knowledge Sharing and Capability Building: Disseminate results, best practices, and guidelines across teams; build staff competencies to adopt new methods.
+It connects research, methodology, IT, and business users. It also makes sure that innovation is controlled , so that only methods that are sound, documented, and compliant end up in production.
+
+|**PLACEHOLDER: Add ArchiMate view of VS-08 **|
+|---|
+
+| Stage | Name | Value added |
+|---|---|---|
+| VS-08.1 | Identify Innovation Needs and Opportunities | Promising developments are known |
+| VS-08.2 | Conduct Research and Proof-of-Concepts | Ideas are tested in a limited scope |
+| VS-08.3 | Evaluate Methodological Soundness and Feasibility | Only sound and feasible innovations proceed |
+| VS-08.4 | Develop and Document New Methodologies or Tools | Innovations are ready for reuse |
+| VS-08.5 | Integrate Innovation into Production Environments | Innovations run in production under governance |
+| VS-08.6 | Promote Knowledge Sharing and Capability Building | Staff can apply the new methods |
 
 The value created here is continuous improvement. Thanks to this stream, the SAF remains future-proof, able to work with new data (IoT, admin, data spaces), new techniques (ML, small-area estimation), and new operating models (secure processing environments, data sharing).
 How This Supports the Other Value Streams.
@@ -1192,16 +1476,22 @@ How This Supports the Other Value Streams.
 
 So, this value stream keeps the entire SAF alive and evolving.
 
-### VS-09.0 Infrastructure and Platform Enablement Value Stream
- 
+**VS-09 Infrastructure and Platform Enablement**
+
 The Infrastructure and Platform Enablement Value Stream provides the technical and digital foundation that supports every part of the statistical organization. Where the other value streams focus on data, methods, or governance, this one ensures that all those activities can actually run safely, efficiently, and at scale. It delivers the IT environments, data platforms, tools, and integration services that make statistical production possible, from data collection to dissemination. It ensures that the systems are secure, resilient, and compliant, while also flexible enough to handle new technologies and data sources as the organization modernizes. This value stream enables the organization to work faster, smarter, and with confidence. It transforms infrastructure from a background function into an active enabler of the statistical mission, ensuring that every user, process, and dataset has the tools and environment it needs to perform reliably.
-This value chain identifies the following value steps:
-- Define Digital and Technical Requirements: Identify infrastructure needs arising from business capabilities, data volumes, and analytical complexity.
-- Design Platform and Infrastructure Architecture: Develop architectural blueprints for data storage, processing, integration, and secure access (data fabric, data market, compute platforms).
-- Provision and Configure Platforms: Deploy and configure environments (on-premise, hybrid, or cloud) with necessary governance, monitoring, and security controls.
-- Enable Integration and Orchestration Services: Implement APIs, workflow engines, and automation frameworks to connect business services and processes.
-- Ensure Performance, Security, and Continuity: Monitor platform performance, implement data protection, manage incidents, and guarantee availability and disaster recovery.
-- Evolve and Modernize the Technical Ecosystem: Introduce new technologies, upgrade components, and decommission obsolete infrastructure in alignment with modernization strategy.
+
+|**PLACEHOLDER: Add ArchiMate view of VS-09 **|
+|---|
+
+| Stage | Name | Value added |
+|---|---|---|
+| VS-09.1 | Define Digital and Technical Requirements | Infrastructure needs follow from business needs |
+| VS-09.2 | Design Platform and Infrastructure Architecture | Platforms are designed for storage, processing, integration and secure access |
+| VS-09.3 | Provision and Configure Platforms | Environments are available with the required controls |
+| VS-09.4 | Enable Integration and Orchestration Services | Processes and services are connected |
+| VS-09.5 | Ensure Performance, Security and Continuity | Platforms are reliable and protected |
+| VS-09.6 | Evolve and Modernise the Technical Ecosystem | The technical landscape stays current |
+
 The value created here is operational capability and continuity, a stable, modern, and adaptive foundation for the entire SAF ecosystem.
 
 Connecting to Other Value Streams
@@ -1212,17 +1502,23 @@ The Infrastructure and Platform Enablement Value Stream supports every other par
 - It ensures Governance and Compliance have the tools to monitor security, quality, and data lineage, and
 - It enables Innovation by offering scalable, modern platforms for experimentation and research.
 
-#### VS-10.0 Customer and Stakeholder Engagement Value Stream
- 
+**VS-10 Customer and Stakeholder Engagement**
+
 The Customer and Stakeholder Engagement Value Stream ensures that the statistical organization remains connected, relevant, and responsive to the needs of those it serves. It focuses on building and maintaining mutual understanding and trust between the organization and its users, data providers, partners, and policy stakeholders. In the SAF, this value stream is essential because official statistics exist to create public value. To achieve that, the organization must understand what stakeholders need, communicate transparently, and ensure that products, data services, and policies remain aligned with real-world demands.
 
-This value stream is not a one-way process. It is a continuous dialogue, listening to users, understanding their challenges, and translating those insights into better products, improved services, and stronger relationships. This value chain identifies the following value steps:
-- Identify and Segment Stakeholders: Map the organization’s ecosystem of users, data providers, partners, and policymakers; understand their roles and expectations.
-- Collect and Analyze User Needs: Gather feedback, conduct consultations, and translate stakeholder needs into data or service requirements.
-- Define and Manage Service Portfolios: Develop catalogues of business services and data products that address stakeholder needs and align with strategic goals.
-- Deliver Services and Manage Relationships: Operate customer support, service desks, and account management; monitor satisfaction and service performance.
-- Engage and Communicate with Stakeholders: Conduct outreach, workshops, and knowledge-sharing events to promote awareness and understanding of statistical outputs.
-- Monitor Impact and Satisfaction: Measure how data and services are used, assess societal impact, and feed insights back into planning and innovation.
+This value stream is not a one-way process. It is a continuous dialogue, listening to users, understanding their challenges, and translating those insights into better products, improved services, and stronger relationships.
+
+|**PLACEHOLDER: Add ArchiMate view of VS-10 **|
+|---|
+
+| Stage | Name | Value added |
+|---|---|---|
+| VS-10.1 | Identify and Segment Stakeholders | The NSI knows its users, providers and partners |
+| VS-10.2 | Collect and Analyse User Needs | Needs are translated into requirements |
+| VS-10.3 | Define and Manage Service Portfolios | Services and products match the needs |
+| VS-10.4 | Deliver Services and Manage Relationships | Users and partners are served |
+| VS-10.5 | Engage and Communicate with Stakeholders | Stakeholders understand the output |
+| VS-10.6 | Monitor Impact and Satisfaction | The NSI knows its impact and acts on it |
 
 The value created here is relevance and trust, ensuring that the organization’s work is understood, used, and appreciated by its partners, users, and society at large.
 
@@ -1235,8 +1531,146 @@ The Customer and Stakeholder Engagement Value Stream is the voice and mirror of 
 
 Through this value stream, the organization ensures that it doesn’t just produce data, it produces public value. It turns statistics into impact by aligning what the organization creates with what stakeholders need.
 
-Value Stream to Process Realization
-TBD – this view shows the difference - but also the relationship - between the business processes that drive the steady-state architecture and the value that is being created.
+|**PLACEHOLDER: Value Stream Template and the application of Value Streams to be added to the toolkit**|
+|---|
+
+## Resources **[T6]**
+
+### The concept
+
+A **resource** is an asset that an organisation owns or controls. Resources are what the organisation uses to perform its capabilities. A capability without the right resources exists on paper only.
+
+The SAF distinguishes six types of resources:
+
+| Type | Examples in an NSI |
+|---|---|
+| People and skills | Methodologists, data engineers, subject-matter statisticians, architects |
+| Data and information | Registers, survey data, administrative data deliveries, classifications, metadata |
+| Knowledge | Statistical methods, process documentation, quality frameworks |
+| Technology | Data platforms, processing tools, collection systems, secure processing environments |
+| Financial | Structural budget, project funding, international grants |
+| Relationships and agreements | Data sharing agreements, partnerships with other NSIs, supplier contracts |
+
+Three characteristics set resources apart:
+
+- **They are owned or controlled.** A resource is something the NSI has, or has secured through an agreement. Access to administrative data under a provision agreement is a resource.
+- **They are limited.** People, money and data are scarce. Resources therefore force choices between capabilities.
+- **They are shared.** The same resource often serves several capabilities. A data platform supports collection, processing and dissemination at the same time.
+
+For an NSI, data is a resource in its own right. Registers, long time series and trusted relationships with data providers are often harder to replace than any system.
+
+### How the SAF applies resources
+
+**Why the SAF uses resources**
+
+Resources make the capability model realistic. A maturity assessment that only looks at processes misses the most common bottleneck: not enough people with the right skills, or no access to a needed data source. Linking resources to capabilities shows where a capability depends on a single expert, an outdated platform or an agreement that expires.
+
+**How resources fit into an NSI's own architecture**
+
+Resources are specific to each NSI. The SAF does not list them. An NSI records the resources behind its key capabilities, notes where resources are missing or at risk, and uses this in its courses of action. Resources also link strategy to the lower layers: technology resources are described in more detail in the application and technology architecture, and data resources in the data architecture.
+
+**Relationships with other concepts**
+
+| Related concept | Relationship | Example |
+|---|---|---|
+| Capability Model | Resources are assigned to capabilities | Staff with methodological expertise are assigned to Methodology (2.2.3) |
+| Courses of Action | Courses of action configure or develop resources | A workforce strategy trains data engineers |
+| Assessment (Motivation) | An assessment can record a resource gap | "Two of our three methodologists for small area estimation retire within two years" |
+| Constraints (Motivation) | Constraints limit which resources can be used | Public cloud may not be used for statistical microdata |
+| Data and technology architecture | Data and technology resources are detailed there | The data platform as a technology resource |
+
+### Examples (illustrative)
+
+| Resource | Type | Supports capabilities | Note |
+|---|---|---|---|
+| Access to the national population register | Data and information; relationships and agreements | 1.2.2 Secondary data collection; 2.1.4 Statistical register management | Depends on a provision agreement that must be renewed |
+| Team of methodologists for estimation | People and skills | 1.3.5 Estimating population parameters; 2.2.3 Methodology | Small team; knowledge concentrated in few people |
+| Shared data processing platform | Technology | 1.3 Processing; 2.1.1 Data lifecycle management | Shared by several statistical domains |
+
+|**PLACEHOLDER: Resource Template and the application of Resources to be added to the toolkit**|
+|---|
+
+## Courses of Action **[T6]** **[T7]**
+
+### The concept
+
+A **course of action** is an approach or plan for configuring capabilities and resources to reach a goal. It answers the question *how will we get there?*
+
+Courses of action range from broad to specific. ArchiMate calls the broad, long-term ones **strategies** and the narrower, shorter-term ones **tactics**. There is no hard line between the two. A strategy is usually broken down into several tactics, and tactics are realised by developing capabilities and resources.
+
+Three characteristics set courses of action apart:
+
+- **They are choices.** A course of action chooses one approach over others. "Collect data web-first" rules out paper-first. A plan without a choice is not a course of action.
+- **They serve goals.** Each course of action contributes to one or more goals and outcomes. A course of action that serves no goal needs a justification.
+- **They change capabilities and resources.** A course of action builds, strengthens, shares or retires capabilities and resources.
+
+Strategy, architecture and roadmap are related but different. A strategy sets the direction and the main choices. The architecture describes the structure that results. A roadmap sets the order and timing of the changes.
+
+### How the SAF applies courses of action
+
+**Why the SAF uses courses of action**
+
+Goals say where the NSI wants to go. Capabilities say what it must be able to do. Courses of action connect the two: they describe the choices the NSI makes to close the gap. Recording them explicitly prevents a common problem: programmes that each make sense on their own, but pull the organisation in different directions.
+
+**How courses of action fit into an NSI's own architecture**
+
+Courses of action are specific to each NSI. The SAF does not define them. Most NSIs work with three levels:
+
+1. **Organisation strategy.** The overall direction of the NSI, usually in a multi-annual plan approved by its board or ministry.
+2. **Domain strategies.** Strategies for a specific area, such as data, metadata, IT, cloud, security or privacy. Each one refines the organisation strategy for its domain.
+3. **Tactics and roadmaps.** Concrete approaches and their order in time, for example in a programme plan.
+
+Each NSI names its own strategies. A small NSI may have one IT strategy that covers applications, infrastructure and cloud. A large NSI may have separate strategies for each. What matters is that the strategies are consistent with each other and traceable to the motivation.
+
+The SAF elements help to make strategies consistent. A domain strategy can be described with the same building blocks used in this framework: the drivers and assessments that make it necessary, the goals and outcomes it serves, the principles it applies, the courses of action it chooses, the capabilities and resources it develops, and the roadmap that sets the order. When all strategies use these building blocks, overlaps and conflicts between them become visible. The toolkit offers templates for this.
+
+Choosing a reference model for the data value chain, such as the Steady-State or the Medallion architecture (see Business Architecture), is itself a course of action.
+
+**Relationships with other concepts**
+
+| Related concept | Relationship | Example |
+|---|---|---|
+| Goals and outcomes (Motivation) | Courses of action serve goals and contribute to outcomes | A shared-platform strategy serves cost efficiency (SAF-G1) |
+| Drivers and assessments (Motivation) | Assessments show why a course of action is needed | An assessment of SAF-D5 leads to a decision to retire legacy platforms |
+| Principles (Motivation) | Courses of action apply principles | An application strategy applies SAF-P01 *Reuse before open source, open source before buying, buying before building* |
+| Capability Model | Courses of action are realised by developing capabilities | A metadata strategy develops Metadata management (2.1.2) |
+| Resources | Courses of action configure resources | A workforce strategy develops data engineering skills |
+| Value Streams | Courses of action improve value streams | A web-first collection strategy improves VS-01 |
+| Capability 4.1.2 *Policy and planning* | This capability produces the strategies | Translating the organisation strategy into domain strategies |
+
+### Examples of strategies (illustrative)
+
+The examples show which domain strategies NSIs often develop. They are not a required set. Each NSI decides which strategies it needs and how to combine them.
+
+| Strategy | Typical question it answers | Mainly develops |
+|---|---|---|
+| Data strategy | How do we manage and use data as an asset? | 2.1 Data management; VS-01 to VS-06 |
+| Metadata strategy | How do we make data findable, understandable and reusable? | 2.1.2 Metadata management |
+| IT strategy | What do we reuse, buy or build, and on which platforms? | 3.2 Computerisation and automation; VS-09 |
+| Cloud strategy | Which workloads may run where, and under which conditions? | 3.2.5 IT infrastructure; 3.3 Security and privacy |
+| Information security strategy | How do we protect information and systems? | 3.3 Security and privacy; VS-07 |
+| Privacy and confidentiality strategy | How do we protect respondents and keep statistical confidentiality? | 3.3.1 Privacy management; 1.3.7 Statistical disclosure |
+
+Other strategies NSIs develop include strategies for data acquisition, dissemination and open data, artificial intelligence, innovation, workforce and skills, and sourcing and partnerships.
+
+### Reference strategies
+
+The following published strategies and guidance documents can serve as reference when an NSI develops its own strategies.
+
+| Document | Organisation | Type | Relevant for |
+|---|---|---|---|
+| [Statistics Canada Data Strategy](https://www.statcan.gc.ca/en/about/datastrategy) | Statistics Canada | Data strategy of an NSI | Data strategy; shows links to IT, cloud, privacy and metadata strategies |
+| [Data Strategy](https://www.ons.gov.uk/aboutus/transparencyandgovernance/datastrategy/ourdatastrategy) | Office for National Statistics (UK) | Data strategy of an NSI | Data strategy |
+| [ABS Data Strategy 2025–2030](https://www.abs.gov.au/about/our-organisation/our-commitments/abs-data-strategy-2025-2030) | Australian Bureau of Statistics | Data strategy of an NSI | Data strategy |
+| [Data Strategy of the Secretary-General](https://www.un.org/en/content/datastrategy/index.shtml) | United Nations | Data strategy of an international organisation | Data strategy |
+| [Cloud for Official Statistics](https://un-ilibrary.org/content/books/9789213587256) (2024) | UNECE | Guidance | Cloud strategy |
+| [Privacy-Enhancing Technologies Guide](https://unstats.un.org/bigdata/task-teams/privacy/guide/) | UN Committee of Experts on Big Data and Data Science | Guidance | Privacy and confidentiality strategy |
+
+|**PLACEHOLDER: Strategy Template and the application of Courses of Action to be added to the toolkit**|
+|---|
+
+
+
 
 # Business Architecture
 
