@@ -287,17 +287,30 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
+  <ul class="collapse">
   <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#activity-proposal" id="toc-activity-proposal" class="nav-link" data-scroll-target="#activity-proposal">Activity Proposal</a></li>
+  </ul></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
   <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose">Purpose</a></li>
   <li><a href="#definition-of-scope" id="toc-definition-of-scope" class="nav-link" data-scroll-target="#definition-of-scope">Definition of Scope</a></li>
-  <li><a href="#target-audience" id="toc-target-audience" class="nav-link" data-scroll-target="#target-audience">Target Audience</a>
-  <ul class="collapse">
+  <li><a href="#target-audience" id="toc-target-audience" class="nav-link" data-scroll-target="#target-audience">Target Audience</a></li>
   <li><a href="#expected-value" id="toc-expected-value" class="nav-link" data-scroll-target="#expected-value">Expected value</a></li>
+  <li><a href="#constraints-assumptions" id="toc-constraints-assumptions" class="nav-link" data-scroll-target="#constraints-assumptions">Constraints &amp; Assumptions</a>
+  <ul class="collapse">
+  <li><a href="#use-of-togaf-and-archimate-in-saf" id="toc-use-of-togaf-and-archimate-in-saf" class="nav-link" data-scroll-target="#use-of-togaf-and-archimate-in-saf">Use of TOGAF and ArchiMate in SAF</a></li>
   </ul></li>
-  <li><a href="#constraints-assumptions" id="toc-constraints-assumptions" class="nav-link" data-scroll-target="#constraints-assumptions">Constraints &amp; Assumptions</a></li>
+  <li><a href="#reading-guide" id="toc-reading-guide" class="nav-link" data-scroll-target="#reading-guide">Reading guide</a>
+  <ul class="collapse">
+  <li><a href="#how-the-saf-is-structured" id="toc-how-the-saf-is-structured" class="nav-link" data-scroll-target="#how-the-saf-is-structured">1. How the SAF is structured</a></li>
+  <li><a href="#reading-order" id="toc-reading-order" class="nav-link" data-scroll-target="#reading-order">2. Reading order</a></li>
+  <li><a href="#positioning-the-saf-in-your-own-architecture" id="toc-positioning-the-saf-in-your-own-architecture" class="nav-link" data-scroll-target="#positioning-the-saf-in-your-own-architecture">3. Positioning the SAF in your own architecture</a></li>
+  <li><a href="#combining-the-saf-with-other-reference-models" id="toc-combining-the-saf-with-other-reference-models" class="nav-link" data-scroll-target="#combining-the-saf-with-other-reference-models">4. Combining the SAF with other reference models</a></li>
+  <li><a href="#legislation-and-regulation" id="toc-legislation-and-regulation" class="nav-link" data-scroll-target="#legislation-and-regulation">5. Legislation and regulation</a></li>
+  <li><a href="#conventions-used-in-this-document" id="toc-conventions-used-in-this-document" class="nav-link" data-scroll-target="#conventions-used-in-this-document">6. Conventions used in this document</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="introduction.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -330,48 +343,611 @@ ul.task-list li input[type="checkbox"] {
 <p>This documentation is written for enterprise and data architects, IT architects, methodologists, and IT delivery teams. It is also intended for senior decision-makers such as CIOs and CTOs, and for privacy officers, policy makers, and managers who carry responsibility for compliance, traceability, and responsible data use. SAF replaces the earlier Common Statistical Production Architecture (CSPA) and the Common Statistical Data Architecture (CSDA). It consolidates their core ideas into a single, coherent documentation set, and it retains their ambition of shared understanding across organisations. It also continues to promote interoperability, reuse, and standardised building blocks. However, SAF shifts the centre of gravity from reference descriptions towards practical applications. It is intended to be used directly in programmes and projects, and to guide concrete design and implementation choices.</p>
 <p>The framework builds on the assumption that, in statistical organisations, data and metadata are central assets of the organisation, and not just enablers of processes. SAF therefore treats data and metadata as managed assets across the full statistical lifecycle. It supports architectures that can work with both traditional and newdata sources. It also provides practical guidance for designing capabilities for acquisition, integration, production, and dissemination, in a way that strengthens quality, transparency, and repeatability. SAF also carries forward the capability-centric, service-based and component-oriented direction introduced in CSDA and CSPA. It promotes modular design and reuse within and across organisations. This is intended to reduce duplication, improve maintainability, and make change more manageable. It also supports a clearer separation of concerns between business methods, data, applications, and technology, which is essential for scaling and for governing complex landscapes. The framework is designed to support multiple types of use in parallel. It can be applied for strategic planning and capability development, for solution design and architecture governance, and for portfolio alignment and implementation guidance. It can be used at enterprise level, at programme level, and within specific initiatives. This includes initiatives focused on data sharing across organizations, secure processing environments, and regulated access workflows, where security, trust, and accountability are important requirements.</p>
 <p>SAF is intended to work alongside established statistical standards and models. It does not replace statistical business and information models. Instead, it provides the architectural link between strategy, capabilities, processes, services, and technology. This “glue” helps organisations make consistent decisions, improve traceability from policy to implementation, and reduce fragmentation across projects and teams. To support communication and shared understanding, SAF uses a set of architecture viewpoints. Visual models are included to clarify scope, responsibilities, and dependencies. Where appropriate, a consistent modelling notation is used so that organisations can compare, reuse, and extend the content in a disciplined way. SAF is a living framework. It is expected to evolve through implementation experience, community feedback, and changes in the external environment. Its value depends on active use and continuous improvement across the community it serves, so that the framework remains both credible and practical over time.</p>
-</section>
-<section id="acknowledgements" class="level1">
-<h1>Acknowledgements</h1>
+<section id="acknowledgements" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
 <p>TODO</p>
+</section>
 </section>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>The Statistical Architecture Framework (SAF) provides a common architectural basis for the design, delivery, and evolution of statistical production in National Statistical Institutes (NSIs) and related organisations. It brings together architectural concepts, reference structures, and practical guidance that support consistent decision-making across portfolios and programmes. SAF aims to help statistical organisations modernise with control, while preserving the institutional qualities that make official statistics credible: transparency, quality, impartiality, reproducibility, and public trust.</p>
 <p>Statistical organisations are facing a period of accelerated change. Data ecosystems are evolving and increasingly depend on partnerships and shared infrastructures. Artificial intelligence and rapid technological advances are changing how data can be collected, processed, and interpreted, while also introducing new risks and new expectations. At the same time, trust, scientific rigor, and data protection requirements are becoming more prominent and more demanding. These changes occur in an uncertain and fragmented global environment, where information integrity and societal confidence cannot be taken for granted. All of this is happening under sustained resource constraints, requiring organisations to be more agile and deliberate in how they prioritise, reuse, and industrialise capabilities. SAF is intended to support organisations in quickly responding to these drivers without fragmenting their architecture, governance, and implementation landscape in the process.</p>
 <p>SAF replaces earlier reference documentation by consolidating core architectural ideas into a single framework that is more usable in practice. It is not designed as a theoretical reference alone. It is designed to be applied. SAF supports the translation of strategy into capabilities, services, and implementation choices. It supports alignment across business, methodology, data, applications, and technology. It also supports collaboration between organisations by promoting common patterns, shared viewpoints, and comparable architectural descriptions.</p>
-</section>
-<section id="activity-proposal" class="level1">
-<h1>Activity Proposal</h1>
-<p>TODO</p>
-</section>
-<section id="purpose" class="level1">
-<h1>Purpose</h1>
+<section id="purpose" class="level2">
+<h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
 <p>The purpose of SAF is to provide an authoritative, consistent, and actionable framework for developing and governing statistical architectures. It aims to support coherent modernisation across NSIs by providing shared structures for describing needs, designing solutions, and managing change. SAF helps ensure that investments in platforms, data management, methods, and delivery practices strengthen each other instead of competing. It also helps organisations to demonstrate traceability from policy and strategy to implemented solutions, including the controls required for confidentiality, integrity, accountability, and lawful processing.</p>
 <p>SAF is intended to enable better outcomes in three areas. First, interoperability and reuse, both within an organisation and across organisational boundaries.</p>
 <p>Second, quality and robustness, by making architectural choices explicit and reviewable, and by promoting consistent handling of data, metadata, and methodological assets. Third, overall statistical production effectiveness, by providing a common language and set of expectations that connects architects, methodologists, engineers, managers, and oversight functions.</p>
 </section>
-<section id="definition-of-scope" class="level1">
-<h1>Definition of Scope</h1>
+<section id="definition-of-scope" class="level2">
+<h2 class="anchored" data-anchor-id="definition-of-scope">Definition of Scope</h2>
 <p>SAF covers the enterprise architecture concerns that are most relevant to statistical production and dissemination, including the supporting functions that enable them. It addresses the design and evolution of capabilities, information assets, applications and services, and underlying infrastructure and deployment arrangements. It also considers the cross-cutting concerns that are essential for official statistics, such as governance, security, privacy, auditability, reproducibility and the responsible use of data and advanced analytics.</p>
 <p>To ensure consistency and practical applicability, SAF is organised according to a TOGAF-aligned structure. It addresses motivation and principles, strategic direction and target outcomes, and the architecture domains that connect intent to implementation. This includes business architecture, data architecture, application architecture, and technology and infrastructure considerations, as well as deployment and operationalisation aspects. SAF also includes viewpoints that are tailored to distinct roles and activities within an NSI, enabling the same underlying architecture to be communicated and assessed from multiple perspectives without losing coherence.</p>
 <p>SAF does not prescribe a single operating model, a single technology stack, or a single organisational design. It recognises that NSIs differ in mandate, maturity, and context. Instead, it provides a shared architectural foundation that can be adapted to local realities while remaining comparable across organisations. It also assumes that terminology and detailed definitions are managed through a dedicated glossary, which is maintained alongside the framework.</p>
 </section>
-<section id="target-audience" class="level1">
-<h1>Target Audience</h1>
+<section id="target-audience" class="level2">
+<h2 class="anchored" data-anchor-id="target-audience">Target Audience</h2>
 <p>SAF is intended to be used as a reference and as a working instrument. It can be applied when shaping strategy and roadmaps, when designing new capabilities and platforms, and when assessing initiatives for alignment and risk. It can be used to structure architectural work in programmes and projects, and to support governance decisions by making assumptions, dependencies, and trade-offs explicit. It can also be used to support communication across disciplines by establishing shared architectural concepts and consistent viewpoints.</p>
 <p>Different roles will use SAF in different ways, while relying on the same underlying content. Enterprise and data architects will use it to define target states, standards, patterns, and architecture decisions across the organisation. IT architects and delivery teams will use it to translate those decisions into solution designs, implementation plans, and operational controls. Methodologists will use it to connect methods and process design to the enabling data and technology arrangements, and to support repeatability and scientific rigor. CIOs, CTOs, managers, and policy makers will use it to understand the implications of strategic choices, to prioritise investment, and to oversee risk and compliance. Privacy officers and assurance functions will use it to assess whether designs incorporate adequate safeguards, traceability, and accountability.</p>
 <p>SAF is most effective when it is used consistently across the lifecycle of change. It supports early-stage framing by clarifying drivers, objectives, and constraints. It supports design by providing reference structures and viewpoints that guide architecture development. It supports delivery by improving alignment between architecture and implementation decisions. It supports operation and evolution by making dependencies and responsibilities explicit, enabling controlled change and measurable improvement.</p>
-<section id="expected-value" class="level3">
-<h3 class="anchored" data-anchor-id="expected-value">Expected value</h3>
+</section>
+<section id="expected-value" class="level2">
+<h2 class="anchored" data-anchor-id="expected-value">Expected value</h2>
 <p>The expected value of SAF is a stronger and more coherent statistical architecture practice across NSIs. It supports faster and safer modernisation by reducing ambiguity and rework. It supports reuse by encouraging common building blocks and comparable solution descriptions. It supports trust by embedding governance and assurance concerns into architecture, rather than treating them as afterthoughts. It also supports collaboration across organisations, where shared approaches to interoperability, data governance, and service orientation reduce the effort required to work together. In providing a common framework with practical orientation, SAF aims to help statistical organisations remain resilient and responsive. It supports them in delivering high-quality statistics under changing conditions, while maintaining the safeguards and institutional discipline that official statistics require.</p>
 </section>
+<section id="constraints-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="constraints-assumptions">Constraints &amp; Assumptions</h2>
+<section id="use-of-togaf-and-archimate-in-saf" class="level3">
+<h3 class="anchored" data-anchor-id="use-of-togaf-and-archimate-in-saf">Use of TOGAF and ArchiMate in SAF</h3>
+<p>The SAF builds on two open standards of The Open Group, a global, vendor-neutral consortium that develops technology and architecture standards: the TOGAF® Standard and the ArchiMate® Specification. This section explains what these standards are, why the SAF uses them, and how they relate to each other and to the statistical standards of the UNECE community.</p>
+<section id="what-togaf-is" class="level4">
+<h4 class="anchored" data-anchor-id="what-togaf-is">What TOGAF is</h4>
+<p>The TOGAF Standard is a framework for developing and governing enterprise architecture. It provides:</p>
+<ul>
+<li><strong>A method.</strong> The Architecture Development Method (ADM) is an iterative cycle of phases. It runs from establishing the architecture capability and an architecture vision, through business, information systems, and technology architecture, to migration planning, implementation governance, and change management.</li>
+<li><strong>A content framework.</strong> A common structure for the artefacts that architecture work produces, such as principles, stakeholder maps, capability models, and architecture building blocks.</li>
+<li><strong>Guidance for an architecture capability.</strong> Advice on governance, roles, and maturity, so that architecture becomes a lasting practice rather than a one-off project.</li>
+</ul>
+<p>The SAF refers to the TOGAF Standard, 10th Edition. More information is available at <a href="https://www.opengroup.org/togaf">The Open Group: TOGAF Standard</a>.</p>
 </section>
-<section id="constraints-assumptions" class="level1">
-<h1>Constraints &amp; Assumptions</h1>
-<p>TODO</p>
+<section id="why-the-saf-uses-togaf" class="level4">
+<h4 class="anchored" data-anchor-id="why-the-saf-uses-togaf">Why the SAF uses TOGAF</h4>
+<p>The SAF uses TOGAF for three reasons.</p>
+<ul>
+<li><p><strong>A shared structure:</strong> Many NSIs already use TOGAF, or a framework derived from it, in their own architecture practice. Aligning the SAF with TOGAF lets NSIs map SAF content onto their existing repositories, governance processes, and training without translation.</p></li>
+<li><p><strong>A proven method:</strong> TOGAF describes how to move from motivation to implementation in controlled steps. The SAF follows the same order: motivation, strategy, business architecture, data, application, and technology architecture, and implementation. This gives NSIs a recognisable path from intent to solution.</p></li>
+<li><p><strong>A common language across organisations:</strong> TOGAF terminology is widely understood by architects, IT suppliers, and international partners. Using it reduces ambiguity when NSIs compare architectures or collaborate on shared solutions.</p></li>
+</ul>
+<p>The SAF uses TOGAF as a <strong>structuring reference, not as a prescription</strong>. It tailors the TOGAF structure to official statistics and does not require NSIs to follow every ADM phase or to hold TOGAF certification. The SAF does not reproduce TOGAF content; readers are referred to the standard for its full description.</p>
+</section>
+<section id="what-archimate-is-and-how-it-relates-to-togaf" class="level4">
+<h4 class="anchored" data-anchor-id="what-archimate-is-and-how-it-relates-to-togaf">What ArchiMate is and how it relates to TOGAF</h4>
+<p>ArchiMate is a modelling language for enterprise architecture. Where TOGAF describes <em>how</em> to develop an architecture and <em>which</em> content to produce, ArchiMate describes <em>how to express</em> that content in consistent, unambiguous models and views. The two standards are maintained by The Open Group and are designed to work together:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>TOGAF</th>
+<th>ArchiMate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nature</td>
+<td>Framework and method</td>
+<td>Modelling language and notation</td>
+</tr>
+<tr class="even">
+<td>Answers</td>
+<td>How is architecture developed and governed?</td>
+<td>How is architecture described and visualised?</td>
+</tr>
+<tr class="odd">
+<td>Main content</td>
+<td>ADM phases, content framework, architecture capability</td>
+<td>Elements, relationships, viewpoints</td>
+</tr>
+<tr class="even">
+<td>Role in the SAF</td>
+<td>Structures the chapters and the order of the framework</td>
+<td>Notation for the models and diagrams in the SAF</td>
+</tr>
+</tbody>
+</table>
+<p>The structures of the two standards correspond. The TOGAF Preliminary Phase, Phase A, and Requirements Management correspond to the ArchiMate motivation and strategy elements. TOGAF Phases B, C, and D correspond to the ArchiMate business, application, and technology layers. TOGAF Phases E to H correspond to the ArchiMate implementation and migration elements. This correspondence is the basis for the position of each SAF chapter (see <em>Position in the framework</em> in the Motivation chapter).</p>
+<p>More information is available at <a href="https://www.opengroup.org/archimate-forum">The Open Group: ArchiMate</a>.</p>
+</section>
+<section id="relationship-with-statistical-standards" class="level4">
+<h4 class="anchored" data-anchor-id="relationship-with-statistical-standards">Relationship with statistical standards</h4>
+<p>TOGAF and ArchiMate are generic standards. The SAF complements them with the standards of the statistical community: GSBPM for statistical business processes, GAMSO for the activities of statistical organisations, GSIM for statistical information objects, and SDMX for the exchange of statistical data and metadata. TOGAF and ArchiMate provide the architectural structure and notation; the statistical standards provide the domain content. The SAF connects the two.</p>
+</section>
+<section id="assumptions-and-constraints" class="level4">
+<h4 class="anchored" data-anchor-id="assumptions-and-constraints">Assumptions and constraints</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Type</th>
+<th>Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-A1</td>
+<td>Assumption</td>
+<td>The SAF is structured according to the TOGAF Standard, 10th Edition, tailored to official statistics.</td>
+</tr>
+<tr class="even">
+<td>SAF-A2</td>
+<td>Assumption</td>
+<td>Models and diagrams in the SAF use the ArchiMate 3.2 Specification. Alignment with the ArchiMate 4 Specification will be assessed in a later version of the SAF.</td>
+</tr>
+<tr class="odd">
+<td>SAF-A3</td>
+<td>Assumption</td>
+<td>NSIs can apply the SAF without TOGAF or ArchiMate certification. Basic familiarity with both standards helps but is not required.</td>
+</tr>
+<tr class="even">
+<td>SAF-A4</td>
+<td>Assumption</td>
+<td>Terminology and definitions are maintained in a separate SAF glossary, which takes precedence over definitions in this document.</td>
+</tr>
+<tr class="odd">
+<td>SAF-C1</td>
+<td>Constraint</td>
+<td>The SAF refers to TOGAF and ArchiMate but does not reproduce their content. Use of the standards is subject to the licence terms of The Open Group.</td>
+</tr>
+<tr class="even">
+<td>SAF-C2</td>
+<td>Constraint</td>
+<td>The SAF does not prescribe a technology stack, tool, or organisational design (see <em>Definition of Scope</em>).</td>
+</tr>
+</tbody>
+</table>
+<p>TOGAF and ArchiMate are registered trademarks of The Open Group.</p>
+</section>
+</section>
+</section>
+<section id="reading-guide" class="level2">
+<h2 class="anchored" data-anchor-id="reading-guide">Reading guide</h2>
+<p>This reading guide explains how the SAF is built, in which order to read it, and how an NSI can start using it. It also explains how the SAF fits into an NSI’s own architecture, how it combines with other reference models, and how legislation enters the architecture.</p>
+<section id="how-the-saf-is-structured" class="level3">
+<h3 class="anchored" data-anchor-id="how-the-saf-is-structured">1. How the SAF is structured</h3>
+<p>The SAF follows the layers of TOGAF and ArchiMate (see <em>Constraints &amp; Assumptions</em>). Each layer answers one question. Each layer is justified by the layer above it, and each layer gives direction to the layer below it.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: Overview of the SAF layers and chapters</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Chapter</th>
+<th>Question it answers</th>
+<th>Main content</th>
+<th>Status <strong>[RG4]</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Motivation</td>
+<td><em>Why</em> does the NSI change, and what does it want to achieve?</td>
+<td>Stakeholders, drivers, assessments, goals, outcomes, principles, requirements, constraints, meaning, value</td>
+<td>Developed</td>
+</tr>
+<tr class="even">
+<td>Strategy</td>
+<td><em>What</em> must the NSI be able to do, and how does it get there?</td>
+<td>Capability model, value streams, resources, courses of action and strategies</td>
+<td>Developed</td>
+</tr>
+<tr class="odd">
+<td>Business Architecture</td>
+<td><em>How</em> is the statistical work organised?</td>
+<td>Business domains, reference models for the data value chain (Steady-State, Medallion), steady states, value stream detail, roles</td>
+<td>In development</td>
+</tr>
+<tr class="even">
+<td>Data Architecture</td>
+<td><em>Which</em> data and metadata are needed, and how are they structured?</td>
+<td>To be developed</td>
+<td>Planned</td>
+</tr>
+<tr class="odd">
+<td>Application Architecture</td>
+<td><em>Which</em> applications and services support the work?</td>
+<td>To be developed</td>
+<td>Planned</td>
+</tr>
+<tr class="even">
+<td>Technology Architecture</td>
+<td><em>On which</em> platforms and infrastructure does it run?</td>
+<td>To be developed</td>
+<td>Planned</td>
+</tr>
+<tr class="odd">
+<td>Implementation and Tooling</td>
+<td><em>How</em> is the architecture realised and governed?</td>
+<td>To be developed</td>
+<td>Planned</td>
+</tr>
+</tbody>
+</table>
+<p>Every section that describes an architecture concept follows the same pattern:</p>
+<ol type="1">
+<li><strong>The concept.</strong> What the concept means, based on ArchiMate and TOGAF.</li>
+<li><strong>How the SAF applies it.</strong> Why the SAF uses the concept, and how it fits into an NSI’s own architecture.</li>
+<li><strong>Relationships with other concepts.</strong> How the concept connects to the rest of the framework.</li>
+<li><strong>SAF elements or examples.</strong> The reference content of the SAF, or illustrative examples where the content is specific to each NSI.</li>
+<li><strong>Toolkit.</strong> A reference to templates and instruments in the SAF toolkit.</li>
+</ol>
+<p>This pattern makes it possible to read a single section without reading the whole document, and still see how it connects to the rest.</p>
+<p>The SAF contains two kinds of content. <strong>Reference content</strong> is shared by most NSIs and can be adopted directly, such as the drivers, goals, principles, capability model and value streams. <strong>Illustrative content</strong> shows the form of elements that each NSI defines for itself, such as assessments, requirements, constraints, resources and courses of action. Illustrative content is never a requirement.</p>
+</section>
+<section id="reading-order" class="level3">
+<h3 class="anchored" data-anchor-id="reading-order">2. Reading order</h3>
+<p>The SAF is best read top-down, at least once: from Motivation, through Strategy, to the architecture domains. This order follows the logic of the framework. A business architecture choice only makes sense once the goals and capabilities behind it are clear.</p>
+<p>Applying the SAF is different from reading it. Application is iterative. An NSI does not complete the Motivation layer before it starts on its business architecture. It works in cycles, like the TOGAF Architecture Development Method: each cycle refines the motivation, strategy and architecture a little further, and each change in a driver or goal can start a new cycle.</p>
+<p>Different readers can follow different routes through the document (see <em>Target Audience</em> for the roles).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Reader</th>
+<th>Start with</th>
+<th>Then read</th>
+<th>Focus</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CIO, CTO, board member</td>
+<td>Introduction, Motivation</td>
+<td>Strategy: capability model, courses of action</td>
+<td>Why change is needed, what it delivers, how to prioritise</td>
+</tr>
+<tr class="even">
+<td>Enterprise or data architect</td>
+<td>Introduction, Motivation</td>
+<td>Strategy, Business Architecture, later domains</td>
+<td>The full chain, and how to adopt it in the NSI architecture</td>
+</tr>
+<tr class="odd">
+<td>IT architect, delivery team</td>
+<td>Motivation: principles</td>
+<td>Business Architecture, later domains</td>
+<td>Design rules and reference models for solutions</td>
+</tr>
+<tr class="even">
+<td>Methodologist</td>
+<td>Strategy: value streams</td>
+<td>Business Architecture: steady states</td>
+<td>Where methods are applied, and how quality and lineage are secured</td>
+</tr>
+<tr class="odd">
+<td>Privacy officer, auditor</td>
+<td>Motivation: principles, constraints</td>
+<td>Business Architecture: steady states; VS-07</td>
+<td>Where protection and compliance are built into the chain</td>
+</tr>
+<tr class="even">
+<td>Policy maker, manager</td>
+<td>Introduction, Motivation: goals, value</td>
+<td>Strategy: courses of action</td>
+<td>What the framework means for the organisation</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="positioning-the-saf-in-your-own-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="positioning-the-saf-in-your-own-architecture">3. Positioning the SAF in your own architecture</h3>
+<p>TOGAF describes a range of architectures, from generic to specific, called the <em>Enterprise Continuum</em> <strong>[RG2]</strong>. It runs from foundation architectures, which apply to any organisation, through common systems and industry architectures, to the architecture of one specific organisation.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Level in the Enterprise Continuum</th>
+<th>Example</th>
+<th>Who owns it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Foundation architecture</td>
+<td>TOGAF, ArchiMate</td>
+<td>The Open Group</td>
+</tr>
+<tr class="even">
+<td>Common systems architecture</td>
+<td>Generic reference architectures for, for example, data platforms or identity management</td>
+<td>Industry and standards bodies</td>
+</tr>
+<tr class="odd">
+<td>Industry architecture</td>
+<td><strong>The SAF</strong>, for official statistics</td>
+<td>UNECE statistical community</td>
+</tr>
+<tr class="even">
+<td>Organisation-specific architecture</td>
+<td>The enterprise architecture of an NSI</td>
+<td>The NSI</td>
+</tr>
+</tbody>
+</table>
+<p>The SAF is an industry architecture. It is not the architecture of any single NSI. Each NSI builds its own organisation-specific architecture, using the SAF as its reference. In practice, this works as follows:</p>
+<ol type="1">
+<li><strong>Adopt, adapt or extend.</strong> For each SAF element, the NSI decides whether to adopt it as it is, adapt it to the national context, or add NSI-specific elements (see <em>How NSIs use this chapter</em> in the Motivation chapter).</li>
+<li><strong>Keep the SAF identifiers.</strong> When an NSI adapts an SAF element, it keeps a reference to the SAF identifier, for example SAF-P07 or capability 2.1.2. This keeps the NSI architecture comparable with the SAF and with other NSIs, and makes it easier to adopt future SAF versions.</li>
+<li><strong>Layer the architecture.</strong> The NSI enterprise architecture sets the direction for solution architectures in programmes and projects. Solution architectures do not refer to the SAF directly, but to the NSI architecture that applies it.</li>
+</ol>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: From SAF reference architecture to NSI enterprise architecture to solution architecture</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="combining-the-saf-with-other-reference-models" class="level3">
+<h3 class="anchored" data-anchor-id="combining-the-saf-with-other-reference-models">4. Combining the SAF with other reference models</h3>
+<p>The SAF rarely stands alone. NSIs also work with statistical standards, with reference models of their own government, and with generic frameworks. These models complement each other, but they can also overlap or conflict.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Family</th>
+<th>Examples</th>
+<th>Role next to the SAF</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Statistical standards and models</td>
+<td>GSBPM, GAMSO, GSIM, SDMX; the ESS Enterprise Architecture Reference Framework (ESS EARF)</td>
+<td>Provide the statistical domain content. The SAF connects them in one architecture</td>
+</tr>
+<tr class="even">
+<td>Government reference models</td>
+<td>The European Interoperability Framework (EIF) and Reference Architecture (EIRA); national reference models such as those listed below</td>
+<td>Often mandatory or leading for public organisations. The SAF fits within them</td>
+</tr>
+<tr class="odd">
+<td>Generic frameworks and bodies of knowledge</td>
+<td>TOGAF, ArchiMate, DAMA-DMBOK</td>
+<td>Provide structure, notation and professional practice</td>
+</tr>
+</tbody>
+</table>
+<p>Examples of national government reference models <strong>[RG3]</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Country</th>
+<th>Reference model</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Netherlands</td>
+<td>NORA, Netherlands Government Reference Architecture</td>
+<td>Dutch government (ICTU)</td>
+</tr>
+<tr class="even">
+<td>United Kingdom</td>
+<td>GovS 005 Digital, Government Functional Standard</td>
+<td>Cabinet Office, Government Digital and Data</td>
+</tr>
+<tr class="odd">
+<td>Canada</td>
+<td>Government of Canada Enterprise Architecture Framework</td>
+<td>Treasury Board of Canada Secretariat</td>
+</tr>
+<tr class="even">
+<td>Australia</td>
+<td>Australian Government Architecture (AGA)</td>
+<td>Digital Transformation Agency</td>
+</tr>
+<tr class="odd">
+<td>New Zealand</td>
+<td>Government Enterprise Architecture for New Zealand (GEA-NZ)</td>
+<td>Government Chief Digital Officer</td>
+</tr>
+<tr class="even">
+<td>Norway</td>
+<td>National architecture principles for digitalisation of the public sector</td>
+<td>Norwegian Digitalisation Agency (Digdir)</td>
+</tr>
+<tr class="odd">
+<td>United States</td>
+<td>Federal Enterprise Architecture Framework (FEAF)</td>
+<td>Office of Management and Budget</td>
+</tr>
+</tbody>
+</table>
+<p>The SAF works best when the NSI combines models at the level of elements, not documents:</p>
+<ul>
+<li><strong>Principles.</strong> Map the SAF principles to the principles of the national reference model. Many will be equivalent. Where both exist, the NSI uses one set and records the mapping.</li>
+<li><strong>Capabilities and functions.</strong> Map the SAF capability model to the capability or function model of the national framework, where one exists. This makes the NSI comparable with other government organisations as well as with other NSIs.</li>
+<li><strong>Standards.</strong> Check which standards the national model prescribes, for example for exchange formats, identity or security. These standards become requirements or constraints in the NSI architecture.</li>
+</ul>
+<p>When models conflict, a simple order of precedence helps:</p>
+<ol type="1">
+<li>Legislation comes first.</li>
+<li>Mandatory government standards and reference models come next.</li>
+<li>Within the statistical domain, the SAF and the statistical standards apply.</li>
+<li>Generic frameworks and practices fill the remaining gaps.</li>
+</ol>
+<p>A deviation from a higher level is a decision for the NSI’s architecture governance, and is documented.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: Mapping templates for SAF and national reference models to be added to the toolkit</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="legislation-and-regulation" class="level3">
+<h3 class="anchored" data-anchor-id="legislation-and-regulation">5. Legislation and regulation</h3>
+<p>Official statistics operate under strict legal frameworks. Legislation shapes what an NSI may collect, how it must protect data, and how it must publish. The SAF does not describe legislation, because it differs per country. It does describe where legislation enters the architecture.</p>
+<p>Legislation enters the architecture through the motivation elements:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>A legal provision that…</th>
+<th>Is recorded as…</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Creates pressure to change</td>
+<td>Driver</td>
+<td>A new regulation that requires access to privately held data for statistics</td>
+</tr>
+<tr class="even">
+<td>Sets a limit on the design</td>
+<td>Constraint</td>
+<td>Statistical microdata may only be processed within the NSI’s controlled environment</td>
+</tr>
+<tr class="odd">
+<td>Imposes an obligation on a solution</td>
+<td>Requirement</td>
+<td>Personal data in a data acquisition process is minimised to what is needed</td>
+</tr>
+<tr class="even">
+<td>Expresses a lasting rule for all decisions</td>
+<td>Principle</td>
+<td>Privacy by design (SAF-P11)</td>
+</tr>
+</tbody>
+</table>
+<p>This approach makes legislation traceable. From a legal provision, the NSI can follow the path to the requirements and constraints it creates, to the solutions that meet them, and to the evidence that shows compliance. In the other direction, every design decision that is driven by law can be traced back to its legal basis.</p>
+<p>Three levels of legislation are relevant for most NSIs:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Level</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>International statistical frameworks</td>
+<td>UN Fundamental Principles of Official Statistics; European Statistics Code of Practice; Regulation (EC) No 223/2009 on European statistics</td>
+</tr>
+<tr class="even">
+<td>Horizontal EU legislation</td>
+<td>GDPR; Data Governance Act; Data Act; AI Act; NIS2 Directive; Interoperable Europe Act (Regulation (EU) 2024/903)</td>
+</tr>
+<tr class="odd">
+<td>National legislation</td>
+<td>National statistics act; archives legislation; national rules on government information security and open government</td>
+</tr>
+</tbody>
+</table>
+<p>For NSIs outside the EU, the horizontal level consists of the corresponding national or regional legislation.</p>
+<p>Compliance is not a separate layer. It is built into the architecture: legal requirements are part of the quality gates of the steady states, of the principles, and of the governance in value stream VS-07 <em>Governance and Compliance</em>. A legal register helps to keep the overview: a list of applicable legal provisions, with the drivers, constraints, requirements and principles they lead to.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: Legal register template to be added to the toolkit</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="conventions-used-in-this-document" class="level3">
+<h3 class="anchored" data-anchor-id="conventions-used-in-this-document">6. Conventions used in this document</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Convention</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-ST, SAF-D, SAF-G, SAF-O, SAF-P, SAF-M, SAF-V</td>
+<td>Identifiers of reference elements in the Motivation layer</td>
+</tr>
+<tr class="even">
+<td>1.2.1, 2.1.2, …</td>
+<td>Capability numbers in the capability model</td>
+</tr>
+<tr class="odd">
+<td>VS-01 to VS-10, VS-01.1, …</td>
+<td>Value streams and their stages</td>
+</tr>
+<tr class="even">
+<td>#0 to #6</td>
+<td>Steady states of data and their boundary positions</td>
+</tr>
+<tr class="odd">
+<td>SAF-A, SAF-C</td>
+<td>Assumptions and constraints of the SAF itself (see <em>Constraints &amp; Assumptions</em>)</td>
+</tr>
+<tr class="even">
+<td><em>Illustrative</em></td>
+<td>Examples that show the form of an element. They are not requirements</td>
+</tr>
+<tr class="odd">
+<td>PLACEHOLDER</td>
+<td>Content that will be added, such as an ArchiMate view or a toolkit reference</td>
+</tr>
+<tr class="even">
+<td>Toolkit</td>
+<td>The SAF toolkit, a separate set of templates and instruments for applying the framework</td>
+</tr>
+</tbody>
+</table>
+<p>Terms are defined in the SAF glossary, which takes precedence over definitions in this document (SAF-A4). The SAF uses British English spelling.</p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
