@@ -10,7 +10,8 @@ Current version: 0.3
 |---|---|---|
 | 0.1 | 2026-10-12 | Structure proposal: concept, identifiers, entry routes, instrument list for Motivation and Strategy, one worked instrument (SAF-TK-M03) |
 | 0.2 | 2026-10-12 | Reading guide parts on entry points and the architecture function moved from the framework into *Getting started* and SAF-TK-G01; Adoption register (SAF-TK-G02) confirmed; fixed format for toolkit references in the framework |
-| 0.3 | 2026-10-12 | SAF-TK-G01 refers to capability 4.1.7 Architecture management; references to the reading guide use section titles instead of part numbers |
+| 0.3 | 2026-10-12 | SAF-TK-G01 refers to capability 4.1.7 Architecture management;  |
+
 
 ## Content
 
@@ -100,7 +101,7 @@ Review follows the same process as the SAF framework content.
 
 The toolkit builds on existing instruments wherever possible (see *Annex B*). It refers to TOGAF and ArchiMate but does not reproduce their content (SAF-C1).
 
-# 2. Getting started {#getting-started}
+# 2. Getting started
 
 There is no single starting point for the SAF. The right entry depends on what the NSI wants to achieve and how mature its architecture practice is. This chapter helps an NSI choose an entry, check whether it has the minimal architecture function in place, and follow the route that belongs to its entry.
 
