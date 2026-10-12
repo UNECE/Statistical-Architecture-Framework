@@ -1,22 +1,10 @@
----
-titel: SAF Toolkit, structuurvoorstel v0.3 (Motivation en Strategy)
-type: deliverable
-domein: internationaal
-status: actief
-taal: en
-datum: 2026-10-12
-bron: v0.2 plus besluiten Daan 2026-10-12 (Architecture management als capability 4.1.7; leeswijzer hernummerd, toolkit verwijst op sectietitel)
-tags: [saf, toolkit, motivation, strategy, templates, unece, hlg-mos]
-gerelateerd: ["[[2026-10-12_internationaal_saf-toolkit-structure_v02]]", "[[2026-10-11_internationaal_saf-framework-master_v03]]", "[[2026-10-10_internationaal_saf-capability-valuestage-mapping_v01]]", "[[_MOC]]"]
----
-
 SAF Toolkit
 ============
 
 Created on: 2026-10-12
 Workgroup SAF: Trygve Falch (Statistics Norway, SSB), Jakob Engdahl (Statistics Sweden, SCB), Cedric Couralet (Statistics France, Insee), Pascal Fransen (Statistics Netherlands, CBS) and Daan Swinkels (Statistics Netherlands, CBS)
 
-Current version: 0.3 (structure proposal for core team review)
+Current version: 0.3
 
 | Version | Date | Change |
 |---|---|---|
@@ -42,7 +30,7 @@ Current version: 0.3 (structure proposal for core team review)
 
 [Annex B. Sources and reuse](#annex-b-sources-and-reuse)
 
-# 1. About the toolkit {#about-the-toolkit}
+# 1. About the toolkit
 
 ## Purpose
 
@@ -110,7 +98,7 @@ Review follows the same process as the SAF framework content.
 
 ## Reuse and licence
 
-The toolkit builds on existing instruments wherever possible (see *Annex B*). It refers to TOGAF and ArchiMate but does not reproduce their content (SAF-C1). **[K1]**
+The toolkit builds on existing instruments wherever possible (see *Annex B*). It refers to TOGAF and ArchiMate but does not reproduce their content (SAF-C1).
 
 # 2. Getting started {#getting-started}
 
@@ -214,7 +202,7 @@ SAF Introduction, *Reading guide*. SAF capability model, 4.1.7 *Architecture man
 | 4 | SAF-TK-M07 Requirements derivation | Project requirements, traced to goals and principles |
 | 5 | SAF-TK-G02 Adoption register | Reusable results recorded for the next project |
 
-Business Architecture instruments will be added to this route in a later version. **[K3]**
+Business Architecture instruments will be added to this route in a later version.
 
 ## SAF-TK-R04 Alignment route
 
@@ -225,7 +213,7 @@ Business Architecture instruments will be added to this route in a later version
 | 3 | SAF-TK-G03 Reference model mapping | SAF aligned with national reference models |
 | 4 | SAF-TK-S02 Capability assessment and heatmap | Gaps against the SAF capability model |
 
-# 3. General instruments {#general-instruments}
+# 3. General instruments
 
 | ID | Instrument | Kind | Supports | Status |
 |---|---|---|---|---|
@@ -240,7 +228,7 @@ Business Architecture instruments will be added to this route in a later version
 
 **SAF-TK-G04 Legal register.** Lists applicable legal provisions and the drivers, constraints, requirements and principles they lead to.
 
-# 4. Motivation instruments {#motivation-instruments}
+# 4. Motivation instruments
 
 | ID | Instrument | Kind | Supports SAF section | Status |
 |---|---|---|---|---|
