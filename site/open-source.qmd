@@ -17,9 +17,9 @@ The framework returns to this point several times, using the same phrase: open s
 ## What the principle says
 
 ::: {.callout-important title="SAF-P01"}
-**Actively participate in open source to maintain collective control over statistical processes.**
+**Actively participate in open-source communities to maintain collective control over statistical processes.**
 
-Build statistical capabilities on shared, open tooling, and contribute back, so that statistical offices keep collective control of critical methods rather than depending on vendors.
+Statistical organisations build statistical capabilities on shared open-source software, contribute to its communities, and release software they develop for statistical production as open source by default. Non-statistical processes use standard applications.
 :::
 
 Note the word *participate*. Using open components is not enough on its own: an office is expected to contribute fixes and methods back to the communities it relies on. A component that every office uses and nobody maintains is a shared dependency, and gives none of them real control.
