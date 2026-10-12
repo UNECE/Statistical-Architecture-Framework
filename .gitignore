@@ -3,3 +3,19 @@ site/_site/
 site/.quarto/
 site/_theme-preview/
 themebuild/
+
+# Generated from docs/SAF Framework.md by site/scripts/split-framework.py
+site/framework/introduction.qmd
+site/framework/motivation.qmd
+site/framework/strategy.qmd
+site/framework/business-architecture.qmd
+site/framework/vs-01.qmd
+site/framework/vs-02.qmd
+site/framework/vs-03.qmd
+site/framework/vs-04.qmd
+site/framework/vs-05.qmd
+site/framework/vs-06.qmd
+site/framework/vs-07.qmd
+site/framework/vs-08.qmd
+site/framework/vs-09.qmd
+site/framework/vs-10.qmd
