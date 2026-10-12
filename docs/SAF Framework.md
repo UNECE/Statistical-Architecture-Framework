@@ -568,7 +568,7 @@ The SAF goals are shared by the UNECE statistical community. An NSI relates them
 |---|---|---|
 | Drivers (SAF-D) | Drivers motivate goals | Resource constraints (SAF-D5) motivate cost efficiency (SAF-G1) |
 | Outcomes (SAF-O) | Outcomes make goals measurable | Increased efficiency (SAF-O5) shows progress on cost efficiency (SAF-G1) |
-| Principles (SAF-P) | Principles guide how goals are pursued | Reuse before buying (SAF-P01) guides how cost efficiency is achieved |
+| Principles (SAF-P) | Principles guide how goals are pursued | Open-source participation (SAF-P01) guides how cost efficiency is achieved |
 | Stakeholders (SAF-ST) | Stakeholders own goals | CIOs and CTOs (SAF-ST01) own modernisation (SAF-G3) |
 | Capabilities (Strategy) | Capabilities are developed to realise goals | Methodology (capability 2.2.3) supports data innovation (SAF-G4) |
 | Value streams (Strategy) | Value streams show where a goal changes the production chain | Sustainable compliance (SAF-G5) is put into practice in VS-07 |
@@ -750,7 +750,7 @@ An NSI takes the SAF principles into its own principle set, adapts the wording t
 
 | ID | Principle | Statement |
 |---|---|---|
-| **SAF-P01** | Reuse before open source, open source before buying, buying before building | When options are equally suitable, reuse comes before open source, open source before purchase, and purchase before own development. |
+| **SAF-P01** | Actively participate in open-source communities to maintain collective control over statistical processes | Statistical organisations build statistical capabilities on shared open-source software, contribute to its communities, and release software they develop for statistical production as open source by default. Non-statistical processes use standard applications. |
 | **SAF-P02** | Active support | Systems have an active user community or vendor support. As a rule of thumb, the latest or second-to-last major version is used. |
 | **SAF-P03** | Active life cycle management | Systems and components are kept up to date according to an agreed life cycle management policy. |
 | **SAF-P04** | Maximise the benefits for the organisation | IT decisions maximise the benefit for the organisation as a whole. |
@@ -764,11 +764,11 @@ An NSI takes the SAF principles into its own principle set, adapts the wording t
 
 ### Principle details
 
-**SAF-P01 Reuse before open source, open source before buying, buying before building**
+**SAF-P01 Actively participate in open-source communities to maintain collective control over statistical processes**
 
-- *Statement.* When options are equally suitable according to the business case, reuse of (parts of) existing applications comes first. Open-source software comes before purchase, and purchase comes before own development. Non-statistical processes use standard applications only.
-- *Rationale.* Reuse is sustainable and cost-efficient, and it leads to standardisation of services and information provision. Open source increases transparency and avoids vendor lock-in.
-- *Implications.* Each solution choice records the options considered, in this order. Own development requires explicit justification. Reusable components must be easy to find, for example in a shared catalogue.
+- *Statement.* Statistical organisations build statistical capabilities on shared open-source software, contribute to its communities, and release software they develop for statistical production as open source by default. Non-statistical processes use standard applications.
+- *Rationale.* Critical statistical methods stay under the collective control of the official-statistics community rather than vendors, and open methods are transparent and reproducible. Sharing costs and contributing, not only consuming, keeps common components alive.
+- *Implications.* Contribution is planned and funded, improvements go back to the community project, and choices follow the order reuse, open source, buy, build, with building justified. Own components are released under an open licence unless security or confidentiality prevents it, and purchased software must support open standards, APIs and data export.
 
 **SAF-P02 Active support**
 
@@ -1015,7 +1015,7 @@ Several parts of the SAF help to identify constraints. *Definition of Scope* sta
 | Drivers (SAF-D) | Some drivers are the origin of constraints | SAF-D3 Trust, scientific rigour and data protection is the origin of data protection constraints |
 | Goals (SAF-G) | Constraints limit how goals can be realised | A ban on public cloud for statistical microdata limits how SAF-G3 Modernisation is realised |
 | Requirements | Constraints bound the solutions that can meet a requirement | A scalability requirement must be met within on-premises infrastructure |
-| Principles (SAF-P) | Principles are applied within the limits that constraints set | SAF-P01 Reuse before buying applies within public procurement rules |
+| Principles (SAF-P) | Principles are applied within the limits that constraints set | SAF-P01's reuse–open source–buy–build order applies within public procurement rules |
 | Stakeholders (SAF-ST) | Stakeholders often own or impose constraints | A privacy officer applies data protection law; a ministry sets the budget |
 
 ### Examples (illustrative)
@@ -1639,7 +1639,7 @@ Choosing a reference model for the data value chain, such as the Steady-State or
 |---|---|---|
 | Goals and outcomes (Motivation) | Courses of action serve goals and contribute to outcomes | A shared-platform strategy serves cost efficiency (SAF-G1) |
 | Drivers and assessments (Motivation) | Assessments show why a course of action is needed | An assessment of SAF-D5 leads to a decision to retire legacy platforms |
-| Principles (Motivation) | Courses of action apply principles | An application strategy applies SAF-P01 *Reuse before open source, open source before buying, buying before building* |
+| Principles (Motivation) | Courses of action apply principles | An application strategy applies SAF-P01 *Actively participate in open-source communities to maintain collective control over statistical processes* |
 | Capability Model | Courses of action are realised by developing capabilities | A metadata strategy develops Metadata management (2.1.2) |
 | Resources | Courses of action configure resources | A workforce strategy develops data engineering skills |
 | Value Streams | Courses of action improve value streams | A web-first collection strategy improves VS-01 |
@@ -3088,7 +3088,7 @@ The SAF defines eleven architecture principles, labeled SAF-P01 to SAF-P11. The 
 
 | Principle | Statement | How to apply across the value chain |
 |---|---|---|
-| **SAF-P01** ★ | Actively participate in open source to maintain collective control over statistical processes | Build statistical capabilities on shared, open tooling; contribute back, so NSIs keep collective control of critical methods rather than depending on vendors. |
+| **SAF-P01** ★ | Actively participate in open-source communities to maintain collective control over statistical processes | Build statistical capabilities on shared, open tooling; contribute back, so NSIs keep collective control of critical methods rather than depending on vendors. |
 | **SAF-P07** ★ | Implement loosely coupled processes and systems | Exchange data only at steady-state interfaces; each stream consumes one state and produces the next without knowing the others' internals. |
 | **SAF-P08** ★ | Data is shared property | Once an artefact is registered at a steady state, make it available to all authorized consumers; avoid duplicating collection, processing, or analysis. |
 | **SAF-P09** ★ | No data without metadata and classification | Every artefact carries provenance (origin), methodology, accuracy, classification, and lineage (the trace back to its inputs) — captured at the point each value is created or changed. |
@@ -3652,7 +3652,7 @@ The following principles directly govern the VS-01.0 business domain:
 
 | Principle | Statement | Application to VS-01.0 |
 |---|---|---|
-| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSIs should contribute to open source communities for collection and ingestion tooling, ensuring collective control over critical capabilities rather than vendor dependence. |
+| **SAF-P01** | Actively participate in open-source communities to maintain collective control over statistical processes | NSIs should contribute to open source communities for collection and ingestion tooling, ensuring collective control over critical capabilities rather than vendor dependence. |
 | **SAF-P07** | Implement loosely coupled processes and systems | The data acquisition domain must be independent from downstream processing. Raw Data (State #1) serves as a decoupling interface — downstream consumers access it without knowledge of how it was collected. |
 | **SAF-P08** | Data is shared property | Raw data, once registered, is available to all authorized consumers. Collection efforts should not be duplicated across statistical products when the same source data can serve multiple purposes. |
 | **SAF-P09** | No data without metadata and classification | At the point of ingestion, every dataset must be enriched with provenance (where it came from and how), source, method, timestamp, quality indicators, and a BIV classification (availability, integrity, confidentiality). This is not a precondition that blocks ingestion, but an obligation the NSI fulfills during acquisition. |
@@ -4614,7 +4614,7 @@ The following principles directly govern the VS-02.0 business domain:
 
 | Principle | Statement | Application to VS-02.0 |
 |---|---|---|
-| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSIs should contribute to open source communities for classification, coding, and mapping tooling (e.g., libraries for SDMX, the statistical data-exchange standard, or coding engines), ensuring collective control over critical standardization capabilities rather than vendor dependence. |
+| **SAF-P01** | Actively participate in open-source communities to maintain collective control over statistical processes | NSIs should contribute to open source communities for classification, coding, and mapping tooling (e.g., libraries for SDMX, the statistical data-exchange standard, or coding engines), ensuring collective control over critical standardization capabilities rather than vendor dependence. |
 | **SAF-P07** | Implement loosely coupled processes and systems | The standardization domain must be independent from upstream acquisition and downstream editing. Standardized Data (State #2) serves as a decoupling interface — downstream consumers access standardized, classified data without knowledge of the original source structure. |
 | **SAF-P08** | Data is shared property | Standardized data, once registered, is available to all authorized consumers. Standardization should not be duplicated across statistical products when the same standardized asset can serve multiple purposes. |
 | **SAF-P09** | No data without metadata and classification | Standardization is where classification is applied as a first-class activity. Every standardized dataset carries source-to-target mappings, classification scheme versions, harmonized definitions, units, and a BIV classification (availability, integrity, confidentiality). The principle does not require raw inputs to *arrive* already classified — it requires that data **handed over from State #2 onward** carries the required metadata and classification. This domain is the principal fulfillment point of that obligation. |
@@ -5563,7 +5563,7 @@ The following principles directly govern the VS-03.0 business domain:
 
 | Principle | Statement | Application to VS-03.0 |
 |---|---|---|
-| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSIs should contribute to open source communities for editing, imputation, and coding tooling (e.g., selective-editing engines, imputation libraries), ensuring collective control over critical methodological capabilities rather than vendor dependence. |
+| **SAF-P01** | Actively participate in open-source communities to maintain collective control over statistical processes | NSIs should contribute to open source communities for editing, imputation, and coding tooling (e.g., selective-editing engines, imputation libraries), ensuring collective control over critical methodological capabilities rather than vendor dependence. |
 | **SAF-P07** | Implement loosely coupled processes and systems | The editing domain must be independent from upstream standardization and downstream estimation. Processed Data (State #3) serves as a decoupling interface — downstream consumers access edited, enriched microdata without knowledge of how it was corrected or imputed. |
 | **SAF-P08** | Data is shared property | Processed data, once versioned, is available to all authorized consumers. Editing and enrichment should not be duplicated across statistical products when the same processed asset can serve multiple purposes. |
 | **SAF-P09** | No data without metadata and classification | Every edit, imputation, and derived variable carries metadata: the rule applied, the original value, the imputation method and flag, the derivation formula, and a classification for derived variables. This is what makes the changes transparent and reproducible. |
@@ -6491,7 +6491,7 @@ The following principles directly govern the VS-04.0 business domain:
 
 | Principle | Statement | Application to VS-04.0 |
 |---|---|---|
-| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSIs should contribute to open source communities for estimation, weighting, and modeling tooling (e.g., calibration and variance-estimation libraries), ensuring collective control over critical methodological capabilities rather than vendor dependence. |
+| **SAF-P01** | Actively participate in open-source communities to maintain collective control over statistical processes | NSIs should contribute to open source communities for estimation, weighting, and modeling tooling (e.g., calibration and variance-estimation libraries), ensuring collective control over critical methodological capabilities rather than vendor dependence. |
 | **SAF-P07** | Implement loosely coupled processes and systems | The estimation domain must be independent from upstream editing and downstream composition. Output Data (State #4) serves as a decoupling interface — downstream consumers access validated statistics without knowledge of the estimation internals. |
 | **SAF-P08** | Data is shared property | Output statistics and output microdata, once validated, are available to all authorized consumers. Estimation should not be duplicated across products when the same validated output can serve multiple purposes. |
 | **SAF-P09** | No data without metadata and classification | Every estimate carries metadata: the methodology and parameters applied, the weights used, accuracy measures (sampling error, confidence interval), the reference population, and a classification for derived statistics. This is what makes results transparent and reproducible. |
@@ -7417,7 +7417,7 @@ The following principles directly govern the VS-05.0 business domain:
 
 | Principle | Statement | Application to VS-05.0 |
 |---|---|---|
-| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSIs should contribute to open source communities for composition, indicator-construction, and reporting/visualization tooling, ensuring collective control over critical product capabilities rather than vendor dependence. |
+| **SAF-P01** | Actively participate in open-source communities to maintain collective control over statistical processes | NSIs should contribute to open source communities for composition, indicator-construction, and reporting/visualization tooling, ensuring collective control over critical product capabilities rather than vendor dependence. |
 | **SAF-P07** | Implement loosely coupled processes and systems | The composition domain must be independent from upstream estimation and downstream dissemination. The approved statistical product serves as a decoupling interface — dissemination accesses it without knowledge of how it was composed. |
 | **SAF-P08** | Data is shared property | Approved statistical products and their components, once registered, are available to all authorized consumers. Composition should reuse existing validated outputs rather than duplicate analysis. |
 | **SAF-P09** | No data without metadata and classification | Every composite product carries metadata: its component outputs and their accuracy, the composition/indicator methodology, coherence-check results, classification, and the approval record. This is what makes products interpretable and trustworthy. |
@@ -8346,7 +8346,7 @@ The following principles directly govern the VS-06.0 business domain:
 
 | Principle | Statement | Application to VS-06.0 |
 |---|---|---|
-| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | NSIs should contribute to open source communities for dissemination platforms, APIs, and visualization tooling, ensuring collective control over critical delivery capabilities rather than vendor dependence. |
+| **SAF-P01** | Actively participate in open-source communities to maintain collective control over statistical processes | NSIs should contribute to open source communities for dissemination platforms, APIs, and visualization tooling, ensuring collective control over critical delivery capabilities rather than vendor dependence. |
 | **SAF-P07** | Implement loosely coupled processes and systems | The dissemination domain consumes approved products through the State #4 interface without knowledge of how they were composed, and exposes released data through stable, versioned access services. |
 | **SAF-P08** | Data is shared property | Released data is made broadly and equally available to all authorized users through open and standard channels, maximising reuse while respecting confidentiality. |
 | **SAF-P09** | No data without metadata and classification | Every released product carries the metadata, methodology notes, and documentation users need to interpret it correctly; released datasets are accompanied by structural and reference metadata (e.g., SDMX). |
@@ -9355,7 +9355,7 @@ Where the primary streams map to **GSBPM** production phases, VS-08 maps to **GA
 
 | Principle | Statement | How VS-08 applies it |
 |---|---|---|
-| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | Innovate on and contribute to shared, open methods and tools rather than vendor black boxes |
+| **SAF-P01** | Actively participate in open-source communities to maintain collective control over statistical processes | Innovate on and contribute to shared, open methods and tools rather than vendor black boxes |
 | **SAF-P05** | IT and technology is everyone's business | Connect research, methodology, IT, and business users; build broad capability to adopt new methods |
 | **SAF-P03** | Active Life Cycle management | Manage methods and tools across their lifecycle, from PoC to production to retirement |
 | **SAF-P04** | Maximize the benefits for the organization | Prioritize innovations by organization-wide value and scalability, not novelty |
@@ -9537,7 +9537,7 @@ Where the primary streams map to **GSBPM** production phases, VS-09 maps to **GA
 | **SAF-P06** | Business Continuity | Guarantees availability, resilience, and disaster recovery for the whole chain |
 | **SAF-P02** | Active support | Runs platforms as actively-supported, monitored services, not one-off builds |
 | **SAF-P05** | IT and technology is everyone's business | Provides self-service, well-documented platforms so technology serves all teams |
-| **SAF-P01** | Actively participate in open source to maintain collective control over statistical processes | Favours open, shared platform components to retain collective control |
+| **SAF-P01** | Actively participate in open-source communities to maintain collective control over statistical processes | Favours open, shared platform components to retain collective control |
 
 ## Roles and Actors
 
