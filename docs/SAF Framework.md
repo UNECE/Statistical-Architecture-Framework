@@ -267,48 +267,7 @@ Different readers can follow different routes through the document (see *Target 
 | Privacy officer, auditor | Motivation: principles, constraints | Business Architecture: steady states; VS-07 | Where protection and compliance are built into the chain |
 | Policy maker, manager | Introduction, Motivation: goals, value | Strategy: courses of action | What the framework means for the organisation |
 
-### 3. Where to start as an NSI
-
-There is no single starting point. The right entry depends on what the NSI wants to achieve and how mature its architecture practice is. Three entries are common.
-
-**Strategic entry.** The NSI starts with the Motivation layer. It recognises and assesses the SAF drivers, relates the SAF goals to its own strategic plan, and adopts or adapts the principles. It then assesses its capabilities against the SAF capability model and decides on courses of action. This entry suits an NSI that is preparing a new multi-annual strategy or modernisation programme.
-
-**Problem-driven entry.** The NSI starts where it has a concrete problem, for example in data acquisition, metadata or dissemination. It uses the relevant value stream and steady states to analyse the problem, and works back to the capabilities and principles involved. This entry suits an NSI that wants quick, visible results and builds its architecture practice step by step.
-
-**Project entry.** The NSI uses the SAF in one project, for example the design of a new data platform. The project applies the SAF principles and the business architecture as design guidance. The results are then reused in other projects. This entry suits an NSI with a small or new architecture function.
-
-The three entries lead to the same place. Over time, the NSI builds a complete and connected architecture, regardless of where it started.
-
-| Situation of the NSI | Suggested entry | First steps |
-|---|---|---|
-| New strategy or modernisation programme | Strategic | Drivers and assessments; goals; capability assessment |
-| Urgent problem in one part of the chain | Problem-driven | Relevant value stream; steady states; capabilities involved |
-| New or small architecture function | Project | Principles; business architecture for one project |
-| Mature architecture function | Strategic, combined with an alignment check | Map the existing architecture onto the SAF elements |
-
-|**PLACEHOLDER: Getting started with the SAF to be added to the toolkit**|
-|---|
-
-### 4. What an NSI needs to use the SAF
-
-Using the SAF requires an architecture function. That function does not have to be large, but some elements must be in place. TOGAF calls this the *architecture capability*.
-
-| Element | Minimal setup | Mature setup |
-|---|---|---|
-| Roles | One or two architects with a mandate from management | A team of enterprise, domain and solution architects |
-| Governance | Architecture topics on the agenda of an existing management meeting | An architecture board with a clear mandate and a dispensation process |
-| Principles | The SAF principles adopted, with a simple way to record deviations | A maintained principle set, tested in every project review |
-| Repository and tooling | A shared folder with ArchiMate models made in a free tool | A managed architecture repository with versioning and reports |
-| Knowledge | Basic knowledge of TOGAF and ArchiMate | Certified architects and an internal training offer |
-| Involvement of the business | Key decisions discussed with business owners | Business owners for each capability and value stream |
-
-In the SAF capability model, this function is the capability **Architecture management** **[RG1]**: the ability to develop, maintain and govern the enterprise architecture of the NSI, and to use it in decisions on strategy, investment and change. It is closely related to *Policy and planning* (4.1.2) and *Change management* (4.1.3).
-
-> **Note:** *Architecture management* is not yet part of the SAF capability model and the capability map. It will be added in a next version.
-
-An NSI does not need all elements before it starts. A minimal setup is enough for the project entry. The function can then grow with the use of the framework.
-
-### 5. Positioning the SAF in your own architecture
+### 3. Positioning the SAF in your own architecture
 
 TOGAF describes a range of architectures, from generic to specific, called the *Enterprise Continuum* **[RG2]**. It runs from foundation architectures, which apply to any organisation, through common systems and industry architectures, to the architecture of one specific organisation.
 
@@ -328,7 +287,7 @@ The SAF is an industry architecture. It is not the architecture of any single NS
 |**PLACEHOLDER: From SAF reference architecture to NSI enterprise architecture to solution architecture**|
 |---|
 
-### 6. Combining the SAF with other reference models
+### 4. Combining the SAF with other reference models
 
 The SAF rarely stands alone. NSIs also work with statistical standards, with reference models of their own government, and with generic frameworks. These models complement each other, but they can also overlap or conflict.
 
@@ -368,7 +327,7 @@ A deviation from a higher level is a decision for the NSI's architecture governa
 |**PLACEHOLDER: Mapping templates for SAF and national reference models to be added to the toolkit**|
 |---|
 
-### 7. Legislation and regulation
+### 5. Legislation and regulation
 
 Official statistics operate under strict legal frameworks. Legislation shapes what an NSI may collect, how it must protect data, and how it must publish. The SAF does not describe legislation, because it differs per country. It does describe where legislation enters the architecture.
 
@@ -398,7 +357,7 @@ Compliance is not a separate layer. It is built into the architecture: legal req
 |**PLACEHOLDER: Legal register template to be added to the toolkit**|
 |---|
 
-### 8. Conventions used in this document
+### 6. Conventions used in this document
 
 | Convention | Meaning |
 |---|---|
@@ -724,7 +683,7 @@ Outcomes show stakeholders what adopting the framework returns. They connect lon
 
 **How outcomes fit into an NSI's own architecture**
 
-An NSI selects the SAF outcomes that match its goals. It defines indicators and target values for its own context, and monitors them in its planning and control cycle. The indicative measures below are examples. The SAF toolkit will offer them as a starting point for maturity assessments.
+An NSI selects the SAF outcomes that match its goals. It defines indicators and target values for its own context, and monitors them in its planning and control cycle. The indicative measures below are examples. The SAF toolkit will offer them as a starting point in SAF-TK-M05.
 
 **Relationships with other concepts**
 
@@ -1293,6 +1252,7 @@ The SAF capability model has four main levels.
 | 4.1.4 | Improvement management | The ability to manage daily operations, identify areas for improvement and implement improvements based on daily operations. | |
 | 4.1.5 | Accountability | The ability to report to stakeholders inside and outside the organisation on how far obligations and agreements are met. | |
 | 4.1.6 | Collaboration | The ability to maintain and strengthen strategic relationships with external stakeholders. Collaboration covers coordination with other statistical organisations and other external stakeholders. Within a statistical system, this coordination can follow a geographical hierarchy (local, regional, national, multinational) or a division of responsibilities between organisations. It includes identifying new opportunities for data exchange and integration. It also gives the statistical community opportunities to exchange knowledge, improve statistical infrastructure and practice, and influence statistical standards. | GAMSO 1.2, Manage Strategic Collaboration and Cooperation |
+| 4.1.7 | Architecture Management | The ability to develop, maintain and govern the enterprise architecture of the NSI, and to use it in decisions on strategy, investment and change. | |
 
 |**PLACEHOLDER: Capability Model Template and the application of Capabilities to be added to the toolkit**|
 |---|
