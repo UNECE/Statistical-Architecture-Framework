@@ -2839,30 +2839,134 @@ One delivery can serve several statistical products. The register-based census a
 - Keeping only a converted copy and discarding the original. The proof of authentic custody is lost.
 - Registering a delivery without its agreement reference. The legal basis can no longer be demonstrated in an audit.
 
-### State #2: Standardized Data
+## State #2: Standardized Data
 
-**Business Domain Links:** Standardization without loss of content
+### 1. Definition and value added
 
-**Description:** Standardized data has been transformed, formatted, and structured according to defined standards. This is the first point at which interoperability between domains is enabled through common classifications and standardized formats.
+Standardized data is raw data that has been brought into the common structure, format, and classifications of the NSI. Its values are unchanged. Only the representation changes: fields are renamed and restructured, types are cast, source codes are mapped one-to-one to standard codes, and descriptive metadata is attached. Direct identifiers are removed or replaced with pseudonymous keys. #2 is therefore the first state in which data from different sources can be compared and combined, and the first state without direct identifiers.
 
-**Quality Requirements:**
-- Format and structure standardized (e.g., converted from CSV to XML)
-- Common classifications and code lists applied (e.g., geocoding, economic activity classifications)
-- Variables mapped to enterprise standards
-- Reference periods harmonized
-- Confidentiality measures applied (e.g., pseudonymisation, data minimization)
-- Data must not contain personally identifiable information
+The value of #2 is **comparability without loss of content**. Data that looked different at the source now uses the same structure, the same codes, and documented definitions, units, and reference periods. Because no value has changed, the trace back to the authentic delivery in #1 stays simple and deterministic. Every interpretation, correction, or conversion is left to #3, where it is documented as an edit.
 
-**Usage:** Standardized data based on the received raw data, enabling data integration and interoperability across the organization.
+#2 is an optional state. A product can go directly from #1 to #3, for example when a source already arrives in the NSI's standard structure and coding. In that case the NSI records in the catalog that #2 was skipped, and why (see *Applying the steady states pragmatically*). **[SS1]**
 
-**Key Processing Activities:**
-- Application of reference data and master data
-- Restructuring and reformatting to NSI's standard storage format
-- Recoding of variables to align with enterprise standards
-- Pseudonymisation and encryption where required
-- Value sets adapted to organizational standards
+### 2. Producing and consuming domains
 
-**Interoperability Benefit:** This state enables data from different sources to be combined and used across multiple statistical products, reducing duplication and increasing efficiency.
+| Role | Domain | Note |
+|---|---|---|
+| Producer | Standardization without loss of content (VS-02) | Functions: Transform Data, Anonymize Data, Classify Data |
+| Primary consumer | Editing (VS-03) | Triggered by the *Standardized Data Registered* event |
+| Secondary consumer | Other statistical products | Reuse of the same standardized source under SAF-P08, with authorization |
+| Occasional consumer | Innovation and Methodology (VS-08) | Exploration of sources and methods, under specific authorization |
+| Assurance | Governance and Compliance (VS-07) | Audit of mapping lineage and pseudonymization |
+
+### 3. Quality gate
+
+The gate for #2 checks conformance and preservation. It does not assess whether values are correct; that is the concern of #3. A value that cannot be mapped is not an error of standardization. It is a fact about the source, so it is flagged and handed to VS-03.
+
+| Criterion | Check | Typical outcome on failure |
+|---|---|---|
+| Structural conformance | Fields, types, formats, and cardinalities match the target data model | Reject; re-map |
+| Classification conformance | Every mapped code exists in the stated classification version; no orphan codes | Reject; correct the correspondence table |
+| Mapping coverage | Share of source codes mapped one-to-one is above the agreed threshold | Conditionally accept with flag; unmapped values listed for VS-03 |
+| Semantic metadata | Unit, currency, reference-period basis, and definition recorded for every variable | Hold until complete |
+| No loss of content | Record counts and key measures identical to the #1 version; no value changed | Reject |
+| Identifier protection | Direct identifiers removed or pseudonymized according to the privacy design | Reject; escalate to the privacy officer |
+| Referential integrity | Linkage keys exist in the reference register (e.g., the statistical business register) | Conditionally accept with flag |
+| Metadata and lineage | Minimum metadata set captured (see attribute 4); field-level lineage complete | Hold until complete |
+
+Conditional acceptance is the normal outcome for many sources. Unmapped codes and unmatched keys are often caused by known lags, such as newly registered businesses. The flag ensures every downstream user knows exactly which values still need work.
+
+### 4. Data and metadata characteristics
+
+**Data.** Standardized data is stored in the canonical target data model. Standard codes are stored next to the original source values, so the original remains visible. Permitted operations are renaming, restructuring, type casting, reformatting (for example from CSV to a standard exchange format), key alignment, one-to-one code mapping through maintained correspondence tables, removal or pseudonymization of direct identifiers, and dropping variables that are not needed for the statistical purpose. Operations that change values are not permitted at #2: unit or currency conversion, reference-period alignment, reconciliation of differing definitions, derivation, interpretive coding of free text, editing, and imputation. These belong to #3. **[SS2]**
+
+**Minimum metadata set.**
+
+| Metadata element | Description |
+|---|---|
+| Persistent identifier and version | Unique identifier of this standardized version |
+| Source reference | The #1 version or versions this dataset was produced from |
+| Target model version | Version of the canonical data model applied |
+| Mapping ruleset and engine version | Versions of the mapping rules and the tool that applied them |
+| Classifications applied | Scheme and version per coded variable (e.g., NACE Rev. 2, ISCED 2011) |
+| Mapping coverage and unmapped values | Coverage per variable and the list of values routed to VS-03 |
+| Units, currency, and reference-period basis | Recorded per variable as received, not converted |
+| Concept links and definition differences | Link to the canonical concept; recorded differences with other sources |
+| Pseudonymization record | Identifiers removed or pseudonymized, method, key reference (never the key itself) |
+| Conformance assessment | Structural, classification, and semantic results; no-loss-of-content confirmation |
+| Gate outcome | Accepted or conditionally accepted, with quality flags |
+| Classification | Availability, integrity, and confidentiality rating |
+
+In GSIM terms, #2 typically instantiates a *Unit Data Set* that conforms to a *Data Structure*, whose *Represented Variables* take their values from *Statistical Classifications* and *Code Lists*.
+
+### 5. Security, privacy, and access
+
+#2 is the point where direct identifiers leave the working data. **Removal** deletes an identifier and ends the possibility to link on it. **Pseudonymization** replaces it with a key that still allows records to be linked. The privacy design decides per identifier which of the two applies, and the choice is recorded in the pseudonymization record.
+
+Pseudonymization keys are managed by the data custodian, separately from the data and under separate access rights. Staff who work on #2 and later states never have access to the keys. Some NSIs pseudonymize at intake, or receive data already pseudonymized by a trusted third party. In that case #2 confirms and records the protection that is already in place.
+
+Standardized data is still detailed microdata. Indirect identifiers, such as date of birth, place of residence, or occupation, remain, and combinations of them can identify a person or business. The confidentiality rating of #2 therefore stays high. Access is limited to the roles that standardize and edit the data, and to authorized reusers with a stated purpose. The formal assessment of disclosure risk starts at #3. **[SS3]**
+
+### 6. Ownership and governance
+
+| Role | Responsibility for #2 |
+|---|---|
+| Data owner | Process owner of Standardization; accountable for conformance and for applying the privacy design |
+| Data steward | Registers versions, maintains catalog entries, and resolves gate exceptions |
+| Data custodian | Operates storage, access control, and retention; manages pseudonymization keys separately from the data |
+| Classification steward | Maintains the correspondence tables and the classification versions used in mapping |
+| Metadata and data architect | Owns the target data model and the links to canonical concepts |
+
+### 7. Versioning, retention, and lineage
+
+Every standardization run produces a new immutable version. A new version also arises when the input stays the same but the rules change: a new correspondence table, a new classification version, or a revised target model. The earlier version is never overwritten, because #3 versions may already be built on it. Each #2 version records the exact #1 version and rule versions it was produced from.
+
+Standardization is deterministic, so a #2 version can be regenerated from its #1 version and the recorded rule versions. Many NSIs therefore keep #2 only as long as the dependent #3 versions are produced and reviewed. This only works while #1 and the rule versions are themselves retained. If #1 is disposed of earlier, #2 must be kept for as long as reproducibility requires. The exact periods are set by national law and NSI policy.
+
+Lineage at #2 is field-level. Each standardized value can be traced to the raw value it came from and to the mapping rule that was applied. The pseudonymization record shows which identifiers were replaced, without revealing the keys.
+
+### 8. Reuse and handover
+
+Registration of #2 publishes the *Standardized Data Registered* event and a catalog entry. Consumers discover the version through the catalog and access it through the handover interface, never through the standardization working environment.
+
+One standardized source can serve many statistical products. A population register delivery is standardized once and is then used by the census, labour market statistics, and income statistics. Under SAF-P08, products reuse the registered version instead of standardizing the same source again. Repeating the work per product wastes effort and leads to inconsistent coding of the same source.
+
+The list of unmapped values and the recorded units and periods travel with the handover. VS-03 then knows exactly which interpretive coding and conversions remain to be done.
+
+| Handover element | Content |
+|---|---|
+| Artifact | Registered Standardized Data version |
+| Required metadata | Minimum metadata set (attribute 4), including unmapped values and recorded units and periods |
+| Trigger event | *Standardized Data Registered* |
+| Responsibility transfer | VS-02 keeps custody; the consumer takes responsibility for editing, interpretive coding, and conversion on receipt of the event |
+
+### 9. Traceability to the framework
+
+| Framework element | References |
+|---|---|
+| Capabilities | 1.3.1 Data standardization, 2.1.1 Data lifecycle management, 2.1.2 Metadata management, 2.1.4 Statistical register management, 3.3.1 Privacy management, 3.3.4 Logical identity and access control |
+| Value-stream stages | VS-02.1 Profile and Assess Data Structure; VS-02.2 Apply Standard Classifications and Formats; VS-02.3 Align Metadata and Semantics; VS-02.4 Validate Structural and Semantic Conformance; VS-02.5 Register Standardized Artifacts |
+| SAF processes **[SS4]** | PRD-5.2 Classify and code (deterministic mapping only), PRD-5.3 Review and validate (structural checks only), DLM-2 Promote data through a quality gate, DLM-3 Register and catalog data, DLM-4 Classify and protect data, DLM-9 Manage reference and master data |
+| GSBPM | 5.1 Integrate data (key alignment only; record linkage takes place in #3), 5.2 Classify and code |
+| Principles | SAF-P07, SAF-P08, SAF-P09, SAF-P10, SAF-P11 |
+| Medallion layer **[SS4]** | Silver, lower sub-layer; in a Medallion arrangement often merged with #3 |
+
+### 10. Examples and anti-patterns
+
+**Examples**
+
+- *Survey.* Labour Force Survey returns are restructured into the canonical person and household model. Source education codes are mapped one-to-one to ISCED 2011, and region codes to NUTS-3. The 42,000 free-text occupation answers are not coded here; they are listed as unmapped and handed to VS-03. The personal identifier is replaced with a pseudonymous key.
+- *Administrative register.* The tax authority's internal activity codes are mapped to NACE Rev. 2 through a maintained correspondence table; 0.6% of codes have no correspondence and are flagged. Turnover stays in thousands of euro on a fiscal-year basis, and this basis is recorded as metadata. Conversion to units on a calendar-year basis takes place in #3.
+- *Web data.* Scraped price records are reshaped into the canonical price record. Currency, unit, and scrape timestamp are recorded as metadata, and prices are kept exactly as received. Most products only have a free-text name and are passed to VS-03 for classification to COICOP.
+
+**Anti-patterns**
+
+- Converting currencies or units at #2 "because the data is open anyway". The value changes without an edit record.
+- Coding free text with a classifier at #2. Interpretive coding needs review and logging, which happens in #3.
+- Silently dropping records with unknown codes. This breaks the no-loss-of-content guarantee.
+- Overwriting a #2 version after a correspondence table update. Statistics built on the earlier version lose their trace.
+- Storing pseudonymization keys together with the data. The protection of #2 is then only on paper.
+- Skipping #2 without recording the reason. Auditors can no longer see why the state is missing.
 
 ### State #3: Processed Data
 
