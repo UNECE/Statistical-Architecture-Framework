@@ -374,7 +374,19 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#reuse-and-handover" id="toc-reuse-and-handover" class="nav-link" data-scroll-target="#reuse-and-handover">8. Reuse and handover</a></li>
   <li><a href="#traceability-to-the-framework" id="toc-traceability-to-the-framework" class="nav-link" data-scroll-target="#traceability-to-the-framework">9. Traceability to the framework</a></li>
   <li><a href="#examples-and-anti-patterns" id="toc-examples-and-anti-patterns" class="nav-link" data-scroll-target="#examples-and-anti-patterns">10. Examples and anti-patterns</a></li>
-  <li><a href="#state-2-standardized-data" id="toc-state-2-standardized-data" class="nav-link" data-scroll-target="#state-2-standardized-data">State #2: Standardized Data</a></li>
+  </ul></li>
+  <li><a href="#state-2-standardized-data" id="toc-state-2-standardized-data" class="nav-link" data-scroll-target="#state-2-standardized-data">State #2: Standardized Data</a>
+  <ul class="collapse">
+  <li><a href="#definition-and-value-added-1" id="toc-definition-and-value-added-1" class="nav-link" data-scroll-target="#definition-and-value-added-1">1. Definition and value added</a></li>
+  <li><a href="#producing-and-consuming-domains-1" id="toc-producing-and-consuming-domains-1" class="nav-link" data-scroll-target="#producing-and-consuming-domains-1">2. Producing and consuming domains</a></li>
+  <li><a href="#quality-gate-1" id="toc-quality-gate-1" class="nav-link" data-scroll-target="#quality-gate-1">3. Quality gate</a></li>
+  <li><a href="#data-and-metadata-characteristics-1" id="toc-data-and-metadata-characteristics-1" class="nav-link" data-scroll-target="#data-and-metadata-characteristics-1">4. Data and metadata characteristics</a></li>
+  <li><a href="#security-privacy-and-access-1" id="toc-security-privacy-and-access-1" class="nav-link" data-scroll-target="#security-privacy-and-access-1">5. Security, privacy, and access</a></li>
+  <li><a href="#ownership-and-governance-1" id="toc-ownership-and-governance-1" class="nav-link" data-scroll-target="#ownership-and-governance-1">6. Ownership and governance</a></li>
+  <li><a href="#versioning-retention-and-lineage-1" id="toc-versioning-retention-and-lineage-1" class="nav-link" data-scroll-target="#versioning-retention-and-lineage-1">7. Versioning, retention, and lineage</a></li>
+  <li><a href="#reuse-and-handover-1" id="toc-reuse-and-handover-1" class="nav-link" data-scroll-target="#reuse-and-handover-1">8. Reuse and handover</a></li>
+  <li><a href="#traceability-to-the-framework-1" id="toc-traceability-to-the-framework-1" class="nav-link" data-scroll-target="#traceability-to-the-framework-1">9. Traceability to the framework</a></li>
+  <li><a href="#examples-and-anti-patterns-1" id="toc-examples-and-anti-patterns-1" class="nav-link" data-scroll-target="#examples-and-anti-patterns-1">10. Examples and anti-patterns</a></li>
   <li><a href="#state-3-processed-data" id="toc-state-3-processed-data" class="nav-link" data-scroll-target="#state-3-processed-data">State #3: Processed Data</a></li>
   <li><a href="#state-4-output-data-statistics" id="toc-state-4-output-data-statistics" class="nav-link" data-scroll-target="#state-4-output-data-statistics">State #4: Output Data (Statistics)</a></li>
   <li><a href="#state-5-published-output-data-released-data" id="toc-state-5-published-output-data-released-data" class="nav-link" data-scroll-target="#state-5-published-output-data-released-data">State #5: Published Output Data (Released Data)</a></li>
@@ -4793,14 +4805,331 @@ ul.task-list li input[type="checkbox"] {
 <li>Registering a delivery without its agreement reference. The legal basis can no longer be demonstrated in an audit.</li>
 </ul>
 </section>
-<section id="state-2-standardized-data" class="level3">
-<h3 class="anchored" data-anchor-id="state-2-standardized-data">State #2: Standardized Data</h3>
-<p><strong>Business Domain Links:</strong> Standardization without loss of content</p>
-<p><strong>Description:</strong> Standardized data has been transformed, formatted, and structured according to defined standards. This is the first point at which interoperability between domains is enabled through common classifications and standardized formats.</p>
-<p><strong>Quality Requirements:</strong> - Format and structure standardized (e.g., converted from CSV to XML) - Common classifications and code lists applied (e.g., geocoding, economic activity classifications) - Variables mapped to enterprise standards - Reference periods harmonized - Confidentiality measures applied (e.g., pseudonymisation, data minimization) - Data must not contain personally identifiable information</p>
-<p><strong>Usage:</strong> Standardized data based on the received raw data, enabling data integration and interoperability across the organization.</p>
-<p><strong>Key Processing Activities:</strong> - Application of reference data and master data - Restructuring and reformatting to NSI’s standard storage format - Recoding of variables to align with enterprise standards - Pseudonymisation and encryption where required - Value sets adapted to organizational standards</p>
-<p><strong>Interoperability Benefit:</strong> This state enables data from different sources to be combined and used across multiple statistical products, reducing duplication and increasing efficiency.</p>
+</section>
+<section id="state-2-standardized-data" class="level2">
+<h2 class="anchored" data-anchor-id="state-2-standardized-data">State #2: Standardized Data</h2>
+<section id="definition-and-value-added-1" class="level3">
+<h3 class="anchored" data-anchor-id="definition-and-value-added-1">1. Definition and value added</h3>
+<p>Standardized data is raw data that has been brought into the common structure, format, and classifications of the NSI. Its values are unchanged. Only the representation changes: fields are renamed and restructured, types are cast, source codes are mapped one-to-one to standard codes, and descriptive metadata is attached. Direct identifiers are removed or replaced with pseudonymous keys. #2 is therefore the first state in which data from different sources can be compared and combined, and the first state without direct identifiers.</p>
+<p>The value of #2 is <strong>comparability without loss of content</strong>. Data that looked different at the source now uses the same structure, the same codes, and documented definitions, units, and reference periods. Because no value has changed, the trace back to the authentic delivery in #1 stays simple and deterministic. Every interpretation, correction, or conversion is left to #3, where it is documented as an edit.</p>
+<p>#2 is an optional state. A product can go directly from #1 to #3, for example when a source already arrives in the NSI’s standard structure and coding. In that case the NSI records in the catalog that #2 was skipped, and why (see <em>Applying the steady states pragmatically</em>). <strong>[SS1]</strong></p>
+</section>
+<section id="producing-and-consuming-domains-1" class="level3">
+<h3 class="anchored" data-anchor-id="producing-and-consuming-domains-1">2. Producing and consuming domains</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Domain</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Producer</td>
+<td>Standardization without loss of content (VS-02)</td>
+<td>Functions: Transform Data, Anonymize Data, Classify Data</td>
+</tr>
+<tr class="even">
+<td>Primary consumer</td>
+<td>Editing (VS-03)</td>
+<td>Triggered by the <em>Standardized Data Registered</em> event</td>
+</tr>
+<tr class="odd">
+<td>Secondary consumer</td>
+<td>Other statistical products</td>
+<td>Reuse of the same standardized source under SAF-P08, with authorization</td>
+</tr>
+<tr class="even">
+<td>Occasional consumer</td>
+<td>Innovation and Methodology (VS-08)</td>
+<td>Exploration of sources and methods, under specific authorization</td>
+</tr>
+<tr class="odd">
+<td>Assurance</td>
+<td>Governance and Compliance (VS-07)</td>
+<td>Audit of mapping lineage and pseudonymization</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="quality-gate-1" class="level3">
+<h3 class="anchored" data-anchor-id="quality-gate-1">3. Quality gate</h3>
+<p>The gate for #2 checks conformance and preservation. It does not assess whether values are correct; that is the concern of #3. A value that cannot be mapped is not an error of standardization. It is a fact about the source, so it is flagged and handed to VS-03.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>Check</th>
+<th>Typical outcome on failure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Structural conformance</td>
+<td>Fields, types, formats, and cardinalities match the target data model</td>
+<td>Reject; re-map</td>
+</tr>
+<tr class="even">
+<td>Classification conformance</td>
+<td>Every mapped code exists in the stated classification version; no orphan codes</td>
+<td>Reject; correct the correspondence table</td>
+</tr>
+<tr class="odd">
+<td>Mapping coverage</td>
+<td>Share of source codes mapped one-to-one is above the agreed threshold</td>
+<td>Conditionally accept with flag; unmapped values listed for VS-03</td>
+</tr>
+<tr class="even">
+<td>Semantic metadata</td>
+<td>Unit, currency, reference-period basis, and definition recorded for every variable</td>
+<td>Hold until complete</td>
+</tr>
+<tr class="odd">
+<td>No loss of content</td>
+<td>Record counts and key measures identical to the #1 version; no value changed</td>
+<td>Reject</td>
+</tr>
+<tr class="even">
+<td>Identifier protection</td>
+<td>Direct identifiers removed or pseudonymized according to the privacy design</td>
+<td>Reject; escalate to the privacy officer</td>
+</tr>
+<tr class="odd">
+<td>Referential integrity</td>
+<td>Linkage keys exist in the reference register (e.g., the statistical business register)</td>
+<td>Conditionally accept with flag</td>
+</tr>
+<tr class="even">
+<td>Metadata and lineage</td>
+<td>Minimum metadata set captured (see attribute 4); field-level lineage complete</td>
+<td>Hold until complete</td>
+</tr>
+</tbody>
+</table>
+<p>Conditional acceptance is the normal outcome for many sources. Unmapped codes and unmatched keys are often caused by known lags, such as newly registered businesses. The flag ensures every downstream user knows exactly which values still need work.</p>
+</section>
+<section id="data-and-metadata-characteristics-1" class="level3">
+<h3 class="anchored" data-anchor-id="data-and-metadata-characteristics-1">4. Data and metadata characteristics</h3>
+<p><strong>Data.</strong> Standardized data is stored in the canonical target data model. Standard codes are stored next to the original source values, so the original remains visible. Permitted operations are renaming, restructuring, type casting, reformatting (for example from CSV to a standard exchange format), key alignment, one-to-one code mapping through maintained correspondence tables, removal or pseudonymization of direct identifiers, and dropping variables that are not needed for the statistical purpose. Operations that change values are not permitted at #2: unit or currency conversion, reference-period alignment, reconciliation of differing definitions, derivation, interpretive coding of free text, editing, and imputation. These belong to #3. <strong>[SS2]</strong></p>
+<p><strong>Minimum metadata set.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metadata element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Persistent identifier and version</td>
+<td>Unique identifier of this standardized version</td>
+</tr>
+<tr class="even">
+<td>Source reference</td>
+<td>The #1 version or versions this dataset was produced from</td>
+</tr>
+<tr class="odd">
+<td>Target model version</td>
+<td>Version of the canonical data model applied</td>
+</tr>
+<tr class="even">
+<td>Mapping ruleset and engine version</td>
+<td>Versions of the mapping rules and the tool that applied them</td>
+</tr>
+<tr class="odd">
+<td>Classifications applied</td>
+<td>Scheme and version per coded variable (e.g., NACE Rev.&nbsp;2, ISCED 2011)</td>
+</tr>
+<tr class="even">
+<td>Mapping coverage and unmapped values</td>
+<td>Coverage per variable and the list of values routed to VS-03</td>
+</tr>
+<tr class="odd">
+<td>Units, currency, and reference-period basis</td>
+<td>Recorded per variable as received, not converted</td>
+</tr>
+<tr class="even">
+<td>Concept links and definition differences</td>
+<td>Link to the canonical concept; recorded differences with other sources</td>
+</tr>
+<tr class="odd">
+<td>Pseudonymization record</td>
+<td>Identifiers removed or pseudonymized, method, key reference (never the key itself)</td>
+</tr>
+<tr class="even">
+<td>Conformance assessment</td>
+<td>Structural, classification, and semantic results; no-loss-of-content confirmation</td>
+</tr>
+<tr class="odd">
+<td>Gate outcome</td>
+<td>Accepted or conditionally accepted, with quality flags</td>
+</tr>
+<tr class="even">
+<td>Classification</td>
+<td>Availability, integrity, and confidentiality rating</td>
+</tr>
+</tbody>
+</table>
+<p>In GSIM terms, #2 typically instantiates a <em>Unit Data Set</em> that conforms to a <em>Data Structure</em>, whose <em>Represented Variables</em> take their values from <em>Statistical Classifications</em> and <em>Code Lists</em>.</p>
+</section>
+<section id="security-privacy-and-access-1" class="level3">
+<h3 class="anchored" data-anchor-id="security-privacy-and-access-1">5. Security, privacy, and access</h3>
+<p>#2 is the point where direct identifiers leave the working data. <strong>Removal</strong> deletes an identifier and ends the possibility to link on it. <strong>Pseudonymization</strong> replaces it with a key that still allows records to be linked. The privacy design decides per identifier which of the two applies, and the choice is recorded in the pseudonymization record.</p>
+<p>Pseudonymization keys are managed by the data custodian, separately from the data and under separate access rights. Staff who work on #2 and later states never have access to the keys. Some NSIs pseudonymize at intake, or receive data already pseudonymized by a trusted third party. In that case #2 confirms and records the protection that is already in place.</p>
+<p>Standardized data is still detailed microdata. Indirect identifiers, such as date of birth, place of residence, or occupation, remain, and combinations of them can identify a person or business. The confidentiality rating of #2 therefore stays high. Access is limited to the roles that standardize and edit the data, and to authorized reusers with a stated purpose. The formal assessment of disclosure risk starts at #3. <strong>[SS3]</strong></p>
+</section>
+<section id="ownership-and-governance-1" class="level3">
+<h3 class="anchored" data-anchor-id="ownership-and-governance-1">6. Ownership and governance</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Responsibility for #2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data owner</td>
+<td>Process owner of Standardization; accountable for conformance and for applying the privacy design</td>
+</tr>
+<tr class="even">
+<td>Data steward</td>
+<td>Registers versions, maintains catalog entries, and resolves gate exceptions</td>
+</tr>
+<tr class="odd">
+<td>Data custodian</td>
+<td>Operates storage, access control, and retention; manages pseudonymization keys separately from the data</td>
+</tr>
+<tr class="even">
+<td>Classification steward</td>
+<td>Maintains the correspondence tables and the classification versions used in mapping</td>
+</tr>
+<tr class="odd">
+<td>Metadata and data architect</td>
+<td>Owns the target data model and the links to canonical concepts</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="versioning-retention-and-lineage-1" class="level3">
+<h3 class="anchored" data-anchor-id="versioning-retention-and-lineage-1">7. Versioning, retention, and lineage</h3>
+<p>Every standardization run produces a new immutable version. A new version also arises when the input stays the same but the rules change: a new correspondence table, a new classification version, or a revised target model. The earlier version is never overwritten, because #3 versions may already be built on it. Each #2 version records the exact #1 version and rule versions it was produced from.</p>
+<p>Standardization is deterministic, so a #2 version can be regenerated from its #1 version and the recorded rule versions. Many NSIs therefore keep #2 only as long as the dependent #3 versions are produced and reviewed. This only works while #1 and the rule versions are themselves retained. If #1 is disposed of earlier, #2 must be kept for as long as reproducibility requires. The exact periods are set by national law and NSI policy.</p>
+<p>Lineage at #2 is field-level. Each standardized value can be traced to the raw value it came from and to the mapping rule that was applied. The pseudonymization record shows which identifiers were replaced, without revealing the keys.</p>
+</section>
+<section id="reuse-and-handover-1" class="level3">
+<h3 class="anchored" data-anchor-id="reuse-and-handover-1">8. Reuse and handover</h3>
+<p>Registration of #2 publishes the <em>Standardized Data Registered</em> event and a catalog entry. Consumers discover the version through the catalog and access it through the handover interface, never through the standardization working environment.</p>
+<p>One standardized source can serve many statistical products. A population register delivery is standardized once and is then used by the census, labour market statistics, and income statistics. Under SAF-P08, products reuse the registered version instead of standardizing the same source again. Repeating the work per product wastes effort and leads to inconsistent coding of the same source.</p>
+<p>The list of unmapped values and the recorded units and periods travel with the handover. VS-03 then knows exactly which interpretive coding and conversions remain to be done.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Handover element</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Artifact</td>
+<td>Registered Standardized Data version</td>
+</tr>
+<tr class="even">
+<td>Required metadata</td>
+<td>Minimum metadata set (attribute 4), including unmapped values and recorded units and periods</td>
+</tr>
+<tr class="odd">
+<td>Trigger event</td>
+<td><em>Standardized Data Registered</em></td>
+</tr>
+<tr class="even">
+<td>Responsibility transfer</td>
+<td>VS-02 keeps custody; the consumer takes responsibility for editing, interpretive coding, and conversion on receipt of the event</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="traceability-to-the-framework-1" class="level3">
+<h3 class="anchored" data-anchor-id="traceability-to-the-framework-1">9. Traceability to the framework</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Framework element</th>
+<th>References</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Capabilities</td>
+<td>1.3.1 Data standardization, 2.1.1 Data lifecycle management, 2.1.2 Metadata management, 2.1.4 Statistical register management, 3.3.1 Privacy management, 3.3.4 Logical identity and access control</td>
+</tr>
+<tr class="even">
+<td>Value-stream stages</td>
+<td>VS-02.1 Profile and Assess Data Structure; VS-02.2 Apply Standard Classifications and Formats; VS-02.3 Align Metadata and Semantics; VS-02.4 Validate Structural and Semantic Conformance; VS-02.5 Register Standardized Artifacts</td>
+</tr>
+<tr class="odd">
+<td>SAF processes <strong>[SS4]</strong></td>
+<td>PRD-5.2 Classify and code (deterministic mapping only), PRD-5.3 Review and validate (structural checks only), DLM-2 Promote data through a quality gate, DLM-3 Register and catalog data, DLM-4 Classify and protect data, DLM-9 Manage reference and master data</td>
+</tr>
+<tr class="even">
+<td>GSBPM</td>
+<td>5.1 Integrate data (key alignment only; record linkage takes place in #3), 5.2 Classify and code</td>
+</tr>
+<tr class="odd">
+<td>Principles</td>
+<td>SAF-P07, SAF-P08, SAF-P09, SAF-P10, SAF-P11</td>
+</tr>
+<tr class="even">
+<td>Medallion layer <strong>[SS4]</strong></td>
+<td>Silver, lower sub-layer; in a Medallion arrangement often merged with #3</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples-and-anti-patterns-1" class="level3">
+<h3 class="anchored" data-anchor-id="examples-and-anti-patterns-1">10. Examples and anti-patterns</h3>
+<p><strong>Examples</strong></p>
+<ul>
+<li><em>Survey.</em> Labour Force Survey returns are restructured into the canonical person and household model. Source education codes are mapped one-to-one to ISCED 2011, and region codes to NUTS-3. The 42,000 free-text occupation answers are not coded here; they are listed as unmapped and handed to VS-03. The personal identifier is replaced with a pseudonymous key.</li>
+<li><em>Administrative register.</em> The tax authority’s internal activity codes are mapped to NACE Rev.&nbsp;2 through a maintained correspondence table; 0.6% of codes have no correspondence and are flagged. Turnover stays in thousands of euro on a fiscal-year basis, and this basis is recorded as metadata. Conversion to units on a calendar-year basis takes place in #3.</li>
+<li><em>Web data.</em> Scraped price records are reshaped into the canonical price record. Currency, unit, and scrape timestamp are recorded as metadata, and prices are kept exactly as received. Most products only have a free-text name and are passed to VS-03 for classification to COICOP.</li>
+</ul>
+<p><strong>Anti-patterns</strong></p>
+<ul>
+<li>Converting currencies or units at #2 “because the data is open anyway”. The value changes without an edit record.</li>
+<li>Coding free text with a classifier at #2. Interpretive coding needs review and logging, which happens in #3.</li>
+<li>Silently dropping records with unknown codes. This breaks the no-loss-of-content guarantee.</li>
+<li>Overwriting a #2 version after a correspondence table update. Statistics built on the earlier version lose their trace.</li>
+<li>Storing pseudonymization keys together with the data. The protection of #2 is then only on paper.</li>
+<li>Skipping #2 without recording the reason. Auditors can no longer see why the state is missing.</li>
+</ul>
 </section>
 <section id="state-3-processed-data" class="level3">
 <h3 class="anchored" data-anchor-id="state-3-processed-data">State #3: Processed Data</h3>
