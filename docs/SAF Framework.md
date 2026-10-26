@@ -2968,93 +2968,430 @@ The list of unmapped values and the recorded units and periods travel with the h
 - Storing pseudonymization keys together with the data. The protection of #2 is then only on paper.
 - Skipping #2 without recording the reason. Auditors can no longer see why the state is missing.
 
-### State #3: Processed Data
+## State #3: Processed Data
 
-**Business domain Links:** Editing, derivation, and non-response correction
+### 1. Definition and value added
 
-**Description:** Processed data has undergone content-related validation, editing, and enrichment. Data accuracy has been improved through validation checks and corrective measures. This data is ready to be integrated with other datasets.
+Processed data is microdata whose content has been checked, corrected, completed, and enriched. Errors, duplicates, outliers, and inconsistencies have been detected and resolved. Missing values have been imputed, free text has been coded, and units, currencies, and reference periods have been converted to a common basis. Records from different sources have been linked, and new variables have been derived. Unlike in #2, values do change here, but every change is documented, attributable, and reversible.
 
-**Quality Requirements:**
-- Completeness and accuracy improved through validation and editing
-- Data integrity checks completed
-- Filtering, editing, or imputation applied as needed
-- Data lineage documented
-- Integration with other datasets completed where applicable
-- New derived variables calculated
+The value of #3 is **reliability and analytical readiness**. Every estimate, model, and publication downstream rests on this microdata. The guarantee is not that values stay the same, but that no value changes without a record of the original value, the rule or decision applied, the reason, the actor, and the time. That record makes it possible to explain, reproduce, or reverse any change.
 
-**Usage:** Processed data for the processed statistical microdata, ready for statistical analysis and production.
+#3 is the only steady state that is mandatory for all statistical production. It is the microdata on which everything downstream is verifiably built. It is also the state that national archival requirements usually apply to: without it, the statistics built on it cannot be re-verified. **[SS5]**
 
-**Key Processing Activities:**
-- Data cleansing and editing (content-related standardization)
-- Integration with other datasets
-- Validity checking and error correction
-- Imputation of missing values
-- Creation of new variables through calculation or derivation
-- Flagging of problematic values
+Processing is primarily driven by the individual statistical domains. Depending on the type of data, it may also be performed by a central unit for efficiency and consistency. Either way, the result is registered as #3 under the same quality gate.
 
-**Domain Responsibility:** While this processing is primarily driven by individual statistical domains, depending on the data type, it may be performed by a central unit for efficiency and consistency.
+### 2. Producing and consuming domains
 
-**Reusability Focus:** Processed data aims to be as reusable as possible for other processes or units, reducing duplication of data and processing effort while increasing transparency.
+| Role | Domain | Note |
+|---|---|---|
+| Producer | Editing, derivation, and non-response correction (VS-03) | Functions: Imputate Data, Integrate Data |
+| Primary consumer | Estimation and Analysis (VS-04) | Triggered by the *Processed Data Registered* event |
+| Secondary consumer | Other statistical products | Reuse of processed microdata under SAF-P08, with authorization |
+| Secondary consumer | Microdata services (VS-06) | Research datasets are prepared from #3 and released as #5 **[SS6]** |
+| Occasional consumer | Innovation and Methodology (VS-08) | Testing of new editing, imputation, or coding methods, under specific authorization |
+| Assurance | Governance and Compliance (VS-07) | Audit of edit lineage, methodology compliance, and disclosure risk |
 
-**Long-term retention:** Processed data is typically the steady state that national archival requirements apply to: it is the microdata that must be preserved long-term, and without it the statistics built on it cannot be re-verified.
+### 3. Quality gate
 
-### State #4: Output Data (Statistics)
+The gate for #3 checks content quality and traceability. It is the first gate that judges whether values are plausible and complete. A dataset may pass with known remaining quality issues, as long as they are measured and documented.
 
-**Business Domain Links:** Estimation and closed-loop + Statistically composed and composite statistical products
+| Criterion | Check | Typical outcome on failure |
+|---|---|---|
+| Rule conformance | No record violates the validation and editing rules after correction | Reject; re-edit |
+| Edit lineage | Every changed value has its original value, rule or decision, reason, actor, and time recorded | Hold until complete |
+| Imputation flags | Every imputed value carries a flag and a method code; no observed value is overwritten | Reject |
+| Coding | Free-text values are coded or explicitly left uncoded with a reason; low-confidence codes are reviewed | Conditionally accept with flag |
+| Conversion and reconciliation | Every unit, currency, or reference-period conversion and every reconciliation has its rule and original value recorded | Hold until complete |
+| Linkage quality | Linkage rate and match quality are measured and within agreed limits | Conditionally accept with flag, or reject |
+| Derived variables | Every derived variable has a formula, inputs, unit, and classification | Hold until complete |
+| Quality improvement | Completeness and accuracy measured against the #2 baseline (or #1 where #2 was skipped) | Conditionally accept with flag |
+| Disclosure risk | Re-identification risk of the enriched and linked data assessed against the privacy design | Reject; reduce detail or restrict access |
+| Reproducibility | The version can be regenerated from its inputs plus the recorded rules and models | Reject |
 
-**Description:** Output data represents statistics that have been aggregated and analyzed, or microdata that has been prepared for specific purposes. Confidentiality measures have been applied to allow potential release.
+Conditional acceptance is common for imputation and linkage. A linkage rate slightly below target may still give the best available data. The flag makes sure estimation in VS-04 takes the issue into account, for example in its variance estimation.
 
-**Quality Requirements:**
-- Data lineage fully documented
-- Aggregation and analysis completed
-- Confidentiality measures applied
-- Statistical estimates calculated
-- Quality indicators produced
-- Internal review completed
+### 4. Data and metadata characteristics
 
-**Usage:** Statistics for basic statistics and integrated macrostatistics. These may be used internally by other statistical processes or prepared for dissemination.
+**Data.** Processed data contains the processed value of every variable. The original value stays recoverable through the edit lineage, and imputed values carry a flag. Permitted operations are error detection, editing and correction, imputation, interpretive coding of free text, conversion of units, currencies, and reference periods, reconciliation of values between sources, record linkage, and derivation of new variables and units. These are the value-changing operations that #2 deliberately left open. Operations that turn microdata into statistics are not permitted at #3: weighting, calibration, estimation, and aggregation belong to #4. **[SS5]**
 
-**Key Characteristics:**
-- Statistics will usually be aggregated data or estimated sizes
-- May contain confidential and detailed data not yet suitable for publication
-- Can be shared internally for use as input data in other statistical processes, especially macro statistics
-- Estimated statistical target quantities produced
-- Different confidentiality thresholds may apply depending on intended use
+**Minimum metadata set.**
 
-**Domain-Driven Production:** The type of outputs and specific processing methods vary significantly by statistical domain and product requirements.
+| Metadata element | Description |
+|---|---|
+| Persistent identifier and version | Unique identifier of this quality version |
+| Source reference | The #2 version or versions (or #1, where #2 was skipped) this dataset was produced from |
+| Rule and model versions | Versions of the editing rules, imputation models, coding service, and derivation specifications applied |
+| Edit lineage | Per changed value: original value, new value, rule or decision, reason code, actor, and time |
+| Imputation record | Per imputed value: flag, method code, and the predictors or donors used |
+| Coding record | Per coded value: source text, assigned code, method, and confidence |
+| Conversion and reconciliation record | Rule, factor or rate, and original value for every conversion or reconciliation |
+| Linkage record | Keys used, matching method, linkage rate, and match quality |
+| Derived variables | Formula, inputs, unit, and classification per derived variable |
+| Quality assessment | Edit rate, imputation rate, coding completion, and improvement against the baseline |
+| Disclosure-risk assessment | Outcome of the re-identification risk assessment and the resulting access conditions |
+| Gate outcome | Accepted or conditionally accepted, with quality flags |
+| Classification | Availability, integrity, and confidentiality rating |
 
-### State #5: Published Output Data (Released Data)
+In GSIM terms, #3 typically instantiates a *Unit Data Set*, extended with derived *Represented Variables*. The edits are described as *Rules* applied in *Process Steps*, which gives the edit lineage its formal structure.
 
-**Business Process Links:** Disseminate
+### 5. Security, privacy, and access
 
-**Description:** Published output data has been fully vetted, confidentiality requirements have been satisfied, and the data has been released or published for external use.
+Processed data is pseudonymized microdata, but it is richer than #2. Linking sources and deriving variables adds detail, and more detail means a higher risk that a person or business can be recognized. #3 is therefore the point where the disclosure risk of microdata is formally assessed. The outcome sets the conditions for access and reuse.
 
-**Quality Requirements:**
-- Higher confidentiality criteria applied
-- Stronger documentation requirements met
-- Data lineage fully traceable
-- Quality reports completed
-- Release authorization obtained
-- Metadata and documentation suitable for external users
+Linkage uses the pseudonymous keys created at #2. The keys themselves remain with the data custodian, separately from the data. Access to #3 is limited to the roles that edit, estimate, and analyze the data, and to authorized reusers with a stated purpose. External researchers never access #3 directly. Their access runs through the microdata services in VS-06, which prepare a project-specific dataset with its own pseudonyms and release it as #5.
 
-**Usage:** Released data for all data to be disseminated publicly or delivered to authorized external parties.
+The edit audit trail is itself sensitive and must be tamper-evident. It shows who changed which value and why, which is essential evidence in an audit.
 
-**Key Characteristics:**
-- All requirements for confidentiality taken care of
-- May be further processed compared to State #4 for additional confidentiality protection
-- Published by the NSI or delivered to external parties
-- Includes both published statistical values and delivered microdata (de-identified)
-- Strict documentation requirements to support user understanding and data reuse
+### 6. Ownership and governance
 
-**External Consumption:** This is the final state in the value chain where statistical information fulfills the core mission of the NSI—delivering trusted statistics to society.
+| Role | Responsibility for #3 |
+|---|---|
+| Data owner | Process owner of Editing; accountable for the quality version and for the correct application of approved methods |
+| Data steward | Registers quality versions, maintains catalog entries, and resolves gate exceptions |
+| Data custodian | Operates storage, access control, retention, and archival; keeps pseudonymization keys separate from the data |
+| Methodologist | Owns the editing rules, imputation methodology, and derivation specifications |
+| Subject-matter statistician | Adjudicates flagged records and signs off domain-specific corrections |
 
-### State #6: Consumed Data
+### 7. Versioning, retention, and lineage
 
-**Description:** Data that has been used by external parties for their own purposes. This represents data outside the direct control of the NSI.
+Every completed editing cycle produces a new immutable quality version. A new version also arises when a source is redelivered, when a correction comes in, or when a rule or model changes. The earlier version is never overwritten, because estimates may already be built on it. Many NSIs distinguish preliminary and final versions; both are registered as separate quality versions of #3.
 
-**Usage:** - None - Consumed data is data used by external data consumers for their analyses and decision-making.
+#3 is usually the state with the longest retention. It is the microdata that must be preserved to re-verify published statistics, and archival legislation often applies to it. When #3 is archived, its edit lineage, imputation flags, and derived-variable definitions are archived with it. Without that metadata, the archived values cannot be interpreted.
 
-**Key Characteristic:** This state recognizes that once data is published, it enters the public domain and is used in ways that may be beyond the NSI's direct oversight, though the quality and documentation provided in State #5 support appropriate use.
+Lineage at #3 is value-level. Each processed value can be traced back to its original value in #2 or #1, the rule or decision that changed it, and the inputs of any imputation, conversion, or derivation. Linked records keep a reference to the source records they were built from.
+
+### 8. Reuse and handover
+
+Registration of #3 publishes the *Processed Data Registered* event and a catalog entry. Consumers discover the version through the catalog and access it through the handover interface, never through the editing working environment.
+
+Processed microdata is the most valuable reusable asset in the chain. An integrated person-level dataset, edited and enriched once, can serve many statistics on labor, income, education, and health. Under SAF-P08, products reuse the registered quality version rather than editing the same data again. Editing the same data twice leads to different corrections of the same record, and therefore to statistics that do not agree.
+
+The imputation flags travel with the handover. VS-04 needs them to reflect the extra uncertainty of imputed values in its accuracy measures.
+
+| Handover element | Content |
+|---|---|
+| Artifact | Registered Processed Data quality version |
+| Required metadata | Minimum metadata set (attribute 4), including edit lineage, imputation flags, and derived-variable definitions |
+| Trigger event | *Processed Data Registered* |
+| Responsibility transfer | VS-03 keeps custody; the consumer takes responsibility for weighting, estimation, and analysis on receipt of the event |
+
+### 9. Traceability to the framework
+
+| Framework element | References |
+|---|---|
+| Capabilities | 1.3.2 Deriving variables and units, 1.3.3 Check content, 1.3.4 Adjusting and imputing, 2.1.1 Data lifecycle management, 2.1.2 Metadata management, 2.1.3 Statistical quality management, 2.1.4 Statistical register management |
+| Value-stream stages | VS-03.1 Conduct Error Detection and Quality Diagnostics; VS-03.2 Perform Data Editing and Correction; VS-03.3 Impute Missing or Non-Response Data; VS-03.4 Derive Additional Variables and Indicators; VS-03.5 Perform Quality Evaluation and Versioning |
+| SAF processes | PRD-5.1 Integrate data, PRD-5.2 Classify and code (interpretive coding), PRD-5.3 Review and validate, PRD-5.4 Edit and impute, PRD-5.5 Derive new variables and units, PRD-5.8 Finalize data files, DLM-2, DLM-3, DLM-7 Revise data, DLM-10 Archive and preserve data |
+| GSBPM | 5.1 Integrate data, 5.2 Classify and code, 5.3 Review and validate, 5.4 Edit and impute, 5.5 Derive new variables and units, 5.8 Finalize data files |
+| Principles | SAF-P07, SAF-P08, SAF-P09, SAF-P10, SAF-P11 |
+| Medallion layer | Silver; the main reusable microdata layer |
+
+### 10. Examples and anti-patterns
+
+**Examples**
+
+- *Survey.* The 42,000 free-text occupation answers handed over from #2 are coded to ISCO-08: 88% automatically, the rest computer-assisted or by experts. Item non-response on income (9%) is imputed by regression and flagged. Each coded and imputed value carries its method, so it can be reviewed or revised later.
+- *Administrative register.* Turnover, received in thousands of euro on a fiscal-year basis, is converted to units on a calendar-year basis. The conversion factor and the original value are stored in the lineage. The tax data is then linked to the business survey on the statistical business register key, and a reconciliation rule resolves values where the two sources disagree.
+- *Web data.* Products with only a free-text name are classified to COICOP with a machine-learning classifier; low-confidence cases are reviewed. Prices are converted to euro and standard units. Missing daily prices are filled by carry-forward and flagged with a staleness indicator.
+
+**Anti-patterns**
+
+- Overwriting the original value with the corrected one. The edit can no longer be explained or reversed.
+- Imputing without a flag. Estimation then treats imputed values as observed and understates uncertainty.
+- Correcting every outlier by hand. Over-editing costs effort, changes little in the results, and can introduce bias.
+- Calculating weights or aggregates at #3. That work belongs to #4, where its method and accuracy are documented.
+- Fixing values in a spreadsheet outside the editing pipeline. The change has no lineage and cannot be reproduced.
+- Linking an extra source without reassessing disclosure risk. The richer dataset may identify people that #2 did not.
+- Disposing of #3 once figures are published. The published statistics can then no longer be verified.
+
+## State #4: Statistics
+
+### 1. Definition and value added
+
+Statistics are the results produced from processed microdata: estimates, aggregates, indices, time series, and model outputs. Each result carries the method that produced it and a measure of its accuracy, such as a standard error or confidence interval. State #4 can also hold output microdata with weights, prepared for a specific internal purpose. Initial disclosure control has been applied, so the results can potentially be released. They are not yet released: #4 may still contain detail that is confidential or not suitable for publication.
+
+The value of #4 is **statistical credibility and coherence**. Data has become information about a population, and that information is accurate, transparent, and consistent with related statistics. Any figure in #4 can be regenerated from #3 and defended, because its method, parameters, weights, and accuracy are recorded.
+
+#4 is produced by two domains and therefore has **two gate moments**. **[SS7]**
+
+| Gate moment | Produced by | Status of the version | What it confirms |
+|---|---|---|---|
+| Analytical gate | Estimation and closed-loop (VS-04) | *Analytical* | Results are methodologically sound, accurate, coherent, and initially disclosure-controlled |
+| Approval gate | Statistically composed and composite products (VS-05) | *Approved* | Results are composed into a coherent product, explained, checked against dissemination and confidentiality standards, and signed off |
+
+Both are versions of the same state. Approval does not change an analytical version; it creates a new, immutable version with the status *approved* that refers to the analytical versions it was composed from. #4 is mandatory for all statistical production.
+
+### 2. Producing and consuming domains
+
+| Role | Domain | Note |
+|---|---|---|
+| Producer (analytical) | Estimation and closed-loop (VS-04) | Functions: Estimate Data, Aggregate Data |
+| Producer (approved) | Statistically composed and composite products (VS-05) | Function: Compose Data |
+| Primary consumer (analytical) | Product composition (VS-05) | Triggered by the *Output Data Registered* event |
+| Primary consumer (approved) | Dissemination (VS-06) | Triggered by the *Statistical Product Registered* event |
+| Secondary consumer | Other statistical processes | Internal input for macro statistics and integration systems, such as the national accounts |
+| Assurance | Governance and Compliance (VS-07) | Audit of methodology, reproducibility, and approval |
+
+### 3. Quality gate
+
+The two gate moments check different things. The analytical gate tests the statistics; the approval gate tests the product.
+
+**Analytical gate (VS-04)**
+
+| Criterion | Check | Typical outcome on failure |
+|---|---|---|
+| Approved method | Estimation, weighting, and model methods are approved and documented for this output | Reject; return to design |
+| Weights | Calibration converged; weights within the agreed bounds | Reject; re-weight |
+| Accuracy | Every estimate has an accuracy measure; imputation uncertainty from #3 is reflected | Hold until complete |
+| Model diagnostics | Diagnostics of model-based results are within the agreed limits | Reject, or conditionally accept with flag |
+| Soundness and coherence | Results are plausible and coherent with prior periods and related statistics; large movements are explained | Conditionally accept with flag, or reject |
+| Initial disclosure control | Disclosure risk assessed and initial protection applied | Reject |
+| Reproducibility | Results regenerate from #3 plus the recorded methodology and parameters | Reject |
+| Metadata | Minimum metadata set captured (see attribute 4) | Hold until complete |
+
+**Approval gate (VS-05)**
+
+| Criterion | Check | Typical outcome on failure |
+|---|---|---|
+| Component selection | The exact analytical versions used are pinned and recorded | Hold until complete |
+| Composition | Composite indicators, indices, and time series follow their documented specifications | Reject; re-compose |
+| Consistency and coherence | Totals reconcile to components; the product is coherent with related and prior products | Return to VS-04, or conditionally accept with explained flag |
+| Interpretive content | Commentary and visualizations are reviewed and consistent with the data and its accuracy | Hold until complete |
+| Dissemination and confidentiality standards | The product meets the standards, including the disclosure risk of combining outputs | Reject |
+| Sign-off | The designated approval authority has approved the product | Hold until approved |
+
+Coherence problems at the approval gate are never solved by adjusting a component estimate in VS-05. If a component is wrong, it goes back to VS-04 and returns as a new analytical version.
+
+### 4. Data and metadata characteristics
+
+**Data.** Statistics in #4 are mostly aggregated data: tables, data cubes, indicators, indices, and time series. They can also include weighted output microdata, prepared for a specific internal use. Permitted operations are weighting and calibration, estimation and aggregation, model-based analysis, seasonal adjustment, initial disclosure control, and, at the approval stage, composition of indicators, indices, and time series from analytical versions. Changing microdata values is not permitted at #4: corrections go back to #3. Final disclosure control for release is not part of #4 either; it belongs to the transition to #5. **[SS8]**
+
+**Minimum metadata set.**
+
+| Metadata element | Description |
+|---|---|
+| Persistent identifier and version | Unique identifier of this version |
+| Status | *Analytical* or *approved* |
+| Source reference | The #3 versions (for analytical versions) or the analytical #4 versions (for approved versions) used |
+| Methodology | Estimation, weighting, and model methods, with their versions and parameters |
+| Weights and calibration totals | Calibration method, auxiliary variables, and the source and version of the totals |
+| Accuracy | Standard error, coefficient of variation, or confidence interval per estimate; whether imputation uncertainty is included |
+| Model diagnostics | Fit and prediction intervals for model-based results |
+| Disclosure control | Method applied and outcome of the risk assessment |
+| Coherence results | Outcome of the coherence checks against related and prior statistics |
+| Composition record | For approved versions: composition method and the component versions used |
+| Interpretive content | For approved versions: reference to commentary, key messages, and visualizations |
+| Approval record | For approved versions: approval authority, date, and confidentiality clearance |
+| Classification | Availability, integrity, and confidentiality rating |
+
+In GSIM terms, aggregated results in #4 typically instantiate a *Dimensional Data Set*, and weighted output microdata a *Unit Data Set*. Both conform to a *Data Structure* that SDMX can use for exchange.
+
+### 5. Security, privacy, and access
+
+Initial disclosure control is applied at the analytical gate, so the results could in principle be released. That does not make #4 public. It may still hold detailed cells, internal breakdowns, or output microdata that are only suitable for internal use. Different confidentiality thresholds can apply depending on the intended use, and the version records which threshold was applied.
+
+Composition creates a specific risk. Two tables that are each safe on their own can together reveal a value through differencing. The approval gate therefore checks the disclosure risk of the product as a whole, not only of its components.
+
+Approved products are usually market-sensitive or politically sensitive before their release. Access to approved versions is restricted to the people who need it to prepare the release. Every pre-release access is logged, so equal access at the moment of release can be demonstrated.
+
+### 6. Ownership and governance
+
+| Role | Responsibility for #4 |
+|---|---|
+| Data owner (analytical) | Process owner of Estimation; accountable for methodological soundness and accuracy |
+| Data owner (approved) | Process owner of Product Composition; accountable for coherence and interpretability of the product |
+| Approval authority | Signs off approved versions against dissemination and confidentiality standards |
+| Data steward | Registers versions, maintains catalog entries, and resolves gate exceptions |
+| Data custodian | Operates storage, access control, retention, and the pre-release access log |
+| Methodologist | Owns estimation, weighting, and model methods |
+| Disclosure control specialist | Owns the disclosure-control rules for internal and potential external use |
+
+### 7. Versioning, retention, and lineage
+
+Every estimation run produces a new immutable analytical version. Every approval produces a new immutable approved version that refers to the analytical versions it was built from. Revisions follow the revision policy: a preliminary figure, a revised figure, and a final figure are three separate versions. Nothing is overwritten, because published figures and other statistics may depend on any of them.
+
+Approved versions that were released are kept for as long as the released figures exist, because they are the direct basis of #5. Analytical versions that never led to a release can be kept for a shorter period, as long as revisions and reproducibility are covered. The exact periods are set by national law and NSI policy.
+
+Lineage at #4 has two steps. An estimate traces back to the #3 version, the method, the parameters, and the weights that produced it. An approved product traces back to the analytical versions it was composed from, and through them to #3.
+
+### 8. Reuse and handover
+
+#4 has two handovers, one for each gate moment. The analytical version goes to VS-05 for composition; the approved version goes to VS-06 for release. Consumers access versions through the catalog and the handover interface, never through the estimation or composition working environment.
+
+Statistics in #4 are also reused internally. Integration systems, such as the national accounts or labor accounts, use statistics from many domains as input. Under SAF-P08 they reuse the registered version instead of estimating the same figure again. This keeps internal use and later publication consistent.
+
+| Handover element | Analytical version (VS-04 → VS-05) | Approved version (VS-05 → VS-06) |
+|---|---|---|
+| Artifact | Registered analytical #4 version | Registered approved #4 version |
+| Required metadata | Methodology, weights, accuracy, model diagnostics, disclosure control, coherence results | Composition record, propagated accuracy, coherence results, interpretive content, approval record |
+| Trigger event | *Output Data Registered* | *Statistical Product Registered* |
+| Responsibility transfer | VS-04 keeps custody; VS-05 takes responsibility for composition and approval | VS-05 keeps custody; VS-06 takes responsibility for final disclosure control, release, and user support |
+
+### 9. Traceability to the framework
+
+| Framework element | References |
+|---|---|
+| Capabilities | 1.3.5 Estimating population parameters, 1.3.6 Integrate statistics, 1.3.7 Statistical disclosure, 1.4.1 Statistical (output) analysis, 2.1.2 Metadata management, 2.1.3 Statistical quality management |
+| Value-stream stages | VS-04.1 to VS-04.5 (analytical gate); VS-05.1 to VS-05.5 (approval gate) |
+| SAF processes | PRD-5.6 Calculate weights, PRD-5.7 Calculate aggregates, PRD-6.1 Prepare draft outputs, PRD-6.2 Validate outputs, PRD-6.3 Interpret and explain outputs, PRD-6.4 Apply disclosure control (initial), PRD-6.5 Finalize outputs, PRD-7.2 Produce dissemination products (content), DLM-2, DLM-3, DLM-7 Revise data |
+| GSBPM | 5.6 Calculate weights, 5.7 Calculate aggregates, 6.1 to 6.5 Analyze |
+| Principles | SAF-P07, SAF-P08, SAF-P09, SAF-P10, SAF-P11 |
+| Medallion layer | Gold, internal sub-layer; not yet released |
+
+### 10. Examples and anti-patterns
+
+**Examples**
+
+- *Survey.* The Labor Force Survey estimates an employment rate of 71.4%, with a 95% confidence interval of ±0.5 percentage points at national level. The variance includes the uncertainty of imputed income from #3. This analytical version is then composed with unemployment and vacancy figures into the quarterly labor market product, which is approved and registered.
+- *Administrative register.* Turnover is aggregated by industry and region. For small domains where the direct aggregate is unstable, a small-area model is used, and its results are flagged as model-based. In the approval gate, one domain fails the coherence check; it goes back to VS-04 instead of being adjusted in the product.
+- *Web data.* A multilateral price index is calculated from the item prices in #3. The headline index and its main divisions are composed with the period weights, checked for coherence with the prior month and year, and approved.
+
+**Anti-patterns**
+
+- Approving a product by overwriting the analytical version. The difference between the tested figure and the approved figure disappears.
+- Adjusting a component estimate in VS-05 to make the coherence check pass. The estimate no longer matches its documented method.
+- Publishing an estimate without an accuracy measure. Users cannot judge whether a movement is meaningful.
+- Treating initial disclosure control as final. Release requires the final check of the transition to #5.
+- Sharing approved figures before release without logging the access. Equal access can no longer be demonstrated.
+- Re-estimating a figure for internal use instead of reusing the registered version. Internal and published figures start to differ.
+
+## State #5: Released Data
+
+### 1. Definition and value added
+
+Released data is statistical output that the NSI has made available outside its own organization. It is based on an approved #4 version that has passed final disclosure control, has been documented for correct interpretation, and has been released through a trusted channel. Released data includes published tables and datasets, open data, data available through an API, deliveries to international organizations, data offered in a data space, and de-identified microdata made available to accredited researchers. #5 is the last point at which the NSI controls the data. Once users have it, it becomes consumed data, outside the NSI's control.
+
+The value of #5 is **accessibility and trust**. Users get accurate, documented statistics through channels they can rely on, at a moment that is the same for everyone. The final disclosure check ensures that no respondent can be identified. The documentation ensures that users can interpret the figures correctly, including their accuracy and limitations.
+
+#5 is mandatory whenever output is released. If nothing changes between the approved #4 version and the release, the same artifact can be marked as released instead of being registered again. The release steps still take place and are recorded: release authorization, the final disclosure check, and the release itself (see *Applying the steady states pragmatically*).
+
+### 2. Producing and consuming domains
+
+| Role | Domain | Note |
+|---|---|---|
+| Producer | Dissemination (VS-06) | Functions: Data Delivery, Data Publication |
+| Primary consumer | External users | Policy makers, researchers, media, businesses, and the public; use turns #5 into #6 |
+| Primary consumer | International organizations | Deliveries under agreed transmission programs, such as to Eurostat or the OECD |
+| Primary consumer | Accredited researchers | Access to de-identified research datasets in a secure processing environment **[SS9]** |
+| Secondary consumer | Customer and Stakeholder Engagement (VS-10) | Usage and feedback data for needs analysis and impact measurement |
+| Assurance | Governance and Compliance (VS-07) | Audit of disclosure control, equal access, and release authorization |
+
+### 3. Quality gate
+
+The gate for #5 is the release gate. Confidentiality is not negotiable at this boundary. Unlike the earlier gates, the disclosure criteria allow no conditional acceptance: a release that fails them is returned for further protection. **[SS10]**
+
+| Criterion | Check | Typical outcome on failure |
+|---|---|---|
+| Approved source | The release is based on an approved #4 version | Reject |
+| Final disclosure control | Final protection applied and disclosure-risk criteria met for every table, dataset, and dashboard | Reject; apply further protection |
+| De-identification | Released microdata meets the de-identification standard for its channel | Reject |
+| Documentation | Methodology notes, metadata, and user guidance are complete | Hold until complete |
+| Format and accessibility | Each channel format is valid, machine-readable where required, and meets the accessibility standard | Hold until corrected |
+| Release authorization | The release has been signed off | Hold until authorized |
+| Timing and equal access | Release time follows the release calendar; embargo arrangements are in place and logged | Hold until the release slot |
+| Metadata | Minimum metadata set captured (see attribute 4) | Hold until complete |
+
+### 4. Data and metadata characteristics
+
+**Data.** One released version can have several representations, one per channel: a published table, an SDMX dataset behind an API, a dashboard, or a research dataset. All representations come from the same released version, so a user always gets the same figure through every channel. Permitted operations are final disclosure control, de-identification of microdata, formatting per channel, packaging, and adding documentation. Changing the statistical content is not permitted at #5. A correction to a released figure goes back to #4 as a new approved version and is released again with an erratum. **[SS11]**
+
+**Minimum metadata set.**
+
+| Metadata element | Description |
+|---|---|
+| Persistent identifier and version | Unique identifier of this release version |
+| Source reference | The approved #4 version this release is based on |
+| Final disclosure control | Method applied, risk assessment outcome, and sign-off |
+| De-identification | For microdata: the standard applied and the project or channel it applies to |
+| Channels and formats | Every channel used, with format and access conditions |
+| Release timestamp | Moment of release and reference to the release calendar |
+| Embargo record | Who had pre-release access, when, and under which agreement |
+| Documentation | References to methodology notes, reference metadata, and user guidance |
+| Accessibility | Accessibility standard met per channel |
+| Terms of use | Licence or terms under which the data may be used |
+| Correction history | Errata issued and the versions they replace |
+| Classification | Availability, integrity, and confidentiality rating |
+
+In GSIM terms, #5 is the disseminated form of a *Data Set* together with its *Referential Metadata*. SDMX defines the structure in which it is exchanged with users and international organizations.
+
+### 5. Security, privacy, and access
+
+After final disclosure control, most released data is public and has a low confidentiality rating. Its integrity rating is high. Users must be able to trust that a figure on the website or in the API is exactly the figure the NSI released. Channels therefore protect released data against tampering, and the NSI can prove which version was released when.
+
+Before the release moment, the same data is highly restricted. Embargoed copies go only to parties with a formal agreement, such as accredited media, and every pre-release access is logged. No user gets the data before the release time outside that policy.
+
+Research microdata follows a different path. It is released only to accredited researchers and only inside a secure processing environment. Each project gets its own dataset with project-specific pseudonyms, so data cannot be linked across projects. Results leave the environment only after an output check.
+
+### 6. Ownership and governance
+
+| Role | Responsibility for #5 |
+|---|---|
+| Data owner | Process owner of Dissemination; accountable for confidentiality, equal access, and the quality of the release |
+| Release manager | Controls release timing, embargo, and equal access across channels |
+| Disclosure control specialist | Applies and signs off the final disclosure control |
+| Dissemination and service manager | Manages channels, formats, service levels, and the research access service |
+| Data steward | Registers release versions, maintains documentation, and handles errata |
+| Data custodian | Operates channels, access control, integrity protection, and the embargo log |
+
+### 7. Versioning, retention, and lineage
+
+Every release is an immutable version. A correction never silently replaces a released figure. It produces a new approved #4 version, a new release version, and a public erratum that explains what changed and why. Earlier releases remain identifiable, so users can see which figure was available at which moment.
+
+Released statistics are usually kept permanently, as part of the public record. National archival legislation often prescribes this. Research datasets are the exception: they are disposed of when the research project closes, together with their project-specific pseudonymization keys. The approved code and outputs of the project are kept for reproducibility.
+
+Lineage at #5 closes the chain. Each released figure traces back to its approved #4 version, and from there through the analytical versions, #3, and #2 to the authentic delivery in #1. This makes it possible to answer any question about a published figure, from source to release.
+
+### 8. Reuse and handover
+
+Release publishes the *Statistics Released* event and makes the data available through the agreed channels. #5 has no downstream production stream. Its handover is to users outside the NSI, where the data becomes consumed data (#6). Usage and feedback flow back to VS-06 and VS-10, and through them into the design of the whole chain.
+
+Released data is the most widely reused form of NSI output. Under SAF-P08 it is offered as openly as confidentiality allows, in standard formats and with clear terms of use. Open, documented release reduces the number of individual data requests and lets users combine NSI data with other sources.
+
+| Handover element | Content |
+|---|---|
+| Artifact | Released data version, in its channel-specific representations |
+| Required metadata | Minimum metadata set (attribute 4), including documentation, terms of use, and correction history |
+| Trigger event | *Statistics Released* |
+| Responsibility transfer | The NSI remains responsible for the correctness and documentation of the release and for issuing errata; users are responsible for how they use the data |
+
+### 9. Traceability to the framework
+
+| Framework element | References |
+|---|---|
+| Capabilities | 1.3.7 Statistical disclosure, 1.5.1 Publication management, 1.5.2 Promotion to use, 1.5.3 Facilitate data access, 1.5.4 Statistical information management, 2.2.4 Data services, 3.4.1 Services management |
+| Value-stream stages | VS-06.1 Plan Dissemination and Access Strategy; VS-06.2 Prepare Data for Dissemination; VS-06.3 Publish and Provide Access Services; VS-06.4 Support and Engage Users; VS-06.5 Monitor Usage and Feedback |
+| SAF processes | PRD-6.4 Apply disclosure control (final), PRD-7.1 to PRD-7.5 Disseminate, MDS-3 Prepare research datasets, MDS-4 Provide a secure processing environment, MDS-7 Check and release output, MDS-9 Close projects, DSP-2 Publish data offerings, DSP-4 Exchange data under usage control |
+| GSBPM | 6.4 Apply disclosure control, 7.1 to 7.5 Disseminate |
+| Principles | SAF-P07, SAF-P08, SAF-P09, SAF-P10, SAF-P11 |
+| Medallion layer | Gold, published sub-layer |
+
+### 10. Examples and anti-patterns
+
+**Examples**
+
+- *Survey.* The quarterly labor market figures are released at 09:00 on the calendar date, at the same moment on the website, the API, and the dashboard. Two small regional cells are suppressed in the final disclosure check. Accredited media received an embargoed copy and publish at the same moment.
+- *Administrative register.* Aggregated business statistics are published as open data. De-identified business microdata is released to accredited researchers inside a secure processing environment, with project-specific pseudonyms and output checking.
+- *Web data.* The monthly price index is market-sensitive. It is released at a fixed minute with strict equal access, and the documentation explains the main contributions to the monthly change.
+
+**Anti-patterns**
+
+- Publishing directly from #4 without a recorded final disclosure check. There is no evidence that the release was safe.
+- Correcting a published figure silently. Users who already used the old figure cannot see that it changed.
+- Giving a ministry or partner early access outside the embargo policy. The NSI's independence and equal access are compromised.
+- Releasing figures without methodology notes or accuracy. Users draw conclusions the data cannot support.
+- Sending research microdata by email or file transfer to a researcher's own environment. Control over the data is lost.
+- Releasing different figures through different channels. Users lose trust when the website and the API disagree.
+
+## Boundary Position #6: Consumed Data
+
+**Description:** Consumed data is released data that users have taken into their own environment and use for their own purposes. Examples are a government departments using an unemployment rate in a policy note, a researcher combining released tables with other sources, a journalist quoting an inflation figure, or an application that pulls a series from the API every day. The NSI has no custody of consumed data and cannot control how it is used, combined, or presented. It can influence correct use only through the quality of its documentation, its terms of use, its user support, and its errata.
+
+**Why it is described:** The SAF describes #6 so that the end of the NSI's responsibility is explicit, just as #0 marks where it begins. Everything the NSI can do for correct use has to be done at #5: documentation, accuracy measures, terms of use, and a clear correction history. What the NSI learns about consumed data comes back as usage and feedback, through VS-06.5 and VS-10. That feedback closes the loop: it shapes new information needs and, through them, the next cycle of the value chain from #0 onward.
+
+
+
+
+
 
 ## The Statistical Data Value Chain
 
