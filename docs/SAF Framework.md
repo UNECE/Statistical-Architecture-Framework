@@ -15,6 +15,7 @@ Current version: 0.5
 |0.5|2026-10-10|Restructured motivation section, TOGAF and ArchiMate context added|
 |0.6|2026-11-10|Restructured strategy section|
 |0.7|2026-12-10|Restructured business section, added business actors, roles and collaborations|
+|0.8|2026-31-10|Restructured business section, added business actors, roles and collaborations|
 
 ## Content
 [Preface](#preface)
