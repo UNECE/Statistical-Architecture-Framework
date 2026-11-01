@@ -3538,38 +3538,588 @@ value is only added once its context is captured — what was done, by which rul
 
 **Confidentiality progressively applied (SAF-P11):** <br>
 identifiers are removed/pseudonymized at standardization (#2) at the latest, or earlier where that suits the process; disclosure risk is assessed on enrichment (#3), disclosure control is applied to outputs (#4), and a final disclosure check gates release (#5).
+
+
+## Primary value streams
+
+### VS-01 Data Acquisition and Ingestion
+
+#### 1. Purpose and value created
+
+VS-01 is the entry point of the statistical value chain. It brings data from outside the NSI under NSI custody: survey responses, administrative registers, exchanges in data spaces, and new sources such as web or sensor data. It does not change the content of the data. It makes sure the data is obtained lawfully, received securely, checked for integrity, and registered with its provenance. The value created is **trust and readiness**: trust that the data was acquired correctly, and readiness for use in the rest of the chain. Everything downstream depends on this. If the acquisition of a source cannot be traced, no statistic built on it can be fully defended.
+
+VS-01 corresponds to the business domain **Observation/Collection** (see *Steady-State Architecture, Business domains*). This section describes the business layer of that domain for all four process types: Design, Implementation, Execution, and Management.
+
+- **Data collection manager or operations staff:** the stages in attribute 3, which describe what happens in each production cycle.
+- **Methodologist or statistical designer:** the Design processes in attribute 4.
+- **System builder or IT staff:** the Implementation processes in attribute 4.
+- **Quality or compliance manager:** the Management processes in attribute 4.
+- **Manager who wants the big picture:** attributes 1, 2, and 10. End-to-end scenarios are part of the SAF Toolkit.
+
+|**PLACEHOLDER: ArchiMate view VS-01 (a) value stream and capabilities**|
+|---|
+
 <br>
+
+#### 2. Position and state transition
+
+VS-01 is the first primary value stream. All data from outside the NSI enters the statistical system through it, before any downstream processing takes place.
+
+VS-01 takes data from boundary position #0 to State #1. Before VS-01, the data is held by a provider or respondent, outside the NSI's control. After VS-01, it is a registered, immutable version of raw data, in NSI custody, in its original form, with provenance metadata recorded and basic quality verification completed. The quality gate, the minimum metadata set, and the protection of State #1 are described in *State #1: Raw Data* and are not repeated here. **[VC10]** VS-01 is the only entrance for data from outside the NSI: there is no side door into the chain. A product that starts from data already registered by another domain does not pass VS-01; it enters the chain downstream.
+
+| From | To | Gate | Event out |
+|---|---|---|---|
+| #0 Source Data | #1 Raw Data | Gate of State #1 (legal basis, authenticity, integrity, security, structure, completeness, timeliness, metadata) | *Raw Data Registered* |
+
+|**PLACEHOLDER: ArchiMate view VS-01 (c) state handover and events: Source Data (#0) outside the NSI boundary, the ingestion service at the boundary (metadata addition, quality and schema check), Raw Data (#1) inside the NSI**|
+|---|
+
 <br>
-## VS-01.0 — Data Acquisition and Ingestion
 
-**Domain:** Observation/Collection · **State transition:** Source Data → **#1 Raw Data** · **Value:** all data enters NSI custody, verifiably and with provenance.
+#### 3. Stages
 
-VS-01 is the front door of the statistical system. Its job is to bring data from the outside world — survey respondents, administrative registers, and emerging sources such as web or sensor data — into the NSI safely and with a complete record of where it came from. Nothing about the data's content is changed here; the point is to receive it, prove it is what it claims to be, and register it so the rest of the chain can find and trust it. The output is **Raw Data**: the data in its original form, under NSI custody, accompanied by provenance.
+The stages describe the value that VS-01 adds in every production cycle. Together they form the execution process type of VS-01. In a mature steady state, most of the work has been designed and built in advance (see attribute 4). Execution then focuses on running the cycle, capturing data and metadata, and making sure the quality gate is passed.
 
-**Business processes**
+| Stage | Name | Value added |
+|---|---|---|
+| VS-01.1 | Identify Data Needs and Sources | The information need is clear, and suitable sources are known |
+| VS-01.2 | Establish Data Agreements and Access Rights | Data can be obtained lawfully, under agreed conditions |
+| VS-01.3 | Collect or Receive Data | Data and its metadata are in NSI custody |
+| VS-01.4 | Validate and Log Data Intake | The delivery is complete, intact, and traceable |
+| VS-01.5 | Store and Register Raw Data Artifacts | Raw data is registered and available for reuse (State #1) |
 
-- VS-01.1 Identify Data Needs and Sources
-- VS-01.2 Establish Data Agreement and Access Right
-- VS-01.3 Collect, Receive, or Extract Data
-- VS-01.4 Validate and Log Data Intake
-- VS-01.5 Store and Register Raw Data Artefacts
+Each stage below is described with its activities. The column *SAF process* shows the business process from *Business Processes* that the activity belongs to. The column *Other reference* shows the principles, capabilities, or external frameworks that the activity applies. **[VC9]**
 
-**How the business processes work.** The cycle starts by **identifying the data needs and sources** for the round — confirming what variables and populations are required and that the chosen sources are available and accessible. Once the source is settled, the team **establishes the data agreement and access rights**: activating or renewing the legal basis (a data-sharing agreement, or the relevant GDPR ground) and checking that credentials are valid, so collection is lawful and controlled. Data is then **collected, received, or extracted** through the appropriate channel — a survey instrument, an administrative file transfer, or an API/scraping job — and at the moment of receipt the ingestion metadata (source, method, timestamp, file hash, volume) is captured. Each delivery is **validated and logged**: completeness, structure, and integrity are checked and every result written to an audit trail, so the NSI can be confident the intake is whole and traceable. Finally the dataset is **stored and registered as a raw-data artefact** — given a persistent identifier, kept in its original form, and cataloged with its provenance — and a "Raw Data Registered" event tells VS-02 that new data is ready.
+<br>
 
-Every dataset is enriched at ingestion with provenance, source, method, timestamp, and a quality and BIV classification — availability, integrity, confidentiality — per SAF-P09, with security and privacy applied by design (SAF-P10/P11).
+##### VS-01.1 Identify Data Needs and Sources
 
+**Value created:** *Clear understanding of what data is needed and where it can be obtained.*
 
-Around this per-cycle run, **Design** prepares the data requirements, collection methodology, raw-data schema, validation rules, and access/privacy framework; **Implementation** builds the collection instruments and ingestion/validation workflows and tests them; and **Management** monitors response, timeliness, and rejection rates, assesses intake quality, and feeds improvements back to design.
+This stage starts from the information need set in the design of the statistical product. In a mature steady state, the Design process *Design Data Requirements and Source Strategy* has already defined the data requirements and the source strategy. Execution in each cycle therefore focuses on confirmation rather than re-creation. The team confirms or updates the data requirements for the current production cycle. It verifies that the identified sources remain available and accessible, and checks that source metadata is current: contact persons, data formats, and delivery schedules. Before any new collection, it checks whether the data already exists as a registered state version, in line with SAF-P08. It also identifies new sources that may have become available since the last cycle. A significant change in requirements or source availability goes back to design instead of being solved during the cycle.
 
-| Business process | What it produces |
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Confirm or update data requirements for this production cycle | Confirmed requirements for the cycle | PRD-1.1 Identify needs | |
+| Check whether the data already exists as a registered state version | Reuse decision | PRD-1.5 Check data availability and suitability | SAF-P08 |
+| Verify data source availability and accessibility | Source availability confirmation | PRD-1.5 Check data availability and suitability | |
+| Check that source metadata is current (contacts, formats, schedules) | Updated source metadata | PRD-1.5 Check data availability and suitability; OVA-6 Data Supplier Management | |
+| Identify new sources available since the last cycle | New source assessment (if any) | PRD-1.5 Check data availability and suitability | |
+
+<br>
+
+##### VS-01.2 Establish Data Agreements and Access Rights
+
+**Value created:** *Legal, ethical, and transparent access to data under controlled conditions.*
+
+Before data flows, legal and operational access must be confirmed for the current production cycle. For each source, the legal basis is established: a statutory obligation, a data provision agreement, or a usage policy in a data space. The team activates or renews data sharing agreements. It verifies compliance with data protection law for the current data scope, for example by checking that the records of processing activities (GDPR Article 30) are up to date. It confirms that access credentials and security certificates are valid and have not expired. For sources that are new in this cycle, the full agreement process is carried out. The active agreement status is recorded and linked to the upcoming deliveries. This creates a traceable chain from legal authorization to received data, so the legal basis of each version can be shown in an audit.
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Activate or renew data sharing agreements for the current cycle | Active agreement record (per source) | OVA-6 Data Supplier Management; DSP-3 Agree data use conditions | 3.4.3 Service agreement |
+| Verify data protection compliance: records of processing up to date | Compliance confirmation log | DLM-4 Classify and protect data | SAF-P11 |
+| Confirm that access credentials and security certificates are valid | Verified access credentials | PRD-4.2 Set up collection | SAF-P10 |
+| For new sources: carry out the full agreement process | New source agreement | OVA-6 Data Supplier Management; DSP-1 Join a data space; DSP-3 Agree data use conditions | SAF-P11 |
+| Record the active agreement status, linked to upcoming deliveries | Agreement-delivery link | PRD-4.2 Set up collection | |
+
+<br>
+
+##### VS-01.3 Collect or Receive Data
+
+**Value created:** *Secure and verifiable transfer of authentic data into the organization.*
+
+This stage is the operational heart of the value stream, where data physically enters NSI custody. Primary data collection runs surveys through the designed and built instruments. Web questionnaires (CAWI) open, invitation links are sent, and response rates are monitored. Field interviewers (CAPI) are deployed with managed assignments, and telephone interview schedules (CATI) are carried out with callback management. Non-response is followed up within the agreed strategy. Secondary data collection receives administrative data through agreed channels. Secure file transfer (SFTP) accepts scheduled deliveries, APIs pull data on agreed schedules, and data space connectors support federated exchange. Emerging sources, such as web scraping, sensor data, and commercial feeds, are extracted according to their specification.
+
+Equally critical is the metadata captured at the moment of receipt. For every dataset received, the ingestion process records the fields in the table below. This obligation follows from SAF-P09. It makes sure that no data enters the NSI without the context needed to understand its provenance and quality. At the end of this stage, the data is held by the NSI, but it has not yet been accepted.
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Create the frame and select the sample for this cycle (surveys) | Frame and sample | PRD-4.1 Create frame and select sample | 1.2.1 Primary data collection |
+| Prepare instruments, field staff, and channels; plan the collection period | Collection ready to start | PRD-4.2 Set up collection | |
+| Run survey collection and follow up non-response | Survey responses, paradata | PRD-4.3 Run collection | 1.2.1 Primary data collection |
+| Receive administrative data and data space deliveries through agreed channels | Received deliveries | PRD-4.3 Run collection; DSP-4 Exchange data under usage control | 1.2.2 Secondary data collection |
+| Extract data from emerging sources according to specification | Extracted data | PRD-4.3 Run collection | |
+| Capture ingestion metadata and paradata at the point of receipt | Ingestion metadata record | PRD-4.3 Run collection; OVA-4 Process Data Management | SAF-P09 |
+
+| Ingestion metadata field | Description |
 |---|---|
-| VS-01.1 Identify Data Needs and Sources | Confirmed requirements and available sources for the cycle |
-| VS-01.2 Establish Data Agreement and Access Right | Active, lawful access (agreements, GDPR basis, credentials) |
-| VS-01.3 Collect, Receive, or Extract Data | Data in NSI custody + captured ingestion metadata |
-| VS-01.4 Validate and Log Data Intake | Validated intake + audit trail |
-| VS-01.5 Store and Register Raw Data Artefacts | Registered Raw Data artefact + "Raw Data Registered" event |
+| Source identifier and organization | Who provided the data |
+| Timestamp of receipt | When it was received |
+| Transfer method and channel | How it was delivered (SFTP, API, CAWI, and so on) |
+| File hash (SHA-256) and format | Integrity verification and format record |
+| Volume (record count, file size) | Scale of the delivery |
+| Agreement reference | Legal basis for the data |
+| Collection mode and instrument version | Survey-specific provenance |
 
-**Boundaries:** in — Source Data from external providers; out — **Raw Data** on *"Raw Data Registered"* → VS-02.
+<br>
+
+|**PLACEHOLDER: VS-01 collection channel architecture: survey, administrative, and emerging-source channels arriving at one ingestion point, each adding its own metadata (source, timestamp, transfer method, file hash, volume, agreement reference), followed by VS-01.4**|
+|---|
+
+<br>
+
+##### VS-01.4 Validate and Log Data Intake
+
+**Value created:** *Confidence that received data is complete, structured, and fully traceable.*
+
+Once data has been received, it must pass the quality gate of State #1 before it can be accepted. The validation checks completeness: expected record counts are present, required fields are populated, and the delivery matches the service level agreement. It checks structure and format against the raw data schema from *Design Data Model and Metadata Schema*. It checks security and integrity: virus scan, checksum verification (SHA-256), and digital signature validation, in line with SAF-P10. A quality assessment is carried out against the criteria from *Design Validation Rules and Quality Criteria*, producing a completeness rate, a timeliness score, and a conformance rating.
+
+Every validation result, exception, and decision is logged in an audit trail. The trail captures data metadata (what was validated, what passed, what failed) and process metadata (who validated, when, which rules were applied, which tool version). The outcome is one of two business events. *Data Intake Validated* starts storage and registration. *Data Intake Rejected* starts exception handling according to the designed rules: notify the provider through the relationship manager, queue the delivery for manual review, or accept it conditionally with a quality flag.
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Verify completeness: record counts, required fields, conformance with the service level agreement | Completeness assessment | PRD-4.4 Finalize collection | |
+| Validate structure and format against the raw data schema | Structural validation result | PRD-4.4 Finalize collection; DLM-2 Promote data through a quality gate | |
+| Perform security and integrity checks: virus scan, checksum, signature | Security verification result | PRD-4.4 Finalize collection | SAF-P10 |
+| Carry out the quality assessment against the designed criteria | Quality assessment scores | DLM-2 Promote data through a quality gate | |
+| Create the audit trail: log all validation results, exceptions, and decisions | Audit trail record | OVA-4 Process Data Management | GAMSO Quality Management |
+
+<br>
+
+
+##### VS-01.5 Store and Register Raw Data Artifacts
+
+**Value created:** *Secure, organized, and traceable storage of raw data.*
+
+This stage persists validated data and makes it findable for the rest of the statistical system. Each dataset version receives a unique persistent identifier (URI or UUID). It is stored in the raw data repository in its original format, in line with the loose coupling of SAF-P07. Its metadata is registered in the data catalog, in line with SAF-P09. Each dataset is linked to its provenance record (source, method, timing), its quality assessment from VS-01.4, the governing data sharing agreement, and the classification and coding schemes it uses. Lineage from Source Data (#0) to Raw Data (#1) is recorded. Access permissions are applied according to the access control and privacy design and the decisions of the data owner. A redelivery or correction by the provider always creates a new version; it never overwrites an earlier one. The stage ends by publishing the *Raw Data Registered* event, which tells VS-02 that new raw data is available for standardization.
+
+**Output:** **Raw Data (State #1)**, the official handover artifact to the rest of the statistical value chain. Its structure and minimum metadata set are described in *State #1: Raw Data*. **[VC10]**
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Assign a unique persistent identifier (URI or UUID) to the dataset version | Dataset ID | DLM-3 Register and catalog data | |
+| Store the data in the raw data repository in its original format | Stored raw data artifact | DLM-5 Store and version data | SAF-P07 |
+| Register metadata in the data catalog: provenance, quality, agreement, classification, lineage | Catalog registration | DLM-3 Register and catalog data; OVA-2 Metadata Management | SAF-P09 |
+| Apply access permissions according to the designed framework | Access-controlled dataset | DLM-4 Classify and protect data | SAF-P10, SAF-P11 |
+| Publish the *Raw Data Registered* event to notify VS-02 | Event notification | DLM-3 Register and catalog data | SAF-P07 |
+
+#### 4. The four process types
+
+VS-01 runs through four process types. They do not form a linear sequence but a governance cycle: each process type produces its own output, and that output feeds the others. Design produces metadata, Implementation produces the execution process, Execution produces the statistical data, and Management produces quality reports that feed back into Design. The generic pattern is described in the Overview of this chapter.
+
+The sub-processes below are specific to VS-01. Their names describe the work in the context of data acquisition. Each sub-process refines one or more SAF business processes, which are listed under its heading as *Refines*. This keeps every VS-01 sub-process traceable to the reference process model in *Business Processes*.
+
+##### Design: provides metadata
+
+The design process type produces the **metadata artifacts** that govern all other process types. Without a well-designed acquisition process, execution becomes ad hoc, implementation becomes inconsistent, and management has nothing to measure against. Design runs when a new product or source is introduced, or when Management feeds back an improvement.
+
+| Design sub-process | Refines | Main outputs |
+|---|---|---|
+| Design Data Requirements and Source Strategy | PRD-1.1 Identify needs; PRD-1.2 Consult and confirm needs; PRD-1.3 Establish output objectives; PRD-1.5 Check data availability and suitability; PRD-1.6 Prepare and submit business case; PRD-2.3 Design collection | Data requirements specification, source assessment, collection strategy |
+| Design Collection Methodology and Instruments | PRD-2.2 Design variables; PRD-2.3 Design collection; PRD-2.4 Design frame and sample | Collection methodology, questionnaire design, sample design, communication plan |
+| Design Data Model and Metadata Schema | PRD-2.2 Design variables; DLM-1 Plan and design data assets; OVA-2 Metadata Management | Raw data schema, ingestion metadata model, catalog template |
+| Design Validation Rules and Quality Criteria | PRD-2.5 Design processing and analysis; DLM-2 Promote data through a quality gate; OVA-1 Quality Management | Validation rule set, quality criteria, exception handling policy |
+| Design Access Control and Privacy Framework | DLM-1 Plan and design data assets; DLM-4 Classify and protect data | Data classification, access control design, privacy impact assessment |
+
+###### Design Data Requirements and Source Strategy
+
+*Refines:* PRD-1.1 Identify needs; PRD-1.2 Consult and confirm needs; PRD-1.3 Establish output objectives; PRD-1.5 Check data availability and suitability; PRD-1.6 Prepare and submit business case; PRD-2.3 Design collection.
+
+The starting point of any data acquisition effort is understanding what data is needed and where it can be obtained. This sub-process translates statistical objectives into a concrete source strategy: target populations, required variables, reference periods, and quality expectations. The team inventories and evaluates potential sources across the full spectrum: surveys, administrative registers, APIs, web sources, sensors, data spaces, and commercial data. Each source is assessed for relevance, quality, accessibility, cost, timeliness, and legal availability. Reuse of existing data comes before new collection, in line with SAF-P08. The outcome is a decision on the collection approach: primary collection (run a survey), secondary collection (reuse administrative data), or a combination of sources. The trade-offs behind that decision are documented.
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Define statistical needs: target population, variables, reference period, quality expectations | Data requirements specification | PRD-1.1 Identify needs; PRD-1.2 Consult and confirm needs; PRD-1.3 Establish output objectives | 1.1.1 Needs inventory |
+| Inventory and evaluate potential data sources of all types | Source assessment report | PRD-1.5 Check data availability and suitability | SAF-P08 |
+| Assess each source for relevance, quality, accessibility, cost, timeliness, legal availability | Source assessment report | PRD-1.5 Check data availability and suitability | |
+| Decide the collection strategy: primary, secondary, or multi-source | Collection strategy decision record | PRD-2.3 Design collection | |
+| Document the trade-offs between source options | Collection strategy decision record; business case | PRD-1.6 Prepare and submit business case | |
+
+###### Design Collection Methodology and Instruments
+
+*Refines:* PRD-2.2 Design variables; PRD-2.3 Design collection; PRD-2.4 Design frame and sample.
+
+Once the source strategy is set, the methodology team designs how data will actually be collected. This involves selecting collection modes and defining how each mode works within the overall design. Examples are web, face-to-face, or telephone interviewing (CAWI, CAPI, CATI), secure file transfer (SFTP), automated machine-to-machine interfaces (API), data space connectors, and web scraping. For survey-based collection, the design includes the questionnaire: variable definitions, question wording, skip logic, and code lists. The sampling frame and sample selection method are designed to make the sample statistically representative. Where several modes are used, the team specifies which respondents receive which mode and the fallback sequence for non-response. A respondent communication strategy completes the design: invitation letters, reminders, and help desk scripts. Respondent burden is kept as low as possible.
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Design collection modes (CAWI, CAPI, CATI, SFTP, API, data space connector, web scraping) | Collection methodology document | PRD-2.3 Design collection | 1.2.1 Primary data collection; 1.2.2 Secondary data collection |
+| Design questionnaire content: variable definitions, question wording, skip logic, code lists | Questionnaire design (per mode) | PRD-2.2 Design variables; PRD-2.3 Design collection | |
+| Design the sampling frame and sample selection method | Sample design and selection criteria | PRD-2.4 Design frame and sample | |
+| Define the multi-mode strategy and fallback sequences | Collection methodology document | PRD-2.3 Design collection | |
+| Design the respondent communication strategy | Respondent communication plan | PRD-2.3 Design collection | 3.4.2 Contact management |
+
+###### Design Data Model and Metadata Schema
+
+*Refines:* PRD-2.2 Design variables; DLM-1 Plan and design data assets; DLM-9 Manage reference and master data; OVA-2 Metadata Management.
+
+This sub-process defines the target data structure of Raw Data (State #1) and the metadata that must accompany every dataset at the point of ingestion. The data model specifies fields, types, formats, and constraints for the storage area where incoming data first lands, the landing zone. Equally important is the ingestion metadata model. It prescribes what must be captured at each point of receipt: provenance (source organization, contact, agreement reference), method (collection mode, instrument version, sampling parameters), timing (collection period, delivery and processing timestamps), and quality indicators (completeness rate, delivery timeliness, format conformance). Classification and coding schemes are defined, consistent with national and international standards. Finally, the structure of the metadata catalog is designed so that datasets are findable, linked, and traceable. This makes active metadata a foundation for automation downstream, as emphasized by the Metadata Management capability of CSDA (Common Statistical Data Architecture).
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Define the target data structure of Raw Data (State #1): fields, types, formats, constraints | Raw data schema definition | PRD-2.2 Design variables; DLM-1 Plan and design data assets | |
+| Define the ingestion metadata model: provenance, method, timing, quality indicators | Ingestion metadata model | OVA-2 Metadata Management | SAF-P09 |
+| Define classification and coding schemes | Classification mapping rules | DLM-9 Manage reference and master data | SAF-P09 |
+| Design the metadata catalog structure for registration and discovery | Catalog registration template | DLM-1 Plan and design data assets; OVA-2 Metadata Management | CSDA Metadata Management |
+
+###### Design Validation Rules and Quality Criteria
+
+*Refines:* PRD-2.5 Design processing and analysis; DLM-2 Promote data through a quality gate; OVA-1 Quality Management; OVA-6 Data Supplier Management.
+
+Before any data enters the NSI, the acceptance criteria and the rules for handling exceptions must be clear. This sub-process sets completeness thresholds, such as minimum record counts and required field coverage. It sets the parameters of service level agreements: delivery windows, response times, and format specifications. It defines structural validation rules: field types, value ranges, referential integrity, and format conformance. Security and integrity checks are specified in line with SAF-P10: virus scan requirements, checksum algorithms, and encryption standards. The quality dimensions to track are agreed: completeness, timeliness, conformance, and integrity. Exception handling rules distinguish between rejection, conditional acceptance with quality flags, and routing to manual review. Together, these rules make up the VS-01 part of the quality gate of State #1. The Quality Management capability of GAMSO provides the overall control framework.
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Define completeness thresholds and service level parameters | Quality criteria document, service level template | PRD-2.5 Design processing and analysis; OVA-6 Data Supplier Management | 3.4.3 Service agreement |
+| Define structural validation rules: field types, value ranges, referential integrity | Validation rule set | PRD-2.5 Design processing and analysis | |
+| Define security and integrity check specifications | Validation rule set | PRD-2.5 Design processing and analysis | SAF-P10 |
+| Define the quality dimensions to track | Quality criteria document | OVA-1 Quality Management | GAMSO Quality Management |
+| Design exception handling rules: rejection, conditional acceptance, manual review | Exception handling policy | DLM-2 Promote data through a quality gate | |
+
+###### Design Access Control and Privacy Framework
+
+*Refines:* DLM-1 Plan and design data assets; DLM-4 Classify and protect data; OVA-4 Process Data Management.
+
+This last design sub-process makes sure that security and privacy are built in from the start, not added afterwards. Each data source receives a classification for availability, integrity, and confidentiality, in line with SAF-P09. Role-based access controls for the raw data repository are designed in line with SAF-P10: who can read, write, and administer. Privacy protection follows SAF-P11. It covers the moment of pseudonymization (when direct identifiers are removed or replaced), purpose limitation (which uses each agreement allows), the legal basis for processing (for example, which ground of GDPR Article 6 applies to each source), and data minimization (only necessary data is collected). Audit logging requirements, which define the access events that must be recorded, complete the design.
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Define the data classification (availability, integrity, confidentiality) per source | Data classification policy | DLM-4 Classify and protect data | SAF-P09 |
+| Design role-based access control for the raw data repository | Access control design | DLM-1 Plan and design data assets; DLM-4 Classify and protect data | SAF-P10; 3.3.4 Logical identity and access control |
+| Design privacy protection: moment of pseudonymization, purpose limitation, legal basis, data minimization | Privacy impact assessment | DLM-4 Classify and protect data | SAF-P11; 3.3.1 Privacy management |
+| Design audit logging requirements | Audit logging specification | OVA-4 Process Data Management | SAF-P10 |
+
+|**PLACEHOLDER: VS-01 design process decomposition: inputs (statistical needs, data sources, framework standards, legal and privacy requirements), the five design sub-processes in order, and the design document each produces, which together govern Implementation, Execution, and Management**|
+|---|
+
+##### Implementation: provides the execution process
+
+The implementation process type takes the metadata artifacts from Design and **builds, configures, and tests** the acquisition process until it is ready for production. Nothing runs operationally until this process type is complete. Components are reused where possible and built only where needed, in line with SAF-P01.
+
+| Implementation sub-process | Refines | Main outputs |
+|---|---|---|
+| Build Collection Instruments and Channels | PRD-3.1 Reuse or build collection instruments; DSP-1 Join a data space | Production-ready instruments and channels |
+| Configure Data Ingestion Workflows | PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows | Automated validation, metadata capture, exception routing, events |
+| Build Metadata Registration and Cataloging | PRD-3.4 Configure workflows; DLM-3 Register and catalog data; OVA-2 Metadata Management | Catalog, automated metadata propagation, discovery |
+| Test and Validate the Pipeline | PRD-3.5 Test production systems; PRD-3.6 Test statistical business process; PRD-3.7 Finalize production systems | Test reports, production-ready process, operational procedures |
+
+###### Build Collection Instruments and Channels
+
+*Refines:* PRD-3.1 Reuse or build collection instruments; DSP-1 Join a data space.
+
+This sub-process turns the collection methodology into operational tools and channels. For survey-based collection, it builds or configures the instruments. A CAWI portal gets the designed question logic, support for several languages, and a layout that works on any device. A CAPI application gets offline capability and the designed questionnaire. CATI scripts get the designed routing logic. Paper forms are laid out for automated scanning (OCR) or manual data entry. For secondary and emerging sources, the receiving channels are configured. SFTP endpoints get the designed encryption and authentication, API connections get rate limiting and error handling, and data space connectors are set up according to their specifications. Secure transfer channels with end-to-end encryption are set up in line with SAF-P10. A respondent management system handles invitations, reminders, and tracking.
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Build or configure survey instruments per mode (CAWI, CAPI, CATI, paper) | Production-ready instruments | PRD-3.1 Reuse or build collection instruments | 1.1.3 Build statistics product |
+| Configure data receipt channels (SFTP, API, data space connectors) | Configured channel endpoints | PRD-3.1 Reuse or build collection instruments; DSP-1 Join a data space | |
+| Set up secure transfer channels with end-to-end encryption | Secure channel configuration | PRD-3.1 Reuse or build collection instruments | SAF-P10 |
+| Configure the respondent management system (invitations, reminders, tracking) | Respondent management system | PRD-3.1 Reuse or build collection instruments | 3.4.2 Contact management |
+
+###### Configure Data Ingestion Workflows
+
+*Refines:* PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows; DLM-2 Promote data through a quality gate.
+
+This sub-process translates the designed validation rules and metadata capture requirements into automated workflows. Structural validation is implemented first: schema conformance, field types, and required fields. Alongside it come integrity checks (checksum verification, virus scanning, digital signature validation), completeness checks (record counts, field coverage thresholds), and service level checks (delivery timeliness, format conformance). Metadata capture at each ingestion point is automated, so that provenance, format, timestamps, and file hashes are extracted without manual work. The landing zone for raw data is set up with the designed access controls and storage policies. Event notifications are configured, so that VS-02 is alerted when raw data is registered. Exception handling workflows route rejected data to the right queue: provider notification, manual review, or conditional acceptance.
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Implement validation rules as automated checks (structural, integrity, completeness, service level) | Automated validation pipeline | PRD-3.2 Reuse or build processing and analysis components | |
+| Configure metadata capture at each ingestion point | Automated metadata extraction | PRD-3.4 Configure workflows | SAF-P09 |
+| Set up the raw data landing zone with access controls and storage policies | Configured repository | PRD-3.4 Configure workflows; DLM-4 Classify and protect data | |
+| Configure event notifications for downstream consumers | Publication of the *Raw Data Registered* event | PRD-3.4 Configure workflows | SAF-P07 |
+| Configure exception handling workflows | Rejection routing and manual review queues | PRD-3.4 Configure workflows; DLM-2 Promote data through a quality gate | |
+
+###### Build Metadata Registration and Cataloging
+
+*Refines:* PRD-3.4 Configure workflows; DLM-3 Register and catalog data; DLM-6 Provide data for reuse; OVA-2 Metadata Management.
+
+This sub-process implements the metadata catalog and the automated registration that make every dataset findable and traceable. Catalog entries are built from the metadata model of *Design Data Model and Metadata Schema*. Metadata is propagated automatically into the catalog from three sources: the collection instruments (variables, code lists, question wording), the transfer channels (source, method, timing), and the validation workflow (validation results, completeness scores). Metadata quality validation makes sure that every registered dataset has all required metadata fields. Search and discovery functions let downstream consumers find raw data and its metadata. As CSDA emphasizes, the ultimate goal is active metadata: metadata that can generate collection instruments, validation rules, and processing specifications automatically.
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Implement catalog entries based on the designed metadata model | Populated metadata catalog | DLM-3 Register and catalog data; OVA-2 Metadata Management | |
+| Configure automatic metadata propagation from instruments, channels, and validation | Automated metadata pipelines | PRD-3.4 Configure workflows | CSDA Metadata Management |
+| Set up metadata quality validation | Metadata completeness checks | OVA-2 Metadata Management | SAF-P09 |
+| Implement metadata search and discovery for downstream consumers | Discovery interface | DLM-6 Provide data for reuse | CSDA Metadata Management |
+
+###### Test and Validate the Pipeline
+
+*Refines:* PRD-3.5 Test production systems; PRD-3.6 Test statistical business process; PRD-3.7 Finalize production systems.
+
+Before the acquisition process goes into production, it must be thoroughly verified. Technical testing covers all individual components: instruments, channels, validators, and catalog. Integration testing checks the end-to-end flow from receipt through validation to catalog registration. A field test or pilot with real or synthetic data runs on a small scale with actual data providers. It verifies that metadata is captured and propagated correctly, that quality criteria are enforced at each checkpoint, and that exception handling works as designed. Performance testing confirms that the process can handle the expected volumes within the agreed delivery windows. Security testing, such as penetration testing of transfer channels and verification of access controls, makes sure the process meets SAF-P10. The sub-process ends with putting the production system into use and documenting the operational procedures.
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Test all individual components | Unit test reports | PRD-3.5 Test production systems | |
+| Test integration: end-to-end flow from receipt to registration | Integration test report | PRD-3.5 Test production systems | |
+| Run a field test or pilot with real or synthetic data | Field test report, validated metadata propagation | PRD-3.6 Test statistical business process | |
+| Test performance against expected volumes | Performance test report | PRD-3.5 Test production systems | |
+| Test security: penetration testing, access control verification | Security test report | PRD-3.5 Test production systems | SAF-P10; 3.3.2 Security planning |
+| Finalize the production system and document operational procedures | Operational procedures manual, production-ready process | PRD-3.7 Finalize production systems | |
+
+|**PLACEHOLDER: VS-01 implementation pipeline: the five design artifacts feeding the three build sub-processes, followed by technical testing, field test, and security and performance testing, resulting in a production-ready acquisition process and operational procedures**|
+|---|
+
+##### Execution: provides the statistical data
+
+Execution runs the stages of VS-01 in every production cycle. The stages and their activities are described in attribute 3. A cycle starts when a collection period opens or when a provider's delivery arrives. The stages then run in order, but for continuous sources, such as daily web data, VS-01.3 to VS-01.5 repeat for every delivery. Execution applies the designs and the solution as they are; anything that needs a new rule or a new channel goes back to Design. Every delivery ends in one of three outcomes: registered, registered with quality flags, or returned to the provider.
+
+| Aspect | VS-01 |
+|---|---|
+| Trigger | *Collection period opened*; *Delivery received* |
+| Cadence | Per survey cycle; per delivery for administrative and web data |
+| Performed by | ROL-13 Data collection manager, ROL-14 Data quality analyst, ROL-03 Data steward |
+| Input | Source data (#0), active agreements, production-ready instruments |
+| Output | Registered raw data version (#1) and its intake log |
+| Control point | Gate of State #1 in VS-01.4 |
+| Exception path | Rejection to the provider via ROL-23 Relationship manager; structural change at the source back to Design |
+
+##### Management: provides quality reports
+
+The management process type runs alongside and after execution. It monitors the performance of the acquisition process, assesses the quality of the ingested data, makes sure the domain complies with the rules, and feeds improvements back into Design. This closes the governance cycle.
+
+| Management sub-process | Refines | Main outputs |
+|---|---|---|
+| Monitor Process Performance | OVA-4 Process Data Management; OVA-6 Data Supplier Management; PRD-8.1 Gather evaluation inputs | Process performance dashboard, service level compliance report |
+| Assess Data Quality | OVA-1 Quality Management; DLM-8 Monitor data quality, lineage and use | Data quality report, quality scorecards, trend analysis |
+| Manage Metadata Lifecycle | OVA-2 Metadata Management; DLM-8 Monitor data quality, lineage and use | Metadata quality report, catalog maintenance log, lineage audit |
+| Audit and Compliance Reporting | OVA-1 Quality Management; OVA-4 Process Data Management; DLM-8 Monitor data quality, lineage and use | Audit trail summary, compliance reports to VS-07 |
+| Continuous Improvement | PRD-8.2 Conduct evaluation; PRD-8.3 Agree an action plan | Improvement recommendations, improvement tracking log |
+
+###### Monitor Process Performance
+
+*Refines:* OVA-4 Process Data Management; OVA-6 Data Supplier Management; PRD-8.1 Gather evaluation inputs.
+
+The operational performance of VS-01 must be tracked systematically across production cycles. The process owner and the quality manager collect and aggregate the key performance indicators (see attribute 9). They monitor compliance with the service level agreements of all data providers. They track paradata: who performed each step, when, how long it took, which tools were used, and which errors occurred. This information feeds dashboards that give the process owner a current view of the health of the domain. The approach follows the Quality Management capability of GAMSO for monitoring performance across the production cycle.
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Collect and aggregate the key performance indicators per production cycle | Process performance dashboard | OVA-4 Process Data Management; PRD-8.1 Gather evaluation inputs | GAMSO Quality Management |
+| Monitor service level compliance of all data providers | Service level compliance report | OVA-6 Data Supplier Management | 3.4.3 Service agreement |
+| Track paradata: operator, timing, tools, errors | Paradata records | OVA-4 Process Data Management | |
+| Produce process performance dashboards | Dashboard for the process owner | OVA-4 Process Data Management | |
+
+###### Assess Data Quality
+
+*Refines:* OVA-1 Quality Management; DLM-8 Monitor data quality, lineage and use.
+
+Beyond process performance, the quality of the ingested data itself is evaluated against the criteria set in *Design Validation Rules and Quality Criteria*. Each dataset is assessed on several quality dimensions. Completeness covers record counts against expectations and field coverage. Timeliness compares the delivery date with the agreed deadline. Structural accuracy covers format conformance and valid value ranges. Consistency covers consistency between fields and with earlier deliveries. Conformance covers alignment with the designed schema and classification schemes. Quality indicators are produced per dataset, per source, and per production cycle. Quality trends are tracked to detect declining sources or modes with consistently lower quality. This follows the Data Quality capability of CSDA and SAF capability 2.1.3 *Statistical quality management*.
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Evaluate the quality dimensions per dataset: completeness, timeliness, accuracy, consistency, conformance | Data quality report (per cycle) | OVA-1 Quality Management | CSDA Data Quality |
+| Compare the results with the designed quality criteria | Quality assessment against baseline | OVA-1 Quality Management | 2.1.3 Statistical quality management |
+| Produce quality indicators per dataset, per source, per cycle | Quality scorecards (per source, per mode) | DLM-8 Monitor data quality, lineage and use | CSDA Data Quality |
+| Identify quality trends across sources and modes | Quality trend analysis | DLM-8 Monitor data quality, lineage and use | 2.1.3 Statistical quality management |
+
+###### Manage Metadata Lifecycle
+
+*Refines:* OVA-2 Metadata Management; DLM-8 Monitor data quality, lineage and use.
+
+The metadata that supports data acquisition must stay complete, accurate, and current throughout the data life cycle. This sub-process verifies metadata completeness: every registered dataset must have all required metadata fields, as a compliance check on SAF-P09. It assesses metadata quality: are provenance records accurate, are classifications applied correctly, and are agreement references current? The metadata catalog is actively maintained. Outdated entries are retired, schemas are updated for new source formats, and metadata models are versioned. Lineage from source through ingestion to raw data is tracked. Reconciliation across systems makes sure that catalog entries match the artifacts actually stored. As CSDA emphasizes, metadata carries all the context needed to understand and reuse data; without it, data is effectively useless.
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Verify metadata completeness for all registered datasets | Metadata quality report | OVA-2 Metadata Management | SAF-P09 |
+| Assess metadata quality: accuracy, currency, correct classification | Metadata quality report | OVA-2 Metadata Management | CSDA Metadata Management |
+| Maintain the metadata catalog: retire entries, update schemas, version models | Catalog maintenance log | OVA-2 Metadata Management | CSDA Metadata Management |
+| Track metadata lineage from source through ingestion to raw data | Metadata lineage audit | DLM-8 Monitor data quality, lineage and use | CSDA Metadata Management |
+| Reconcile metadata across systems | Catalog-artifact reconciliation | OVA-2 Metadata Management | SAF-P09 |
+
+###### Audit and Compliance Reporting
+
+*Refines:* OVA-1 Quality Management; OVA-4 Process Data Management; DLM-8 Monitor data quality, lineage and use.
+
+This sub-process produces the evidence that VS-01 operates within legal, regulatory, and organizational requirements. Audit trail reports show the full traceability of every dataset, from the external source to the raw data repository. Data protection reporting covers the records of processing activities (GDPR Article 30), reviews of data protection impact assessments for high-risk processing, and the ability to show which data the NSI holds and why. Agreement compliance reporting confirms that all use of data stays within the terms of the governing agreements. Security compliance reporting verifies that all designed security measures have been applied and documents any breaches or incidents. These reports meet the obligation of SAF capability 4.1.5 *Accountability* and feed VS-07.5 *Audit, Certify and Report Compliance*.
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Produce audit trail reports: full traceability from source to raw data | Audit trail summary | OVA-4 Process Data Management; DLM-8 Monitor data quality, lineage and use | 4.1.5 Accountability |
+| Report on data protection compliance: records of processing, impact assessments, data subject rights | Records of processing activities | OVA-1 Quality Management | SAF-P11; 3.3.1 Privacy management |
+| Report on agreement compliance | Agreement compliance report | OVA-1 Quality Management | 4.1.5 Accountability |
+| Report on security compliance: measures applied, breaches, incidents | Security compliance report (per cycle) | OVA-1 Quality Management | SAF-P10; 3.3.3 Security incident management |
+
+###### Continuous Improvement
+
+*Refines:* PRD-8.2 Conduct evaluation; PRD-8.3 Agree an action plan.
+
+This last management sub-process closes the governance cycle by analyzing performance and quality data and driving improvements. Quality trends across production cycles are examined: are rejection rates decreasing, is metadata completeness improving, and are processing times getting shorter? Improvement opportunities are identified. Examples are new sources that could replace sources of lower quality, collection modes that reduce burden or increase response, automation of manual ingestion steps, and simplification of validation rules that produce too many false alarms. Recommendations are fed back to the design sub-processes, prioritized by impact and feasibility, and tracked through the following cycles. Where a new method or source is needed, the recommendation goes to VS-08. This is SAF capability 4.1.4 *Improvement management* in practice. It also connects to the GAMSO idea of transferring mature results of innovation to production. **[VC11]**
+
+| Activity | Key outputs | SAF process | Other reference |
+|---|---|---|---|
+| Analyze quality trends across production cycles | Improvement recommendations report | PRD-8.2 Conduct evaluation | 4.1.4 Improvement management |
+| Identify improvement opportunities: new sources, better modes, automation, simpler rules | Updated design inputs | PRD-8.2 Conduct evaluation | 4.1.4 Improvement management |
+| Feed recommendations back to the design sub-processes or to VS-08 | Design feedback (closing the cycle) | PRD-8.3 Agree an action plan | 4.1.4 Improvement management |
+| Prioritize improvements by impact and feasibility | Improvement tracking log | PRD-8.3 Agree an action plan | GAMSO Capability Management |
+| Track the implementation of accepted improvements | Improvement tracking log | PRD-8.3 Agree an action plan | GAMSO Capability Management |
+
+|**PLACEHOLDER: VS-01 management feedback loop: data and paradata from Execution flowing through the five management sub-processes, with dashboards to the process owner, quality reports to the quality manager, compliance reports to VS-07, and improvement recommendations back to Design**|
+|---|
+
+##### Metadata and paradata per process type
+
+Metadata is produced in every process type, not only in Design. The table shows what each process type contributes. Data metadata describes the datasets. Process metadata, also called paradata, describes how the process itself ran: who, when, and with which tools.
+
+| Process type | Data metadata produced | Process metadata (paradata) produced |
+|---|---|---|
+| Design | Data models, variable definitions, classification schemes, expected formats, quality thresholds | Log of design decisions, methodology version, review and approval records |
+| Implementation | Schema configurations, parameters of validation rules, catalog templates, mappings from instruments to metadata | Build log, test results, records of configuration changes, deployment approvals |
+| Execution | Provenance, source, timestamp, file hash, volume, quality indicator values, and agreement reference per dataset | Operator identity, timing, volumes, errors, collection mode, instrument version |
+| Management | Quality scores, lineage assessments, completeness reports, life cycle status, trend analyses | Dashboards of key performance indicators, quality trend analyses, improvement decisions, audit findings |
+
+|**PLACEHOLDER: VS-01 business object lifecycle: design artifacts govern implementation assets, which produce the process that turns Source Data (#0) into Raw Data (#1), generating provenance, quality, and audit records that management assesses and feeds back to design**|
+|---|
+
+#### 5. Actors and roles
+
+VS-01 involves more external actors than any other value stream, because it is where the NSI meets its data providers. The table shows the actors and the reference roles involved. Specialized role names used in an NSI map onto these reference roles (see *Role names in the value streams*); for example, the system configurator in the original VS-01 description is ROL-11 Platform engineer. The long-term relationship with each provider is organized in the collaboration COL-01 *Data provision partnership*.
+
+| Actor or role | ID | Process type | Responsibility in VS-01 |
+|---|---|---|---|
+| Data provider | ACT-03 | External | Supplies data under a data sharing agreement: a government agency, a business, or an individual |
+| Respondent | ACT-04 | External | Provides data through survey instruments: web (CAWI), face-to-face (CAPI), telephone (CATI), or paper |
+| Supervisory and legal authority | ACT-08 | External | Grants or oversees the legal basis for collection, for example under the statistics law or data protection law |
+| Process owner | ROL-01 | Management | Accountable for the end-to-end performance of VS-01 |
+| Data owner | ROL-02 | Management | Accountable for State #1; decides on access and retention |
+| Data steward | ROL-03 | Execution | Registers datasets in the catalog, manages metadata entries, applies access controls, resolves gate exceptions |
+| Data custodian | ROL-04 | Execution | Operates storage, access control, and retention |
+| Statistical designer | ROL-06 | Design | Translates statistical needs into data requirements and process specifications |
+| Methodologist | ROL-07 | Design | Designs collection methodology, sampling strategies, and questionnaire content |
+| Metadata and data architect | ROL-08 | Design | Designs data models, metadata schemas, and classification mappings |
+| Data engineer | ROL-10 | Implementation | Builds and configures ingestion workflows, collection instruments, and data channels |
+| Platform engineer | ROL-11 | Implementation | Configures platforms, SFTP endpoints, API connectors, and access controls |
+| Test manager | ROL-12 | Implementation | Plans and carries out testing of the acquisition process: technical tests, field tests, integration tests |
+| Data collection manager | ROL-13 | Execution | Oversees collection campaigns, coordinates collection teams, and monitors response |
+| Data quality analyst | ROL-14 | Execution | Performs validation checks, assesses data quality at intake, and logs exceptions |
+| Quality manager | ROL-18 | Management | Monitors key performance indicators, produces quality reports, and drives continuous improvement |
+| Compliance officer | ROL-19 | Management | Ensures legal and regulatory compliance and produces audit reports |
+| Relationship manager | ROL-23 | Execution | Maintains provider relationships and agreements; handles rejected deliveries with the provider |
+
+#### 6. Capabilities, processes, and functions
+
+##### Capability foundations
+
+The table shows which capabilities from the SAF capability model VS-01 relies on, and what role they play. NSIs can use it to map the value stream to their own organization.
+
+| Capability group | Capabilities | Role in VS-01 |
+|---|---|---|
+| 1.1 Statistical design and build | 1.1.1 Needs inventory, 1.1.2 Design statistics product, 1.1.3 Build statistics product | Design the data requirements and the collection methodology, and build the acquisition process |
+| 1.2 Data collection | 1.2.1 Primary data collection, 1.2.2 Secondary data collection | Carry out the collection: surveys, intake of administrative data, extraction through APIs |
+| 2.1 Data management | 2.1.1 Data lifecycle management, 2.1.2 Metadata management, 2.1.3 Statistical quality management, 2.1.4 Statistical register management | Manage data and metadata during ingestion, assess quality, maintain registers |
+| 3.1 Business operations | 3.1.2 Purchasing and contract management | Manage contracts with data providers that are suppliers |
+| 3.2 Computerization and automation | 3.2.1 Application development, 3.2.2 Functional management | Build and maintain collection instruments and ingestion systems |
+| 3.3 Security and privacy | 3.3.1 Privacy management, 3.3.2 Security planning, 3.3.3 Security incident management, 3.3.4 Logical identity and access control | Build privacy and security into all acquisition processes |
+| 3.4 Customer and partner relations | 3.4.2 Contact management, 3.4.3 Service agreement | Maintain relationships with respondents and providers, and manage data provision agreements |
+| 4.1 Governance | 4.1.1 Strategy and governance, 4.1.2 Policy and planning, 4.1.4 Improvement management, 4.1.5 Accountability | Govern the domain, plan improvements, report on compliance |
+
+##### Stages, processes, and functions
+
+The table shows which SAF business processes realize each stage of VS-01 and which business functions they mainly use.
+
+| Stage | Realized by processes | Main functions |
+|---|---|---|
+| VS-01.1 Identify Data Needs and Sources | PRD-1.1 Identify needs; PRD-1.5 Check data availability and suitability; PRD-2.3 Design collection | FUN-3.1 Design and build statistical products; FUN-6.1 Manage data supplier relationships |
+| VS-01.2 Establish Data Agreements and Access Rights | OVA-6 Data Supplier Management; DSP-1 Join a data space; DSP-3 Agree data use conditions | FUN-6.2 Manage data provision agreements; FUN-9.1 Manage data space participation; FUN-10.5 Manage legal affairs |
+| VS-01.3 Collect or Receive Data | PRD-4.1 Create frame and select sample; PRD-4.2 Set up collection; PRD-4.3 Run collection; DSP-4 Exchange data under usage control | FUN-3.2 Collect and acquire data; FUN-9.2 Operate data space connectivity |
+| VS-01.4 Validate and Log Data Intake | PRD-4.4 Finalize collection; DLM-2 Promote data through a quality gate | FUN-3.2 Collect and acquire data; FUN-7.3 Manage data lifecycle and storage |
+| VS-01.5 Store and Register Raw Data Artifacts | DLM-3 Register and catalog data; DLM-4 Classify and protect data; DLM-5 Store and version data | FUN-7.2 Manage metadata; FUN-7.3 Manage data lifecycle and storage; FUN-7.5 Protect data |
+
+|**PLACEHOLDER: ArchiMate view VS-01 (b) stages realized by processes and functions**|
+|---|
+
+##### Framework mappings
+
+This reference table maps each process type of VS-01 to the SAF business processes, the international frameworks (GSBPM, GAMSO, CSDA), and the SAF capability model. It is intended for architects and auditors; the rest of this section does not depend on it.
+
+| Process type | SAF business processes | GSBPM | GAMSO | CSDA | SAF capabilities |
+|---|---|---|---|---|---|
+| Design | PRD-1.1 to PRD-1.3, PRD-1.5, PRD-1.6, PRD-2.2 to PRD-2.5, DLM-1, DLM-2, DLM-4, DLM-9, OVA-1, OVA-2, OVA-4, OVA-6 | Phase 1 Specify Needs (1.1 to 1.3, 1.5, 1.6), Phase 2 Design (2.2 to 2.5) | Production (design activities), Capability Management | Data Governance, Metadata Management | 1.1.1 Needs inventory, 1.1.2 Design statistics product, 2.1.2 Metadata management |
+| Implementation | PRD-3.1, PRD-3.2, PRD-3.4 to PRD-3.7, DLM-2, DLM-3, DLM-4, DLM-6, OVA-2, DSP-1 | Phase 3 Build (3.1, 3.2, 3.4 to 3.7) | Capability Management | Data Ingestion (set-up), Data Governance (configuration) | 1.1.3 Build statistics product, 3.2.1 Application development, 3.2.2 Functional management |
+| Execution | PRD-1.1, PRD-1.5, PRD-4.1 to PRD-4.4, DLM-2 to DLM-5, OVA-2, OVA-4, OVA-6, DSP-1, DSP-3, DSP-4 | Phase 4 Collect (4.1 to 4.4); 1.1 and 1.5 in their recurrent form | Production (execution) | Data Ingestion (execution) | 1.2.1 Primary data collection, 1.2.2 Secondary data collection |
+| Management | OVA-1, OVA-2, OVA-4, OVA-6, DLM-8, PRD-8.1 to PRD-8.3 | Phase 8 Evaluate; overarching Quality Management and Metadata Management | Corporate Support (Quality, Data, and Metadata Management), Capability Management (improvement) | Data Quality, Data Governance, Traceability | 2.1.3 Statistical quality management, 4.1.4 Improvement management, 4.1.5 Accountability |
+
+#### 7. Principles
+
+The following principles govern VS-01 most directly.
+
+| Principle | Statement | Application in VS-01 |
+|---|---|---|
+| SAF-P01 | Reuse before open source, open source before buying, buying before building | Collection instruments, connectors, and ingestion tooling are reused across products first. Where new tooling is needed, open-source solutions, preferably developed with other NSIs, come before purchase or own development. **[VC3]** |
+| SAF-P07 | Implement loosely coupled processes and systems | Data acquisition is independent from downstream processing. Raw Data (State #1) is the decoupling interface: downstream consumers use it without knowing how it was collected. |
+| SAF-P08 | Data is shared property | Raw data, once registered, is available to all authorized consumers. Collection is not duplicated across statistical products when the same source data can serve several purposes. This also reduces response burden. |
+| SAF-P09 | No data without metadata and classification | At ingestion, every dataset is enriched with provenance (where it came from and how), source, method, timestamp, quality indicators, and a classification for availability, integrity, and confidentiality. This is not a precondition that blocks ingestion, but an obligation the NSI fulfills during acquisition. |
+| SAF-P10 | Security by design | Security is built into the acquisition process from the start: encrypted transfer channels, virus scanning, checksum verification, and access controls. |
+| SAF-P11 | Privacy by design | Privacy protection is designed into the acquisition process from the start, not added after data has entered: the moment of pseudonymization, purpose limitation, the legal basis for processing, and data minimization. |
+
+::: {.callout-note title="Principles that apply across the process types"}
+Several principles apply to all four process types. SAF-P09 applies everywhere: Design defines the target metadata, Execution captures it at ingestion, and Management assesses it and closes remaining gaps. SAF-P10 applies to *Design Access Control and Privacy Framework*, to *Build Collection Instruments and Channels*, and to the stages VS-01.3 to VS-01.5. SAF-P11 starts in *Design Access Control and Privacy Framework* and carries through all process types. SAF-P07 governs the handover of State #1 to VS-02.
+:::
+
+#### 8. Interfaces, services, and events
+
+**Boundary interfaces**
+
+VS-01 is loosely coupled (SAF-P07) to its neighbors through two boundary interfaces. Specifying each boundary explicitly makes the loose-coupling contract concrete and testable: the handover artifact, the metadata it must carry, the event that triggers it, and the point where responsibility transfers. Each interface exchanges a registered, immutable artifact plus its metadata, never internal working data. Neither side therefore needs knowledge of the other's internal processing.
+
+| Boundary | Handed over | Required metadata | Trigger | Responsibility transfer |
+|---|---|---|---|---|
+| Provider or respondent → VS-01 (intake) | Delivery or survey response (#0) | Source identifier and organization, transfer method and channel, receipt timestamp, file hash, volume, agreement reference, collection mode and instrument version (surveys) | *Delivery received* or response submitted | The provider is responsible up to receipt; VS-01 takes custody and the obligation to capture metadata (SAF-P09) at the point of receipt |
+| VS-01 → VS-02 (or VS-03) (handover) | Registered raw data version (#1) | Minimum metadata set of State #1: provenance, source, collection method, receipt timestamp, file hash, agreement reference, quality assessment, classification | *Raw Data Registered* | VS-01 keeps custody of the raw artifact; the consumer takes responsibility for further processing on receipt of the event |
+
+**Business services**
+
+| Service | Offered to | Realized in | Interfaces |
+|---|---|---|---|
+| Data collection service | Respondents, data providers | VS-01.3 Collect or Receive Data | Web portals (CAWI), mobile applications (CAPI), telephone systems (CATI), paper, SFTP endpoints, REST APIs, data space connectors |
+| Data agreement service | Data providers, legal authorities | VS-01.2 Establish Data Agreements and Access Rights | Agreement management, relationship manager |
+| Raw data provisioning service | VS-02 Data Standardization and Integration, VS-03 Data Editing and Enrichment, other domains | VS-01.5 Store and Register Raw Data Artifacts | Event notification (*Raw Data Registered*) and a catalog query interface to find and access raw datasets |
+| Ingestion monitoring service | Process owner, quality manager | Management sub-processes *Monitor Process Performance* and *Assess Data Quality* | Dashboards and quality reports |
+| Metadata catalog service | All data consumers in the NSI | Management sub-process *Manage Metadata Lifecycle* | Search and browse interface for metadata, with metadata exchange compliant with SDMX |
+| Design and methodology service | Methodologists, statistical designers, data engineers | All Design sub-processes of VS-01 | Design documents, methodology advice |
+
+**Business events**
+
+| Event | Triggers or marks |
+|---|---|
+| *Design artifacts published* | Start of Implementation after a design change |
+| *Pipeline production-ready* | End of Implementation; Execution can start |
+| *Collection period opened* | Start of VS-01.3 for a survey cycle (PRD-4.3 Run collection) |
+| *Agreement expired or changed* | A review in VS-01.2 before the next delivery |
+| *Delivery received* | Start of VS-01.4 for that delivery |
+| *Data Intake Validated* / *Data Intake Rejected* | Outcome of VS-01.4; rejection starts provider follow-up |
+| *Raw Data Registered* | Completion of VS-01.5; triggers the consuming value stream |
+| *Improvement recommendations issued* | Input for Design from *Continuous Improvement* |
+
+|**PLACEHOLDER: VS-01 event choreography between data provider, NSI teams, and process management across Design, Implementation, Execution (agreement, primary or secondary collection, validation passed or failed), and Management (key performance indicators, quality, compliance, improvement recommendations)**|
+|---|
+
+**Interaction with the supporting value streams**
+
+| Value stream | Provides to VS-01 | Receives from VS-01 |
+|---|---|---|
+| VS-07 Governance and Compliance | Legal register, privacy and security policy | Audit trails, compliance evidence |
+| VS-08 Innovation and Methodological Development | New sources and collection methods | Improvement needs |
+| VS-09 Infrastructure and Platform Enablement | Channels, storage, catalog, event interfaces | Capacity and channel requirements |
+| VS-10 Customer and Stakeholder Engagement | Provider relationships and burden insight | Provider feedback and issues |
+
+#### 9. Key performance indicators
+
+The key performance indicators are collected per production cycle in *Monitor Process Performance*. They feed the dashboard that the process owner reviews.
+
+| KPI | Description | Measurement |
+|---|---|---|
+| Response rate | Share of sampled units that provided data (surveys) | Per survey, per mode, per cycle |
+| Delivery timeliness | Share of deliveries received within the agreed window | Per source, per cycle |
+| Rejection rate | Share of deliveries that failed the gate of State #1 | Per source, per cycle |
+| Processing time | Time from receipt to catalog registration | Per delivery, per cycle |
+| Metadata completeness | Share of required metadata fields populated at registration | Per delivery |
+| Exception rate | Frequency of exception handling per check rule | Per rule, per cycle |
+
+#### 10. Examples
+
+**Survey.** The Labor Force Survey uses a mixed-mode approach. Sampled persons first receive a web invitation; non-respondents are called after two weeks, and hard-to-reach groups are visited by an interviewer. Each mode records its own paradata, such as completion time or interviewer identifier. Responses are registered as one #1 version per collection batch, and the data collection manager follows the response rate per mode during the cycle.
+
+**Administrative register.** The tax authority delivers its quarterly file by secure file transfer on day 38, within the agreed 45 days. The intake checks the checksum, the schema, and the record count, which is 99.2% of the expected volume. Fourteen unknown business identifiers are not an intake issue; they pass through with a flag. The file is registered as `RD-TAX-2026Q3-001`, and the *Raw Data Registered* event notifies VS-02.
+
+**Web data.** Every night, 12,500 product pages of 25 retailers are scraped; on a typical day 95% succeed. Each scrape records the scraper version and a fingerprint of the page structure. When one retailer redesigns its website, the fingerprints change and the success rate drops. Management detects the trend and sends an improvement action to Design, where the scraper is rebuilt.
+
+|**PLACEHOLDER: VS-01 maturity checklist and end-to-end scenarios to be added to the toolkit**|
+|---|
+
+
+
+
 
 ## VS-02.0 — Data Standardization and Integration
 
