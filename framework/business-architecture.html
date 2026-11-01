@@ -428,6 +428,18 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#examples-and-anti-patterns-4" id="toc-examples-and-anti-patterns-4" class="nav-link" data-scroll-target="#examples-and-anti-patterns-4">10. Examples and anti-patterns</a></li>
   </ul></li>
   <li><a href="#boundary-position-6-consumed-data" id="toc-boundary-position-6-consumed-data" class="nav-link" data-scroll-target="#boundary-position-6-consumed-data">Boundary Position #6: Consumed Data</a></li>
+  </ul></li>
+  <li><a href="#statistical-data-value-chain" id="toc-statistical-data-value-chain" class="nav-link" data-scroll-target="#statistical-data-value-chain">Statistical Data Value Chain</a>
+  <ul class="collapse">
+  <li><a href="#overview-1" id="toc-overview-1" class="nav-link" data-scroll-target="#overview-1">Overview</a>
+  <ul class="collapse">
+  <li><a href="#purpose-of-this-chapter-1" id="toc-purpose-of-this-chapter-1" class="nav-link" data-scroll-target="#purpose-of-this-chapter-1">Purpose of this chapter</a></li>
+  <li><a href="#where-to-find-what" id="toc-where-to-find-what" class="nav-link" data-scroll-target="#where-to-find-what">Where to find what</a></li>
+  <li><a href="#the-chain-at-a-glance" id="toc-the-chain-at-a-glance" class="nav-link" data-scroll-target="#the-chain-at-a-glance">The chain at a glance</a></li>
+  <li><a href="#the-four-process-types-1" id="toc-the-four-process-types-1" class="nav-link" data-scroll-target="#the-four-process-types-1">The four process types</a></li>
+  <li><a href="#how-each-value-stream-is-described" id="toc-how-each-value-stream-is-described" class="nav-link" data-scroll-target="#how-each-value-stream-is-described">How each value stream is described</a></li>
+  <li><a href="#identifiers-used-in-this-chapter" id="toc-identifiers-used-in-this-chapter" class="nav-link" data-scroll-target="#identifiers-used-in-this-chapter">Identifiers used in this chapter</a></li>
+  </ul></li>
   <li><a href="#the-statistical-data-value-chain" id="toc-the-statistical-data-value-chain" class="nav-link" data-scroll-target="#the-statistical-data-value-chain">The Statistical Data Value Chain</a></li>
   <li><a href="#steady-states-of-data" id="toc-steady-states-of-data" class="nav-link" data-scroll-target="#steady-states-of-data">Steady States of Data</a>
   <ul class="collapse">
@@ -3767,7 +3779,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td>VS-03.2</td>
 <td>Perform Data Editing and Correction</td>
-<td>PRD-5.4</td>
+<td>PRD-5.2, PRD-5.4</td>
 <td>FUN-3.3</td>
 </tr>
 <tr class="odd">
@@ -3790,7 +3802,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td>VS-04.1</td>
-<td>Design Estimation and Analytical Approach</td>
+<td>Confirm Estimation and Analytical Approach</td>
 <td>PRD-2.4, PRD-2.5</td>
 <td>FUN-3.1, FUN-4.1</td>
 </tr>
@@ -3815,8 +3827,8 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td>VS-04.5</td>
 <td>Validate and Document Results</td>
-<td>PRD-6.2, OVA-2</td>
-<td>FUN-3.4, FUN-7.2</td>
+<td>PRD-6.2, PRD-6.4, OVA-2</td>
+<td>FUN-3.4, FUN-3.5, FUN-7.2</td>
 </tr>
 <tr class="odd">
 <td>VS-05.1</td>
@@ -6279,6 +6291,232 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="boundary-position-6-consumed-data">Boundary Position #6: Consumed Data</h2>
 <p><strong>Description:</strong> Consumed data is released data that users have taken into their own environment and use for their own purposes. Examples are a government departments using an unemployment rate in a policy note, a researcher combining released tables with other sources, a journalist quoting an inflation figure, or an application that pulls a series from the API every day. The NSI has no custody of consumed data and cannot control how it is used, combined, or presented. It can influence correct use only through the quality of its documentation, its terms of use, its user support, and its errata.</p>
 <p><strong>Why it is described:</strong> The SAF describes #6 so that the end of the NSI’s responsibility is explicit, just as #0 marks where it begins. Everything the NSI can do for correct use has to be done at #5: documentation, accuracy measures, terms of use, and a clear correction history. What the NSI learns about consumed data comes back as usage and feedback, through VS-06.5 and VS-10. That feedback closes the loop: it shapes new information needs and, through them, the next cycle of the value chain from #0 onward.</p>
+</section>
+</section>
+<section id="statistical-data-value-chain" class="level1">
+<h1>Statistical Data Value Chain</h1>
+<section id="overview-1" class="level2">
+<h2 class="anchored" data-anchor-id="overview-1">Overview</h2>
+<section id="purpose-of-this-chapter-1" class="level3">
+<h3 class="anchored" data-anchor-id="purpose-of-this-chapter-1">Purpose of this chapter</h3>
+<p>This chapter describes how the statistical value chain works in practice. The Strategy chapter introduced the ten value streams, their stages, and the value they create. The Steady-State Architecture describes the results the chain hands over: the states, their quality gates, and their metadata. This chapter describes the work between those results: the stages, the processes that realize them, the roles that carry them out, and the events that connect them. Every value stream is described with the same structure, so that NSIs can compare them and map their own organization onto them. <strong>[VC1]</strong></p>
+</section>
+<section id="where-to-find-what" class="level3">
+<h3 class="anchored" data-anchor-id="where-to-find-what">Where to find what</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Answered in</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Which value streams exist, and what value do they create?</td>
+<td>Strategy, <em>Value Streams</em></td>
+</tr>
+<tr class="even">
+<td>What must data satisfy at each handover point?</td>
+<td>Steady-State Architecture, per state</td>
+</tr>
+<tr class="odd">
+<td>How is the work in each value stream organized?</td>
+<td>This chapter</td>
+</tr>
+<tr class="even">
+<td>Which actors, roles, processes, and functions exist?</td>
+<td>Business Architecture, reference content</td>
+</tr>
+<tr class="odd">
+<td>How mature is an NSI, and how does it apply a value stream?</td>
+<td>SAF Toolkit</td>
+</tr>
+</tbody>
+</table>
+<p>The division of work between states and value streams is deliberate. A state describes the <strong>result</strong>: what the data looks like, which gate it passed, and how it is protected. A value stream describes the <strong>work</strong>: who does what, in which order, and with which controls. Gate criteria and minimum metadata sets are therefore not repeated in this chapter. Each value stream refers to the state it produces.</p>
+</section>
+<section id="the-chain-at-a-glance" class="level3">
+<h3 class="anchored" data-anchor-id="the-chain-at-a-glance">The chain at a glance</h3>
+<p>Six primary value streams form the production chain. Each one consumes a registered state version and produces the next. They are loosely coupled (SAF-P07): a value stream needs no knowledge of the internal work of its neighbors, only of the state it receives and the state it delivers. The handover is triggered by a registration event. Four supporting value streams run continuously across the whole chain. They set the rules, develop new methods, provide the platforms, and keep the chain connected to its users and data providers. <br> <br> <img width="1706" height="533" alt="image" src="https://github.com/user-attachments/assets/be1cec93-f7e9-4d01-9088-b6ff85ce80a2"> Figure x: Value Stream Context Map <br> <br> | VS | Value stream | Type | State in → out | Event out | |—|—|—|—|—| | VS-01 | Data Acquisition and Ingestion | Primary | #0 → #1 | <em>Raw Data Registered</em> | | VS-02 | Data Standardization and Integration | Primary | #1 → #2 | <em>Standardized Data Registered</em> | | VS-03 | Data Editing and Enrichment | Primary | #2 → #3 | <em>Processed Data Registered</em> | | VS-04 | Estimation, Analysis and Statistical Modeling | Primary | #3 → #4 (analytical) | <em>Output Data Registered</em> | | VS-05 | Statistical Product Composition | Primary | #4 (analytical) → #4 (approved) | <em>Statistical Product Registered</em> | | VS-06 | Dissemination and Service Delivery | Primary | #4 (approved) → #5 | <em>Statistics Released</em> | | VS-07 | Governance and Compliance | Supporting | Across the chain | n/a | | VS-08 | Innovation and Methodological Development | Supporting | Across the chain | n/a | | VS-09 | Infrastructure and Platform Enablement | Supporting | Across the chain | n/a | | VS-10 | Customer and Stakeholder Engagement | Supporting | Across the chain; feedback from #5 and #6 | n/a |</p>
+<p>Not every statistical product passes through every primary value stream. A macro statistic, for example, often starts from statistics another domain has already registered. Such a product enters the chain downstream and its lineage points to the state it consumed (see <em>Applying the steady states pragmatically</em>). Data that comes from outside the NSI always enters through VS-01.</p>
+</section>
+<section id="the-four-process-types-1" class="level3">
+<h3 class="anchored" data-anchor-id="the-four-process-types-1">The four process types</h3>
+<p>Every business domain, and therefore every primary value stream, runs the same four process types. <strong>Design</strong> decides how the work is done and delivers metadata: designs, rules, and specifications. <strong>Implementation</strong> builds and tests the solution and delivers the execution process. <strong>Execution</strong> runs the work in each production cycle and delivers the statistical data; the stages of a value stream describe this execution. <strong>Management</strong> monitors the work, assesses quality, and feeds improvements back to design. Design and implementation only run when something changes, execution runs every cycle, and management runs continuously.</p>
+<p>The supporting value streams do not follow a production cycle. They run the same pattern as a continuous cycle of plan, build, operate, and improve.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Process type</th>
+<th>Provides</th>
+<th>GSBPM phases</th>
+<th>Equivalent in supporting streams</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design</td>
+<td>Metadata: designs, rules, specifications</td>
+<td>1 Specify Needs, 2 Design</td>
+<td>Plan</td>
+</tr>
+<tr class="even">
+<td>Implementation</td>
+<td>The execution process: instruments, components, configured workflows</td>
+<td>3 Build</td>
+<td>Build</td>
+</tr>
+<tr class="odd">
+<td>Execution</td>
+<td>Statistical data, registered in a state</td>
+<td>4 Collect, 5 Process, 6 Analyze, 7 Disseminate</td>
+<td>Operate</td>
+</tr>
+<tr class="even">
+<td>Management</td>
+<td>Quality reports and improvements</td>
+<td>8 Evaluate; overarching quality and metadata management</td>
+<td>Improve</td>
+</tr>
+</tbody>
+</table>
+<p><br> <img width="1886" height="310" alt="image" src="https://github.com/user-attachments/assets/5867d5fe-9ccc-4f4d-ba09-50a24f95fefd"> Figure x: The Four-Process Governance Pattern <br> <br></p>
+</section>
+<section id="how-each-value-stream-is-described" class="level3">
+<h3 class="anchored" data-anchor-id="how-each-value-stream-is-described">How each value stream is described</h3>
+<p>Each primary value stream is described with the same ten attributes. The supporting value streams use the same attributes, with two differences: attribute 2 describes the relation to the chain instead of a state transition, and attribute 4 follows the cycle of plan, build, operate, and improve.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Attribute</th>
+<th>Question it answers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Purpose and value created</td>
+<td>Why does this value stream exist, and what value does it add?</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Position and state transition</td>
+<td>Which state does it consume, and which does it produce?</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Stages</td>
+<td>Which stages create the value, and what happens in each?</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>The four process types</td>
+<td>How is the value stream designed, built, and managed?</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Actors and roles</td>
+<td>Who is involved, and with which responsibility?</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Capabilities, processes, and functions</td>
+<td>Which SAF capabilities, processes, and functions realize the stages?</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Principles</td>
+<td>Which architecture principles weigh most, and how are they applied?</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Interfaces, services, and events</td>
+<td>What does the value stream offer and exchange, and what triggers it?</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Key performance indicators</td>
+<td>How is the performance of the value stream measured?</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Examples</td>
+<td>What does the value stream look like in practice?</td>
+</tr>
+</tbody>
+</table>
+<p>Each value stream has three ArchiMate views: (a) the value stream with its stages and the capabilities that serve them, (b) the stages and the processes and functions that realize them, and (c) the state handover and its events. Maturity checklists and detailed end-to-end scenarios for each value stream are part of the SAF Toolkit. <strong>[VC2]</strong></p>
+</section>
+<section id="identifiers-used-in-this-chapter" class="level3">
+<h3 class="anchored" data-anchor-id="identifiers-used-in-this-chapter">Identifiers used in this chapter</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Identifier</th>
+<th>Refers to</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-01 to VS-10, VS-01.1, …</td>
+<td>Value streams and their stages</td>
+<td>Strategy, <em>Value Streams</em></td>
+</tr>
+<tr class="even">
+<td>1.2.1, 2.1.2, …</td>
+<td>Capabilities</td>
+<td>Strategy, <em>Capability Model</em></td>
+</tr>
+<tr class="odd">
+<td>ACT, ROL, COL</td>
+<td>Business actors, roles, and collaborations</td>
+<td>Business Architecture</td>
+</tr>
+<tr class="even">
+<td>PRD, OVA, DLM, MDS, DSP</td>
+<td>Business processes</td>
+<td>Business Architecture, <em>Business Processes</em></td>
+</tr>
+<tr class="odd">
+<td>FUN</td>
+<td>Business functions</td>
+<td>Business Architecture, <em>Business Functions</em></td>
+</tr>
+<tr class="even">
+<td>#0 to #6</td>
+<td>Steady states and boundary positions</td>
+<td>Steady-State Architecture</td>
+</tr>
+<tr class="odd">
+<td>SAF-P01 to SAF-P11</td>
+<td>Architecture principles</td>
+<td>Motivation, <em>Architecture Principles</em></td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 <section id="the-statistical-data-value-chain" class="level2">
 <h2 class="anchored" data-anchor-id="the-statistical-data-value-chain">The Statistical Data Value Chain</h2>
