@@ -107,6 +107,7 @@ Current version: 0.5
 
 
 
+
 # Preface
 
 The Statistical Architecture Framework (SAF) was developed to support the modernisation of official statistics. This framework responds to the need of national statistical institutes and their partners for shared guidelines and standards. Producing statistics must remain credible, secure, and efficient. At the same time, organisations must adapt quickly to new data sources, higher user expectations, and tighter regulations and budgets. The SAF provides a solid foundation for this and help organisations guide these changes in a controlled and structured way.
@@ -3389,15 +3390,16 @@ Released data is the most widely reused form of NSI output. Under SAF-P08 it is 
 **Description:** Consumed data is released data that users have taken into their own environment and use for their own purposes. Examples are a government departments using an unemployment rate in a policy note, a researcher combining released tables with other sources, a journalist quoting an inflation figure, or an application that pulls a series from the API every day. The NSI has no custody of consumed data and cannot control how it is used, combined, or presented. It can influence correct use only through the quality of its documentation, its terms of use, its user support, and its errata.
 
 **Why it is described:** The SAF describes #6 so that the end of the NSI's responsibility is explicit, just as #0 marks where it begins. Everything the NSI can do for correct use has to be done at #5: documentation, accuracy measures, terms of use, and a clear correction history. What the NSI learns about consumed data comes back as usage and feedback, through VS-06.5 and VS-10. That feedback closes the loop: it shapes new information needs and, through them, the next cycle of the value chain from #0 onward.
-
+<br>
+<br>
 # Statistical Data Value Chain
 
-## Overview
+## Value Chains Introduction
 
 ### Purpose of this chapter
 
 This chapter describes how the statistical value chain works in practice. The Strategy chapter introduced the ten value streams, their stages, and the value they create. The Steady-State Architecture describes the results the chain hands over: the states, their quality gates, and their metadata. This chapter describes the work between those results: the stages, the processes that realize them, the roles that carry them out, and the events that connect them. Every value stream is described with the same structure, so that NSIs can compare them and map their own organization onto them. **[VC1]**
-
+<br>
 ### Where to find what
 
 | Question | Answered in |
@@ -3409,6 +3411,19 @@ This chapter describes how the statistical value chain works in practice. The St
 | How mature is an NSI, and how does it apply a value stream? | SAF Toolkit |
 
 The division of work between states and value streams is deliberate. A state describes the **result**: what the data looks like, which gate it passed, and how it is protected. A value stream describes the **work**: who does what, in which order, and with which controls. Gate criteria and minimum metadata sets are therefore not repeated in this chapter. Each value stream refers to the state it produces.
+
+**Key concepts — if you are new to architecture documents** <br>
+This documentation uses a handful of architecture terms. Here is what they mean in plain language:
+
+- **Value stream** — a sequence of steps that together create a statistical output. Think of it as a production line: VS-01 to VS-06 each add a specific kind of value to the data.
+- **Value stream stage vs. business process** — the stage (`VS-0x.y`) says *what value* is added; the business process describes *how* your office actually does it. The numbering maps one-to-one.[^archimate]
+- **Steady state** — a fixed handover point: a versioned, quality-assured dataset that one stream produces and the next one consumes. The framework defines five numbered steady states, #1 to #5; data still at the external provider (#0) and data in users' hands (#6) sit outside the NSI's control and are boundary positions, not numbered states.
+- **The four process types** — every domain is described through the same four groups: **Design** (decide how it should work), **Implementation** (build and test it), **Execution** (run it each production cycle), **Management** (check quality and feed improvements back).
+- **Business service / object / event** — what a domain offers to others / the data artefacts it works on / the signals streams send each other (e.g. *"Raw Data Registered"* tells the next stream new data is ready).
+- **NSI** — National Statistical Office.
+- **GSBPM** — the *Generic Statistical Business Process Model*: the standard, internationally agreed description of the phases of statistical production (specify needs, design, build, collect, process, analyse, disseminate, evaluate).
+- **GAMSO** — the *Generic Activity Model for Statistical Organizations*: the companion standard describing management and support activities (strategy, capability development, corporate support).
+- **SAF-P01 … SAF-P11** — the eleven SAF architecture **p**rinciples, defined in the SAF Framework document and referenced throughout.
 
 ### The chain at a glance
 
@@ -3447,10 +3462,9 @@ The supporting value streams do not follow a production cycle. They run the same
 | Execution | Statistical data, registered in a state | 4 Collect, 5 Process, 6 Analyze, 7 Disseminate | Operate |
 | Management | Quality reports and improvements | 8 Evaluate; overarching quality and metadata management | Improve |
 <br>
+<br>
 <img width="1886" height="310" alt="image" src="https://github.com/user-attachments/assets/5867d5fe-9ccc-4f4d-ba09-50a24f95fefd" />
 Figure x: The Four-Process Governance Pattern
-<br>
-<br>
 
 ### How each value stream is described
 
@@ -3483,99 +3497,13 @@ Each value stream has three ArchiMate views: (a) the value stream with its stage
 | #0 to #6 | Steady states and boundary positions | Steady-State Architecture |
 | SAF-P01 to SAF-P11 | Architecture principles | Motivation, *Architecture Principles* |
 
-## The Statistical Data Value Chain
-
-The SAF business layer describes how a National Statistical Office (NSI) turns externally-held data into trusted statistics that serve society. Six **primary** value streams form a linear production chain, each adding a specific kind of statistical value, and four **supporting** value streams enable them across the board.
-
-::: {.callout-note title="Key concepts — if you are new to architecture documents" collapse="true"}
-This documentation uses a handful of architecture terms. Here is what they mean in plain language:
-
-- **Value stream** — a sequence of steps that together create a statistical output. Think of it as a production line: VS-01 to VS-06 each add a specific kind of value to the data.
-- **Value stream stage vs. business process** — the stage (`VS-0x.y`) says *what value* is added; the business process describes *how* your office actually does it. The numbering maps one-to-one.[^archimate]
-- **Steady state** — a fixed handover point: a versioned, quality-assured dataset that one stream produces and the next one consumes. The framework defines five numbered steady states, #1 to #5; data still at the external provider (#0) and data in users' hands (#6) sit outside the NSI's control and are boundary positions, not numbered states.
-- **The four process types** — every domain is described through the same four groups: **Design** (decide how it should work), **Implementation** (build and test it), **Execution** (run it each production cycle), **Management** (check quality and feed improvements back).
-- **Business service / object / event** — what a domain offers to others / the data artefacts it works on / the signals streams send each other (e.g. *"Raw Data Registered"* tells the next stream new data is ready).
-- **NSI** — National Statistical Office.
-- **GSBPM** — the *Generic Statistical Business Process Model*: the standard, internationally agreed description of the phases of statistical production (specify needs, design, build, collect, process, analyse, disseminate, evaluate).
-- **GAMSO** — the *Generic Activity Model for Statistical Organizations*: the companion standard describing management and support activities (strategy, capability development, corporate support).
-- **SAF-P01 … SAF-P11** — the eleven SAF architecture **p**rinciples, defined in the SAF Framework document and referenced throughout.
-
-[^archimate]: This split follows the ArchiMate 3.2 Specification (sec. 7.3.2): "value streams are typically realized by business processes", with the stages providing "a framework for organizing and defining business processes".
-:::
-
-
-This document is the consolidated, easier-to-read view of all ten streams. The shared concepts the primary streams rely on — the chain itself, the steady states of data, the four-process governance pattern, and the principles — are explained once below; each **primary** stream is then summarized compactly, keeping its execution detail. The four **supporting** streams follow at the end, in a section that first explains how a supporting stream differs from a production stream. For the full design, implementation, and management detail, and for NSI-application guidance, see the individual `VS-0x` business-layer documents.
-
-*A note on numbering:* each `VS-0x.y` you see below is both a value stream stage (*what value* is added) and a business process (*how* it is done). The numbering maps one-to-one; this document uses the business-process view. See the key-concepts box above for the distinction.
-
-The diagram below shows the whole business layer in one picture: data enters from external providers on the left, gains value through the six primary streams, and reaches users and society on the right — with the four supporting streams enabling every step.
-
-```{mermaid}
-%%| label: fig-overview
-%%| fig-cap: "The six primary value streams as a production chain, delivering to users and society. Purple = the four supporting streams (they enable the chain, dashed arrow); dark green = parties outside the NSI."
-flowchart TB
-    EXT["External data providers"]:::ext --> chain
-    subgraph chain["Primary value streams"]
-        direction LR
-        VS01["VS-01<br/>Acquisition &<br/>Ingestion"] --> VS02["VS-02<br/>Standardization &<br/>Integration"] --> VS03["VS-03<br/>Editing &<br/>Enrichment"] --> VS04["VS-04<br/>Estimation &<br/>Modeling"] --> VS05["VS-05<br/>Product<br/>Composition"] --> VS06["VS-06<br/>Dissemination &<br/>Service Delivery"]
-    end
-    chain --> USERS["Users & society"]:::ext
-    subgraph sup["Supporting value streams"]
-        direction LR
-        VS07["VS-07<br/>Governance &<br/>Compliance"]:::s
-        VS08["VS-08<br/>Innovation &<br/>Methodology"]:::s
-        VS09["VS-09<br/>Infrastructure &<br/>Platforms"]:::s
-        VS10["VS-10<br/>Customer &<br/>Stakeholder Engagement"]:::s
-    end
-    sup -.->|"enable"| chain
-
-    classDef ext fill:#0f766e,color:#fff,stroke:#0f766e
-    classDef s fill:#7c3aed,color:#fff,stroke:#6d28d9
-```
-
-## Steady States of Data
+### Steady States of Data
 
 The streams work independently of each other (in architecture terms: they are **loosely coupled**). They exchange data only at defined **steady states** — points where a high-quality, versioned dataset is handed over. In the usual case each primary stream consumes one steady state and produces the next, so a stream needs no knowledge of its neighbors' internals (SAF-P07). The handover works through events: when a stream registers a finished dataset, a notification tells the next stream that new data is ready. Not every process has to pass through every state; see [Applying the steady states pragmatically](#pragmatic-steady-states).
 
 Of the five, **processed data (#3) is the only steady state mandatory for all production** — it is the microdata on which everything downstream is verifiably built. **Raw Data (#1)** is also mandatory when a product collects its own data, but not for a macro statistic that starts entirely from another domain's data. **Standardized data (#2)** is always optional, and **Statistics (#4)** may share its artefact with **Released data (#5)** when the two are identical.
 
-The table lists the five numbered steady states (#1–#5) in the order data passes through them, with the two boundary positions (#0 and #6) outside the NSI's control shown for context:
-
-| State | Name | Produced by | Meaning |
-|---|---|---|---|
-| (#0) | Source Data | *external providers* | Data at the external holder, before it enters the NSI (pre-ingestion; not a numbered SAF state) |
-| #1 | Raw Data | VS-01 | Received into NSI custody in original form, with provenance (a record of where it came from and how) and basic validation |
-| #2 | Standardized Data | VS-02 | Aligned to common structure, format, and classifications — **values unchanged** |
-| #3 | Processed Data | VS-03 | Content validated, edited, imputed, enriched, integrated; derived variables added |
-| #4 | Statistics (Output Data) | VS-04 → VS-05 | Estimated/aggregated statistics (VS-04), composed into approved products (VS-05) |
-| #5 | Released Data | VS-06 | Disclosure-controlled, documented, published/delivered to external parties |
-| #6 | Consumed Data | *external users* | Data in use outside the NSI's direct control |
-: Steady States of data {tbl-colwidths="[10,20,20,50]"}
-
-```{mermaid}
-%%| label: fig-1
-%%| fig-cap: "Steady-state handover across the chain. Each arrow is a handover between streams, triggered by a registration event. Blue = data states inside the NSI; yellow = statistics; light green = released; dark green = outside the NSI's control."
-%%| fig-width: 10
-flowchart TD
-    S0["Source Data"]:::ext -->|VS-01| S1["#1 Raw"]
-    S1 -->|VS-02| S2["#2 Standardized"]
-    S2 -->|VS-03| S3["#3 Processed"]
-    S3 -->|VS-04| S4["#4 Statistics"]
-    S4 -->|VS-05| S4b["#4 Approved products"]
-    S4b -->|VS-06| S5["#5 Released"]
-    S5 --> S6["#6 Consumed"]:::ext
-
-    classDef ext fill:#0f766e,color:#fff,stroke:#0f766e
-    style S1 fill:#dbeafe,stroke:#2563eb
-    style S2 fill:#dbeafe,stroke:#2563eb
-    style S3 fill:#dbeafe,stroke:#2563eb
-    style S4 fill:#fef9c3,stroke:#b45309
-    style S4b fill:#fef9c3,stroke:#b45309
-    style S5 fill:#dcfce7,stroke:#16a34a
-```
-
-### Applying the steady states pragmatically {#pragmatic-steady-states}
-
+### Applying the steady states pragmatically
 
 A steady state is an agreement about data: the quality it has reached, who owns it, how it is identified and what metadata comes with it. It does not require a separate physical copy at every state, and it does not require every process to pass through all six. An office may depart from the usual sequence in the three cases below, provided it records the choice (which state was shared or skipped, and why) in the catalogue entry. In other words, the rule is "comply or explain".
 
@@ -3585,50 +3513,7 @@ A steady state is an agreement about data: the quality it has reached, who owns 
 
 One limit applies to all three cases. States must not be merged where this would hide a change of values (for example, standardisation at #2 and editing at #3 carried out as a single undocumented step) or a disclosure-control step (for example, #4 and #5 when additional disclosure control is applied before release).
 
-## The Four-Process Governance Pattern
-
-Every stream is described through the same **four process types**. This is not a one-off sequence but a repeating cycle that keeps quality improving, and each of the four produces a distinct kind of result:
-
-- **Design** — decide how the work should be done: rules, methodology, specifications, policies.
-- **Implementation** — build, configure, and test the systems that will do it.
-- **Execution** — run the work each production cycle; this is what produces the statistical data.
-- **Management** — check quality, monitor performance, and feed improvements back to Design.
-
-The cycle looks like this — note the feedback arrow that closes the loop:
-
-```{mermaid}
-%%| label: fig-2
-%%| fig-cap: "The four-process governance pattern. Each of the six streams runs this full cycle; the per-stream sections below summarize Design/Implementation/Management and keep the Execution detail."
-%%| fig-width: 6
-flowchart LR
-    D["**Design**
-    _metadata_"] -->|"guides building"| I["**Implement**
-    _execution process_"]
-    I -->|"production-ready"| E["**Execute**
-    _statistical data_"]
-    E -->|"data & process logs"| M["**Manage**
-    _quality reports_"]
-    M -->|"improvement feedback"| D
-
-    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
-    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
-    style E fill:#059669,color:#fff,stroke:#047857
-    style M fill:#d97706,color:#fff,stroke:#b45309
-```
-
-::: {.callout-note}
-In the sections that follow, GSBPM phases are mapped per process type:
-
-- **Design → Phase 2**,
-- **Implementation → Phase 3**,
-- **Execution → the later GSBPM phases** appropriate to the domain (Phase 4 for collection, Phase 5 for processing, Phase 6 for analysis, Phase 7 for dissemination),
-- **Management → overarching Quality Management / Phase 8**.
-
-The four **supporting** streams (VS-07–VS-10) do not follow this production cadence: they run a **continuous plan → build → operate → improve** cycle and align to **GAMSO** rather than GSBPM (see the supporting-streams section).
-:::
-
 ## Principles to Apply
-
 The SAF defines eleven architecture principles, labeled SAF-P01 to SAF-P11. The six **primary** streams actively apply six of them (marked ★ below); the four **supporting** streams foreground the other five (marked †). The table shows each principle with practical guidance on how to apply it; VS-07 in particular **enforces** the data principles (P09/P10/P11) across the whole chain.
 
 | Principle | Statement | How to apply across the value chain |
@@ -3648,12 +3533,13 @@ The SAF defines eleven architecture principles, labeled SAF-P01 to SAF-P11. The 
 
 ★ = actively applied by the six primary value streams. † = foregrounded by the four supporting value streams (VS-07–VS-10).
 
-::: {.callout-important title="Two cross-chain disciplines"}
-**Metadata everywhere (SAF-P09):** value is only added once its context is captured — what was done, by which rule/method, with what accuracy, and traceable to its inputs.
+**Metadata everywhere (SAF-P09):** <br>
+value is only added once its context is captured — what was done, by which rule/method, with what accuracy, and traceable to its inputs.
 
-**Confidentiality progressively applied (SAF-P11):** identifiers are removed/pseudonymized at standardization (#2) at the latest, or earlier where that suits the process; disclosure risk is assessed on enrichment (#3), disclosure control is applied to outputs (#4), and a final disclosure check gates release (#5).
-:::
-
+**Confidentiality progressively applied (SAF-P11):** <br>
+identifiers are removed/pseudonymized at standardization (#2) at the latest, or earlier where that suits the process; disclosure risk is assessed on enrichment (#3), disclosure control is applied to outputs (#4), and a final disclosure check gates release (#5).
+<br>
+<br>
 ## VS-01.0 — Data Acquisition and Ingestion
 
 **Domain:** Observation/Collection · **State transition:** Source Data → **#1 Raw Data** · **Value:** all data enters NSI custody, verifiably and with provenance.
@@ -3670,9 +3556,8 @@ VS-01 is the front door of the statistical system. Its job is to bring data from
 
 **How the business processes work.** The cycle starts by **identifying the data needs and sources** for the round — confirming what variables and populations are required and that the chosen sources are available and accessible. Once the source is settled, the team **establishes the data agreement and access rights**: activating or renewing the legal basis (a data-sharing agreement, or the relevant GDPR ground) and checking that credentials are valid, so collection is lawful and controlled. Data is then **collected, received, or extracted** through the appropriate channel — a survey instrument, an administrative file transfer, or an API/scraping job — and at the moment of receipt the ingestion metadata (source, method, timestamp, file hash, volume) is captured. Each delivery is **validated and logged**: completeness, structure, and integrity are checked and every result written to an audit trail, so the NSI can be confident the intake is whole and traceable. Finally the dataset is **stored and registered as a raw-data artefact** — given a persistent identifier, kept in its original form, and cataloged with its provenance — and a "Raw Data Registered" event tells VS-02 that new data is ready.
 
-::: {.callout-note title="Signature discipline — no data without metadata"}
 Every dataset is enriched at ingestion with provenance, source, method, timestamp, and a quality and BIV classification — availability, integrity, confidentiality — per SAF-P09, with security and privacy applied by design (SAF-P10/P11).
-:::
+
 
 Around this per-cycle run, **Design** prepares the data requirements, collection methodology, raw-data schema, validation rules, and access/privacy framework; **Implementation** builds the collection instruments and ingestion/validation workflows and tests them; and **Management** monitors response, timeliness, and rejection rates, assesses intake quality, and feeds improvements back to design.
 
