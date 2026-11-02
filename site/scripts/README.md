@@ -47,7 +47,7 @@ Running it by hand is the quickest way to check your edits to the source documen
 
 ### Generated files are not committed
 
-The 14 generated pages are listed in the repository's root `.gitignore`. They exist only in working copies and CI runners, and never appear in commits or diffs.
+The 14 generated pages and the `site/images/` folder (copied from `docs/images/`) are listed in the repository's root `.gitignore`. They exist only in working copies and CI runners, and never appear in commits or diffs.
 
 `_document-info.md` is the exception: it is committed as an **empty placeholder**. Quarto expands `{{< include >}}` while it first scans the project, *before* the pre-render script runs. Without the placeholder, a fresh checkout (as in CI) fails with `Include directive failed ... could not find file .../_document-info.md`. The script then overwrites the placeholder, and the render uses the real content. After a local render, git shows the file as modified. Don't commit that change; discard it with `git restore site/framework/_document-info.md`, or hide it once with `git update-index --skip-worktree site/framework/_document-info.md`.
 
@@ -58,6 +58,8 @@ The 14 generated pages are listed in the repository's root `.gitignore`. They ex
 | `SITE` | `site/` | The Quarto project folder |
 | `SOURCE` | `docs/SAF Framework.md` | The single source document |
 | `OUT_DIR` | `site/framework/` | Where the pages are written |
+| `IMAGES_SRC` | `docs/images/` | The images used by the source document |
+| `IMAGES_OUT` | `site/images/` | Where those images are copied for the site |
 
 The `PAGES` list defines what gets generated. Each entry is `(file name, page title, regex for the heading that starts the page)`:
 
@@ -85,6 +87,10 @@ The script also writes **`site/framework/_document-info.md`** (constant `DOC_INF
 ## How it works, step by step
 
 The whole job happens in `main()`, which relies on a few small helpers.
+
+### 0. Copy the images (`copy_images`)
+
+Everything in `docs/images/`, subfolders included, is copied to `site/images/`. Existing files are overwritten, so an edited image always reaches the site. Nothing is ever deleted (see [Known limitations](#known-limitations)). This makes `docs/images/` the single source for images, just as `docs/SAF Framework.md` is for text. An image referenced as `images/<file>` therefore displays both when the Markdown is viewed on GitHub and on the website.
 
 ### 1. Read the source
 
@@ -152,7 +158,7 @@ The result is `anchors`, a dictionary `{page name: set of anchors on that page}`
 
 Every line of every page is processed. Lines inside fenced code blocks are copied unchanged. All other lines get two rewrites.
 
-**a. Image paths.** Generated pages sit in `site/framework/`, one level below the site root, so the relative path `](images/` becomes `](../images/`. Images therefore resolve to `site/images/`.
+**a. Image paths.** Generated pages sit in `site/framework/`, one level below the site root, so image paths get one `../` more. All three forms are handled: `](images/` becomes `](../images/`, `](<images/` becomes `](<../images/` (the angle-bracket form Markdown needs for file names with spaces), and `src="images/` becomes `src="../images/` (raw HTML `<img>`). Images therefore resolve to `site/images/`, where step 0 copied them.
 
 **b. Internal links.** The source document uses links within the same file, such as `[Drivers](#drivers)`. After the split, the target heading may be on a different page. The regex `ANCHOR_LINK` finds each `[text](#target)`, and `relink` decides what to do with it:
 
@@ -179,7 +185,7 @@ title: "<title from PAGES>"
 ### 7. Report
 
 - If any link could not be resolved, the script exits with a non-zero status and lists all of them. Quarto then stops the render. Note that the pages have **already been written** by then, so a local preview may still show them.
-- Otherwise it prints `split-framework: wrote 14 pages and _document-info.md to site/framework`.
+- Otherwise it prints `split-framework: wrote 14 pages and _document-info.md to site/framework, copied N images to site/images`.
 
 Warnings and errors go to stderr, and each starts with `split-framework:`.
 
@@ -193,7 +199,7 @@ Most edits to `docs/SAF Framework.md` need no thought about the script. The foll
 - **Keep the summary headings in Business Architecture in the form `## VS-NN.0 — Name`, with the em dash.** Otherwise a summary heading would be taken as the start of a page.
 - **Internal links (`[text](#anchor)`) must point to a heading that exists, and each anchor must be unique across the whole document.** If two pages have a heading with the same anchor, a link to it is ambiguous and the build fails. When two headings have the same text, give one of them an explicit `{#unique-id}`.
 - **Prefer explicit `{#id}`s on headings you link to.** The heading text can then change without breaking links.
-- **Images:** reference them as `images/<file>`, and make sure the file exists in **`site/images/`**. The script rewrites the path but does not copy files from `docs/images/` (see [Known limitations](#known-limitations)).
+- **Images:** put the file in **`docs/images/`** and reference it as `![Caption](images/<file>)`, or `![Caption](<images/<file with spaces>>)`, on a line of its own with blank lines around it. Quarto then renders it as a captioned figure, in the PDF as well. Avoid raw HTML `<img>` tags (the PDF drops them) and images hosted at GitHub `user-attachments` URLs (they live outside the repository).
 - **Code fences:** close every ```` ``` ```` or `~~~` block you open. An unclosed fence makes the script treat the rest of the page as code, so its headings and links are skipped.
 
 ## Changing how the document is split
@@ -246,7 +252,7 @@ linked to #applying-the-steady-states-pragmatically (heading 'Applying the stead
 
 - **Fence detection is a simple toggle.** Any line that starts with ```` ``` ```` or `~~~` flips the state. Fences nested inside other fences, or fences of different lengths, are not handled.
 - **Only inline anchor links `[text](#id)` are rewritten.** Reference-style links (`[text][ref]`), raw HTML anchors (`<a href="#id">`) and bare `#id` text are left unchanged, and will break if their target is on another page.
-- **Images are not copied.** The script only rewrites `images/` to `../images/`. The files must be placed in `site/images/` by hand, and `docs/images/` is not used by the website.
+- **Images are copied, never deleted.** A file removed or renamed in `docs/images/` stays in your local `site/images/` until you delete it. CI always starts from a clean checkout, so the published site is not affected.
 - **Page titles come from `PAGES`,** not from the document headings. When you rename a chapter in the source, update its title in the script too.
 - **Generated pages are written even when the run fails,** and old pages are never deleted.
 - **Only the first table before `# Preface` is used** as the version table. Any other table above `# Preface` is ignored.

@@ -5,9 +5,11 @@ The markdown file is the single source of truth for the Framework chapters.
 Quarto runs this as a project pre-render step (see _quarto.yml); the generated
 pages are git-ignored. framework/index.qmd is hand-written and left alone; it
 includes framework/_document-info.md, which this script builds from the version
-information above "# Preface".
+information above "# Preface". It also copies docs/images/ to site/images/
+(git-ignored), so images referenced as images/... in the source reach the site.
 """
 import re
+import shutil
 import sys
 import unicodedata
 from pathlib import Path
@@ -15,6 +17,8 @@ from pathlib import Path
 SITE = Path(__file__).resolve().parent.parent
 SOURCE = SITE.parent / "docs" / "SAF Framework.md"
 OUT_DIR = SITE / "framework"
+IMAGES_SRC = SOURCE.parent / "images"
+IMAGES_OUT = SITE / "images"
 
 # page -> (title, start pattern). A page runs until the start of the next one.
 # Summary headings in Business Architecture use "VS-NN.0 — Name" (em dash);
@@ -114,7 +118,16 @@ def document_info(preamble):
             f"Created {created}.\n\n" + "\n".join(table) + "\n")
 
 
+def copy_images():
+    """Copy docs/images/ into site/images/ (overwriting, never deleting)."""
+    if not IMAGES_SRC.is_dir():
+        return 0
+    shutil.copytree(IMAGES_SRC, IMAGES_OUT, dirs_exist_ok=True)
+    return sum(1 for p in IMAGES_SRC.rglob("*") if p.is_file())
+
+
 def main():
+    n_images = copy_images()
     lines = SOURCE.read_text(encoding="utf-8").splitlines()
     starts = find_starts(lines)
     info = document_info(lines[:starts[0]])
@@ -131,7 +144,11 @@ def main():
             if FENCE.match(line):
                 in_fence = not in_fence
             if not in_fence:
-                line = line.replace("](images/", "](../images/")
+                # Pages live one level down (site/framework/): markdown images,
+                # including the <...> form used for names with spaces, and raw <img>.
+                line = (line.replace("](images/", "](../images/")
+                            .replace("](<images/", "](<../images/")
+                            .replace('src="images/', 'src="../images/'))
 
                 def relink(m, name=name):
                     text, target = m.group(1), m.group(2)
@@ -164,7 +181,8 @@ def main():
     if problems:
         sys.exit("split-framework: unresolved internal links:\n  " + "\n  ".join(problems))
     print(f"split-framework: wrote {len(PAGES)} pages and {DOC_INFO} "
-          f"to {OUT_DIR.relative_to(SITE.parent)}")
+          f"to {OUT_DIR.relative_to(SITE.parent)}, "
+          f"copied {n_images} images to {IMAGES_OUT.relative_to(SITE.parent)}")
 
 
 if __name__ == "__main__":
