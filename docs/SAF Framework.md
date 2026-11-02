@@ -3429,12 +3429,9 @@ This documentation uses a handful of architecture terms. Here is what they mean 
 ### The chain at a glance
 
 Six primary value streams form the production chain. Each one consumes a registered state version and produces the next. They are loosely coupled (SAF-P07): a value stream needs no knowledge of the internal work of its neighbors, only of the state it receives and the state it delivers. The handover is triggered by a registration event. Four supporting value streams run continuously across the whole chain. They set the rules, develop new methods, provide the platforms, and keep the chain connected to its users and data providers.
-<br>
-<br>
-<img width="1706" height="533" alt="image" src="https://github.com/user-attachments/assets/be1cec93-f7e9-4d01-9088-b6ff85ce80a2" />
-Figure x: Value Stream Context Map
-<br>
-<br>
+
+![Value Stream Context Map](images/value-stream-context-map.png)
+
 | VS | Value stream | Type | State in → out | Event out |
 |---|---|---|---|---|
 | VS-01 | Data Acquisition and Ingestion | Primary | #0 → #1 | *Raw Data Registered* |
@@ -3462,10 +3459,8 @@ The supporting value streams do not follow a production cycle. They run the same
 | Implementation | The execution process: instruments, components, configured workflows | 3 Build | Build |
 | Execution | Statistical data, registered in a state | 4 Collect, 5 Process, 6 Analyze, 7 Disseminate | Operate |
 | Management | Quality reports and improvements | 8 Evaluate; overarching quality and metadata management | Improve |
-<br>
-<br>
-<img width="1886" height="310" alt="image" src="https://github.com/user-attachments/assets/5867d5fe-9ccc-4f4d-ba09-50a24f95fefd" />
-Figure x: The Four-Process Governance Pattern
+
+![The Four-Process Governance Pattern](images/four-process-governance-pattern.png)
 
 ### How each value stream is described
 

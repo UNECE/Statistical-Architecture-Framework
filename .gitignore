@@ -19,3 +19,6 @@ site/framework/vs-07.qmd
 site/framework/vs-08.qmd
 site/framework/vs-09.qmd
 site/framework/vs-10.qmd
+
+# Copied from docs/images/ by site/scripts/split-framework.py
+site/images/
