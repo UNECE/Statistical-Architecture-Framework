@@ -4,7 +4,7 @@ SAF Architecture Framework
 Created on: 07-07-2025
 Workgroup SAF: Trygve Falch (Statistics Norway, SSB), Jakob Engdahl (Statistics Sweden, SCB), Cedric Couralet (Statistics France, Insee), Pascal Fransen (Statistics Netherlands, CBS) and Daan Swinkels (Statistics Netherlands, CBS)
 
-Current version: 0.5
+Current version: 0.9
 
 | Version | Date | Contributor/Secretary |
 |---|---|---|
@@ -16,6 +16,7 @@ Current version: 0.5
 |0.6|2026-11-10|Restructured strategy section|
 |0.7|2026-12-10|Restructured business section, added business actors, roles and collaborations|
 |0.8|2026-31-10|Concolidated and structured Steady State detail content|
+
 
 ## Content
 [Preface](#preface)
