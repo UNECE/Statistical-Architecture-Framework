@@ -37,7 +37,7 @@ PAGES = [
 HEADER = "<!-- GENERATED from docs/SAF Framework.md by scripts/split-framework.py - do not edit -->"
 FENCE = re.compile(r"^\s*(```|~~~)")
 HEADING = re.compile(r"^(#{1,6})\s+(.*?)\s*(\{#([^}\s]+)[^}]*\})?\s*$")
-ANCHOR_LINK = re.compile(r"\]\(#([^)\s]+)\)")
+ANCHOR_LINK = re.compile(r"\[([^\]]*)\]\(#([^)\s]+)\)")
 
 
 def slugify(text):
@@ -100,12 +100,24 @@ def main():
                 line = line.replace("](images/", "](../images/")
 
                 def relink(m, name=name):
-                    target = m.group(1)
+                    text, target = m.group(1), m.group(2)
                     if target in anchors[name]:
                         return m.group(0)
                     owners = [p for p, a in anchors.items() if target in a]
+                    if not owners:
+                        # The explicit {#id} may have been dropped from the heading:
+                        # fall back to the heading's auto id, derived from the link text.
+                        slug = slugify(text)
+                        slug_owners = [p for p, a in anchors.items() if slug in a]
+                        if len(slug_owners) == 1:
+                            print(f"split-framework: warning: {name}: #{target} not found, "
+                                  f"linked to #{slug} (heading '{text}') instead",
+                                  file=sys.stderr)
+                            target, owners = slug, slug_owners
                     if len(owners) == 1:
-                        return f"]({owners[0]}.qmd#{target})"
+                        if owners[0] == name:
+                            return f"[{text}](#{target})"
+                        return f"[{text}]({owners[0]}.qmd#{target})"
                     problems.append(f"{name}: link to #{target} has "
                                     f"{'no' if not owners else 'several'} target page")
                     return m.group(0)
