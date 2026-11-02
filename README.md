@@ -18,7 +18,7 @@ Please refer to the [Getting Started](docs/GettingStarted.md) in the docs folder
 
 ## Contributing to the framework
 
-The framework chapters on the website are generated from the single file, `docs/SAF Framework.md`. Edit only that file. A script runs automatically before every publication and writes the chapter pages into `site/framework/`.
+The framework chapters on the website are generated from the single file, `docs/SAF Framework.md`. Edit only that file. A script runs automatically before every publication and writes the chapter pages into `site/framework/`. See [`site/scripts/README.md`](site/scripts/README.md) for how that script works and how to fix it when the build fails.
 
 The other site pages are edited directly in `site/`.
 

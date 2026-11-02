@@ -3,7 +3,9 @@
 
 The markdown file is the single source of truth for the Framework chapters.
 Quarto runs this as a project pre-render step (see _quarto.yml); the generated
-pages are git-ignored. framework/index.qmd is hand-written and left alone.
+pages are git-ignored. framework/index.qmd is hand-written and left alone; it
+includes framework/_document-info.md, which this script builds from the version
+information above "# Preface".
 """
 import re
 import sys
@@ -34,7 +36,10 @@ PAGES = [
     ("vs-10", "VS-10 Customer and Stakeholder Engagement", r"^## VS-10\.0 (?!—)"),
 ]
 
-HEADER = "<!-- GENERATED from docs/SAF Framework.md by scripts/split-framework.py - do not edit -->"
+# Partial included by framework/index.qmd ("About this document" callout).
+DOC_INFO = "_document-info.md"
+
+HEADER ="<!-- GENERATED from docs/SAF Framework.md by scripts/split-framework.py - do not edit -->"
 FENCE = re.compile(r"^\s*(```|~~~)")
 HEADING = re.compile(r"^(#{1,6})\s+(.*?)\s*(\{#([^}\s]+)[^}]*\})?\s*$")
 ANCHOR_LINK = re.compile(r"\[([^\]]*)\]\(#([^)\s]+)\)")
@@ -82,9 +87,38 @@ def find_starts(lines):
     return starts
 
 
+def document_info(preamble):
+    """Build the 'About this document' content from the lines before # Preface."""
+    def field(label):
+        rx = re.compile(rf"^\s*{re.escape(label)}\s*(.+?)\s*$")
+        value = next((m.group(1) for m in map(rx.match, preamble) if m), None)
+        if value is None:
+            sys.exit(f"split-framework: no '{label}' line before '# Preface' in {SOURCE.name}")
+        return value.rstrip(".")
+
+    version = field("Current version:")
+    workgroup = field("Workgroup SAF:")
+    created = field("Created on:")
+
+    first = next((i for i, l in enumerate(preamble) if l.lstrip().startswith("|")), None)
+    if first is None:
+        sys.exit(f"split-framework: no version table before '# Preface' in {SOURCE.name}")
+    table = []
+    for line in preamble[first:]:
+        if not line.lstrip().startswith("|"):
+            break
+        table.append(line.strip())
+
+    return (f"{HEADER}\n\n"
+            f"**Version {version}.** Prepared by the SAF workgroup: {workgroup}. "
+            f"Created {created}.\n\n" + "\n".join(table) + "\n")
+
+
 def main():
     lines = SOURCE.read_text(encoding="utf-8").splitlines()
     starts = find_starts(lines)
+    info = document_info(lines[:starts[0]])
+    (OUT_DIR / DOC_INFO).write_text(info, encoding="utf-8")
     ends = starts[1:] + [len(lines)]
     bodies = {name: lines[s:e] for (name, _, _), s, e in zip(PAGES, starts, ends)}
     anchors = {name: page_anchors(body) for name, body in bodies.items()}
@@ -129,7 +163,8 @@ def main():
 
     if problems:
         sys.exit("split-framework: unresolved internal links:\n  " + "\n  ".join(problems))
-    print(f"split-framework: wrote {len(PAGES)} pages to {OUT_DIR.relative_to(SITE.parent)}")
+    print(f"split-framework: wrote {len(PAGES)} pages and {DOC_INFO} "
+          f"to {OUT_DIR.relative_to(SITE.parent)}")
 
 
 if __name__ == "__main__":
