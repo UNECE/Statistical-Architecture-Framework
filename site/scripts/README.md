@@ -47,7 +47,9 @@ Running it by hand is the quickest way to check your edits to the source documen
 
 ### Generated files are not committed
 
-The 14 generated pages and `_document-info.md` are listed in the repository's root `.gitignore`. They exist only in working copies and CI runners, and never appear in commits or diffs.
+The 14 generated pages are listed in the repository's root `.gitignore`. They exist only in working copies and CI runners, and never appear in commits or diffs.
+
+`_document-info.md` is the exception: it is committed as an **empty placeholder**. Quarto expands `{{< include >}}` while it first scans the project, *before* the pre-render script runs. Without the placeholder, a fresh checkout (as in CI) fails with `Include directive failed ... could not find file .../_document-info.md`. The script then overwrites the placeholder, and the render uses the real content. After a local render, git shows the file as modified. Don't commit that change; discard it with `git restore site/framework/_document-info.md`, or hide it once with `git update-index --skip-worktree site/framework/_document-info.md`.
 
 ## Inputs and outputs
 
@@ -248,4 +250,4 @@ linked to #applying-the-steady-states-pragmatically (heading 'Applying the stead
 - **Page titles come from `PAGES`,** not from the document headings. When you rename a chapter in the source, update its title in the script too.
 - **Generated pages are written even when the run fails,** and old pages are never deleted.
 - **Only the first table before `# Preface` is used** as the version table. Any other table above `# Preface` is ignored.
-- **`index.qmd` cannot be rendered on its own before the script has run once,** because the file it includes would not exist yet. A normal `quarto render` or `quarto preview` runs the script first.
+- **`_document-info.md` is a tracked file that every render overwrites,** so it shows as modified after a local render (see [Generated files are not committed](#generated-files-are-not-committed)). Rendering `index.qmd` on its own, without the pre-render step, shows an empty box.
