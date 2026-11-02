@@ -6,16 +6,16 @@ Workgroup SAF: Trygve Falch (Statistics Norway, SSB), Jakob Engdahl (Statistics 
 
 Current version: 0.9
 
-| Version | Date | Contributor/Secretary |
+| Version | Date | Change |
 |---|---|---|
 |0.1|2025-07-07|Initial version|
 |0.2|2026-06-01|Review processed|
 |0.3|2026-07-31|Restructuring, Start with Business Architecture|
 |0.4|2026-09-01|Merging Business Architecture content|
 |0.5|2026-10-10|Restructured motivation section, TOGAF and ArchiMate context added|
-|0.6|2026-11-10|Restructured strategy section|
-|0.7|2026-12-10|Restructured business section, added business actors, roles and collaborations|
-|0.8|2026-31-10|Concolidated and structured Steady State detail content|
+|0.6|2026-10-11|Restructured strategy section|
+|0.7|2026-10-12|Restructured business section, added business actors, roles and collaborations|
+|0.8|2026-10-31|Consolidated and structured Steady State detail content|
 
 
 ## Content
@@ -3504,7 +3504,7 @@ The streams work independently of each other (in architecture terms: they are **
 
 Of the five, **processed data (#3) is the only steady state mandatory for all production** — it is the microdata on which everything downstream is verifiably built. **Raw Data (#1)** is also mandatory when a product collects its own data, but not for a macro statistic that starts entirely from another domain's data. **Standardized data (#2)** is always optional, and **Statistics (#4)** may share its artefact with **Released data (#5)** when the two are identical.
 
-### Applying the steady states pragmatically
+### Applying the steady states pragmatically {#pragmatic-steady-states}
 
 A steady state is an agreement about data: the quality it has reached, who owns it, how it is identified and what metadata comes with it. It does not require a separate physical copy at every state, and it does not require every process to pass through all six. An office may depart from the usual sequence in the three cases below, provided it records the choice (which state was shared or skipped, and why) in the catalogue entry. In other words, the rule is "comply or explain".
 
