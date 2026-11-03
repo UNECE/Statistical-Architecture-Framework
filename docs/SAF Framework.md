@@ -4292,7 +4292,7 @@ The diagram shows the two directions of that interaction: the supporting streams
 
 ```{mermaid}
 %%| label: fig-3
-%%| fig-cap: "The four supporting streams (purple) and the primary chain: each provides a capability to the chain and receives feedback or needs from it."
+%%| fig-cap: "The four supporting streams (shaded) and the primary chain: each provides a capability to the chain and receives feedback or needs from it."
 %%| fig-width: 6
 flowchart TB
     subgraph chain["Primary chain (VS-01 → VS-06)"]
@@ -4306,7 +4306,7 @@ flowchart TB
     chain -->|"compliance evidence,<br/>improvement needs, usage"| VS07 & VS08 & VS10
     VS10["VS-10 Customer &<br/>Stakeholder Engagement"]:::s -->|"user needs,<br/>communication"| chain
 
-    classDef s fill:#7c3aed,color:#fff,stroke:#6d28d9
+    classDef s fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 ## VS-07.0 — Governance and Compliance
@@ -4477,61 +4477,15 @@ You do not need to read this document cover to cover — go to the section that 
 
 *A note on numbering:* each `VS-01.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
 
+![VS-01.0 Data Acquisition and Ingestion: purpose, stages and outcomes](<images/SAF VS-01.jpg>)
+
 
 
 ### Position in the Statistical Value Chain
 
 VS-01.0 is the first primary value stream — the entry point through which all data enters the statistical system. It is the "Source & Ingest Information" orchestration stage that feeds all downstream processing.
 
-```{mermaid}
-%%| label: fig-1
-%%| fig-cap: "Value Stream Context Map. VS-01.0 (highlighted) is the entry point: all data passes through it before any downstream processing. The four supporting streams below enable the whole chain."
-%%| fig-width: 6
-
-
-flowchart TD
-    subgraph primary["Primary Value Streams"]
-        direction LR
-        VS01["**VS-01.0**
-        Data Acquisition
-        & Ingestion"]:::highlight
-        VS02["VS-02.0
-        Data Standardization
-        & Integration"]
-        VS03["VS-03.0
-        Data Editing
-        & Enrichment"]
-        VS04["VS-04.0
-        Estimation, Analysis
-        & Modeling"]
-        VS05["VS-05.0
-        Statistical Product
-        Composition"]
-        VS06["VS-06.0
-        Dissemination
-        & Service Delivery"]
-        VS01 --> VS02 --> VS03 --> VS04 --> VS05 --> VS06
-    end
-
-    subgraph supporting["Supporting Value Streams"]
-        VS07["VS-07.0
-        Governance &
-        Compliance"]
-        VS08["VS-08.0
-        Innovation &
-        Methodology"]
-        VS09["VS-09.0
-        Infrastructure &
-        Platform Enablement"]
-        VS10["VS-10.0
-        Customer &
-        Stakeholder Engagement"]
-    end
-
-    supporting -.->|"enables"| primary
-
-    classDef highlight fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
-```
+![Value Stream Context Map. VS-01.0 is the entry point: all data passes through it before any downstream processing. The four supporting streams below enable the whole chain.](images/value-stream-context-map.png)
 
 ### Steady State Transition
 
@@ -4559,8 +4513,8 @@ flowchart LR
 
     SD --> QG --> RD
 
-    style internal fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
-    style external fill:#7d7d7d,color:#fff,stroke:#1d4ed8,stroke-width:1px
+    style internal fill:#fff,color:#000,stroke:#000,stroke-width:3px
+    style external fill:#d9d9d9,color:#000,stroke:#000,stroke-width:1px
     style boundary fill:#FFF,stroke-dasharray:5,5
 
 ```
@@ -4580,44 +4534,7 @@ flowchart LR
 The Statistical Architecture Framework defines that each business domain operates through four distinct process types. This is not a linear sequence but a governance cycle where each process type produces a distinct output that feeds the others.
 
 
-```{mermaid}
-%%| label: fig-3
-%%| fig-cap: "The Four-Process Governance Pattern. Each process type produces a distinct artefact class. The cycle closes when Management findings feed back into Design improvements."
-%%| fig-width: 6
-flowchart LR
-    D["**Design**
-    _provides metadata_
-
-    Data models, validation rules,
-    methodology, quality criteria"]
-    I["**Implement**
-    _provides the execution process_
-
-    Configured pipelines, tested
-    instruments, production-ready systems"]
-    E["**Execute**
-    _provides the statistical data_
-    Collected datasets, ingestion
-    metadata, audit trails"]
-    M["**Manage**
-    _provides quality reports_
-    KPI dashboards, quality scorecards,
-    improvement recommendations"]
-
-    D -->|"design artefacts
-    guide building"| I
-    I -->|"production-ready
-    process"| E
-    E -->|"data & process logs
-    for assessment"| M
-    M -->|"improvement
-    feedback"| D
-
-    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
-    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
-    style E fill:#059669,color:#fff,stroke:#047857
-    style M fill:#d97706,color:#fff,stroke:#b45309
-```
+![The Four-Process Governance Pattern. Each process type produces a distinct artefact class. The cycle closes when Management findings feed back into Design improvements.](images/four-process-governance-pattern.png)
 
 
 
@@ -4809,8 +4726,8 @@ flowchart TB
 
     outputs -->|govern| NEXT["Implementation (§4) · Execution (§5)<br/>measured by Management (§6)"]
 
-    style design fill:#f5f3ff,stroke:#7c3aed
-    style outputs fill:#ede9fe,stroke:#7c3aed
+    style design fill:#f2f2f2,stroke:#000
+    style outputs fill:#f2f2f2,stroke:#000
 ```
 
 ## Implementation Processes — "provides the execution process"
@@ -4909,8 +4826,8 @@ flowchart LR
 
     PR -->|"ready for"| EXEC["Execution\n(Section 5)"]
 
-    style build fill:#eff6ff,stroke:#2563eb
-    style test fill:#dbeafe,stroke:#2563eb
+    style build fill:#f2f2f2,stroke:#000
+    style test fill:#f2f2f2,stroke:#000
 ```
 
 ## Execution Processes — "provides the statistical data"
@@ -5004,8 +4921,8 @@ flowchart LR
 
     IP -->|"to validation\n(§5.4)"| V["Validate & log\nintake (VS-01.4)"]
 
-    style channels fill:#ecfdf5,stroke:#059669
-    style capture fill:#f0fdf4,stroke:#059669
+    style channels fill:#f2f2f2,stroke:#000
+    style capture fill:#f2f2f2,stroke:#000
 ```
 
 
@@ -5199,9 +5116,9 @@ flowchart TD
     M2 -->|"quality reports"| QM["Quality Manager"]
     M4 -->|"compliance reports"| VS07["VS-07.0\nGovernance"]
 
-    style E fill:#ecfdf5,stroke:#059669
-    style D fill:#f5f3ff,stroke:#7c3aed
-    style M5 fill:#fef3c7,stroke:#d97706
+    style E fill:#f2f2f2,stroke:#000
+    style D fill:#f2f2f2,stroke:#000
+    style M5 fill:#f2f2f2,stroke:#000
 ```
 
 ## Business Services and Interfaces
@@ -5259,13 +5176,13 @@ flowchart TB
     execute --> execute_detail
     SD -->|generates| logs["Provenance · QA · Audit"]
 
-    classDef bo fill:#fbbf24,stroke:#b45309,color:#000
-    style design fill:#f5f3ff,stroke:#7c3aed
-    style implement fill:#dbeafe,stroke:#2563eb
-    style execute fill:#fef9c3,stroke:#b45309
-    style manage fill:#dcfce7,stroke:#16a34a
+    classDef bo fill:#d9d9d9,stroke:#000,color:#000
+    style design fill:#f2f2f2,stroke:#000
+    style implement fill:#f2f2f2,stroke:#000
+    style execute fill:#f2f2f2,stroke:#000
+    style manage fill:#f2f2f2,stroke:#000
     style execute_detail fill:none,stroke:none
-    style logs fill:#fff,stroke:#888,stroke-dasharray: 5 5
+    style logs fill:#fff,stroke:#666,stroke-dasharray:5 5
 ```
 
 
@@ -5281,19 +5198,19 @@ sequenceDiagram
     participant NSI as NSI Teams
     participant PM as Process Mgmt
 
-    rect rgb(245, 243, 255)
+    rect rgb(242, 242, 242)
     Note over NSI: Design Phase
     NSI->>NSI: Define requirements, methodology,<br/>schema, validation & privacy rules
     NSI-->>NSI: Design Artefacts Published
     end
 
-    rect rgb(239, 246, 255)
+    rect rgb(224, 224, 224)
     Note over NSI: Implementation Phase
     NSI->>NSI: Build instruments, workflows,<br/>catalog & pipeline
     NSI-->>NSI: Pipeline Production-Ready
     end
 
-    rect rgb(236, 253, 245)
+    rect rgb(242, 242, 242)
     Note over NSI,DP: Execution Phase (per cycle)
     NSI->>DP: Confirm source & activate agreement
     DP-->>NSI: Agreement Confirmed
@@ -5314,7 +5231,7 @@ sequenceDiagram
     end
     end
 
-    rect rgb(254, 243, 199)
+    rect rgb(224, 224, 224)
     Note over PM: Management Phase
     PM->>PM: Monitor KPIs, assess quality,<br/>produce compliance reports
     PM-->>NSI: Improvement Recommendations
@@ -5433,61 +5350,15 @@ You do not need to read this document cover to cover — go to the section that 
 
 *A note on numbering:* each `VS-0x.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
 
+![VS-02.0 Data Standardization and Integration: purpose, stages and outcomes](<images/SAF VS-02.jpg>)
+
 
 
 ### Position in the Statistical Value Chain
 
 VS-02.0 is the second primary value stream — it receives Raw Data from VS-01.0 and maps and reformats it into a structured, standardized asset that can flow smoothly into editing, analysis, and modeling. It is the "Harmonize & Integrate Information" orchestration stage that makes data from different sources work together — by aligning structure, format, and codes, **not** by changing the data's values.
 
-```{mermaid}
-%%| label: fig-1
-%%| fig-cap: "Value Stream Context Map. VS-02.0 is highlighted as the standardization stage that bridges acquisition and editing in the primary value chain."
-%%| fig-width: 6
-
-
-flowchart TD
-    subgraph primary["Primary Value Streams"]
-        direction LR
-        VS01["VS-01.0
-        Data Acquisition
-        & Ingestion"]
-        VS02["**VS-02.0**
-        Data Standardization
-        & Integration"]:::highlight
-        VS03["VS-03.0
-        Data Editing
-        & Enrichment"]
-        VS04["VS-04.0
-        Estimation, Analysis
-        & Modeling"]
-        VS05["VS-05.0
-        Statistical Product
-        Composition"]
-        VS06["VS-06.0
-        Dissemination
-        & Service Delivery"]
-        VS01 --> VS02 --> VS03 --> VS04 --> VS05 --> VS06
-    end
-
-    subgraph supporting["Supporting Value Streams"]
-        VS07["VS-07.0
-        Governance &
-        Compliance"]
-        VS08["VS-08.0
-        Innovation &
-        Methodology"]
-        VS09["VS-09.0
-        Infrastructure &
-        Platform Enablement"]
-        VS10["VS-10.0
-        Customer &
-        Stakeholder Engagement"]
-    end
-
-    supporting -.->|"enables"| primary
-
-    classDef highlight fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
-```
+![Value Stream Context Map. VS-02.0 is the standardization stage that bridges acquisition and editing in the primary value chain.](images/value-stream-context-map.png)
 
 ### Steady State Transition
 
@@ -5516,8 +5387,8 @@ flowchart LR
 
     RD --> QG --> SD
 
-    style internal fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
-    style upstream fill:#7d7d7d,color:#fff,stroke:#1d4ed8,stroke-width:1px
+    style internal fill:#fff,color:#000,stroke:#000,stroke-width:3px
+    style upstream fill:#d9d9d9,color:#000,stroke:#000,stroke-width:1px
     style boundary fill:#FFF,stroke-dasharray:5,5
 
 ```
@@ -5575,10 +5446,10 @@ flowchart LR
     M -->|"improvement
     feedback"| D
 
-    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
-    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
-    style E fill:#059669,color:#fff,stroke:#047857
-    style M fill:#d97706,color:#fff,stroke:#b45309
+    style D fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style I fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style E fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style M fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 
@@ -5769,8 +5640,8 @@ flowchart TB
 
     outputs -->|govern| NEXT["Implementation (§4) · Execution (§5)<br/>measured by Management (§6)"]
 
-    style design fill:#f5f3ff,stroke:#7c3aed
-    style outputs fill:#ede9fe,stroke:#7c3aed
+    style design fill:#f2f2f2,stroke:#000
+    style outputs fill:#f2f2f2,stroke:#000
 ```
 
 ## Implementation Processes — "provides the execution process"
@@ -5869,8 +5740,8 @@ flowchart LR
 
     PR -->|"ready for"| EXEC["Execution\n(Section 5)"]
 
-    style build fill:#eff6ff,stroke:#2563eb
-    style test fill:#dbeafe,stroke:#2563eb
+    style build fill:#f2f2f2,stroke:#000
+    style test fill:#f2f2f2,stroke:#000
 ```
 
 ## Execution Processes — "provides the statistical data"
@@ -5938,9 +5809,9 @@ flowchart LR
     L -->|"source code has\ncorrespondence"| ST
     L -.->|"unmapped / free text"| V3
 
-    style sources fill:#ecfdf5,stroke:#059669
-    style mapping fill:#f0fdf4,stroke:#059669
-    style V3 fill:#fee2e2,stroke:#b91c1c
+    style sources fill:#f2f2f2,stroke:#000
+    style mapping fill:#f2f2f2,stroke:#000
+    style V3 fill:#d9d9d9,stroke:#000
 ```
 
 
@@ -6151,9 +6022,9 @@ flowchart TD
     M2 -->|"quality reports"| QM["Quality Manager"]
     M4 -->|"compliance reports"| VS07["VS-07.0\nGovernance"]
 
-    style E fill:#ecfdf5,stroke:#059669
-    style D fill:#f5f3ff,stroke:#7c3aed
-    style M5 fill:#fef3c7,stroke:#d97706
+    style E fill:#f2f2f2,stroke:#000
+    style D fill:#f2f2f2,stroke:#000
+    style M5 fill:#f2f2f2,stroke:#000
 ```
 
 ## Business Services and Interfaces
@@ -6212,13 +6083,13 @@ flowchart TB
     execute --> execute_detail
     RD -->|generates| logs["Mapping Lineage · Conformance · Audit"]
 
-    classDef bo fill:#fbbf24,stroke:#b45309,color:#000
-    style design fill:#f5f3ff,stroke:#7c3aed
-    style implement fill:#dbeafe,stroke:#2563eb
-    style execute fill:#fef9c3,stroke:#b45309
-    style manage fill:#dcfce7,stroke:#16a34a
+    classDef bo fill:#d9d9d9,stroke:#000,color:#000
+    style design fill:#f2f2f2,stroke:#000
+    style implement fill:#f2f2f2,stroke:#000
+    style execute fill:#f2f2f2,stroke:#000
+    style manage fill:#f2f2f2,stroke:#000
     style execute_detail fill:none,stroke:none
-    style logs fill:#fff,stroke:#888,stroke-dasharray: 5 5
+    style logs fill:#fff,stroke:#666,stroke-dasharray:5 5
 ```
 
 
@@ -6234,23 +6105,23 @@ sequenceDiagram
     participant NSI as NSI Teams
     participant PM as Process Mgmt
 
-    rect rgb(245, 243, 255)
+    rect rgb(242, 242, 242)
     Note over NSI: Design Phase
     NSI->>NSI: Define target model, classification strategy,<br/>harmonization & conformance rules
     NSI-->>NSI: Design Artefacts Published
     end
 
-    rect rgb(239, 246, 255)
+    rect rgb(224, 224, 224)
     Note over NSI: Implementation Phase
     NSI->>NSI: Build mapping & format-coercion, mapping services,<br/>conformance pipeline & catalog
     NSI-->>NSI: Pipeline Production-Ready
     end
 
-    rect rgb(236, 253, 245)
+    rect rgb(242, 242, 242)
     Note over NSI,US: Execution Phase (per cycle)
     US-->>NSI: Raw Data Registered event
     NSI->>NSI: Profile & assess structure
-    NSI->>NSI: Map codes 1-to-1 & coerce format; record unit/period metadata
+    NSI->>NSI: Map codes 1-to-1 & coerce format, record unit/period metadata
 
     NSI->>NSI: Validate structural & semantic conformance
 
@@ -6262,7 +6133,7 @@ sequenceDiagram
     end
     end
 
-    rect rgb(254, 243, 199)
+    rect rgb(224, 224, 224)
     Note over PM: Management Phase
     PM->>PM: Monitor KPIs, assess mapping quality,<br/>produce compliance reports
     PM-->>NSI: Improvement Recommendations
@@ -6373,61 +6244,15 @@ Application and Technology layer specifications are out of scope for this docume
 
 *A note on numbering:* each `VS-0x.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
 
+![VS-03.0 Data Editing and Enrichment: purpose, stages and outcomes](<images/SAF VS-03.jpg>)
+
 
 
 ### Position in the Statistical Value Chain
 
 VS-03.0 is the third primary value stream — it receives Standardized Data from VS-02.0 and improves its quality and completeness so that it becomes trustworthy, analytically sound input for estimation and modeling. It is the "Edit & Enrich Information" orchestration stage where standardized data becomes high-quality statistical input.
 
-```{mermaid}
-%%| label: fig-1
-%%| fig-cap: "Value Stream Context Map. VS-03.0 is highlighted as the editing-and-enrichment stage that turns standardized data into analytically-ready processed data."
-%%| fig-width: 6
-
-
-flowchart TD
-    subgraph primary["Primary Value Streams"]
-        direction LR
-        VS01["VS-01.0
-        Data Acquisition
-        & Ingestion"]
-        VS02["VS-02.0
-        Data Standardization
-        & Integration"]
-        VS03["**VS-03.0**
-        Data Editing
-        & Enrichment"]:::highlight
-        VS04["VS-04.0
-        Estimation, Analysis
-        & Modeling"]
-        VS05["VS-05.0
-        Statistical Product
-        Composition"]
-        VS06["VS-06.0
-        Dissemination
-        & Service Delivery"]
-        VS01 --> VS02 --> VS03 --> VS04 --> VS05 --> VS06
-    end
-
-    subgraph supporting["Supporting Value Streams"]
-        VS07["VS-07.0
-        Governance &
-        Compliance"]
-        VS08["VS-08.0
-        Innovation &
-        Methodology"]
-        VS09["VS-09.0
-        Infrastructure &
-        Platform Enablement"]
-        VS10["VS-10.0
-        Customer &
-        Stakeholder Engagement"]
-    end
-
-    supporting -.->|"enables"| primary
-
-    classDef highlight fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
-```
+![Value Stream Context Map. VS-03.0 is the editing-and-enrichment stage that turns standardized data into analytically-ready processed data.](images/value-stream-context-map.png)
 
 ### Steady State Transition
 
@@ -6456,8 +6281,8 @@ flowchart LR
 
     SD --> QG --> PD
 
-    style internal fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
-    style upstream fill:#7d7d7d,color:#fff,stroke:#1d4ed8,stroke-width:1px
+    style internal fill:#fff,color:#000,stroke:#000,stroke-width:3px
+    style upstream fill:#d9d9d9,color:#000,stroke:#000,stroke-width:1px
     style boundary fill:#FFF,stroke-dasharray:5,5
 
 ```
@@ -6524,10 +6349,10 @@ flowchart LR
     M -->|"improvement
     feedback"| D
 
-    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
-    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
-    style E fill:#059669,color:#fff,stroke:#047857
-    style M fill:#d97706,color:#fff,stroke:#b45309
+    style D fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style I fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style E fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style M fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 
@@ -6711,8 +6536,8 @@ flowchart TB
 
     outputs -->|govern| NEXT["Implementation (§4) · Execution (§5)<br/>measured by Management (§6)"]
 
-    style design fill:#f5f3ff,stroke:#7c3aed
-    style outputs fill:#ede9fe,stroke:#7c3aed
+    style design fill:#f2f2f2,stroke:#000
+    style outputs fill:#f2f2f2,stroke:#000
 ```
 
 ## Implementation Processes — "provides the execution process"
@@ -6810,8 +6635,8 @@ flowchart LR
 
     PR -->|"ready for"| EXEC["Execution\n(Section 5)"]
 
-    style build fill:#eff6ff,stroke:#2563eb
-    style test fill:#dbeafe,stroke:#2563eb
+    style build fill:#f2f2f2,stroke:#000
+    style test fill:#f2f2f2,stroke:#000
 ```
 
 ## Execution Processes — "provides the statistical data"
@@ -6879,9 +6704,9 @@ flowchart LR
 
     OUT -.->|"every change logs\noriginal + rule + reason"| AUDIT["Edit Audit Trail"]
 
-    style inputs fill:#ecfdf5,stroke:#059669
-    style editing fill:#f0fdf4,stroke:#059669
-    style AUDIT fill:#fff,stroke:#888,stroke-dasharray: 5 5
+    style inputs fill:#f2f2f2,stroke:#000
+    style editing fill:#f2f2f2,stroke:#000
+    style AUDIT fill:#fff,stroke:#666,stroke-dasharray:5 5
 ```
 
 
@@ -7085,9 +6910,9 @@ flowchart TD
     M2 -->|"quality reports"| QM["Quality Manager"]
     M4 -->|"compliance reports"| VS07["VS-07.0\nGovernance"]
 
-    style E fill:#ecfdf5,stroke:#059669
-    style D fill:#f5f3ff,stroke:#7c3aed
-    style M5 fill:#fef3c7,stroke:#d97706
+    style E fill:#f2f2f2,stroke:#000
+    style D fill:#f2f2f2,stroke:#000
+    style M5 fill:#f2f2f2,stroke:#000
 ```
 
 ## Business Services and Interfaces
@@ -7146,13 +6971,13 @@ flowchart TB
     execute --> execute_detail
     SD -->|generates| logs["Edit Lineage · Imputation Flags · Quality Versions"]
 
-    classDef bo fill:#fbbf24,stroke:#b45309,color:#000
-    style design fill:#f5f3ff,stroke:#7c3aed
-    style implement fill:#dbeafe,stroke:#2563eb
-    style execute fill:#fef9c3,stroke:#b45309
-    style manage fill:#dcfce7,stroke:#16a34a
+    classDef bo fill:#d9d9d9,stroke:#000,color:#000
+    style design fill:#f2f2f2,stroke:#000
+    style implement fill:#f2f2f2,stroke:#000
+    style execute fill:#f2f2f2,stroke:#000
+    style manage fill:#f2f2f2,stroke:#000
     style execute_detail fill:none,stroke:none
-    style logs fill:#fff,stroke:#888,stroke-dasharray: 5 5
+    style logs fill:#fff,stroke:#666,stroke-dasharray:5 5
 ```
 
 
@@ -7168,23 +6993,23 @@ sequenceDiagram
     participant NSI as NSI Teams
     participant PM as Process Mgmt
 
-    rect rgb(245, 243, 255)
+    rect rgb(242, 242, 242)
     Note over NSI: Design Phase
     NSI->>NSI: Define editing & validation rules, imputation<br/>methodology, derivation specs & versioning policy
     NSI-->>NSI: Design Artefacts Published
     end
 
-    rect rgb(239, 246, 255)
+    rect rgb(224, 224, 224)
     Note over NSI: Implementation Phase
     NSI->>NSI: Build editing/imputation engines, derivation<br/>& integration pipelines, versioning store
     NSI-->>NSI: Pipeline Production-Ready
     end
 
-    rect rgb(236, 253, 245)
+    rect rgb(242, 242, 242)
     Note over NSI,US: Execution Phase (per cycle)
     US-->>NSI: Standardized Data Registered event
     NSI->>NSI: Detect errors & diagnose quality
-    NSI->>NSI: Edit, code & reconcile; impute gaps
+    NSI->>NSI: Edit, code & reconcile, impute gaps
 
     NSI->>NSI: Derive variables, convert units, integrate
 
@@ -7196,7 +7021,7 @@ sequenceDiagram
     end
     end
 
-    rect rgb(254, 243, 199)
+    rect rgb(224, 224, 224)
     Note over PM: Management Phase
     PM->>PM: Monitor edit/imputation rates, assess quality<br/>improvement, produce audit reports
     PM-->>NSI: Improvement Recommendations
@@ -7307,61 +7132,15 @@ Application and Technology layer specifications are out of scope for this docume
 
 *A note on numbering:* each `VS-0x.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
 
+![VS-04.0 Estimation, Analysis, and Statistical Modeling: purpose, stages and outcomes](<images/SAF VS-04.jpg>)
+
 
 
 ### Position in the Statistical Value Chain
 
 VS-04.0 is the fourth primary value stream — it receives Processed Data from VS-03.0 and applies statistical methods, estimation techniques, and analytical models to turn it into representative results that describe real-world phenomena. It is the "Estimate & Analyze Information" orchestration stage where data becomes statistical information.
 
-```{mermaid}
-%%| label: fig-1
-%%| fig-cap: "Value Stream Context Map. VS-04.0 is highlighted as the estimation-and-analysis stage that turns processed microdata into representative statistics."
-%%| fig-width: 6
-
-
-flowchart TD
-    subgraph primary["Primary Value Streams"]
-        direction LR
-        VS01["VS-01.0
-        Data Acquisition
-        & Ingestion"]
-        VS02["VS-02.0
-        Data Standardization
-        & Integration"]
-        VS03["VS-03.0
-        Data Editing
-        & Enrichment"]
-        VS04["**VS-04.0**
-        Estimation, Analysis
-        & Modeling"]:::highlight
-        VS05["VS-05.0
-        Statistical Product
-        Composition"]
-        VS06["VS-06.0
-        Dissemination
-        & Service Delivery"]
-        VS01 --> VS02 --> VS03 --> VS04 --> VS05 --> VS06
-    end
-
-    subgraph supporting["Supporting Value Streams"]
-        VS07["VS-07.0
-        Governance &
-        Compliance"]
-        VS08["VS-08.0
-        Innovation &
-        Methodology"]
-        VS09["VS-09.0
-        Infrastructure &
-        Platform Enablement"]
-        VS10["VS-10.0
-        Customer &
-        Stakeholder Engagement"]
-    end
-
-    supporting -.->|"enables"| primary
-
-    classDef highlight fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
-```
+![Value Stream Context Map. VS-04.0 is the estimation-and-analysis stage that turns processed microdata into representative statistics.](images/value-stream-context-map.png)
 
 ### Steady State Transition
 
@@ -7390,8 +7169,8 @@ flowchart LR
 
     PD --> QG --> OD
 
-    style internal fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
-    style upstream fill:#7d7d7d,color:#fff,stroke:#1d4ed8,stroke-width:1px
+    style internal fill:#fff,color:#000,stroke:#000,stroke-width:3px
+    style upstream fill:#d9d9d9,color:#000,stroke:#000,stroke-width:1px
     style boundary fill:#FFF,stroke-dasharray:5,5
 
 ```
@@ -7452,10 +7231,10 @@ flowchart LR
     M -->|"improvement
     feedback"| D
 
-    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
-    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
-    style E fill:#059669,color:#fff,stroke:#047857
-    style M fill:#d97706,color:#fff,stroke:#b45309
+    style D fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style I fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style E fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style M fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 
@@ -7639,8 +7418,8 @@ flowchart TB
 
     outputs -->|govern| NEXT["Implementation (§4) · Execution (§5)<br/>measured by Management (§6)"]
 
-    style design fill:#f5f3ff,stroke:#7c3aed
-    style outputs fill:#ede9fe,stroke:#7c3aed
+    style design fill:#f2f2f2,stroke:#000
+    style outputs fill:#f2f2f2,stroke:#000
 ```
 
 ## Implementation Processes — "provides the execution process"
@@ -7739,8 +7518,8 @@ flowchart LR
 
     PR -->|"ready for"| EXEC["Execution\n(Section 5)"]
 
-    style build fill:#eff6ff,stroke:#2563eb
-    style test fill:#dbeafe,stroke:#2563eb
+    style build fill:#f2f2f2,stroke:#000
+    style test fill:#f2f2f2,stroke:#000
 ```
 
 ## Execution Processes — "provides the statistical data"
@@ -7826,8 +7605,8 @@ flowchart LR
 
     MD -.->|"imputation flags\nraise uncertainty"| VAR
 
-    style inputs fill:#ecfdf5,stroke:#059669
-    style estimation fill:#f0fdf4,stroke:#059669
+    style inputs fill:#f2f2f2,stroke:#000
+    style estimation fill:#f2f2f2,stroke:#000
 ```
 
 
@@ -8011,9 +7790,9 @@ flowchart TD
     M2 -->|"quality reports"| QM["Quality Manager"]
     M4 -->|"compliance reports"| VS07["VS-07.0\nGovernance"]
 
-    style E fill:#ecfdf5,stroke:#059669
-    style D fill:#f5f3ff,stroke:#7c3aed
-    style M5 fill:#fef3c7,stroke:#d97706
+    style E fill:#f2f2f2,stroke:#000
+    style D fill:#f2f2f2,stroke:#000
+    style M5 fill:#f2f2f2,stroke:#000
 ```
 
 ## Business Services and Interfaces
@@ -8072,13 +7851,13 @@ flowchart TB
     execute --> execute_detail
     PD -->|generates| logs["Methodology · Weights · Accuracy · Output Versions"]
 
-    classDef bo fill:#fbbf24,stroke:#b45309,color:#000
-    style design fill:#f5f3ff,stroke:#7c3aed
-    style implement fill:#dbeafe,stroke:#2563eb
-    style execute fill:#fef9c3,stroke:#b45309
-    style manage fill:#dcfce7,stroke:#16a34a
+    classDef bo fill:#d9d9d9,stroke:#000,color:#000
+    style design fill:#f2f2f2,stroke:#000
+    style implement fill:#f2f2f2,stroke:#000
+    style execute fill:#f2f2f2,stroke:#000
+    style manage fill:#f2f2f2,stroke:#000
     style execute_detail fill:none,stroke:none
-    style logs fill:#fff,stroke:#888,stroke-dasharray: 5 5
+    style logs fill:#fff,stroke:#666,stroke-dasharray:5 5
 ```
 
 
@@ -8094,25 +7873,25 @@ sequenceDiagram
     participant NSI as NSI Teams
     participant PM as Process Mgmt
 
-    rect rgb(245, 243, 255)
+    rect rgb(242, 242, 242)
     Note over NSI: Design Phase
     NSI->>NSI: Define estimation & weighting methodology,<br/>model specs, validation & SDC policy
     NSI-->>NSI: Design Artefacts Published
     end
 
-    rect rgb(239, 246, 255)
+    rect rgb(224, 224, 224)
     Note over NSI: Implementation Phase
     NSI->>NSI: Build weighting/estimation engines, modeling<br/>environment, variance & SDC tooling
     NSI-->>NSI: Pipeline Production-Ready
     end
 
-    rect rgb(236, 253, 245)
+    rect rgb(242, 242, 242)
     Note over NSI,US: Execution Phase (per cycle)
     US-->>NSI: Processed Data Registered event
-    NSI->>NSI: Confirm approach; apply weighting & calibration
-    NSI->>NSI: Estimate & aggregate; run model-based analysis
+    NSI->>NSI: Confirm approach, apply weighting & calibration
+    NSI->>NSI: Estimate & aggregate, run model-based analysis
 
-    NSI->>NSI: Validate soundness & coherence; apply disclosure control
+    NSI->>NSI: Validate soundness & coherence, apply disclosure control
 
     alt Output version accepted
         NSI->>NSI: Document methodology, create immutable version,<br/>register accuracy & lineage
@@ -8122,7 +7901,7 @@ sequenceDiagram
     end
     end
 
-    rect rgb(254, 243, 199)
+    rect rgb(224, 224, 224)
     Note over PM: Management Phase
     PM->>PM: Monitor accuracy & timeliness, assess coherence<br/>& revisions, produce audit reports
     PM-->>NSI: Improvement Recommendations
@@ -8233,61 +8012,15 @@ Application and Technology layer specifications are out of scope for this docume
 
 *A note on numbering:* each `VS-0x.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
 
+![VS-05.0 Statistical Product Composition: purpose, stages and outcomes](<images/SAF VS-05.jpg>)
+
 
 
 ### Position in the Statistical Value Chain
 
 VS-05.0 is the fifth primary value stream — it receives Output Data (validated statistics) from VS-04.0 and brings multiple analytical results together into coherent, high-value statistical products ready for dissemination. It is the "Compose & Approve Products" orchestration stage where separate analyses become finished statistical products.
 
-```{mermaid}
-%%| label: fig-1
-%%| fig-cap: "Value Stream Context Map. VS-05.0 is highlighted as the composition stage that turns validated analytical outputs into approved statistical products."
-%%| fig-width: 6
-
-
-flowchart TD
-    subgraph primary["Primary Value Streams"]
-        direction LR
-        VS01["VS-01.0
-        Data Acquisition
-        & Ingestion"]
-        VS02["VS-02.0
-        Data Standardization
-        & Integration"]
-        VS03["VS-03.0
-        Data Editing
-        & Enrichment"]
-        VS04["VS-04.0
-        Estimation, Analysis
-        & Modeling"]
-        VS05["**VS-05.0**
-        Statistical Product
-        Composition"]:::highlight
-        VS06["VS-06.0
-        Dissemination
-        & Service Delivery"]
-        VS01 --> VS02 --> VS03 --> VS04 --> VS05 --> VS06
-    end
-
-    subgraph supporting["Supporting Value Streams"]
-        VS07["VS-07.0
-        Governance &
-        Compliance"]
-        VS08["VS-08.0
-        Innovation &
-        Methodology"]
-        VS09["VS-09.0
-        Infrastructure &
-        Platform Enablement"]
-        VS10["VS-10.0
-        Customer &
-        Stakeholder Engagement"]
-    end
-
-    supporting -.->|"enables"| primary
-
-    classDef highlight fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
-```
+![Value Stream Context Map. VS-05.0 is the composition stage that turns validated analytical outputs into approved statistical products.](images/value-stream-context-map.png)
 
 ### Steady State Transition
 
@@ -8316,8 +8049,8 @@ flowchart LR
 
     OD --> QG --> SP
 
-    style internal fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
-    style upstream fill:#7d7d7d,color:#fff,stroke:#1d4ed8,stroke-width:1px
+    style internal fill:#fff,color:#000,stroke:#000,stroke-width:3px
+    style upstream fill:#d9d9d9,color:#000,stroke:#000,stroke-width:1px
     style boundary fill:#FFF,stroke-dasharray:5,5
 
 ```
@@ -8378,10 +8111,10 @@ flowchart LR
     M -->|"improvement
     feedback"| D
 
-    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
-    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
-    style E fill:#059669,color:#fff,stroke:#047857
-    style M fill:#d97706,color:#fff,stroke:#b45309
+    style D fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style I fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style E fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style M fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 
@@ -8561,8 +8294,8 @@ flowchart TB
 
     outputs -->|govern| NEXT["Implementation (§4) · Execution (§5)<br/>measured by Management (§6)"]
 
-    style design fill:#f5f3ff,stroke:#7c3aed
-    style outputs fill:#ede9fe,stroke:#7c3aed
+    style design fill:#f2f2f2,stroke:#000
+    style outputs fill:#f2f2f2,stroke:#000
 ```
 
 ## Implementation Processes — "provides the execution process"
@@ -8659,8 +8392,8 @@ flowchart LR
 
     PR -->|"ready for"| EXEC["Execution\n(Section 5)"]
 
-    style build fill:#eff6ff,stroke:#2563eb
-    style test fill:#dbeafe,stroke:#2563eb
+    style build fill:#f2f2f2,stroke:#000
+    style test fill:#f2f2f2,stroke:#000
 ```
 
 ## Execution Processes — "provides the statistical data"
@@ -8743,8 +8476,8 @@ flowchart LR
     INT --> IDX --> COH --> P
     C3 -.->|"coherence\ncomparison"| COH
 
-    style components fill:#ecfdf5,stroke:#059669
-    style compose fill:#f0fdf4,stroke:#059669
+    style components fill:#f2f2f2,stroke:#000
+    style compose fill:#f2f2f2,stroke:#000
 ```
 
 
@@ -8928,9 +8661,9 @@ flowchart TD
     M2 -->|"quality reports"| QM["Quality Manager"]
     M4 -->|"compliance reports"| VS07["VS-07.0\nGovernance"]
 
-    style E fill:#ecfdf5,stroke:#059669
-    style D fill:#f5f3ff,stroke:#7c3aed
-    style M5 fill:#fef3c7,stroke:#d97706
+    style E fill:#f2f2f2,stroke:#000
+    style D fill:#f2f2f2,stroke:#000
+    style M5 fill:#f2f2f2,stroke:#000
 ```
 
 ## Business Services and Interfaces
@@ -8989,13 +8722,13 @@ flowchart TB
     execute --> execute_detail
     OD -->|generates| logs["Component Lineage · Coherence Results · Approval Records"]
 
-    classDef bo fill:#fbbf24,stroke:#b45309,color:#000
-    style design fill:#f5f3ff,stroke:#7c3aed
-    style implement fill:#dbeafe,stroke:#2563eb
-    style execute fill:#fef9c3,stroke:#b45309
-    style manage fill:#dcfce7,stroke:#16a34a
+    classDef bo fill:#d9d9d9,stroke:#000,color:#000
+    style design fill:#f2f2f2,stroke:#000
+    style implement fill:#f2f2f2,stroke:#000
+    style execute fill:#f2f2f2,stroke:#000
+    style manage fill:#f2f2f2,stroke:#000
     style execute_detail fill:none,stroke:none
-    style logs fill:#fff,stroke:#888,stroke-dasharray: 5 5
+    style logs fill:#fff,stroke:#666,stroke-dasharray:5 5
 ```
 
 
@@ -9011,25 +8744,25 @@ sequenceDiagram
     participant NSI as NSI Teams
     participant PM as Process Mgmt
 
-    rect rgb(245, 243, 255)
+    rect rgb(242, 242, 242)
     Note over NSI: Design Phase
     NSI->>NSI: Define product specs, composite indicators,<br/>coherence checks & approval policy
     NSI-->>NSI: Design Artefacts Published
     end
 
-    rect rgb(239, 246, 255)
+    rect rgb(224, 224, 224)
     Note over NSI: Implementation Phase
     NSI->>NSI: Build integration/composition engines,<br/>coherence, content & approval tooling
     NSI-->>NSI: Pipeline Production-Ready
     end
 
-    rect rgb(236, 253, 245)
+    rect rgb(242, 242, 242)
     Note over NSI,US: Execution Phase (per cycle)
     US-->>NSI: Output Data Registered event
-    NSI->>NSI: Select & integrate components; construct composites
-    NSI->>NSI: Run coherence checks; produce interpretive content
+    NSI->>NSI: Select & integrate components, construct composites
+    NSI->>NSI: Run coherence checks, produce interpretive content
 
-    NSI->>NSI: Validate against standards; submit for approval
+    NSI->>NSI: Validate against standards, submit for approval
 
     alt Approved
         NSI->>NSI: Create immutable product version,<br/>register lineage & metadata
@@ -9039,7 +8772,7 @@ sequenceDiagram
     end
     end
 
-    rect rgb(254, 243, 199)
+    rect rgb(224, 224, 224)
     Note over PM: Management Phase
     PM->>PM: Monitor coherence & timeliness, assess product<br/>quality, produce audit reports
     PM-->>NSI: Improvement Recommendations
@@ -9150,64 +8883,15 @@ Application and Technology layer specifications are out of scope for this docume
 
 *A note on numbering:* each `VS-0x.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
 
+![VS-06.0 Dissemination and Service Delivery: purpose, stages and outcomes](<images/SAF VS-06.jpg>)
+
 
 
 ### Position in the Statistical Value Chain
 
 VS-06.0 is the sixth and final primary value stream — it receives approved statistical products from VS-05.0 and publishes, distributes, and makes them accessible to users through trusted, secure channels. It is the "Release & Serve" orchestration stage where statistical products become societal value.
 
-```{mermaid}
-%%| label: fig-1
-%%| fig-cap: "Value Stream Context Map. VS-06.0 is highlighted as the dissemination stage — the exit point of the value chain, releasing statistics to users and society."
-%%| fig-width: 6
-
-
-flowchart TD
-    subgraph primary["Primary Value Streams"]
-        direction LR
-        VS01["VS-01.0
-        Data Acquisition
-        & Ingestion"]
-        VS02["VS-02.0
-        Data Standardization
-        & Integration"]
-        VS03["VS-03.0
-        Data Editing
-        & Enrichment"]
-        VS04["VS-04.0
-        Estimation, Analysis
-        & Modeling"]
-        VS05["VS-05.0
-        Statistical Product
-        Composition"]
-        VS06["**VS-06.0**
-        Dissemination
-        & Service Delivery"]:::highlight
-        VS01 --> VS02 --> VS03 --> VS04 --> VS05 --> VS06
-    end
-
-    subgraph supporting["Supporting Value Streams"]
-        VS07["VS-07.0
-        Governance &
-        Compliance"]
-        VS08["VS-08.0
-        Innovation &
-        Methodology"]
-        VS09["VS-09.0
-        Infrastructure &
-        Platform Enablement"]
-        VS10["VS-10.0
-        Customer &
-        Stakeholder Engagement"]
-    end
-
-    VS06 ==>|"released to"| USERS["Users & Society
-    (State #6 — Consumed)"]
-    supporting -.->|"enables"| primary
-
-    classDef highlight fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
-    style USERS fill:#0f766e,color:#fff,stroke:#0f766e
-```
+![Value Stream Context Map. VS-06.0 is the dissemination stage — the exit point of the value chain, releasing statistics to users and society.](images/value-stream-context-map.png)
 
 ### Steady State Transition
 
@@ -9241,10 +8925,10 @@ flowchart LR
 
     SP --> QG --> RD --> CD
 
-    style internal fill:#2563eb,color:#fff,stroke:#1d4ed8,stroke-width:3px
-    style upstream fill:#7d7d7d,color:#fff,stroke:#1d4ed8,stroke-width:1px
+    style internal fill:#fff,color:#000,stroke:#000,stroke-width:3px
+    style upstream fill:#d9d9d9,color:#000,stroke:#000,stroke-width:1px
     style boundary fill:#FFF,stroke-dasharray:5,5
-    style external fill:#0f766e,color:#fff,stroke:#0f766e
+    style external fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 ::: {.callout-tip title='Release readiness criteria (Examples)*'}
@@ -9307,10 +8991,10 @@ flowchart LR
     M -->|"improvement
     feedback"| D
 
-    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
-    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
-    style E fill:#059669,color:#fff,stroke:#047857
-    style M fill:#d97706,color:#fff,stroke:#b45309
+    style D fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style I fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style E fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style M fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 
@@ -9490,8 +9174,8 @@ flowchart TB
 
     outputs -->|govern| NEXT["Implementation (§4) · Execution (§5)<br/>measured by Management (§6)"]
 
-    style design fill:#f5f3ff,stroke:#7c3aed
-    style outputs fill:#ede9fe,stroke:#7c3aed
+    style design fill:#f2f2f2,stroke:#000
+    style outputs fill:#f2f2f2,stroke:#000
 ```
 
 ## Implementation Processes — "provides the execution process"
@@ -9589,8 +9273,8 @@ flowchart LR
 
     PR -->|"ready for"| EXEC["Execution\n(Section 5)"]
 
-    style build fill:#eff6ff,stroke:#2563eb
-    style test fill:#dbeafe,stroke:#2563eb
+    style build fill:#f2f2f2,stroke:#000
+    style test fill:#f2f2f2,stroke:#000
 ```
 
 ## Execution Processes — "provides the statistical data"
@@ -9675,10 +9359,10 @@ flowchart LR
     GATE -->|"no"| RET["Return for\nmore protection"]
     PUB & API & DASH & SRE --> USERS
 
-    style product fill:#ecfdf5,stroke:#059669
-    style prepare fill:#f0fdf4,stroke:#059669
-    style release fill:#eff6ff,stroke:#2563eb
-    style USERS fill:#0f766e,color:#fff,stroke:#0f766e
+    style product fill:#f2f2f2,stroke:#000
+    style prepare fill:#f2f2f2,stroke:#000
+    style release fill:#f2f2f2,stroke:#000
+    style USERS fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 
@@ -9862,9 +9546,9 @@ flowchart TD
     M2 -->|"quality reports"| QM["Quality Manager"]
     M4 -->|"compliance reports"| VS07["VS-07.0\nGovernance"]
 
-    style E fill:#ecfdf5,stroke:#059669
-    style D fill:#f5f3ff,stroke:#7c3aed
-    style M5 fill:#fef3c7,stroke:#d97706
+    style E fill:#f2f2f2,stroke:#000
+    style D fill:#f2f2f2,stroke:#000
+    style M5 fill:#f2f2f2,stroke:#000
 ```
 
 ## Business Services and Interfaces
@@ -9923,14 +9607,14 @@ flowchart TB
     execute --> execute_detail
     RD -->|generates| logs["Disclosure Record · Documentation · Usage Data"]
 
-    classDef bo fill:#fbbf24,stroke:#b45309,color:#000
-    classDef ext fill:#0f766e,stroke:#0f766e,color:#fff
-    style design fill:#f5f3ff,stroke:#7c3aed
-    style implement fill:#dbeafe,stroke:#2563eb
-    style execute fill:#fef9c3,stroke:#b45309
-    style manage fill:#dcfce7,stroke:#16a34a
+    classDef bo fill:#d9d9d9,stroke:#000,color:#000
+    classDef ext fill:#fff,stroke:#000,color:#000,stroke-width:2px
+    style design fill:#f2f2f2,stroke:#000
+    style implement fill:#f2f2f2,stroke:#000
+    style execute fill:#f2f2f2,stroke:#000
+    style manage fill:#f2f2f2,stroke:#000
     style execute_detail fill:none,stroke:none
-    style logs fill:#fff,stroke:#888,stroke-dasharray: 5 5
+    style logs fill:#fff,stroke:#666,stroke-dasharray:5 5
 ```
 
 
@@ -9947,22 +9631,22 @@ sequenceDiagram
     participant USR as Users
     participant PM as Process Mgmt
 
-    rect rgb(245, 243, 255)
+    rect rgb(242, 242, 242)
     Note over NSI: Design Phase
     NSI->>NSI: Define access strategy, release & disclosure<br/>policy, channels & support model
     NSI-->>NSI: Design Artefacts Published
     end
 
-    rect rgb(239, 246, 255)
+    rect rgb(224, 224, 224)
     Note over NSI: Implementation Phase
     NSI->>NSI: Build publication/API channels, SDC &<br/>release tooling, support & monitoring
     NSI-->>NSI: Pipeline Production-Ready
     end
 
-    rect rgb(236, 253, 245)
+    rect rgb(242, 242, 242)
     Note over NSI,USR: Execution Phase (per release)
     US-->>NSI: Statistical Product Registered event
-    NSI->>NSI: Confirm plan; apply final disclosure control
+    NSI->>NSI: Confirm plan, apply final disclosure control
 
     alt Disclosure gate passed
         NSI->>USR: Publish via channels (managed timing, equal access)
@@ -9975,7 +9659,7 @@ sequenceDiagram
     NSI->>USR: Provide documentation & support
     end
 
-    rect rgb(254, 243, 199)
+    rect rgb(224, 224, 224)
     Note over PM: Management Phase
     PM->>PM: Monitor usage & punctuality, assess accessibility,<br/>produce compliance reports
     PM-->>NSI: Improvement Recommendations (to design & VS-10)
@@ -10077,6 +9761,8 @@ This document covers the business layer only: the governance capabilities, how t
 
 *A note on numbering:* each `VS-0x.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
 
+![VS-07.0 Governance and Compliance: purpose, stages and outcomes](<images/SAF VS-07.jpg>)
+
 ### Position — a supporting stream that works across the whole chain
 
 VS-07 is not a stage in the production line. It runs **horizontally** across all six primary streams, setting the rules they must follow and collecting the evidence that they do.
@@ -10094,7 +9780,7 @@ flowchart TD
     VS07["**VS-07.0 Governance & Compliance**"]:::hi
     VS07 -->|"sets rules & controls,<br/>collects compliance evidence"| primary
 
-    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9,stroke-width:2px
+    classDef hi fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 ::: {.callout-important title="How a supporting value stream differs from a primary one"}
@@ -10123,8 +9809,8 @@ flowchart LR
     P -->|"compliance evidence,<br/>quality indicators, audit findings"| VS07
     VS07 -->|"certification &<br/>assurance"| EXT["Regulators, the public,<br/>international peers"]
 
-    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9
-    style EXT fill:#0f766e,color:#fff,stroke:#0f766e
+    classDef hi fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style EXT fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 ### Framework Alignment (GAMSO)
@@ -10181,12 +9867,12 @@ flowchart LR
     E --> F["07.6 Update & Improve<br/>Governance"]
     F -.->|"continuous loop"| A
 
-    style A fill:#f5f3ff,stroke:#7c3aed
-    style B fill:#f5f3ff,stroke:#7c3aed
-    style C fill:#eff6ff,stroke:#2563eb
-    style D fill:#ecfdf5,stroke:#059669
-    style E fill:#ecfdf5,stroke:#059669
-    style F fill:#fef3c7,stroke:#d97706
+    style A fill:#f2f2f2,stroke:#000
+    style B fill:#f2f2f2,stroke:#000
+    style C fill:#f2f2f2,stroke:#000
+    style D fill:#f2f2f2,stroke:#000
+    style E fill:#f2f2f2,stroke:#000
+    style F fill:#f2f2f2,stroke:#000
 ```
 
 ::: {.callout-note title="Model note"}
@@ -10272,6 +9958,8 @@ VS-08.0 makes sure the statistical organization does not stand still. Its purpos
 
 *A note on numbering:* each `VS-0x.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
 
+![VS-08.0 Innovation and Methodological Development: purpose, stages and outcomes](<images/SAF VS-08.jpg>)
+
 ### Position — a supporting stream that works across the whole chain
 
 VS-08 is not a stage in the production line. It runs alongside it as a pipeline that **feeds improvements into** every primary stream and draws its agenda from their needs.
@@ -10290,7 +9978,7 @@ flowchart TD
     primary -->|"improvement needs"| VS08
     VS08 -->|"validated methods & tools<br/>transferred to production"| primary
 
-    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9,stroke-width:2px
+    classDef hi fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 ::: {.callout-important title="How a supporting value stream differs from a primary one"}
@@ -10314,7 +10002,7 @@ flowchart LR
     VS07["VS-07 Governance"] -.->|"compliance approval"| VS08
     VS09["VS-09 Infrastructure"] -.->|"sandbox & production platforms"| VS08
 
-    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9
+    classDef hi fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 ### Framework Alignment (GAMSO)
@@ -10367,12 +10055,12 @@ flowchart LR
     E --> F["08.6 Promote<br/>Knowledge Sharing"]
     F -.->|"feeds the next agenda"| A
 
-    style A fill:#f5f3ff,stroke:#7c3aed
-    style B fill:#f5f3ff,stroke:#7c3aed
-    style C fill:#eff6ff,stroke:#2563eb
-    style D fill:#eff6ff,stroke:#2563eb
-    style E fill:#ecfdf5,stroke:#059669
-    style F fill:#fef3c7,stroke:#d97706
+    style A fill:#f2f2f2,stroke:#000
+    style B fill:#f2f2f2,stroke:#000
+    style C fill:#f2f2f2,stroke:#000
+    style D fill:#f2f2f2,stroke:#000
+    style E fill:#f2f2f2,stroke:#000
+    style F fill:#f2f2f2,stroke:#000
 ```
 
 **Plan — find what is worth doing.** The pipeline begins by **identifying innovation needs and opportunities** (08.1): scanning technological, methodological, and policy developments (AI, ML, new data sources, cloud) and the chain's own improvement backlog for things worth pursuing. Candidates then enter **research and proofs-of-concept** (08.2): controlled experiments and pilots that test a new method or technology in limited scope before any commitment.
@@ -10449,6 +10137,8 @@ This document is the **business-layer** view of that enablement (the capability 
 
 *A note on numbering:* each `VS-0x.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
 
+![VS-09.0 Infrastructure and Platform Enablement: purpose, stages and outcomes](<images/SAF VS-09.jpg>)
+
 ### Position — a supporting stream that works across the whole chain
 
 VS-09 is not a stage in the production line. It is the **foundation underneath** all of it: every primary and supporting stream runs on the platforms it provides.
@@ -10468,7 +10158,7 @@ flowchart TD
     VS09 -->|"platforms, environments,<br/>integration & continuity"| primary
     VS09 -->|"runtime & tooling"| other
 
-    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9,stroke-width:2px
+    classDef hi fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 ::: {.callout-important title="How a supporting value stream differs from a primary one"}
@@ -10492,7 +10182,7 @@ flowchart LR
     VS07["VS-07 Governance"] -.->|"security & continuity policy"| VS09
     ALL -.->|"incidents, capacity demand"| VS09
 
-    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9
+    classDef hi fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 ### Framework Alignment (GAMSO)
@@ -10545,12 +10235,12 @@ flowchart LR
     E --> F["09.6 Evolve &<br/>Modernize"]
     F -.->|"continuous lifecycle"| A
 
-    style A fill:#f5f3ff,stroke:#7c3aed
-    style B fill:#f5f3ff,stroke:#7c3aed
-    style C fill:#eff6ff,stroke:#2563eb
-    style D fill:#eff6ff,stroke:#2563eb
-    style E fill:#ecfdf5,stroke:#059669
-    style F fill:#fef3c7,stroke:#d97706
+    style A fill:#f2f2f2,stroke:#000
+    style B fill:#f2f2f2,stroke:#000
+    style C fill:#f2f2f2,stroke:#000
+    style D fill:#f2f2f2,stroke:#000
+    style E fill:#f2f2f2,stroke:#000
+    style F fill:#f2f2f2,stroke:#000
 ```
 
 **Plan — understand what is needed.** The lifecycle begins by **defining digital and technical requirements** (09.1): identifying the infrastructure needs arising from business capabilities, data volumes, and analytical complexity across the streams. These feed the **design of the platform and infrastructure architecture** (09.2): blueprints for data storage, processing, integration, and secure access (data fabric, data market, compute platforms).
@@ -10631,6 +10321,8 @@ VS-10.0 ensures the statistical organization remains connected, relevant, and re
 
 *A note on numbering:* each `VS-0x.y` below is both a value stream stage (*what value* is added) and a business process (*how* it is done); the numbering maps one-to-one. See the key-concepts box above.
 
+![VS-10.0 Customer and Stakeholder Engagement: purpose, stages and outcomes](<images/SAF VS-10.jpg>)
+
 ### Position — a supporting stream that works across the whole chain
 
 VS-10 is not a stage in the production line. It sits at the **edges** of the chain — facing both the data providers who feed VS-01 and the users who consume VS-06 — and channels what it learns inward to shape the whole chain.
@@ -10652,9 +10344,9 @@ flowchart TD
     VS10 <-->|"needs, feedback,<br/>satisfaction"| USERS
     VS10 -->|"needs routed into<br/>design & innovation"| primary
 
-    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9,stroke-width:2px
-    style PROV fill:#0f766e,color:#fff,stroke:#0f766e
-    style USERS fill:#0f766e,color:#fff,stroke:#0f766e
+    classDef hi fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style PROV fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style USERS fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 ::: {.callout-important title="How a supporting value stream differs from a primary one"}
@@ -10678,8 +10370,8 @@ flowchart LR
     VS10 -->|"user needs & service requirements"| DES["Design across VS-01…06"]
     VS10 -->|"user-driven innovation needs"| VS08["VS-08 Innovation"]
 
-    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9
-    style EXT fill:#0f766e,color:#fff,stroke:#0f766e
+    classDef hi fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style EXT fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 ### Framework Alignment (GAMSO)
@@ -10734,12 +10426,12 @@ flowchart LR
     E --> F["10.6 Monitor Impact<br/>& Satisfaction"]
     F -.->|"insight feeds the next cycle"| A
 
-    style A fill:#f5f3ff,stroke:#7c3aed
-    style B fill:#f5f3ff,stroke:#7c3aed
-    style C fill:#eff6ff,stroke:#2563eb
-    style D fill:#ecfdf5,stroke:#059669
-    style E fill:#ecfdf5,stroke:#059669
-    style F fill:#fef3c7,stroke:#d97706
+    style A fill:#f2f2f2,stroke:#000
+    style B fill:#f2f2f2,stroke:#000
+    style C fill:#f2f2f2,stroke:#000
+    style D fill:#f2f2f2,stroke:#000
+    style E fill:#f2f2f2,stroke:#000
+    style F fill:#f2f2f2,stroke:#000
 ```
 
 **Understand — know who and what.** The cycle begins by **identifying and segmenting stakeholders** (10.1): mapping the ecosystem of users, data providers, partners, and policymakers and understanding their roles and expectations. It then **collects and analyzes user needs** (10.2): gathering feedback, running consultations, and translating stakeholder needs into concrete data or service requirements.
