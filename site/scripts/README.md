@@ -201,6 +201,7 @@ Most edits to `docs/SAF Framework.md` need no thought about the script. The foll
 - **Prefer explicit `{#id}`s on headings you link to.** The heading text can then change without breaking links.
 - **Images:** put the file in **`docs/images/`** and reference it as `![Caption](images/<file>)`, or `![Caption](<images/<file with spaces>>)`, on a line of its own with blank lines around it. Quarto then renders it as a captioned figure, in the PDF as well. Avoid raw HTML `<img>` tags (the PDF drops them) and images hosted at GitHub `user-attachments` URLs (they live outside the repository).
 - **Code fences:** close every ```` ``` ```` or `~~~` block you open. An unclosed fence makes the script treat the rest of the page as code, so its headings and links are skipped.
+- **Mermaid diagrams:** never put a `;` in a label or message. Mermaid treats it as the end of a statement, so the whole diagram fails with a syntax error. Use `,` instead, or write it as `#59;`.
 
 ## Changing how the document is split
 

@@ -59,6 +59,8 @@ format:
     toc-expand: 2
     number-sections: false
     code-copy: false
+    mermaid:
+      theme: neutral
   pdf:
     documentclass: scrartcl
     papersize: a4
@@ -70,6 +72,8 @@ format:
     number-sections: false
     colorlinks: true
     linkcolor: "RoyalBlue"
+    mermaid:
+      theme: neutral
     urlcolor: "RoyalBlue"
     filters:
       - pdf-links.lua
