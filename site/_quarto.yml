@@ -16,6 +16,8 @@ website:
         text: Getting Started
       - href: framework/index.qmd
         text: Framework
+      - href: toolkit.qmd
+        text: Toolkit
       - href: glossary.qmd
         text: Glossary
       - href: open-source.qmd
@@ -35,6 +37,8 @@ website:
         - section: "Business architecture"
           contents:
             - framework/business-architecture.qmd
+            - framework/steady-state.qmd
+            - framework/value-chain.qmd
         - section: "Production value streams"
           contents:
             - framework/vs-01.qmd

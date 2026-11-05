@@ -1,6 +1,6 @@
 # `site/scripts/`
 
-This folder has one script, `split-framework.py`. It builds the Framework chapter pages of the website from the single source document `docs/SAF Framework.md`.
+This folder has one script, `split-framework.py`. It builds the Framework chapter pages of the website from the single source document `docs/SAF Framework.md`, and publishes `docs/SAF Framework Toolkit.md` as the Toolkit page.
 
 - [Purpose](#purpose)
 - [How it runs](#how-it-runs)
@@ -47,7 +47,7 @@ Running it by hand is the quickest way to check your edits to the source documen
 
 ### Generated files are not committed
 
-The 14 generated pages and the `site/images/` folder (copied from `docs/images/`) are listed in the repository's root `.gitignore`. They exist only in working copies and CI runners, and never appear in commits or diffs.
+The 16 generated pages, `site/toolkit.qmd` and the `site/images/` folder (copied from `docs/images/`) are listed in the repository's root `.gitignore`. They exist only in working copies and CI runners, and never appear in commits or diffs.
 
 `_document-info.md` is the exception: it is committed as an **empty placeholder**. Quarto expands `{{< include >}}` while it first scans the project, *before* the pre-render script runs. Without the placeholder, a fresh checkout (as in CI) fails with `Include directive failed ... could not find file .../_document-info.md`. The script then overwrites the placeholder, and the render uses the real content. After a local render, git shows the file as modified. Don't commit that change; discard it with `git restore site/framework/_document-info.md`, or hide it once with `git update-index --skip-worktree site/framework/_document-info.md`.
 
@@ -60,6 +60,8 @@ The 14 generated pages and the `site/images/` folder (copied from `docs/images/`
 | `OUT_DIR` | `site/framework/` | Where the pages are written |
 | `IMAGES_SRC` | `docs/images/` | The images used by the source document |
 | `IMAGES_OUT` | `site/images/` | Where those images are copied for the site |
+| `TOOLKIT_SOURCE` | `docs/SAF Framework Toolkit.md` | The Toolkit source document |
+| `TOOLKIT_OUT` | `site/toolkit.qmd` | The generated Toolkit page (linked from the navbar) |
 
 The `PAGES` list defines what gets generated. Each entry is `(file name, page title, regex for the heading that starts the page)`:
 
@@ -69,16 +71,18 @@ The `PAGES` list defines what gets generated. Each entry is `(file name, page ti
 | `motivation.qmd` | Motivation | `^# Motivation\s*$` |
 | `strategy.qmd` | Strategy | `^# Strategy\s*$` |
 | `business-architecture.qmd` | Business Architecture | `^# Business Architecture\s*$` |
-| `vs-01.qmd` | VS-01 Data Acquisition and Ingestion | `^## VS-01\.0 (?!—)` |
-| `vs-02.qmd` | VS-02 Data Standardization and Integration | `^## VS-02\.0 (?!—)` |
-| `vs-03.qmd` | VS-03 Data Editing and Enrichment | `^## VS-03\.0 (?!—)` |
-| `vs-04.qmd` | VS-04 Estimation, Analysis, and Statistical Modeling | `^## VS-04\.0 (?!—)` |
-| `vs-05.qmd` | VS-05 Statistical Product Composition | `^## VS-05\.0 (?!—)` |
-| `vs-06.qmd` | VS-06 Dissemination and Service Delivery | `^## VS-06\.0 (?!—)` |
-| `vs-07.qmd` | VS-07 Governance and Compliance | `^## VS-07\.0 (?!—)` |
-| `vs-08.qmd` | VS-08 Innovation and Methodological Development | `^## VS-08\.0 (?!—)` |
-| `vs-09.qmd` | VS-09 Infrastructure and Platform Enablement | `^## VS-09\.0 (?!—)` |
-| `vs-10.qmd` | VS-10 Customer and Stakeholder Engagement | `^## VS-10\.0 (?!—)` |
+| `steady-state.qmd` | Steady-State Architecture | `^# Steady-State Architecture\s*$` |
+| `value-chain.qmd` | Statistical Data Value Chain | `^# Statistical Data Value Chain\s*$` |
+| `vs-01.qmd` | VS-01 Data Acquisition and Ingestion | `^## VS-01 ` |
+| `vs-02.qmd` | VS-02 Data Standardization and Integration | `^## VS-02 ` |
+| `vs-03.qmd` | VS-03 Data Editing and Enrichment | `^## VS-03 ` |
+| `vs-04.qmd` | VS-04 Estimation, Analysis, and Statistical Modeling | `^## VS-04 ` |
+| `vs-05.qmd` | VS-05 Statistical Product Composition | `^## VS-05 ` |
+| `vs-06.qmd` | VS-06 Dissemination and Service Delivery | `^## VS-06 ` |
+| `vs-07.qmd` | VS-07 Governance and Compliance | `^## VS-07 ` |
+| `vs-08.qmd` | VS-08 Innovation and Methodological Development | `^## VS-08 ` |
+| `vs-09.qmd` | VS-09 Infrastructure and Platform Enablement | `^## VS-09 ` |
+| `vs-10.qmd` | VS-10 Customer and Stakeholder Engagement | `^## VS-10 ` |
 
 The "Introduction and Scope" page starts at `# Preface`, so it holds the Preface, Acknowledgements and Introduction chapters together.
 
@@ -91,6 +95,10 @@ The whole job happens in `main()`, which relies on a few small helpers.
 ### 0. Copy the images (`copy_images`)
 
 Everything in `docs/images/`, subfolders included, is copied to `site/images/`. Existing files are overwritten, so an edited image always reaches the site. Nothing is ever deleted (see [Known limitations](#known-limitations)). This makes `docs/images/` the single source for images, just as `docs/SAF Framework.md` is for text. An image referenced as `images/<file>` therefore displays both when the Markdown is viewed on GitHub and on the website.
+
+### 0b. Publish the Toolkit (`write_toolkit`)
+
+`TOOLKIT_SOURCE` is copied to `site/toolkit.qmd` as one page, starting at its first `# ` chapter heading. The title block and the hand-written content list above it are dropped, and so is the section `# Review notes for the core team`, which is not meant for publication. The Toolkit gives its instruments explicit anchors (for example `{#saf-tk-v01}`), so other site pages can link to `toolkit.qmd#saf-tk-v01`. Links inside the Toolkit are not rewritten.
 
 ### 1. Read the source
 
@@ -105,12 +113,7 @@ For each entry in `PAGES`, in order, the script looks for the first line matchin
 
 If a pattern matches nothing, the script stops at once with `no heading matching ... for page '...'` (see [Troubleshooting](#troubleshooting)).
 
-**Why the VS patterns end with `(?!—)`.** The document mentions each value stream heading twice:
-
-- In the Business Architecture chapter, a summary section per stream, written with an em dash: `## VS-02.0 — Data Standardization and Integration`
-- Further down, the full chapter for each stream, without a dash: `## VS-02.0 Data Standardization and Integration`
-
-The negative lookahead `(?!—)` refuses a match when an em dash follows `VS-NN.0 `. As a result, the summaries stay inside the Business Architecture page and only the full chapters start new pages. **This difference in punctuation carries meaning: don't "harmonise" those headings.**
+**Why the VS patterns end with a space.** Each value stream is a level-2 heading `## VS-NN Name` in the value chain chapter. The trailing space makes `^## VS-01 ` match only that heading, never a stage heading such as `VS-01.1`.
 
 ### 3. Cut the document into page bodies
 
@@ -185,7 +188,7 @@ title: "<title from PAGES>"
 ### 7. Report
 
 - If any link could not be resolved, the script exits with a non-zero status and lists all of them. Quarto then stops the render. Note that the pages have **already been written** by then, so a local preview may still show them.
-- Otherwise it prints `split-framework: wrote 14 pages and _document-info.md to site/framework, copied N images to site/images`.
+- Otherwise it prints `split-framework: wrote 16 pages, toolkit.qmd and _document-info.md to site/framework, copied N images to site/images`.
 
 Warnings and errors go to stderr, and each starts with `split-framework:`.
 
@@ -194,9 +197,8 @@ Warnings and errors go to stderr, and each starts with `split-framework:`.
 Most edits to `docs/SAF Framework.md` need no thought about the script. The following do:
 
 - **Keep the document information above `# Preface`:** the lines starting with `Created on:`, `Workgroup SAF:` and `Current version:`, and the version table. Update them there. They appear on the Framework index page.
-- **Keep the four top-level headings exactly as they are:** `# Preface`, `# Motivation`, `# Strategy`, `# Business Architecture`. Each one must be alone on its line (trailing spaces are fine).
-- **Keep the value stream chapter headings in the form `## VS-NN.0 Name`:** level 2, `VS-` followed by two digits, `.0`, a space, then the name with **no em dash**. Keep them in order, VS-01 to VS-10, and after `# Business Architecture`.
-- **Keep the summary headings in Business Architecture in the form `## VS-NN.0 — Name`, with the em dash.** Otherwise a summary heading would be taken as the start of a page.
+- **Keep the six top-level headings exactly as they are:** `# Preface`, `# Motivation`, `# Strategy`, `# Business Architecture`, `# Steady-State Architecture`, `# Statistical Data Value Chain`. Each one must be alone on its line (trailing spaces are fine).
+- **Keep the value stream headings in the form `## VS-NN Name`:** level 2, `VS-` followed by two digits, a space, then the name. Keep them in order, VS-01 to VS-10, after `# Statistical Data Value Chain`. Do not start any other level-2 heading with `VS-NN `.
 - **Internal links (`[text](#anchor)`) must point to a heading that exists, and each anchor must be unique across the whole document.** If two pages have a heading with the same anchor, a link to it is ambiguous and the build fails. When two headings have the same text, give one of them an explicit `{#unique-id}`.
 - **Prefer explicit `{#id}`s on headings you link to.** The heading text can then change without breaking links.
 - **Images:** put the file in **`docs/images/`** and reference it as `![Caption](images/<file>)`, or `![Caption](<images/<file with spaces>>)`, on a line of its own with blank lines around it. Quarto then renders it as a captioned figure, in the PDF as well. Avoid raw HTML `<img>` tags (the PDF drops them) and images hosted at GitHub `user-attachments` URLs (they live outside the repository).
@@ -221,7 +223,7 @@ When you rename or remove a page, delete the old generated `.qmd` from your work
 The heading that starts page `<name>` was not found below the previous page's start. Typical causes:
 
 - The heading was renamed, or its level changed (`#` versus `##`).
-- An em dash was added to a VS chapter heading, or a regular hyphen or en dash replaced the em dash in a summary heading. Either way, the wrong heading now matches, or nothing does.
+- A value stream heading lost its level-2 form `## VS-NN Name`, for example `## VS-02.0 Name` or `### VS-02 Name`.
 - Chapters were reordered, so the heading now comes *before* the previous page's start.
 
 Fix the heading in the source document, or adjust the regex in `PAGES` if the change was intentional.

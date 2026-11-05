@@ -9,6 +9,8 @@ site/framework/introduction.qmd
 site/framework/motivation.qmd
 site/framework/strategy.qmd
 site/framework/business-architecture.qmd
+site/framework/steady-state.qmd
+site/framework/value-chain.qmd
 site/framework/vs-01.qmd
 site/framework/vs-02.qmd
 site/framework/vs-03.qmd
@@ -19,6 +21,9 @@ site/framework/vs-07.qmd
 site/framework/vs-08.qmd
 site/framework/vs-09.qmd
 site/framework/vs-10.qmd
+
+# Generated from docs/SAF Framework Toolkit.md by site/scripts/split-framework.py
+site/toolkit.qmd
 
 # Copied from docs/images/ by site/scripts/split-framework.py
 site/images/
