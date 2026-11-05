@@ -1,0 +1,2845 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Steady-State Architecture – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../framework/value-chain.html" rel="next">
+<link href="../framework/business-architecture.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f374ad13d1ca50ffd7110ca4e9b8aceb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../framework/index.html" aria-current="page"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../toolkit.html"> 
+<span class="menu-text">Toolkit</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/business-architecture.html">Business architecture</a></li><li class="breadcrumb-item"><a href="../framework/steady-state.html">Steady-State Architecture</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAF Architecture Framework</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Foundations</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and Scope</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/motivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Motivation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/strategy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strategy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Business architecture</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/business-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/steady-state.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Steady-State Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/value-chain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Data Value Chain</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Production value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-01 Data Acquisition and Ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-02 Data Standardization and Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-03 Data Editing and Enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-04 Estimation, Analysis, and Statistical Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-05 Statistical Product Composition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-06 Dissemination and Service Delivery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Supporting value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-07 Governance and Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-08 Innovation and Methodological Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-09 Infrastructure and Platform Enablement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-10 Customer and Stakeholder Engagement</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#steady-state-architecture" id="toc-steady-state-architecture" class="nav-link active" data-scroll-target="#steady-state-architecture">Steady-State Architecture</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#business-domains" id="toc-business-domains" class="nav-link" data-scroll-target="#business-domains">Business domains</a></li>
+  <li><a href="#the-four-process-types" id="toc-the-four-process-types" class="nav-link" data-scroll-target="#the-four-process-types">The four process types</a></li>
+  <li><a href="#design-rules-of-the-steady-state-model" id="toc-design-rules-of-the-steady-state-model" class="nav-link" data-scroll-target="#design-rules-of-the-steady-state-model">Design rules of the steady-state model</a></li>
+  <li><a href="#steady-states-at-a-glance" id="toc-steady-states-at-a-glance" class="nav-link" data-scroll-target="#steady-states-at-a-glance">Steady states at a glance</a></li>
+  <li><a href="#state-lifecycle" id="toc-state-lifecycle" class="nav-link" data-scroll-target="#state-lifecycle">State lifecycle</a></li>
+  <li><a href="#pragmatic-steady-states" id="toc-pragmatic-steady-states" class="nav-link" data-scroll-target="#pragmatic-steady-states">Applying the steady states pragmatically</a></li>
+  <li><a href="#how-each-state-is-described" id="toc-how-each-state-is-described" class="nav-link" data-scroll-target="#how-each-state-is-described">How each state is described</a></li>
+  <li><a href="#rules-common-to-all-states" id="toc-rules-common-to-all-states" class="nav-link" data-scroll-target="#rules-common-to-all-states">Rules common to all states</a></li>
+  </ul></li>
+  <li><a href="#boundary-position-0-source-data" id="toc-boundary-position-0-source-data" class="nav-link" data-scroll-target="#boundary-position-0-source-data">Boundary Position #0: Source Data</a></li>
+  <li><a href="#state-1-raw-data" id="toc-state-1-raw-data" class="nav-link" data-scroll-target="#state-1-raw-data">State #1: Raw Data</a>
+  <ul class="collapse">
+  <li><a href="#definition-and-value-added" id="toc-definition-and-value-added" class="nav-link" data-scroll-target="#definition-and-value-added">1. Definition and value added</a></li>
+  <li><a href="#producing-and-consuming-domains" id="toc-producing-and-consuming-domains" class="nav-link" data-scroll-target="#producing-and-consuming-domains">2. Producing and consuming domains</a></li>
+  <li><a href="#quality-gate" id="toc-quality-gate" class="nav-link" data-scroll-target="#quality-gate">3. Quality gate</a></li>
+  <li><a href="#data-and-metadata-characteristics" id="toc-data-and-metadata-characteristics" class="nav-link" data-scroll-target="#data-and-metadata-characteristics">4. Data and metadata characteristics</a></li>
+  <li><a href="#security-privacy-and-access" id="toc-security-privacy-and-access" class="nav-link" data-scroll-target="#security-privacy-and-access">5. Security, privacy, and access</a></li>
+  <li><a href="#ownership-and-governance" id="toc-ownership-and-governance" class="nav-link" data-scroll-target="#ownership-and-governance">6. Ownership and governance</a></li>
+  <li><a href="#versioning-retention-and-lineage" id="toc-versioning-retention-and-lineage" class="nav-link" data-scroll-target="#versioning-retention-and-lineage">7. Versioning, retention, and lineage</a></li>
+  <li><a href="#reuse-and-handover" id="toc-reuse-and-handover" class="nav-link" data-scroll-target="#reuse-and-handover">8. Reuse and handover</a></li>
+  <li><a href="#traceability-to-the-framework" id="toc-traceability-to-the-framework" class="nav-link" data-scroll-target="#traceability-to-the-framework">9. Traceability to the framework</a></li>
+  <li><a href="#examples-and-anti-patterns" id="toc-examples-and-anti-patterns" class="nav-link" data-scroll-target="#examples-and-anti-patterns">10. Examples and anti-patterns</a></li>
+  </ul></li>
+  <li><a href="#state-2-standardized-data" id="toc-state-2-standardized-data" class="nav-link" data-scroll-target="#state-2-standardized-data">State #2: Standardized Data</a>
+  <ul class="collapse">
+  <li><a href="#definition-and-value-added-1" id="toc-definition-and-value-added-1" class="nav-link" data-scroll-target="#definition-and-value-added-1">1. Definition and value added</a></li>
+  <li><a href="#producing-and-consuming-domains-1" id="toc-producing-and-consuming-domains-1" class="nav-link" data-scroll-target="#producing-and-consuming-domains-1">2. Producing and consuming domains</a></li>
+  <li><a href="#quality-gate-1" id="toc-quality-gate-1" class="nav-link" data-scroll-target="#quality-gate-1">3. Quality gate</a></li>
+  <li><a href="#data-and-metadata-characteristics-1" id="toc-data-and-metadata-characteristics-1" class="nav-link" data-scroll-target="#data-and-metadata-characteristics-1">4. Data and metadata characteristics</a></li>
+  <li><a href="#security-privacy-and-access-1" id="toc-security-privacy-and-access-1" class="nav-link" data-scroll-target="#security-privacy-and-access-1">5. Security, privacy, and access</a></li>
+  <li><a href="#ownership-and-governance-1" id="toc-ownership-and-governance-1" class="nav-link" data-scroll-target="#ownership-and-governance-1">6. Ownership and governance</a></li>
+  <li><a href="#versioning-retention-and-lineage-1" id="toc-versioning-retention-and-lineage-1" class="nav-link" data-scroll-target="#versioning-retention-and-lineage-1">7. Versioning, retention, and lineage</a></li>
+  <li><a href="#reuse-and-handover-1" id="toc-reuse-and-handover-1" class="nav-link" data-scroll-target="#reuse-and-handover-1">8. Reuse and handover</a></li>
+  <li><a href="#traceability-to-the-framework-1" id="toc-traceability-to-the-framework-1" class="nav-link" data-scroll-target="#traceability-to-the-framework-1">9. Traceability to the framework</a></li>
+  <li><a href="#examples-and-anti-patterns-1" id="toc-examples-and-anti-patterns-1" class="nav-link" data-scroll-target="#examples-and-anti-patterns-1">10. Examples and anti-patterns</a></li>
+  </ul></li>
+  <li><a href="#state-3-processed-data" id="toc-state-3-processed-data" class="nav-link" data-scroll-target="#state-3-processed-data">State #3: Processed Data</a>
+  <ul class="collapse">
+  <li><a href="#definition-and-value-added-2" id="toc-definition-and-value-added-2" class="nav-link" data-scroll-target="#definition-and-value-added-2">1. Definition and value added</a></li>
+  <li><a href="#producing-and-consuming-domains-2" id="toc-producing-and-consuming-domains-2" class="nav-link" data-scroll-target="#producing-and-consuming-domains-2">2. Producing and consuming domains</a></li>
+  <li><a href="#quality-gate-2" id="toc-quality-gate-2" class="nav-link" data-scroll-target="#quality-gate-2">3. Quality gate</a></li>
+  <li><a href="#data-and-metadata-characteristics-2" id="toc-data-and-metadata-characteristics-2" class="nav-link" data-scroll-target="#data-and-metadata-characteristics-2">4. Data and metadata characteristics</a></li>
+  <li><a href="#security-privacy-and-access-2" id="toc-security-privacy-and-access-2" class="nav-link" data-scroll-target="#security-privacy-and-access-2">5. Security, privacy, and access</a></li>
+  <li><a href="#ownership-and-governance-2" id="toc-ownership-and-governance-2" class="nav-link" data-scroll-target="#ownership-and-governance-2">6. Ownership and governance</a></li>
+  <li><a href="#versioning-retention-and-lineage-2" id="toc-versioning-retention-and-lineage-2" class="nav-link" data-scroll-target="#versioning-retention-and-lineage-2">7. Versioning, retention, and lineage</a></li>
+  <li><a href="#reuse-and-handover-2" id="toc-reuse-and-handover-2" class="nav-link" data-scroll-target="#reuse-and-handover-2">8. Reuse and handover</a></li>
+  <li><a href="#traceability-to-the-framework-2" id="toc-traceability-to-the-framework-2" class="nav-link" data-scroll-target="#traceability-to-the-framework-2">9. Traceability to the framework</a></li>
+  <li><a href="#examples-and-anti-patterns-2" id="toc-examples-and-anti-patterns-2" class="nav-link" data-scroll-target="#examples-and-anti-patterns-2">10. Examples and anti-patterns</a></li>
+  </ul></li>
+  <li><a href="#state-4-statistics" id="toc-state-4-statistics" class="nav-link" data-scroll-target="#state-4-statistics">State #4: Statistics</a>
+  <ul class="collapse">
+  <li><a href="#definition-and-value-added-3" id="toc-definition-and-value-added-3" class="nav-link" data-scroll-target="#definition-and-value-added-3">1. Definition and value added</a></li>
+  <li><a href="#producing-and-consuming-domains-3" id="toc-producing-and-consuming-domains-3" class="nav-link" data-scroll-target="#producing-and-consuming-domains-3">2. Producing and consuming domains</a></li>
+  <li><a href="#quality-gate-3" id="toc-quality-gate-3" class="nav-link" data-scroll-target="#quality-gate-3">3. Quality gate</a></li>
+  <li><a href="#data-and-metadata-characteristics-3" id="toc-data-and-metadata-characteristics-3" class="nav-link" data-scroll-target="#data-and-metadata-characteristics-3">4. Data and metadata characteristics</a></li>
+  <li><a href="#security-privacy-and-access-3" id="toc-security-privacy-and-access-3" class="nav-link" data-scroll-target="#security-privacy-and-access-3">5. Security, privacy, and access</a></li>
+  <li><a href="#ownership-and-governance-3" id="toc-ownership-and-governance-3" class="nav-link" data-scroll-target="#ownership-and-governance-3">6. Ownership and governance</a></li>
+  <li><a href="#versioning-retention-and-lineage-3" id="toc-versioning-retention-and-lineage-3" class="nav-link" data-scroll-target="#versioning-retention-and-lineage-3">7. Versioning, retention, and lineage</a></li>
+  <li><a href="#reuse-and-handover-3" id="toc-reuse-and-handover-3" class="nav-link" data-scroll-target="#reuse-and-handover-3">8. Reuse and handover</a></li>
+  <li><a href="#traceability-to-the-framework-3" id="toc-traceability-to-the-framework-3" class="nav-link" data-scroll-target="#traceability-to-the-framework-3">9. Traceability to the framework</a></li>
+  <li><a href="#examples-and-anti-patterns-3" id="toc-examples-and-anti-patterns-3" class="nav-link" data-scroll-target="#examples-and-anti-patterns-3">10. Examples and anti-patterns</a></li>
+  </ul></li>
+  <li><a href="#state-5-released-data" id="toc-state-5-released-data" class="nav-link" data-scroll-target="#state-5-released-data">State #5: Released Data</a>
+  <ul class="collapse">
+  <li><a href="#definition-and-value-added-4" id="toc-definition-and-value-added-4" class="nav-link" data-scroll-target="#definition-and-value-added-4">1. Definition and value added</a></li>
+  <li><a href="#producing-and-consuming-domains-4" id="toc-producing-and-consuming-domains-4" class="nav-link" data-scroll-target="#producing-and-consuming-domains-4">2. Producing and consuming domains</a></li>
+  <li><a href="#quality-gate-4" id="toc-quality-gate-4" class="nav-link" data-scroll-target="#quality-gate-4">3. Quality gate</a></li>
+  <li><a href="#data-and-metadata-characteristics-4" id="toc-data-and-metadata-characteristics-4" class="nav-link" data-scroll-target="#data-and-metadata-characteristics-4">4. Data and metadata characteristics</a></li>
+  <li><a href="#security-privacy-and-access-4" id="toc-security-privacy-and-access-4" class="nav-link" data-scroll-target="#security-privacy-and-access-4">5. Security, privacy, and access</a></li>
+  <li><a href="#ownership-and-governance-4" id="toc-ownership-and-governance-4" class="nav-link" data-scroll-target="#ownership-and-governance-4">6. Ownership and governance</a></li>
+  <li><a href="#versioning-retention-and-lineage-4" id="toc-versioning-retention-and-lineage-4" class="nav-link" data-scroll-target="#versioning-retention-and-lineage-4">7. Versioning, retention, and lineage</a></li>
+  <li><a href="#reuse-and-handover-4" id="toc-reuse-and-handover-4" class="nav-link" data-scroll-target="#reuse-and-handover-4">8. Reuse and handover</a></li>
+  <li><a href="#traceability-to-the-framework-4" id="toc-traceability-to-the-framework-4" class="nav-link" data-scroll-target="#traceability-to-the-framework-4">9. Traceability to the framework</a></li>
+  <li><a href="#examples-and-anti-patterns-4" id="toc-examples-and-anti-patterns-4" class="nav-link" data-scroll-target="#examples-and-anti-patterns-4">10. Examples and anti-patterns</a></li>
+  </ul></li>
+  <li><a href="#boundary-position-6-consumed-data" id="toc-boundary-position-6-consumed-data" class="nav-link" data-scroll-target="#boundary-position-6-consumed-data">Boundary Position #6: Consumed Data</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="steady-state.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/business-architecture.html">Business architecture</a></li><li class="breadcrumb-item"><a href="../framework/steady-state.html">Steady-State Architecture</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Steady-State Architecture</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- GENERATED from docs/SAF Framework.md by scripts/split-framework.py - do not edit -->
+<section id="steady-state-architecture" class="level1">
+<h1>Steady-State Architecture</h1>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<section id="business-domains" class="level3">
+<h3 class="anchored" data-anchor-id="business-domains">Business domains</h3>
+<p>The statistical process is divided into three main business domains (Observation, Processing/Analysis, and Dissemination). Processing/Analysis is divided into four subdomains, which results in six business domains. Each domain adds one specific kind of statistical value and produces one steady state.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Business domain</th>
+<th>Value added</th>
+<th>Business functions (ArchiMate view)</th>
+<th>Value stream</th>
+<th>GSBPM</th>
+<th>State in → out</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Observation/Collection</td>
+<td>Data in NSI custody, authentic and traceable</td>
+<td>Receive Data, Extract Data, Collect Survey</td>
+<td>VS-01</td>
+<td>4</td>
+<td>#0 → #1</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Standardization without loss of content</td>
+<td>Common structure, format, and classifications</td>
+<td>Transform Data, Anonymize Data, Classify Data</td>
+<td>VS-02</td>
+<td>5.1–5.2</td>
+<td>#1 → #2</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Editing, derivation, and non-response correction</td>
+<td>Reliable, complete, enriched microdata</td>
+<td>Imputate Data, Integrate Data</td>
+<td>VS-03</td>
+<td>5.3–5.5, 5.8</td>
+<td>#2 → #3</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Estimation and balancing</td>
+<td>Representative statistics with accuracy</td>
+<td>Estimate Data, Aggregate Data</td>
+<td>VS-04</td>
+<td>5.6–5.7, 6.1–6.4</td>
+<td>#3 → #4</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Statistically composed and composite products</td>
+<td>Coherent, approved products</td>
+<td>Compose Data</td>
+<td>VS-05</td>
+<td>6.5, 7.1–7.2</td>
+<td>#4 → #4 (approved)</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Dissemination</td>
+<td>Disclosure-safe, accessible released data</td>
+<td>Data Delivery, Data Publication</td>
+<td>VS-06</td>
+<td>6.4, 7.3–7.5</td>
+<td>#4 → #5</td>
+</tr>
+<tr class="odd">
+<td>—</td>
+<td>Consumption (external)</td>
+<td>Use of statistics by society</td>
+<td>Data Consumption, Consumption Optimisation</td>
+<td>VS-10 (feedback)</td>
+<td>8</td>
+<td>#5 → (#6)</td>
+</tr>
+</tbody>
+</table>
+<p>The execution processes between the business domains are loosely coupled. Each has its own design and implementation. They exchange data only through steady states: handover points at the boundaries between the domains, listed in <em>Steady states at a glance</em> below. Each domain produces one state; Observation, for example, produces Raw Data. A steady state is therefore an environment where high-quality versions of data are brought together for exchange, and it also represents a value in the value chain of this data.</p>
+</section>
+<section id="the-four-process-types" class="level3">
+<h3 class="anchored" data-anchor-id="the-four-process-types">The four process types</h3>
+<p>Each business domain uses the same four process types: Design provides metadata, Implementation provides the execution process, Execution provides the statistical data, and Management provides quality reports. They are described in <em>The four process types</em> in the Statistical Data Value Chain chapter. How an execution process adds statistical value, and therefore how it is designed and implemented, falls outside the scope of the SAF business architecture. That design follows from, among other things, the NSI’s methodology.</p>
+</section>
+<section id="design-rules-of-the-steady-state-model" class="level3">
+<h3 class="anchored" data-anchor-id="design-rules-of-the-steady-state-model">Design rules of the steady-state model</h3>
+<p>The model rests on six design rules. They apply the SAF architecture principles to the data value chain.</p>
+<ol type="1">
+<li><strong>Loose coupling through states (SAF-P07).</strong> Domains exchange data only through registered steady states, never through each other’s internal working data. A domain can change its methods or systems without affecting its neighbours, as long as the state it produces meets its quality gate.</li>
+<li><strong>One state, one kind of value.</strong> Each state represents exactly one kind of added statistical value. This keeps quality gates testable and accountability unambiguous.</li>
+<li><strong>Immutable quality versions.</strong> Data registered in a state is never overwritten. Corrections and redeliveries create a new version, so every statistic can be traced to the exact data it was built on.</li>
+<li><strong>No state without metadata (SAF-P09).</strong> Registration requires the minimum metadata set of the state. Data without it does not enter the state.</li>
+<li><strong>Progressive confidentiality (SAF-P11).</strong> Protection increases along the chain: direct identifiers are removed or pseudonymised at #2, disclosure risk is assessed at #3, initial disclosure control is applied at #4, and final disclosure control gates #5.</li>
+<li><strong>Reuse before reprocessing (SAF-P08).</strong> An authorised consumer that needs data at a given level of value reuses the registered state rather than repeating the upstream processing.</li>
+</ol>
+</section>
+<section id="steady-states-at-a-glance" class="level3">
+<h3 class="anchored" data-anchor-id="steady-states-at-a-glance">Steady states at a glance</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Position</th>
+<th>Name</th>
+<th>Produced by</th>
+<th>Kind of value</th>
+<th>Mandatory?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(#0)</td>
+<td>Source Data</td>
+<td>External provider</td>
+<td>Outside NSI custody, boundary position</td>
+<td>n/a</td>
+</tr>
+<tr class="even">
+<td>#1</td>
+<td>Raw Data</td>
+<td>VS-01</td>
+<td>Authentic, traceable custody</td>
+<td>When the product collects its own data</td>
+</tr>
+<tr class="odd">
+<td>#2</td>
+<td>Standardized Data</td>
+<td>VS-02</td>
+<td>Comparability, values unchanged</td>
+<td>Optional</td>
+</tr>
+<tr class="even">
+<td>#3</td>
+<td>Processed Data</td>
+<td>VS-03</td>
+<td>Reliability and completeness of microdata</td>
+<td>Always</td>
+</tr>
+<tr class="odd">
+<td>#4</td>
+<td>Statistics</td>
+<td>VS-04, VS-05</td>
+<td>Representative, approved statistics</td>
+<td>Always</td>
+</tr>
+<tr class="even">
+<td>#5</td>
+<td>Released Data</td>
+<td>VS-06</td>
+<td>Disclosure-safe, accessible output</td>
+<td>When output is released</td>
+</tr>
+<tr class="odd">
+<td>(#6)</td>
+<td>Consumed Data</td>
+<td>External users</td>
+<td>Outside NSI control, boundary position</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="state-lifecycle" class="level3">
+<h3 class="anchored" data-anchor-id="state-lifecycle">State lifecycle</h3>
+<p>Every steady state follows the same lifecycle:</p>
+<ol type="1">
+<li><strong>Promotion.</strong> The producing domain submits a dataset to the quality gate of the target state.</li>
+<li><strong>Gate outcome.</strong> The dataset is accepted, conditionally accepted with explicit quality flags, or rejected. Rejected data does not enter the state; it returns to the producing domain or, for #1, to the provider.</li>
+<li><strong>Registration.</strong> An accepted dataset receives a persistent identifier, its metadata is registered in the catalogue, and a registration event notifies consuming domains.</li>
+<li><strong>Consumption.</strong> Authorised consuming domains read the registered version. Responsibility for further processing transfers on receipt of the event; custody of the registered version stays with the producer.</li>
+<li><strong>Revision.</strong> A correction produces a new version that passes the same gate. Consumers are notified and decide whether to reprocess. Earlier versions remain available for as long as statistics depend on them.</li>
+<li><strong>Retirement.</strong> A version is disposed of according to the retention policy of the state, after its lineage obligations have been met.</li>
+</ol>
+</section>
+<section id="pragmatic-steady-states" class="level3">
+<h3 class="anchored" data-anchor-id="pragmatic-steady-states">Applying the steady states pragmatically</h3>
+<p>A steady state is an agreement about data: the quality it has reached, who owns it, how it is identified and what metadata comes with it. It does not require a separate physical copy at every state, and it does not require every process to pass through all of them. An office may depart from the usual sequence in the three cases below, provided it records the choice (which state was shared or skipped, and why) in the catalogue entry. In other words, the rule is “comply or explain”.</p>
+<ol type="1">
+<li><strong>Two states can share one artefact.</strong> If nothing happens between State #4 and State #5 (no transformation and no further disclosure control), the #4 artefact does not have to be registered again as a new dataset; it is marked as released instead. The release steps still take place: release authorisation is obtained and the final disclosure check is carried out, and both are recorded even when the check changes nothing.</li>
+<li><strong>A process can start downstream.</strong> Not every production process begins at VS-01. Macro statistics, for example, are often built on Processed Data (#3) or Statistics (#4) that another team has already registered. State #4 explicitly allows such internal reuse as input to other statistical processes. Such a process starts from the registered artefact and its lineage points to it; there is no need to create placeholder #1 or #2 artefacts. Data that comes from outside the office still enters through VS-01 and State #1.</li>
+<li><strong>Lineage is about traceability, not duplication.</strong> SAF-P09 requires that every value can be traced back to where it came from. When a stream uses an artefact without changing any values, a logged process event that refers to the existing artefact version meets this requirement, and no identical copy needs to be registered. As soon as a value changes, a new version is registered.</li>
+</ol>
+<p>One limit applies to all three cases. States must not be merged where this would hide a change of values (for example, standardisation at #2 and editing at #3 carried out as a single undocumented step) or a disclosure-control step (for example, #4 and #5 when additional disclosure control is applied before release).</p>
+</section>
+<section id="how-each-state-is-described" class="level3">
+<h3 class="anchored" data-anchor-id="how-each-state-is-described">How each state is described</h3>
+<p>Each state below is described with the same ten attributes. NSIs can use this template to document their own implementation.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Attribute</th>
+<th>Question it answers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Definition and value added</td>
+<td>What is this state and why does it exist?</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Producing and consuming domains</td>
+<td>Who creates it, and who may use it?</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Quality gate</td>
+<td>What must data satisfy to be registered?</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Data and metadata characteristics</td>
+<td>What does the data look like, and which metadata must accompany it?</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Security, privacy, and access</td>
+<td>How is the data protected, and who may see it?</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Ownership and governance</td>
+<td>Who is accountable?</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Versioning, retention, and lineage</td>
+<td>How are versions managed, how long are they kept, and how is the trace preserved?</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Reuse and handover</td>
+<td>How is the state made available to consumers?</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Traceability to the framework</td>
+<td>Which capabilities, value-stream stages, and GSBPM sub-processes relate to it?</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Examples and anti-patterns</td>
+<td>What does good practice look like, and what should be avoided?</td>
+</tr>
+</tbody>
+</table>
+<p>Attributes 3 to 9 contain only what is specific to each state. What all states share is described once, in <em>Rules common to all states</em>.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><strong>Toolkit:</strong> SAF-TK-G05 Steady-state record and gate log</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="rules-common-to-all-states" class="level3">
+<h3 class="anchored" data-anchor-id="rules-common-to-all-states">Rules common to all states</h3>
+<p>The rules below apply to every state from #1 to #5. The state descriptions that follow do not repeat them. They describe only what is specific to each state, and any deviation.</p>
+<p><strong>Quality gate.</strong> Every gate has three possible outcomes: accepted, conditionally accepted with explicit quality flags, or rejected (see <em>State lifecycle</em>). Conditional acceptance is a deliberate option. Data with a known and measured issue may still be the best available data, and the flag ensures that every downstream user knows about the issue. The release gate of #5 is the only exception: its disclosure criteria allow no conditional acceptance.</p>
+<p><strong>Common metadata.</strong> The minimum metadata set of every state contains the elements below, in addition to the state-specific elements listed per state.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metadata element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Persistent identifier and version</td>
+<td>Unique identifier of this version (delivery, quality, analytical, approved, or release version) and its registration timestamp</td>
+</tr>
+<tr class="even">
+<td>Source reference</td>
+<td>From #2 onward: the registered version or versions it was produced from. #1 records its provenance instead</td>
+</tr>
+<tr class="odd">
+<td>Gate outcome</td>
+<td>Accepted or conditionally accepted, with quality flags</td>
+</tr>
+<tr class="even">
+<td>Classification</td>
+<td>Availability, integrity, and confidentiality rating, and the resulting access level and authorised roles</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ownership.</strong> Three roles exist for every state. Each state adds its specific roles, and states what its data owner is accountable for.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data owner</td>
+<td>Process owner of the producing domain; accountable for the quality of the state</td>
+</tr>
+<tr class="even">
+<td>Data steward</td>
+<td>Registers versions, maintains catalogue entries, and resolves gate exceptions</td>
+</tr>
+<tr class="odd">
+<td>Data custodian</td>
+<td>Operates storage, access control, and retention; where pseudonymisation keys exist, manages them separately from the data, under separate access rights</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Versioning and retention.</strong> Every registration creates a new immutable version. A redelivery, a correction, a new run, or a change of rules, models, or methods creates a new version. An earlier version is never overwritten, because later versions or published statistics may already be built on it. Each version records the exact input versions and rule versions it was produced from. Retention periods are set by national law and NSI policy; each state describes the usual arrangement.</p>
+<p><strong>Reuse and handover.</strong> Registration publishes the registration event of the state and a catalogue entry. Consumers discover a version through the catalogue and access it through the handover interface, never through the intake system or working environment of the producing domain. The producing value stream keeps custody of the registered version; the consumer takes responsibility for further processing on receipt of the event. Under SAF-P08, an authorised consumer reuses the registered version instead of repeating the upstream work. Each state lists its handover elements and its typical reuse.</p>
+<p><strong>Principles.</strong> Every state applies SAF-P07, SAF-P08, SAF-P09, SAF-P10, and SAF-P11, as described in the design rules above.</p>
+</section>
+</section>
+<section id="boundary-position-0-source-data" class="level2">
+<h2 class="anchored" data-anchor-id="boundary-position-0-source-data">Boundary Position #0: Source Data</h2>
+<p><strong>Description:</strong> Source data is data as it exists at the data holder, before it enters the NSI: a register at a government agency, a company’s accounting system, a respondent’s answers before submission, or a web page. The NSI has no custody of source data and cannot guarantee its quality. It can influence it only through agreements, questionnaire design, and cooperation with the data holder.</p>
+<p><strong>Why it is described:</strong> The SAF describes #0 so that the boundary of the NSIs responsibility is explicit. Everything the NSI knows about source data is captured as metadata when the data crosses into #1: who provided it, under which agreement, through which channel, and in what condition.</p>
+</section>
+<section id="state-1-raw-data" class="level2">
+<h2 class="anchored" data-anchor-id="state-1-raw-data">State #1: Raw Data</h2>
+<section id="definition-and-value-added" class="level3">
+<h3 class="anchored" data-anchor-id="definition-and-value-added">1. Definition and value added</h3>
+<p>Raw data is data received from an external data holder or respondent, placed under NSI custody in its original form, and verified for technical integrity and authenticity. It is the first point of possession. At this moment the NSI does not have access to the data at the source, so #1 is the earliest point at which the NSI can guarantee what it holds.</p>
+<p>The value of #1 is <strong>authentic custody</strong>. It proves that the NSI holds exactly what the provider delivered, when it was delivered, under which legal basis, and through which channel. That proof is the foundation for all downstream traceability. If a statistic is ever questioned, the chain of evidence ends here.</p>
+</section>
+<section id="producing-and-consuming-domains" class="level3">
+<h3 class="anchored" data-anchor-id="producing-and-consuming-domains">2. Producing and consuming domains</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Domain</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Producer</td>
+<td>Observation/Collection (VS-01)</td>
+<td>Functions: Receive Data, Extract Data, Collect Survey</td>
+</tr>
+<tr class="even">
+<td>Primary consumer</td>
+<td>Standardisation (VS-02)</td>
+<td>Triggered by the <em>Raw Data Registered</em> event</td>
+</tr>
+<tr class="odd">
+<td>Secondary consumer</td>
+<td>Editing (VS-03)</td>
+<td>Only where #2 is skipped for this product</td>
+</tr>
+<tr class="even">
+<td>Occasional consumer</td>
+<td>Innovation and Methodology (VS-08)</td>
+<td>Source exploration, under specific authorisation</td>
+</tr>
+<tr class="odd">
+<td>Assurance</td>
+<td>Governance and Compliance (VS-07)</td>
+<td>Audit of provenance and legal basis</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="quality-gate" class="level3">
+<h3 class="anchored" data-anchor-id="quality-gate">3. Quality gate</h3>
+<p>The gate for #1 checks technical and legal conditions only. It does not assess content; content quality is the concern of #3.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>Check</th>
+<th>Typical outcome on failure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Legal basis</td>
+<td>A valid agreement or statutory basis covers this delivery</td>
+<td>Reject; escalate to legal</td>
+</tr>
+<tr class="even">
+<td>Sender authenticity</td>
+<td>Sender verified (certificate, credentials, signed delivery)</td>
+<td>Reject</td>
+</tr>
+<tr class="odd">
+<td>Integrity</td>
+<td>Checksum or digital signature matches</td>
+<td>Reject; request redelivery</td>
+</tr>
+<tr class="even">
+<td>Security</td>
+<td>Malware and security scan passed</td>
+<td>Quarantine; reject</td>
+</tr>
+<tr class="odd">
+<td>Structural conformance</td>
+<td>Delivery matches the agreed technical specification (file format, schema, encoding)</td>
+<td>Reject or conditionally accept with flag</td>
+</tr>
+<tr class="even">
+<td>Completeness against agreement</td>
+<td>Record counts and delivery scope within agreed tolerance</td>
+<td>Conditionally accept with flag, or reject</td>
+</tr>
+<tr class="odd">
+<td>Timeliness</td>
+<td>Delivered within the agreed window</td>
+<td>Accept with flag; report to relationship management</td>
+</tr>
+<tr class="even">
+<td>Metadata</td>
+<td>Minimum metadata set captured (see attribute 4)</td>
+<td>Hold until complete</td>
+</tr>
+</tbody>
+</table>
+<p>A late or slightly incomplete delivery is the typical case for conditional acceptance at #1.</p>
+</section>
+<section id="data-and-metadata-characteristics" class="level3">
+<h3 class="anchored" data-anchor-id="data-and-metadata-characteristics">4. Data and metadata characteristics</h3>
+<p><strong>Data.</strong> Raw data is stored in its original format, or in a lossless technical equivalent. Permitted technical operations are those that change representation without changing content and that can be reversed: decryption, decompression, character-encoding normalisation, and container conversion. Operations that change values, codes, or record selection are not permitted at #1. The original byte stream, or a verifiable hash of it, is retained.</p>
+<p><strong>Minimum metadata set</strong> (in addition to the common metadata).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metadata element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Provider</td>
+<td>Organisation or respondent group that supplied the data</td>
+</tr>
+<tr class="even">
+<td>Agreement reference and legal basis</td>
+<td>Agreement identifier, validity period, purpose limitation, and the applicable legal ground</td>
+</tr>
+<tr class="odd">
+<td>Channel and method</td>
+<td>Transfer channel (file transfer, API, data space connector, survey mode) and instrument version</td>
+</tr>
+<tr class="even">
+<td>Receipt timestamp</td>
+<td>Moment of receipt into NSI custody</td>
+</tr>
+<tr class="odd">
+<td>Integrity proof</td>
+<td>Checksum or signature value and algorithm</td>
+</tr>
+<tr class="even">
+<td>Volume</td>
+<td>Record count and size</td>
+</tr>
+<tr class="odd">
+<td>Reference period</td>
+<td>Period the data describes, as stated by the provider</td>
+</tr>
+<tr class="even">
+<td>Structural description</td>
+<td>Schema or technical specification the delivery conforms to</td>
+</tr>
+<tr class="odd">
+<td>Intake validation result</td>
+<td>Number of validation errors per check, completeness rate and field coverage, and timeliness against the agreed delivery window</td>
+</tr>
+</tbody>
+</table>
+<p>In GSIM terms, #1 typically instantiates a <em>Data Set</em> received from an <em>Information Provider</em> through an <em>Exchange Channel</em> under a <em>Provision Agreement</em>.</p>
+</section>
+<section id="security-privacy-and-access" class="level3">
+<h3 class="anchored" data-anchor-id="security-privacy-and-access">5. Security, privacy, and access</h3>
+<p>Raw data usually contains direct identifiers and therefore carries the highest confidentiality rating in the chain. Access is limited to the roles that operate the intake and the standardisation process. Analysts and subject-matter staff do not work on #1.</p>
+<p>Pseudonymisation is normally applied at the transition to #2. Some NSIs pseudonymise at the intake boundary, or receive data already pseudonymised by a trusted third party. Both variants are compatible with the model, provided the choice is documented and the key management is separated from the data. Data minimisation starts before #1: the agreement and the collection design determine that only necessary data is received.</p>
+</section>
+<section id="ownership-and-governance" class="level3">
+<h3 class="anchored" data-anchor-id="ownership-and-governance">6. Ownership and governance</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Responsibility for #1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data owner</td>
+<td>Process owner of Observation/Collection; accountable for lawful acquisition and fitness of the intake</td>
+</tr>
+<tr class="even">
+<td>Relationship manager</td>
+<td>Handles provider follow-up on rejected or flagged deliveries (with VS-10)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="versioning-retention-and-lineage" class="level3">
+<h3 class="anchored" data-anchor-id="versioning-retention-and-lineage">7. Versioning, retention, and lineage</h3>
+<p>A redelivery or correction by the provider is a new version, like any other delivery.</p>
+<p>Retention of #1 is governed by two needs that pull in opposite directions. Reproducibility and audit favour keeping raw data; data minimisation and storage cost favour disposal. A common arrangement is to keep #1 until the dependent #3 version is verified and the audit period has passed, while #3 is the state subject to long-term archival requirements.</p>
+<p>Lineage at #1 is the provenance record: the link from the registered version to the provider, the agreement, and the delivery event. Every downstream state must be able to trace back to a #1 version or, where a product starts from another domain’s data, to the state it consumed.</p>
+</section>
+<section id="reuse-and-handover" class="level3">
+<h3 class="anchored" data-anchor-id="reuse-and-handover">8. Reuse and handover</h3>
+<p>One delivery can serve several statistical products. The register-based census and the labour market statistics may both draw on the same population register delivery. Reusing the registered delivery, rather than requesting the same data again from the provider, also reduces response burden.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Handover element</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Artefact</td>
+<td>Registered Raw Data version</td>
+</tr>
+<tr class="even">
+<td>Required metadata</td>
+<td>Minimum metadata set (attribute 4)</td>
+</tr>
+<tr class="odd">
+<td>Trigger event</td>
+<td><em>Raw Data Registered</em></td>
+</tr>
+<tr class="even">
+<td>Responsibility transfer</td>
+<td>VS-01 keeps custody; the consumer takes responsibility for further processing on receipt of the event</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="traceability-to-the-framework" class="level3">
+<h3 class="anchored" data-anchor-id="traceability-to-the-framework">9. Traceability to the framework</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Framework element</th>
+<th>References</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Capabilities</td>
+<td>1.2.1 Primary data collection, 1.2.2 Secondary data collection, 2.1.1 Data lifecycle management, 2.1.2 Metadata management, 3.3.4 Logical identity and access control, 3.4.3 Service agreement</td>
+</tr>
+<tr class="even">
+<td>Value-stream stages</td>
+<td>VS-01.3 Collect or Receive Data; VS-01.4 Validate and Log Data Intake; VS-01.5 Store and Register Raw Data Artefacts</td>
+</tr>
+<tr class="odd">
+<td>GSBPM</td>
+<td>4.3 Run collection, 4.4 Finalise collection</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples-and-anti-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="examples-and-anti-patterns">10. Examples and anti-patterns</h3>
+<p><strong>Examples</strong></p>
+<ul>
+<li><em>Survey.</em> Responses from a web questionnaire are received with paradata (mode, completion time, instrument version). The delivery is registered as one #1 version per collection batch.</li>
+<li><em>Administrative register.</em> A quarterly tax file arrives by file transfer, with a manifest. Checksum, schema, and record count are checked against the agreement; 14 unknown business identifiers are not a #1 issue and pass through for handling downstream.</li>
+<li><em>Web data.</em> Daily scraped price data is registered with the scraper version and page fingerprint per retailer, so a change in a website’s structure can be traced to the affected deliveries.</li>
+</ul>
+<p><strong>Anti-patterns</strong></p>
+<ul>
+<li>Correcting obvious errors “while the file is open” at intake. Any value change belongs in #3, where it is documented.</li>
+<li>Overwriting a delivery with the provider’s corrected version. Statistics built on the first version lose their trace.</li>
+<li>Giving analysts direct access to raw data for convenience. This bypasses the pseudonymisation at #2.</li>
+<li>Keeping only a converted copy and discarding the original. The proof of authentic custody is lost.</li>
+<li>Registering a delivery without its agreement reference. The legal basis can no longer be demonstrated in an audit.</li>
+</ul>
+</section>
+</section>
+<section id="state-2-standardized-data" class="level2">
+<h2 class="anchored" data-anchor-id="state-2-standardized-data">State #2: Standardized Data</h2>
+<section id="definition-and-value-added-1" class="level3">
+<h3 class="anchored" data-anchor-id="definition-and-value-added-1">1. Definition and value added</h3>
+<p>Standardised data is raw data that has been brought into the common structure, format, and classifications of the NSI. Its values are unchanged. Only the representation changes: fields are renamed and restructured, types are cast, source codes are mapped one-to-one to standard codes, and descriptive metadata is attached. Direct identifiers are removed or replaced with pseudonymous keys. #2 is therefore the first state in which data from different sources can be compared and combined, and the first state without direct identifiers.</p>
+<p>The value of #2 is <strong>comparability without loss of content</strong>. Data that looked different at the source now uses the same structure, the same codes, and documented definitions, units, and reference periods. Because no value has changed, the trace back to the authentic delivery in #1 stays simple and deterministic. Every interpretation, correction, or conversion is left to #3, where it is documented as an edit.</p>
+<p>#2 is an optional state. A product can go directly from #1 to #3, for example when a source already arrives in the NSI’s standard structure and coding. In that case the NSI records in the catalogue that #2 was skipped, and why (see <em>Applying the steady states pragmatically</em>). <strong>[SS1]</strong></p>
+</section>
+<section id="producing-and-consuming-domains-1" class="level3">
+<h3 class="anchored" data-anchor-id="producing-and-consuming-domains-1">2. Producing and consuming domains</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Domain</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Producer</td>
+<td>Standardization without loss of content (VS-02)</td>
+<td>Functions: Transform Data, Anonymize Data, Classify Data</td>
+</tr>
+<tr class="even">
+<td>Primary consumer</td>
+<td>Editing (VS-03)</td>
+<td>Triggered by the <em>Standardized Data Registered</em> event</td>
+</tr>
+<tr class="odd">
+<td>Secondary consumer</td>
+<td>Other statistical products</td>
+<td>Reuse of the same standardised source under SAF-P08, with authorisation</td>
+</tr>
+<tr class="even">
+<td>Occasional consumer</td>
+<td>Innovation and Methodology (VS-08)</td>
+<td>Exploration of sources and methods, under specific authorisation</td>
+</tr>
+<tr class="odd">
+<td>Assurance</td>
+<td>Governance and Compliance (VS-07)</td>
+<td>Audit of mapping lineage and pseudonymisation</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="quality-gate-1" class="level3">
+<h3 class="anchored" data-anchor-id="quality-gate-1">3. Quality gate</h3>
+<p>The gate for #2 checks conformance and preservation. It does not assess whether values are correct; that is the concern of #3. A value that cannot be mapped is not an error of standardisation. It is a fact about the source, so it is flagged and handed to VS-03.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>Check</th>
+<th>Typical outcome on failure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Structural conformance</td>
+<td>Fields, types, formats, and cardinalities match the target data model</td>
+<td>Reject; re-map</td>
+</tr>
+<tr class="even">
+<td>Classification conformance</td>
+<td>Every mapped code exists in the stated classification version; no orphan codes</td>
+<td>Reject; correct the correspondence table</td>
+</tr>
+<tr class="odd">
+<td>Mapping coverage</td>
+<td>Share of source codes mapped one-to-one is above the agreed threshold</td>
+<td>Conditionally accept with flag; unmapped values listed for VS-03</td>
+</tr>
+<tr class="even">
+<td>Semantic metadata</td>
+<td>Unit, currency, reference-period basis, and definition recorded for every variable</td>
+<td>Hold until complete</td>
+</tr>
+<tr class="odd">
+<td>No loss of content</td>
+<td>Record counts and key measures identical to the #1 version; no value changed</td>
+<td>Reject</td>
+</tr>
+<tr class="even">
+<td>Identifier protection</td>
+<td>Direct identifiers removed or pseudonymised according to the privacy design</td>
+<td>Reject; escalate to the privacy officer</td>
+</tr>
+<tr class="odd">
+<td>Referential integrity</td>
+<td>Linkage keys exist in the reference register (e.g., the statistical business register)</td>
+<td>Conditionally accept with flag</td>
+</tr>
+<tr class="even">
+<td>Metadata and lineage</td>
+<td>Minimum metadata set captured (see attribute 4); field-level lineage complete</td>
+<td>Hold until complete</td>
+</tr>
+</tbody>
+</table>
+<p>Conditional acceptance is the normal outcome for many sources. Unmapped codes and unmatched keys are often caused by known lags, such as newly registered businesses. The flag ensures every downstream user knows exactly which values still need work.</p>
+</section>
+<section id="data-and-metadata-characteristics-1" class="level3">
+<h3 class="anchored" data-anchor-id="data-and-metadata-characteristics-1">4. Data and metadata characteristics</h3>
+<p><strong>Data.</strong> Standardised data is stored in the canonical target data model. Standard codes are stored next to the original source values, so the original remains visible. Permitted operations are renaming, restructuring, type casting, reformatting (for example from CSV to a standard exchange format), key alignment, one-to-one code mapping through maintained correspondence tables, removal or pseudonymisation of direct identifiers, and dropping variables that are not needed for the statistical purpose. Operations that change values are not permitted at #2: unit or currency conversion, reference-period alignment, reconciliation of differing definitions, derivation, interpretive coding of free text, editing, and imputation. These belong to #3. <strong>[SS2]</strong></p>
+<p><strong>Minimum metadata set</strong> (in addition to the common metadata).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metadata element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Source reference</td>
+<td>The #1 version or versions this dataset was produced from</td>
+</tr>
+<tr class="even">
+<td>Target model version</td>
+<td>Version of the canonical data model applied</td>
+</tr>
+<tr class="odd">
+<td>Mapping ruleset and engine version</td>
+<td>Versions of the mapping rules and the tool that applied them</td>
+</tr>
+<tr class="even">
+<td>Classifications applied</td>
+<td>Scheme and version per coded variable (e.g., NACE Rev.&nbsp;2, ISCED 2011)</td>
+</tr>
+<tr class="odd">
+<td>Mapping coverage and unmapped values</td>
+<td>Coverage per variable and the list of values routed to VS-03</td>
+</tr>
+<tr class="even">
+<td>Units, currency, and reference-period basis</td>
+<td>Recorded per variable as received, not converted</td>
+</tr>
+<tr class="odd">
+<td>Concept links and definition differences</td>
+<td>Link to the canonical concept; recorded differences with other sources</td>
+</tr>
+<tr class="even">
+<td>Pseudonymisation record</td>
+<td>Identifiers removed or pseudonymised, method, key reference (never the key itself)</td>
+</tr>
+<tr class="odd">
+<td>Conformance assessment</td>
+<td>Structural, classification, and semantic results; no-loss-of-content confirmation</td>
+</tr>
+</tbody>
+</table>
+<p>In GSIM terms, #2 typically instantiates a <em>Unit Data Set</em> that conforms to a <em>Data Structure</em>, whose <em>Represented Variables</em> take their values from <em>Statistical Classifications</em> and <em>Code Lists</em>.</p>
+</section>
+<section id="security-privacy-and-access-1" class="level3">
+<h3 class="anchored" data-anchor-id="security-privacy-and-access-1">5. Security, privacy, and access</h3>
+<p>#2 is the point where direct identifiers leave the working data. <strong>Removal</strong> deletes an identifier and ends the possibility to link on it. <strong>Pseudonymisation</strong> replaces it with a key that still allows records to be linked. The privacy design decides per identifier which of the two applies, and the choice is recorded in the pseudonymisation record.</p>
+<p>Pseudonymisation keys are managed by the data custodian (see <em>Rules common to all states</em>). Staff who work on #2 and later states never have access to the keys. Some NSIs pseudonymise at intake, or receive data already pseudonymised by a trusted third party. In that case #2 confirms and records the protection that is already in place.</p>
+<p>Standardised data is still detailed microdata. Indirect identifiers, such as date of birth, place of residence, or occupation, remain, and combinations of them can identify a person or business. The confidentiality rating of #2 therefore stays high. Access is limited to the roles that standardise and edit the data, and to authorised reusers with a stated purpose. The formal assessment of disclosure risk starts at #3. <strong>[SS3]</strong></p>
+</section>
+<section id="ownership-and-governance-1" class="level3">
+<h3 class="anchored" data-anchor-id="ownership-and-governance-1">6. Ownership and governance</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Responsibility for #2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data owner</td>
+<td>Process owner of Standardisation; accountable for conformance and for applying the privacy design</td>
+</tr>
+<tr class="even">
+<td>Classification steward</td>
+<td>Maintains the correspondence tables and the classification versions used in mapping</td>
+</tr>
+<tr class="odd">
+<td>Metadata and data architect</td>
+<td>Owns the target data model and the links to canonical concepts</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="versioning-retention-and-lineage-1" class="level3">
+<h3 class="anchored" data-anchor-id="versioning-retention-and-lineage-1">7. Versioning, retention, and lineage</h3>
+<p>A rule change alone also creates a new version, even when the input stays the same: a new correspondence table, a new classification version, or a revised target model.</p>
+<p>Standardisation is deterministic, so a #2 version can be regenerated from its #1 version and the recorded rule versions. Many NSIs therefore keep #2 only as long as the dependent #3 versions are produced and reviewed. This only works while #1 and the rule versions are themselves retained. If #1 is disposed of earlier, #2 must be kept for as long as reproducibility requires.</p>
+<p>Lineage at #2 is field-level. Each standardised value can be traced to the raw value it came from and to the mapping rule that was applied. The pseudonymisation record shows which identifiers were replaced, without revealing the keys.</p>
+</section>
+<section id="reuse-and-handover-1" class="level3">
+<h3 class="anchored" data-anchor-id="reuse-and-handover-1">8. Reuse and handover</h3>
+<p>One standardised source can serve many statistical products. A population register delivery is standardised once and is then used by the census, labour market statistics, and income statistics. Standardising the same source again for each product wastes effort and leads to inconsistent coding of the same source.</p>
+<p>The list of unmapped values and the recorded units and periods travel with the handover. VS-03 then knows exactly which interpretive coding and conversions remain to be done.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Handover element</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Artefact</td>
+<td>Registered Standardized Data version</td>
+</tr>
+<tr class="even">
+<td>Required metadata</td>
+<td>Minimum metadata set (attribute 4), including unmapped values and recorded units and periods</td>
+</tr>
+<tr class="odd">
+<td>Trigger event</td>
+<td><em>Standardized Data Registered</em></td>
+</tr>
+<tr class="even">
+<td>Responsibility transfer</td>
+<td>VS-02 keeps custody; the consumer takes responsibility for editing, interpretive coding, and conversion on receipt of the event</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="traceability-to-the-framework-1" class="level3">
+<h3 class="anchored" data-anchor-id="traceability-to-the-framework-1">9. Traceability to the framework</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Framework element</th>
+<th>References</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Capabilities</td>
+<td>1.3.1 Data standardisation, 2.1.1 Data lifecycle management, 2.1.2 Metadata management, 2.1.4 Statistical register management, 3.3.1 Privacy management, 3.3.4 Logical identity and access control</td>
+</tr>
+<tr class="even">
+<td>Value-stream stages</td>
+<td>VS-02.1 Profile and Assess Data Structure; VS-02.2 Apply Standard Classifications and Formats; VS-02.3 Align Metadata and Semantics; VS-02.4 Validate Structural and Semantic Conformance; VS-02.5 Register Standardized Artefacts</td>
+</tr>
+<tr class="odd">
+<td>SAF processes <strong>[SS4]</strong></td>
+<td>PRD-5.2 Classify and code (deterministic mapping only), PRD-5.3 Review and validate (structural checks only), DLM-2 Promote data through a quality gate, DLM-3 Register and catalogue data, DLM-4 Classify and protect data, DLM-9 Manage reference and master data</td>
+</tr>
+<tr class="even">
+<td>GSBPM</td>
+<td>5.1 Integrate data (key alignment only; record linkage takes place in #3), 5.2 Classify and code</td>
+</tr>
+<tr class="odd">
+<td>Medallion layer <strong>[SS4]</strong></td>
+<td>Silver, lower sub-layer; in a Medallion arrangement often merged with #3</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples-and-anti-patterns-1" class="level3">
+<h3 class="anchored" data-anchor-id="examples-and-anti-patterns-1">10. Examples and anti-patterns</h3>
+<p><strong>Examples</strong></p>
+<ul>
+<li><em>Survey.</em> Labour Force Survey returns are restructured into the canonical person and household model. Source education codes are mapped one-to-one to ISCED 2011, and region codes to NUTS-3. The 42,000 free-text occupation answers are not coded here; they are listed as unmapped and handed to VS-03. The personal identifier is replaced with a pseudonymous key.</li>
+<li><em>Administrative register.</em> The tax authority’s internal activity codes are mapped to NACE Rev.&nbsp;2 through a maintained correspondence table; 0.6% of codes have no correspondence and are flagged. Turnover stays in thousands of euro on a fiscal-year basis, and this basis is recorded as metadata. Conversion to units on a calendar-year basis takes place in #3.</li>
+<li><em>Web data.</em> Scraped price records are reshaped into the canonical price record. Currency, unit, and scrape timestamp are recorded as metadata, and prices are kept exactly as received. Most products only have a free-text name and are passed to VS-03 for classification to COICOP.</li>
+</ul>
+<p><strong>Anti-patterns</strong></p>
+<ul>
+<li>Converting currencies or units at #2 “because the data is open anyway”. The value changes without an edit record.</li>
+<li>Coding free text with a classifier at #2. Interpretive coding needs review and logging, which happens in #3.</li>
+<li>Silently dropping records with unknown codes. This breaks the no-loss-of-content guarantee.</li>
+<li>Overwriting a #2 version after a correspondence table update. Statistics built on the earlier version lose their trace.</li>
+<li>Storing pseudonymisation keys together with the data. The protection of #2 is then only on paper.</li>
+<li>Skipping #2 without recording the reason. Auditors can no longer see why the state is missing.</li>
+</ul>
+</section>
+</section>
+<section id="state-3-processed-data" class="level2">
+<h2 class="anchored" data-anchor-id="state-3-processed-data">State #3: Processed Data</h2>
+<section id="definition-and-value-added-2" class="level3">
+<h3 class="anchored" data-anchor-id="definition-and-value-added-2">1. Definition and value added</h3>
+<p>Processed data is microdata whose content has been checked, corrected, completed, and enriched. Errors, duplicates, outliers, and inconsistencies have been detected and resolved. Missing values have been imputed, free text has been coded, and units, currencies, and reference periods have been converted to a common basis. Records from different sources have been linked, and new variables have been derived. Unlike in #2, values do change here, but every change is documented, attributable, and reversible.</p>
+<p>The value of #3 is <strong>reliability and analytical readiness</strong>. Every estimate, model, and publication downstream rests on this microdata. The guarantee is not that values stay the same, but that no value changes without a record of the original value, the rule or decision applied, the reason, the actor, and the time. That record makes it possible to explain, reproduce, or reverse any change.</p>
+<p>#3 is mandatory for all statistical production, because it is the microdata on which everything downstream is verifiably built. It is also the state that national archival requirements usually apply to: without it, the statistics built on it cannot be re-verified. <strong>[SS5]</strong></p>
+<p>Processing is primarily driven by the individual statistical domains. Depending on the type of data, it may also be performed by a central unit for efficiency and consistency. Either way, the result is registered as #3 under the same quality gate.</p>
+</section>
+<section id="producing-and-consuming-domains-2" class="level3">
+<h3 class="anchored" data-anchor-id="producing-and-consuming-domains-2">2. Producing and consuming domains</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Domain</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Producer</td>
+<td>Editing, derivation, and non-response correction (VS-03)</td>
+<td>Functions: Imputate Data, Integrate Data</td>
+</tr>
+<tr class="even">
+<td>Primary consumer</td>
+<td>Estimation and Analysis (VS-04)</td>
+<td>Triggered by the <em>Processed Data Registered</em> event</td>
+</tr>
+<tr class="odd">
+<td>Secondary consumer</td>
+<td>Other statistical products</td>
+<td>Reuse of processed microdata under SAF-P08, with authorisation</td>
+</tr>
+<tr class="even">
+<td>Secondary consumer</td>
+<td>Microdata services (VS-06)</td>
+<td>Research datasets are prepared from #3 and released as #5 <strong>[SS6]</strong></td>
+</tr>
+<tr class="odd">
+<td>Occasional consumer</td>
+<td>Innovation and Methodology (VS-08)</td>
+<td>Testing of new editing, imputation, or coding methods, under specific authorisation</td>
+</tr>
+<tr class="even">
+<td>Assurance</td>
+<td>Governance and Compliance (VS-07)</td>
+<td>Audit of edit lineage, methodology compliance, and disclosure risk</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="quality-gate-2" class="level3">
+<h3 class="anchored" data-anchor-id="quality-gate-2">3. Quality gate</h3>
+<p>The gate for #3 checks content quality and traceability. It is the first gate that judges whether values are plausible and complete. A dataset may pass with known remaining quality issues, as long as they are measured and documented.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>Check</th>
+<th>Typical outcome on failure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rule conformance</td>
+<td>No record violates the validation and editing rules after correction</td>
+<td>Reject; re-edit</td>
+</tr>
+<tr class="even">
+<td>Edit lineage</td>
+<td>Every changed value has its original value, rule or decision, reason, actor, and time recorded</td>
+<td>Hold until complete</td>
+</tr>
+<tr class="odd">
+<td>Imputation flags</td>
+<td>Every imputed value carries a flag and a method code; no observed value is overwritten</td>
+<td>Reject</td>
+</tr>
+<tr class="even">
+<td>Coding</td>
+<td>Free-text values are coded or explicitly left uncoded with a reason; low-confidence codes are reviewed</td>
+<td>Conditionally accept with flag</td>
+</tr>
+<tr class="odd">
+<td>Conversion and reconciliation</td>
+<td>Every unit, currency, or reference-period conversion and every reconciliation has its rule and original value recorded</td>
+<td>Hold until complete</td>
+</tr>
+<tr class="even">
+<td>Linkage quality</td>
+<td>Linkage rate and match quality are measured and within agreed limits</td>
+<td>Conditionally accept with flag, or reject</td>
+</tr>
+<tr class="odd">
+<td>Derived variables</td>
+<td>Every derived variable has a formula, inputs, unit, and classification</td>
+<td>Hold until complete</td>
+</tr>
+<tr class="even">
+<td>Quality improvement</td>
+<td>Completeness and accuracy measured against the #2 baseline (or #1 where #2 was skipped)</td>
+<td>Conditionally accept with flag</td>
+</tr>
+<tr class="odd">
+<td>Disclosure risk</td>
+<td>Re-identification risk of the enriched and linked data assessed against the privacy design</td>
+<td>Reject; reduce detail or restrict access</td>
+</tr>
+<tr class="even">
+<td>Reproducibility</td>
+<td>The version can be regenerated from its inputs plus the recorded rules and models</td>
+<td>Reject</td>
+</tr>
+</tbody>
+</table>
+<p>Conditional acceptance is common for imputation and linkage. A linkage rate slightly below target may still give the best available data. The flag makes sure estimation in VS-04 takes the issue into account, for example in its variance estimation.</p>
+</section>
+<section id="data-and-metadata-characteristics-2" class="level3">
+<h3 class="anchored" data-anchor-id="data-and-metadata-characteristics-2">4. Data and metadata characteristics</h3>
+<p><strong>Data.</strong> Processed data contains the processed value of every variable. The original value stays recoverable through the edit lineage, and imputed values carry a flag. Permitted operations are error detection, editing and correction, imputation, interpretive coding of free text, conversion of units, currencies, and reference periods, reconciliation of values between sources, record linkage, and derivation of new variables and units. These are the value-changing operations that #2 deliberately left open. Operations that turn microdata into statistics are not permitted at #3: weighting, calibration, estimation, and aggregation belong to #4. <strong>[SS5]</strong></p>
+<p><strong>Minimum metadata set</strong> (in addition to the common metadata).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metadata element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Source reference</td>
+<td>The #2 version or versions, or #1 where #2 was skipped</td>
+</tr>
+<tr class="even">
+<td>Rule and model versions</td>
+<td>Versions of the editing rules, imputation models, coding service, and derivation specifications applied</td>
+</tr>
+<tr class="odd">
+<td>Edit lineage</td>
+<td>Per changed value: original value, new value, rule or decision, reason code, actor, and time</td>
+</tr>
+<tr class="even">
+<td>Imputation record</td>
+<td>Per imputed value: flag, method code, and the predictors or donors used</td>
+</tr>
+<tr class="odd">
+<td>Coding record</td>
+<td>Per coded value: source text, assigned code, method, and confidence</td>
+</tr>
+<tr class="even">
+<td>Conversion and reconciliation record</td>
+<td>Rule, factor or rate, and original value for every conversion or reconciliation</td>
+</tr>
+<tr class="odd">
+<td>Linkage record</td>
+<td>Keys used, matching method, linkage rate, and match quality</td>
+</tr>
+<tr class="even">
+<td>Derived variables</td>
+<td>Formula, inputs, unit, and classification per derived variable</td>
+</tr>
+<tr class="odd">
+<td>Quality assessment</td>
+<td>Edit rate, imputation rate, coding completion, and improvement against the baseline</td>
+</tr>
+<tr class="even">
+<td>Disclosure-risk assessment</td>
+<td>Outcome of the re-identification risk assessment and the resulting access conditions</td>
+</tr>
+</tbody>
+</table>
+<p>In GSIM terms, #3 typically instantiates a <em>Unit Data Set</em>, extended with derived <em>Represented Variables</em>. The edits are described as <em>Rules</em> applied in <em>Process Steps</em>, which gives the edit lineage its formal structure.</p>
+</section>
+<section id="security-privacy-and-access-2" class="level3">
+<h3 class="anchored" data-anchor-id="security-privacy-and-access-2">5. Security, privacy, and access</h3>
+<p>Processed data is pseudonymised microdata, but it is richer than #2. Linking sources and deriving variables adds detail, and more detail means a higher risk that a person or business can be recognised. #3 is therefore the point where the disclosure risk of microdata is formally assessed. The outcome sets the conditions for access and reuse.</p>
+<p>Linkage uses the pseudonymous keys created at #2. The keys themselves remain with the data custodian, separately from the data. Access to #3 is limited to the roles that edit, estimate, and analyse the data, and to authorised reusers with a stated purpose. External researchers never access #3 directly. Their access runs through the microdata services in VS-06, which prepare a project-specific dataset with its own pseudonyms and release it as #5.</p>
+<p>The edit audit trail is itself sensitive and must be tamper-evident. It shows who changed which value and why, which is essential evidence in an audit.</p>
+</section>
+<section id="ownership-and-governance-2" class="level3">
+<h3 class="anchored" data-anchor-id="ownership-and-governance-2">6. Ownership and governance</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Responsibility for #3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data owner</td>
+<td>Process owner of Editing; accountable for the quality version and for the correct application of approved methods</td>
+</tr>
+<tr class="even">
+<td>Data custodian</td>
+<td>In addition to the common responsibilities: archival of #3 (see attribute 7)</td>
+</tr>
+<tr class="odd">
+<td>Methodologist</td>
+<td>Owns the editing rules, imputation methodology, and derivation specifications</td>
+</tr>
+<tr class="even">
+<td>Subject-matter statistician</td>
+<td>Adjudicates flagged records and signs off domain-specific corrections</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="versioning-retention-and-lineage-2" class="level3">
+<h3 class="anchored" data-anchor-id="versioning-retention-and-lineage-2">7. Versioning, retention, and lineage</h3>
+<p>Every completed editing cycle produces a new quality version. Many NSIs distinguish preliminary and final versions; both are registered as separate quality versions of #3.</p>
+<p>#3 is usually the state with the longest retention. It is the microdata that must be preserved to re-verify published statistics, and archival legislation often applies to it. When #3 is archived, its edit lineage, imputation flags, and derived-variable definitions are archived with it. Without that metadata, the archived values cannot be interpreted.</p>
+<p>Lineage at #3 is value-level. Each processed value can be traced back to its original value in #2 or #1, the rule or decision that changed it, and the inputs of any imputation, conversion, or derivation. Linked records keep a reference to the source records they were built from.</p>
+</section>
+<section id="reuse-and-handover-2" class="level3">
+<h3 class="anchored" data-anchor-id="reuse-and-handover-2">8. Reuse and handover</h3>
+<p>Processed microdata is the most valuable reusable asset in the chain. An integrated person-level dataset, edited and enriched once, can serve many statistics on labour, income, education, and health. Editing the same data twice leads to different corrections of the same record, and therefore to statistics that do not agree.</p>
+<p>The imputation flags travel with the handover. VS-04 needs them to reflect the extra uncertainty of imputed values in its accuracy measures.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Handover element</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Artefact</td>
+<td>Registered Processed Data quality version</td>
+</tr>
+<tr class="even">
+<td>Required metadata</td>
+<td>Minimum metadata set (attribute 4), including edit lineage, imputation flags, and derived-variable definitions</td>
+</tr>
+<tr class="odd">
+<td>Trigger event</td>
+<td><em>Processed Data Registered</em></td>
+</tr>
+<tr class="even">
+<td>Responsibility transfer</td>
+<td>VS-03 keeps custody; the consumer takes responsibility for weighting, estimation, and analysis on receipt of the event</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="traceability-to-the-framework-2" class="level3">
+<h3 class="anchored" data-anchor-id="traceability-to-the-framework-2">9. Traceability to the framework</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Framework element</th>
+<th>References</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Capabilities</td>
+<td>1.3.2 Deriving variables and units, 1.3.3 Check content, 1.3.4 Adjusting and imputing, 2.1.1 Data lifecycle management, 2.1.2 Metadata management, 2.1.3 Statistical quality management, 2.1.4 Statistical register management</td>
+</tr>
+<tr class="even">
+<td>Value-stream stages</td>
+<td>VS-03.1 Conduct Error Detection and Quality Diagnostics; VS-03.2 Perform Data Editing and Correction; VS-03.3 Impute Missing or Non-Response Data; VS-03.4 Derive Additional Variables and Indicators; VS-03.5 Perform Quality Evaluation and Versioning</td>
+</tr>
+<tr class="odd">
+<td>SAF processes</td>
+<td>PRD-5.1 Integrate data, PRD-5.2 Classify and code (interpretive coding), PRD-5.3 Review and validate, PRD-5.4 Edit and impute, PRD-5.5 Derive new variables and units, PRD-5.8 Finalise data files, DLM-2, DLM-3, DLM-7 Revise data, DLM-10 Archive and preserve data</td>
+</tr>
+<tr class="even">
+<td>GSBPM</td>
+<td>5.1 Integrate data, 5.2 Classify and code, 5.3 Review and validate, 5.4 Edit and impute, 5.5 Derive new variables and units, 5.8 Finalise data files</td>
+</tr>
+<tr class="odd">
+<td>Medallion layer</td>
+<td>Silver; the main reusable microdata layer</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples-and-anti-patterns-2" class="level3">
+<h3 class="anchored" data-anchor-id="examples-and-anti-patterns-2">10. Examples and anti-patterns</h3>
+<p><strong>Examples</strong></p>
+<ul>
+<li><em>Survey.</em> The 42,000 free-text occupation answers handed over from #2 are coded to ISCO-08: 88% automatically, the rest computer-assisted or by experts. Item non-response on income (9%) is imputed by regression and flagged. Each coded and imputed value carries its method, so it can be reviewed or revised later.</li>
+<li><em>Administrative register.</em> Turnover, received in thousands of euro on a fiscal-year basis, is converted to units on a calendar-year basis. The conversion factor and the original value are stored in the lineage. The tax data is then linked to the business survey on the statistical business register key, and a reconciliation rule resolves values where the two sources disagree.</li>
+<li><em>Web data.</em> Products with only a free-text name are classified to COICOP with a machine-learning classifier; low-confidence cases are reviewed. Prices are converted to euro and standard units. Missing daily prices are filled by carry-forward and flagged with a staleness indicator.</li>
+</ul>
+<p><strong>Anti-patterns</strong></p>
+<ul>
+<li>Overwriting the original value with the corrected one. The edit can no longer be explained or reversed.</li>
+<li>Imputing without a flag. Estimation then treats imputed values as observed and understates uncertainty.</li>
+<li>Correcting every outlier by hand. Over-editing costs effort, changes little in the results, and can introduce bias.</li>
+<li>Calculating weights or aggregates at #3. That work belongs to #4, where its method and accuracy are documented.</li>
+<li>Fixing values in a spreadsheet outside the editing pipeline. The change has no lineage and cannot be reproduced.</li>
+<li>Linking an extra source without reassessing disclosure risk. The richer dataset may identify people that #2 did not.</li>
+<li>Disposing of #3 once figures are published. The published statistics can then no longer be verified.</li>
+</ul>
+</section>
+</section>
+<section id="state-4-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="state-4-statistics">State #4: Statistics</h2>
+<section id="definition-and-value-added-3" class="level3">
+<h3 class="anchored" data-anchor-id="definition-and-value-added-3">1. Definition and value added</h3>
+<p>Statistics are the results produced from processed microdata: estimates, aggregates, indices, time series, and model outputs. Each result carries the method that produced it and a measure of its accuracy, such as a standard error or confidence interval. State #4 can also hold output microdata with weights, prepared for a specific internal purpose. Initial disclosure control has been applied, so the results can potentially be released. They are not yet released: #4 may still contain detail that is confidential or not suitable for publication.</p>
+<p>The value of #4 is <strong>statistical credibility and coherence</strong>. Data has become information about a population, and that information is accurate, transparent, and consistent with related statistics. Any figure in #4 can be regenerated from #3 and defended, because its method, parameters, weights, and accuracy are recorded.</p>
+<p>#4 is produced by two domains and therefore has <strong>two gate moments</strong>. <strong>[SS7]</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Gate moment</th>
+<th>Produced by</th>
+<th>Status of the version</th>
+<th>What it confirms</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Analytical gate</td>
+<td>Estimation and closed-loop (VS-04)</td>
+<td><em>Analytical</em></td>
+<td>Results are methodologically sound, accurate, coherent, and initially disclosure-controlled</td>
+</tr>
+<tr class="even">
+<td>Approval gate</td>
+<td>Statistically composed and composite products (VS-05)</td>
+<td><em>Approved</em></td>
+<td>Results are composed into a coherent product, explained, checked against dissemination and confidentiality standards, and signed off</td>
+</tr>
+</tbody>
+</table>
+<p>Both are versions of the same state. Approval does not change an analytical version; it creates a new, immutable version with the status <em>approved</em> that refers to the analytical versions it was composed from.</p>
+</section>
+<section id="producing-and-consuming-domains-3" class="level3">
+<h3 class="anchored" data-anchor-id="producing-and-consuming-domains-3">2. Producing and consuming domains</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Domain</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Producer (analytical)</td>
+<td>Estimation and closed-loop (VS-04)</td>
+<td>Functions: Estimate Data, Aggregate Data</td>
+</tr>
+<tr class="even">
+<td>Producer (approved)</td>
+<td>Statistically composed and composite products (VS-05)</td>
+<td>Function: Compose Data</td>
+</tr>
+<tr class="odd">
+<td>Primary consumer (analytical)</td>
+<td>Product composition (VS-05)</td>
+<td>Triggered by the <em>Output Data Registered</em> event</td>
+</tr>
+<tr class="even">
+<td>Primary consumer (approved)</td>
+<td>Dissemination (VS-06)</td>
+<td>Triggered by the <em>Statistical Product Registered</em> event</td>
+</tr>
+<tr class="odd">
+<td>Secondary consumer</td>
+<td>Other statistical processes</td>
+<td>Internal input for macro statistics and integration systems, such as the national accounts</td>
+</tr>
+<tr class="even">
+<td>Assurance</td>
+<td>Governance and Compliance (VS-07)</td>
+<td>Audit of methodology, reproducibility, and approval</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="quality-gate-3" class="level3">
+<h3 class="anchored" data-anchor-id="quality-gate-3">3. Quality gate</h3>
+<p>The two gate moments check different things. The analytical gate tests the statistics; the approval gate tests the product.</p>
+<p><strong>Analytical gate (VS-04)</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>Check</th>
+<th>Typical outcome on failure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Approved method</td>
+<td>Estimation, weighting, and model methods are approved and documented for this output</td>
+<td>Reject; return to design</td>
+</tr>
+<tr class="even">
+<td>Weights</td>
+<td>Calibration converged; weights within the agreed bounds</td>
+<td>Reject; re-weight</td>
+</tr>
+<tr class="odd">
+<td>Accuracy</td>
+<td>Every estimate has an accuracy measure; imputation uncertainty from #3 is reflected</td>
+<td>Hold until complete</td>
+</tr>
+<tr class="even">
+<td>Model diagnostics</td>
+<td>Diagnostics of model-based results are within the agreed limits</td>
+<td>Reject, or conditionally accept with flag</td>
+</tr>
+<tr class="odd">
+<td>Soundness and coherence</td>
+<td>Results are plausible and coherent with prior periods and related statistics; large movements are explained</td>
+<td>Conditionally accept with flag, or reject</td>
+</tr>
+<tr class="even">
+<td>Initial disclosure control</td>
+<td>Disclosure risk assessed and initial protection applied</td>
+<td>Reject</td>
+</tr>
+<tr class="odd">
+<td>Reproducibility</td>
+<td>Results regenerate from #3 plus the recorded methodology and parameters</td>
+<td>Reject</td>
+</tr>
+<tr class="even">
+<td>Metadata</td>
+<td>Minimum metadata set captured (see attribute 4)</td>
+<td>Hold until complete</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Approval gate (VS-05)</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>Check</th>
+<th>Typical outcome on failure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Component selection</td>
+<td>The exact analytical versions used are pinned and recorded</td>
+<td>Hold until complete</td>
+</tr>
+<tr class="even">
+<td>Composition</td>
+<td>Composite indicators, indices, and time series follow their documented specifications</td>
+<td>Reject; re-compose</td>
+</tr>
+<tr class="odd">
+<td>Consistency and coherence</td>
+<td>Totals reconcile to components; the product is coherent with related and prior products</td>
+<td>Return to VS-04, or conditionally accept with explained flag</td>
+</tr>
+<tr class="even">
+<td>Interpretive content</td>
+<td>Commentary and visualisations are reviewed and consistent with the data and its accuracy</td>
+<td>Hold until complete</td>
+</tr>
+<tr class="odd">
+<td>Dissemination and confidentiality standards</td>
+<td>The product meets the standards, including the disclosure risk of combining outputs</td>
+<td>Reject</td>
+</tr>
+<tr class="even">
+<td>Sign-off</td>
+<td>The designated approval authority has approved the product</td>
+<td>Hold until approved</td>
+</tr>
+</tbody>
+</table>
+<p>Coherence problems at the approval gate are never solved by adjusting a component estimate in VS-05. If a component is wrong, it goes back to VS-04 and returns as a new analytical version.</p>
+</section>
+<section id="data-and-metadata-characteristics-3" class="level3">
+<h3 class="anchored" data-anchor-id="data-and-metadata-characteristics-3">4. Data and metadata characteristics</h3>
+<p><strong>Data.</strong> Statistics in #4 are mostly aggregated data: tables, data cubes, indicators, indices, and time series. They can also include weighted output microdata, prepared for a specific internal use. Permitted operations are weighting and calibration, estimation and aggregation, model-based analysis, seasonal adjustment, initial disclosure control, and, at the approval stage, composition of indicators, indices, and time series from analytical versions. Changing microdata values is not permitted at #4: corrections go back to #3. Final disclosure control for release is not part of #4 either; it belongs to the transition to #5. <strong>[SS8]</strong></p>
+<p><strong>Minimum metadata set</strong> (in addition to the common metadata).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metadata element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Status</td>
+<td><em>Analytical</em> or <em>approved</em></td>
+</tr>
+<tr class="even">
+<td>Source reference</td>
+<td>The #3 versions (for analytical versions) or the analytical #4 versions (for approved versions) used</td>
+</tr>
+<tr class="odd">
+<td>Methodology</td>
+<td>Estimation, weighting, and model methods, with their versions and parameters</td>
+</tr>
+<tr class="even">
+<td>Weights and calibration totals</td>
+<td>Calibration method, auxiliary variables, and the source and version of the totals</td>
+</tr>
+<tr class="odd">
+<td>Accuracy</td>
+<td>Standard error, coefficient of variation, or confidence interval per estimate; whether imputation uncertainty is included</td>
+</tr>
+<tr class="even">
+<td>Model diagnostics</td>
+<td>Fit and prediction intervals for model-based results</td>
+</tr>
+<tr class="odd">
+<td>Disclosure control</td>
+<td>Method applied and outcome of the risk assessment</td>
+</tr>
+<tr class="even">
+<td>Coherence results</td>
+<td>Outcome of the coherence checks against related and prior statistics</td>
+</tr>
+<tr class="odd">
+<td>Composition record</td>
+<td>For approved versions: composition method and the component versions used</td>
+</tr>
+<tr class="even">
+<td>Interpretive content</td>
+<td>For approved versions: reference to commentary, key messages, and visualisations</td>
+</tr>
+<tr class="odd">
+<td>Approval record</td>
+<td>For approved versions: approval authority, date, and confidentiality clearance</td>
+</tr>
+</tbody>
+</table>
+<p>In GSIM terms, aggregated results in #4 typically instantiate a <em>Dimensional Data Set</em>, and weighted output microdata a <em>Unit Data Set</em>. Both conform to a <em>Data Structure</em> that SDMX can use for exchange.</p>
+</section>
+<section id="security-privacy-and-access-3" class="level3">
+<h3 class="anchored" data-anchor-id="security-privacy-and-access-3">5. Security, privacy, and access</h3>
+<p>Initial disclosure control is applied at the analytical gate, so the results could in principle be released. That does not make #4 public. It may still hold detailed cells, internal breakdowns, or output microdata that are only suitable for internal use. Different confidentiality thresholds can apply depending on the intended use, and the version records which threshold was applied.</p>
+<p>Composition creates a specific risk. Two tables that are each safe on their own can together reveal a value through differencing. The approval gate therefore checks the disclosure risk of the product as a whole, not only of its components.</p>
+<p>Approved products are usually market-sensitive or politically sensitive before their release. Access to approved versions is restricted to the people who need it to prepare the release. Every pre-release access is logged, so equal access at the moment of release can be demonstrated.</p>
+</section>
+<section id="ownership-and-governance-3" class="level3">
+<h3 class="anchored" data-anchor-id="ownership-and-governance-3">6. Ownership and governance</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Responsibility for #4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data owner (analytical)</td>
+<td>Process owner of Estimation; accountable for methodological soundness and accuracy</td>
+</tr>
+<tr class="even">
+<td>Data owner (approved)</td>
+<td>Process owner of Product Composition; accountable for coherence and interpretability of the product</td>
+</tr>
+<tr class="odd">
+<td>Approval authority</td>
+<td>Signs off approved versions against dissemination and confidentiality standards</td>
+</tr>
+<tr class="even">
+<td>Data custodian</td>
+<td>In addition to the common responsibilities: the pre-release access log</td>
+</tr>
+<tr class="odd">
+<td>Methodologist</td>
+<td>Owns estimation, weighting, and model methods</td>
+</tr>
+<tr class="even">
+<td>Disclosure control specialist</td>
+<td>Owns the disclosure-control rules for internal and potential external use</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="versioning-retention-and-lineage-3" class="level3">
+<h3 class="anchored" data-anchor-id="versioning-retention-and-lineage-3">7. Versioning, retention, and lineage</h3>
+<p>Every estimation run produces a new analytical version. Every approval produces a new approved version that refers to the analytical versions it was built from. Revisions follow the revision policy: a preliminary figure, a revised figure, and a final figure are three separate versions.</p>
+<p>Approved versions that were released are kept for as long as the released figures exist, because they are the direct basis of #5. Analytical versions that never led to a release can be kept for a shorter period, as long as revisions and reproducibility are covered.</p>
+<p>Lineage at #4 has two steps. An estimate traces back to the #3 version, the method, the parameters, and the weights that produced it. An approved product traces back to the analytical versions it was composed from, and through them to #3.</p>
+</section>
+<section id="reuse-and-handover-3" class="level3">
+<h3 class="anchored" data-anchor-id="reuse-and-handover-3">8. Reuse and handover</h3>
+<p>#4 has two handovers, one for each gate moment. The analytical version goes to VS-05 for composition; the approved version goes to VS-06 for release.</p>
+<p>Statistics in #4 are also reused internally. Integration systems, such as the national accounts or labour accounts, use statistics from many domains as input. Reusing the registered version instead of estimating the same figure again keeps internal use and later publication consistent.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Handover element</th>
+<th>Analytical version (VS-04 → VS-05)</th>
+<th>Approved version (VS-05 → VS-06)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Artefact</td>
+<td>Registered analytical #4 version</td>
+<td>Registered approved #4 version</td>
+</tr>
+<tr class="even">
+<td>Required metadata</td>
+<td>Methodology, weights, accuracy, model diagnostics, disclosure control, coherence results</td>
+<td>Composition record, propagated accuracy, coherence results, interpretive content, approval record</td>
+</tr>
+<tr class="odd">
+<td>Trigger event</td>
+<td><em>Output Data Registered</em></td>
+<td><em>Statistical Product Registered</em></td>
+</tr>
+<tr class="even">
+<td>Responsibility transfer</td>
+<td>VS-04 keeps custody; VS-05 takes responsibility for composition and approval</td>
+<td>VS-05 keeps custody; VS-06 takes responsibility for final disclosure control, release, and user support</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="traceability-to-the-framework-3" class="level3">
+<h3 class="anchored" data-anchor-id="traceability-to-the-framework-3">9. Traceability to the framework</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Framework element</th>
+<th>References</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Capabilities</td>
+<td>1.3.5 Estimating population parameters, 1.3.6 Integrate statistics, 1.3.7 Statistical disclosure, 1.4.1 Statistical (output) analysis, 2.1.2 Metadata management, 2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Value-stream stages</td>
+<td>VS-04.1 to VS-04.5 (analytical gate); VS-05.1 to VS-05.5 (approval gate)</td>
+</tr>
+<tr class="odd">
+<td>SAF processes</td>
+<td>PRD-5.6 Calculate weights, PRD-5.7 Calculate aggregates, PRD-6.1 Prepare draft outputs, PRD-6.2 Validate outputs, PRD-6.3 Interpret and explain outputs, PRD-6.4 Apply disclosure control (initial), PRD-6.5 Finalise outputs, PRD-7.2 Produce dissemination products (content), DLM-2, DLM-3, DLM-7 Revise data</td>
+</tr>
+<tr class="even">
+<td>GSBPM</td>
+<td>5.6 Calculate weights, 5.7 Calculate aggregates, 6.1 to 6.5 Analyse</td>
+</tr>
+<tr class="odd">
+<td>Medallion layer</td>
+<td>Gold, internal sub-layer; not yet released</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples-and-anti-patterns-3" class="level3">
+<h3 class="anchored" data-anchor-id="examples-and-anti-patterns-3">10. Examples and anti-patterns</h3>
+<p><strong>Examples</strong></p>
+<ul>
+<li><em>Survey.</em> The Labour Force Survey estimates an employment rate of 71.4%, with a 95% confidence interval of ±0.5 percentage points at national level. The variance includes the uncertainty of imputed income from #3. This analytical version is then composed with unemployment and vacancy figures into the quarterly labour market product, which is approved and registered.</li>
+<li><em>Administrative register.</em> Turnover is aggregated by industry and region. For small domains where the direct aggregate is unstable, a small-area model is used, and its results are flagged as model-based. In the approval gate, one domain fails the coherence check; it goes back to VS-04 instead of being adjusted in the product.</li>
+<li><em>Web data.</em> A multilateral price index is calculated from the item prices in #3. The headline index and its main divisions are composed with the period weights, checked for coherence with the prior month and year, and approved.</li>
+</ul>
+<p><strong>Anti-patterns</strong></p>
+<ul>
+<li>Approving a product by overwriting the analytical version. The difference between the tested figure and the approved figure disappears.</li>
+<li>Adjusting a component estimate in VS-05 to make the coherence check pass. The estimate no longer matches its documented method.</li>
+<li>Publishing an estimate without an accuracy measure. Users cannot judge whether a movement is meaningful.</li>
+<li>Treating initial disclosure control as final. Release requires the final check of the transition to #5.</li>
+<li>Sharing approved figures before release without logging the access. Equal access can no longer be demonstrated.</li>
+<li>Re-estimating a figure for internal use instead of reusing the registered version. Internal and published figures start to differ.</li>
+</ul>
+</section>
+</section>
+<section id="state-5-released-data" class="level2">
+<h2 class="anchored" data-anchor-id="state-5-released-data">State #5: Released Data</h2>
+<section id="definition-and-value-added-4" class="level3">
+<h3 class="anchored" data-anchor-id="definition-and-value-added-4">1. Definition and value added</h3>
+<p>Released data is statistical output that the NSI has made available outside its own organisation. It is based on an approved #4 version that has passed final disclosure control, has been documented for correct interpretation, and has been released through a trusted channel. Released data includes published tables and datasets, open data, data available through an API, deliveries to international organisations, data offered in a data space, and de-identified microdata made available to accredited researchers. #5 is the last point at which the NSI controls the data. Once users have it, it becomes consumed data, outside the NSI’s control.</p>
+<p>The value of #5 is <strong>accessibility and trust</strong>. Users get accurate, documented statistics through channels they can rely on, at a moment that is the same for everyone. The final disclosure check ensures that no respondent can be identified. The documentation ensures that users can interpret the figures correctly, including their accuracy and limitations.</p>
+<p>#5 is mandatory whenever output is released. If nothing changes between the approved #4 version and the release, the same artefact can be marked as released instead of being registered again. The release steps still take place and are recorded: release authorisation, the final disclosure check, and the release itself (see <em>Applying the steady states pragmatically</em>).</p>
+</section>
+<section id="producing-and-consuming-domains-4" class="level3">
+<h3 class="anchored" data-anchor-id="producing-and-consuming-domains-4">2. Producing and consuming domains</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Domain</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Producer</td>
+<td>Dissemination (VS-06)</td>
+<td>Functions: Data Delivery, Data Publication</td>
+</tr>
+<tr class="even">
+<td>Primary consumer</td>
+<td>External users</td>
+<td>Policy makers, researchers, media, businesses, and the public; use turns #5 into #6</td>
+</tr>
+<tr class="odd">
+<td>Primary consumer</td>
+<td>International organisations</td>
+<td>Deliveries under agreed transmission programmes, such as to Eurostat or the OECD</td>
+</tr>
+<tr class="even">
+<td>Primary consumer</td>
+<td>Accredited researchers</td>
+<td>Access to de-identified research datasets in a secure processing environment <strong>[SS9]</strong></td>
+</tr>
+<tr class="odd">
+<td>Secondary consumer</td>
+<td>Customer and Stakeholder Engagement (VS-10)</td>
+<td>Usage and feedback data for needs analysis and impact measurement</td>
+</tr>
+<tr class="even">
+<td>Assurance</td>
+<td>Governance and Compliance (VS-07)</td>
+<td>Audit of disclosure control, equal access, and release authorisation</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="quality-gate-4" class="level3">
+<h3 class="anchored" data-anchor-id="quality-gate-4">3. Quality gate</h3>
+<p>The gate for #5 is the release gate. Confidentiality is not negotiable at this boundary. Unlike the earlier gates, the disclosure criteria allow no conditional acceptance: a release that fails them is returned for further protection. <strong>[SS10]</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>Check</th>
+<th>Typical outcome on failure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Approved source</td>
+<td>The release is based on an approved #4 version</td>
+<td>Reject</td>
+</tr>
+<tr class="even">
+<td>Final disclosure control</td>
+<td>Final protection applied and disclosure-risk criteria met for every table, dataset, and dashboard</td>
+<td>Reject; apply further protection</td>
+</tr>
+<tr class="odd">
+<td>De-identification</td>
+<td>Released microdata meets the de-identification standard for its channel</td>
+<td>Reject</td>
+</tr>
+<tr class="even">
+<td>Documentation</td>
+<td>Methodology notes, metadata, and user guidance are complete</td>
+<td>Hold until complete</td>
+</tr>
+<tr class="odd">
+<td>Format and accessibility</td>
+<td>Each channel format is valid, machine-readable where required, and meets the accessibility standard</td>
+<td>Hold until corrected</td>
+</tr>
+<tr class="even">
+<td>Release authorisation</td>
+<td>The release has been signed off</td>
+<td>Hold until authorised</td>
+</tr>
+<tr class="odd">
+<td>Timing and equal access</td>
+<td>Release time follows the release calendar; embargo arrangements are in place and logged</td>
+<td>Hold until the release slot</td>
+</tr>
+<tr class="even">
+<td>Metadata</td>
+<td>Minimum metadata set captured (see attribute 4)</td>
+<td>Hold until complete</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-and-metadata-characteristics-4" class="level3">
+<h3 class="anchored" data-anchor-id="data-and-metadata-characteristics-4">4. Data and metadata characteristics</h3>
+<p><strong>Data.</strong> One released version can have several representations, one per channel: a published table, an SDMX dataset behind an API, a dashboard, or a research dataset. All representations come from the same released version, so a user always gets the same figure through every channel. Permitted operations are final disclosure control, de-identification of microdata, formatting per channel, packaging, and adding documentation. Changing the statistical content is not permitted at #5. A correction to a released figure goes back to #4 as a new approved version and is released again with an erratum. <strong>[SS11]</strong></p>
+<p><strong>Minimum metadata set</strong> (in addition to the common metadata).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metadata element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Source reference</td>
+<td>The approved #4 version this release is based on</td>
+</tr>
+<tr class="even">
+<td>Final disclosure control</td>
+<td>Method applied, risk assessment outcome, and sign-off</td>
+</tr>
+<tr class="odd">
+<td>De-identification</td>
+<td>For microdata: the standard applied and the project or channel it applies to</td>
+</tr>
+<tr class="even">
+<td>Channels and formats</td>
+<td>Every channel used, with format and access conditions</td>
+</tr>
+<tr class="odd">
+<td>Release timestamp</td>
+<td>Moment of release and reference to the release calendar</td>
+</tr>
+<tr class="even">
+<td>Embargo record</td>
+<td>Who had pre-release access, when, and under which agreement</td>
+</tr>
+<tr class="odd">
+<td>Documentation</td>
+<td>References to methodology notes, reference metadata, and user guidance</td>
+</tr>
+<tr class="even">
+<td>Accessibility</td>
+<td>Accessibility standard met per channel</td>
+</tr>
+<tr class="odd">
+<td>Terms of use</td>
+<td>Licence or terms under which the data may be used</td>
+</tr>
+<tr class="even">
+<td>Correction history</td>
+<td>Errata issued and the versions they replace</td>
+</tr>
+</tbody>
+</table>
+<p>In GSIM terms, #5 is the disseminated form of a <em>Data Set</em> together with its <em>Referential Metadata</em>. SDMX defines the structure in which it is exchanged with users and international organisations.</p>
+</section>
+<section id="security-privacy-and-access-4" class="level3">
+<h3 class="anchored" data-anchor-id="security-privacy-and-access-4">5. Security, privacy, and access</h3>
+<p>After final disclosure control, most released data is public and has a low confidentiality rating. Its integrity rating is high. Users must be able to trust that a figure on the website or in the API is exactly the figure the NSI released. Channels therefore protect released data against tampering, and the NSI can prove which version was released when.</p>
+<p>Before the release moment, the same data is highly restricted. Embargoed copies go only to parties with a formal agreement, such as accredited media, and every pre-release access is logged. No user gets the data before the release time outside that policy.</p>
+<p>Research microdata follows a different path. It is released only to accredited researchers and only inside a secure processing environment. Each project gets its own dataset with project-specific pseudonyms, so data cannot be linked across projects. Results leave the environment only after an output check.</p>
+</section>
+<section id="ownership-and-governance-4" class="level3">
+<h3 class="anchored" data-anchor-id="ownership-and-governance-4">6. Ownership and governance</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Responsibility for #5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data owner</td>
+<td>Process owner of Dissemination; accountable for confidentiality, equal access, and the quality of the release</td>
+</tr>
+<tr class="even">
+<td>Release manager</td>
+<td>Controls release timing, embargo, and equal access across channels</td>
+</tr>
+<tr class="odd">
+<td>Disclosure control specialist</td>
+<td>Applies and signs off the final disclosure control</td>
+</tr>
+<tr class="even">
+<td>Dissemination and service manager</td>
+<td>Manages channels, formats, service levels, and the research access service</td>
+</tr>
+<tr class="odd">
+<td>Data steward</td>
+<td>In addition to the common responsibilities: release documentation and errata</td>
+</tr>
+<tr class="even">
+<td>Data custodian</td>
+<td>In addition to the common responsibilities: release channels, integrity protection, and the embargo log</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="versioning-retention-and-lineage-4" class="level3">
+<h3 class="anchored" data-anchor-id="versioning-retention-and-lineage-4">7. Versioning, retention, and lineage</h3>
+<p>A correction never silently replaces a released figure. It produces a new approved #4 version, a new release version, and a public erratum that explains what changed and why. Earlier releases remain identifiable, so users can see which figure was available at which moment.</p>
+<p>Released statistics are usually kept permanently, as part of the public record. National archival legislation often prescribes this. Research datasets are the exception: they are disposed of when the research project closes, together with their project-specific pseudonymisation keys. The approved code and outputs of the project are kept for reproducibility.</p>
+<p>Lineage at #5 closes the chain. Each released figure traces back to its approved #4 version, and from there through the analytical versions, #3, and #2 to the authentic delivery in #1. This makes it possible to answer any question about a published figure, from source to release.</p>
+</section>
+<section id="reuse-and-handover-4" class="level3">
+<h3 class="anchored" data-anchor-id="reuse-and-handover-4">8. Reuse and handover</h3>
+<p>Release publishes the <em>Statistics Released</em> event and makes the data available through the agreed channels. #5 has no downstream production stream. Its handover is to users outside the NSI, where the data becomes consumed data (#6). Usage and feedback flow back to VS-06 and VS-10, and through them into the design of the whole chain.</p>
+<p>Released data is the most widely reused form of NSI output. Under SAF-P08 it is offered as openly as confidentiality allows, in standard formats and with clear terms of use. Open, documented release reduces the number of individual data requests and lets users combine NSI data with other sources.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Handover element</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Artefact</td>
+<td>Released data version, in its channel-specific representations</td>
+</tr>
+<tr class="even">
+<td>Required metadata</td>
+<td>Minimum metadata set (attribute 4), including documentation, terms of use, and correction history</td>
+</tr>
+<tr class="odd">
+<td>Trigger event</td>
+<td><em>Statistics Released</em></td>
+</tr>
+<tr class="even">
+<td>Responsibility transfer</td>
+<td>The NSI remains responsible for the correctness and documentation of the release and for issuing errata; users are responsible for how they use the data</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="traceability-to-the-framework-4" class="level3">
+<h3 class="anchored" data-anchor-id="traceability-to-the-framework-4">9. Traceability to the framework</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Framework element</th>
+<th>References</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Capabilities</td>
+<td>1.3.7 Statistical disclosure, 1.5.1 Publication management, 1.5.2 Promotion to use, 1.5.3 Facilitate data access, 1.5.4 Statistical information management, 2.2.4 Data services, 3.4.1 Services management</td>
+</tr>
+<tr class="even">
+<td>Value-stream stages</td>
+<td>VS-06.1 Plan Dissemination and Access Strategy; VS-06.2 Prepare Data for Dissemination; VS-06.3 Publish and Provide Access Services; VS-06.4 Support and Engage Users; VS-06.5 Monitor Usage and Feedback</td>
+</tr>
+<tr class="odd">
+<td>SAF processes</td>
+<td>PRD-6.4 Apply disclosure control (final), PRD-7.1 to PRD-7.5 Disseminate, MDS-3 Prepare research datasets, MDS-4 Provide a secure processing environment, MDS-7 Check and release output, MDS-9 Close projects, DSP-2 Publish data offerings, DSP-4 Exchange data under usage control</td>
+</tr>
+<tr class="even">
+<td>GSBPM</td>
+<td>6.4 Apply disclosure control, 7.1 to 7.5 Disseminate</td>
+</tr>
+<tr class="odd">
+<td>Medallion layer</td>
+<td>Gold, published sub-layer</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples-and-anti-patterns-4" class="level3">
+<h3 class="anchored" data-anchor-id="examples-and-anti-patterns-4">10. Examples and anti-patterns</h3>
+<p><strong>Examples</strong></p>
+<ul>
+<li><em>Survey.</em> The quarterly labour market figures are released at 09:00 on the calendar date, at the same moment on the website, the API, and the dashboard. Two small regional cells are suppressed in the final disclosure check. Accredited media received an embargoed copy and publish at the same moment.</li>
+<li><em>Administrative register.</em> Aggregated business statistics are published as open data. De-identified business microdata is released to accredited researchers inside a secure processing environment, with project-specific pseudonyms and output checking.</li>
+<li><em>Web data.</em> The monthly price index is market-sensitive. It is released at a fixed minute with strict equal access, and the documentation explains the main contributions to the monthly change.</li>
+</ul>
+<p><strong>Anti-patterns</strong></p>
+<ul>
+<li>Publishing directly from #4 without a recorded final disclosure check. There is no evidence that the release was safe.</li>
+<li>Correcting a published figure silently. Users who already used the old figure cannot see that it changed.</li>
+<li>Giving a ministry or partner early access outside the embargo policy. The NSI’s independence and equal access are compromised.</li>
+<li>Releasing figures without methodology notes or accuracy. Users draw conclusions the data cannot support.</li>
+<li>Sending research microdata by email or file transfer to a researcher’s own environment. Control over the data is lost.</li>
+<li>Releasing different figures through different channels. Users lose trust when the website and the API disagree.</li>
+</ul>
+</section>
+</section>
+<section id="boundary-position-6-consumed-data" class="level2">
+<h2 class="anchored" data-anchor-id="boundary-position-6-consumed-data">Boundary Position #6: Consumed Data</h2>
+<p><strong>Description:</strong> Consumed data is released data that users have taken into their own environment and use for their own purposes. Examples are a government departments using an unemployment rate in a policy note, a researcher combining released tables with other sources, a journalist quoting an inflation figure, or an application that pulls a series from the API every day. The NSI has no custody of consumed data and cannot control how it is used, combined, or presented. It can influence correct use only through the quality of its documentation, its terms of use, its user support, and its errata.</p>
+<p><strong>Why it is described:</strong> The SAF describes #6 so that the end of the NSI’s responsibility is explicit, just as #0 marks where it begins. Everything the NSI can do for correct use has to be done at #5: documentation, accuracy measures, terms of use, and a clear correction history. What the NSI learns about consumed data comes back as usage and feedback, through VS-06.5 and VS-10. That feedback closes the loop: it shapes new information needs and, through them, the next cycle of the value chain from #0 onward. <br> <br></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="../framework/business-architecture.html" class="pagination-link" aria-label="Business Architecture">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Business Architecture</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../framework/value-chain.html" class="pagination-link" aria-label="Statistical Data Value Chain">
+        <span class="nav-page-text">Statistical Data Value Chain</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

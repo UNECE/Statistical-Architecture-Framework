@@ -1,0 +1,2512 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>VS-05 Statistical Product Composition – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../framework/vs-06.html" rel="next">
+<link href="../framework/vs-04.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f374ad13d1ca50ffd7110ca4e9b8aceb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../framework/index.html" aria-current="page"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../toolkit.html"> 
+<span class="menu-text">Toolkit</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-01.html">Production value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-05.html">VS-05 Statistical Product Composition</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAF Architecture Framework</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Foundations</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and Scope</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/motivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Motivation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/strategy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strategy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Business architecture</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/business-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/steady-state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Steady-State Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/value-chain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Data Value Chain</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Production value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-01 Data Acquisition and Ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-02 Data Standardization and Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-03 Data Editing and Enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-04 Estimation, Analysis, and Statistical Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-05.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">VS-05 Statistical Product Composition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-06 Dissemination and Service Delivery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Supporting value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-07 Governance and Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-08 Innovation and Methodological Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-09 Infrastructure and Platform Enablement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-10 Customer and Stakeholder Engagement</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#vs-05-statistical-product-composition" id="toc-vs-05-statistical-product-composition" class="nav-link active" data-scroll-target="#vs-05-statistical-product-composition">VS-05 Statistical Product Composition</a>
+  <ul class="collapse">
+  <li><a href="#purpose-and-value-created" id="toc-purpose-and-value-created" class="nav-link" data-scroll-target="#purpose-and-value-created">1. Purpose and value created</a></li>
+  <li><a href="#position-and-state-transition" id="toc-position-and-state-transition" class="nav-link" data-scroll-target="#position-and-state-transition">2. Position and state transition</a></li>
+  <li><a href="#stages" id="toc-stages" class="nav-link" data-scroll-target="#stages">3. Stages</a></li>
+  <li><a href="#the-four-process-types" id="toc-the-four-process-types" class="nav-link" data-scroll-target="#the-four-process-types">4. The four process types</a></li>
+  <li><a href="#actors-and-roles" id="toc-actors-and-roles" class="nav-link" data-scroll-target="#actors-and-roles">5. Actors and roles</a></li>
+  <li><a href="#capabilities-processes-and-functions" id="toc-capabilities-processes-and-functions" class="nav-link" data-scroll-target="#capabilities-processes-and-functions">6. Capabilities, processes, and functions</a></li>
+  <li><a href="#principles" id="toc-principles" class="nav-link" data-scroll-target="#principles">7. Principles</a></li>
+  <li><a href="#interfaces-services-and-events" id="toc-interfaces-services-and-events" class="nav-link" data-scroll-target="#interfaces-services-and-events">8. Interfaces, services, and events</a></li>
+  <li><a href="#key-performance-indicators" id="toc-key-performance-indicators" class="nav-link" data-scroll-target="#key-performance-indicators">9. Key performance indicators</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">10. Examples</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="vs-05.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-01.html">Production value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-05.html">VS-05 Statistical Product Composition</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">VS-05 Statistical Product Composition</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- GENERATED from docs/SAF Framework.md by scripts/split-framework.py - do not edit -->
+<section id="vs-05-statistical-product-composition" class="level2">
+<h2 class="anchored" data-anchor-id="vs-05-statistical-product-composition">VS-05 Statistical Product Composition</h2>
+<section id="purpose-and-value-created" class="level3">
+<h3 class="anchored" data-anchor-id="purpose-and-value-created">1. Purpose and value created</h3>
+<p>VS-05 turns the statistics that VS-04 produced into finished statistical products. A single estimate is not yet something a user reads. VS-05 brings results from different domains, surveys, and time periods together into coherent publications, time series, indices, and datasets, explains them, and approves them for release. It does not re-estimate anything: it selects, combines, checks, explains, and signs off. The value created is <strong>coherence and interpretability</strong>: the product is internally consistent, coherent with related and prior statistics, and accompanied by the metadata and interpretation that users need to understand it.</p>
+<p>VS-05 corresponds to the business domain <strong>Statistically composed and composite products</strong> (see <em>Steady-State Architecture, Business domains</em>). This section describes the business layer of that domain for all four process types: Design, Implementation, Execution, and Management. Re-estimation, weighting, and model-based analysis are not part of VS-05; they belong to VS-04. Publishing, distribution, user services, and final disclosure control for release belong to VS-06.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Signature discipline: coherence and interpretability
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VS-05 composes validated outputs; it does not re-estimate them. Every product is internally consistent, coherent with related and prior statistics, carries the accuracy metadata of its components, has lineage to its component outputs and the composition method, and is approved against dissemination and confidentiality standards before it is registered.</p>
+</div>
+</div>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-05 (a) value stream and capabilities</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="position-and-state-transition" class="level3">
+<h3 class="anchored" data-anchor-id="position-and-state-transition">2. Position and state transition</h3>
+<p>VS-05 is the fifth primary value stream. It receives validated statistics from VS-04 and delivers approved products to VS-06. It is the stage where separate analyses become finished statistical products.</p>
+<p>VS-05 works within State #4. It consumes analytical versions of #4 and produces approved versions of #4. Approval does not change an analytical version: it creates a new, immutable version with the status <em>approved</em> that refers to the analytical versions it was composed from. The quality gate, the minimum metadata set, and the protection of State #4 are described in <em>State #4: Statistics</em> and are not repeated here.</p>
+<p>VS-05 receives the analytical versions together with the metadata VS-04 attached: methodology, weights, accuracy measures such as sampling errors and confidence intervals, and the record of the disclosure control already applied. VS-05 propagates this accuracy and quality metadata into the product. It does not discard or recompute it. It uses it to weight or caveat the composed figures, and to run coherence checks across the combined outputs. Composition never silently changes a component estimate.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>From</th>
+<th>To</th>
+<th>Gate</th>
+<th>Event out</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>#4 Statistics (analytical)</td>
+<td>#4 Statistics (approved)</td>
+<td>Approval gate of State #4 (component selection, composition, consistency and coherence, interpretive content, dissemination and confidentiality standards, sign-off)</td>
+<td><em>Statistical Product Registered</em></td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-05 (c) state handover and events: analytical #4 versions from VS-04, the composition service at the boundary (integrate outputs, construct composites, coherence checks, interpret, approve and register), approved #4 product versions handed to VS-06</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="stages" class="level3">
+<h3 class="anchored" data-anchor-id="stages">3. Stages</h3>
+<p>The stages describe the value that VS-05 adds in every production cycle. Together they form the execution process type of VS-05. In a mature steady state, the products, composites, checks, and templates have been designed and built in advance (see attribute 4). Execution then focuses on composing the product, checking its coherence, and capturing component lineage and approval, so that every product is coherent, interpretable, and reproducible.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Name</th>
+<th>Value added</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-05.1</td>
+<td>Select and Integrate Source Datasets</td>
+<td>Relevant results are brought together</td>
+</tr>
+<tr class="even">
+<td>VS-05.2</td>
+<td>Construct Composite Indicators or Indices</td>
+<td>Indices, ratios, and aggregates are available</td>
+</tr>
+<tr class="odd">
+<td>VS-05.3</td>
+<td>Perform Consistency and Coherence Checks</td>
+<td>The product is internally consistent</td>
+</tr>
+<tr class="even">
+<td>VS-05.4</td>
+<td>Generate Analytical and Interpretive Outputs</td>
+<td>Results are explained and visualised</td>
+</tr>
+<tr class="odd">
+<td>VS-05.5</td>
+<td>Approve and Register Statistical Products</td>
+<td>The product is approved for release (State #4, approved)</td>
+</tr>
+</tbody>
+</table>
+<p>Each stage below is described with its activities. The column <em>SAF process</em> shows the business process from <em>Business Processes</em> that the activity belongs to. The column <em>Other reference</em> shows the principles, capabilities, or external frameworks that the activity applies.</p>
+<p><br></p>
+<section id="vs-05.1-select-and-integrate-source-datasets" class="level4">
+<h4 class="anchored" data-anchor-id="vs-05.1-select-and-integrate-source-datasets">VS-05.1 Select and Integrate Source Datasets</h4>
+<p><strong>Value created:</strong> <em>The right validated outputs brought together as the basis for a coherent product.</em></p>
+<p>Execution starts when VS-04 publishes the <em>Output Data Registered</em> event for the components of a product. The team applies the designed selection rules to pick the correct analytical #4 versions, by domain, period, and accuracy. The exact versions are pinned, so the product can always be traced to them. Components from several domains, surveys, or time periods are integrated into the product structure as specified. Their accuracy and methodology metadata is carried forward, and the component lineage is recorded. Registered outputs are reused; VS-05 does not repeat analysis that already exists, in line with SAF-P08.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Select and pin the correct component output versions according to the specification</td>
+<td>Selected components</td>
+<td>PRD-6.1 Prepare draft outputs; DLM-6 Provide data for reuse</td>
+<td>SAF-P08</td>
+</tr>
+<tr class="even">
+<td>Integrate the components into the product structure</td>
+<td>Integrated product base</td>
+<td>PRD-5.1 Integrate data; PRD-6.1 Prepare draft outputs</td>
+<td>1.3.6 Integrate statistics</td>
+</tr>
+<tr class="odd">
+<td>Carry component accuracy and methodology metadata into the product</td>
+<td>Propagated metadata</td>
+<td>OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Record the component lineage: which output versions were used</td>
+<td>Component lineage</td>
+<td>OVA-2 Metadata Management</td>
+<td>CSDA Traceability</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-05.2-construct-composite-indicators-or-indices" class="level4">
+<h4 class="anchored" data-anchor-id="vs-05.2-construct-composite-indicators-or-indices">VS-05.2 Construct Composite Indicators or Indices</h4>
+<p><strong>Value created:</strong> <em>Derived measures, such as indices, ratios, and time series, that summarise the results and add meaning.</em></p>
+<p>This stage computes the designed composite indicators, indices, and time-series aggregates from the integrated components. Indicators and indices are calculated with the designed formulas and weighting. Time series are chained, linked, and benchmarked according to the specification. Each composite carries an uncertainty measure derived from the accuracy of its components. No component estimate is re-estimated: composites are built from the validated outputs as received.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Calculate composite indicators and indices with the designed formulas</td>
+<td>Composite indicators</td>
+<td>PRD-5.7 Calculate aggregates; PRD-5.5 Derive new variables and units</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Construct time series: chain, link, benchmark</td>
+<td>Composite time series</td>
+<td>PRD-5.7 Calculate aggregates</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Derive composite uncertainty from component accuracy</td>
+<td>Composite accuracy measures</td>
+<td>PRD-5.7 Calculate aggregates</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Record the composition method and inputs as lineage</td>
+<td>Composite lineage</td>
+<td>OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-05.3-perform-consistency-and-coherence-checks" class="level4">
+<h4 class="anchored" data-anchor-id="vs-05.3-perform-consistency-and-coherence-checks">VS-05.3 Perform Consistency and Coherence Checks</h4>
+<p><strong>Value created:</strong> <em>Confidence that the product is internally consistent and fits the wider statistical picture.</em></p>
+<p>This stage runs the designed checks. Internal consistency checks confirm that totals reconcile to their components and that breakdowns sum to totals. Coherence checks compare the product with related statistics and with prior releases, within the designed tolerances. Each discrepancy is dispositioned according to the policy: accepted, flagged, or returned for review. A significant discrepancy is explained. Nothing is adjusted silently. If a component is wrong, it goes back to VS-04 and returns as a new analytical version. All check results are logged in the audit trail of the product.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Run internal consistency checks: totals and breakdowns reconcile</td>
+<td>Consistency results</td>
+<td>PRD-6.2 Validate outputs</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Run coherence checks against related statistics and prior releases</td>
+<td>Coherence results</td>
+<td>PRD-6.2 Validate outputs</td>
+<td>1.3.6 Integrate statistics</td>
+</tr>
+<tr class="odd">
+<td>Disposition discrepancies (accept, flag, return to VS-04) and explain them</td>
+<td>Discrepancy dispositions</td>
+<td>PRD-6.2 Validate outputs; DLM-2 Promote data through a quality gate</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Log all check results in the audit trail of the product</td>
+<td>Audit trail entries</td>
+<td>OVA-4 Process Data Management</td>
+<td>SAF-P10</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-05 composition and coherence architecture: component outputs of several domains integrated and composed into indicators, then checked for internal consistency and for coherence, with prior-period products as comparison, resulting in a coherent product that carries its lineage and accuracy</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-05.4-generate-analytical-and-interpretive-outputs" class="level4">
+<h4 class="anchored" data-anchor-id="vs-05.4-generate-analytical-and-interpretive-outputs">VS-05.4 Generate Analytical and Interpretive Outputs</h4>
+<p><strong>Value created:</strong> <em>Products that users can understand: narrative, key messages, and visualisations grounded in the data.</em></p>
+<p>This stage produces the content that makes the product understandable. The analytical narrative and commentary are written with the designed templates. Key messages are stated together with their supporting evidence. Tables and visualisations are produced. The content passes the editorial and quality review, which checks that it is accurate, in plain language, accessible, and consistent with the data and its caveats, including the accuracy carried from VS-04. The review makes sure that the text does not overstate a movement that is not statistically significant.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Write the analytical narrative and commentary with the templates</td>
+<td>Product narrative</td>
+<td>PRD-6.3 Interpret and explain outputs</td>
+<td>1.4.1 Statistical (output) analysis</td>
+</tr>
+<tr class="even">
+<td>State key messages with their supporting evidence</td>
+<td>Key messages</td>
+<td>PRD-6.3 Interpret and explain outputs</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Produce tables and visualisations</td>
+<td>Tables and visualisations</td>
+<td>PRD-7.2 Produce dissemination products</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Run the editorial and quality review of the content</td>
+<td>Reviewed content</td>
+<td>PRD-7.2 Produce dissemination products; OVA-1 Quality Management</td>
+<td>GAMSO Quality Management</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-05.5-approve-and-register-statistical-products" class="level4">
+<h4 class="anchored" data-anchor-id="vs-05.5-approve-and-register-statistical-products">VS-05.5 Approve and Register Statistical Products</h4>
+<p><strong>Value created:</strong> <em>A validated, approved, and registered product, ready for dissemination.</em></p>
+<p>This stage validates, approves, and registers the product. The product is checked against the dissemination and confidentiality standards. This includes the disclosure risk that arises from combining outputs: two tables that are each safe can together reveal a value. The product is then submitted to the designated approval authority. On approval, a persistent, immutable product version is created with a unique identifier and full lineage: components, composition method, coherence results, and approval record. Its metadata is registered in line with SAF-P09, and access permissions are applied in line with SAF-P10. The stage ends by publishing the <em>Statistical Product Registered</em> event, which tells VS-06 that an approved product is available for dissemination. If the product is not approved, it is revised, or a component is returned to VS-04.</p>
+<p><strong>Output:</strong> <strong>Approved statistical product (State #4, approved)</strong>, the official handover artefact to the dissemination domain. Its minimum metadata set is described in <em>State #4: Statistics</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Validate the product against dissemination and confidentiality standards, including the risk of combining outputs</td>
+<td>Validation result</td>
+<td>PRD-6.4 Apply disclosure control; PRD-6.5 Finalise outputs</td>
+<td>SAF-P11; 1.3.7 Statistical disclosure</td>
+</tr>
+<tr class="even">
+<td>Submit the product to the approval authority and obtain sign-off</td>
+<td>Approval record</td>
+<td>PRD-6.5 Finalise outputs</td>
+<td>4.1.5 Accountability</td>
+</tr>
+<tr class="odd">
+<td>Create an immutable, identified product version with full lineage</td>
+<td>Versioned product</td>
+<td>DLM-3 Register and catalogue data; DLM-5 Store and version data</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="even">
+<td>Apply access permissions to the approved version</td>
+<td>Access-controlled product</td>
+<td>DLM-4 Classify and protect data</td>
+<td>SAF-P10</td>
+</tr>
+<tr class="odd">
+<td>Register metadata and publish the <em>Statistical Product Registered</em> event to notify VS-06</td>
+<td>Catalogue registration, event</td>
+<td>DLM-3 Register and catalogue data</td>
+<td>SAF-P07</td>
+</tr>
+</tbody>
+</table>
+<p>Each product version is linked to four records, all traceable to the analytical #4 versions it was composed from.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Product record</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Statistical product</td>
+<td>Persistent identifier, immutable version, product type (publication, index, time series, dataset), reference period, registration timestamp</td>
+</tr>
+<tr class="even">
+<td>Component lineage (one per component)</td>
+<td>Analytical #4 version used, domain or source, composition method, accuracy carried</td>
+</tr>
+<tr class="odd">
+<td>Coherence result</td>
+<td>Internally consistent, coherent with related statistics, coherent over time, number of flagged discrepancies</td>
+</tr>
+<tr class="even">
+<td>Interpretive content</td>
+<td>Narrative reference, key messages with evidence, tables and charts, editorial review passed</td>
+</tr>
+<tr class="odd">
+<td>Approval record</td>
+<td>Approval authority, confidentiality cleared, approval timestamp, cleared for dissemination</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="the-four-process-types" class="level3">
+<h3 class="anchored" data-anchor-id="the-four-process-types">4. The four process types</h3>
+<p>The sub-processes below are specific to VS-05. Each refines one or more SAF business processes, listed as <em>Refines</em>, which keeps it traceable to <em>Business Processes</em>. Sub-processes marked <em>(standard)</em> work as described in <a href="../framework/value-chain.html#standard-vs-activities">Standard activities in every value stream</a>; only the VS-05 specifics are listed.</p>
+<section id="design-provides-metadata" class="level4">
+<h4 class="anchored" data-anchor-id="design-provides-metadata">Design: provides metadata</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Design sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design the Statistical Product Portfolio</td>
+<td>PRD-2.1 Design outputs and dissemination; PRD-2.5 Design processing and analysis; DLM-1 Plan and design data assets; OVA-2 Metadata Management</td>
+<td>Product specification, component-selection specification, metadata-propagation rules, product metadata standard</td>
+</tr>
+<tr class="even">
+<td>Design Composite Indicators and Indices</td>
+<td>PRD-2.5 Design processing and analysis; OVA-2 Metadata Management</td>
+<td>Composite-indicator specification, time-series specification, uncertainty-representation rules</td>
+</tr>
+<tr class="odd">
+<td>Design Consistency and Coherence Checks</td>
+<td>PRD-2.5 Design processing and analysis; DLM-7 Revise data; OVA-1 Quality Management</td>
+<td>Consistency and coherence check sets, coherence tolerance policy, revision policy</td>
+</tr>
+<tr class="even">
+<td>Design Analytical and Interpretive Content</td>
+<td>PRD-2.1 Design outputs and dissemination; OVA-1 Quality Management</td>
+<td>Content templates, visualisation specification, key-message guidelines, editorial review policy</td>
+</tr>
+<tr class="odd">
+<td>Design Approval, Confidentiality, and Versioning Framework</td>
+<td>PRD-2.5 Design processing and analysis; PRD-2.6 Design production systems and workflows; DLM-1 Plan and design data assets; DLM-4 Classify and protect data</td>
+<td>Approval policy, confidentiality standard, versioning and lineage policy, access control design</td>
+</tr>
+</tbody>
+</table>
+<section id="design-the-statistical-product-portfolio" class="level5">
+<h5 class="anchored" data-anchor-id="design-the-statistical-product-portfolio">Design the Statistical Product Portfolio</h5>
+<p><em>Refines:</em> PRD-2.1 Design outputs and dissemination; PRD-2.5 Design processing and analysis; DLM-1 Plan and design data assets; OVA-2 Metadata Management.</p>
+<p>The starting point is deciding which products will be produced. This sub-process specifies each statistical product: its purpose, target users, content, structure, breakdowns, release frequency, and the analytical #4 outputs it draws on. The team designs how component outputs are selected and integrated (which estimates, which domains, which time periods) and how their accuracy metadata is carried into the product. Each product also gets its classification and versioning identity. Without product specifications, composition becomes ad hoc, and Management has no baseline to measure coherence and interpretability against.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Specify each product: purpose, users, content, structure, breakdowns, frequency</td>
+<td>Product specification</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>1.1.2 Design statistics product</td>
+</tr>
+<tr class="even">
+<td>Define the component outputs each product draws on, and the selection rules</td>
+<td>Component-selection specification</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td>SAF-P08</td>
+</tr>
+<tr class="odd">
+<td>Define how component accuracy and quality metadata is carried into the product</td>
+<td>Metadata-propagation rules</td>
+<td>OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Define the product classification and versioning identity</td>
+<td>Product metadata standard</td>
+<td>DLM-1 Plan and design data assets; OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-composite-indicators-and-indices" class="level5">
+<h5 class="anchored" data-anchor-id="design-composite-indicators-and-indices">Design Composite Indicators and Indices</h5>
+<p><em>Refines:</em> PRD-2.5 Design processing and analysis; OVA-2 Metadata Management.</p>
+<p>This sub-process specifies the derived measures that the products present: composite indicators, indices, ratios, and time-series aggregates. Each is defined by its formula, component inputs, weighting or aggregation method, and base period. Time series get chaining, linking, and benchmarking rules. Each composite gets the metadata and classification it carries. Where a composite combines outputs of differing accuracy, the design specifies how its uncertainty is represented. International standards, such as index manuals, inform the specifications.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Specify composite indicators and indices: formula, inputs, weighting, base period</td>
+<td>Composite-indicator specification</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td>Index manuals</td>
+</tr>
+<tr class="even">
+<td>Specify time-series construction: chaining, linking, benchmarking</td>
+<td>Time-series specification</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Define how component uncertainty is represented in composites</td>
+<td>Uncertainty-representation rules</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Define the metadata and classification of each composite</td>
+<td>Composite metadata standard</td>
+<td>OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-consistency-and-coherence-checks" class="level5">
+<h5 class="anchored" data-anchor-id="design-consistency-and-coherence-checks">Design Consistency and Coherence Checks</h5>
+<p><em>Refines:</em> PRD-2.5 Design processing and analysis; DLM-7 Revise data; OVA-1 Quality Management.</p>
+<p>This sub-process designs the checks that make sure integrated products are sound. It specifies internal consistency checks: totals reconcile to components, and breakdowns sum to totals. It specifies coherence checks against related statistics, such as the national accounts and prior products, and across time. Tolerance thresholds and disposition rules (accept, flag, return for review) complete the check set. The revision policy for products is also designed here.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define internal consistency checks: totals and breakdowns reconcile</td>
+<td>Consistency check set</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Define coherence checks against related statistics and across time</td>
+<td>Coherence check set</td>
+<td>PRD-2.5 Design processing and analysis; OVA-1 Quality Management</td>
+<td>GAMSO Quality Management</td>
+</tr>
+<tr class="odd">
+<td>Define tolerance thresholds and disposition rules</td>
+<td>Coherence tolerance policy</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Define the product revision policy</td>
+<td>Revision policy</td>
+<td>DLM-7 Revise data; OVA-1 Quality Management</td>
+<td>GAMSO Quality Management</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-analytical-and-interpretive-content" class="level5">
+<h5 class="anchored" data-anchor-id="design-analytical-and-interpretive-content">Design Analytical and Interpretive Content</h5>
+<p><em>Refines:</em> PRD-2.1 Design outputs and dissemination; OVA-1 Quality Management.</p>
+<p>This sub-process designs the content that makes products interpretable for people. It specifies the structure of the analytical narrative and commentary, the visualisations and tables, the key messages and the evidence they require, and the editorial and quality review of the content. Accessibility and plain-language standards are part of the design.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Specify the structure of the analytical narrative and commentary</td>
+<td>Content template</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Specify visualisations and tables</td>
+<td>Visualisation specification</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Define key messages and their evidence requirements</td>
+<td>Key-message guidelines</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Define the editorial and quality review of content</td>
+<td>Editorial review policy</td>
+<td>OVA-1 Quality Management</td>
+<td>GAMSO Quality Management</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-approval-confidentiality-and-versioning-framework" class="level5">
+<h5 class="anchored" data-anchor-id="design-approval-confidentiality-and-versioning-framework">Design Approval, Confidentiality, and Versioning Framework</h5>
+<p><em>Refines:</em> PRD-2.5 Design processing and analysis; PRD-2.6 Design production systems and workflows; DLM-1 Plan and design data assets; DLM-4 Classify and protect data.</p>
+<p>The last design sub-process makes sure that products are properly approved, protected, and traceable. It defines the approval workflow and the approval authority. It defines the confidentiality and disclosure standards that a product must meet before registration, including the risk of combining outputs. It sets the product versioning policy (identity, revision triggers, immutability, retention) and the lineage required from each product to its component outputs. Role-based access control for products is designed in line with SAF-P10.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define the approval workflow and the approval authority</td>
+<td>Approval policy</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>4.1.5 Accountability</td>
+</tr>
+<tr class="even">
+<td>Define confidentiality and disclosure standards for products, including the risk of combining outputs</td>
+<td>Confidentiality standard</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td>SAF-P11; 3.3.1 Privacy management</td>
+</tr>
+<tr class="odd">
+<td>Define product versioning and lineage requirements</td>
+<td>Versioning and lineage policy</td>
+<td>DLM-1 Plan and design data assets</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="even">
+<td>Design role-based access control for products</td>
+<td>Access control design</td>
+<td>DLM-4 Classify and protect data</td>
+<td>SAF-P10; 3.3.4 Logical identity and access control</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-05 design process decomposition: inputs (analytical #4 outputs with accuracy, user needs, framework standards, product and index standards such as SDMX and index manuals), the five design sub-processes in order, and the design artefact each produces, which together govern Implementation, Execution, and Management</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="implementation-provides-the-execution-process" class="level4">
+<h4 class="anchored" data-anchor-id="implementation-provides-the-execution-process">Implementation: provides the execution process</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Implementation sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build Integration and Composition Engines</td>
+<td>PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows</td>
+<td>Configured integration and composition engines, pinned connections to the State #4 catalogue</td>
+</tr>
+<tr class="even">
+<td>Build Indicator-Construction and Time-Series Engines</td>
+<td>PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows</td>
+<td>Indicator-construction engine, time-series engine, composite-accuracy component</td>
+</tr>
+<tr class="odd">
+<td>Build Coherence-Check, Content, and Approval Tooling</td>
+<td>PRD-3.2 Reuse or build processing and analysis components; PRD-3.3 Reuse or build dissemination components; PRD-3.4 Configure workflows; DLM-5 Store and version data</td>
+<td>Coherence tooling, content tooling, approval and versioning store, event publication</td>
+</tr>
+<tr class="even">
+<td>Test and Validate the Pipeline <em>(standard)</em></td>
+<td>PRD-3.5 Test production systems; PRD-3.6 Test statistical business process; PRD-3.7 Finalise production systems</td>
+<td>Test reports; integration test from output intake through composition, coherence checks, content, and approval to registration; coherence test: composites reconcile to components and cohere with prior products; reproducibility test: a product regenerates identically from its component versions plus the composition method</td>
+</tr>
+</tbody>
+</table>
+<section id="build-integration-and-composition-engines" class="level5">
+<h5 class="anchored" data-anchor-id="build-integration-and-composition-engines">Build Integration and Composition Engines</h5>
+<p><em>Refines:</em> PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows.</p>
+<p>This sub-process turns the product and integration designs into operational tools. The integration engine selects and combines the designed component outputs into the product structure, with their accuracy and quality metadata. The composition engine assembles products from their components according to the specifications. Connections to the State #4 catalogue use version pinning, so the exact component versions used are recorded. All composition logic is version-controlled, in line with SAF-P10.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build or configure the integration engine: select and combine component outputs</td>
+<td>Configured integration engine</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td>1.1.3 Build statistics product</td>
+</tr>
+<tr class="even">
+<td>Build or configure the composition engine: assemble products from components</td>
+<td>Configured composition engine</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Configure pinned connections to the State #4 output catalogue</td>
+<td>Output-source integration</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>CSDA Metadata Management</td>
+</tr>
+<tr class="even">
+<td>Put all composition logic under version control</td>
+<td>Versioned composition repository</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>SAF-P10</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="build-indicator-construction-and-time-series-engines" class="level5">
+<h5 class="anchored" data-anchor-id="build-indicator-construction-and-time-series-engines">Build Indicator-Construction and Time-Series Engines</h5>
+<p><em>Refines:</em> PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows.</p>
+<p>The designed composite-indicator and time-series specifications are implemented. Indicator and index calculators are built from the designed formulas and weighting. Time-series engines are configured for chaining, linking, and benchmarking. Uncertainty representation is implemented, so that composites carry an appropriate accuracy measure. Every composite output is produced with its method and inputs attached.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build indicator and index calculators from the designed formulas</td>
+<td>Indicator-construction engine</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Configure time-series chaining, linking, and benchmarking</td>
+<td>Time-series engine</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Implement uncertainty representation for composites</td>
+<td>Composite-accuracy component</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Attach the method and inputs to every composite</td>
+<td>Composite metadata binding</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>SAF-P09</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="build-coherence-check-content-and-approval-tooling" class="level5">
+<h5 class="anchored" data-anchor-id="build-coherence-check-content-and-approval-tooling">Build Coherence-Check, Content, and Approval Tooling</h5>
+<p><em>Refines:</em> PRD-3.2 Reuse or build processing and analysis components; PRD-3.3 Reuse or build dissemination components; PRD-3.4 Configure workflows; DLM-5 Store and version data.</p>
+<p>This sub-process implements the coherence checks, the content tooling, and the approval and versioning store. Coherence tooling implements the designed internal consistency checks and the checks across sources and time, with their tolerances. Content tooling supports the analytical narrative, tables, and visualisations according to the templates, with the editorial review workflow. The approval and versioning store makes each approved product version immutable, identified, reproducible from its components plus method, and accompanied by its lineage and approval record. Event notifications are configured to alert VS-06 when a product is approved and registered.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Implement consistency and coherence checks with their tolerances</td>
+<td>Coherence tooling</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Build content and visualisation tooling with the editorial workflow</td>
+<td>Content tooling</td>
+<td>PRD-3.3 Reuse or build dissemination components</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Build the approval and versioning store: immutable, identified, reproducible</td>
+<td>Approval and versioning store</td>
+<td>PRD-3.4 Configure workflows; DLM-5 Store and version data</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="even">
+<td>Configure the <em>Statistical Product Registered</em> event for downstream consumers</td>
+<td>Event publication</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>SAF-P07</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-05 implementation pipeline: the five design artefacts feeding the three build sub-processes, followed by technical testing, coherence test, and reproducibility test, resulting in an operational composition pipeline and operational procedures</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="execution-provides-the-statistical-data" class="level4">
+<h4 class="anchored" data-anchor-id="execution-provides-the-statistical-data">Execution: provides the statistical data</h4>
+<p>Execution runs the stages of VS-05 for every product release. The stages and their activities are described in attribute 3. A cycle starts when the analytical versions a product needs have been registered, and it is planned against the release calendar. Execution applies the designs and the solution as they are; a new composite, check, or template goes back to Design. A coherence problem is never solved inside VS-05 by changing a component: the component goes back to VS-04.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>VS-05</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Trigger</td>
+<td><em>Output Data Registered</em> for the components of a product</td>
+</tr>
+<tr class="even">
+<td>Cadence</td>
+<td>Per product release, according to the release calendar</td>
+</tr>
+<tr class="odd">
+<td>Performed by</td>
+<td>ROL-10 Data engineer (integration), ROL-15 Subject-matter statistician, ROL-17 Release manager (approval authority), ROL-03 Data steward</td>
+</tr>
+<tr class="even">
+<td>Input</td>
+<td>Registered analytical #4 versions and their metadata</td>
+</tr>
+<tr class="odd">
+<td>Output</td>
+<td>Registered approved #4 version with composition record, coherence results, interpretive content, and approval record</td>
+</tr>
+<tr class="even">
+<td>Control point</td>
+<td>Coherence checks in VS-05.3; approval gate of State #4 in VS-05.5</td>
+</tr>
+<tr class="odd">
+<td>Exception path</td>
+<td>Component that fails the coherence check returned to VS-04 for a new analytical version; product not approved revised and resubmitted; need for a new composite or check back to Design</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="management-provides-quality-reports" class="level4">
+<h4 class="anchored" data-anchor-id="management-provides-quality-reports">Management: provides quality reports</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Management sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monitor Process Performance <em>(standard)</em></td>
+<td>OVA-4 Process Data Management; PRD-8.1 Gather evaluation inputs</td>
+<td>Process performance dashboard; throughput report against the release calendar; paradata on component versions and methods used and on approval iterations</td>
+</tr>
+<tr class="even">
+<td>Assess Product Quality</td>
+<td>OVA-1 Quality Management; DLM-8 Monitor data quality, lineage and use</td>
+<td>Coherence report, interpretability review, product completeness report, quality trend analysis</td>
+</tr>
+<tr class="odd">
+<td>Manage Product and Version Lifecycle</td>
+<td>OVA-2 Metadata Management; DLM-5 Store and version data; DLM-8 Monitor data quality, lineage and use</td>
+<td>Product version register, metadata quality report, version store audit, metadata lineage audit</td>
+</tr>
+<tr class="even">
+<td>Audit and Compliance Reporting <em>(standard)</em></td>
+<td>OVA-1 Quality Management; OVA-4 Process Data Management; DLM-8 Monitor data quality, lineage and use</td>
+<td>Reproducibility audit: every product regenerates from its component versions plus the composition method (4.1.5 Accountability); approval and confidentiality report confirming that every registered product was approved by the designated authority and meets the confidentiality standard, including the risk of combining outputs (SAF-P11); standards compliance report on product and exchange standards, such as SDMX; security compliance report on access controls and the integrity of the approval record (SAF-P10)</td>
+</tr>
+<tr class="odd">
+<td>Continuous Improvement <em>(standard)</em></td>
+<td>PRD-8.2 Conduct evaluation; PRD-8.3 Agree an action plan</td>
+<td>Improvement recommendations, for example refined composite-indicator methods, coherence checks that produce fewer false alarms, a streamlined approval workflow, better visualisations, and more reuse of validated outputs; trends watched: coherence issues, approval iterations, component reuse, interpretability</td>
+</tr>
+</tbody>
+</table>
+<section id="assess-product-quality" class="level5">
+<h5 class="anchored" data-anchor-id="assess-product-quality">Assess Product Quality</h5>
+<p><em>Refines:</em> OVA-1 Quality Management; DLM-8 Monitor data quality, lineage and use.</p>
+<p>Beyond process performance, the quality of the products themselves is evaluated against the criteria set in Design. Each product is assessed on four dimensions. Coherence covers internal consistency and consistency with related and prior statistics. Interpretability covers the clarity and accuracy of narrative and visualisations. Completeness checks that all designed content is present. Accuracy propagation checks that component accuracy was carried correctly. Quality indicators are produced per product and per cycle, and trends are tracked to detect recurring coherence issues or interpretive weaknesses. This follows the Data Quality capability of CSDA and SAF capability 2.1.3 <em>Statistical quality management</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Evaluate coherence: internal, and with related and prior statistics</td>
+<td>Coherence report (per cycle)</td>
+<td>OVA-1 Quality Management</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Assess the interpretability of narrative and visualisations</td>
+<td>Interpretability review</td>
+<td>OVA-1 Quality Management</td>
+<td>CSDA Data Quality</td>
+</tr>
+<tr class="odd">
+<td>Check completeness and correct accuracy propagation</td>
+<td>Product completeness report</td>
+<td>DLM-8 Monitor data quality, lineage and use</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Identify quality trends across products and cycles</td>
+<td>Quality trend analysis</td>
+<td>DLM-8 Monitor data quality, lineage and use</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="manage-product-and-version-lifecycle" class="level5">
+<h5 class="anchored" data-anchor-id="manage-product-and-version-lifecycle">Manage Product and Version Lifecycle</h5>
+<p><em>Refines:</em> OVA-2 Metadata Management; DLM-5 Store and version data; DLM-8 Monitor data quality, lineage and use.</p>
+<p>The product portfolio and the versions it produces must stay current, complete, and well governed. This sub-process governs the life cycle of product specifications, composite-indicator definitions, and content templates. It versions them, manages transitions such as the rebasing of an index, and retires obsolete products. It verifies that every product carries full component lineage, composition method, coherence results, and approval record, as a compliance check on SAF-P09. It governs the product version store: retention, immutability, and reconciliation of catalogue entries with stored versions. Metadata lineage from outputs through composition to products is tracked.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Govern the life cycle and versions of products, indicators, and templates</td>
+<td>Product version register</td>
+<td>OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Verify metadata completeness: component lineage, method, coherence results, approval</td>
+<td>Metadata quality report</td>
+<td>OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="odd">
+<td>Govern the product version store: retention, immutability, reconciliation</td>
+<td>Version store audit</td>
+<td>DLM-5 Store and version data</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="even">
+<td>Track metadata lineage from outputs to products</td>
+<td>Metadata lineage audit</td>
+<td>DLM-8 Monitor data quality, lineage and use</td>
+<td>CSDA Traceability</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-05 management feedback loop: data and paradata from Execution flowing through the five management sub-processes (coherence pass rate and timeliness, coherence and interpretability, products and versions, reproducibility and approval), with dashboards to the process owner, quality reports to the quality manager, compliance reports to VS-07, and improvement recommendations back to Design</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="metadata-per-process-type" class="level4">
+<h4 class="anchored" data-anchor-id="metadata-per-process-type">Metadata per process type</h4>
+<p>In this domain, metadata is what makes a composite product interpretable: each product must carry its components, methodology, coherence results, and approval. The table shows the data metadata each process type of VS-05 contributes; the paradata are listed in <a href="../framework/value-chain.html#standard-vs-activities">Standard activities in every value stream</a>. In Execution, VS-05 also records the approval workflow trail and the number of approval iterations as paradata, and in Implementation the outcomes of the coherence tests.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Process type</th>
+<th>Data metadata produced</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design</td>
+<td>Product specifications, composite-indicator definitions, coherence criteria, approval and confidentiality policy</td>
+</tr>
+<tr class="even">
+<td>Implementation</td>
+<td>Integration configurations, indicator-construction parameters, coherence-check parameters, product templates</td>
+</tr>
+<tr class="odd">
+<td>Execution</td>
+<td>Component lineage, composition and indicator method, coherence-check results, interpretive content, and approval record per product</td>
+</tr>
+<tr class="even">
+<td>Management</td>
+<td>Coherence and interpretability assessments, product quality scores, lineage assessments, trend analyses</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-05 business object lifecycle: design artefacts govern implementation assets (integration and composition engines, indicator engines, coherence and content tooling, approval store), which produce the process that composes analytical #4 versions into approved statistical products, generating component lineage, coherence results, and approval records that management assesses and feeds back to design</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="actors-and-roles" class="level3">
+<h3 class="anchored" data-anchor-id="actors-and-roles">5. Actors and roles</h3>
+<p>VS-05 is mostly internal: it receives its input from VS-04, and the process owner of VS-04 remains the data owner of the analytical versions. The table shows the actors and the reference roles involved. Specialised role names used in an NSI map onto these reference roles (see <em>Role names in the value streams</em>); for example, the product manager and the coherence designer in the original VS-05 description are ROL-06 Statistical designer, and the approval authority is ROL-17 Release manager. Design work is typically carried out by the collaboration COL-05 <em>Statistical product team</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Actor or role</th>
+<th>ID</th>
+<th>Process type</th>
+<th>Responsibility in VS-05</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>International statistical organisation (standards body)</td>
+<td>ACT-07</td>
+<td>External</td>
+<td>Maintains the product, indicator, and exchange standards the NSI conforms to, such as SDMX and index manuals</td>
+</tr>
+<tr class="even">
+<td>Process owner</td>
+<td>ROL-01</td>
+<td>Management</td>
+<td>Accountable for the end-to-end performance of VS-05</td>
+</tr>
+<tr class="odd">
+<td>Data owner</td>
+<td>ROL-02</td>
+<td>Management</td>
+<td>Process owner of Product Composition; accountable for the coherence and interpretability of approved #4 versions</td>
+</tr>
+<tr class="even">
+<td>Data steward</td>
+<td>ROL-03</td>
+<td>Execution</td>
+<td>Registers approved products and versions, manages metadata entries, applies access controls</td>
+</tr>
+<tr class="odd">
+<td>Data custodian</td>
+<td>ROL-04</td>
+<td>Execution</td>
+<td>Operates the product version store and keeps the pre-release access log</td>
+</tr>
+<tr class="even">
+<td>Statistical designer</td>
+<td>ROL-06</td>
+<td>Design</td>
+<td>Designs the product portfolio, product specifications, and release content (product manager); designs the consistency and coherence checks (coherence designer)</td>
+</tr>
+<tr class="odd">
+<td>Methodologist</td>
+<td>ROL-07</td>
+<td>Design</td>
+<td>Specifies composite indicators, indices, and time-series construction methods (indicator and index methodologist)</td>
+</tr>
+<tr class="even">
+<td>Data engineer</td>
+<td>ROL-10</td>
+<td>Implementation, Execution</td>
+<td>Builds and configures the integration, indicator-construction, and reporting engines; in each cycle, selects and integrates the component outputs into the product structure (integration specialist)</td>
+</tr>
+<tr class="odd">
+<td>Platform engineer</td>
+<td>ROL-11</td>
+<td>Implementation</td>
+<td>Configures composition services, output-source connections, and access controls</td>
+</tr>
+<tr class="even">
+<td>Test manager</td>
+<td>ROL-12</td>
+<td>Implementation</td>
+<td>Plans and carries out testing of the composition pipeline: technical, coherence, and reproducibility tests</td>
+</tr>
+<tr class="odd">
+<td>Subject-matter statistician</td>
+<td>ROL-15</td>
+<td>Execution</td>
+<td>Produces the analytical and interpretive content: commentary, key messages, and visualisations (subject-matter author)</td>
+</tr>
+<tr class="even">
+<td>Disclosure control specialist</td>
+<td>ROL-16</td>
+<td>Design, Execution</td>
+<td>Defines and checks the confidentiality standard for products, including the disclosure risk of combining outputs</td>
+</tr>
+<tr class="odd">
+<td>Release manager (approval authority)</td>
+<td>ROL-17</td>
+<td>Execution</td>
+<td>Validates products against the dissemination and confidentiality standards and approves them for registration and release</td>
+</tr>
+<tr class="even">
+<td>Quality manager</td>
+<td>ROL-18</td>
+<td>Management</td>
+<td>Monitors coherence and interpretability indicators, produces quality reports, and drives continuous improvement</td>
+</tr>
+<tr class="odd">
+<td>Compliance officer</td>
+<td>ROL-19</td>
+<td>Management</td>
+<td>Ensures confidentiality and standards compliance of products and produces audit reports</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="capabilities-processes-and-functions" class="level3">
+<h3 class="anchored" data-anchor-id="capabilities-processes-and-functions">6. Capabilities, processes, and functions</h3>
+<section id="capability-foundations" class="level4">
+<h4 class="anchored" data-anchor-id="capability-foundations">Capability foundations</h4>
+<p>The table shows which capabilities from the SAF capability model VS-05 relies on, and what role they play. NSIs can use it to map the value stream to their own organisation.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Capability group</th>
+<th>Capabilities</th>
+<th>Role in VS-05</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.1 Statistical design and build</td>
+<td>1.1.2 Design statistics product, 1.1.3 Build statistics product</td>
+<td>Design the statistical products and composite indicators, and build the composition pipeline</td>
+</tr>
+<tr class="even">
+<td>1.3 Processing</td>
+<td>1.3.6 Integrate statistics, 1.3.7 Statistical disclosure</td>
+<td>Integrate separate statistics into a coherent product, and check the disclosure risk of the combined product</td>
+</tr>
+<tr class="odd">
+<td>1.4 Analysis</td>
+<td>1.4.1 Statistical (output) analysis</td>
+<td>Validate, interpret, and explain the product, and finalise it for dissemination</td>
+</tr>
+<tr class="even">
+<td>2.1 Data management</td>
+<td>2.1.1 Data lifecycle management, 2.1.2 Metadata management, 2.1.3 Statistical quality management, 2.1.4 Statistical register management</td>
+<td>Manage products, metadata, and quality; assess coherence; integrate across registers and time</td>
+</tr>
+<tr class="odd">
+<td>3.2 Computerisation and automation</td>
+<td>3.2.1 Application development, 3.2.2 Functional management</td>
+<td>Build and maintain the integration, indicator-construction, and reporting and visualisation engines</td>
+</tr>
+<tr class="even">
+<td>3.3 Security and privacy</td>
+<td>3.3.1 Privacy management, 3.3.2 Security planning</td>
+<td>Validate products against confidentiality standards and assess the disclosure risk of composite products</td>
+</tr>
+<tr class="odd">
+<td>4.1 Governance</td>
+<td>4.1.1 Strategy and governance, 4.1.2 Policy and planning, 4.1.4 Improvement management, 4.1.5 Accountability</td>
+<td>Govern the domain, steward product approval, plan improvements, report on compliance</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="stages-processes-and-functions" class="level4">
+<h4 class="anchored" data-anchor-id="stages-processes-and-functions">Stages, processes, and functions</h4>
+<p>The table shows which SAF business processes realise each stage of VS-05 and which business functions they mainly use.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Realised by processes</th>
+<th>Main functions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-05.1 Select and Integrate Source Datasets</td>
+<td>PRD-5.1 Integrate data; PRD-6.1 Prepare draft outputs</td>
+<td>FUN-3.4 Estimate and analyse</td>
+</tr>
+<tr class="even">
+<td>VS-05.2 Construct Composite Indicators or Indices</td>
+<td>PRD-5.5 Derive new variables and units; PRD-5.7 Calculate aggregates</td>
+<td>FUN-3.3 Process statistical data; FUN-3.4 Estimate and analyse</td>
+</tr>
+<tr class="odd">
+<td>VS-05.3 Perform Consistency and Coherence Checks</td>
+<td>PRD-6.2 Validate outputs</td>
+<td>FUN-3.4 Estimate and analyse; FUN-5.2 Assure and review quality</td>
+</tr>
+<tr class="even">
+<td>VS-05.4 Generate Analytical and Interpretive Outputs</td>
+<td>PRD-6.3 Interpret and explain outputs; PRD-7.2 Produce dissemination products</td>
+<td>FUN-3.4 Estimate and analyse; FUN-3.6 Disseminate statistics</td>
+</tr>
+<tr class="odd">
+<td>VS-05.5 Approve and Register Statistical Products</td>
+<td>PRD-6.4 Apply disclosure control; PRD-6.5 Finalise outputs; DLM-3 Register and catalogue data</td>
+<td>FUN-3.4 Estimate and analyse; FUN-3.5 Protect statistical confidentiality; FUN-7.2 Manage metadata</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-05 (b) stages realised by processes and functions</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="framework-mappings" class="level4">
+<h4 class="anchored" data-anchor-id="framework-mappings">Framework mappings</h4>
+<p>This reference table maps each process type of VS-05 to the SAF business processes, the international frameworks (GSBPM, GAMSO, CSDA), and the SAF capability model. It is intended for architects and auditors; the rest of this section does not depend on it.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Process type</th>
+<th>SAF business processes</th>
+<th>GSBPM</th>
+<th>GAMSO</th>
+<th>CSDA</th>
+<th>SAF capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design</td>
+<td>PRD-2.1, PRD-2.5, PRD-2.6, DLM-1, DLM-4, DLM-7, OVA-1, OVA-2</td>
+<td>Phase 2 Design (2.1, 2.5, 2.6)</td>
+<td>Production (design activities), Capability Management</td>
+<td>Data Governance, Metadata Management, Data Quality</td>
+<td>1.1.2 Design statistics product, 2.1.2 Metadata management, 2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Implementation</td>
+<td>PRD-3.2 to PRD-3.7, DLM-5</td>
+<td>Phase 3 Build (3.2 to 3.7)</td>
+<td>Capability Management</td>
+<td>Data Processing and Dissemination preparation (set-up), Data Governance (configuration)</td>
+<td>1.1.3 Build statistics product, 3.2.1 Application development, 3.2.2 Functional management</td>
+</tr>
+<tr class="odd">
+<td>Execution</td>
+<td>PRD-5.1, PRD-5.5, PRD-5.7, PRD-6.1 to PRD-6.5, PRD-7.2, DLM-2 to DLM-6, OVA-2, OVA-4</td>
+<td>Phase 6 Analyse (6.1 to 6.5), 7.2 Produce dissemination products; the business domain table also lists 7.1 Update output systems</td>
+<td>Production (execution)</td>
+<td>Data Analysis and Dissemination preparation (execution)</td>
+<td>1.3.6 Integrate statistics, 1.4.1 Statistical (output) analysis, 2.1.2 Metadata management, 2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Management</td>
+<td>OVA-1, OVA-2, OVA-4, DLM-5, DLM-8, PRD-8.1 to PRD-8.3</td>
+<td>Phase 8 Evaluate; overarching Quality Management and Metadata Management</td>
+<td>Corporate Support (Quality, Data, and Metadata Management), Capability Management (improvement)</td>
+<td>Data Quality, Data Governance, Traceability</td>
+<td>2.1.3 Statistical quality management, 4.1.4 Improvement management, 4.1.5 Accountability</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="principles" class="level3">
+<h3 class="anchored" data-anchor-id="principles">7. Principles</h3>
+<p>The following principles govern VS-05 most directly.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Principle</th>
+<th>Statement</th>
+<th>Application in VS-05</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-P01</td>
+<td>Actively participate in open-source communities to maintain collective control over statistical processes</td>
+<td>Composition, indicator-construction, and reporting and visualisation tooling is reused and developed in open-source communities with other NSIs, so that the NSI keeps collective control over critical product capabilities instead of depending on vendors.</td>
+</tr>
+<tr class="even">
+<td>SAF-P07</td>
+<td>Implement loosely coupled processes and systems</td>
+<td>Composition is independent from upstream estimation and downstream dissemination. The approved statistical product is the decoupling interface: VS-06 uses it without knowing how it was composed.</td>
+</tr>
+<tr class="odd">
+<td>SAF-P08</td>
+<td>Data is shared property</td>
+<td>Approved products and their components, once registered, are available to all authorised consumers. Composition reuses existing validated outputs instead of duplicating analysis.</td>
+</tr>
+<tr class="even">
+<td>SAF-P09</td>
+<td>No data without metadata and classification</td>
+<td>Every product carries its component outputs and their accuracy, the composition and indicator method, the coherence results, its classification, and the approval record. This is what makes products interpretable and trustworthy.</td>
+</tr>
+<tr class="odd">
+<td>SAF-P10</td>
+<td>Security By Design</td>
+<td>Access controls, integrity verification, and a tamper-evident composition and approval record are built into the pipeline, so that every product is attributable and reproducible.</td>
+</tr>
+<tr class="even">
+<td>SAF-P11</td>
+<td>Privacy By Design</td>
+<td>Products are validated against confidentiality standards. The disclosure risk of composite products, including the risk of combining outputs, is assessed by design before registration.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Principles that apply across the process types
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>SAF-P09 underpins interpretability in all four process types: Design defines the product and its required metadata, Execution captures component lineage, composition method, and coherence results, and Management assesses product quality. SAF-P10 governs the tamper-evident composition and approval record across the stages VS-05.1 to VS-05.5. SAF-P11 applies especially to VS-05.5, where the confidentiality and disclosure risk of the composite product are confirmed before registration. SAF-P07 governs both the intake of analytical versions from VS-04 and the handover of approved versions to VS-06.</p>
+</div>
+</div>
+</section>
+<section id="interfaces-services-and-events" class="level3">
+<h3 class="anchored" data-anchor-id="interfaces-services-and-events">8. Interfaces, services, and events</h3>
+<p><strong>Boundary interfaces</strong></p>
+<p>VS-05 has two boundary interfaces, both within State #4: intake of analytical versions from VS-04, and handover of approved versions to VS-06.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Boundary</th>
+<th>Handed over</th>
+<th>Required metadata</th>
+<th>Trigger</th>
+<th>Responsibility transfer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-04 → VS-05 (intake)</td>
+<td>Registered analytical #4 version</td>
+<td>Methodology and parameters, weights, accuracy measures, model diagnostics, applied disclosure control record, output version identifier, lineage to the processed source (#3), classification</td>
+<td><em>Output Data Registered</em></td>
+<td>VS-04 keeps custody of the analytical version; VS-05 takes responsibility for composition and approval on receipt of the event</td>
+</tr>
+<tr class="even">
+<td>VS-05 → VS-06 (handover)</td>
+<td>Registered approved #4 version (statistical product)</td>
+<td>Component lineage, composition and indicator method, propagated accuracy, coherence results, interpretive content, approval record, confidentiality status, product version identifier, classification</td>
+<td><em>Statistical Product Registered</em></td>
+<td>VS-05 keeps custody of the product version; VS-06 takes responsibility for final disclosure control, release, and user support on receipt of the event</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Business services</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Service</th>
+<th>Offered to</th>
+<th>Realised in</th>
+<th>Interfaces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Integration and composition service</td>
+<td>Composition teams, consumers of output data</td>
+<td>VS-05.1 Select and Integrate Source Datasets</td>
+<td>Pinned connections to the State #4 output catalogue</td>
+</tr>
+<tr class="even">
+<td>Indicator and index service</td>
+<td>Composition teams, methodologists</td>
+<td>VS-05.2 Construct Composite Indicators or Indices</td>
+<td>Composite construction interface and a query interface for methodology and parameters</td>
+</tr>
+<tr class="odd">
+<td>Coherence validation service</td>
+<td>Quality managers, subject-matter statisticians</td>
+<td>VS-05.3 Perform Consistency and Coherence Checks</td>
+<td>Coherence results and discrepancy dispositions</td>
+</tr>
+<tr class="even">
+<td>Analytical content service</td>
+<td>Authors, editors, VS-06 Dissemination and Service Delivery</td>
+<td>VS-05.4 Generate Analytical and Interpretive Outputs</td>
+<td>Content and visualisation tooling with editorial workflow</td>
+</tr>
+<tr class="odd">
+<td>Product provisioning service</td>
+<td>VS-06 Dissemination and Service Delivery</td>
+<td>VS-05.5 Approve and Register Statistical Products</td>
+<td>Event notification (<em>Statistical Product Registered</em>) and a catalogue query interface to find and access approved products, their lineage, and their accuracy</td>
+</tr>
+<tr class="even">
+<td>Product catalogue service</td>
+<td>All data consumers in the NSI</td>
+<td>Management sub-process <em>Manage Product and Version Lifecycle</em></td>
+<td>Search and browse interface for products, component lineage, coherence results, and approval records</td>
+</tr>
+<tr class="odd">
+<td>Design and methodology service</td>
+<td>Statistical designers, methodologists</td>
+<td>All Design sub-processes of VS-05</td>
+<td>Design documents, methodology advice</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Business events</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Triggers or marks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Design artefacts published</em></td>
+<td>Start of Implementation after a design change</td>
+</tr>
+<tr class="even">
+<td><em>Pipeline production-ready</em></td>
+<td>End of Implementation; Execution can start</td>
+</tr>
+<tr class="odd">
+<td><em>Output Data Registered</em></td>
+<td>Start of VS-05.1 for the products that use that analytical version</td>
+</tr>
+<tr class="even">
+<td><em>Statistical Product Registered</em></td>
+<td>Completion of VS-05.5 after approval; triggers VS-06. A product that is not approved is revised, or a component is returned to VS-04</td>
+</tr>
+<tr class="odd">
+<td><em>Improvement recommendations issued</em></td>
+<td>Input for Design from <em>Continuous Improvement</em></td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-05 event choreography between VS-04, NSI teams, and process management across Design, Implementation, Execution (output data registered, integrate and compose, coherence checks and interpretive content, approval granted or refused), and Management (coherence and timeliness monitoring, product quality, audit reports, improvement recommendations)</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><strong>Interaction with the supporting value streams</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Value stream</th>
+<th>Provides to VS-05</th>
+<th>Receives from VS-05</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-07 Governance and Compliance</td>
+<td>Confidentiality and approval policies, revision policy framework</td>
+<td>Reproducibility audits, approval and confidentiality compliance reports</td>
+</tr>
+<tr class="even">
+<td>VS-08 Innovation and Methodological Development</td>
+<td>New composite-indicator and time-series methods</td>
+<td>Improvement needs</td>
+</tr>
+<tr class="odd">
+<td>VS-09 Infrastructure and Platform Enablement</td>
+<td>Composition and content tooling, version store, catalogue, event interfaces</td>
+<td>Capacity and tooling requirements</td>
+</tr>
+<tr class="even">
+<td>VS-10 Customer and Stakeholder Engagement</td>
+<td>User needs for products and content</td>
+<td>Product portfolio, feedback on interpretability</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-performance-indicators" class="level3">
+<h3 class="anchored" data-anchor-id="key-performance-indicators">9. Key performance indicators</h3>
+<p>The key performance indicators are collected per production cycle in <em>Monitor Process Performance</em>. They feed the dashboard that the process owner reviews.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>KPI</th>
+<th>Description</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>On-time product rate</td>
+<td>Products composed within the release-calendar window</td>
+<td>Per product, per cycle</td>
+</tr>
+<tr class="even">
+<td>Coherence-check pass rate</td>
+<td>Products passing the coherence checks on the first run</td>
+<td>Per product, per cycle</td>
+</tr>
+<tr class="odd">
+<td>Approval iteration count</td>
+<td>Number of approval cycles before sign-off</td>
+<td>Per product, per cycle</td>
+</tr>
+<tr class="even">
+<td>Component reuse rate</td>
+<td>Share of products that reuse existing validated outputs</td>
+<td>Per cycle</td>
+</tr>
+<tr class="odd">
+<td>Reproducibility rate</td>
+<td>Share of products that regenerate from components plus method</td>
+<td>Per cycle</td>
+</tr>
+<tr class="even">
+<td>Processing time</td>
+<td>Time from output intake to product registration</td>
+<td>Per product, per cycle</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">10. Examples</h3>
+<p><strong>Labour market publication.</strong> The quarterly labour market publication is specified to combine the Labour Force Survey employment-rate estimates (national and NUTS-2), the unemployment series, and administrative job-vacancy figures into one coherent release, with the confidence interval of each component carried into the published tables. For Q3 2026, the team selects the validated <code>OD-LFS-2026Q3</code> employment and unemployment outputs and the latest administrative vacancy output, and pins their exact versions. The commentary explains a 0.3 percentage point rise in the employment rate, notes that it is within the confidence interval, and presents a regional map and a time-series chart. The editorial review confirms that the wording does not overstate a movement that is not statistically significant.</p>
+<p><strong>Business statistics product.</strong> The composite structural business statistics product integrates the register-based aggregates and the survey-based estimates for the same NACE by region domains. The engine pins the exact <code>OD-BUS</code> output versions and carries their accuracy metadata into the combined tables. In the coherence checks, NACE-class turnover sums to the published total, the survey-based and register-based components agree within tolerance for overlapping domains, and the series is coherent with the prior year. One domain exceeds the tolerance and is returned to VS-04 for review instead of being adjusted in the product.</p>
+<p><strong>Consumer price index.</strong> The headline consumer price index is composed from the validated item indices with the designed weighting and chaining. The all-items index and its main divisions are constructed, and each carries its method and the period weights used.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><strong>Toolkit:</strong> SAF-TK-V05 VS-05 maturity checklist and scenarios</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="../framework/vs-04.html" class="pagination-link" aria-label="VS-04 Estimation, Analysis, and Statistical Modeling">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">VS-04 Estimation, Analysis, and Statistical Modeling</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../framework/vs-06.html" class="pagination-link" aria-label="VS-06 Dissemination and Service Delivery">
+        <span class="nav-page-text">VS-06 Dissemination and Service Delivery</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

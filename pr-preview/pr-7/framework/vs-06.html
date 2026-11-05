@@ -1,0 +1,2539 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>VS-06 Dissemination and Service Delivery – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../framework/vs-07.html" rel="next">
+<link href="../framework/vs-05.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f374ad13d1ca50ffd7110ca4e9b8aceb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../framework/index.html" aria-current="page"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../toolkit.html"> 
+<span class="menu-text">Toolkit</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-01.html">Production value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-06.html">VS-06 Dissemination and Service Delivery</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAF Architecture Framework</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Foundations</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and Scope</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/motivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Motivation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/strategy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strategy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Business architecture</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/business-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/steady-state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Steady-State Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/value-chain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Data Value Chain</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Production value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-01 Data Acquisition and Ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-02 Data Standardization and Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-03 Data Editing and Enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-04 Estimation, Analysis, and Statistical Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-05 Statistical Product Composition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-06.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">VS-06 Dissemination and Service Delivery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Supporting value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-07 Governance and Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-08 Innovation and Methodological Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-09 Infrastructure and Platform Enablement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-10 Customer and Stakeholder Engagement</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#vs-06-dissemination-and-service-delivery" id="toc-vs-06-dissemination-and-service-delivery" class="nav-link active" data-scroll-target="#vs-06-dissemination-and-service-delivery">VS-06 Dissemination and Service Delivery</a>
+  <ul class="collapse">
+  <li><a href="#purpose-and-value-created" id="toc-purpose-and-value-created" class="nav-link" data-scroll-target="#purpose-and-value-created">1. Purpose and value created</a></li>
+  <li><a href="#position-and-state-transition" id="toc-position-and-state-transition" class="nav-link" data-scroll-target="#position-and-state-transition">2. Position and state transition</a></li>
+  <li><a href="#stages" id="toc-stages" class="nav-link" data-scroll-target="#stages">3. Stages</a></li>
+  <li><a href="#the-four-process-types" id="toc-the-four-process-types" class="nav-link" data-scroll-target="#the-four-process-types">4. The four process types</a></li>
+  <li><a href="#actors-and-roles" id="toc-actors-and-roles" class="nav-link" data-scroll-target="#actors-and-roles">5. Actors and roles</a></li>
+  <li><a href="#capabilities-processes-and-functions" id="toc-capabilities-processes-and-functions" class="nav-link" data-scroll-target="#capabilities-processes-and-functions">6. Capabilities, processes, and functions</a></li>
+  <li><a href="#principles" id="toc-principles" class="nav-link" data-scroll-target="#principles">7. Principles</a></li>
+  <li><a href="#interfaces-services-and-events" id="toc-interfaces-services-and-events" class="nav-link" data-scroll-target="#interfaces-services-and-events">8. Interfaces, services, and events</a></li>
+  <li><a href="#key-performance-indicators" id="toc-key-performance-indicators" class="nav-link" data-scroll-target="#key-performance-indicators">9. Key performance indicators</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">10. Examples</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="vs-06.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-01.html">Production value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-06.html">VS-06 Dissemination and Service Delivery</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">VS-06 Dissemination and Service Delivery</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- GENERATED from docs/SAF Framework.md by scripts/split-framework.py - do not edit -->
+<section id="vs-06-dissemination-and-service-delivery" class="level2">
+<h2 class="anchored" data-anchor-id="vs-06-dissemination-and-service-delivery">VS-06 Dissemination and Service Delivery</h2>
+<section id="purpose-and-value-created" class="level3">
+<h3 class="anchored" data-anchor-id="purpose-and-value-created">1. Purpose and value created</h3>
+<p>VS-06 is the exit point of the statistical value chain. It takes approved statistical products and makes them available to policy makers, researchers, journalists, businesses, and the public through trusted, secure channels: publications, open data, APIs, dashboards, deliveries to international organisations, data spaces, and secure access to microdata for research. It does not change the statistics. It protects them with final disclosure control, formats them for each channel, documents them, releases them at the same moment for everyone, and helps users interpret them correctly. The value created is <strong>impact and accessibility</strong>: statistics that users can find, trust, and use responsibly, which turns statistical output into societal value through informed decisions, evidence-based policy, and transparency.</p>
+<p>Composing and approving statistical products is not part of VS-06; it belongs to VS-05. VS-06 only disseminates products that have already been approved and registered. The technical platforms for portals, APIs, dashboards, and secure research environments are provided by VS-09.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Signature discipline: accessibility, trust, and the release gate
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Accurate, timely, and understandable delivery through secure channels, gated by <strong>final statistical disclosure control</strong>: no release without confidentiality clearance. Documentation and user services support responsible use. Equal access to released statistics, through managed release timing and embargo discipline, and accessibility, through formats, languages, and machine-readability, are explicit obligations.</p>
+</div>
+</div>
+<p>VS-06 corresponds to the business domain <strong>Dissemination</strong> (see <em>Steady-State Architecture, Business domains</em>). This section describes the business layer of that domain for all four process types: Design, Implementation, Execution, and Management.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-06 (a) value stream and capabilities</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="position-and-state-transition" class="level3">
+<h3 class="anchored" data-anchor-id="position-and-state-transition">2. Position and state transition</h3>
+<p>VS-06 is the sixth and last primary value stream. It receives approved statistical products from VS-05 and has no downstream primary value stream. Its handover is to users outside the NSI, and its feedback path runs to VS-10.</p>
+<p>VS-06 takes data from State #4 (approved version) to State #5. Before VS-06, the product is an approved, registered version that is still restricted and usually market-sensitive. It carries the metadata that VS-05 attached: component lineage, composition method, propagated accuracy, coherence results, the approval record, and the confidentiality status. VS-06 applies the final disclosure control for release, beyond the initial disclosure control of VS-04 and the standards check of VS-05. After VS-06, the output is released data, documented for correct interpretation and available through the agreed channels. Once users take it into their own environment, it becomes consumed data (boundary position #6), outside the NSI’s control. The quality gate, the minimum metadata set, and the protection of State #5 are described in <em>State #5: Released Data</em> and are not repeated here.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>From</th>
+<th>To</th>
+<th>Gate</th>
+<th>Event out</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>#4 Statistics (approved)</td>
+<td>#5 Released Data</td>
+<td>Gate of State #5 (approved source, final disclosure control, de-identification, documentation, format and accessibility, release authorisation, timing and equal access, metadata)</td>
+<td><em>Statistics Released</em></td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-06 (c) state handover and events: the approved product (#4) from VS-05, the dissemination service at the boundary (final disclosure control and formatting, publication, access, user support, monitoring), Released Data (#5) under NSI control, and Consumed Data (#6) with users outside the NSI, with usage and feedback flowing back to VS-06.5 and VS-10</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="stages" class="level3">
+<h3 class="anchored" data-anchor-id="stages">3. Stages</h3>
+<p>The stages describe the value that VS-06 adds in every release cycle. Together they form the execution process type of VS-06. In a mature steady state, the strategy, the disclosure rules, and the channels have been designed and built in advance (see attribute 4). Execution then focuses on running the release, serving users, and monitoring use, with final disclosure control as the gate that must be passed before anything is published.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Name</th>
+<th>Value added</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-06.1</td>
+<td>Plan Dissemination and Access Strategy</td>
+<td>Target users, channels, formats, and release timing are set for the release</td>
+</tr>
+<tr class="even">
+<td>VS-06.2</td>
+<td>Prepare Data for Dissemination</td>
+<td>The output is disclosure-safe and in the right format for each channel</td>
+</tr>
+<tr class="odd">
+<td>VS-06.3</td>
+<td>Publish and Provide Access Services</td>
+<td>Users can find and access the output, equally and on time (State #5)</td>
+</tr>
+<tr class="even">
+<td>VS-06.4</td>
+<td>Support and Engage Users</td>
+<td>Users understand and use the output correctly</td>
+</tr>
+<tr class="odd">
+<td>VS-06.5</td>
+<td>Monitor Usage and Feedback</td>
+<td>The NSI knows how its output is used and valued</td>
+</tr>
+</tbody>
+</table>
+<p>Each stage below is described with its activities. The column <em>SAF process</em> shows the business process from <em>Business Processes</em> that the activity belongs to. The column <em>Other reference</em> shows the principles, capabilities, or external frameworks that the activity applies.</p>
+<p><br></p>
+<section id="vs-06.1-plan-dissemination-and-access-strategy" class="level4">
+<h4 class="anchored" data-anchor-id="vs-06.1-plan-dissemination-and-access-strategy">VS-06.1 Plan Dissemination and Access Strategy</h4>
+<p><strong>Value created:</strong> <em>The right channels, formats, and timing confirmed for this release.</em></p>
+<p>Execution starts when the <em>Statistical Product Registered</em> event arrives from VS-05. In a mature steady state, the Design process <em>Design Dissemination and Access Strategy</em> has already set the strategy. Each cycle therefore confirms the plan for this release rather than creating it. The team confirms the channels, the formats, and the slot in the release calendar for the product. It verifies the embargo and equal-access arrangements, and confirms the target user groups and the communication plan. A significant change, such as a new channel or a policy change, goes back to design instead of being solved during the cycle.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Confirm channels, formats, and release calendar slot for the product</td>
+<td>Confirmed release plan</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>1.5.1 Publication management</td>
+</tr>
+<tr class="even">
+<td>Verify embargo and equal-access arrangements</td>
+<td>Confirmed access arrangements</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>4.1.5 Accountability</td>
+</tr>
+<tr class="odd">
+<td>Confirm target user groups and the communication plan</td>
+<td>Confirmed audience and communication plan</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>1.5.2 Promotion to use</td>
+</tr>
+<tr class="even">
+<td>Flag plan changes for design review</td>
+<td>Plan change exception (if any)</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>GAMSO Quality Management</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-06.2-prepare-data-for-dissemination" class="level4">
+<h4 class="anchored" data-anchor-id="vs-06.2-prepare-data-for-dissemination">VS-06.2 Prepare Data for Dissemination</h4>
+<p><strong>Value created:</strong> <em>Products made disclosure-safe and formatted for each channel.</em></p>
+<p>This stage prepares the product for release. Final disclosure control is applied: suppression, rounding, or perturbation for tables and dashboards, beyond the protection applied upstream, and de-identification for any released microdata. The release is then checked against the disclosure-risk criteria of the gate of State #5. Nothing proceeds if the criteria are not met: a release that fails is returned for additional protection, because confidentiality is not negotiable at the boundary to State #5. The product is then formatted for each channel (publication, API or dataset, dashboard) and loaded into the output systems, where it stays under embargo. The documentation, metadata, and methodology notes are assembled according to the documentation standard.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Apply final disclosure control to tables and dashboards</td>
+<td>Disclosure-controlled outputs</td>
+<td>PRD-6.4 Apply disclosure control</td>
+<td>SAF-P11; 1.3.7 Statistical disclosure; GSBPM 6.4</td>
+</tr>
+<tr class="even">
+<td>De-identify any released microdata to the designed standard</td>
+<td>De-identified microdata</td>
+<td>PRD-6.4 Apply disclosure control</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="odd">
+<td>Check the release against the disclosure-risk criteria</td>
+<td>Disclosure clearance, or return for further protection</td>
+<td>PRD-6.4 Apply disclosure control; DLM-2 Promote data through a quality gate</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="even">
+<td>Format the product for each channel and load it into the output systems under embargo</td>
+<td>Channel-ready products</td>
+<td>PRD-7.1 Update output systems; PRD-7.2 Produce dissemination products</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Assemble documentation, metadata, and methodology notes</td>
+<td>Release documentation package</td>
+<td>PRD-7.2 Produce dissemination products; OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-06.3-publish-and-provide-access-services" class="level4">
+<h4 class="anchored" data-anchor-id="vs-06.3-publish-and-provide-access-services">VS-06.3 Publish and Provide Access Services</h4>
+<p><strong>Value created:</strong> <em>Statistics released to users through trusted, secure channels, equally and on time.</em></p>
+<p>This stage executes the release. The product and its metadata are published through the confirmed channels: portal or publication, API and open data, dashboards, deliveries to international organisations, and data offerings in data spaces where applicable. Release timing follows the calendar, with embargo and equal access enforced: no privileged early access outside policy. All channels come from the same released version, so a user gets the same figure everywhere. Access to microdata is mediated through a secure research environment: researchers are authorised, their project is assessed, a project-specific dataset is prepared, and every result is checked before it leaves the environment. The release is promoted according to the communication plan, together with VS-10. A persistent, identified release version is recorded with lineage to the approved product, and the <em>Statistics Released</em> event is published.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Publish products and metadata through the confirmed channels (portal, API, dashboards)</td>
+<td>Published release</td>
+<td>PRD-7.2 Produce dissemination products; PRD-7.3 Release dissemination products</td>
+<td>1.5.3 Facilitate data access</td>
+</tr>
+<tr class="even">
+<td>Manage release timing, embargo, and equal access</td>
+<td>Managed release, embargo log</td>
+<td>PRD-7.3 Release dissemination products</td>
+<td>1.5.1 Publication management; 4.1.5 Accountability</td>
+</tr>
+<tr class="odd">
+<td>Publish data offerings in data spaces where applicable</td>
+<td>Data space offering</td>
+<td>DSP-2 Publish data offerings</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Authorise researchers and assess project applications</td>
+<td>Research access authorisation</td>
+<td>MDS-1 Authorise institutions and researchers; MDS-2 Assess access applications</td>
+<td>2.2.4 Data services; COL-04</td>
+</tr>
+<tr class="odd">
+<td>Provide mediated access in a secure research environment, or privacy-preserving analysis where data cannot be moved</td>
+<td>Research dataset, research access provision</td>
+<td>MDS-3 Prepare research datasets; MDS-4 Provide a secure processing environment; MDS-5 Facilitate privacy-preserving analysis</td>
+<td>SAF-P10, SAF-P11</td>
+</tr>
+<tr class="even">
+<td>Check research output before it leaves the environment</td>
+<td>Released or returned research output</td>
+<td>MDS-7 Check and release output</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="odd">
+<td>Promote the release according to the communication plan, with VS-10</td>
+<td>Promotion carried out</td>
+<td>PRD-7.4 Promote dissemination products</td>
+<td>1.5.2 Promotion to use</td>
+</tr>
+<tr class="even">
+<td>Register the release version with lineage and publish the <em>Statistics Released</em> event</td>
+<td>Release version, event notification</td>
+<td>DLM-3 Register and catalogue data</td>
+<td>SAF-P07</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-06 release architecture: the approved product passes final disclosure control and formatting, then the disclosure-risk decision; on “yes” it is released through portal or publication, API and open data, dashboards, and the secure research environment to users (#6); on “no” it is returned for more protection</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-06.4-support-and-engage-users" class="level4">
+<h4 class="anchored" data-anchor-id="vs-06.4-support-and-engage-users">VS-06.4 Support and Engage Users</h4>
+<p><strong>Value created:</strong> <em>Users helped to find, understand, and correctly use the statistics.</em></p>
+<p>This stage supports users after release. Documentation, metadata, and user guides are made available with the release. The helpdesk answers queries, and training or guidance is provided for correct interpretation and use. Researchers in the secure environment receive their own support, including help with output checking. Engagement activities, together with VS-10, gather questions and needs. Errata and clarifications are issued according to the correction policy. The aim is responsible use: helping users avoid misinterpreting estimates and their uncertainty.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Provide documentation, metadata, and user guides with the release</td>
+<td>Published documentation</td>
+<td>PRD-7.5 Provide user support; OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Operate the helpdesk and respond to user queries</td>
+<td>Query responses</td>
+<td>PRD-7.5 Provide user support</td>
+<td>3.4.1 Services management</td>
+</tr>
+<tr class="odd">
+<td>Provide training and guidance for correct interpretation</td>
+<td>User guidance</td>
+<td>PRD-7.5 Provide user support</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Support researchers with data, methods, and output checking</td>
+<td>Researcher support</td>
+<td>MDS-6 Support researchers</td>
+<td>COL-04</td>
+</tr>
+<tr class="odd">
+<td>Gather questions and needs through engagement activities, with VS-10</td>
+<td>Engagement log</td>
+<td>PRD-7.4 Promote dissemination products</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Issue errata and clarifications according to the correction policy</td>
+<td>Corrections (if any)</td>
+<td>PRD-7.3 Release dissemination products; DLM-7 Revise data</td>
+<td>4.1.5 Accountability</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-06.5-monitor-usage-and-feedback" class="level4">
+<h4 class="anchored" data-anchor-id="vs-06.5-monitor-usage-and-feedback">VS-06.5 Monitor Usage and Feedback</h4>
+<p><strong>Value created:</strong> <em>Insight into how statistics are used and valued, feeding continuous improvement.</em></p>
+<p>This last stage closes the loop with users. Usage is tracked across channels: downloads, API calls, dashboard views, and publication reads. User satisfaction and feedback are collected, and the insights are analysed to understand reach, value, and unmet needs. For research access, the use of the data against the conditions of use is monitored, and finished projects are closed, with their datasets and project-specific pseudonymisation keys disposed of. The insights go back to Design, to VS-10, and across the value chain. An example is demand for a new breakdown, which would have to start in earlier value streams.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Track usage across channels (downloads, API calls, views)</td>
+<td>Usage statistics</td>
+<td>PRD-8.1 Gather evaluation inputs; DLM-8 Monitor data quality, lineage and use</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Collect user satisfaction and feedback</td>
+<td>Feedback log</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>GSBPM 8</td>
+</tr>
+<tr class="odd">
+<td>Analyse reach, value, and unmet needs</td>
+<td>Usage insight report</td>
+<td>PRD-8.1 Gather evaluation inputs; PRD-8.2 Conduct evaluation</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Monitor research use against the conditions of use, and close finished projects</td>
+<td>Research compliance record, project closure record</td>
+<td>MDS-8 Monitor use and compliance; MDS-9 Close projects</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="odd">
+<td>Route insights to Design, VS-10, and the wider chain</td>
+<td>Improvement and engagement inputs</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>4.1.4 Improvement management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="the-four-process-types" class="level3">
+<h3 class="anchored" data-anchor-id="the-four-process-types">4. The four process types</h3>
+<p>The sub-processes below are specific to VS-06. Each refines one or more SAF business processes, listed as <em>Refines</em>, which keeps it traceable to <em>Business Processes</em>. Sub-processes marked <em>(standard)</em> work as described in <a href="../framework/value-chain.html#standard-vs-activities">Standard activities in every value stream</a>; only the VS-06 specifics are listed.</p>
+<section id="design-provides-metadata" class="level4">
+<h4 class="anchored" data-anchor-id="design-provides-metadata">Design: provides metadata</h4>
+<p>Without a designed strategy and release policy, release becomes ad hoc, with a risk of confidentiality breaches or unequal access, and management has no baseline to measure accessibility and impact against.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Design sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design Dissemination and Access Strategy</td>
+<td>PRD-1.2 Consult and confirm needs; PRD-2.1 Design outputs and dissemination</td>
+<td>User segmentation, channel and format strategy, release calendar and access policy, product-channel map</td>
+</tr>
+<tr class="even">
+<td>Design Disclosure Control and De-identification for Release</td>
+<td>PRD-2.1 Design outputs and dissemination; PRD-2.5 Design processing and analysis; DLM-4 Classify and protect data</td>
+<td>Release disclosure-control rules, de-identification standard, disclosure-risk criteria, channel protection design</td>
+</tr>
+<tr class="odd">
+<td>Design Channels, Formats, and Documentation</td>
+<td>PRD-2.1 Design outputs and dissemination; OVA-2 Metadata Management</td>
+<td>Format and accessibility standard, API and dataset specification, service design, documentation standard</td>
+</tr>
+<tr class="even">
+<td>Design User Support, Promotion, and Feedback Model</td>
+<td>PRD-2.1 Design outputs and dissemination; DLM-7 Revise data</td>
+<td>User support model, communication plan, usage and feedback model, correction policy</td>
+</tr>
+<tr class="odd">
+<td>Design Release Governance and Audit Framework</td>
+<td>PRD-2.1 Design outputs and dissemination; DLM-1 Plan and design data assets; DLM-4 Classify and protect data</td>
+<td>Release approval policy, equal-access controls, versioning and lineage policy, access control design</td>
+</tr>
+</tbody>
+</table>
+<section id="design-dissemination-and-access-strategy" class="level5">
+<h5 class="anchored" data-anchor-id="design-dissemination-and-access-strategy">Design Dissemination and Access Strategy</h5>
+<p><em>Refines:</em> PRD-1.2 Consult and confirm needs; PRD-2.1 Design outputs and dissemination.</p>
+<p>The starting point is deciding who the products are for and how they will be reached. This sub-process defines the target user groups and their needs, together with VS-10. It defines the access channels and release formats: open data, API, research access, publications, and dashboards. It sets the release calendar and the equal-access and embargo policy. Each product is mapped to its channels and formats.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define target user groups and their needs, with VS-10</td>
+<td>User segmentation</td>
+<td>PRD-1.2 Consult and confirm needs; PRD-2.1 Design outputs and dissemination</td>
+<td>2.2.5 User research</td>
+</tr>
+<tr class="even">
+<td>Define access channels and release formats (open data, API, research access, publications, dashboards)</td>
+<td>Channel and format strategy</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>1.5.3 Facilitate data access</td>
+</tr>
+<tr class="odd">
+<td>Define the release calendar and the equal-access and embargo policy</td>
+<td>Release calendar and access policy</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>1.5.1 Publication management; 4.1.5 Accountability</td>
+</tr>
+<tr class="even">
+<td>Map each product to its channels and formats</td>
+<td>Product-channel map</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-disclosure-control-and-de-identification-for-release" class="level5">
+<h5 class="anchored" data-anchor-id="design-disclosure-control-and-de-identification-for-release">Design Disclosure Control and De-identification for Release</h5>
+<p><em>Refines:</em> PRD-2.1 Design outputs and dissemination; PRD-2.5 Design processing and analysis; DLM-4 Classify and protect data.</p>
+<p>This sub-process designs the final confidentiality protection applied before release. It specifies the disclosure-control rules for tables and dashboards (suppression, rounding, perturbation), over and above the protection already applied upstream. It sets the de-identification standard for any released microdata and the disclosure-risk criteria that a release must meet. Different channels get different treatment: more detailed microdata, for example, is only available in a secure research environment.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define final disclosure-control rules for tables and dashboards</td>
+<td>Release disclosure-control rules</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td>SAF-P11; 1.3.7 Statistical disclosure</td>
+</tr>
+<tr class="even">
+<td>Define the de-identification standard for released microdata</td>
+<td>De-identification standard</td>
+<td>PRD-2.5 Design processing and analysis; DLM-4 Classify and protect data</td>
+<td>SAF-P11; 3.3.1 Privacy management</td>
+</tr>
+<tr class="odd">
+<td>Define the disclosure-risk criteria a release must meet</td>
+<td>Disclosure-risk criteria</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="even">
+<td>Design differential treatment by channel (open access or secure research access)</td>
+<td>Channel protection design</td>
+<td>PRD-2.1 Design outputs and dissemination; DLM-4 Classify and protect data</td>
+<td>SAF-P10; 2.2.4 Data services</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-channels-formats-and-documentation" class="level5">
+<h5 class="anchored" data-anchor-id="design-channels-formats-and-documentation">Design Channels, Formats, and Documentation</h5>
+<p><em>Refines:</em> PRD-2.1 Design outputs and dissemination; OVA-2 Metadata Management.</p>
+<p>This sub-process designs the delivery mechanics, using the platforms that VS-09 provides. It specifies the publication formats and accessibility standards: machine-readable formats, languages, and web accessibility. It specifies the API and dataset structures, for example in SDMX, the dashboards and visualisations, and the access model of the secure research environment. It also sets the documentation standard that every release must meet: methodology notes, metadata, and user guides.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Specify publication formats and accessibility standards</td>
+<td>Format and accessibility standard</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Specify API and dataset structures</td>
+<td>API and dataset specification</td>
+<td>PRD-2.1 Design outputs and dissemination; OVA-2 Metadata Management</td>
+<td>SDMX; CSDA Dissemination</td>
+</tr>
+<tr class="odd">
+<td>Specify dashboards, visualisations, and the research access model</td>
+<td>Service design</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>2.2.4 Data services</td>
+</tr>
+<tr class="even">
+<td>Define the documentation standard for every release</td>
+<td>Documentation standard</td>
+<td>OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-user-support-promotion-and-feedback-model" class="level5">
+<h5 class="anchored" data-anchor-id="design-user-support-promotion-and-feedback-model">Design User Support, Promotion, and Feedback Model</h5>
+<p><em>Refines:</em> PRD-2.1 Design outputs and dissemination; DLM-7 Revise data.</p>
+<p>This sub-process designs how users are supported and heard. It specifies the user support model (documentation, helpdesk, training) and the approach to promoting and communicating releases, together with VS-10. It defines the usage and feedback model: what is measured, such as usage and satisfaction, how feedback is collected, and how it goes back into improvement. The correction and erratum policy completes the design.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define the user support model (documentation, helpdesk, training)</td>
+<td>User support model</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>3.4.1 Services management</td>
+</tr>
+<tr class="even">
+<td>Define the promotion and communication approach for releases, with VS-10</td>
+<td>Communication plan</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>1.5.2 Promotion to use; 3.1.4 Communication management</td>
+</tr>
+<tr class="odd">
+<td>Define the usage and feedback model</td>
+<td>Usage and feedback model</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Define the correction, erratum, and re-release policy</td>
+<td>Correction policy</td>
+<td>DLM-7 Revise data</td>
+<td>4.1.5 Accountability</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-release-governance-and-audit-framework" class="level5">
+<h5 class="anchored" data-anchor-id="design-release-governance-and-audit-framework">Design Release Governance and Audit Framework</h5>
+<p><em>Refines:</em> PRD-2.1 Design outputs and dissemination; DLM-1 Plan and design data assets; DLM-4 Classify and protect data.</p>
+<p>This last design sub-process makes sure that releases are governed, equitable, and auditable. It defines the release approval and sign-off workflow and the equal-access controls, so that nobody gets early access outside policy. It sets the release versioning policy (identity, revisions and corrections, retention) and the lineage requirements from each release back to its approved product. Role-based access control for the access services is designed in line with SAF-P10.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define the release approval and sign-off workflow</td>
+<td>Release approval policy</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>4.1.5 Accountability</td>
+</tr>
+<tr class="even">
+<td>Define equal-access controls and embargo governance</td>
+<td>Equal-access controls</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>1.5.1 Publication management; 4.1.5 Accountability</td>
+</tr>
+<tr class="odd">
+<td>Define release versioning and lineage requirements</td>
+<td>Versioning and lineage policy</td>
+<td>DLM-1 Plan and design data assets</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="even">
+<td>Design role-based access control for the access services</td>
+<td>Access control design</td>
+<td>DLM-4 Classify and protect data</td>
+<td>SAF-P10; 3.3.4 Logical identity and access control</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-06 design process decomposition: inputs (approved products from VS-05, user needs via VS-10, confidentiality and access law via VS-07, framework standards), the five design sub-processes in order, and the design document each produces (channel and format strategy, release disclosure-control rules, service and documentation specifications, support and feedback model, release governance policy)</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="implementation-provides-the-execution-process" class="level4">
+<h4 class="anchored" data-anchor-id="implementation-provides-the-execution-process">Implementation: provides the execution process</h4>
+<p>Implementation builds, configures, and tests the dissemination and access pipeline on the platforms provided by VS-09. Nothing is published in production until this is complete.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Implementation sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build Publication and Access Channels</td>
+<td>PRD-3.3 Reuse or build dissemination components; MDS-4 Provide a secure processing environment</td>
+<td>Configured publication, open-data, API, and dashboard services; research access service; standard exchange interfaces</td>
+</tr>
+<tr class="even">
+<td>Configure Disclosure Control and Release Tooling</td>
+<td>PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows</td>
+<td>Configured disclosure-control tooling, de-identification component, release disclosure gate, release management tooling</td>
+</tr>
+<tr class="odd">
+<td>Build Documentation, Support, and Usage Monitoring Services</td>
+<td>PRD-3.3 Reuse or build dissemination components; PRD-3.4 Configure workflows; DLM-3 Register and catalogue data</td>
+<td>Documentation services, user support services, usage and feedback tooling, release version store, event publication</td>
+</tr>
+<tr class="even">
+<td>Test and Validate the Pipeline <em>(standard)</em></td>
+<td>PRD-3.5 Test production systems; PRD-3.6 Test statistical business process; PRD-3.7 Finalise production systems</td>
+<td>Test reports; integration test from product intake through preparation, disclosure control, and release to access and support; accessibility test (formats, languages, machine-readability); security and disclosure test (access controls, no output breaches the disclosure-risk criteria); release rehearsal (managed timing, embargo, equal access)</td>
+</tr>
+</tbody>
+</table>
+<section id="build-publication-and-access-channels" class="level5">
+<h5 class="anchored" data-anchor-id="build-publication-and-access-channels">Build Publication and Access Channels</h5>
+<p><em>Refines:</em> PRD-3.3 Reuse or build dissemination components; MDS-4 Provide a secure processing environment.</p>
+<p>This sub-process turns the channel and format designs into operational services. The publication channels (website or publication system), the API and open-data services, the dashboards, and access to the secure research environment are built or configured on the VS-09 platforms, according to the designed formats and accessibility standards. Dataset and metadata exchange compliant with SDMX is configured, and access controls are applied according to the designed model.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build or configure publication channels and the open-data and API services</td>
+<td>Configured publication and API services</td>
+<td>PRD-3.3 Reuse or build dissemination components</td>
+<td>1.1.3 Build statistics product</td>
+</tr>
+<tr class="even">
+<td>Build or configure dashboards and visualisation services</td>
+<td>Configured dashboards</td>
+<td>PRD-3.3 Reuse or build dissemination components</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Configure access to the secure research environment</td>
+<td>Research access service</td>
+<td>MDS-4 Provide a secure processing environment</td>
+<td>SAF-P10</td>
+</tr>
+<tr class="even">
+<td>Configure dataset and metadata exchange compliant with SDMX</td>
+<td>Standard exchange interfaces</td>
+<td>PRD-3.3 Reuse or build dissemination components</td>
+<td>SDMX; CSDA Dissemination</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="configure-disclosure-control-and-release-tooling" class="level5">
+<h5 class="anchored" data-anchor-id="configure-disclosure-control-and-release-tooling">Configure Disclosure Control and Release Tooling</h5>
+<p><em>Refines:</em> PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows.</p>
+<p>The designed disclosure-control rules and release policy are implemented. Disclosure-control tooling is configured to apply the designed suppression, rounding, and perturbation to tables and dashboards, and to de-identify released microdata. Disclosure-risk checks are enforced before publication. Release tooling is configured for release at a managed time, embargo handling, and enforcement of equal access.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Configure final disclosure-control tooling (suppression, rounding, perturbation)</td>
+<td>Configured disclosure-control tooling</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="even">
+<td>Configure microdata de-identification to the designed standard</td>
+<td>De-identification component</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="odd">
+<td>Enforce disclosure-risk checks before publication</td>
+<td>Release disclosure gate</td>
+<td>PRD-3.4 Configure workflows; DLM-2 Promote data through a quality gate</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="even">
+<td>Configure release at a managed time, embargo handling, and equal-access enforcement</td>
+<td>Release management tooling</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>1.5.1 Publication management; 4.1.5 Accountability</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="build-documentation-support-and-usage-monitoring-services" class="level5">
+<h5 class="anchored" data-anchor-id="build-documentation-support-and-usage-monitoring-services">Build Documentation, Support, and Usage Monitoring Services</h5>
+<p><em>Refines:</em> PRD-3.3 Reuse or build dissemination components; PRD-3.4 Configure workflows; DLM-3 Register and catalogue data.</p>
+<p>This sub-process implements the services for users and the feedback loop. Documentation and metadata services make sure that every release is accompanied by methodology notes, reference metadata, and user guides. Helpdesk and training support are set up according to the support model. Usage monitoring and feedback collection capture usage statistics, satisfaction, and feedback, and route them into the improvement loop and to VS-10. The release version store is built so that each release is identified, immutable, and traceable to its approved product, and event notifications are configured to signal a release.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build documentation and metadata services for every release</td>
+<td>Documentation services</td>
+<td>PRD-3.3 Reuse or build dissemination components; OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Set up helpdesk and training support</td>
+<td>User support services</td>
+<td>PRD-3.3 Reuse or build dissemination components</td>
+<td>3.4.1 Services management</td>
+</tr>
+<tr class="odd">
+<td>Implement usage monitoring and feedback collection</td>
+<td>Usage and feedback tooling</td>
+<td>PRD-3.4 Configure workflows</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Build the release version store and configure the <em>Statistics Released</em> event</td>
+<td>Release version store, event publication</td>
+<td>PRD-3.4 Configure workflows; DLM-3 Register and catalogue data</td>
+<td>SAF-P07; CSDA Traceability</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-06 implementation pipeline: the five design artefacts feeding the three build sub-processes, followed by technical testing, accessibility and disclosure tests, and a release rehearsal, resulting in an operational dissemination pipeline and operational procedures</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="execution-provides-the-statistical-data" class="level4">
+<h4 class="anchored" data-anchor-id="execution-provides-the-statistical-data">Execution: provides the statistical data</h4>
+<p>Execution runs the stages of VS-06 for every release. The stages and their activities are described in attribute 3. A cycle starts when an approved product is registered; the release itself takes place at the slot in the release calendar. Support and monitoring of usage continue after the release. Execution applies the designs and the solution as they are; a new channel or a policy change goes back to Design. Every release attempt ends in one of two outcomes: released at the planned moment, or returned for further protection. Unlike earlier gates, the disclosure criteria allow no conditional acceptance.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>VS-06</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Trigger</td>
+<td><em>Statistical Product Registered</em></td>
+</tr>
+<tr class="even">
+<td>Cadence</td>
+<td>Per release, following the release calendar; support and monitoring are continuous</td>
+</tr>
+<tr class="odd">
+<td>Performed by</td>
+<td>ROL-17 Release manager, ROL-16 Disclosure control specialist, ROL-22 Dissemination and service manager, ROL-03 Data steward</td>
+</tr>
+<tr class="even">
+<td>Input</td>
+<td>Approved #4 version with its metadata and approval record</td>
+</tr>
+<tr class="odd">
+<td>Output</td>
+<td>Released data version (#5) in its channel representations, user support, usage and feedback data</td>
+</tr>
+<tr class="even">
+<td>Control point</td>
+<td>Gate of State #5: disclosure-risk criteria in VS-06.2; release authorisation and release slot before VS-06.3</td>
+</tr>
+<tr class="odd">
+<td>Exception path</td>
+<td>Failed disclosure criteria: return for further protection; error in content: back to VS-05 or VS-04 as a new approved version, released again with an erratum; plan change: back to Design</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="management-provides-quality-reports" class="level4">
+<h4 class="anchored" data-anchor-id="management-provides-quality-reports">Management: provides quality reports</h4>
+<p>Management runs alongside and after execution. It also makes sure that every release is compliant and equitable, and it feeds recommendations to VS-10 as well as to Design.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Management sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monitor Process Performance <em>(standard)</em></td>
+<td>OVA-4 Process Data Management; PRD-8.1 Gather evaluation inputs</td>
+<td>Process performance dashboard; release calendar adherence report; paradata on channels used, the moment each release went live, embargo handling, and the number of support queries</td>
+</tr>
+<tr class="even">
+<td>Assess Dissemination Quality</td>
+<td>OVA-1 Quality Management; DLM-8 Monitor data quality, lineage and use</td>
+<td>Accessibility report, punctuality report, reach and clarity report, quality trend analysis</td>
+</tr>
+<tr class="odd">
+<td>Manage Release and Channel Lifecycle</td>
+<td>OVA-2 Metadata Management; DLM-5 Store and version data; DLM-7 Revise data; DLM-8 Monitor data quality, lineage and use; DLM-10 Archive and preserve data</td>
+<td>Channel version register, metadata quality report, release store audit, metadata lineage audit</td>
+</tr>
+<tr class="even">
+<td>Audit and Compliance Reporting <em>(standard)</em></td>
+<td>OVA-1 Quality Management; OVA-4 Process Data Management; MDS-8 Monitor use and compliance</td>
+<td>Produced with VS-07: disclosure compliance summary (every release passed the gate; released microdata meets the de-identification standard); equal-access compliance report (release timing and embargo respected, no privileged early access); accessibility compliance report; security compliance report covering access controls and the integrity of the secure research environment</td>
+</tr>
+<tr class="odd">
+<td>Continuous Improvement <em>(standard)</em></td>
+<td>PRD-8.2 Conduct evaluation; PRD-8.3 Agree an action plan</td>
+<td>Improvement recommendations, for example new or better channels and formats, clearer documentation where users misunderstand it, a leaner release process, better accessibility, and demand for new statistics or breakdowns; recommendations go to Design, to VS-10, and, where the need starts earlier, across the chain; trends watched: punctuality, reach, satisfaction, support queries</td>
+</tr>
+</tbody>
+</table>
+<section id="assess-dissemination-quality" class="level5">
+<h5 class="anchored" data-anchor-id="assess-dissemination-quality">Assess Dissemination Quality</h5>
+<p><em>Refines:</em> OVA-1 Quality Management; DLM-8 Monitor data quality, lineage and use.</p>
+<p>Beyond process performance, the quality of dissemination itself is evaluated against the criteria set in Design. Each release and the service as a whole are assessed on several dimensions. Accessibility covers formats, languages, machine-readability, and compliance with web accessibility standards. Timeliness and punctuality are measured against the release calendar. Reach and relevance compare usage with expectations and check the coverage of user groups. Clarity looks at whether users interpret the figures correctly, judged from queries and feedback. Quality indicators are produced per release and per cycle, and trends are tracked. This follows the Data Quality capability of CSDA and SAF capability 2.1.3 <em>Statistical quality management</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Assess the accessibility compliance of releases</td>
+<td>Accessibility report (per cycle)</td>
+<td>OVA-1 Quality Management</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Assess timeliness and punctuality against the release calendar</td>
+<td>Punctuality report</td>
+<td>OVA-1 Quality Management</td>
+<td>CSDA Data Quality</td>
+</tr>
+<tr class="odd">
+<td>Assess reach, relevance, and clarity from usage and feedback</td>
+<td>Reach and clarity report</td>
+<td>DLM-8 Monitor data quality, lineage and use</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Identify quality trends across releases and cycles</td>
+<td>Quality trend analysis</td>
+<td>OVA-1 Quality Management</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="manage-release-and-channel-lifecycle" class="level5">
+<h5 class="anchored" data-anchor-id="manage-release-and-channel-lifecycle">Manage Release and Channel Lifecycle</h5>
+<p><em>Refines:</em> OVA-2 Metadata Management; DLM-5 Store and version data; DLM-7 Revise data; DLM-8 Monitor data quality, lineage and use; DLM-10 Archive and preserve data.</p>
+<p>Dissemination channels, formats, and the releases they carry must stay current, complete, and well governed. This sub-process manages the life cycle of channels, formats, and documentation standards: it versions them, manages transitions such as an API version upgrade, and retires obsolete channels. It verifies that every release carries full documentation, its disclosure record, and its lineage, as a compliance check on SAF-P09. It governs the release version store: retention, immutability, handling of corrections, and reconciliation of catalogue entries with what is actually published. Lineage from approved product to released data is tracked.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Manage the life cycle and versions of channels, formats, and documentation standards</td>
+<td>Channel version register</td>
+<td>OVA-2 Metadata Management</td>
+<td>3.4.1 Services management</td>
+</tr>
+<tr class="even">
+<td>Verify metadata completeness: documentation, disclosure record, lineage</td>
+<td>Metadata quality report</td>
+<td>OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="odd">
+<td>Govern the release version store: retention, immutability, corrections, reconciliation with the catalogue</td>
+<td>Release store audit</td>
+<td>DLM-5 Store and version data; DLM-7 Revise data; DLM-10 Archive and preserve data</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="even">
+<td>Track metadata lineage from approved product to released data</td>
+<td>Metadata lineage audit</td>
+<td>DLM-8 Monitor data quality, lineage and use</td>
+<td>CSDA Traceability</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-06 management feedback loop: releases and usage data from Execution flowing through the five management sub-processes, with dashboards to the process owner, quality reports to the quality manager, compliance reports to VS-07, and improvement recommendations back to Design and user insight to VS-10</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="metadata-per-process-type" class="level4">
+<h4 class="anchored" data-anchor-id="metadata-per-process-type">Metadata per process type</h4>
+<p>Metadata is what enables responsible use: every released product carries the documentation, methodology, and reference metadata users need. The table shows the data metadata each process type of VS-06 contributes; the paradata are listed in <a href="../framework/value-chain.html#standard-vs-activities">Standard activities in every value stream</a>. VS-06 also records as paradata the accessibility test outcomes in Implementation, and the adherence to the release calendar, the embargo handling, and the publication run identifiers in Execution.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Process type</th>
+<th>Data metadata produced</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design</td>
+<td>Dissemination and access strategy, channel and format specifications, release and disclosure policy, documentation standards</td>
+</tr>
+<tr class="even">
+<td>Implementation</td>
+<td>Channel configurations, API and dataset templates, disclosure-control parameters, documentation templates</td>
+</tr>
+<tr class="odd">
+<td>Execution</td>
+<td>Documentation per release, record of the final disclosure control applied, channels and formats published, release timestamp, metadata of the access services</td>
+</tr>
+<tr class="even">
+<td>Management</td>
+<td>Usage statistics, accessibility assessments, user satisfaction measures, release quality reports</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-06 business object lifecycle: design artefacts govern implementation assets, which produce the pipeline that releases the approved product (#4) as Released Data (#5), consumed as Consumed Data (#6), generating disclosure records, documentation, and usage data that management assesses and feeds back to design</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="actors-and-roles" class="level3">
+<h3 class="anchored" data-anchor-id="actors-and-roles">5. Actors and roles</h3>
+<p>VS-06 is where the NSI meets the users of its statistics. The table shows the actors and the reference roles involved. Specialised role names used in an NSI map onto these reference roles (see <em>Role names in the value streams</em>); for example, the dissemination manager, the channel and service designer, the open-data and API product owner, and the user support lead in the original VS-06 description are all ROL-22 Dissemination and service manager. Access for researchers is organised in the collaboration COL-04 <em>Research access partnership</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Actor or role</th>
+<th>ID</th>
+<th>Process type</th>
+<th>Responsibility in VS-06</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data user</td>
+<td>ACT-05</td>
+<td>External</td>
+<td>Consumes released data: policy makers, researchers, journalists, businesses, the public</td>
+</tr>
+<tr class="even">
+<td>International statistical organisation</td>
+<td>ACT-07</td>
+<td>External</td>
+<td>Receives deliveries under agreed transmission programmes</td>
+</tr>
+<tr class="odd">
+<td>Process owner</td>
+<td>ROL-01</td>
+<td>Management</td>
+<td>Accountable for the end-to-end performance of VS-06</td>
+</tr>
+<tr class="even">
+<td>Data owner</td>
+<td>ROL-02</td>
+<td>Management</td>
+<td>Accountable for State #5: confidentiality, equal access, and the quality of the release</td>
+</tr>
+<tr class="odd">
+<td>Data steward</td>
+<td>ROL-03</td>
+<td>Execution</td>
+<td>Maintains release documentation, catalogue entries, and errata</td>
+</tr>
+<tr class="even">
+<td>Data custodian</td>
+<td>ROL-04</td>
+<td>Execution</td>
+<td>Operates release channels, integrity protection, and the embargo log</td>
+</tr>
+<tr class="odd">
+<td>Disclosure control specialist</td>
+<td>ROL-16</td>
+<td>Design, Execution</td>
+<td>Designs the final disclosure-control rules and de-identification standards, and applies and signs off the final disclosure control</td>
+</tr>
+<tr class="even">
+<td>Dissemination and service manager</td>
+<td>ROL-22</td>
+<td>Design, Execution</td>
+<td>Designs the dissemination and access strategy, the service portfolio, the channels, formats, APIs, dashboards, and secure research access; operates the open-data, API, and dashboard services; leads documentation, helpdesk, and training</td>
+</tr>
+<tr class="odd">
+<td>Data engineer</td>
+<td>ROL-10</td>
+<td>Implementation</td>
+<td>Builds and configures publication channels, APIs, and access services on VS-09 platforms</td>
+</tr>
+<tr class="even">
+<td>Platform engineer</td>
+<td>ROL-11</td>
+<td>Implementation</td>
+<td>Configures release tooling, access controls, and disclosure-control tooling</td>
+</tr>
+<tr class="odd">
+<td>Test manager</td>
+<td>ROL-12</td>
+<td>Implementation</td>
+<td>Plans and carries out testing of the release pipeline: technical, accessibility, and security tests</td>
+</tr>
+<tr class="even">
+<td>Release manager</td>
+<td>ROL-17</td>
+<td>Execution</td>
+<td>Manages the release: timing, embargo, equal access, and publication across channels</td>
+</tr>
+<tr class="odd">
+<td>Quality manager</td>
+<td>ROL-18</td>
+<td>Management</td>
+<td>Monitors usage and accessibility indicators, produces quality reports, and drives continuous improvement</td>
+</tr>
+<tr class="even">
+<td>Compliance officer</td>
+<td>ROL-19</td>
+<td>Management</td>
+<td>Ensures data protection, confidentiality, and equal-access compliance with VS-07, and produces audit reports</td>
+</tr>
+<tr class="odd">
+<td>Relationship manager</td>
+<td>ROL-23</td>
+<td>Execution</td>
+<td>Promotes releases and gathers user feedback, with VS-10</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="capabilities-processes-and-functions" class="level3">
+<h3 class="anchored" data-anchor-id="capabilities-processes-and-functions">6. Capabilities, processes, and functions</h3>
+<section id="capability-foundations" class="level4">
+<h4 class="anchored" data-anchor-id="capability-foundations">Capability foundations</h4>
+<p>The table shows which capabilities from the SAF capability model VS-06 relies on, and what role they play. NSIs can use it to map the value stream to their own organisation.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Capability group</th>
+<th>Capabilities</th>
+<th>Role in VS-06</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.1 Statistical design and build</td>
+<td>1.1.2 Design statistics product, 1.1.3 Build statistics product</td>
+<td>Design dissemination products and services, and build the release and access pipeline</td>
+</tr>
+<tr class="even">
+<td>1.3 Processing</td>
+<td>1.3.7 Statistical disclosure</td>
+<td>Apply final disclosure control before release</td>
+</tr>
+<tr class="odd">
+<td>1.5 Dissemination</td>
+<td>1.5.1 Publication management, 1.5.2 Promotion to use, 1.5.3 Facilitate data access, 1.5.4 Statistical information management</td>
+<td>Release according to the calendar with equal access, promote releases, and make data and metadata available through several channels</td>
+</tr>
+<tr class="even">
+<td>2.1 Data management</td>
+<td>2.1.1 Data lifecycle management, 2.1.2 Metadata management, 2.1.3 Statistical quality management</td>
+<td>Manage released data and its metadata, and the quality of release and access</td>
+</tr>
+<tr class="odd">
+<td>2.2 Research</td>
+<td>2.2.4 Data services, 2.2.5 User research</td>
+<td>Provide microdata for research, and understand user needs with VS-10</td>
+</tr>
+<tr class="even">
+<td>3.2 Computerisation and automation</td>
+<td>3.2.1 Application development, 3.2.2 Functional management</td>
+<td>Build and maintain publication channels, APIs, and dashboards, with VS-09 platforms</td>
+</tr>
+<tr class="odd">
+<td>3.3 Security and privacy</td>
+<td>3.3.1 Privacy management, 3.3.2 Security planning, 3.3.4 Logical identity and access control</td>
+<td>Apply final disclosure control and secure access to released data and microdata</td>
+</tr>
+<tr class="even">
+<td>3.4 Customer and chain interaction</td>
+<td>3.4.1 Services management</td>
+<td>Design and manage the dissemination services and their service levels</td>
+</tr>
+<tr class="odd">
+<td>4.1 Strategy and leadership</td>
+<td>4.1.1 Strategy and governance, 4.1.2 Policy and planning, 4.1.4 Improvement management, 4.1.5 Accountability</td>
+<td>Govern release, manage the equal-access policy, plan improvements, report on compliance</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="stages-processes-and-functions" class="level4">
+<h4 class="anchored" data-anchor-id="stages-processes-and-functions">Stages, processes, and functions</h4>
+<p>The table shows which SAF business processes realise each stage of VS-06 and which business functions they mainly use.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Realised by processes</th>
+<th>Main functions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-06.1 Plan Dissemination and Access Strategy</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>FUN-3.1 Design and build statistical products; FUN-3.6 Disseminate statistics</td>
+</tr>
+<tr class="even">
+<td>VS-06.2 Prepare Data for Dissemination</td>
+<td>PRD-6.4 Apply disclosure control; PRD-7.1 Update output systems</td>
+<td>FUN-3.5 Protect statistical confidentiality; FUN-3.6 Disseminate statistics</td>
+</tr>
+<tr class="odd">
+<td>VS-06.3 Publish and Provide Access Services</td>
+<td>PRD-7.2 Produce dissemination products; PRD-7.3 Release dissemination products; MDS-1 Authorise institutions and researchers; MDS-2 Assess access applications; MDS-3 Prepare research datasets; MDS-4 Provide a secure processing environment; MDS-5 Facilitate privacy-preserving analysis; MDS-7 Check and release output; DSP-2 Publish data offerings</td>
+<td>FUN-3.6 Disseminate statistics; FUN-8.1 Manage research access; FUN-8.2 Prepare research data; FUN-8.3 Operate secure research environments; FUN-8.4 Control research output; FUN-8.5 Enable privacy-preserving analysis; FUN-9.1 Manage data space participation</td>
+</tr>
+<tr class="even">
+<td>VS-06.4 Support and Engage Users</td>
+<td>PRD-7.4 Promote dissemination products; PRD-7.5 Provide user support; MDS-6 Support researchers</td>
+<td>FUN-3.6 Disseminate statistics; FUN-8.3 Operate secure research environments; FUN-10.9 Manage users and services</td>
+</tr>
+<tr class="odd">
+<td>VS-06.5 Monitor Usage and Feedback</td>
+<td>PRD-8.1 Gather evaluation inputs; MDS-8 Monitor use and compliance; MDS-9 Close projects</td>
+<td>FUN-8.1 Manage research access; FUN-8.3 Operate secure research environments; FUN-10.9 Manage users and services</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-06 (b) stages realised by processes and functions</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="framework-mappings" class="level4">
+<h4 class="anchored" data-anchor-id="framework-mappings">Framework mappings</h4>
+<p>This reference table maps each process type of VS-06 to the SAF business processes, the international frameworks (GSBPM, GAMSO, CSDA), and the SAF capability model. It is intended for architects and auditors; the rest of this section does not depend on it.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Process type</th>
+<th>SAF business processes</th>
+<th>GSBPM</th>
+<th>GAMSO</th>
+<th>CSDA</th>
+<th>SAF capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design</td>
+<td>PRD-1.2, PRD-2.1, PRD-2.5, DLM-1, DLM-4, DLM-7, OVA-2</td>
+<td>Phase 1 Specify Needs (1.2), Phase 2 Design (2.1, 2.5)</td>
+<td>Production (design activities), Capability Management</td>
+<td>Data Governance, Metadata Management, Dissemination</td>
+<td>1.1.2 Design statistics product, 2.1.2 Metadata management, 3.3.1 Privacy management</td>
+</tr>
+<tr class="even">
+<td>Implementation</td>
+<td>PRD-3.2 to PRD-3.7, DLM-2, DLM-3, OVA-2, MDS-4</td>
+<td>Phase 3 Build (3.2 to 3.7)</td>
+<td>Capability Management</td>
+<td>Dissemination (set-up), Data Governance (configuration)</td>
+<td>1.1.3 Build statistics product, 3.2.1 Application development, 3.2.2 Functional management</td>
+</tr>
+<tr class="odd">
+<td>Execution</td>
+<td>PRD-2.1, PRD-6.4, PRD-7.1 to PRD-7.5, PRD-8.1, PRD-8.2, DLM-2, DLM-3, DLM-7, DLM-8, OVA-2, MDS-1 to MDS-9, DSP-2</td>
+<td>6.4 Apply disclosure control; Phase 7 Disseminate (7.1 to 7.5); Phase 8 Evaluate for usage monitoring; 2.1 in its recurrent form</td>
+<td>Production (execution), Corporate Support (communication)</td>
+<td>Dissemination (execution)</td>
+<td>1.3.7 Statistical disclosure, 1.5.1 to 1.5.4, 2.1.2 Metadata management, 2.2.4 Data services, 3.3.1 Privacy management</td>
+</tr>
+<tr class="even">
+<td>Management</td>
+<td>OVA-1, OVA-2, OVA-4, DLM-5, DLM-7, DLM-8, DLM-10, MDS-8, PRD-8.1 to PRD-8.3</td>
+<td>Phase 8 Evaluate; overarching Quality Management and Metadata Management</td>
+<td>Corporate Support (Quality Management, Communication), Capability Management (improvement)</td>
+<td>Data Quality, Data Governance, Traceability</td>
+<td>2.1.3 Statistical quality management, 4.1.4 Improvement management, 4.1.5 Accountability</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="principles" class="level3">
+<h3 class="anchored" data-anchor-id="principles">7. Principles</h3>
+<p>The following principles govern VS-06 most directly.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Principle</th>
+<th>Statement</th>
+<th>Application in VS-06</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-P01</td>
+<td>Actively participate in open-source communities to maintain collective control over statistical processes</td>
+<td>Dissemination platforms, APIs, and visualisation tooling are built with open-source communities, and the NSI contributes back, so that it keeps collective control over critical delivery capabilities instead of depending on vendors.</td>
+</tr>
+<tr class="even">
+<td>SAF-P07</td>
+<td>Implement loosely coupled processes and systems</td>
+<td>VS-06 consumes approved products through the State #4 interface without knowledge of how they were composed, and exposes released data through stable, versioned access services.</td>
+</tr>
+<tr class="odd">
+<td>SAF-P08</td>
+<td>Data is shared property</td>
+<td>Released data is made broadly and equally available to all authorised users through open and standard channels, which maximises reuse while respecting confidentiality.</td>
+</tr>
+<tr class="even">
+<td>SAF-P09</td>
+<td>No data without metadata and classification</td>
+<td>Every released product carries the metadata, methodology notes, and documentation users need to interpret it correctly. Released datasets come with structural and reference metadata, for example in SDMX.</td>
+</tr>
+<tr class="odd">
+<td>SAF-P10</td>
+<td>Security by design</td>
+<td>Access controls, secure channels, and integrity protection are built into the publication and access services from the start, including secure research environments for sensitive microdata.</td>
+</tr>
+<tr class="even">
+<td>SAF-P11</td>
+<td>Privacy by design</td>
+<td>Final disclosure control and de-identification are applied before release. The disclosure risk of every released product and microdata file is assessed and cleared by design.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Principles that apply across the process types
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>SAF-P11 is the release gate: disclosure control is designed in <em>Design Disclosure Control and De-identification for Release</em> and <em>Design Release Governance and Audit Framework</em>, implemented in <em>Configure Disclosure Control and Release Tooling</em>, and applied in VS-06.2 before anything is published. SAF-P08 and SAF-P09 drive open, well-documented release with equal access. SAF-P10 governs the access services and secure research environments in VS-06.3 and VS-06.4. SAF-P07 governs the State #4 intake interface from VS-05 and the access interface for released data to external users.</p>
+</div>
+</div>
+</section>
+<section id="interfaces-services-and-events" class="level3">
+<h3 class="anchored" data-anchor-id="interfaces-services-and-events">8. Interfaces, services, and events</h3>
+<p><strong>Boundary interfaces</strong></p>
+<p>VS-06 has two boundary interfaces: intake from VS-05, and release to users outside the NSI.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Boundary</th>
+<th>Handed over</th>
+<th>Required metadata</th>
+<th>Trigger</th>
+<th>Responsibility transfer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-05 → VS-06 (intake)</td>
+<td>Approved statistical product (#4, approved)</td>
+<td>Component lineage, composition method, propagated accuracy, coherence results, approval record, confidentiality status, product version identifier, classification</td>
+<td><em>Statistical Product Registered</em></td>
+<td>VS-05 keeps custody of the product version; VS-06 takes responsibility for final disclosure control, release, and service delivery on receipt of the event</td>
+</tr>
+<tr class="even">
+<td>VS-06 → users and society (release)</td>
+<td>Released data (#5): published statistics, de-identified microdata, access services</td>
+<td>Final disclosure-control record, documentation and methodology notes, reference and structural metadata, channels and formats, release timestamp, release version identifier, lineage to the approved product</td>
+<td><em>Statistics Released</em></td>
+<td>The NSI publishes and serves; external users consume the data as #6, outside NSI control. Usage and feedback flow back to VS-06.5 and VS-10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Business services</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Service</th>
+<th>Offered to</th>
+<th>Realised in</th>
+<th>Interfaces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dissemination preparation service</td>
+<td>Release teams, for approved products from VS-05</td>
+<td>VS-06.2 Prepare Data for Dissemination</td>
+<td>Intake of the approved #4 version on <em>Statistical Product Registered</em></td>
+</tr>
+<tr class="even">
+<td>Publication and open-data service</td>
+<td>Data users, the public, businesses</td>
+<td>VS-06.3 Publish and Provide Access Services</td>
+<td>Web publication and bulk open-data download with machine-readable metadata; equal-access release timing enforced</td>
+</tr>
+<tr class="odd">
+<td>API and dashboard service</td>
+<td>Researchers, developers, analysts</td>
+<td>VS-06.3 Publish and Provide Access Services</td>
+<td>SDMX-compliant API to query released series, datasets, and metadata; interactive dashboards fed from the released datasets</td>
+</tr>
+<tr class="even">
+<td>Secure research access service</td>
+<td>Accredited researchers</td>
+<td>VS-06.3 Publish and Provide Access Services</td>
+<td>Mediated access to de-identified microdata in a controlled environment, with output checking</td>
+</tr>
+<tr class="odd">
+<td>User support service</td>
+<td>All data users</td>
+<td>VS-06.4 Support and Engage Users</td>
+<td>Documentation, helpdesk, training</td>
+</tr>
+<tr class="even">
+<td>Usage and feedback service</td>
+<td>Process owners, VS-10, the wider chain</td>
+<td>VS-06.5 Monitor Usage and Feedback</td>
+<td>Usage statistics, feedback log, usage insight reports</td>
+</tr>
+<tr class="odd">
+<td>Design and strategy service</td>
+<td>Dissemination and service managers, channel designers</td>
+<td>All Design sub-processes of VS-06</td>
+<td>Design documents, release and disclosure policy</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Business events</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Triggers or marks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Design artefacts published</em></td>
+<td>Start of Implementation after a design change</td>
+</tr>
+<tr class="even">
+<td><em>Pipeline production-ready</em></td>
+<td>End of Implementation; Execution can start</td>
+</tr>
+<tr class="odd">
+<td><em>Statistical Product Registered</em></td>
+<td>Start of VS-06.1 for that product (received from VS-05)</td>
+</tr>
+<tr class="even">
+<td>Disclosure gate passed / failed</td>
+<td>Outcome of the disclosure-risk check in VS-06.2; failure returns the product for further protection</td>
+</tr>
+<tr class="odd">
+<td><em>Statistics Released</em></td>
+<td>Completion of the release in VS-06.3; the data is available to users</td>
+</tr>
+<tr class="even">
+<td>Usage and feedback received</td>
+<td>Input for VS-06.5 and VS-10</td>
+</tr>
+<tr class="odd">
+<td><em>Improvement recommendations issued</em></td>
+<td>Input for Design and VS-10 from <em>Continuous Improvement</em></td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-06 event choreography between VS-05, NSI teams, users, and process management across Design, Implementation, Execution (product registered, final disclosure control, gate passed and release with managed timing or gate failed and return for protection, documentation and support, usage and feedback), and Management (usage and punctuality, accessibility, compliance reports, improvement recommendations to Design and VS-10)</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><strong>Interaction with the supporting value streams</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Value stream</th>
+<th>Provides to VS-06</th>
+<th>Receives from VS-06</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-07 Governance and Compliance</td>
+<td>Data protection and confidentiality law compliance, release and equal-access policy oversight</td>
+<td>Disclosure, equal-access, accessibility, and security compliance reports</td>
+</tr>
+<tr class="even">
+<td>VS-08 Innovation and Methodological Development</td>
+<td>New methods and tools, for example for disclosure control and dissemination</td>
+<td>Improvement needs</td>
+</tr>
+<tr class="odd">
+<td>VS-09 Infrastructure and Platform Enablement</td>
+<td>Portals, APIs, dashboards, secure research environments</td>
+<td>Capacity and channel availability requirements</td>
+</tr>
+<tr class="even">
+<td>VS-10 Customer and Stakeholder Engagement</td>
+<td>User needs and segmentation, communication with stakeholders</td>
+<td>Usage data, feedback, and user insight</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-performance-indicators" class="level3">
+<h3 class="anchored" data-anchor-id="key-performance-indicators">9. Key performance indicators</h3>
+<p>The key performance indicators are collected per release cycle in <em>Monitor Process Performance</em>. They feed the dashboard that the process owner reviews.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>KPI</th>
+<th>Description</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>On-time release rate</td>
+<td>Share of releases published exactly in their calendar slot</td>
+<td>Per release, per cycle</td>
+</tr>
+<tr class="even">
+<td>Disclosure gate pass rate</td>
+<td>Share of releases passing the disclosure-risk gate on the first run</td>
+<td>Per release, per cycle</td>
+</tr>
+<tr class="odd">
+<td>Channel availability</td>
+<td>Uptime of API and access services</td>
+<td>Per channel</td>
+</tr>
+<tr class="even">
+<td>Usage and reach</td>
+<td>Downloads, API calls, and dashboard views per release</td>
+<td>Per release, per channel</td>
+</tr>
+<tr class="odd">
+<td>User satisfaction</td>
+<td>Satisfaction measure from feedback</td>
+<td>Per cycle</td>
+</tr>
+<tr class="even">
+<td>Support response time</td>
+<td>Time to resolve user queries</td>
+<td>Per cycle</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">10. Examples</h3>
+<p><strong>Labour market statistics.</strong> The dissemination strategy targets policy makers with a press release and commentary on the release date, researchers with an API and downloadable series, and the public with an interactive dashboard. The release calendar is published in advance. For the Q3-2026 release, the team confirms the date and slot, the press embargo for accredited media, and the channels, with no change to the strategy this cycle. At 09:00 on the release date, the figures go live at the same moment on the website, the API, and the dashboard. Accredited media that received the embargoed copy under agreement may publish at the same moment. No figure is available before the release time.</p>
+<p><strong>Open data and API.</strong> The team configures an SDMX-based API and a bulk open-data download for the labour market series on the NSI’s VS-09 platform, with rate limiting and machine-readable metadata. A public dashboard is fed from the same released datasets, so every channel shows the same figures.</p>
+<p><strong>Research microdata.</strong> Researchers who access de-identified business microdata in the secure research environment receive the data dictionary, methodology notes, and an onboarding session. The helpdesk handles requests for output checking, so that the results researchers export also meet the disclosure rules.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><strong>Toolkit:</strong> SAF-TK-V06 VS-06 maturity checklist and scenarios</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="../framework/vs-05.html" class="pagination-link" aria-label="VS-05 Statistical Product Composition">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">VS-05 Statistical Product Composition</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../framework/vs-07.html" class="pagination-link" aria-label="VS-07 Governance and Compliance">
+        <span class="nav-page-text">VS-07 Governance and Compliance</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

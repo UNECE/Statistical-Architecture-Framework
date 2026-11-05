@@ -1,0 +1,2589 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>SAF Toolkit – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-f374ad13d1ca50ffd7110ca4e9b8aceb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./framework/index.html"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./toolkit.html" aria-current="page"> 
+<span class="menu-text">Toolkit</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#about-the-toolkit" id="toc-about-the-toolkit" class="nav-link active" data-scroll-target="#about-the-toolkit">1. About the toolkit</a>
+  <ul class="collapse">
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose">Purpose</a></li>
+  <li><a href="#what-an-instrument-is" id="toc-what-an-instrument-is" class="nav-link" data-scroll-target="#what-an-instrument-is">What an instrument is</a></li>
+  <li><a href="#identifiers" id="toc-identifiers" class="nav-link" data-scroll-target="#identifiers">Identifiers</a></li>
+  <li><a href="#how-the-toolkit-relates-to-the-framework" id="toc-how-the-toolkit-relates-to-the-framework" class="nav-link" data-scroll-target="#how-the-toolkit-relates-to-the-framework">How the toolkit relates to the framework</a></li>
+  <li><a href="#status-of-instruments" id="toc-status-of-instruments" class="nav-link" data-scroll-target="#status-of-instruments">Status of instruments</a></li>
+  <li><a href="#reuse-and-licence" id="toc-reuse-and-licence" class="nav-link" data-scroll-target="#reuse-and-licence">Reuse and licence</a></li>
+  </ul></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">2. Getting started</a>
+  <ul class="collapse">
+  <li><a href="#three-entries-one-destination" id="toc-three-entries-one-destination" class="nav-link" data-scroll-target="#three-entries-one-destination">Three entries, one destination</a></li>
+  <li><a href="#choose-your-route" id="toc-choose-your-route" class="nav-link" data-scroll-target="#choose-your-route">Choose your route</a></li>
+  <li><a href="#saf-tk-g01-architecture-function-quick-check" id="toc-saf-tk-g01-architecture-function-quick-check" class="nav-link" data-scroll-target="#saf-tk-g01-architecture-function-quick-check">SAF-TK-G01 Architecture function quick check</a></li>
+  <li><a href="#saf-tk-r01-strategic-route" id="toc-saf-tk-r01-strategic-route" class="nav-link" data-scroll-target="#saf-tk-r01-strategic-route">SAF-TK-R01 Strategic route</a></li>
+  <li><a href="#saf-tk-r02-problem-driven-route" id="toc-saf-tk-r02-problem-driven-route" class="nav-link" data-scroll-target="#saf-tk-r02-problem-driven-route">SAF-TK-R02 Problem-driven route</a></li>
+  <li><a href="#saf-tk-r03-project-route" id="toc-saf-tk-r03-project-route" class="nav-link" data-scroll-target="#saf-tk-r03-project-route">SAF-TK-R03 Project route</a></li>
+  <li><a href="#saf-tk-r04-alignment-route" id="toc-saf-tk-r04-alignment-route" class="nav-link" data-scroll-target="#saf-tk-r04-alignment-route">SAF-TK-R04 Alignment route</a></li>
+  </ul></li>
+  <li><a href="#general-instruments" id="toc-general-instruments" class="nav-link" data-scroll-target="#general-instruments">3. General instruments</a></li>
+  <li><a href="#motivation-instruments" id="toc-motivation-instruments" class="nav-link" data-scroll-target="#motivation-instruments">4. Motivation instruments</a>
+  <ul class="collapse">
+  <li><a href="#saf-tk-m03-assessment-record-worked-instrument" id="toc-saf-tk-m03-assessment-record-worked-instrument" class="nav-link" data-scroll-target="#saf-tk-m03-assessment-record-worked-instrument">SAF-TK-M03 Assessment record (worked instrument)</a></li>
+  </ul></li>
+  <li><a href="#strategy-instruments" id="toc-strategy-instruments" class="nav-link" data-scroll-target="#strategy-instruments">5. Strategy instruments</a></li>
+  <li><a href="#value-stream-instruments" id="toc-value-stream-instruments" class="nav-link" data-scroll-target="#value-stream-instruments">6. Value stream instruments</a>
+  <ul class="collapse">
+  <li><a href="#saf-tk-v01" id="toc-saf-tk-v01" class="nav-link" data-scroll-target="#saf-tk-v01">SAF-TK-V01 VS-01 Data Acquisition and Ingestion</a>
+  <ul class="collapse">
+  <li><a href="#scenario-a-household-budget-survey-primary-collection" id="toc-scenario-a-household-budget-survey-primary-collection" class="nav-link" data-scroll-target="#scenario-a-household-budget-survey-primary-collection">Scenario A: Household Budget Survey (Primary Collection)</a></li>
+  <li><a href="#scenario-b-tax-register-administrative-data-secondary-collection" id="toc-scenario-b-tax-register-administrative-data-secondary-collection" class="nav-link" data-scroll-target="#scenario-b-tax-register-administrative-data-secondary-collection">Scenario B: Tax Register Administrative Data (Secondary Collection)</a></li>
+  <li><a href="#scenario-c-web-scraped-price-data-emerging-source" id="toc-scenario-c-web-scraped-price-data-emerging-source" class="nav-link" data-scroll-target="#scenario-c-web-scraped-price-data-emerging-source">Scenario C: Web-Scraped Price Data (Emerging Source)</a></li>
+  </ul></li>
+  <li><a href="#saf-tk-v02" id="toc-saf-tk-v02" class="nav-link" data-scroll-target="#saf-tk-v02">SAF-TK-V02 VS-02 Data Standardization and Integration</a>
+  <ul class="collapse">
+  <li><a href="#scenario-a-labour-force-survey-survey-deterministic-mapping" id="toc-scenario-a-labour-force-survey-survey-deterministic-mapping" class="nav-link" data-scroll-target="#scenario-a-labour-force-survey-survey-deterministic-mapping">Scenario A: Labour Force Survey (Survey, Deterministic Mapping)</a></li>
+  <li><a href="#scenario-b-tax-register-to-business-statistics-multi-source-integration" id="toc-scenario-b-tax-register-to-business-statistics-multi-source-integration" class="nav-link" data-scroll-target="#scenario-b-tax-register-to-business-statistics-multi-source-integration">Scenario B: Tax Register to Business Statistics (Multi-Source Integration)</a></li>
+  <li><a href="#scenario-c-web-scraped-price-data-emerging-source-standardisation" id="toc-scenario-c-web-scraped-price-data-emerging-source-standardisation" class="nav-link" data-scroll-target="#scenario-c-web-scraped-price-data-emerging-source-standardisation">Scenario C: Web-Scraped Price Data (Emerging Source Standardisation)</a></li>
+  </ul></li>
+  <li><a href="#saf-tk-v03" id="toc-saf-tk-v03" class="nav-link" data-scroll-target="#saf-tk-v03">SAF-TK-V03 VS-03 Data Editing and Enrichment</a>
+  <ul class="collapse">
+  <li><a href="#scenario-a-labour-force-survey-coding-editing-and-imputation" id="toc-scenario-a-labour-force-survey-coding-editing-and-imputation" class="nav-link" data-scroll-target="#scenario-a-labour-force-survey-coding-editing-and-imputation">Scenario A: Labour Force Survey (Coding, Editing, and Imputation)</a></li>
+  <li><a href="#scenario-b-tax-register-to-business-statistics-editing-conversion-integration-derivation" id="toc-scenario-b-tax-register-to-business-statistics-editing-conversion-integration-derivation" class="nav-link" data-scroll-target="#scenario-b-tax-register-to-business-statistics-editing-conversion-integration-derivation">Scenario B: Tax Register to Business Statistics (Editing, Conversion, Integration, Derivation)</a></li>
+  <li><a href="#scenario-c-web-scraped-price-data-coding-imputation-derivation" id="toc-scenario-c-web-scraped-price-data-coding-imputation-derivation" class="nav-link" data-scroll-target="#scenario-c-web-scraped-price-data-coding-imputation-derivation">Scenario C: Web-Scraped Price Data (Coding, Imputation, Derivation)</a></li>
+  </ul></li>
+  <li><a href="#saf-tk-v04" id="toc-saf-tk-v04" class="nav-link" data-scroll-target="#saf-tk-v04">SAF-TK-V04 VS-04 Estimation, Analysis, and Statistical Modeling</a>
+  <ul class="collapse">
+  <li><a href="#scenario-a-labour-force-survey-design-based-estimation" id="toc-scenario-a-labour-force-survey-design-based-estimation" class="nav-link" data-scroll-target="#scenario-a-labour-force-survey-design-based-estimation">Scenario A: Labour Force Survey (Design-Based Estimation)</a></li>
+  <li><a href="#scenario-b-tax-register-to-business-statistics-register-based-small-area-estimation" id="toc-scenario-b-tax-register-to-business-statistics-register-based-small-area-estimation" class="nav-link" data-scroll-target="#scenario-b-tax-register-to-business-statistics-register-based-small-area-estimation">Scenario B: Tax Register to Business Statistics (Register-Based + Small-Area Estimation)</a></li>
+  <li><a href="#scenario-c-web-scraped-price-data-index-estimation" id="toc-scenario-c-web-scraped-price-data-index-estimation" class="nav-link" data-scroll-target="#scenario-c-web-scraped-price-data-index-estimation">Scenario C: Web-Scraped Price Data (Index Estimation)</a></li>
+  </ul></li>
+  <li><a href="#saf-tk-v05" id="toc-saf-tk-v05" class="nav-link" data-scroll-target="#saf-tk-v05">SAF-TK-V05 VS-05 Statistical Product Composition</a>
+  <ul class="collapse">
+  <li><a href="#scenario-a-labour-market-quarterly-publication" id="toc-scenario-a-labour-market-quarterly-publication" class="nav-link" data-scroll-target="#scenario-a-labour-market-quarterly-publication">Scenario A: Labour Market Quarterly Publication</a></li>
+  <li><a href="#scenario-b-structural-business-statistics-composite-product" id="toc-scenario-b-structural-business-statistics-composite-product" class="nav-link" data-scroll-target="#scenario-b-structural-business-statistics-composite-product">Scenario B: Structural Business Statistics Composite Product</a></li>
+  <li><a href="#scenario-c-consumer-price-index-product" id="toc-scenario-c-consumer-price-index-product" class="nav-link" data-scroll-target="#scenario-c-consumer-price-index-product">Scenario C: Consumer Price Index Product</a></li>
+  </ul></li>
+  <li><a href="#saf-tk-v06" id="toc-saf-tk-v06" class="nav-link" data-scroll-target="#saf-tk-v06">SAF-TK-V06 VS-06 Dissemination and Service Delivery</a>
+  <ul class="collapse">
+  <li><a href="#scenario-a-labour-market-quarterly-release" id="toc-scenario-a-labour-market-quarterly-release" class="nav-link" data-scroll-target="#scenario-a-labour-market-quarterly-release">Scenario A: Labour Market Quarterly Release</a></li>
+  <li><a href="#scenario-b-business-statistics-microdata-via-secure-research-environment" id="toc-scenario-b-business-statistics-microdata-via-secure-research-environment" class="nav-link" data-scroll-target="#scenario-b-business-statistics-microdata-via-secure-research-environment">Scenario B: Business Statistics — Microdata via Secure Research Environment</a></li>
+  <li><a href="#scenario-c-consumer-price-index-headline-release-and-dashboard" id="toc-scenario-c-consumer-price-index-headline-release-and-dashboard" class="nav-link" data-scroll-target="#scenario-c-consumer-price-index-headline-release-and-dashboard">Scenario C: Consumer Price Index — Headline Release and Dashboard</a></li>
+  </ul></li>
+  <li><a href="#saf-tk-v07" id="toc-saf-tk-v07" class="nav-link" data-scroll-target="#saf-tk-v07">SAF-TK-V07 VS-07 Governance and Compliance</a></li>
+  <li><a href="#saf-tk-v08" id="toc-saf-tk-v08" class="nav-link" data-scroll-target="#saf-tk-v08">SAF-TK-V08 VS-08 Innovation and Methodological Development</a></li>
+  <li><a href="#saf-tk-v09" id="toc-saf-tk-v09" class="nav-link" data-scroll-target="#saf-tk-v09">SAF-TK-V09 VS-09 Infrastructure and Platform Enablement</a></li>
+  <li><a href="#saf-tk-v10" id="toc-saf-tk-v10" class="nav-link" data-scroll-target="#saf-tk-v10">SAF-TK-V10 VS-10 Customer and Stakeholder Engagement</a></li>
+  </ul></li>
+  <li><a href="#planned-instruments" id="toc-planned-instruments" class="nav-link" data-scroll-target="#planned-instruments">7. Planned instruments</a></li>
+  <li><a href="#annex-a-instrument-index" id="toc-annex-a-instrument-index" class="nav-link" data-scroll-target="#annex-a-instrument-index">Annex A. Instrument index</a></li>
+  <li><a href="#annex-b-sources-and-reuse" id="toc-annex-b-sources-and-reuse" class="nav-link" data-scroll-target="#annex-b-sources-and-reuse">Annex B. Sources and reuse</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="toolkit.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">SAF Toolkit</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- GENERATED from docs/SAF Framework Toolkit.md by scripts/split-framework.py - do not edit -->
+<section id="about-the-toolkit" class="level1">
+<h1>1. About the toolkit</h1>
+<section id="purpose" class="level2">
+<h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
+<p>The SAF Toolkit helps an NSI apply the Statistical Architecture Framework (SAF) to its own organisation. The SAF describes <em>what</em> an NSI architecture contains and <em>why</em>. The toolkit describes <em>how</em> an NSI builds it, step by step. It offers templates, checklists and routes that an architect can use directly in a workshop, a strategy process or a project.</p>
+<p>The toolkit is published separately from the framework. The framework changes slowly, because it holds reference content. The toolkit changes faster, because it improves with every NSI that uses it. Each instrument refers to the SAF section it supports, and each SAF section refers back to its instruments.</p>
+</section>
+<section id="what-an-instrument-is" class="level2">
+<h2 class="anchored" data-anchor-id="what-an-instrument-is">What an instrument is</h2>
+<p>An instrument is one practical tool for one task. Three kinds exist:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Kind</th>
+<th>What it does</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Template</td>
+<td>A structure to record SAF elements for the NSI</td>
+<td>Assessment record</td>
+</tr>
+<tr class="even">
+<td>Checklist</td>
+<td>A short set of questions to test readiness or completeness</td>
+<td>Architecture function quick check</td>
+</tr>
+<tr class="odd">
+<td>Route</td>
+<td>An ordered set of instruments for one entry point</td>
+<td>Strategic route</td>
+</tr>
+</tbody>
+</table>
+<p>Maturity scans are a fourth kind. They are planned for a later version (see <em>Planned instruments</em>).</p>
+<p>Every instrument follows the same structure:</p>
+<ol type="1">
+<li><strong>Purpose.</strong> What the instrument produces, and why.</li>
+<li><strong>Use it when.</strong> The entry routes and TOGAF ADM phases in which it applies.</li>
+<li><strong>Inputs.</strong> The SAF elements and NSI information it needs.</li>
+<li><strong>Steps.</strong> How to fill it in, in a few short steps.</li>
+<li><strong>Template.</strong> The table or checklist itself.</li>
+<li><strong>Example (illustrative).</strong> A filled-in example, linked to SAF identifiers. Examples show the form; they are never requirements.</li>
+<li><strong>Output and next step.</strong> What the result feeds into, and which instrument comes next.</li>
+<li><strong>Sources.</strong> The standards and practices the instrument builds on.</li>
+</ol>
+</section>
+<section id="identifiers" class="level2">
+<h2 class="anchored" data-anchor-id="identifiers">Identifiers</h2>
+<p>Each instrument has a stable identifier: <strong>SAF-TK-</strong> followed by a letter for its area and a two-digit number.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Prefix</th>
+<th>Area</th>
+<th>Supports SAF chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-TK-G</td>
+<td>General</td>
+<td>Introduction (reading guide) and cross-cutting use</td>
+</tr>
+<tr class="even">
+<td>SAF-TK-M</td>
+<td>Motivation</td>
+<td>Motivation</td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-S</td>
+<td>Strategy</td>
+<td>Strategy</td>
+</tr>
+<tr class="even">
+<td>SAF-TK-V</td>
+<td>Value streams</td>
+<td>Statistical Data Value Chain</td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-R</td>
+<td>Routes</td>
+<td>All chapters</td>
+</tr>
+</tbody>
+</table>
+<p>Later areas follow the same pattern, for example SAF-TK-B for Business Architecture. Identifiers are never reused. A retired instrument keeps its identifier with the status <em>Retired</em>.</p>
+</section>
+<section id="how-the-toolkit-relates-to-the-framework" class="level2">
+<h2 class="anchored" data-anchor-id="how-the-toolkit-relates-to-the-framework">How the toolkit relates to the framework</h2>
+<p>Each SAF section that has an instrument ends with a toolkit reference in a fixed format:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><strong>Toolkit:</strong> SAF-TK-M03 Assessment record</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>The toolkit uses the same identifiers as the framework (SAF-D, SAF-G, SAF-P, capability numbers, VS-01 to VS-10). An NSI that fills in the templates therefore keeps the link to the SAF automatically, as the reading guide recommends (<em>Keep the SAF identifiers</em>). The toolkit refers to framework sections by their title, not by their number.</p>
+<p>The order of instruments follows the order in which an NSI usually works, not the order of the framework chapters. For example, the stakeholder map comes first, although Stakeholders is the last section of the Motivation chapter.</p>
+</section>
+<section id="status-of-instruments" class="level2">
+<h2 class="anchored" data-anchor-id="status-of-instruments">Status of instruments</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Planned</td>
+<td>Listed, not yet written</td>
+</tr>
+<tr class="even">
+<td>Draft</td>
+<td>Written, under review by the SAF core team</td>
+</tr>
+<tr class="odd">
+<td>Released</td>
+<td>Reviewed and published</td>
+</tr>
+<tr class="even">
+<td>Retired</td>
+<td>No longer maintained; identifier kept</td>
+</tr>
+</tbody>
+</table>
+<p>Review follows the same process as the SAF framework content.</p>
+</section>
+<section id="reuse-and-licence" class="level2">
+<h2 class="anchored" data-anchor-id="reuse-and-licence">Reuse and licence</h2>
+<p>The toolkit builds on existing instruments wherever possible (see <em>Annex B</em>). It refers to TOGAF and ArchiMate but does not reproduce their content (SAF-C1).</p>
+</section>
+</section>
+<section id="getting-started" class="level1">
+<h1>2. Getting started</h1>
+<p>There is no single starting point for the SAF. The right entry depends on what the NSI wants to achieve and how mature its architecture practice is. This chapter helps an NSI choose an entry, check whether it has the minimal architecture function in place, and follow the route that belongs to its entry.</p>
+<section id="three-entries-one-destination" class="level2">
+<h2 class="anchored" data-anchor-id="three-entries-one-destination">Three entries, one destination</h2>
+<p><strong>Strategic entry.</strong> The NSI starts with the Motivation layer. It recognises and assesses the SAF drivers, relates the SAF goals to its own strategic plan, and adopts or adapts the principles. It then assesses its capabilities against the SAF capability model and decides on courses of action. This entry suits an NSI that is preparing a new multi-annual strategy or modernisation programme.</p>
+<p><strong>Problem-driven entry.</strong> The NSI starts where it has a concrete problem, for example in data acquisition, metadata or dissemination. It uses the relevant value stream and steady states to analyse the problem, and works back to the capabilities and principles involved. This entry suits an NSI that wants quick, visible results and builds its architecture practice step by step.</p>
+<p><strong>Project entry.</strong> The NSI uses the SAF in one project, for example the design of a new data platform. The project applies the SAF principles and the business architecture as design guidance. The results are then reused in other projects. This entry suits an NSI with a small or new architecture function.</p>
+<p>The three entries lead to the same place. Over time, the NSI builds a complete and connected architecture, regardless of where it started. An NSI that already has a mature architecture function follows a fourth route: it aligns its existing architecture with the SAF.</p>
+</section>
+<section id="choose-your-route" class="level2">
+<h2 class="anchored" data-anchor-id="choose-your-route">Choose your route</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Situation of the NSI</th>
+<th>Entry</th>
+<th>Route</th>
+<th>First steps</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>New strategy or modernisation programme</td>
+<td>Strategic</td>
+<td>SAF-TK-R01 Strategic route</td>
+<td>Drivers and assessments; goals; capability assessment</td>
+</tr>
+<tr class="even">
+<td>Urgent problem in one part of the chain</td>
+<td>Problem-driven</td>
+<td>SAF-TK-R02 Problem-driven route</td>
+<td>Relevant value stream; steady states; capabilities involved</td>
+</tr>
+<tr class="odd">
+<td>New or small architecture function</td>
+<td>Project</td>
+<td>SAF-TK-R03 Project route</td>
+<td>Principles; business architecture for one project</td>
+</tr>
+<tr class="even">
+<td>Mature architecture function</td>
+<td>Strategic, combined with an alignment check</td>
+<td>SAF-TK-R04 Alignment route</td>
+<td>Map the existing architecture onto the SAF elements</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="saf-tk-g01-architecture-function-quick-check" class="level2">
+<h2 class="anchored" data-anchor-id="saf-tk-g01-architecture-function-quick-check">SAF-TK-G01 Architecture function quick check</h2>
+<p><strong>Purpose</strong></p>
+<p>Using the SAF requires an architecture function. That function does not have to be large, but some elements must be in place. TOGAF calls this the <em>architecture capability</em>. This checklist shows where the NSI stands, and which elements it needs before it starts its route.</p>
+<p>In the SAF capability model, this function is capability <strong>4.1.7 Architecture management</strong>: the ability to develop, maintain and govern the enterprise architecture of the NSI, and to use it in decisions on strategy, investment and change. It is closely related to <em>Policy and planning</em> (4.1.2) and <em>Change management</em> (4.1.3).</p>
+<p><strong>Use it when</strong></p>
+<p>At the start of every route, and again once a year.</p>
+<p><strong>Steps</strong></p>
+<ol type="1">
+<li>For each element, decide whether the NSI meets the minimal setup, the mature setup, or neither.</li>
+<li>Record the evidence, for example a mandate letter, a meeting agenda or a repository.</li>
+<li>For each element below the minimal setup, agree an action and an owner.</li>
+<li>Start the route once all elements reach the minimal setup. The project route can start earlier.</li>
+</ol>
+<p><strong>Template</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Minimal setup</th>
+<th>Mature setup</th>
+<th>Current state (none / minimal / mature)</th>
+<th>Evidence</th>
+<th>Action</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Roles</td>
+<td>One or two architects with a mandate from management</td>
+<td>A team of enterprise, domain and solution architects</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Governance</td>
+<td>Architecture topics on the agenda of an existing management meeting</td>
+<td>An architecture board with a clear mandate and a dispensation process</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Principles</td>
+<td>The SAF principles adopted, with a simple way to record deviations</td>
+<td>A maintained principle set, tested in every project review</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Repository and tooling</td>
+<td>A shared folder with ArchiMate models made in a free tool</td>
+<td>A managed architecture repository with versioning and reports</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Knowledge</td>
+<td>Basic knowledge of TOGAF and ArchiMate</td>
+<td>Certified architects and an internal training offer</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Involvement of the business</td>
+<td>Key decisions discussed with business owners</td>
+<td>Business owners for each capability and value stream</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>An NSI does not need all elements before it starts. A minimal setup is enough for the project route. The function can then grow with the use of the framework.</p>
+<p><strong>Output and next step</strong></p>
+<p>A known starting position. Continue with the first instrument of the chosen route. The result is also a first assessment of capability 4.1.7 in SAF-TK-S02.</p>
+<p><strong>Sources</strong></p>
+<p>SAF Introduction, <em>Reading guide</em>. SAF capability model, 4.1.7 <em>Architecture management</em>. TOGAF Standard, 10th Edition: architecture capability (referenced, not reproduced).</p>
+</section>
+<section id="saf-tk-r01-strategic-route" class="level2">
+<h2 class="anchored" data-anchor-id="saf-tk-r01-strategic-route">SAF-TK-R01 Strategic route</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Instrument</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>SAF-TK-G01 Architecture function quick check</td>
+<td>Known starting position</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>SAF-TK-M01 Stakeholder map</td>
+<td>Stakeholders and concerns</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>SAF-TK-M02 Driver recognition</td>
+<td>Applicable SAF and national drivers</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>SAF-TK-M03 Assessment record</td>
+<td>What each driver means for the NSI</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>SAF-TK-M04 Goal alignment</td>
+<td>SAF goals linked to the strategic plan</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>SAF-TK-M05 Outcome and indicator sheet</td>
+<td>Measurable outcomes</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>SAF-TK-M06 Principle set and dispensation record</td>
+<td>Adopted principle set</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>SAF-TK-S01 Capability model tailoring</td>
+<td>NSI capability model</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>SAF-TK-S02 Capability assessment and heatmap</td>
+<td>Investment priorities</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>SAF-TK-S05 Strategy and course of action canvas</td>
+<td>Chosen courses of action</td>
+</tr>
+<tr class="odd">
+<td>Throughout</td>
+<td>SAF-TK-G02 Adoption register</td>
+<td>Record of adopt, adapt, extend</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="saf-tk-r02-problem-driven-route" class="level2">
+<h2 class="anchored" data-anchor-id="saf-tk-r02-problem-driven-route">SAF-TK-R02 Problem-driven route</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Instrument</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>SAF-TK-S03 Value stream tailoring</td>
+<td>The stage where the problem occurs</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>SAF-TK-V01 to V10, for that value stream</td>
+<td>Maturity gaps across design, implementation, execution and management</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>SAF-TK-S02 Capability assessment (limited scope)</td>
+<td>The capabilities involved and their state</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>SAF-TK-M03 Assessment record</td>
+<td>The problem stated as an assessment of a driver</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>SAF-TK-M06 Principle set</td>
+<td>The principles that guide the solution</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>SAF-TK-M07 Requirements derivation</td>
+<td>Testable requirements for the solution</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>SAF-TK-M08 Constraint register</td>
+<td>Limits on the solution</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>SAF-TK-S05 Strategy and course of action canvas</td>
+<td>The tactic that solves the problem</td>
+</tr>
+<tr class="odd">
+<td>Throughout</td>
+<td>SAF-TK-G02 Adoption register</td>
+<td>Record of adopt, adapt, extend</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="saf-tk-r03-project-route" class="level2">
+<h2 class="anchored" data-anchor-id="saf-tk-r03-project-route">SAF-TK-R03 Project route</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Instrument</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>SAF-TK-G01 Architecture function quick check</td>
+<td>Minimal setup in place</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>SAF-TK-M06 Principle set</td>
+<td>Principles applied to the project</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>SAF-TK-M08 Constraint register</td>
+<td>Project constraints</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>SAF-TK-M07 Requirements derivation</td>
+<td>Project requirements, traced to goals and principles</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>SAF-TK-G02 Adoption register</td>
+<td>Reusable results recorded for the next project</td>
+</tr>
+</tbody>
+</table>
+<p>Business Architecture instruments will be added to this route in a later version.</p>
+</section>
+<section id="saf-tk-r04-alignment-route" class="level2">
+<h2 class="anchored" data-anchor-id="saf-tk-r04-alignment-route">SAF-TK-R04 Alignment route</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Instrument</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>SAF-TK-G01 Architecture function quick check</td>
+<td>Confirmed mature setup</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>SAF-TK-G02 Adoption register</td>
+<td>Existing NSI elements mapped onto SAF elements</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>SAF-TK-G03 Reference model mapping</td>
+<td>SAF aligned with national reference models</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>SAF-TK-S02 Capability assessment and heatmap</td>
+<td>Gaps against the SAF capability model</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="general-instruments" class="level1">
+<h1>3. General instruments</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Instrument</th>
+<th>Kind</th>
+<th>Supports</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-TK-G01</td>
+<td>Architecture function quick check</td>
+<td>Checklist</td>
+<td>Getting started (this toolkit); capability 4.1.7</td>
+<td>Draft</td>
+</tr>
+<tr class="even">
+<td>SAF-TK-G02</td>
+<td>Adoption register</td>
+<td>Template</td>
+<td>Reading guide, <em>Positioning the SAF in your own architecture</em></td>
+<td>Planned</td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-G03</td>
+<td>Reference model mapping</td>
+<td>Template</td>
+<td>Reading guide, <em>Combining the SAF with other reference models</em></td>
+<td>Planned</td>
+</tr>
+<tr class="even">
+<td>SAF-TK-G04</td>
+<td>Legal register</td>
+<td>Template</td>
+<td>Reading guide, <em>Legislation and regulation</em></td>
+<td>Planned</td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-G05</td>
+<td>Steady-state record and gate log</td>
+<td>Template</td>
+<td>Steady-State Architecture, <em>How each state is described</em> and each state’s <em>Quality gate</em></td>
+<td>Draft</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SAF-TK-G02 Adoption register.</strong> One table for all decisions to adopt, adapt or extend SAF elements. One row per element: the SAF identifier, the decision, the NSI identifier, an explanation, the owner and the date. The other templates each record one kind of element; the register brings their decisions together. It shows at a glance how the NSI architecture relates to the SAF, and what a new SAF version changes for the NSI.</p>
+<p><strong>SAF-TK-G03 Reference model mapping.</strong> Maps SAF principles, capabilities and standards to a national reference model such as NORA or GovS 005, with the order of precedence from the reading guide.</p>
+<p><strong>SAF-TK-G04 Legal register.</strong> Lists applicable legal provisions and the drivers, constraints, requirements and principles they lead to.</p>
+<p><strong>SAF-TK-G05 Steady-state record and gate log.</strong> Two parts. The <em>state record</em> documents how the NSI implements one steady state, using the ten attributes of the Steady-State Architecture as headings (definition, domains, quality gate, metadata, security, ownership, versioning, handover, traceability, examples). The <em>gate log</em> records each run of a quality gate. The gate criteria themselves stay in the framework, in each state’s <em>Quality gate</em> table; the log refers to them and does not repeat them.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Artefact version</th>
+<th>State</th>
+<th>Gate criterion (from the state’s gate table)</th>
+<th>Result (pass / conditional / fail)</th>
+<th>Flag or action</th>
+<th>Evidence</th>
+<th>Decided by</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>e.g.&nbsp;RD-TAX-2026Q3-001</em></td>
+<td><em>#1</em></td>
+<td><em>Completeness against agreement</em></td>
+<td><em>Conditional</em></td>
+<td><em>14 unknown business IDs flagged</em></td>
+<td><em>Intake report</em></td>
+<td><em>Role</em></td>
+<td><em>YYYY-MM-DD</em></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="motivation-instruments" class="level1">
+<h1>4. Motivation instruments</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Instrument</th>
+<th>Kind</th>
+<th>Supports SAF section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-TK-M01</td>
+<td>Stakeholder map</td>
+<td>Template</td>
+<td>Stakeholders</td>
+<td>Planned</td>
+</tr>
+<tr class="even">
+<td>SAF-TK-M02</td>
+<td>Driver recognition</td>
+<td>Template</td>
+<td>Drivers</td>
+<td>Planned</td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-M03</td>
+<td>Assessment record</td>
+<td>Template</td>
+<td>Assessment</td>
+<td>Draft</td>
+</tr>
+<tr class="even">
+<td>SAF-TK-M04</td>
+<td>Goal alignment</td>
+<td>Template</td>
+<td>Goals</td>
+<td>Planned</td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-M05</td>
+<td>Outcome and indicator sheet</td>
+<td>Template</td>
+<td>Outcomes</td>
+<td>Planned</td>
+</tr>
+<tr class="even">
+<td>SAF-TK-M06</td>
+<td>Principle set and dispensation record</td>
+<td>Template</td>
+<td>Architecture Principles</td>
+<td>Planned</td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-M07</td>
+<td>Requirements derivation</td>
+<td>Template</td>
+<td>Requirements</td>
+<td>Planned</td>
+</tr>
+<tr class="even">
+<td>SAF-TK-M08</td>
+<td>Constraint register</td>
+<td>Template</td>
+<td>Constraints</td>
+<td>Planned</td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-M09</td>
+<td>Value and meaning brief</td>
+<td>Template</td>
+<td>Value; Meaning</td>
+<td>Planned <strong>[K5]</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>SAF-TK-M01 Stakeholder map.</strong> Maps SAF-ST01 to SAF-ST07 onto named NSI stakeholders, with concerns, influence and the views each one needs. The NSI identifies who represents each stakeholder and records their concerns. The concerns determine which views the NSI produces: a CIO needs a capability and investment view, a privacy officer a view of data flows and protection measures. Review the map at the start of each architecture cycle.</p>
+<p><strong>SAF-TK-M02 Driver recognition.</strong> Records which SAF drivers apply, which national drivers are added, and who raised them. An NSI applies the drivers in four steps:</p>
+<ol type="1">
+<li><strong>Recognise.</strong> Decide which SAF drivers apply to the national situation, and add national drivers where needed.</li>
+<li><strong>Assess.</strong> Analyse what each driver means for the NSI: strengths, weaknesses, risks and opportunities (SAF-TK-M03).</li>
+<li><strong>Respond.</strong> Derive or confirm the goals that answer the assessed drivers (SAF-TK-M04).</li>
+<li><strong>Trace.</strong> Link capabilities, programmes and architecture decisions to the drivers they address.</li>
+</ol>
+<p><strong>SAF-TK-M04 Goal alignment.</strong> Links SAF goals to the goals of the NSI strategic plan, and records national goals without an SAF counterpart. Each relevant goal is then translated into measurable outcomes (SAF-TK-M05) and, where needed, into objectives for programmes and projects. Each NSI can follow this path at its own pace, while working towards the same shared direction.</p>
+<p><strong>SAF-TK-M05 Outcome and indicator sheet.</strong> Per outcome: indicator, baseline, target, owner and measurement moment. The NSI selects the SAF outcomes that match its goals, starts from the indicative measures in the SAF, sets target values for its own context, and monitors them in its planning and control cycle.</p>
+<p><strong>SAF-TK-M06 Principle set and dispensation record.</strong> The adopted principle set in the TOGAF four-part format (name, statement, rationale, implications), plus a record for each approved deviation. The NSI takes the SAF principles into its own principle set, adapts the wording to national policy where needed, and adds national principles. Architecture reviews test compliance against the set; deviations follow the documented dispensation process.</p>
+<p><strong>SAF-TK-M07 Requirements derivation.</strong> Derives requirements for one solution, with a verification method for each requirement, from three sources: goals and outcomes (what must the solution provide to contribute to a goal, and how will the outcome be measured?), principles (what does each relevant SAF principle mean for this solution?), and SAF reference content (which building blocks apply, such as the quality gate and minimum metadata of a steady state, and what do they require?).</p>
+<p><em>Example (illustrative).</em> The examples show how a requirement is derived and traced. They are not SAF requirements.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>Requirement</th>
+<th>Applies to</th>
+<th>How to verify</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-P09 No data without metadata and classification</td>
+<td>No dataset is registered in a steady state without its minimum metadata set and an AIC classification</td>
+<td>Data catalogue and registration process</td>
+<td>Registration is refused when mandatory metadata is missing</td>
+</tr>
+<tr class="even">
+<td>SAF-G4 Support for data innovation</td>
+<td>A new method can move from the innovation environment to production without manual re-implementation</td>
+<td>Analytical platform and deployment pipeline</td>
+<td>Time and effort for one pilot method to reach production</td>
+</tr>
+<tr class="odd">
+<td>SAF-P07 Implement loosely coupled processes and systems</td>
+<td>Business domains exchange data only through registered steady states, not through each other’s internal data</td>
+<td>All production processes</td>
+<td>Architecture review of data flows between domains</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SAF-TK-M08 Constraint register.</strong> Records constraints with source, fixed or negotiable, and the goals, requirements or solutions they affect. Review a constraint when its source changes, for example after new legislation or a new government policy on cloud use.</p>
+<p><em>Example (illustrative).</em> The examples show the form of a constraint. They are not SAF constraints, and their content differs per country.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Constraint</th>
+<th>Source</th>
+<th>Fixed or negotiable</th>
+<th>Affects</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Statistical microdata is processed only within the NSI’s own controlled environment</td>
+<td>National statistical law and confidentiality policy</td>
+<td>Fixed</td>
+<td>Platform and hosting choices for SAF-G3; data sharing under SAF-G2</td>
+</tr>
+<tr class="even">
+<td>Personal data is processed in line with the GDPR, including data minimisation and purpose limitation</td>
+<td>EU legislation</td>
+<td>Fixed</td>
+<td>Design of data acquisition and standardisation; SAF-P11 Privacy by design</td>
+</tr>
+<tr class="odd">
+<td>Public cloud services are used only for business support functions, not for statistical production</td>
+<td>Government or NSI cloud policy</td>
+<td>Negotiable</td>
+<td>Technology choices for SAF-G3 and SAF-G4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SAF-TK-M09 Value and meaning brief.</strong> A one-page brief for a board or ministry: the values that matter to key stakeholders, the outcomes that deliver them, and how the SAF should be understood internally. Use the value part to build the business case for architecture work, in investment proposals, annual reports and briefings. Use the meaning part when introducing the SAF internally, for example in an architecture charter, an onboarding programme or a management briefing. What the NSI’s own core concepts mean, such as “statistical product” or “steady state”, belongs in its glossary.</p>
+<section id="saf-tk-m03-assessment-record-worked-instrument" class="level2">
+<h2 class="anchored" data-anchor-id="saf-tk-m03-assessment-record-worked-instrument">SAF-TK-M03 Assessment record (worked instrument)</h2>
+<p><strong>Purpose</strong></p>
+<p>The assessment record captures what each SAF driver means for one NSI. It turns a generic force into a specific finding: a strength, weakness, opportunity or threat, based on evidence. The result explains why some goals get priority over others. It also gives a baseline, so that a later assessment can show progress.</p>
+<p><strong>Use it when</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Entry route</th>
+<th>ADM phase</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Strategic route (step 4) and problem-driven route (step 3)</td>
+<td>Phase A, Architecture Vision; baseline descriptions in Phases B to D</td>
+</tr>
+</tbody>
+</table>
+<p>Repeat the assessment once a year, or when a driver changes.</p>
+<p><strong>Inputs</strong></p>
+<ul>
+<li>The drivers recognised in SAF-TK-M02.</li>
+<li>Evidence the NSI already has, such as an application portfolio overview, audit findings, a staff survey or a capability assessment (SAF-TK-S02).</li>
+<li>The stakeholders from SAF-TK-M01 who own the evidence.</li>
+</ul>
+<p><strong>Steps</strong></p>
+<ol type="1">
+<li>Take one driver at a time. Start with the drivers that stakeholders raised most often.</li>
+<li>For each driver, ask: what does this force mean for us today? Write each answer as one factual sentence.</li>
+<li>Classify each finding as a strength, weakness, opportunity or threat.</li>
+<li>Record the evidence for each finding. A finding without evidence is marked <em>To be substantiated</em>.</li>
+<li>Indicate which goal or outcome the finding affects, and how strongly.</li>
+<li>Agree the findings with the owner of the evidence, and record the date.</li>
+</ol>
+<p><strong>Template</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Assessment ID</th>
+<th>Driver</th>
+<th>Finding</th>
+<th>Type</th>
+<th>Evidence</th>
+<th>Affects</th>
+<th>Impact</th>
+<th>Owner</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>NSI-AS-nn</em></td>
+<td><em>SAF-D or national driver</em></td>
+<td><em>One factual sentence</em></td>
+<td><em>Strength / Weakness / Opportunity / Threat</em></td>
+<td><em>Source document or data</em></td>
+<td><em>SAF-G or SAF-O</em></td>
+<td><em>High / Medium / Low</em></td>
+<td><em>Name or role</em></td>
+<td><em>YYYY-MM-DD</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example (illustrative)</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Assessment ID</th>
+<th>Driver</th>
+<th>Finding</th>
+<th>Type</th>
+<th>Evidence</th>
+<th>Affects</th>
+<th>Impact</th>
+<th>Owner</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NSI-AS-01</td>
+<td>SAF-D5 Resource constraints and organisational agility</td>
+<td>Two thirds of our processing runs on platforms out of vendor support</td>
+<td>Weakness</td>
+<td>Application portfolio scan</td>
+<td>SAF-G3 Modernisation of statistical systems</td>
+<td>High</td>
+<td>CIO</td>
+<td>2026-11-01</td>
+</tr>
+<tr class="even">
+<td>NSI-AS-02</td>
+<td>SAF-D1 Evolving data ecosystems and partnerships</td>
+<td>A national data space is being set up, and we are invited to join</td>
+<td>Opportunity</td>
+<td>Government programme plan</td>
+<td>SAF-G2 Harmonised reference framework</td>
+<td>Medium</td>
+<td>Head of data acquisition</td>
+<td>2026-11-01</td>
+</tr>
+<tr class="odd">
+<td>NSI-AS-03</td>
+<td>SAF-D3 Trust, scientific rigour and data protection</td>
+<td>We cannot show which source data version each published figure is based on</td>
+<td>Weakness</td>
+<td>Internal audit finding</td>
+<td>SAF-O2 Enhanced data quality</td>
+<td>High</td>
+<td>Quality manager</td>
+<td>2026-11-01</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Output and next step</strong></p>
+<p>The assessment record feeds SAF-TK-M04 Goal alignment: findings with a high impact set the priority of goals. Weaknesses on capabilities feed SAF-TK-S02. Record the decisions in SAF-TK-G02.</p>
+<p><em>Modelling hint.</em> In ArchiMate, model each finding as an Assessment element, associated with its Driver and influencing the affected Goal or Outcome.</p>
+<p><strong>Sources</strong></p>
+<p>TOGAF Standard, 10th Edition: Phase A and baseline description (referenced, not reproduced). SWOT analysis as a common analysis format. SAF Motivation chapter, section <em>Assessment</em>.</p>
+</section>
+</section>
+<section id="strategy-instruments" class="level1">
+<h1>5. Strategy instruments</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Instrument</th>
+<th>Kind</th>
+<th>Supports SAF section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-TK-S01</td>
+<td>Capability model tailoring</td>
+<td>Template</td>
+<td>Capability Model</td>
+<td>Planned</td>
+</tr>
+<tr class="even">
+<td>SAF-TK-S02</td>
+<td>Capability assessment and heatmap</td>
+<td>Template</td>
+<td>Capability Model; <em>How NSIs use this chapter</em></td>
+<td>Planned <strong>[K6]</strong></td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-S03</td>
+<td>Value stream tailoring and capability mapping</td>
+<td>Template</td>
+<td>Value Streams</td>
+<td>Planned <strong>[K7]</strong></td>
+</tr>
+<tr class="even">
+<td>SAF-TK-S04</td>
+<td>Resource profile</td>
+<td>Template</td>
+<td>Resources</td>
+<td>Planned</td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-S05</td>
+<td>Strategy and course of action canvas</td>
+<td>Template</td>
+<td>Courses of Action</td>
+<td>Planned</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SAF-TK-S01 Capability model tailoring.</strong> Per SAF capability: adopt, adapt, extend or not applicable, with the NSI name and owner. The NSI maps the SAF capability model onto its own organisation and checks which capabilities it has, which it lacks and which are specific to its mandate. Decisions are also recorded in SAF-TK-G02.</p>
+<p><strong>SAF-TK-S02 Capability assessment and heatmap.</strong> Scores each capability on current maturity, target maturity and importance for the goals and outcomes it is linked to. The gap and importance together give the heatmap: capabilities with a low maturity and a high contribution to goals are the investment candidates. Each candidate is then traced to the processes, applications and platforms that realise it.</p>
+<p><strong>SAF-TK-S03 Value stream tailoring and capability mapping.</strong> Most NSIs produce statistics in a similar sequence, so the SAF value streams fit most of them. The NSI checks the stages of VS-01 to VS-10 against its own production chain, adapts names where needed, and maps its own capabilities to each stage. It then uses the value streams to assess where in the chain improvements create the most value for users.</p>
+<p><strong>SAF-TK-S04 Resource profile.</strong> Per key capability: the resources it depends on, by the six SAF resource types, with risks such as single experts or expiring agreements. Missing or at-risk resources feed the NSI’s courses of action (SAF-TK-S05).</p>
+<p><em>Example (illustrative).</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Resource</th>
+<th>Type</th>
+<th>Supports capabilities</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Access to the national population register</td>
+<td>Data and information; relationships and agreements</td>
+<td>1.2.2 Secondary data collection; 2.1.4 Statistical register management</td>
+<td>Depends on a provision agreement that must be renewed</td>
+</tr>
+<tr class="even">
+<td>Team of methodologists for estimation</td>
+<td>People and skills</td>
+<td>1.3.5 Estimating population parameters; 2.2.3 Methodology</td>
+<td>Small team; knowledge concentrated in few people</td>
+</tr>
+<tr class="odd">
+<td>Shared data processing platform</td>
+<td>Technology</td>
+<td>1.3 Processing; 2.1.1 Data lifecycle management</td>
+<td>Shared by several statistical domains</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SAF-TK-S05 Strategy and course of action canvas.</strong> Describes an organisation or domain strategy with SAF building blocks: drivers and assessments, goals and outcomes, principles, chosen courses of action, capabilities and resources developed, and the roadmap order. When all strategies use these building blocks, overlaps and conflicts between them become visible. Most NSIs work with three levels:</p>
+<ol type="1">
+<li><strong>Organisation strategy.</strong> The overall direction of the NSI, usually in a multi-annual plan approved by its board or ministry.</li>
+<li><strong>Domain strategies.</strong> Strategies for a specific area, such as data, metadata, IT, cloud, security or privacy. Each one refines the organisation strategy for its domain.</li>
+<li><strong>Tactics and roadmaps.</strong> Concrete approaches and their order in time, for example in a programme plan.</li>
+</ol>
+<p>Each NSI names its own strategies. A small NSI may have one IT strategy that covers applications, infrastructure and cloud; a large NSI may have separate strategies for each. What matters is that the strategies are consistent with each other and traceable to the motivation.</p>
+<p><em>Example (illustrative): domain strategies NSIs often develop.</em> They are not a required set.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Strategy</th>
+<th>Typical question it answers</th>
+<th>Mainly develops</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data strategy</td>
+<td>How do we manage and use data as an asset?</td>
+<td>2.1 Data management; VS-01 to VS-06</td>
+</tr>
+<tr class="even">
+<td>Metadata strategy</td>
+<td>How do we make data findable, understandable and reusable?</td>
+<td>2.1.2 Metadata management</td>
+</tr>
+<tr class="odd">
+<td>IT strategy</td>
+<td>What do we reuse, buy or build, and on which platforms?</td>
+<td>3.2 Computerisation and automation; VS-09</td>
+</tr>
+<tr class="even">
+<td>Cloud strategy</td>
+<td>Which workloads may run where, and under which conditions?</td>
+<td>3.2.5 IT infrastructure; 3.3 Security and privacy</td>
+</tr>
+<tr class="odd">
+<td>Information security strategy</td>
+<td>How do we protect information and systems?</td>
+<td>3.3 Security and privacy; VS-07</td>
+</tr>
+<tr class="even">
+<td>Privacy and confidentiality strategy</td>
+<td>How do we protect respondents and keep statistical confidentiality?</td>
+<td>3.3.1 Privacy management; 1.3.7 Statistical disclosure</td>
+</tr>
+</tbody>
+</table>
+<p>Other strategies NSIs develop include strategies for data acquisition, dissemination and open data, artificial intelligence, innovation, workforce and skills, and sourcing and partnerships. Reference strategies published by other organisations are listed in the framework, <em>Courses of Action</em>.</p>
+</section>
+<section id="value-stream-instruments" class="level1">
+<h1>6. Value stream instruments</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Instrument</th>
+<th>Kind</th>
+<th>Supports SAF section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-TK-V01</td>
+<td>VS-01 maturity checklist and scenarios</td>
+<td>Checklist</td>
+<td>Statistical Data Value Chain, <em>VS-01 Data Acquisition and Ingestion</em></td>
+<td>Draft</td>
+</tr>
+<tr class="even">
+<td>SAF-TK-V02</td>
+<td>VS-02 maturity checklist and scenarios</td>
+<td>Checklist</td>
+<td>Statistical Data Value Chain, <em>VS-02 Data Standardization and Integration</em></td>
+<td>Draft</td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-V03</td>
+<td>VS-03 maturity checklist and scenarios</td>
+<td>Checklist</td>
+<td>Statistical Data Value Chain, <em>VS-03 Data Editing and Enrichment</em></td>
+<td>Draft</td>
+</tr>
+<tr class="even">
+<td>SAF-TK-V04</td>
+<td>VS-04 maturity checklist and scenarios</td>
+<td>Checklist</td>
+<td>Statistical Data Value Chain, <em>VS-04 Estimation, Analysis, and Statistical Modeling</em></td>
+<td>Draft</td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-V05</td>
+<td>VS-05 maturity checklist and scenarios</td>
+<td>Checklist</td>
+<td>Statistical Data Value Chain, <em>VS-05 Statistical Product Composition</em></td>
+<td>Draft</td>
+</tr>
+<tr class="even">
+<td>SAF-TK-V06</td>
+<td>VS-06 maturity checklist and scenarios</td>
+<td>Checklist</td>
+<td>Statistical Data Value Chain, <em>VS-06 Dissemination and Service Delivery</em></td>
+<td>Draft</td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-V07</td>
+<td>VS-07 maturity checklist and scenarios</td>
+<td>Checklist</td>
+<td>Statistical Data Value Chain, <em>VS-07 Governance and Compliance</em></td>
+<td>Draft</td>
+</tr>
+<tr class="even">
+<td>SAF-TK-V08</td>
+<td>VS-08 maturity checklist and scenarios</td>
+<td>Checklist</td>
+<td>Statistical Data Value Chain, <em>VS-08 Innovation and Methodological Development</em></td>
+<td>Draft</td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-V09</td>
+<td>VS-09 maturity checklist and scenarios</td>
+<td>Checklist</td>
+<td>Statistical Data Value Chain, <em>VS-09 Infrastructure and Platform Enablement</em></td>
+<td>Draft</td>
+</tr>
+<tr class="even">
+<td>SAF-TK-V10</td>
+<td>VS-10 maturity checklist and scenarios</td>
+<td>Checklist</td>
+<td>Statistical Data Value Chain, <em>VS-10 Customer and Stakeholder Engagement</em></td>
+<td>Draft</td>
+</tr>
+</tbody>
+</table>
+<p>The ten value stream instruments share one purpose, one way of use and one set of steps. These are described once below. Each instrument then contains only its checklist and its scenarios.</p>
+<p><strong>Purpose</strong></p>
+<p>Each instrument shows how mature the NSI is in one value stream, across all four process types: design, implementation, execution and management. It does not look at execution alone. The scenarios show what a mature value stream looks like in practice, from design to improvement.</p>
+<p><strong>Use it when</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Entry route</th>
+<th>ADM phase</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Problem-driven route (step 2), for the value stream where the problem occurs; strategic route, as input to SAF-TK-S02</td>
+<td>Baseline and target descriptions in Phase B; gap analysis in Phases B and E</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Inputs</strong></p>
+<ul>
+<li>The value stream description in the SAF, and the states it consumes and produces (Steady-State Architecture).</li>
+<li>The NSI’s own process documentation, agreements, quality reports and audit findings for the value stream.</li>
+<li>The tailoring of the value stream from SAF-TK-S03, if available.</li>
+</ul>
+<p><strong>Steps</strong></p>
+<ol type="1">
+<li>Answer each checklist question with <em>yes</em>, <em>partly</em> or <em>no</em>, and record the evidence.</li>
+<li>For the primary value streams (VS-01 to VS-06), look at the four groups together. A strong execution group with weak design or management groups usually points to an ad hoc process.</li>
+<li>Read the scenario closest to the NSI’s own situation, and compare it with current practice.</li>
+<li>For each <em>no</em> or <em>partly</em>, agree an action and an owner.</li>
+</ol>
+<p><strong>Output and next step</strong></p>
+<p>A maturity profile per value stream. Weak points on capabilities feed SAF-TK-S02. Actions feed SAF-TK-S05. Record decisions in SAF-TK-G02.</p>
+<section id="saf-tk-v01" class="level2">
+<h2 class="anchored" data-anchor-id="saf-tk-v01">SAF-TK-V01 VS-01 Data Acquisition and Ingestion</h2>
+<p><strong>Checklist</strong></p>
+<p><strong>Design Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we have documented data requirements specifications for each data source?</label></li>
+<li><label><input type="checkbox">Do we have a formal collection methodology document that is reviewed and versioned?</label></li>
+<li><label><input type="checkbox">Do we have a defined metadata schema for raw data, including required metadata fields at ingestion?</label></li>
+<li><label><input type="checkbox">Do we have explicit validation rules and quality criteria documented before collection begins?</label></li>
+<li><label><input type="checkbox">Do we have a privacy impact assessment for each data source?</label></li>
+</ul>
+<p><strong>Implementation Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Are our collection instruments built from design specifications (not ad-hoc)?</label></li>
+<li><label><input type="checkbox">Are validation rules implemented as automated checks (not manual inspection)?</label></li>
+<li><label><input type="checkbox">Is metadata capture automated at each ingestion point?</label></li>
+<li><label><input type="checkbox">Do we have a formal testing process (technical, field, security) before going to production?</label></li>
+<li><label><input type="checkbox">Are operational procedures documented and maintained?</label></li>
+</ul>
+<p><strong>Execution Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we confirm data requirements and source availability at the start of each cycle?</label></li>
+<li><label><input type="checkbox">Are data sharing agreements actively managed and verified per cycle?</label></li>
+<li><label><input type="checkbox">Do we capture ingestion metadata for every dataset received?</label></li>
+<li><label><input type="checkbox">Do we perform automated structural validation before accepting data?</label></li>
+<li><label><input type="checkbox">Do we register every raw dataset in a metadata catalogue with provenance links?</label></li>
+</ul>
+<p><strong>Management Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we track KPIs (response rates, rejection rates, timeliness) across cycles?</label></li>
+<li><label><input type="checkbox">Do we produce data quality reports for each ingested dataset?</label></li>
+<li><label><input type="checkbox">Do we regularly assess metadata completeness and quality?</label></li>
+<li><label><input type="checkbox">Do we produce audit and compliance reports?</label></li>
+<li><label><input type="checkbox">Do we have a formal improvement process that feeds back into design?</label></li>
+</ul>
+<p><strong>Example (illustrative): end-to-end scenarios</strong></p>
+<p>Each scenario walks through <strong>all four process types</strong>, demonstrating how the governance pattern works in practice.</p>
+<section id="scenario-a-household-budget-survey-primary-collection" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-a-household-budget-survey-primary-collection">Scenario A: Household Budget Survey (Primary Collection)</h3>
+<p><strong>Design Phase:</strong> Statistical designers define the information need — monthly household expenditure by category, income sources, and household composition. Methodologists design a mixed-mode approach: a CAWI diary for daily entry over two weeks, with CAPI follow-up for non-respondents. Metadata architects define the raw data schema: 156 variables across 12 expenditure categories, with code lists from COICOP (the international classification of household expenditure). Quality criteria are set at a minimum 60% response rate, diary completion rate of at least 80% of days, and delivery to processing within 30 days of collection period end. The privacy framework specifies pseudonymisation at point of receipt, with purpose limited to expenditure statistics and CPI input.</p>
+<p><strong>Implementation Phase:</strong> Data engineers build the CAWI diary portal — a responsive web app with daily spending entry and barcode scanning for receipts, configured for 12 languages. System configurators set up the CAPI tablet app with offline capability, GPS logging for urban/rural classification, and interview recording consent. Ingestion workflows are configured so that CAWI responses are aggregated daily, CAPI interviews uploaded at the end of the field period, and paper diaries OCR-scanned in batches. The full pipeline is tested with a 200-household pilot in two municipalities, with metadata propagation verified end-to-end.</p>
+<p><strong>Execution Phase:</strong> For cycle Q3-2026, 8,000 households are sampled from the population register. CAWI invitations go out and a response monitoring dashboard tracks daily completion rates. After week two, CAPI is deployed to 2,400 non-responding households. After week four, 312 paper diaries are received from elderly respondents. Each channel generates ingestion metadata, and all 7,240 completed diaries pass structural validation. Raw data is registered in the catalogue with full provenance — per household: mode, completion dates, and diary completeness score.</p>
+<p><strong>Management Phase:</strong> Response rate reaches 90.5% against the 60% target. CAWI diary completeness is 87% of days (target 80%). Quality scoring identifies three municipalities with unusually low CAWI completion, suggesting possible broadband issues. Metadata completeness is 99.8%. Improvement recommendations: add SMS reminders for CAWI to improve daily completion; investigate broadband-gap municipalities for a CAPI-first approach next cycle. Recommendations are fed back to the design team for the Q1-2027 methodology update.</p>
+</section>
+<section id="scenario-b-tax-register-administrative-data-secondary-collection" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-b-tax-register-administrative-data-secondary-collection">Scenario B: Tax Register Administrative Data (Secondary Collection)</h3>
+<p><strong>Design Phase:</strong> Statistical designers define the data requirement — quarterly corporate income tax declarations for all legal entities, for use in national accounts and business statistics. The data model maps the tax authority’s XML schema to the NSI’s raw data structure: 47 fields retained, 12 derived, corporate ID as the linkage key. The SLA is set at delivery within 45 calendar days of quarter end, minimum 98% of expected records, in XML format with XSD validation. Validation rules cover XSD schema validation, corporate ID referential integrity against the business register, and amount fields within historical range (plus or minus three standard deviations). Privacy framework: data is received under the Statistics Act mandate, with pseudonymisation deferred to the standardisation phase (VS-02.0) per agreement.</p>
+<p><strong>Implementation Phase:</strong> System configurators set up a dedicated SFTP endpoint with mutual TLS authentication and IP whitelist. Data engineers configure automated ingestion: file arrival triggers a validation pipeline (XSD check, checksum, virus scan, completeness, referential integrity, range check). Metadata registration is automated — on successful validation, a provenance record is created and linked to the agreement, and quality scores are calculated and stored. The pipeline is tested with Q1-2026 historical data resubmission; all validation rules are verified and one false-positive range check is identified and the threshold adjusted.</p>
+<p><strong>Execution Phase:</strong> Q3-2026: the tax authority delivers the quarterly file via SFTP on day 38 (within the 45-day SLA). The automated pipeline triggers: XSD valid, SHA-256 checksum matches manifest, virus scan clean, 2,347,891 records (99.2% of expected — above the 98% threshold), 14 corporate IDs not in the business register (flagged but not rejected — known lag in register updates). Raw data is stored in original XML format, assigned dataset ID <code>RD-TAX-2026Q3-001</code>. Metadata is registered: provenance, quality assessment (completeness=99.2%, timeliness=OnTime, conformance=Pass with 14 flags), and agreement reference. The “Raw Data Registered” event is published and VS-02.0 is notified.</p>
+<p><strong>Management Phase:</strong> The Q3 quality scorecard shows completeness at 99.2% (stable — consistent with Q1=99.1% and Q2=99.3%) and timeliness on time, seven days ahead of the SLA deadline. The 14 unmatched corporate IDs are all newly registered businesses with a register update lag of two to four weeks, consistent with previous quarters. SLA compliance stands at 100% for 12 consecutive quarters. Metadata completeness is 100%. No improvement recommendations are needed — the process is mature and stable, with an annual agreement renewal review scheduled for Q4.</p>
+</section>
+<section id="scenario-c-web-scraped-price-data-emerging-source" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-c-web-scraped-price-data-emerging-source">Scenario C: Web-Scraped Price Data (Emerging Source)</h3>
+<p><strong>Design Phase:</strong> Statistical designers define the requirement — daily retail prices from major online retailers for CPI basket items covering 500 product categories and 25 retailer websites. The methodology involves no bilateral agreement (public web data), with the legal framework based on the statistics act mandate and a public interest assessment. The data model captures product URL, product name, price, currency, timestamp, retailer, product category (COICOP), and availability status. Validation rules specify that price must be positive, currency must be EUR or local, timestamp must be within 24 hours, the product URL must resolve, and price changes exceeding 50% from the previous day are flagged for review (not rejected). Quality criteria: minimum 85% of target URLs successfully scraped per day, with price change detection within 24 hours. Privacy considerations confirm no personal data is involved, with terms-of-service compliance documented per retailer.</p>
+<p><strong>Implementation Phase:</strong> Data engineers build web scrapers — one module per retailer, headless browser for JavaScript-rendered pages, with proxy rotation to avoid rate limiting. Daily scheduling is configured so that scraping runs at 03:00 local time with results aggregated by 06:00. Volatility handling includes website structure change detection via DOM fingerprinting, with automatic alerts when a scraper breaks. Metadata capture records per-scrape provenance: URL, timestamp, HTTP status, scraper version, and DOM fingerprint. The system is tested with a two-week parallel run comparing scraped prices against manually collected prices for 50 products, achieving 94% agreement (within the acceptance threshold).</p>
+<p><strong>Execution Phase:</strong> Daily operation scrapes 12,500 URLs across 25 retailers. On 2026-03-15, 11,875 URLs are successful (95% — above the 85% threshold), with 625 failures (HTTP 404: product pages removed or restructured). Forty-seven price changes exceeding 50% are flagged for manual review: 41 are confirmed genuine (seasonal sales) and 6 are identified as scraper errors (wrong element selected due to DOM change). Raw data is stored as daily JSON files with full scrape metadata. Metadata is registered: daily provenance, quality scores, scraper version, and DOM fingerprint per retailer.</p>
+<p><strong>Management Phase:</strong> The weekly quality dashboard shows an average daily success rate of 93.2% (above the 85% threshold). Retailer <code>ElectroShop</code> shows a declining success rate from 98% to 72% over three weeks — a website redesign detected by DOM fingerprinting. Monthly price comparison against official CPI field collection shows 96.1% agreement for overlapping products (above the 90% acceptance threshold). Improvement recommendations: rebuild the <code>ElectroShop</code> scraper for the new DOM structure (implementation action), investigate two new retailers for coverage expansion (design action), and evaluate retailer API access as an alternative to scraping for the top five retailers (design action that may lead to a transition from scraping to API-based secondary collection). Recommendations are fed back to the design team, with the <code>ElectroShop</code> scraper rebuild prioritised for the next sprint.</p>
+<p><strong>Sources</strong></p>
+<p>SAF Statistical Data Value Chain, <em>VS-01 Data Acquisition and Ingestion</em>; Steady-State Architecture, the states it consumes and produces.</p>
+</section>
+</section>
+<section id="saf-tk-v02" class="level2">
+<h2 class="anchored" data-anchor-id="saf-tk-v02">SAF-TK-V02 VS-02 Data Standardization and Integration</h2>
+<p><strong>Checklist</strong></p>
+<p><strong>Design Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we have a documented canonical target data model for standardised data?</label></li>
+<li><label><input type="checkbox">Do we have a formal classification mapping strategy (deterministic correspondence tables) with an explicit version policy?</label></li>
+<li><label><input type="checkbox">Do we have harmonised concept and variable definitions, and rules to record cross-source definition differences as metadata (flagged for VS-03)?</label></li>
+<li><label><input type="checkbox">Do we have explicit structural, classification, and semantic conformance rules documented before standardisation begins?</label></li>
+<li><label><input type="checkbox">Do we have a defined identifier-removal/pseudonymisation design for the State #1 → State #2 transition?</label></li>
+</ul>
+<p><strong>Implementation Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Are our mapping and format-coercion rules built from design specifications (not ad-hoc scripts), and value-preserving?</label></li>
+<li><label><input type="checkbox">Are mapping services deterministic, with unmapped/free-text values routed to VS-03 rather than coded here?</label></li>
+<li><label><input type="checkbox">Is conformance validation implemented as automated checks, including a no-loss-of-content (no value changed) check?</label></li>
+<li><label><input type="checkbox">Is lineage capture automated for every mapping and format-coercion operation?</label></li>
+<li><label><input type="checkbox">Do we have a formal testing process (technical, pilot, correspondence-mapping verification) before going to production?</label></li>
+</ul>
+<p><strong>Execution Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we profile incoming raw data and produce a structure-gap assessment each cycle?</label></li>
+<li><label><input type="checkbox">Do we map source codes to standards 1-to-1, capturing the version applied and preserving the original?</label></li>
+<li><label><input type="checkbox">Do we record unit/currency/reference-period bases and definition differences as metadata (without converting values)?</label></li>
+<li><label><input type="checkbox">Do we validate structural and semantic conformance before accepting standardised data?</label></li>
+<li><label><input type="checkbox">Do we register every standardised dataset with full mapping lineage to its raw source?</label></li>
+</ul>
+<p><strong>Management Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we track KPIs (mapping coverage, unmapped-value rate, conformance pass rate) across cycles?</label></li>
+<li><label><input type="checkbox">Do we assess mapping completeness and orphan-code rate?</label></li>
+<li><label><input type="checkbox">Do we govern classification version lifecycles and correspondence tables?</label></li>
+<li><label><input type="checkbox">Do we produce audit, privacy, and standards-compliance reports?</label></li>
+<li><label><input type="checkbox">Do we have a formal improvement process that feeds back into design (e.g., correspondence-table extension)?</label></li>
+</ul>
+<p><strong>Example (illustrative): end-to-end scenarios</strong></p>
+<p>Each scenario walks through <strong>all four process types</strong>, demonstrating how the governance pattern works in practice.</p>
+<section id="scenario-a-labour-force-survey-survey-deterministic-mapping" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-a-labour-force-survey-survey-deterministic-mapping">Scenario A: Labour Force Survey (Survey, Deterministic Mapping)</h3>
+<p><strong>Design Phase:</strong> Data architects define the canonical LFS data model — person and household entities keyed to a pseudonymous personal identifier, with occupation, education, employment status, and region as core variables. Classification stewards adopt ISCED-2011 for education and NUTS-3 for region and build deterministic correspondence tables from the survey’s source education and region codes to those standards; they also define the version policy. The design records that the survey’s employment-status definition differs from the harmonised ILO definition — this difference is captured as metadata and flagged for VS-03, not reconciled here — and that free-text occupation strings are <strong>not</strong> coded in VS-02 but handed to VS-03 for ISCO-08 coding. The privacy design specifies that the direct personal identifier is replaced with a pseudonymous key at standardisation.</p>
+<p><strong>Implementation Phase:</strong> Data engineers build the mapping &amp; format-coercion component that restructures raw survey returns into the canonical model and casts types, and configure the ISCED and NUTS-3 correspondence-table lookups. The conformance pipeline is configured with structural, classification, semantic, and no-loss-of-content checks, and the pseudonymisation component is implemented. The pipeline is tested on a 2,000-record synthetic sample; correspondence mappings are verified against the source code lists (100% of source codes resolve), and the routing of free-text occupation to VS-03 is confirmed.</p>
+<p><strong>Execution Phase:</strong> For cycle Q3-2026, a Raw Data Registered event arrives for 42,000 LFS returns. Profiling confirms the expected structure. The component coerces the format and maps source education codes 1-to-1 to ISCED-2011 and source region codes to NUTS-3; the 42,000 free-text occupation strings are flagged and passed to VS-03 for coding. The employment-status definition difference is recorded as metadata, the personal identifier is pseudonymised, and conformance validation passes — including the no-loss-of-content check (42,000 records, no value changed). The standardised dataset is registered with full lineage, and a Standardized Data Registered event notifies VS-03.0.</p>
+<p><strong>Management Phase:</strong> Mapping coverage for education and region is 99.9%, with 4 orphan source codes investigated and corrected in the correspondence table. The unmapped-value rate (free-text occupation routed to VS-03) is as expected. Conformance pass rate is 100% on first run. Improvement recommendations: extend the region correspondence table to cover two newly created NUTS-3 codes; confirm with VS-03 that occupation coding volumes are within capacity. Recommendations are fed back to design for the next cycle.</p>
+</section>
+<section id="scenario-b-tax-register-to-business-statistics-multi-source-integration" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-b-tax-register-to-business-statistics-multi-source-integration">Scenario B: Tax Register to Business Statistics (Multi-Source Integration)</h3>
+<p><strong>Design Phase:</strong> Data architects define the canonical business statistics model keyed to the statistical business register (SBR) identifier, with turnover, employment, and economic activity as core measures. Classification stewards adopt NACE Rev.&nbsp;2 for activity and build a deterministic correspondence table from the tax authority’s internal activity codes. The design requires that each turnover figure carry its currency, unit (“thousands of EUR”), and reference-period basis (the VAT register’s fiscal year) <strong>as metadata</strong> — values are recorded as received and <strong>not</strong> converted; converting turnover to a common unit and aligning the fiscal year to the calendar year are explicitly VS-03 activities. Conformance rules require SBR-key referential integrity and that every value is preserved unchanged.</p>
+<p><strong>Implementation Phase:</strong> Data engineers build the mapping &amp; format-coercion component: tax internal-code → NACE Rev.&nbsp;2 via the maintained correspondence table (1-to-1), XML reformatting and type casting, and SBR-key linkage. The unit/currency/period bases are captured as metadata fields. The conformance pipeline checks SBR referential integrity and verifies that every turnover value is byte-for-byte unchanged and record counts match. The pipeline is tested on Q1-2026 historical data; one activity-code correspondence gap is found and the table updated.</p>
+<p><strong>Execution Phase:</strong> Q3-2026: a Raw Data Registered event arrives for 2,347,891 tax records. Profiling flags activity as the tax internal code and turnover in thousands of EUR on a fiscal-year basis. Standardisation maps activity to NACE Rev.&nbsp;2 (99.4% coverage; 0.6% with no correspondence flagged for VS-03), coerces the XML, links the SBR key, and records the turnover unit and fiscal-year basis as metadata — turnover values are left exactly as received. Fourteen records lack an SBR match (newly registered businesses, known register lag) and are flagged but retained. Conformance passes with every value unchanged. The standardised dataset <code>SD-BUS-2026Q3-001</code> is registered with lineage to <code>RD-TAX-2026Q3-001</code>, and VS-03.0 is notified that unit/period conversion remains to be done.</p>
+<p><strong>Management Phase:</strong> NACE mapping coverage is 99.4% (stable across quarters); the 0.6% unmapped activity codes are passed to VS-03. The 14 unmatched SBR keys match the known register-update lag. No-loss-of-content confirmed: turnover values and record counts identical before and after. SLA on processing time met. Improvement recommendation: extend the NACE correspondence table for the new business-activity codes, and schedule adoption planning for the upcoming NACE revision. Recommendations fed back to design.</p>
+</section>
+<section id="scenario-c-web-scraped-price-data-emerging-source-standardisation" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-c-web-scraped-price-data-emerging-source-standardisation">Scenario C: Web-Scraped Price Data (Emerging Source Standardisation)</h3>
+<p><strong>Design Phase:</strong> Data architects define the canonical price record — product, retailer, price, currency, unit, reference day, and (where available) a source category code — keyed to a product-offer identifier. The design recognises that web-scraped data is largely uncoded and heterogeneous, so VS-02’s role is deliberately small: coerce the scraped JSON into the canonical record structure and record each item’s currency, unit, and scrape timestamp <strong>as metadata</strong>, leaving prices exactly as received. Where a retailer supplies a category code that has a maintained correspondence to COICOP-2018, that code is mapped 1-to-1; products with only a free-text name (no source code) are <strong>not</strong> classified here. Coding products to COICOP, converting currencies to EUR, and normalising units are all explicitly <strong>VS-03</strong> activities. Conformance rules require structural conformance and preservation of the count of distinct price observations.</p>
+<p><strong>Implementation Phase:</strong> Data engineers build the component that coerces the scraped JSON into the canonical structure and captures currency/unit/timestamp metadata, and configure the correspondence-table lookup for any retailer category codes that map to COICOP. The conformance pipeline checks structural conformance and observation-count preservation. The pipeline is tested on a sample; the structure coercion and metadata capture are verified, and the routing of unclassified products to VS-03 is confirmed.</p>
+<p><strong>Execution Phase:</strong> For 2026-03-15, a Raw Data Registered event arrives for 11,875 scraped price records. Profiling confirms structure. VS-02 coerces the records into the canonical structure, maps the subset of products that carry a correspondence-bearing retailer category code to COICOP-2018, and records each price’s currency, unit, and timestamp as metadata — prices are unchanged. The majority of products (free-text only) are flagged for VS-03 classification. Conformance passes, with the distinct-observation count preserved (no value changed). The standardised daily price dataset is registered with lineage to the raw scrape, and VS-03.0 is notified that product classification and currency/unit conversion remain.</p>
+<p><strong>Management Phase:</strong> The weekly dashboard shows structural conformance at 99.6% and a high unmapped-value rate (most products lack a source code and are handed to VS-03) — expected for this source type and a useful signal that the bulk of the work for web data is downstream. Observation-count preservation is 100%. Improvement recommendations: where a retailer begins supplying category codes, add the corresponding correspondence table to raise VS-02 mapping coverage; otherwise no VS-02 change is warranted. Recommendations are fed back to the design team.</p>
+<p><strong>Sources</strong></p>
+<p>SAF Statistical Data Value Chain, <em>VS-02 Data Standardization and Integration</em>; Steady-State Architecture, the states it consumes and produces.</p>
+</section>
+</section>
+<section id="saf-tk-v03" class="level2">
+<h2 class="anchored" data-anchor-id="saf-tk-v03">SAF-TK-V03 VS-03 Data Editing and Enrichment</h2>
+<p><strong>Checklist</strong></p>
+<p><strong>Design Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we have documented error-detection and editing rules with a selective-editing strategy?</label></li>
+<li><label><input type="checkbox">Do we have a formal imputation methodology with mandated imputation flags?</label></li>
+<li><label><input type="checkbox">Do we have documented derivation specifications and a coding methodology for free-text values?</label></li>
+<li><label><input type="checkbox">Do we have integration/linkage rules with a disclosure-risk assessment design?</label></li>
+<li><label><input type="checkbox">Do we have a quality-versioning and edit-audit-trail policy defined before editing begins?</label></li>
+</ul>
+<p><strong>Implementation Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Are our editing rules built from design specifications (not ad-hoc fixes)?</label></li>
+<li><label><input type="checkbox">Do our imputation services flag every imputed value with its method?</label></li>
+<li><label><input type="checkbox">Is edit-lineage capture (original value, rule, reason, actor) automated for every change?</label></li>
+<li><label><input type="checkbox">Can a quality version be reproduced from the standardised input plus the recorded rules?</label></li>
+<li><label><input type="checkbox">Do we have a formal testing process (technical, edit-impact, reproducibility, imputation evaluation)?</label></li>
+</ul>
+<p><strong>Execution Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we run error detection and selective-editing diagnostics each cycle?</label></li>
+<li><label><input type="checkbox">Do we record the original value, rule, and reason for every edit?</label></li>
+<li><label><input type="checkbox">Do we flag imputed values and never overwrite observed values?</label></li>
+<li><label><input type="checkbox">Do we document the formula and inputs for every derived variable and conversion?</label></li>
+<li><label><input type="checkbox">Do we register every processed dataset as an immutable, identified quality version?</label></li>
+</ul>
+<p><strong>Management Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we track KPIs (edit rate, imputation rate, over-editing) across cycles?</label></li>
+<li><label><input type="checkbox">Do we evaluate quality improvement against the State #2 baseline?</label></li>
+<li><label><input type="checkbox">Do we govern editing-rule and imputation-model versions and the quality-version store?</label></li>
+<li><label><input type="checkbox">Do we produce edit-audit, disclosure-risk, and methodology-compliance reports?</label></li>
+<li><label><input type="checkbox">Do we have a formal improvement process that feeds back into design?</label></li>
+</ul>
+<p><strong>Example (illustrative): end-to-end scenarios</strong></p>
+<p>Each scenario walks through <strong>all four process types</strong>, demonstrating how the governance pattern works in practice.</p>
+<section id="scenario-a-labour-force-survey-coding-editing-and-imputation" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-a-labour-force-survey-coding-editing-and-imputation">Scenario A: Labour Force Survey (Coding, Editing, and Imputation)</h3>
+<p><strong>Design Phase:</strong> Editing methodologists define consistency rules (e.g., age vs.&nbsp;labour-market status, hours vs.&nbsp;employment status) and a selective-editing strategy. Imputation specialists design regression imputation for item non-response on income, with constraints keeping imputed income in the respondent’s plausible band. A coding methodology is designed for the free-text occupation strings handed over from VS-02 (ISCO-08, computer-assisted with a 0.85 confidence threshold, expert review below it). The versioning policy and edit audit-trail requirements are set.</p>
+<p><strong>Implementation Phase:</strong> Data engineers build the consistency-check and editing engine, configure the ISCO-08 coding service with its review queue, configure the income imputation model, and stand up the quality-version store. The pipeline is tested on a synthetic sample; the edit-impact test confirms edits move quality in the intended direction, the reproducibility test regenerates an identical version, and imputation is evaluated against a holdout sample (RMSE within target).</p>
+<p><strong>Execution Phase:</strong> For cycle Q3-2026, a Standardized Data Registered event arrives for 42,000 LFS returns. Error detection flags inconsistencies and outliers; auto-corrections are applied and high-impact records adjudicated. The 42,000 free-text occupations are coded to ISCO-08 (88% auto-coded, the rest computer-assisted and manually reviewed). Income non-response (9%) is imputed and flagged. Employment-status is harmonised to the ILO definition per the reconciliation rule. A quality version is created with full edit lineage and registered; VS-04.0 is notified.</p>
+<p><strong>Management Phase:</strong> Edit rate is 6.2%, imputation rate 9%, over-editing indicator low (selective editing working). Coding completion is 99.7%; a holdout re-check shows imputation RMSE stable. Improvement recommendations: refine two consistency rules generating false positives; retrain the occupation coder with this cycle’s reviewed cases. Recommendations fed back to design.</p>
+</section>
+<section id="scenario-b-tax-register-to-business-statistics-editing-conversion-integration-derivation" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-b-tax-register-to-business-statistics-editing-conversion-integration-derivation">Scenario B: Tax Register to Business Statistics (Editing, Conversion, Integration, Derivation)</h3>
+<p><strong>Design Phase:</strong> The team designs outlier and consistency rules for turnover and employment, a value-reconciliation rule for the definition difference VS-02 recorded between the survey and VAT register, and conversion rules to turn turnover (recorded by VS-02 as “thousands of EUR” on a fiscal-year basis) into units on a calendar-year basis. Derived indicators (turnover-per-employee, productivity index) are specified with formulae and classification, and linkage rules join the tax data to the structural business survey on the SBR key.</p>
+<p><strong>Implementation Phase:</strong> Engineers build the editing engine, the unit/period conversion routines, the integration component (SBR-key linkage with conflict resolution), and the derivation calculators. Edit-impact and reproducibility tests pass; the conversion routine is checked so the original value remains recoverable from lineage.</p>
+<p><strong>Execution Phase:</strong> Q3-2026: a Standardized Data Registered event arrives for 2,347,891 tax records. Outliers and duplicates are detected and corrected with full lineage. Turnover is converted to units on the calendar year (conversion factor and original value stored), the tax and survey sources are integrated on the SBR key with the reconciliation rule applied where they disagree, and turnover-per-employee is derived. A quality version <code>PD-BUS-2026Q3-001</code> is created with lineage to <code>SD-BUS-2026Q3-001</code>, and VS-04.0 is notified.</p>
+<p><strong>Management Phase:</strong> Edit rate 1.8%, conversion applied to 100% of turnover with original values preserved, reconciliation applied to 12,400 linked units. No-residual-violation check passes. Disclosure-risk report confirms the linkage stays within assessed bounds. Improvement recommendation: tighten the outlier band for one NACE class; document a recurring reconciliation case as a standing rule. Recommendations fed back to design.</p>
+</section>
+<section id="scenario-c-web-scraped-price-data-coding-imputation-derivation" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-c-web-scraped-price-data-coding-imputation-derivation">Scenario C: Web-Scraped Price Data (Coding, Imputation, Derivation)</h3>
+<p><strong>Design Phase:</strong> The team designs the product classification (COICOP-2018) handed over from VS-02 for the free-text product names that had no source code, including an ML-assisted classifier with a confidence threshold and a review workflow. Currency-to-EUR and unit-to-standard-quantity conversion rules are designed from the bases VS-02 recorded, an imputation rule fills gaps where a product was not scraped on a given day (carry-forward with a staleness limit), and a daily price-index input is derived.</p>
+<p><strong>Implementation Phase:</strong> Engineers configure the COICOP classifier and review queue, the currency/unit conversion routines, the carry-forward imputation with its staleness flag, and the derivation of the index input. The classifier is evaluated against a manually-classified sample (90% agreement); below-threshold products route to review.</p>
+<p><strong>Execution Phase:</strong> For 2026-03-15, a Standardized Data Registered event arrives for 11,875 records. Products without a source code are classified to COICOP (95% above threshold, 5% reviewed). Prices are converted to EUR and standard units (original values preserved in lineage). Missing daily prices are imputed by carry-forward and flagged with staleness. The daily index input is derived. A quality version is created with full lineage and registered; VS-04.0 is notified.</p>
+<p><strong>Management Phase:</strong> Coding completion 99.2%, imputation rate (carry-forward) 4.8% with staleness within limits, conversion applied to all prices with originals preserved. A holdout check on classification shows 93% accuracy. Improvement recommendations: retrain the classifier for one recurring misclassified category; tighten the carry-forward staleness limit. Recommendations fed back to design.</p>
+<p><strong>Sources</strong></p>
+<p>SAF Statistical Data Value Chain, <em>VS-03 Data Editing and Enrichment</em>; Steady-State Architecture, the states it consumes and produces.</p>
+</section>
+</section>
+<section id="saf-tk-v04" class="level2">
+<h2 class="anchored" data-anchor-id="saf-tk-v04">SAF-TK-V04 VS-04 Estimation, Analysis, and Statistical Modeling</h2>
+<p><strong>Checklist</strong></p>
+<p><strong>Design Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we have a documented estimation strategy and accuracy-measurement approach per output?</label></li>
+<li><label><input type="checkbox">Do we have a formal weighting/calibration methodology with defined auxiliary variables and totals?</label></li>
+<li><label><input type="checkbox">Do we have documented aggregation and model specifications with required diagnostics?</label></li>
+<li><label><input type="checkbox">Do we have a validation policy and a statistical disclosure control policy defined before estimation begins?</label></li>
+<li><label><input type="checkbox">Do we have a quality-measurement and output-versioning policy?</label></li>
+</ul>
+<p><strong>Implementation Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Are our weighting/estimation engines built from design specifications (not ad-hoc scripts)?</label></li>
+<li><label><input type="checkbox">Does variance estimation reflect both the survey design and imputation uncertainty?</label></li>
+<li><label><input type="checkbox">Can an output be reproduced identically from the processed input plus the recorded methodology?</label></li>
+<li><label><input type="checkbox">Is disclosure-control tooling implemented and applied before handover?</label></li>
+<li><label><input type="checkbox">Do we have a formal testing process (technical, reproducibility, benchmark, accuracy)?</label></li>
+</ul>
+<p><strong>Execution Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we confirm the pre-approved approach and current calibration totals each cycle?</label></li>
+<li><label><input type="checkbox">Do we attach methodology, weights, and an accuracy measure to every estimate?</label></li>
+<li><label><input type="checkbox">Do we document model assumptions, diagnostics, and limitations?</label></li>
+<li><label><input type="checkbox">Do we validate soundness and coherence and explain movements/revisions?</label></li>
+<li><label><input type="checkbox">Do we apply disclosure control and register every output as an immutable version?</label></li>
+</ul>
+<p><strong>Management Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we track KPIs (accuracy/CV, revisions, reproducibility, timeliness) across cycles?</label></li>
+<li><label><input type="checkbox">Do we assess coherence and conduct revision analysis?</label></li>
+<li><label><input type="checkbox">Do we govern methodology/model versions and the output-version store?</label></li>
+<li><label><input type="checkbox">Do we produce reproducibility-audit, disclosure-control, and methodology-compliance reports?</label></li>
+<li><label><input type="checkbox">Do we have a formal improvement process that feeds back into design?</label></li>
+</ul>
+<p><strong>Example (illustrative): end-to-end scenarios</strong></p>
+<p>Each scenario walks through <strong>all four process types</strong>, demonstrating how the governance pattern works in practice.</p>
+<section id="scenario-a-labour-force-survey-design-based-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-a-labour-force-survey-design-based-estimation">Scenario A: Labour Force Survey (Design-Based Estimation)</h3>
+<p><strong>Design Phase:</strong> Estimation methodologists design a design-based strategy for the employment rate, calibrated to population totals by age × sex × region, with a variance estimator that accounts for the survey design and for the income/non-response imputation flagged in VS-03. Target parameters, domains (national and NUTS-2), coherence criteria with prior quarters, and the disclosure-control policy for small cells are specified.</p>
+<p><strong>Implementation Phase:</strong> Engineers configure the GREG calibration engine (pinned register totals), the estimation engine, and a replication-based variance component that inflates variance for imputed values; they implement coherence checks against prior quarters and small-cell suppression. Reproducibility and back-series tests pass; accuracy measures match expectations on test data.</p>
+<p><strong>Execution Phase:</strong> For Q3-2026, a Processed Data Registered event arrives. The approach and calibration totals are confirmed; calibration converges and weighted margins reproduce the register. The employment rate is estimated at 71.4% (95% CI ±0.5pp national, wider at NUTS-2), with variance inflated for imputation. Coherence checks against Q2 pass; small NUTS-2 cells are suppressed by SDC. An output version is created with methodology, weights, and accuracy, and registered; VS-05.0 is notified.</p>
+<p><strong>Management Phase:</strong> Average CV for key estimates is stable, the coherence-check pass rate is 100%, and the preliminary-vs-final revision is within tolerance. Reproducibility audit confirms the figures regenerate from inputs + methodology. Improvement recommendations: add an auxiliary variable to the calibration to reduce variance for youth-employment estimates. Recommendations fed back to design.</p>
+</section>
+<section id="scenario-b-tax-register-to-business-statistics-register-based-small-area-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-b-tax-register-to-business-statistics-register-based-small-area-estimation">Scenario B: Tax Register to Business Statistics (Register-Based + Small-Area Estimation)</h3>
+<p><strong>Design Phase:</strong> The team designs register-based aggregation of turnover and employment by NACE × region, and a small-area model for domains where direct aggregates are unstable. Accuracy measures, coherence criteria with national accounts inputs, and disclosure control for dominant-unit cells are specified.</p>
+<p><strong>Implementation Phase:</strong> Engineers build the aggregation pipeline (designed domains, units, rounding), the small-area model with its diagnostics, and dominance-rule suppression for confidentiality. Reproducibility and benchmark tests against the prior year pass; the small-area model’s prediction intervals are verified.</p>
+<p><strong>Execution Phase:</strong> Q3-2026: a Processed Data Registered event arrives for the integrated business dataset. Aggregates are computed by NACE × region; unstable small domains are estimated with the small-area model and flagged distinctly from direct aggregates. Dominant-unit cells are suppressed by SDC. Coherence with national-accounts inputs is checked. <code>OD-BUS-2026Q3-001</code> is created with methodology and accuracy, linked to <code>PD-BUS-2026Q3-001</code>, and VS-05.0 is notified.</p>
+<p><strong>Management Phase:</strong> Coherence with national accounts is within tolerance; revision analysis shows stable estimates; the small-area model fit is monitored across cycles. Disclosure-control report confirms no dominant-unit disclosure. Improvement recommendation: recalibrate the small-area model after two more cycles of data. Recommendations fed back to design.</p>
+</section>
+<section id="scenario-c-web-scraped-price-data-index-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-c-web-scraped-price-data-index-estimation">Scenario C: Web-Scraped Price Data (Index Estimation)</h3>
+<p><strong>Design Phase:</strong> The team designs the price-index estimation (e.g., a GEKS or Törnqvist multilateral index) over the COICOP items coded in VS-03, with quality-adjustment treatment, an approach for new/disappearing products, and coherence criteria against the official CPI. The disclosure policy is light (aggregated indices), and the accuracy approach for the index is specified.</p>
+<p><strong>Implementation Phase:</strong> Engineers build the index estimator, the new/disappearing-product handling, and seasonal/quality adjustment, plus coherence checks against the official CPI. Reproducibility and back-series tests pass; the index is benchmarked against the official series on historical data.</p>
+<p><strong>Execution Phase:</strong> For the monthly run, a Processed Data Registered event arrives. The multilateral index is computed over COICOP items using the carry-forward-imputed daily prices flagged in VS-03 (their uncertainty noted), new products are chained in, and the index is validated for coherence against the official CPI movement. An output version with methodology and accuracy is created and registered; VS-05.0 is notified.</p>
+<p><strong>Management Phase:</strong> The scraped index tracks the official CPI within the agreed tolerance; revision magnitude is small. Reproducibility audit passes. Improvement recommendations: refine the new-product chaining rule for one volatile category, and evaluate a longer multilateral window. Recommendations fed back to design.</p>
+<p><strong>Sources</strong></p>
+<p>SAF Statistical Data Value Chain, <em>VS-04 Estimation, Analysis, and Statistical Modeling</em>; Steady-State Architecture, the states it consumes and produces.</p>
+</section>
+</section>
+<section id="saf-tk-v05" class="level2">
+<h2 class="anchored" data-anchor-id="saf-tk-v05">SAF-TK-V05 VS-05 Statistical Product Composition</h2>
+<p><strong>Checklist</strong></p>
+<p><strong>Design Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we have documented product specifications with their component outputs and selection rules?</label></li>
+<li><label><input type="checkbox">Do we have formal composite-indicator and time-series construction specifications?</label></li>
+<li><label><input type="checkbox">Do we have documented internal-consistency and coherence checks with tolerances?</label></li>
+<li><label><input type="checkbox">Do we have content templates and an editorial-review policy for interpretive content?</label></li>
+<li><label><input type="checkbox">Do we have an approval, confidentiality, and product-versioning policy defined before composition begins?</label></li>
+</ul>
+<p><strong>Implementation Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Are our composition engines built from design specifications (not ad-hoc spreadsheets)?</label></li>
+<li><label><input type="checkbox">Do composites carry an uncertainty measure derived from their components?</label></li>
+<li><label><input type="checkbox">Can a product be reproduced identically from its component versions plus the composition method?</label></li>
+<li><label><input type="checkbox">Is the approval workflow and versioning store implemented and tamper-evident?</label></li>
+<li><label><input type="checkbox">Do we have a formal testing process (technical, coherence, reproducibility)?</label></li>
+</ul>
+<p><strong>Execution Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we select pinned component output versions and carry their accuracy metadata forward?</label></li>
+<li><label><input type="checkbox">Do we construct composites without re-estimating component outputs?</label></li>
+<li><label><input type="checkbox">Do we run internal-consistency and coherence checks and explain discrepancies?</label></li>
+<li><label><input type="checkbox">Do we produce reviewed interpretive content consistent with the data and its caveats?</label></li>
+<li><label><input type="checkbox">Do we approve and register every product as an immutable version with full lineage?</label></li>
+</ul>
+<p><strong>Management Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we track KPIs (coherence pass rate, approval iterations, reproducibility) across cycles?</label></li>
+<li><label><input type="checkbox">Do we assess coherence and interpretability of products?</label></li>
+<li><label><input type="checkbox">Do we govern product/version lifecycles and the product-version store?</label></li>
+<li><label><input type="checkbox">Do we produce reproducibility-audit, approval/confidentiality, and standards-compliance reports?</label></li>
+<li><label><input type="checkbox">Do we have a formal improvement process that feeds back into design?</label></li>
+</ul>
+<p><strong>Example (illustrative): end-to-end scenarios</strong></p>
+<p>Each scenario walks through <strong>all four process types</strong>, demonstrating how the governance pattern works in practice.</p>
+<section id="scenario-a-labour-market-quarterly-publication" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-a-labour-market-quarterly-publication">Scenario A: Labour Market Quarterly Publication</h3>
+<p><strong>Design Phase:</strong> Product managers specify the quarterly labour-market publication: employment and unemployment rates (national and NUTS-2), a vacancy indicator, narrative, and a regional visualisation, drawing on the validated LFS and administrative outputs. Coherence checks against prior quarters and the approval workflow are designed.</p>
+<p><strong>Implementation Phase:</strong> Engineers configure the integration engine (pinned LFS/administrative outputs), the time-series engine for the headline series, coherence checks vs.&nbsp;prior quarters, and the content/approval tooling. Coherence and reproducibility tests pass on historical data.</p>
+<p><strong>Execution Phase:</strong> For Q3-2026, an Output Data Registered event arrives. The team integrates the pinned <code>OD-LFS-2026Q3</code> outputs (carrying their CIs), constructs the seasonally-relevant series, and runs coherence checks (all reconcile; coherent with Q2). The commentary explains the 0.3pp employment-rate rise and notes its significance; visualisations are produced and editorially reviewed. The product is approved and registered as an immutable version with full lineage; VS-06.0 is notified.</p>
+<p><strong>Management Phase:</strong> Coherence-check pass rate is 100%, approval completed in one iteration, all component CIs correctly propagated. Improvement recommendation: add an automated check comparing the vacancy indicator to a related administrative series. Recommendations fed back to design.</p>
+</section>
+<section id="scenario-b-structural-business-statistics-composite-product" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-b-structural-business-statistics-composite-product">Scenario B: Structural Business Statistics Composite Product</h3>
+<p><strong>Design Phase:</strong> The composite SBS product is specified to integrate the register-based and survey-based turnover/employment estimates for the same NACE × region domains, with internal-consistency checks (domains sum to totals) and coherence vs.&nbsp;national-accounts inputs.</p>
+<p><strong>Implementation Phase:</strong> Engineers configure integration of the pinned <code>OD-BUS</code> outputs, the consistency checks, and dominance-aware confidentiality validation for the composite. Coherence and reproducibility tests pass.</p>
+<p><strong>Execution Phase:</strong> Q3-2026: an Output Data Registered event arrives. The register- and survey-based components are integrated for overlapping domains; NACE-class turnover sums to the published total; the components agree within tolerance except one domain, which is returned to VS-04 for review rather than adjusted. Once resolved, the product is approved and registered (<code>SP-BUS-2026Q3-001</code>) with lineage to its components; VS-06.0 is notified.</p>
+<p><strong>Management Phase:</strong> One coherence discrepancy this cycle (resolved upstream); component reuse rate high; reproducibility audit passes. Improvement recommendation: tighten the tolerance for the recurring domain and document the reconciliation. Recommendations fed back to design.</p>
+</section>
+<section id="scenario-c-consumer-price-index-product" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-c-consumer-price-index-product">Scenario C: Consumer Price Index Product</h3>
+<p><strong>Design Phase:</strong> The CPI product is specified to compose the headline all-items index and main divisions from the validated item indices, with chaining/rebasing rules, coherence checks against the prior month and year, and analytical commentary.</p>
+<p><strong>Implementation Phase:</strong> Engineers configure the index-composition engine (designed weights and chaining), coherence checks, and the commentary/approval tooling. Coherence and reproducibility tests pass; the composed headline matches the expected value on test data.</p>
+<p><strong>Execution Phase:</strong> For the monthly run, an Output Data Registered event arrives with the validated item indices. The headline and division indices are composed with the period weights, coherence checks confirm consistency with the prior month and year, and the commentary explains the main contributors to the monthly change. The product is approved and registered with full lineage; VS-06.0 is notified.</p>
+<p><strong>Management Phase:</strong> Coherence pass rate 100%, headline reproducible from item indices + weights, approval in one iteration. Improvement recommendation: enhance the contributions visualisation for the commentary. Recommendations fed back to design.</p>
+<p><strong>Sources</strong></p>
+<p>SAF Statistical Data Value Chain, <em>VS-05 Statistical Product Composition</em>; Steady-State Architecture, the states it consumes and produces.</p>
+</section>
+</section>
+<section id="saf-tk-v06" class="level2">
+<h2 class="anchored" data-anchor-id="saf-tk-v06">SAF-TK-V06 VS-06 Dissemination and Service Delivery</h2>
+<p><strong>Checklist</strong></p>
+<p><strong>Design Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we have a documented dissemination and access strategy mapped to user groups and channels?</label></li>
+<li><label><input type="checkbox">Do we have a final disclosure-control and de-identification policy with disclosure-risk criteria?</label></li>
+<li><label><input type="checkbox">Do we have channel, format, accessibility, and documentation standards defined?</label></li>
+<li><label><input type="checkbox">Do we have a user-support, promotion, and usage/feedback model?</label></li>
+<li><label><input type="checkbox">Do we have a release-governance policy with equal-access controls and a release calendar?</label></li>
+</ul>
+<p><strong>Implementation Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Are our publication, API, dashboard, and research-access services built from design specifications (on VS-09 platforms)?</label></li>
+<li><label><input type="checkbox">Is final disclosure-control tooling implemented with an enforced disclosure-risk gate?</label></li>
+<li><label><input type="checkbox">Is release timing/embargo and equal-access enforcement implemented?</label></li>
+<li><label><input type="checkbox">Are documentation, support, and usage-monitoring services implemented?</label></li>
+<li><label><input type="checkbox">Do we have a formal testing process (technical, accessibility, security/disclosure, release rehearsal)?</label></li>
+</ul>
+<p><strong>Execution Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we confirm channels, formats, and timing for each release?</label></li>
+<li><label><input type="checkbox">Do we apply final disclosure control and pass a disclosure-risk gate before publishing?</label></li>
+<li><label><input type="checkbox">Do we release through the confirmed channels with managed timing and equal access?</label></li>
+<li><label><input type="checkbox">Do we accompany every release with documentation and user support?</label></li>
+<li><label><input type="checkbox">Do we monitor usage and collect feedback each cycle?</label></li>
+</ul>
+<p><strong>Management Maturity</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we track KPIs (punctuality, disclosure-gate pass rate, usage, satisfaction) across cycles?</label></li>
+<li><label><input type="checkbox">Do we assess accessibility, reach, and clarity?</label></li>
+<li><label><input type="checkbox">Do we govern channel/release lifecycles and the release-version store?</label></li>
+<li><label><input type="checkbox">Do we produce disclosure, equal-access, accessibility, and security compliance reports (with VS-07)?</label></li>
+<li><label><input type="checkbox">Do we have a formal improvement process that feeds back into design and VS-10?</label></li>
+</ul>
+<p><strong>Example (illustrative): end-to-end scenarios</strong></p>
+<p>Each scenario walks through <strong>all four process types</strong>, demonstrating how the governance pattern works in practice.</p>
+<section id="scenario-a-labour-market-quarterly-release" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-a-labour-market-quarterly-release">Scenario A: Labour Market Quarterly Release</h3>
+<p><strong>Design Phase:</strong> The dissemination strategy targets policymakers (press release), researchers (API + series download), and the public (dashboard), with a pre-announced release calendar and a media embargo policy. Final disclosure-control rules for small NUTS-2 cells, accessibility standards, and the documentation standard are designed.</p>
+<p><strong>Implementation Phase:</strong> Engineers configure the publication page, the SDMX API, and the dashboard on the VS-09 platform, the SDC tooling for small-cell suppression, and embargo/equal-access release tooling. Accessibility, disclosure, and release-rehearsal tests pass.</p>
+<p><strong>Execution Phase:</strong> A Statistical Product Registered event arrives for the Q3-2026 labour-market product. The team confirms the plan, applies final SDC (suppressing two small NUTS-2 cells), and clears the disclosure-risk gate. At 09:00 the figures publish simultaneously on the website, API, and dashboard; embargoed media publish at the same moment. Documentation and methodology notes accompany the release; the helpdesk handles queries. Usage and feedback are collected. A Statistics Released event is published.</p>
+<p><strong>Management Phase:</strong> On-time release rate 100%, disclosure-gate passed first time, API availability 99.95%, usage up 12% on the prior quarter. Improvement recommendation: add a plain-language summary after feedback showed confusion about the confidence interval. Recommendations fed back to design and VS-10.</p>
+</section>
+<section id="scenario-b-business-statistics-microdata-via-secure-research-environment" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-b-business-statistics-microdata-via-secure-research-environment">Scenario B: Business Statistics — Microdata via Secure Research Environment</h3>
+<p><strong>Design Phase:</strong> The strategy provides aggregate tables openly and de-identified business microdata through a secure research environment (SRE) for accredited researchers. The de-identification standard, output-checking rules, and SRE access model are designed with VS-07.</p>
+<p><strong>Implementation Phase:</strong> Engineers configure the open tables on the portal and the SRE access service with output checking on the VS-09 platform; the de-identification component and disclosure gate are configured. Security/disclosure and accessibility tests pass.</p>
+<p><strong>Execution Phase:</strong> A Statistical Product Registered event arrives for the SBS product. Aggregate tables are disclosure-controlled and published openly; the microdata is de-identified to the standard and made available in the SRE. Accredited researchers are onboarded with the data dictionary and methodology; the helpdesk handles output-checking so researchers’ exported results also meet disclosure rules. Usage in the SRE is logged. A Statistics Released event is published.</p>
+<p><strong>Management Phase:</strong> Disclosure-gate pass rate 100%, no disclosure incidents, SRE onboarding time within target. Improvement recommendation: add a self-service output-checking pre-screen to reduce helpdesk load. Recommendations fed back to design and VS-10.</p>
+</section>
+<section id="scenario-c-consumer-price-index-headline-release-and-dashboard" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-c-consumer-price-index-headline-release-and-dashboard">Scenario C: Consumer Price Index — Headline Release and Dashboard</h3>
+<p><strong>Design Phase:</strong> The CPI dissemination strategy provides a headline press release, an API for the series, and an interactive dashboard, on a fixed pre-announced calendar with a tight embargo (price indices are market-sensitive). Accessibility and documentation standards are designed.</p>
+<p><strong>Implementation Phase:</strong> Engineers configure the release page, the API, and the dashboard, plus strict embargo/equal-access release tooling (CPI is market-sensitive). Disclosure (light, aggregated indices), accessibility, and release-rehearsal tests pass.</p>
+<p><strong>Execution Phase:</strong> A Statistical Product Registered event arrives for the monthly CPI product. The plan is confirmed, the light disclosure check passes, and at the scheduled minute the headline, API series, and dashboard go live simultaneously with strict equal access. Documentation explains the monthly movement and contributions; the helpdesk handles media queries. Usage spikes are monitored. A Statistics Released event is published.</p>
+<p><strong>Management Phase:</strong> Punctuality 100% (critical for a market-sensitive release), no embargo breaches, dashboard views at record highs on release day. Improvement recommendation: add a contributions-to-change visual to the dashboard after user feedback. Recommendations fed back to design and VS-10.</p>
+<p><strong>Sources</strong></p>
+<p>SAF Statistical Data Value Chain, <em>VS-06 Dissemination and Service Delivery</em>; Steady-State Architecture, the states it consumes and produces.</p>
+</section>
+</section>
+<section id="saf-tk-v07" class="level2">
+<h2 class="anchored" data-anchor-id="saf-tk-v07">SAF-TK-V07 VS-07 Governance and Compliance</h2>
+<p><strong>Checklist</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we have documented governance frameworks and policies covering data, metadata, ethics, confidentiality, and quality?</label></li>
+<li><label><input type="checkbox">Have we mapped applicable regulation (GDPR, statistics law) to concrete compliance procedures?</label></li>
+<li><label><input type="checkbox">Are data-governance roles (owner, steward, custodian) assigned and metadata/lineage processes in place?</label></li>
+<li><label><input type="checkbox">Do we monitor quality and compliance on dashboards, and audit/certify periodically?</label></li>
+<li><label><input type="checkbox">Is there a closed loop that feeds audit findings and regulatory change back into the frameworks?</label></li>
+</ul>
+<p><strong>Example (illustrative): end-to-end scenarios</strong></p>
+<p><strong>Scenario A — A new regulation lands.</strong> A change to data-protection law is detected (07.2/07.6). VS-07 assesses the impact, updates the privacy and confidentiality policy, issues a “Policy update” to all streams, and verifies adoption at the next audit — the chain stays compliant without each stream interpreting the law independently.</p>
+<p><strong>Scenario B — Pre-production method approval.</strong> VS-08 proposes a new machine-learning coding method. VS-07 assesses it against the compliance criteria (privacy, transparency, quality) before VS-08’s 08.5 transfer to production, certifies it, and records the decision — so only sound, compliant methods reach the production streams.</p>
+<p><strong>Scenario C — Preparing a Code of Practice peer review.</strong> Ahead of the periodic European Statistics Code of Practice peer review, VS-07 assembles the evidence base from its dashboards and the streams’ compliance reporting (07.4/07.5): policy register, audit trail summaries, quality indicators, and incident records. Gaps surfaced by the self-assessment — say, an outdated revision policy — are remediated through 07.6 before the review. The peer-review outcome and its recommendations enter the governance backlog, and the resulting certification is published as external assurance.</p>
+<p><strong>Sources</strong></p>
+<p>SAF Statistical Data Value Chain, <em>VS-07 Governance and Compliance</em>; Steady-State Architecture, the states it consumes and produces.</p>
+</section>
+<section id="saf-tk-v08" class="level2">
+<h2 class="anchored" data-anchor-id="saf-tk-v08">SAF-TK-V08 VS-08 Innovation and Methodological Development</h2>
+<p><strong>Checklist</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we maintain a prioritised innovation backlog drawn from both technology scanning and the production streams’ improvement needs?</label></li>
+<li><label><input type="checkbox">Do we test new methods in controlled PoCs before committing?</label></li>
+<li><label><input type="checkbox">Do we evaluate soundness, scalability, and ethics before development?</label></li>
+<li><label><input type="checkbox">Is there a governed transfer gate (with VS-07 approval) for moving methods into production?</label></li>
+<li><label><input type="checkbox">Do we disseminate results and build staff capability so innovations are sustained?</label></li>
+</ul>
+<p><strong>Example (illustrative): end-to-end scenarios</strong></p>
+<p><strong>Scenario A — ML-assisted coding.</strong> A production stream (VS-03) repeatedly flags free-text occupation coding as costly. VS-08 picks this up (08.1), pilots an ML coder (08.2), evaluates accuracy and bias (08.3), builds a documented reference implementation (08.4), and — after VS-07 approval and on a VS-09 platform — transfers it into VS-03 (08.5), then trains the coding team (08.6).</p>
+<p><strong>Scenario B — New data source (web-scraped prices).</strong> VS-10 reports demand for more timely price statistics. VS-08 researches web-scraping and multilateral index methods, evaluates feasibility and quality against the official CPI, documents the method, and transfers it into VS-01/VS-04, sharing the methodology across the price-statistics team.</p>
+<p><strong>Scenario C — The gate says no.</strong> A vendor demo convinces a statistical domain that a generative-AI assistant could draft analytical commentary (VS-05). VS-08 takes it through the pipeline: the PoC (08.2) shows impressive fluency, but the evaluation (08.3) finds unexplainable variation between runs and no way to meet the methodological-transparency requirement, and VS-07’s compliance pre-assessment concurs. The idea is stopped at the gate, the rationale is documented and shared (08.6), and a narrower, compliant alternative — template-based drafting with human sign-off — is added to the backlog. A healthy 08.3 gate is one that sometimes says no.</p>
+<p><strong>Sources</strong></p>
+<p>SAF Statistical Data Value Chain, <em>VS-08 Innovation and Methodological Development</em>; Steady-State Architecture, the states it consumes and produces.</p>
+</section>
+<section id="saf-tk-v09" class="level2">
+<h2 class="anchored" data-anchor-id="saf-tk-v09">SAF-TK-V09 VS-09 Infrastructure and Platform Enablement</h2>
+<p><strong>Checklist</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Do we derive infrastructure requirements from business capabilities and data volumes (not ad-hoc)?</label></li>
+<li><label><input type="checkbox">Do we have architecture blueprints for storage, processing, integration, and secure access?</label></li>
+<li><label><input type="checkbox">Are environments provisioned with governance, monitoring, and security controls built in?</label></li>
+<li><label><input type="checkbox">Do we provide integration/orchestration and the event interfaces the streams rely on?</label></li>
+<li><label><input type="checkbox">Do we monitor performance, manage incidents, and guarantee availability and disaster recovery?</label></li>
+<li><label><input type="checkbox">Is there a modernisation path that adopts new technology (often from VS-08) and retires the obsolete?</label></li>
+</ul>
+<p><strong>Example (illustrative): end-to-end scenarios</strong></p>
+<p><strong>Scenario A — Onboarding a secure research environment.</strong> VS-06 needs to release de-identified microdata to accredited researchers. VS-09 captures the requirement (09.1), designs the SRE architecture (09.2), provisions it with access controls and output checking (09.3/09.4), and assures its security and availability (09.5) under VS-07’s policy — so VS-06 can deliver controlled microdata access reliably.</p>
+<p><strong>Scenario B — Adopting a cloud processing platform.</strong> VS-08 validates a scalable processing technology. VS-09 designs and provisions the platform (09.2/09.3), enables integration with the existing pipelines (09.4), assures performance and continuity (09.5), and folds it into the modernisation roadmap (09.6), so the production streams gain capacity without disruption.</p>
+<p><strong>Scenario C — Scaling for the census peak.</strong> The census (VS-01) will multiply ingestion and processing volumes for three months. VS-09 derives the peak requirements with the census team (09.1), updates the capacity plan and architecture (09.2), provisions elastic compute and storage ahead of the field period (09.3), and load-tests the ingestion event interfaces end to end (09.4). During the peak it monitors throughput and availability against the agreed service levels (09.5); afterwards the surge capacity is released and the lessons feed the modernisation roadmap (09.6). The chain experiences the census as business as usual.</p>
+<p><strong>Sources</strong></p>
+<p>SAF Statistical Data Value Chain, <em>VS-09 Infrastructure and Platform Enablement</em>; Steady-State Architecture, the states it consumes and produces.</p>
+</section>
+<section id="saf-tk-v10" class="level2">
+<h2 class="anchored" data-anchor-id="saf-tk-v10">SAF-TK-V10 VS-10 Customer and Stakeholder Engagement</h2>
+<p><strong>Checklist</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Have we mapped and segmented our stakeholders (users, providers, partners, policymakers)?</label></li>
+<li><label><input type="checkbox">Do we systematically collect and analyse user needs and translate them into requirements?</label></li>
+<li><label><input type="checkbox">Do we manage a service/product portfolio aligned to those needs and to strategy?</label></li>
+<li><label><input type="checkbox">Do we operate user support and manage key relationships, monitoring satisfaction?</label></li>
+<li><label><input type="checkbox">Do we measure impact and feed insight back into design and innovation (VS-08)?</label></li>
+</ul>
+<p><strong>Example (illustrative): end-to-end scenarios</strong></p>
+<p><strong>Scenario A — A new user need becomes a product.</strong> Through consultation (10.2) VS-10 learns that regional policymakers need more granular labour-market data. It logs the requirement, adds a candidate product to the portfolio (10.3), routes the need to design (VS-04/VS-05) and, where new methods are required, to VS-08. Once released by VS-06, VS-10 monitors uptake and satisfaction (10.6) and refines the offering.</p>
+<p><strong>Scenario B — Closing the feedback loop.</strong> VS-06.5 reports confusion about confidence intervals in a release. VS-10 analyses the feedback (10.2/10.6), provides targeted user guidance and a plain-language explainer (10.5), and feeds a documentation improvement back to VS-05/VS-06 design — turning a usability problem into a concrete improvement.</p>
+<p><strong>Scenario C — A new audience emerges.</strong> Monitoring shows journalists increasingly republishing statistics from third-party aggregators, sometimes incorrectly. VS-10 identifies data journalists as a distinct segment (10.1), consults them on their needs — machine-readable releases, embeddable visuals, plain-language methodology notes (10.2) — and adds a media-service offer to the portfolio (10.3). The channel requirements are routed to VS-06 and VS-09, an embargoed media briefing service is set up under VS-07’s equal-access policy (10.4/10.5), and citation accuracy in the press is tracked as an impact measure (10.6).</p>
+<p><strong>Sources</strong></p>
+<p>SAF Statistical Data Value Chain, <em>VS-10 Customer and Stakeholder Engagement</em>; Steady-State Architecture, the states it consumes and produces.</p>
+</section>
+</section>
+<section id="planned-instruments" class="level1">
+<h1>7. Planned instruments</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Area</th>
+<th>Instrument</th>
+<th>Reason for later</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Maturity</td>
+<td>Modernisation maturity scan</td>
+<td>Builds on the UNECE Modernisation Maturity Models; needs a decision on scope and scale</td>
+</tr>
+<tr class="even">
+<td>Maturity</td>
+<td>Architecture capability maturity scan</td>
+<td>Builds on the ACMM in the TOGAF Series Guide on Architecture Maturity Models; deepens SAF-TK-G01</td>
+</tr>
+<tr class="odd">
+<td>Business Architecture</td>
+<td>Reference model selection (Steady-State or Medallion)</td>
+<td>Selection criteria are in the BA chapter; chapter still in review</td>
+</tr>
+<tr class="even">
+<td>Business Architecture</td>
+<td>Role mapping and RACI template</td>
+<td>Maps departments, teams and job profiles onto SAF actors and roles; waits for the role reference to stabilise</td>
+</tr>
+<tr class="odd">
+<td>Business Architecture</td>
+<td>Process template and process mapping</td>
+<td>Maps NSI processes onto the SAF process model (PRD, OVA, DLM, MDS, DSP)</td>
+</tr>
+<tr class="even">
+<td>Business Architecture</td>
+<td>Function template and organisation-to-function mapping</td>
+<td>Maps organisational units onto the SAF business functions (FUN)</td>
+</tr>
+<tr class="odd">
+<td>Governance</td>
+<td>Architecture review checklist</td>
+<td>Can build on the ESS EARF compliance review template</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="annex-a-instrument-index" class="level1">
+<h1>Annex A. Instrument index</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Instrument</th>
+<th>Referenced from SAF framework</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-TK-G01</td>
+<td>Architecture function quick check</td>
+<td>Introduction, <em>Reading guide</em></td>
+</tr>
+<tr class="even">
+<td>SAF-TK-G02</td>
+<td>Adoption register</td>
+<td>Introduction, Reading guide, <em>Positioning the SAF in your own architecture</em></td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-G03</td>
+<td>Reference model mapping</td>
+<td>Introduction, Reading guide, <em>Combining the SAF with other reference models</em></td>
+</tr>
+<tr class="even">
+<td>SAF-TK-G04</td>
+<td>Legal register</td>
+<td>Introduction, Reading guide, <em>Legislation and regulation</em></td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-G05</td>
+<td>Steady-state record and gate log</td>
+<td>Steady-State Architecture, <em>How each state is described</em></td>
+</tr>
+<tr class="even">
+<td>SAF-TK-R01 to R04</td>
+<td>Entry routes</td>
+<td>Introduction, <em>Reading guide</em></td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-M01</td>
+<td>Stakeholder map</td>
+<td>Motivation, <em>Stakeholders</em></td>
+</tr>
+<tr class="even">
+<td>SAF-TK-M02</td>
+<td>Driver recognition</td>
+<td>Motivation, <em>Drivers</em></td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-M03</td>
+<td>Assessment record</td>
+<td>Motivation, <em>Assessment</em></td>
+</tr>
+<tr class="even">
+<td>SAF-TK-M04</td>
+<td>Goal alignment</td>
+<td>Motivation, <em>Goals</em></td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-M05</td>
+<td>Outcome and indicator sheet</td>
+<td>Motivation, <em>Outcomes</em></td>
+</tr>
+<tr class="even">
+<td>SAF-TK-M06</td>
+<td>Principle set and dispensation record</td>
+<td>Motivation, <em>Architecture Principles</em></td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-M07</td>
+<td>Requirements derivation</td>
+<td>Motivation, <em>Requirements</em></td>
+</tr>
+<tr class="even">
+<td>SAF-TK-M08</td>
+<td>Constraint register</td>
+<td>Motivation, <em>Constraints</em></td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-M09</td>
+<td>Value and meaning brief</td>
+<td>Motivation, <em>Meaning</em> and <em>Value</em></td>
+</tr>
+<tr class="even">
+<td>SAF-TK-S01</td>
+<td>Capability model tailoring</td>
+<td>Strategy, <em>Capability Model</em></td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-S02</td>
+<td>Capability assessment and heatmap</td>
+<td>Strategy, <em>How NSIs use this chapter</em></td>
+</tr>
+<tr class="even">
+<td>SAF-TK-S03</td>
+<td>Value stream tailoring and capability mapping</td>
+<td>Strategy, <em>Value Streams</em></td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-S04</td>
+<td>Resource profile</td>
+<td>Strategy, <em>Resources</em></td>
+</tr>
+<tr class="even">
+<td>SAF-TK-S05</td>
+<td>Strategy and course of action canvas</td>
+<td>Strategy, <em>Courses of Action</em></td>
+</tr>
+<tr class="odd">
+<td>SAF-TK-V01 to V10</td>
+<td>Value stream maturity checklists and scenarios</td>
+<td>Statistical Data Value Chain, end of each value stream</td>
+</tr>
+<tr class="even">
+<td>(planned)</td>
+<td>Modernisation maturity scan</td>
+<td>Motivation, <em>How NSIs use this chapter</em></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="annex-b-sources-and-reuse" class="level1">
+<h1>Annex B. Sources and reuse</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>Owner</th>
+<th>Reused for</th>
+<th>How</th>
+<th>Licence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TOGAF Standard, 10th Edition, incl.&nbsp;Series Guides <em>Business Capabilities</em> and <em>Value Streams</em></td>
+<td>The Open Group</td>
+<td>G01, M06, S01, S02, S03</td>
+<td>Referenced, not reproduced</td>
+<td>Open Group licence (SAF-C1)</td>
+</tr>
+<tr class="even">
+<td>TOGAF Series Guide <em>Architecture Maturity Models</em> (US DoC ACMM)</td>
+<td>The Open Group</td>
+<td>Later EA maturity scan</td>
+<td>Referenced</td>
+<td>Open Group licence</td>
+</tr>
+<tr class="odd">
+<td>ESS Enterprise Architecture Reference Framework (EARF): principles mapping, business capability model, ArchiMate models, compliance review template</td>
+<td>Eurostat</td>
+<td>G03, S01; later review checklist</td>
+<td>Structure as inspiration; mapping where useful</td>
+<td>To be confirmed <strong>[K1]</strong></td>
+</tr>
+<tr class="even">
+<td>Modernisation Maturity Models</td>
+<td>UNECE HLG-MOS</td>
+<td>Later modernisation maturity scan</td>
+<td>Basis for dimensions and levels</td>
+<td>To be confirmed <strong>[K1]</strong></td>
+</tr>
+<tr class="odd">
+<td>Maturity Model on Quality Culture, with Excel assessment checklist</td>
+<td>UN EG-NQAF</td>
+<td>Format example for checklists</td>
+<td>Format only</td>
+<td>To be confirmed</td>
+</tr>
+<tr class="even">
+<td>MADR, Markdown Any Decision Records</td>
+<td>ADR community</td>
+<td>M06 dispensation record</td>
+<td>Template adapted</td>
+<td>MIT or CC0</td>
+</tr>
+<tr class="odd">
+<td>GC Enterprise Architecture Framework and EARB presenter template</td>
+<td>Government of Canada</td>
+<td>R03 project route; later review checklist</td>
+<td>Inspiration</td>
+<td>To be confirmed</td>
+</tr>
+<tr class="even">
+<td>GSBPM and GAMSO</td>
+<td>UNECE HLG-MOS</td>
+<td>Context in S01 and S03</td>
+<td>Referenced</td>
+<td>CC BY 4.0</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

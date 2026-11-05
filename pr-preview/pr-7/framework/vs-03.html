@@ -1,0 +1,2488 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>VS-03 Data Editing and Enrichment – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../framework/vs-04.html" rel="next">
+<link href="../framework/vs-02.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f374ad13d1ca50ffd7110ca4e9b8aceb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../framework/index.html" aria-current="page"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../toolkit.html"> 
+<span class="menu-text">Toolkit</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-01.html">Production value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-03.html">VS-03 Data Editing and Enrichment</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAF Architecture Framework</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Foundations</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and Scope</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/motivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Motivation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/strategy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strategy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Business architecture</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/business-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/steady-state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Steady-State Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/value-chain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Data Value Chain</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Production value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-01 Data Acquisition and Ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-02 Data Standardization and Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-03.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">VS-03 Data Editing and Enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-04 Estimation, Analysis, and Statistical Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-05 Statistical Product Composition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-06 Dissemination and Service Delivery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Supporting value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-07 Governance and Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-08 Innovation and Methodological Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-09 Infrastructure and Platform Enablement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-10 Customer and Stakeholder Engagement</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#vs-03-data-editing-and-enrichment" id="toc-vs-03-data-editing-and-enrichment" class="nav-link active" data-scroll-target="#vs-03-data-editing-and-enrichment">VS-03 Data Editing and Enrichment</a>
+  <ul class="collapse">
+  <li><a href="#purpose-and-value-created" id="toc-purpose-and-value-created" class="nav-link" data-scroll-target="#purpose-and-value-created">1. Purpose and value created</a></li>
+  <li><a href="#position-and-state-transition" id="toc-position-and-state-transition" class="nav-link" data-scroll-target="#position-and-state-transition">2. Position and state transition</a></li>
+  <li><a href="#stages" id="toc-stages" class="nav-link" data-scroll-target="#stages">3. Stages</a></li>
+  <li><a href="#the-four-process-types" id="toc-the-four-process-types" class="nav-link" data-scroll-target="#the-four-process-types">4. The four process types</a></li>
+  <li><a href="#actors-and-roles" id="toc-actors-and-roles" class="nav-link" data-scroll-target="#actors-and-roles">5. Actors and roles</a></li>
+  <li><a href="#capabilities-processes-and-functions" id="toc-capabilities-processes-and-functions" class="nav-link" data-scroll-target="#capabilities-processes-and-functions">6. Capabilities, processes, and functions</a></li>
+  <li><a href="#principles" id="toc-principles" class="nav-link" data-scroll-target="#principles">7. Principles</a></li>
+  <li><a href="#interfaces-services-and-events" id="toc-interfaces-services-and-events" class="nav-link" data-scroll-target="#interfaces-services-and-events">8. Interfaces, services, and events</a></li>
+  <li><a href="#key-performance-indicators" id="toc-key-performance-indicators" class="nav-link" data-scroll-target="#key-performance-indicators">9. Key performance indicators</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">10. Examples</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="vs-03.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-01.html">Production value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-03.html">VS-03 Data Editing and Enrichment</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">VS-03 Data Editing and Enrichment</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- GENERATED from docs/SAF Framework.md by scripts/split-framework.py - do not edit -->
+<section id="vs-03-data-editing-and-enrichment" class="level2">
+<h2 class="anchored" data-anchor-id="vs-03-data-editing-and-enrichment">VS-03 Data Editing and Enrichment</h2>
+<section id="purpose-and-value-created" class="level3">
+<h3 class="anchored" data-anchor-id="purpose-and-value-created">1. Purpose and value created</h3>
+<p>VS-03 is where the quality of the data is actively improved. Standardised data is rarely clean: it contains errors, inconsistencies, gaps, and values that are not yet coded. VS-03 detects these problems, corrects them, fills the gaps, and derives the additional variables that analysis needs. It is the only value stream that deliberately changes values. What makes that safe is full traceability: every change is recorded against its original value, and a reproducible, versioned dataset is produced. The value created is <strong>data reliability and analytical readiness</strong>. The output is Processed Data: reliable, complete microdata that estimation and modelling can build on.</p>
+<p>VS-03 improves the quality of microdata. It does not produce estimates or aggregates: estimation, weighting, aggregation, and statistical modelling belong to VS-04 Estimation, Analysis and Statistical Modeling.</p>
+<p>VS-03 corresponds to the business domain <strong>Editing, derivation, and non-response correction</strong> (see <em>Steady-State Architecture, Business domains</em>). This section describes the business layer of that domain for all four process types: Design, Implementation, Execution, and Management.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Signature discipline: full traceability
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Unlike VS-02, which never alters a value, VS-03 deliberately changes values to improve quality. Every edit, imputation, and derivation is rule-based, documented with a reason, attributable (who, which rule, when), and reversible. The original value is preserved beside the processed value, imputed values are flagged, and every version is reproducible. The invariant is <em>no undocumented or irreversible change</em>.</p>
+</div>
+</div>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-03 (a) value stream and capabilities</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="position-and-state-transition" class="level3">
+<h3 class="anchored" data-anchor-id="position-and-state-transition">2. Position and state transition</h3>
+<p>VS-03 is the third primary value stream. It receives Standardized Data from VS-02 and turns it into trustworthy, analytically sound input for estimation and modelling.</p>
+<p>VS-03 takes data from State #2 to State #3. Before VS-03, the data is structurally aligned and coded to standards, with its values unchanged. After VS-03, its content has been validated, corrected, completed, and enriched, integrated with other datasets where applicable, with new derived variables and fully documented lineage. The quality gate, the minimum metadata set, and the protection of State #3 are described in <em>State #3: Processed Data</em> and are not repeated here. Where a product skips State #2, VS-03 consumes State #1 directly.</p>
+<p>VS-02 deliberately leaves all value-changing work to VS-03. Together with the standardised data, VS-03 receives the metadata VS-02 attached: the recorded unit, currency, and reference-period bases, the records of definition differences, and the list of unmapped or uncoded values. VS-03 then performs the operations VS-02 deferred: interpretive coding of free text and value reconciliation across sources (VS-03.2), and unit and currency conversion, reference-period alignment, and derivation (VS-03.4).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>From</th>
+<th>To</th>
+<th>Gate</th>
+<th>Event out</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>#2 Standardized Data</td>
+<td>#3 Processed Data</td>
+<td>Gate of State #3 (rule conformance, edit lineage, imputation flags, coding, conversion and reconciliation, linkage quality, derived variables, quality improvement, disclosure risk, reproducibility)</td>
+<td><em>Processed Data Registered</em></td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-03 (c) state handover and events: Standardized Data (#2) from VS-02, the editing and enrichment service at the domain boundary (error detection, correction, imputation, derivation, quality versioning), Processed Data (#3) handed to VS-04</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="stages" class="level3">
+<h3 class="anchored" data-anchor-id="stages">3. Stages</h3>
+<p>The stages describe the value that VS-03 adds in every production cycle. Together they form the execution process type of VS-03. In a mature steady state, the rules and methods have been designed and built in advance (see attribute 4). Execution then focuses on running the cycle, applying edits, imputations, and derivations, and capturing the full edit lineage so that every value change is documented and reversible.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Name</th>
+<th>Value added</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-03.1</td>
+<td>Conduct Error Detection and Quality Diagnostics</td>
+<td>Errors, duplicates, gaps, and outliers are known</td>
+</tr>
+<tr class="even">
+<td>VS-03.2</td>
+<td>Perform Data Editing and Correction</td>
+<td>Incorrect values are corrected</td>
+</tr>
+<tr class="odd">
+<td>VS-03.3</td>
+<td>Impute Missing or Non-Response Data</td>
+<td>Missing values are filled with documented methods</td>
+</tr>
+<tr class="even">
+<td>VS-03.4</td>
+<td>Derive Additional Variables and Indicators</td>
+<td>Data describes reality better than the source alone</td>
+</tr>
+<tr class="odd">
+<td>VS-03.5</td>
+<td>Perform Quality Evaluation and Versioning</td>
+<td>Quality is documented, and processed microdata is registered (State #3)</td>
+</tr>
+</tbody>
+</table>
+<p>Each stage below is described with its activities. The column <em>SAF process</em> shows the business process from <em>Business Processes</em> that the activity belongs to. The column <em>Other reference</em> shows the principles, capabilities, or external frameworks that the activity applies.</p>
+<p><br></p>
+<section id="vs-03.1-conduct-error-detection-and-quality-diagnostics" class="level4">
+<h4 class="anchored" data-anchor-id="vs-03.1-conduct-error-detection-and-quality-diagnostics">VS-03.1 Conduct Error Detection and Quality Diagnostics</h4>
+<p><strong>Value created:</strong> <em>A clear, prioritised picture of where the data is wrong, incomplete, or inconsistent.</em></p>
+<p>The stage starts when the <em>Standardized Data Registered</em> event is received from VS-02. The designed detection rules run on the incoming dataset: consistency, range, outlier, duplicate, and completeness checks. Selective-editing scores are computed, so that effort goes to the problems that matter for the results. The outcome is a diagnostic report that gives the location and type of each suspected error, its severity, and its disposition: auto-correct, flag for review, or accept. No values are changed yet. This stage diagnoses; correction happens in VS-03.2.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Run consistency, range, outlier, duplicate, and completeness checks</td>
+<td>Error diagnostic report</td>
+<td>PRD-5.3 Review and validate</td>
+<td>1.3.3 Check content</td>
+</tr>
+<tr class="even">
+<td>Compute selective-editing scores and prioritise errors</td>
+<td>Prioritised error list</td>
+<td>PRD-5.3 Review and validate</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Assign a disposition: auto-correct, flag for review, or accept</td>
+<td>Disposition list</td>
+<td>PRD-5.3 Review and validate</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Log all detected issues to the edit audit trail</td>
+<td>Audit trail entries</td>
+<td>OVA-4 Process Data Management</td>
+<td>SAF-P10</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-03.2-perform-data-editing-and-correction" class="level4">
+<h4 class="anchored" data-anchor-id="vs-03.2-perform-data-editing-and-correction">VS-03.2 Perform Data Editing and Correction</h4>
+<p><strong>Value created:</strong> <em>Errors corrected and inconsistencies resolved, with every change documented and reversible.</em></p>
+<p>Auto-correction rules are applied to the records that the design earmarked for automatic treatment. Flagged records go to subject-matter statisticians, who adjudicate and correct them. For every change, the editing engine records the original value, the rule or decision applied, a reason code, the actor, and a timestamp. The edit is therefore fully attributable and reversible. This stage also carries out the interpretive coding handed over from VS-02, for example coding free-text occupation to ISCO, the international occupation classification, with low-confidence cases reviewed. Where integrated sources disagree on a value, the designed value-reconciliation rules are applied. No edit may leave a record that violates the validation rules.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Apply auto-corrections according to the designed rules</td>
+<td>Corrected records</td>
+<td>PRD-5.4 Edit and impute</td>
+<td>1.3.4 Adjusting and imputing</td>
+</tr>
+<tr class="even">
+<td>Route flagged records to subject-matter review and adjudication</td>
+<td>Adjudicated corrections</td>
+<td>PRD-5.4 Edit and impute</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Code free-text values interpretively (for example occupation to ISCO)</td>
+<td>Coded values, confidence and review records</td>
+<td>PRD-5.2 Classify and code</td>
+<td>Handed over from VS-02</td>
+</tr>
+<tr class="even">
+<td>Apply value-reconciliation rules across integrated sources</td>
+<td>Reconciled values</td>
+<td>PRD-5.4 Edit and impute</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Record original value, rule, reason, actor, and time for every change</td>
+<td>Edit lineage records</td>
+<td>PRD-5.4 Edit and impute; OVA-4 Process Data Management</td>
+<td>SAF-P10</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-03 editing and correction architecture: detected issues from VS-03.1 split into three paths (auto-correctable low-impact values to automatic correction, high-impact flagged values to manual adjudication, free-text values from the VS-02 handover to interpretive coding), all producing edited values whose original value, rule, and reason are written to the edit audit trail</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-03.3-impute-missing-or-non-response-data" class="level4">
+<h4 class="anchored" data-anchor-id="vs-03.3-impute-missing-or-non-response-data">VS-03.3 Impute Missing or Non-Response Data</h4>
+<p><strong>Value created:</strong> <em>Complete datasets where gaps are filled with the best available estimate, clearly flagged as imputed.</em></p>
+<p>Missing and non-response values are filled with the designed imputation methods. The method is chosen per variable and missingness pattern: deterministic, donor (hot-deck or nearest-neighbor), model-based, or external-source. Acceptance constraints make sure that imputed values still satisfy the edit rules. Every imputed value receives an imputation flag and a method code, so that imputed and observed values are always distinguishable downstream, and the imputation inputs are recorded in the lineage. Imputed values never overwrite observed values; they fill only genuine gaps.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Select and apply the designed imputation method per variable and missingness pattern</td>
+<td>Imputed values</td>
+<td>PRD-5.4 Edit and impute</td>
+<td>1.3.4 Adjusting and imputing</td>
+</tr>
+<tr class="even">
+<td>Enforce acceptance constraints: imputed values satisfy the edit rules</td>
+<td>Constraint-checked imputations</td>
+<td>PRD-5.4 Edit and impute</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Flag every imputed value with a method code and record its inputs</td>
+<td>Imputation flags and lineage</td>
+<td>PRD-5.4 Edit and impute</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Log imputation actions to the edit audit trail</td>
+<td>Audit trail entries</td>
+<td>OVA-4 Process Data Management</td>
+<td>SAF-P10</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-03.4-derive-additional-variables-and-indicators" class="level4">
+<h4 class="anchored" data-anchor-id="vs-03.4-derive-additional-variables-and-indicators">VS-03.4 Derive Additional Variables and Indicators</h4>
+<p><strong>Value created:</strong> <em>Enriched datasets carrying the analytical variables downstream production needs.</em></p>
+<p>The derived variables and indicators specified in design are calculated. Each one is computed from its documented formula and inputs, receives its metadata and classification, and is recorded with lineage to its inputs. This stage also computes the unit, currency, and reference-period conversions from the bases VS-02 recorded as metadata, for example converting turnover from thousands to units, or aligning a fiscal-year figure to the calendar year. Each conversion is documented with its rule and rate, so the original value remains recoverable. Where datasets are to be combined, records are linked on the designed keys, and the lineage records the linkage.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Calculate derived variables and indicators from the designed formulas</td>
+<td>Derived variables and their metadata</td>
+<td>PRD-5.5 Derive new variables and units</td>
+<td>1.3.2 Deriving variables and units</td>
+</tr>
+<tr class="even">
+<td>Compute unit, currency, and reference-period conversions from the VS-02 bases</td>
+<td>Converted values, conversion lineage</td>
+<td>PRD-5.5 Derive new variables and units</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Integrate or link datasets on the designed keys, where applicable</td>
+<td>Integrated dataset, linkage lineage</td>
+<td>PRD-5.1 Integrate data</td>
+<td>2.1.4 Statistical register management; SAF-P11</td>
+</tr>
+<tr class="even">
+<td>Record derivation and conversion formulas and inputs as lineage</td>
+<td>Derivation lineage</td>
+<td>PRD-5.5 Derive new variables and units; OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-03.5-perform-quality-evaluation-and-versioning" class="level4">
+<h4 class="anchored" data-anchor-id="vs-03.5-perform-quality-evaluation-and-versioning">VS-03.5 Perform Quality Evaluation and Versioning</h4>
+<p><strong>Value created:</strong> <em>A trustworthy, traceable Processed Data version with measured quality improvement.</em></p>
+<p>This stage evaluates the result and produces the official quality version. Quality is evaluated against the State #2 baseline: improvement in completeness and accuracy, edit and imputation rates, and the number of derived variables added. The edit lineage is verified to be complete, with every change attributable and reversible. A persistent, immutable quality version of the Processed Data is created with a unique identifier. It is registered in the catalogue with its full lineage, imputation flags, derived-variable metadata, and quality assessment, in line with SAF-P09, and access permissions are applied in line with SAF-P10. If the quality is insufficient, the data goes back for re-editing or re-imputation after review. The stage ends by publishing the <em>Processed Data Registered</em> event, which tells VS-04 that new processed data is available for estimation and analysis.</p>
+<p><strong>Output:</strong> <strong>Processed Data (State #3)</strong>, the official handover artefact to the rest of the statistical value chain. Its structure and minimum metadata set are described in <em>State #3: Processed Data</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Evaluate quality improvement against the State #2 baseline</td>
+<td>Quality evaluation report</td>
+<td>PRD-5.8 Finalise data files; DLM-2 Promote data through a quality gate</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Verify that the edit lineage is complete and reversible</td>
+<td>Lineage completeness check</td>
+<td>DLM-2 Promote data through a quality gate</td>
+<td>SAF-P10</td>
+</tr>
+<tr class="odd">
+<td>Create an immutable, identified quality version of Processed Data</td>
+<td>Versioned Processed Data</td>
+<td>PRD-5.8 Finalise data files; DLM-5 Store and version data</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="even">
+<td>Register metadata: edit lineage, imputation flags, derived-variable metadata, quality assessment</td>
+<td>Catalogue registration</td>
+<td>DLM-3 Register and catalogue data; OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="odd">
+<td>Apply access permissions to the processed microdata</td>
+<td>Access-controlled dataset</td>
+<td>DLM-4 Classify and protect data</td>
+<td>SAF-P10, SAF-P11</td>
+</tr>
+<tr class="even">
+<td>Publish the <em>Processed Data Registered</em> event to notify VS-04</td>
+<td>Event notification</td>
+<td>DLM-3 Register and catalogue data</td>
+<td>SAF-P07</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="the-four-process-types" class="level3">
+<h3 class="anchored" data-anchor-id="the-four-process-types">4. The four process types</h3>
+<p>The sub-processes below are specific to VS-03. Each refines one or more SAF business processes, listed as <em>Refines</em>, which keeps it traceable to <em>Business Processes</em>. Sub-processes marked <em>(standard)</em> work as described in <a href="../framework/value-chain.html#standard-vs-activities">Standard activities in every value stream</a>; only the VS-03 specifics are listed.</p>
+<section id="design-provides-metadata" class="level4">
+<h4 class="anchored" data-anchor-id="design-provides-metadata">Design: provides metadata</h4>
+<p>Without well-designed rules and methods, editing becomes ad hoc and untraceable, and management has no baseline to measure quality improvement against.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Design sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design Error-Detection and Validation Rules</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td>Validation rule set, selective-editing strategy, error taxonomy and disposition policy</td>
+</tr>
+<tr class="even">
+<td>Design Imputation Methodology</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td>Imputation methodology, donor and matching specification, imputation flagging standard</td>
+</tr>
+<tr class="odd">
+<td>Design Derivation and Coding Specifications</td>
+<td>PRD-2.2 Design variables; PRD-2.5 Design processing and analysis; DLM-9 Manage reference and master data</td>
+<td>Derived-variable catalogue, coding methodology, conversion specification</td>
+</tr>
+<tr class="even">
+<td>Design Integration and Linkage Rules</td>
+<td>PRD-2.5 Design processing and analysis; DLM-4 Classify and protect data</td>
+<td>Linkage rule set, reconciliation policy, disclosure-risk assessment design</td>
+</tr>
+<tr class="odd">
+<td>Design Quality Evaluation, Versioning, and Audit Framework</td>
+<td>OVA-1 Quality Management; DLM-1 Plan and design data assets; DLM-4 Classify and protect data; OVA-4 Process Data Management</td>
+<td>Quality criteria, edit audit-trail specification, versioning policy, access control and reproducibility design</td>
+</tr>
+</tbody>
+</table>
+<section id="design-error-detection-and-validation-rules" class="level5">
+<h5 class="anchored" data-anchor-id="design-error-detection-and-validation-rules">Design Error-Detection and Validation Rules</h5>
+<p><em>Refines:</em> PRD-2.5 Design processing and analysis.</p>
+<p>The starting point of editing is defining what counts as an error. This sub-process sets the validation and error-detection rules: logical and consistency checks (between fields, within a record, and against reference data), range and outlier-detection rules, duplicate-detection rules, and completeness checks. A selective-editing strategy concentrates effort on errors that materially affect results. Score functions and thresholds decide which records are auto-corrected, which are flagged for manual review, and which are left as they are. The team also designs the error taxonomy and the disposition options: auto-correct, flag for review, or accept.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define logical and consistency, range, and outlier-detection rules</td>
+<td>Validation rule set</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td>1.3.3 Check content</td>
+</tr>
+<tr class="even">
+<td>Define duplicate- and completeness-detection rules</td>
+<td>Validation rule set</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Design selective-editing score functions and review thresholds</td>
+<td>Selective-editing strategy</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Define the error taxonomy and disposition options (auto-correct, review, accept)</td>
+<td>Error taxonomy and disposition policy</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-imputation-methodology" class="level5">
+<h5 class="anchored" data-anchor-id="design-imputation-methodology">Design Imputation Methodology</h5>
+<p><em>Refines:</em> PRD-2.5 Design processing and analysis.</p>
+<p>This sub-process designs how missing and non-response values are completed. The team selects imputation methods per variable and missingness type: deterministic or rule-based imputation, donor methods (hot-deck, nearest-neighbor), model-based methods (regression, ratio), and the use of external or administrative sources. It defines donor pools, matching variables, and acceptance constraints, such as the edit rules an imputed value must still satisfy. The design mandates an imputation flag on every imputed value, so that imputed and observed values are always distinguishable downstream.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Select imputation methods per variable and missingness type</td>
+<td>Imputation methodology document</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td>1.3.4 Adjusting and imputing</td>
+</tr>
+<tr class="even">
+<td>Define donor pools, matching variables, and acceptance constraints</td>
+<td>Donor and matching specification</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Specify the use of external or administrative sources for imputation</td>
+<td>External-source imputation rules</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Mandate imputation flags and method codes on every imputed value</td>
+<td>Imputation flagging standard</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td>SAF-P09</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-derivation-and-coding-specifications" class="level5">
+<h5 class="anchored" data-anchor-id="design-derivation-and-coding-specifications">Design Derivation and Coding Specifications</h5>
+<p><em>Refines:</em> PRD-2.2 Design variables; PRD-2.5 Design processing and analysis; DLM-9 Manage reference and master data.</p>
+<p>This sub-process specifies the new variables and indicators to be derived, and the interpretive coding handed over from VS-02. Each derived variable is defined by a formula, its input variables, its unit, and the classification it belongs to, in line with SAF-P09. For interpretive coding, the design specifies the coding scheme (for example ISCO for occupation free text, COICOP for product names), the coding approach (manual, computer-assisted, or machine-learning-assisted with confidence thresholds), and the review workflow for low-confidence cases. This is the work VS-02 deferred because it requires judgment. The team also designs how unit, currency, and reference-period conversions are computed from the bases VS-02 recorded as metadata.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Specify derived variables and indicators: formulas, inputs, units, classification</td>
+<td>Derived-variable catalogue</td>
+<td>PRD-2.2 Design variables</td>
+<td>1.3.2 Deriving variables and units</td>
+</tr>
+<tr class="even">
+<td>Design the interpretive coding approach and review workflow (free text to standard codes)</td>
+<td>Coding methodology</td>
+<td>PRD-2.5 Design processing and analysis; DLM-9 Manage reference and master data</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Design unit, currency, and reference-period conversion rules from the VS-02 metadata</td>
+<td>Conversion specification</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Define metadata and classification for every derived variable</td>
+<td>Derived-variable metadata standard</td>
+<td>PRD-2.2 Design variables</td>
+<td>SAF-P09</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-integration-and-linkage-rules" class="level5">
+<h5 class="anchored" data-anchor-id="design-integration-and-linkage-rules">Design Integration and Linkage Rules</h5>
+<p><em>Refines:</em> PRD-2.5 Design processing and analysis; DLM-4 Classify and protect data.</p>
+<p>Where Processed Data is to be integrated with other datasets, this sub-process designs the linkage. It specifies the linkage keys, for example the statistical register identifier aligned in VS-02, and deterministic and probabilistic matching rules. It sets conflict-resolution rules for linked sources that disagree on a value, and the value-reconciliation policy for the definition differences VS-02 recorded as metadata. Linkage can increase the disclosure risk of pseudonymised microdata, so a disclosure-risk assessment is designed in line with SAF-P11.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define linkage keys and deterministic and probabilistic matching rules</td>
+<td>Linkage rule set</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td>GSBPM 5.1</td>
+</tr>
+<tr class="even">
+<td>Design conflict-resolution and value-reconciliation rules across sources</td>
+<td>Reconciliation policy</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Design the disclosure-risk assessment for integration and enrichment</td>
+<td>Disclosure-risk assessment design</td>
+<td>DLM-4 Classify and protect data</td>
+<td>SAF-P11; 3.3.1 Privacy management</td>
+</tr>
+<tr class="even">
+<td>Define lineage requirements for linked and reconciled values</td>
+<td>Linkage lineage specification</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td>CSDA Traceability</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-quality-evaluation-versioning-and-audit-framework" class="level5">
+<h5 class="anchored" data-anchor-id="design-quality-evaluation-versioning-and-audit-framework">Design Quality Evaluation, Versioning, and Audit Framework</h5>
+<p><em>Refines:</em> OVA-1 Quality Management; DLM-1 Plan and design data assets; DLM-4 Classify and protect data; OVA-4 Process Data Management.</p>
+<p>The last design sub-process makes sure that quality is measured and that every change is traceable. It defines the quality-evaluation criteria: improvement of completeness and accuracy against the State #2 baseline. It sets the edit audit-trail requirements: original value, rule applied, reason, actor, and timestamp for every change. The versioning policy defines how versions are identified, what triggers a new version, and immutability and retention. Role-based access control for processed microdata is designed in line with SAF-P10. Reproducibility is designed in: a quality version must be regenerable from the standardised input plus the recorded rules.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define quality-evaluation criteria against the State #2 baseline</td>
+<td>Quality criteria document</td>
+<td>OVA-1 Quality Management</td>
+<td>GAMSO Quality Management</td>
+</tr>
+<tr class="even">
+<td>Define edit audit-trail requirements (original value, rule, reason, actor, time)</td>
+<td>Edit audit-trail specification</td>
+<td>OVA-4 Process Data Management</td>
+<td>SAF-P10</td>
+</tr>
+<tr class="odd">
+<td>Define the versioning policy: identity, triggers, immutability, retention</td>
+<td>Versioning policy</td>
+<td>DLM-1 Plan and design data assets</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="even">
+<td>Design role-based access control and reproducibility for processed microdata</td>
+<td>Access control and reproducibility design</td>
+<td>DLM-1 Plan and design data assets; DLM-4 Classify and protect data</td>
+<td>SAF-P10; 3.3.4 Logical identity and access control</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-03 design process decomposition: inputs (State #2 schema and metadata, methodology set for editing, imputation, and derivation, framework standards, privacy and disclosure requirements feeding the linkage design), the five design sub-processes in order, and the artefact each produces (validation rule set, imputation methodology, derivation and coding specifications, linkage and reconciliation rules, versioning and audit policy), which together govern Implementation, Execution, and Management</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="implementation-provides-the-execution-process" class="level4">
+<h4 class="anchored" data-anchor-id="implementation-provides-the-execution-process">Implementation: provides the execution process</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Implementation sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build Error-Detection and Editing Engines</td>
+<td>PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows</td>
+<td>Detection module, configured editing engine, edit audit-trail capture</td>
+</tr>
+<tr class="even">
+<td>Configure Imputation and Coding Services</td>
+<td>PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows</td>
+<td>Imputation services, coding service and review queue, conversion service</td>
+</tr>
+<tr class="odd">
+<td>Build Derivation, Integration, and Versioning Pipelines</td>
+<td>PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows; DLM-3 Register and catalogue data; DLM-5 Store and version data</td>
+<td>Derivation pipeline, integration component, versioning store, events</td>
+</tr>
+<tr class="even">
+<td>Test and Validate the Pipeline <em>(standard)</em></td>
+<td>PRD-3.5 Test production systems; PRD-3.6 Test statistical business process; PRD-3.7 Finalise production systems</td>
+<td>Test reports covering detectors, editing engine, imputation and coding services, derivation calculators, integration component, and versioning store; edit-impact test (edits and imputations move quality indicators in the intended direction, without over-editing); reproducibility test (a quality version is regenerated identically from the standardised input plus the recorded rules); imputation evaluated against a holdout or known-value sample</td>
+</tr>
+</tbody>
+</table>
+<section id="build-error-detection-and-editing-engines" class="level5">
+<h5 class="anchored" data-anchor-id="build-error-detection-and-editing-engines">Build Error-Detection and Editing Engines</h5>
+<p><em>Refines:</em> PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows.</p>
+<p>This sub-process turns the validation and editing rule designs into operational tools. Error-detection components run the designed consistency, range, outlier, duplicate, and completeness checks and compute the selective-editing scores. The editing engine applies auto-corrections according to the designed rules and routes flagged records to the review workflow. For every change it captures the original value, the rule applied, and a reason code. All editing logic is version-controlled in line with SAF-P10, so that any edit is reproducible and attributable.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build error-detection components (consistency, range, outlier, duplicate, completeness)</td>
+<td>Production-ready detection module</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Build or configure the editing engine (auto-correction and review routing)</td>
+<td>Configured editing engine</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Configure edit-lineage capture (original value, rule, reason, actor) for every change</td>
+<td>Edit audit-trail capture</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>SAF-P10</td>
+</tr>
+<tr class="even">
+<td>Version-control all editing logic</td>
+<td>Versioned editing repository</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td>SAF-P10</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="configure-imputation-and-coding-services" class="level5">
+<h5 class="anchored" data-anchor-id="configure-imputation-and-coding-services">Configure Imputation and Coding Services</h5>
+<p><em>Refines:</em> PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows.</p>
+<p>The designed imputation and coding methodologies are translated into automated services. Imputation services are configured for each method (deterministic, donor, model-based, external-source). Donor pools and matching variables are loaded, acceptance constraints are enforced, and every imputed value is flagged with its method code. The interpretive coding service handed over from VS-02 is configured: computer-assisted or machine-learning-assisted coding of free-text values with the designed confidence thresholds, and a manual review workflow for low-confidence cases. Conversion routines are configured to compute unit, currency, and reference-period conversions from the bases VS-02 recorded.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Configure imputation services per method, with donor pools and constraints</td>
+<td>Configured imputation services</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Enforce imputation flagging and method codes</td>
+<td>Flagged imputation outputs</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="odd">
+<td>Configure the interpretive coding service (free text to standard codes) with its review workflow</td>
+<td>Coding service and review queue</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Configure unit, currency, and reference-period conversion routines</td>
+<td>Conversion service</td>
+<td>PRD-3.4 Configure workflows</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="build-derivation-integration-and-versioning-pipelines" class="level5">
+<h5 class="anchored" data-anchor-id="build-derivation-integration-and-versioning-pipelines">Build Derivation, Integration, and Versioning Pipelines</h5>
+<p><em>Refines:</em> PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows; DLM-3 Register and catalogue data; DLM-5 Store and version data.</p>
+<p>This sub-process implements derivation, dataset integration, and quality versioning. Derived-variable calculators are built from the designed formulas and produce each derived variable with its metadata and classification. The integration component is configured with the designed keys and matching rules. It applies the conflict-resolution and value-reconciliation policy and captures linkage lineage. The versioning store makes each accepted Processed Data version immutable, identified, reproducible from inputs plus rules, and accompanied by its full edit lineage. Event notifications are configured, so that VS-04 is alerted when a quality version is registered.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build derived-variable calculators from the designed formulas</td>
+<td>Derivation pipeline</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Configure integration and linkage with conflict resolution and reconciliation</td>
+<td>Integration component</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Build the versioning store (immutable, identified, reproducible)</td>
+<td>Versioning store</td>
+<td>DLM-5 Store and version data</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="even">
+<td>Configure the <em>Processed Data Registered</em> event for downstream consumers</td>
+<td>Event publication</td>
+<td>PRD-3.4 Configure workflows; DLM-3 Register and catalogue data</td>
+<td>SAF-P07</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-03 implementation pipeline: the five design artefacts feeding the three build sub-processes, followed by technical testing, edit-impact and reproducibility testing, and imputation evaluation, resulting in an operational editing pipeline and operational procedures</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="execution-provides-the-statistical-data" class="level4">
+<h4 class="anchored" data-anchor-id="execution-provides-the-statistical-data">Execution: provides the statistical data</h4>
+<p>Execution runs the stages of VS-03 in every production cycle. The stages and their activities are described in attribute 3. A cycle starts when a new standardised version is registered. The stages then run in order. Execution applies the designed rules and methods as they are; a new rule, model, or coding scheme goes back to Design. Every cycle ends in one of two outcomes: the quality version is accepted and registered, or the quality is insufficient and records go back for re-editing or re-imputation after review.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>VS-03</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Trigger</td>
+<td><em>Standardized Data Registered</em> (or <em>Raw Data Registered</em> where State #2 is skipped)</td>
+</tr>
+<tr class="even">
+<td>Cadence</td>
+<td>Per production cycle, for each new standardised version</td>
+</tr>
+<tr class="odd">
+<td>Performed by</td>
+<td>ROL-14 Data quality analyst, ROL-15 Subject-matter statistician, ROL-09 Classification steward, ROL-03 Data steward</td>
+</tr>
+<tr class="even">
+<td>Input</td>
+<td>Standardized Data (#2) with its unmapped values and recorded units and periods; production-ready editing pipeline</td>
+</tr>
+<tr class="odd">
+<td>Output</td>
+<td>Registered Processed Data quality version (#3) with its edit lineage</td>
+</tr>
+<tr class="even">
+<td>Control point</td>
+<td>Gate of State #3 in VS-03.5</td>
+</tr>
+<tr class="odd">
+<td>Exception path</td>
+<td>Insufficient quality: re-edit or re-impute after review; recurring problems or a need for new rules or models back to Design</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="management-provides-quality-reports" class="level4">
+<h4 class="anchored" data-anchor-id="management-provides-quality-reports">Management: provides quality reports</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Management sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monitor Process Performance <em>(standard)</em></td>
+<td>OVA-4 Process Data Management; PRD-8.1 Gather evaluation inputs</td>
+<td>Process performance dashboard; throughput report against processing windows; paradata on rule and model versions and manual interventions</td>
+</tr>
+<tr class="even">
+<td>Assess Data Quality</td>
+<td>OVA-1 Quality Management; DLM-8 Monitor data quality, lineage and use</td>
+<td>Quality improvement report, imputation quality report, consistency and over-editing report, trend analysis</td>
+</tr>
+<tr class="odd">
+<td>Manage Methodology and Version Lifecycle</td>
+<td>OVA-2 Metadata Management; OVA-5 Knowledge Management; DLM-5 Store and version data; DLM-8 Monitor data quality, lineage and use</td>
+<td>Methodology version register, metadata quality report, version store audit, lineage audit</td>
+</tr>
+<tr class="even">
+<td>Audit and Compliance Reporting <em>(standard)</em></td>
+<td>OVA-1 Quality Management; OVA-4 Process Data Management; DLM-8 Monitor data quality, lineage and use</td>
+<td>Edit audit summary showing every change attributable and reversible (original value, rule, reason, actor, time); disclosure-risk report confirming that linkage on pseudonymised microdata stays within the assessed re-identification risk (SAF-P11); methodology compliance report confirming that approved editing and imputation methods were applied (4.1.5 Accountability); security compliance report on access controls and integrity of the tamper-evident audit trail</td>
+</tr>
+<tr class="odd">
+<td>Continuous Improvement <em>(standard)</em></td>
+<td>PRD-8.2 Conduct evaluation; PRD-8.3 Agree an action plan</td>
+<td>Improvement recommendations, for example refining edit rules that generate false positives, recalibrating imputation models, automating recurring manual edits, improving the coding service for free text, and tuning selective-editing thresholds to reduce over-editing; trends watched: error rates, over-editing, imputation quality, coding completion rate</td>
+</tr>
+</tbody>
+</table>
+<section id="assess-data-quality" class="level5">
+<h5 class="anchored" data-anchor-id="assess-data-quality">Assess Data Quality</h5>
+<p><em>Refines:</em> OVA-1 Quality Management; DLM-8 Monitor data quality, lineage and use.</p>
+<p>Beyond process performance, the quality improvement achieved is evaluated against the criteria set in <em>Design Quality Evaluation, Versioning, and Audit Framework</em>. Each processed dataset is assessed on several dimensions: accuracy improvement (error rates before and after editing), completeness improvement (missingness before and after imputation), imputation quality (against holdout or known values), consistency (no residual rule violations), and coherence of derived variables. Quality indicators are produced per dataset, per source, and per cycle. Trends are tracked to detect over-editing, deteriorating sources, or imputation models that need recalibration. This follows the Data Quality capability of CSDA and SAF capability 2.1.3 <em>Statistical quality management</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Evaluate accuracy and completeness improvement against the baseline</td>
+<td>Quality improvement report (per cycle)</td>
+<td>OVA-1 Quality Management</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Assess imputation quality against holdout or known values</td>
+<td>Imputation quality report</td>
+<td>OVA-1 Quality Management</td>
+<td>CSDA Data Quality</td>
+</tr>
+<tr class="odd">
+<td>Check for residual rule violations and over-editing</td>
+<td>Consistency and over-editing report</td>
+<td>DLM-8 Monitor data quality, lineage and use</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Identify quality trends across sources, variables, and cycles</td>
+<td>Quality trend analysis</td>
+<td>DLM-8 Monitor data quality, lineage and use</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="manage-methodology-and-version-lifecycle" class="level5">
+<h5 class="anchored" data-anchor-id="manage-methodology-and-version-lifecycle">Manage Methodology and Version Lifecycle</h5>
+<p><em>Refines:</em> OVA-2 Metadata Management; OVA-5 Knowledge Management; DLM-5 Store and version data; DLM-8 Monitor data quality, lineage and use.</p>
+<p>The editing methodology and the quality versions it produces must stay current, complete, and well governed. This sub-process governs the life cycle of editing rules, imputation models, and derivation specifications: it versions them, manages transitions, and retires obsolete rules. It verifies metadata completeness as a compliance check on SAF-P09: every processed dataset must carry full edit lineage, imputation flags, and derived-variable metadata. It governs the version store: retention, immutability, and reconciliation of catalogue entries with stored versions. Metadata lineage from the standardised state through editing to the processed state is tracked. As CSDA emphasises, complete, well-managed lineage is what makes edited data trustworthy and reusable.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Govern the life cycle and versions of editing rules, imputation models, and derivation specifications</td>
+<td>Methodology version register</td>
+<td>OVA-5 Knowledge Management; OVA-2 Metadata Management</td>
+<td>SAF-P03</td>
+</tr>
+<tr class="even">
+<td>Verify metadata completeness (edit lineage, imputation flags, derived-variable metadata)</td>
+<td>Metadata quality report</td>
+<td>OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="odd">
+<td>Govern the version store: retention, immutability, reconciliation with the catalogue</td>
+<td>Version store audit</td>
+<td>DLM-5 Store and version data</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="even">
+<td>Track metadata lineage from the standardised to the processed state</td>
+<td>Metadata lineage audit</td>
+<td>DLM-8 Monitor data quality, lineage and use</td>
+<td>CSDA Traceability</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-03 management feedback loop: data and paradata from Execution flowing through the five management sub-processes (edit and imputation rates, quality improvement, rules and versions, edit auditability and privacy), with dashboards to the process owner, quality reports to the quality manager, compliance reports to VS-07, and improvement recommendations back to Design</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="metadata-per-process-type" class="level4">
+<h4 class="anchored" data-anchor-id="metadata-per-process-type">Metadata per process type</h4>
+<p>In VS-03, metadata is what keeps value changes transparent: every edit, imputation, and derivation must be self-describing. The table shows the data metadata each process type of VS-03 contributes; the paradata are listed in <a href="../framework/value-chain.html#standard-vs-activities">Standard activities in every value stream</a>. VS-03 also records edit-impact test outcomes in Implementation, and edit and imputation rates, rule and model versions, and manual-override records in Execution, as paradata.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Process type</th>
+<th>Data metadata produced</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design</td>
+<td>Editing and validation rule sets, imputation methodology, derivation formulas, integration and linkage rules, quality-version policy</td>
+</tr>
+<tr class="even">
+<td>Implementation</td>
+<td>Engine configurations, rule parameters, imputation model parameters, derivation definitions, versioning templates</td>
+</tr>
+<tr class="odd">
+<td>Execution</td>
+<td>Per-record edit lineage (original value, rule, reason), imputation flags and methods, derived-variable formulas and inputs, quality-version identifiers</td>
+</tr>
+<tr class="even">
+<td>Management</td>
+<td>Quality-improvement scores against the baseline, edit and imputation rate reports, lineage assessments, trend analyses</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-03 business object lifecycle: design artefacts (validation rules, imputation methodology, derivation and coding specifications, versioning and audit policy) govern implementation assets (editing and imputation engines, derivation pipeline, integration component, versioning store), which produce the process that edits and enriches Standardized Data (#2) into Processed Data (#3), generating edit lineage, imputation flags, and quality versions that management assesses and feeds back to design</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="actors-and-roles" class="level3">
+<h3 class="anchored" data-anchor-id="actors-and-roles">5. Actors and roles</h3>
+<p>VS-03 is mostly internal: it receives its input from VS-02 and hands its output to VS-04, and both handovers are covered by the boundary interfaces in attribute 8. The table shows the actors and the reference roles involved. Specialised role names used in an NSI map onto these reference roles (see <em>Role names in the value streams</em>); for example, the editing methodologist and the imputation specialist in the original VS-03 description are both ROL-07 Methodologist, and the coding specialist is ROL-09 Classification steward. The design, build, and running of the editing process are often organised in the collaboration COL-05 <em>Statistical product team</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Actor or role</th>
+<th>ID</th>
+<th>Process type</th>
+<th>Responsibility in VS-03</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>International statistical organisation</td>
+<td>ACT-07</td>
+<td>External</td>
+<td>Acts as methodology authority: sets the editing, imputation, and derivation methods the NSI conforms to, for example Eurostat guidance</td>
+</tr>
+<tr class="even">
+<td>Process owner</td>
+<td>ROL-01</td>
+<td>Management</td>
+<td>Accountable for the end-to-end performance of VS-03</td>
+</tr>
+<tr class="odd">
+<td>Data owner</td>
+<td>ROL-02</td>
+<td>Management</td>
+<td>Accountable for State #3 and for the correct application of approved methods</td>
+</tr>
+<tr class="even">
+<td>Data steward</td>
+<td>ROL-03</td>
+<td>Execution</td>
+<td>Registers processed datasets and quality versions, manages metadata entries, applies access controls</td>
+</tr>
+<tr class="odd">
+<td>Data custodian</td>
+<td>ROL-04</td>
+<td>Execution</td>
+<td>Operates storage of quality versions, access control, and retention; keeps pseudonymisation keys separate from the data</td>
+</tr>
+<tr class="even">
+<td>Statistical designer</td>
+<td>ROL-06</td>
+<td>Design</td>
+<td>As derivation designer: specifies derived variables and indicators, formulas, and required inputs</td>
+</tr>
+<tr class="odd">
+<td>Methodologist</td>
+<td>ROL-07</td>
+<td>Design</td>
+<td>As editing methodologist: designs error-detection and editing rules, the selective-editing strategy, and quality criteria. As imputation specialist: designs imputation methodology, models, donor strategies, and imputation flags</td>
+</tr>
+<tr class="even">
+<td>Classification steward</td>
+<td>ROL-09</td>
+<td>Execution</td>
+<td>As coding specialist: performs interpretive coding of free-text values to standard classifications, handed over from VS-02</td>
+</tr>
+<tr class="odd">
+<td>Data engineer</td>
+<td>ROL-10</td>
+<td>Implementation</td>
+<td>Builds and configures the editing, imputation, derivation, and integration engines and the pipeline</td>
+</tr>
+<tr class="even">
+<td>Platform engineer</td>
+<td>ROL-11</td>
+<td>Implementation</td>
+<td>Configures editing services, connections to reference and donor data, and access controls</td>
+</tr>
+<tr class="odd">
+<td>Test manager</td>
+<td>ROL-12</td>
+<td>Implementation</td>
+<td>Plans and carries out testing of the editing pipeline: technical, edit-impact, and reproducibility tests</td>
+</tr>
+<tr class="even">
+<td>Data quality analyst</td>
+<td>ROL-14</td>
+<td>Execution</td>
+<td>Runs error detection, evaluates quality improvement, and logs edit lineage and exceptions</td>
+</tr>
+<tr class="odd">
+<td>Subject-matter statistician</td>
+<td>ROL-15</td>
+<td>Execution</td>
+<td>Reviews flagged records, adjudicates edits, and signs off domain-specific corrections</td>
+</tr>
+<tr class="even">
+<td>Quality manager</td>
+<td>ROL-18</td>
+<td>Management</td>
+<td>Monitors quality-improvement indicators, produces quality reports, and drives continuous improvement</td>
+</tr>
+<tr class="odd">
+<td>Compliance officer</td>
+<td>ROL-19</td>
+<td>Management</td>
+<td>Ensures edit auditability and disclosure-risk compliance and produces audit reports</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="capabilities-processes-and-functions" class="level3">
+<h3 class="anchored" data-anchor-id="capabilities-processes-and-functions">6. Capabilities, processes, and functions</h3>
+<section id="capability-foundations" class="level4">
+<h4 class="anchored" data-anchor-id="capability-foundations">Capability foundations</h4>
+<p>The table shows which capabilities from the SAF capability model VS-03 relies on, and what role they play. NSIs can use it to map the value stream to their own organisation.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Capability group</th>
+<th>Capabilities</th>
+<th>Role in VS-03</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.1 Statistical design and build</td>
+<td>1.1.2 Design statistics product, 1.1.3 Build statistics product</td>
+<td>Design the editing and imputation methodology and the derivation specifications, and build the editing pipeline</td>
+</tr>
+<tr class="even">
+<td>1.3 Processing</td>
+<td>1.3.2 Deriving variables and units, 1.3.3 Check content, 1.3.4 Adjusting and imputing</td>
+<td>Detect errors, correct and impute values, and derive new variables</td>
+</tr>
+<tr class="odd">
+<td>2.1 Data management</td>
+<td>2.1.1 Data lifecycle management, 2.1.2 Metadata management, 2.1.3 Statistical quality management, 2.1.4 Statistical register management</td>
+<td>Manage data, edit metadata, and quality versions; assess quality improvement; integrate with statistical registers</td>
+</tr>
+<tr class="even">
+<td>3.2 Computerisation and automation</td>
+<td>3.2.1 Application development, 3.2.2 Functional management</td>
+<td>Build and maintain the editing, imputation, derivation, and integration engines</td>
+</tr>
+<tr class="odd">
+<td>3.3 Security and privacy</td>
+<td>3.3.1 Privacy management, 3.3.2 Security planning</td>
+<td>Manage disclosure risk in enrichment and linkage, and secure the edit audit trail</td>
+</tr>
+<tr class="even">
+<td>4.1 Governance</td>
+<td>4.1.1 Strategy and governance, 4.1.2 Policy and planning, 4.1.4 Improvement management, 4.1.5 Accountability</td>
+<td>Govern the domain, steward the editing methodology, plan improvements, report on auditability and compliance</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="stages-processes-and-functions" class="level4">
+<h4 class="anchored" data-anchor-id="stages-processes-and-functions">Stages, processes, and functions</h4>
+<p>The table shows which SAF business processes realise each stage of VS-03 and which business functions they mainly use.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Realised by processes</th>
+<th>Main functions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-03.1 Conduct Error Detection and Quality Diagnostics</td>
+<td>PRD-5.3 Review and validate</td>
+<td>FUN-3.3 Process statistical data</td>
+</tr>
+<tr class="even">
+<td>VS-03.2 Perform Data Editing and Correction</td>
+<td>PRD-5.2 Classify and code; PRD-5.4 Edit and impute</td>
+<td>FUN-3.3 Process statistical data</td>
+</tr>
+<tr class="odd">
+<td>VS-03.3 Impute Missing or Non-Response Data</td>
+<td>PRD-5.4 Edit and impute</td>
+<td>FUN-3.3 Process statistical data; FUN-4.1 Manage statistical and analytical methodology</td>
+</tr>
+<tr class="even">
+<td>VS-03.4 Derive Additional Variables and Indicators</td>
+<td>PRD-5.1 Integrate data; PRD-5.5 Derive new variables and units</td>
+<td>FUN-3.3 Process statistical data</td>
+</tr>
+<tr class="odd">
+<td>VS-03.5 Perform Quality Evaluation and Versioning</td>
+<td>PRD-5.8 Finalise data files; DLM-2 Promote data through a quality gate; DLM-3 Register and catalogue data</td>
+<td>FUN-3.3 Process statistical data; FUN-5.2 Assure and review quality; FUN-7.3 Manage data lifecycle and storage</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-03 (b) stages realised by processes and functions</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="framework-mappings" class="level4">
+<h4 class="anchored" data-anchor-id="framework-mappings">Framework mappings</h4>
+<p>This reference table maps each process type of VS-03 to the SAF business processes, the international frameworks (GSBPM, GAMSO, CSDA), and the SAF capability model. It is intended for architects and auditors; the rest of this section does not depend on it.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Process type</th>
+<th>SAF business processes</th>
+<th>GSBPM</th>
+<th>GAMSO</th>
+<th>CSDA</th>
+<th>SAF capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design</td>
+<td>PRD-2.2, PRD-2.5, DLM-1, DLM-4, DLM-9, OVA-1, OVA-4</td>
+<td>Phase 2 Design (2.2, 2.5)</td>
+<td>Production (design activities), Capability Management</td>
+<td>Data Governance, Metadata Management, Data Quality</td>
+<td>1.1.2 Design statistics product, 2.1.2 Metadata management, 2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Implementation</td>
+<td>PRD-3.2, PRD-3.4 to PRD-3.7, DLM-3, DLM-5</td>
+<td>Phase 3 Build (3.2, 3.4 to 3.7)</td>
+<td>Capability Management</td>
+<td>Data Processing (set-up), Data Governance (configuration)</td>
+<td>1.1.3 Build statistics product, 3.2.1 Application development, 3.2.2 Functional management</td>
+</tr>
+<tr class="odd">
+<td>Execution</td>
+<td>PRD-5.1 to PRD-5.5, PRD-5.8, DLM-2 to DLM-5, OVA-2, OVA-4</td>
+<td>Phase 5 Process (5.1 Integrate data, 5.2 Classify and code, 5.3 Review and validate, 5.4 Edit and impute, 5.5 Derive new variables and units, 5.8 Finalise data files)</td>
+<td>Production (execution)</td>
+<td>Data Processing (execution)</td>
+<td>1.3.2 Deriving variables and units, 1.3.3 Check content, 1.3.4 Adjusting and imputing, 2.1.2 Metadata management, 2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Management</td>
+<td>OVA-1, OVA-2, OVA-4, OVA-5, DLM-5, DLM-8, PRD-8.1 to PRD-8.3</td>
+<td>Phase 8 Evaluate; overarching Quality Management and Metadata Management</td>
+<td>Corporate Support (Quality, Data, and Metadata Management), Capability Management (improvement)</td>
+<td>Data Quality, Data Governance, Traceability</td>
+<td>2.1.3 Statistical quality management, 4.1.4 Improvement management, 4.1.5 Accountability</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="principles" class="level3">
+<h3 class="anchored" data-anchor-id="principles">7. Principles</h3>
+<p>The following principles govern VS-03 most directly.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Principle</th>
+<th>Statement</th>
+<th>Application in VS-03</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-P01</td>
+<td>Actively participate in open-source communities to maintain collective control over statistical processes</td>
+<td>Editing, imputation, and coding tooling, such as selective-editing engines and imputation libraries, is developed and shared in open-source communities with other NSIs. This keeps collective control over critical methodological capabilities instead of depending on vendors.</td>
+</tr>
+<tr class="even">
+<td>SAF-P07</td>
+<td>Implement loosely coupled processes and systems</td>
+<td>Editing is independent from upstream standardisation and downstream estimation. Processed Data (State #3) is the decoupling interface: downstream consumers use edited, enriched microdata without knowing how it was corrected or imputed.</td>
+</tr>
+<tr class="odd">
+<td>SAF-P08</td>
+<td>Data is shared property</td>
+<td>Processed data, once versioned, is available to all authorised consumers. Editing and enrichment are not duplicated across statistical products when the same processed asset can serve several purposes.</td>
+</tr>
+<tr class="even">
+<td>SAF-P09</td>
+<td>No data without metadata and classification</td>
+<td>Every edit, imputation, and derived variable carries metadata: the rule applied, the original value, the imputation method and flag, the derivation formula, and a classification for derived variables. This makes the changes transparent and reproducible.</td>
+</tr>
+<tr class="odd">
+<td>SAF-P10</td>
+<td>Security by design</td>
+<td>Access controls, integrity verification, and a tamper-evident edit audit trail are built into the editing pipeline from the start, so that every change to a value stays attributable and traceable.</td>
+</tr>
+<tr class="even">
+<td>SAF-P11</td>
+<td>Privacy by design</td>
+<td>VS-03 works on pseudonymised microdata. Enrichment and integration with other datasets raise the risk of re-identification, so linkage is assessed for disclosure risk and minimisation by design, not afterwards.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Principles that apply across the process types
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>SAF-P09 is the backbone of the editing discipline: Design defines the rules and the required edit metadata, Execution captures the original value, rule, and reason for every change, and Management assesses edit quality and closes gaps. SAF-P10 governs the tamper-evident edit audit trail across all stages, VS-03.1 to VS-03.5. SAF-P11 applies especially to <em>Design Integration and Linkage Rules</em> and to VS-03.4, where linkage can raise the risk of re-identification. SAF-P07 governs both the intake of State #2 from VS-02 and the handover of State #3 to VS-04.</p>
+</div>
+</div>
+</section>
+<section id="interfaces-services-and-events" class="level3">
+<h3 class="anchored" data-anchor-id="interfaces-services-and-events">8. Interfaces, services, and events</h3>
+<p><strong>Boundary interfaces</strong></p>
+<p>VS-03 has two boundary interfaces: intake from VS-02, and handover to VS-04.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Boundary</th>
+<th>Handed over</th>
+<th>Required metadata</th>
+<th>Trigger</th>
+<th>Responsibility transfer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-02 (or VS-01 where #2 is skipped) → VS-03 (intake)</td>
+<td>Registered standardised data version (#2)</td>
+<td>Source-to-target mapping lineage, applied classification versions, recorded unit, currency, and reference-period bases, list of unmapped or uncoded values for coding, records of definition differences, classification</td>
+<td><em>Standardized Data Registered</em></td>
+<td>VS-02 keeps custody of the standardised artefact; VS-03 takes responsibility for editing, imputation, derivation, interpretive coding, and value conversion on receipt of the event</td>
+</tr>
+<tr class="even">
+<td>VS-03 → VS-04 (handover)</td>
+<td>Registered Processed Data quality version (#3)</td>
+<td>Edit lineage (original value, rule, reason), imputation flags and methods, derived-variable formulas and classification, integration and linkage lineage, quality-improvement assessment, quality-version identifier, classification</td>
+<td><em>Processed Data Registered</em></td>
+<td>VS-03 keeps custody of the processed version; VS-04 takes responsibility for estimation, weighting, and analysis on receipt of the event</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Business services</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Service</th>
+<th>Offered to</th>
+<th>Realised in</th>
+<th>Interfaces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Error-detection service</td>
+<td>Consumers of standardised data, editing teams</td>
+<td>VS-03.1 Conduct Error Detection and Quality Diagnostics</td>
+<td>Diagnostic reports</td>
+</tr>
+<tr class="even">
+<td>Editing and correction service</td>
+<td>Editing teams, subject-matter statisticians</td>
+<td>VS-03.2 Perform Data Editing and Correction</td>
+<td>Review and adjudication workbench for analysts, edit-audit query interface</td>
+</tr>
+<tr class="odd">
+<td>Imputation service</td>
+<td>Editing teams, methodologists</td>
+<td>VS-03.3 Impute Missing or Non-Response Data</td>
+<td>Imputation flags and records</td>
+</tr>
+<tr class="even">
+<td>Derivation and integration service</td>
+<td>Editing teams, downstream analysts</td>
+<td>VS-03.4 Derive Additional Variables and Indicators</td>
+<td>Derived-variable catalogue</td>
+</tr>
+<tr class="odd">
+<td>Processed data provisioning service</td>
+<td>VS-04 Estimation, Analysis and Statistical Modeling, other statistical products</td>
+<td>VS-03.5 Perform Quality Evaluation and Versioning</td>
+<td>Event notification (<em>Processed Data Registered</em>) and a catalogue query interface to find and access processed quality versions and their edit lineage</td>
+</tr>
+<tr class="even">
+<td>Quality-version catalogue service</td>
+<td>All data consumers in the NSI</td>
+<td>Management sub-process <em>Manage Methodology and Version Lifecycle</em></td>
+<td>Search and browse interface for quality versions, edit lineage, imputation flags, and derived-variable metadata</td>
+</tr>
+<tr class="odd">
+<td>Design and methodology service</td>
+<td>Methodologists, editing and imputation designers</td>
+<td>All Design sub-processes of VS-03</td>
+<td>Design documents, methodology advice</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Business events</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Triggers or marks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Design artefacts published</em></td>
+<td>Start of Implementation after a design change</td>
+</tr>
+<tr class="even">
+<td><em>Pipeline production-ready</em></td>
+<td>End of Implementation; Execution can start</td>
+</tr>
+<tr class="odd">
+<td><em>Standardized Data Registered</em></td>
+<td>Start of VS-03.1 for that version</td>
+</tr>
+<tr class="even">
+<td><em>Quality version accepted</em> / <em>Quality insufficient</em></td>
+<td>Outcome of VS-03.5; insufficient quality starts re-editing or re-imputation after review</td>
+</tr>
+<tr class="odd">
+<td><em>Processed Data Registered</em></td>
+<td>Completion of VS-03.5; triggers VS-04</td>
+</tr>
+<tr class="even">
+<td><em>Improvement recommendations issued</em></td>
+<td>Input for Design from <em>Continuous Improvement</em></td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-03 event choreography between the upstream value stream (VS-02), NSI teams, and process management across Design, Implementation, Execution (detect, edit, code and reconcile, impute, derive, convert and integrate, then quality version accepted or re-edit), and Management (edit and imputation rates, quality improvement, audit reports, improvement recommendations)</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><strong>Interaction with the supporting value streams</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Value stream</th>
+<th>Provides to VS-03</th>
+<th>Receives from VS-03</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-07 Governance and Compliance</td>
+<td>Editing and privacy policy, audit of edit lineage, methodology compliance, and disclosure risk</td>
+<td>Edit audit summaries, methodology and disclosure-risk compliance reports</td>
+</tr>
+<tr class="even">
+<td>VS-08 Innovation and Methodological Development</td>
+<td>Improved imputation and outlier-detection methods, coding tools</td>
+<td>Improvement needs; processed data for testing new editing, imputation, or coding methods</td>
+</tr>
+<tr class="odd">
+<td>VS-09 Infrastructure and Platform Enablement</td>
+<td>Computing and orchestration for editing, imputation, and coding at scale; version store</td>
+<td>Capacity and processing-window requirements</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-performance-indicators" class="level3">
+<h3 class="anchored" data-anchor-id="key-performance-indicators">9. Key performance indicators</h3>
+<p>The key performance indicators are collected per production cycle in <em>Monitor Process Performance</em>. They feed the dashboard that the process owner reviews.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>KPI</th>
+<th>Description</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Edit rate</td>
+<td>Share of values changed by editing</td>
+<td>Per variable, per cycle</td>
+</tr>
+<tr class="even">
+<td>Imputation rate</td>
+<td>Share of values imputed</td>
+<td>Per variable, per cycle</td>
+</tr>
+<tr class="odd">
+<td>Manual-review rate</td>
+<td>Share of records routed to manual adjudication</td>
+<td>Per source, per cycle</td>
+</tr>
+<tr class="even">
+<td>Over-editing indicator</td>
+<td>Share of edits with negligible impact on results</td>
+<td>Per cycle</td>
+</tr>
+<tr class="odd">
+<td>Coding completion rate</td>
+<td>Share of free-text values successfully coded</td>
+<td>Per classification, per cycle</td>
+</tr>
+<tr class="even">
+<td>Processing time</td>
+<td>Time from standardised intake to versioned registration</td>
+<td>Per dataset, per cycle</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">10. Examples</h3>
+<p><strong>Structural Business Statistics.</strong> The design sets consistency rules (turnover ≥ 0, employees ≥ 0, turnover per employee within a plausible band by NACE class), outlier rules based on a Hidiroglou–Berthelot test on year-on-year ratios, and a selective-editing score that flags only units whose potential error would move a published aggregate by more than a set threshold. Everything else is accepted without manual work. In a cycle, the standardised SBS file is diagnosed: 312 units fail the turnover-per-employee band, 47 are duplicates, and 1,204 have missing employee counts. The selective-editing scores prioritise 89 units whose potential error would materially affect a published aggregate; the remaining low-impact flags are scheduled for automatic treatment.</p>
+<p><strong>Labour Force Survey imputation.</strong> For item non-response on income, about 9% of records, the design specifies regression imputation with age, education (ISCED), occupation (ISCO), and region as predictors, and a constraint that imputed income stays within the valid range of the respondent’s earnings bracket. Each imputed income carries the flag <code>imputed=true</code> and the method code <code>REG-01</code>, and the predictor values used are recorded. Analysts can exclude or down-weight imputed values, and the imputation can be reproduced or revised.</p>
+<p><strong>Labour Force Survey coding.</strong> The 42,000 free-text occupation answers handed over from VS-02 are coded to ISCO-08. 88% are coded automatically at or above the confidence threshold of 0.85, 5,040 go to computer-assisted coding, and 1,200 ambiguous cases go to expert manual coding. Each coded value records the source text, the assigned code, the method, and the confidence, so it is auditable as an editing decision.</p>
+<p><strong>Price statistics.</strong> The implementation team builds an outlier detector for daily price changes, an editing engine that applies designed corrections such as decimal-point fixes, and a review queue for flagged price jumps. Every correction stores the original scraped price, the rule, and the analyst’s adjudication, so the edit can be audited and reversed.</p>
+<p><strong>Tax register to business statistics.</strong> Turnover, recorded by VS-02 in thousands of euro on a fiscal-year basis, is converted to units on a calendar-year basis with the designed conversion and apportionment rules. The conversion factor and the original value are stored in the lineage. Turnover per employee is then derived as a new indicator, with its formula and inputs recorded.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><strong>Toolkit:</strong> SAF-TK-V03 VS-03 maturity checklist and scenarios</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="../framework/vs-02.html" class="pagination-link" aria-label="VS-02 Data Standardization and Integration">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">VS-02 Data Standardization and Integration</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../framework/vs-04.html" class="pagination-link" aria-label="VS-04 Estimation, Analysis, and Statistical Modeling">
+        <span class="nav-page-text">VS-04 Estimation, Analysis, and Statistical Modeling</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

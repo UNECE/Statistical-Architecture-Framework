@@ -1,0 +1,2513 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>VS-02 Data Standardization and Integration – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../framework/vs-03.html" rel="next">
+<link href="../framework/vs-01.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f374ad13d1ca50ffd7110ca4e9b8aceb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../framework/index.html" aria-current="page"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../toolkit.html"> 
+<span class="menu-text">Toolkit</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-01.html">Production value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-02.html">VS-02 Data Standardization and Integration</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAF Architecture Framework</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Foundations</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and Scope</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/motivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Motivation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/strategy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strategy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Business architecture</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/business-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/steady-state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Steady-State Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/value-chain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Data Value Chain</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Production value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-01 Data Acquisition and Ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-02.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">VS-02 Data Standardization and Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-03 Data Editing and Enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-04 Estimation, Analysis, and Statistical Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-05 Statistical Product Composition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-06 Dissemination and Service Delivery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Supporting value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-07 Governance and Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-08 Innovation and Methodological Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-09 Infrastructure and Platform Enablement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-10 Customer and Stakeholder Engagement</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#vs-02-data-standardization-and-integration" id="toc-vs-02-data-standardization-and-integration" class="nav-link active" data-scroll-target="#vs-02-data-standardization-and-integration">VS-02 Data Standardization and Integration</a>
+  <ul class="collapse">
+  <li><a href="#purpose-and-value-created" id="toc-purpose-and-value-created" class="nav-link" data-scroll-target="#purpose-and-value-created">1. Purpose and value created</a></li>
+  <li><a href="#position-and-state-transition" id="toc-position-and-state-transition" class="nav-link" data-scroll-target="#position-and-state-transition">2. Position and state transition</a></li>
+  <li><a href="#stages" id="toc-stages" class="nav-link" data-scroll-target="#stages">3. Stages</a></li>
+  <li><a href="#the-four-process-types" id="toc-the-four-process-types" class="nav-link" data-scroll-target="#the-four-process-types">4. The four process types</a></li>
+  <li><a href="#actors-and-roles" id="toc-actors-and-roles" class="nav-link" data-scroll-target="#actors-and-roles">5. Actors and roles</a></li>
+  <li><a href="#capabilities-processes-and-functions" id="toc-capabilities-processes-and-functions" class="nav-link" data-scroll-target="#capabilities-processes-and-functions">6. Capabilities, processes, and functions</a></li>
+  <li><a href="#principles" id="toc-principles" class="nav-link" data-scroll-target="#principles">7. Principles</a></li>
+  <li><a href="#interfaces-services-and-events" id="toc-interfaces-services-and-events" class="nav-link" data-scroll-target="#interfaces-services-and-events">8. Interfaces, services, and events</a></li>
+  <li><a href="#key-performance-indicators" id="toc-key-performance-indicators" class="nav-link" data-scroll-target="#key-performance-indicators">9. Key performance indicators</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">10. Examples</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="vs-02.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-01.html">Production value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-02.html">VS-02 Data Standardization and Integration</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">VS-02 Data Standardization and Integration</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- GENERATED from docs/SAF Framework.md by scripts/split-framework.py - do not edit -->
+<section id="vs-02-data-standardization-and-integration" class="level2">
+<h2 class="anchored" data-anchor-id="vs-02-data-standardization-and-integration">VS-02 Data Standardization and Integration</h2>
+<section id="purpose-and-value-created" class="level3">
+<h3 class="anchored" data-anchor-id="purpose-and-value-created">1. Purpose and value created</h3>
+<p>VS-02 makes data from different sources speak the same language. Once raw data is in NSI custody, VS-02 aligns its structure, format, and codes with the agreed standards of the NSI, so that datasets that looked different at the source can be compared and combined. It does this without changing any value: it re-expresses and annotates, it does not transform. The result is the same information in a common shape, expressed in standard classifications, with rich metadata and without direct identifiers. The value created is <strong>coherence and comparability</strong>: data from surveys, administrative registers, and external sources can flow into editing, analysis, and modelling as one structured, standardised asset.</p>
+<p>VS-02 corresponds to the business domain <strong>Standardization without loss of content</strong> (see <em>Steady-State Architecture, Business domains</em>). This section describes the business layer of that domain for all four process types: Design, Implementation, Execution, and Management. Content correction, imputation, and enrichment are out of scope; they belong to VS-03 Data Editing and Enrichment.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Signature discipline: standardisation without loss of content
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VS-02 only maps codes one-to-one, reformats structure, and annotates metadata. It never changes a value. Unit and currency conversion, reference-period alignment, value reconciliation across sources, derivation of new variables, and interpretive coding of free text are deliberately left to VS-03. Interpretive coding, for example coding a written job title to ISCO, needs judgement that can change informational content, so it is not a VS-02 activity. The no-loss-of-content rule covers the statistical content: records, observed values, and key measures. It does not cover direct identifiers, which are personal data rather than statistical content. Their removal or pseudonymisation at this transition (SAF-P11) therefore never counts as content loss.</p>
+</div>
+</div>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-02 (a) value stream and capabilities</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="position-and-state-transition" class="level3">
+<h3 class="anchored" data-anchor-id="position-and-state-transition">2. Position and state transition</h3>
+<p>VS-02 is the second primary value stream. It receives raw data from VS-01 and hands standardised data to VS-03. It is the stage that harmonises and integrates information, so that data from different sources works together, by aligning structure, format, and codes and not by changing values.</p>
+<p>VS-02 takes data from State #1 to State #2. Before VS-02, the data is in NSI custody in its original form, usually with direct identifiers. After VS-02, it is aligned to common structures, formats, classifications, and semantics, with direct identifiers removed or pseudonymised, so that it is interoperable and comparable across sources, domains, and time. The quality gate, the minimum metadata set, and the protection of State #2 are described in <em>State #2: Standardized Data</em> and are not repeated here. <strong>[VC10]</strong> State #2 is optional: a source that already arrives in the standard structure and coding of the NSI can go directly from #1 to VS-03, and the skip is recorded in the catalogue.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>From</th>
+<th>To</th>
+<th>Gate</th>
+<th>Event out</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>#1 Raw Data</td>
+<td>#2 Standardized Data</td>
+<td>Gate of State #2 (structural and classification conformance, mapping coverage, semantic metadata, no loss of content, identifier protection, referential integrity, metadata and lineage)</td>
+<td><em>Standardized Data Registered</em></td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-02 (c) state handover and events: Raw Data (#1) from VS-01, the standardisation service at the domain boundary (profiling, classification and coding, semantic alignment, conformance check), Standardized Data (#2) handed to VS-03</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="stages" class="level3">
+<h3 class="anchored" data-anchor-id="stages">3. Stages</h3>
+<p>The stages describe the value that VS-02 adds in every production cycle. Together they form the execution process type of VS-02. In a mature steady state, the target model, correspondence tables, and conformance rules have been designed and built in advance (see attribute 4). Execution then focuses on applying mappings and classifications, capturing lineage and conformance metadata, and passing the quality gate without altering content.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Name</th>
+<th>Value added</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-02.1</td>
+<td>Profile and Assess Data Structure</td>
+<td>Differences from the target model are known</td>
+</tr>
+<tr class="even">
+<td>VS-02.2</td>
+<td>Apply Standard Classifications and Formats</td>
+<td>Data uses common codes, formats, and identifiers</td>
+</tr>
+<tr class="odd">
+<td>VS-02.3</td>
+<td>Align Metadata and Semantics</td>
+<td>Definitions and descriptions are consistent</td>
+</tr>
+<tr class="even">
+<td>VS-02.4</td>
+<td>Validate Structural and Semantic Conformance</td>
+<td>Conformance to standards is confirmed</td>
+</tr>
+<tr class="odd">
+<td>VS-02.5</td>
+<td>Register Standardized Artefacts</td>
+<td>Standardised data is registered and available for reuse (State #2)</td>
+</tr>
+</tbody>
+</table>
+<p>Each stage below is described with its activities. The column <em>SAF process</em> shows the business process from <em>Business Processes</em> that the activity belongs to. The column <em>Other reference</em> shows the principles, capabilities, or external frameworks that the activity applies. <strong>[VC9]</strong></p>
+<p><br></p>
+<section id="vs-02.1-profile-and-assess-data-structure" class="level4">
+<h4 class="anchored" data-anchor-id="vs-02.1-profile-and-assess-data-structure">VS-02.1 Profile and Assess Data Structure</h4>
+<p><strong>Value created:</strong> <em>A clear understanding of how far incoming raw data is from the target standard, so the right mapping and format coercion can be applied.</em></p>
+<p>The stage starts when the <em>Raw Data Registered</em> event arrives from VS-01. The profiling components analyse the structure of the incoming dataset: they infer types, measure cardinalities and value distributions, and detect inconsistencies, missing fields, and structural anomalies relative to the target data model. The dataset is then compared with the target schema. The result is a structure-gap assessment: which fields map directly, which need format coercion, which source codes have a standard correspondence, and which values are uncoded and must go to VS-03. A significant or unexpected structural deviation, such as a source that has changed its schema, goes back to Design instead of being adapted ad hoc during the cycle.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Profile incoming raw data: types, cardinalities, distributions, anomalies</td>
+<td>Data profiling report</td>
+<td>PRD-5.3 Review and validate</td>
+<td>GSBPM 5.1</td>
+</tr>
+<tr class="even">
+<td>Compare the structure with the target data model</td>
+<td>Structure-gap assessment</td>
+<td>PRD-5.3 Review and validate</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Identify the format coercion and code mappings to apply</td>
+<td>Mapping plan (per dataset)</td>
+<td>PRD-5.3 Review and validate; PRD-5.2 Classify and code</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Flag unexpected structural deviations for design review</td>
+<td>Schema-change exception (if any)</td>
+<td>PRD-5.3 Review and validate</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-02.2-apply-standard-classifications-and-formats" class="level4">
+<h4 class="anchored" data-anchor-id="vs-02.2-apply-standard-classifications-and-formats">VS-02.2 Apply Standard Classifications and Formats</h4>
+<p><strong>Value created:</strong> <em>Source codes re-expressed in shared, authoritative classifications and a common format, so data is comparable across sources, with no value changed.</em></p>
+<p>This is the core of standardisation. The mapping and format-coercion component applies the designed value-preserving operations to bring the data into the target format: renaming, restructuring, type casting, reformatting (for example from CSV to XML), and key alignment. The mapping services then translate values that already carry a source code into the corresponding standard code (NACE, ISCO, COICOP, NUTS, SDMX code lists) through deterministic correspondence tables, one-to-one, keeping the original value. Values without a correspondence, and free text that needs interpretation, are not coded here. They are flagged and routed to VS-03. Only the representation changes and standard codes are added. Every applied mapping and classification version is recorded as lineage.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Apply format coercion: rename, restructure, cast, reformat, align keys</td>
+<td>Format-coerced dataset (values unchanged)</td>
+<td>PRD-5.1 Integrate data (key alignment only)</td>
+<td>GSBPM 5.1</td>
+</tr>
+<tr class="even">
+<td>Map source codes to standard classifications one-to-one through correspondence tables</td>
+<td>Standard-coded dataset (original preserved)</td>
+<td>PRD-5.2 Classify and code; DLM-9 Manage reference and master data</td>
+<td>1.3.1 Data standardisation</td>
+</tr>
+<tr class="odd">
+<td>Flag unmapped, uncoded, and free-text values and route them to VS-03</td>
+<td>Unmapped-value handover list</td>
+<td>PRD-5.2 Classify and code</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Capture applied mappings and classification versions as lineage</td>
+<td>Mapping and classification lineage</td>
+<td>PRD-5.2 Classify and code; OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-02 classification mapping logic: survey, administrative, and emerging-source inputs pass format coercion and a deterministic correspondence lookup; values whose source code has a correspondence become standard-coded values with the original preserved, unmapped and free-text values go to VS-03 for interpretive coding</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-02.3-align-metadata-and-semantics" class="level4">
+<h4 class="anchored" data-anchor-id="vs-02.3-align-metadata-and-semantics">VS-02.3 Align Metadata and Semantics</h4>
+<p><strong>Value created:</strong> <em>Coherent, shared meaning across datasets, so the same concept means the same thing everywhere.</em></p>
+<p>Once structure and codes are standardised, descriptive metadata and semantics are harmonised at the metadata level only. Source variables are linked to canonical concepts in the concept system. The unit of measure and reference-period basis of each variable are recorded as metadata against the standard conventions, not converted. Where sources define the same concept differently, for example two sources that define “employee” differently, the difference is recorded as metadata and flagged for VS-03 instead of being reconciled by adjusting values. Quality descriptors (completeness, accuracy, confidentiality flags) are standardised and attached. The harmonised metadata is bound to the dataset, so downstream consumers receive both the standardised data and the semantics needed to interpret it.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Link source variables to canonical concepts</td>
+<td>Concept-aligned variables</td>
+<td>OVA-2 Metadata Management</td>
+<td>GSBPM 5.1</td>
+</tr>
+<tr class="even">
+<td>Record unit of measure and reference-period basis as metadata (no conversion)</td>
+<td>Unit and period metadata</td>
+<td>OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="odd">
+<td>Record differing cross-source definitions as metadata and flag them for VS-03</td>
+<td>Definition-difference record</td>
+<td>OVA-2 Metadata Management</td>
+<td>2.1.4 Statistical register management</td>
+</tr>
+<tr class="even">
+<td>Standardise and attach quality descriptors</td>
+<td>Harmonised quality metadata</td>
+<td>OVA-2 Metadata Management</td>
+<td>CSDA Metadata Management</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-02.4-validate-structural-and-semantic-conformance" class="level4">
+<h4 class="anchored" data-anchor-id="vs-02.4-validate-structural-and-semantic-conformance">VS-02.4 Validate Structural and Semantic Conformance</h4>
+<p><strong>Value created:</strong> <em>Confidence that the standardised data conforms to standards and that no content was lost in standardisation.</em></p>
+<p>Before standardised data can be accepted, it must pass the quality gate of State #2. The automated checks from <em>Design Conformance Validation Rules</em> run on every dataset: structural validation against the target model, classification conformance, and semantic conformance. Content-preservation checks confirm that every value is unchanged and that record counts and key business measures are identical before and after. The conformance assessment gives a structural score, a mapping coverage rate, and a semantic conformance rating. Every result, exception, and decision is logged in a mapping and format-coercion audit trail, with data metadata (what was validated, what passed) and process metadata (who validated, when, which rule and engine version). The outcome is one of two business events. <em>Standardisation Conformed</em> starts registration. <em>Standardisation Non-Conformant</em> starts exception handling: re-map, route unmapped values to VS-03, or accept conditionally with a conformance flag.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Validate the structure against the target model</td>
+<td>Structural validation result</td>
+<td>PRD-5.3 Review and validate; DLM-2 Promote data through a quality gate</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Validate classification conformance: valid codes, correct version, coverage</td>
+<td>Classification conformance result</td>
+<td>PRD-5.3 Review and validate</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Validate semantic conformance: units, definitions, reference periods recorded</td>
+<td>Semantic conformance result</td>
+<td>PRD-5.3 Review and validate</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Run the no-loss-of-content checks: record and measure preservation</td>
+<td>Content-preservation result</td>
+<td>DLM-2 Promote data through a quality gate</td>
+<td>GAMSO Quality Management</td>
+</tr>
+<tr class="odd">
+<td>Create the audit trail: log all conformance results, exceptions, and decisions</td>
+<td>Audit trail record</td>
+<td>OVA-4 Process Data Management</td>
+<td>GAMSO Quality Management</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-02.5-register-standardized-artefacts" class="level4">
+<h4 class="anchored" data-anchor-id="vs-02.5-register-standardized-artefacts">VS-02.5 Register Standardized Artefacts</h4>
+<p><strong>Value created:</strong> <em>Secure, organised, and traceable storage of standardised data, discoverable by downstream consumers.</em></p>
+<p>This stage persists conformant standardised data and makes it discoverable for the rest of the statistical system. Each dataset version receives a unique persistent identifier (URI or UUID) and is stored in the standardised data repository, in line with the loose coupling of SAF-P07. The stage confirms that identifiers have been removed or pseudonymised according to the privacy design (SAF-P11). Metadata is registered in the catalogue, in line with SAF-P09: the mapping lineage, the applied classification versions, the harmonised concept and quality metadata, and the conformance results. Lineage from Raw Data (#1) to Standardized Data (#2) is recorded, traceable to the originating source. Access permissions are applied according to the designed framework (SAF-P10). The stage ends by publishing the <em>Standardized Data Registered</em> event, which tells VS-03 that new standardised data is available for editing and enrichment.</p>
+<p><strong>Output:</strong> <strong>Standardized Data (State #2)</strong>, the official handover artefact to the rest of the statistical value chain. Its structure and minimum metadata set are described in <em>State #2: Standardized Data</em>. <strong>[VC10]</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Assign a unique persistent identifier (URI or UUID) to the dataset version</td>
+<td>Dataset ID</td>
+<td>DLM-3 Register and catalogue data</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Store the data in the standardised data repository</td>
+<td>Stored standardised artefact</td>
+<td>DLM-5 Store and version data</td>
+<td>SAF-P07</td>
+</tr>
+<tr class="odd">
+<td>Confirm that identifier removal or pseudonymisation has been applied</td>
+<td>Privacy-compliant dataset</td>
+<td>DLM-4 Classify and protect data</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="even">
+<td>Register metadata: mapping lineage, classification versions, harmonised concepts, conformance results</td>
+<td>Catalogue registration</td>
+<td>DLM-3 Register and catalogue data; OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="odd">
+<td>Apply access permissions according to the designed framework</td>
+<td>Access-controlled dataset</td>
+<td>DLM-4 Classify and protect data</td>
+<td>SAF-P10</td>
+</tr>
+<tr class="even">
+<td>Publish the <em>Standardized Data Registered</em> event to notify VS-03</td>
+<td>Event notification</td>
+<td>DLM-3 Register and catalogue data</td>
+<td>SAF-P07</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="the-four-process-types" class="level3">
+<h3 class="anchored" data-anchor-id="the-four-process-types">4. The four process types</h3>
+<p>The sub-processes below are specific to VS-02. Each refines one or more SAF business processes, listed as <em>Refines</em>, which keeps it traceable to <em>Business Processes</em>. Sub-processes marked <em>(standard)</em> work as described in <a href="../framework/value-chain.html#standard-vs-activities">Standard activities in every value stream</a>; only the VS-02 specifics are listed. In this domain, metadata, and classification in particular, is not a by-product but the central asset being created.</p>
+<section id="design-provides-metadata" class="level4">
+<h4 class="anchored" data-anchor-id="design-provides-metadata">Design: provides metadata</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Design sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design Target Data Models and Schemas</td>
+<td>PRD-2.2 Design variables; PRD-2.5 Design processing and analysis; DLM-1 Plan and design data assets; DLM-9 Manage reference and master data</td>
+<td>Target data model, canonical concept catalogue, structural conformance rules, integration key design</td>
+</tr>
+<tr class="even">
+<td>Design Classification Mapping Strategy</td>
+<td>PRD-2.5 Design processing and analysis; DLM-9 Manage reference and master data</td>
+<td>Classification standards register, version policy, correspondence tables, unmapped-value routing rules</td>
+</tr>
+<tr class="odd">
+<td>Design Metadata and Semantic Harmonisation Rules</td>
+<td>PRD-2.2 Design variables; OVA-2 Metadata Management</td>
+<td>Harmonised concept system, unit and reference-period metadata standards, semantic mapping rules, definition-difference policy</td>
+</tr>
+<tr class="even">
+<td>Design Conformance Validation Rules</td>
+<td>PRD-2.5 Design processing and analysis; DLM-2 Promote data through a quality gate; OVA-1 Quality Management</td>
+<td>Validation rule sets, content-preservation checks, exception handling policy</td>
+</tr>
+<tr class="odd">
+<td>Design Standardisation Registration and Privacy Framework</td>
+<td>DLM-1 Plan and design data assets; DLM-4 Classify and protect data; OVA-4 Process Data Management</td>
+<td>Data classification policy, access control design, lineage model, pseudonymisation design, audit logging specification</td>
+</tr>
+</tbody>
+</table>
+<section id="design-target-data-models-and-schemas" class="level5">
+<h5 class="anchored" data-anchor-id="design-target-data-models-and-schemas">Design Target Data Models and Schemas</h5>
+<p><em>Refines:</em> PRD-2.2 Design variables; PRD-2.5 Design processing and analysis; DLM-1 Plan and design data assets; DLM-9 Manage reference and master data.</p>
+<p>Standardisation starts from the canonical structure that all data must conform to. This sub-process specifies the target data model for Standardized Data (State #2): entities, fields, data types, formats, units of measure, cardinalities, and referential constraints. It sets canonical representations for common concepts, such as dates, geographies, currencies, and organisational and personal identifiers, so that data from surveys, registers, and external sources can be expressed consistently. It defines the structural conformance contract: what it means for a dataset to be structurally valid against the target model. Where several sources describe the same population, the integration model defines how they are aligned to a common key structure, for example the key of a business or statistical unit register.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define the canonical target data model for State #2: entities, fields, types, formats, units</td>
+<td>Target data model specification</td>
+<td>PRD-2.2 Design variables; DLM-1 Plan and design data assets</td>
+<td>1.1.2 Design statistics product</td>
+</tr>
+<tr class="even">
+<td>Define canonical representations for common concepts (dates, geography, currency, identifiers)</td>
+<td>Canonical concept catalogue</td>
+<td>PRD-2.2 Design variables</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Define the structural conformance contract and referential constraints</td>
+<td>Structural conformance rules</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Define the integration and linkage key structure for multi-source alignment</td>
+<td>Integration key design</td>
+<td>DLM-9 Manage reference and master data</td>
+<td>2.1.4 Statistical register management</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-classification-mapping-strategy" class="level5">
+<h5 class="anchored" data-anchor-id="design-classification-mapping-strategy">Design Classification Mapping Strategy</h5>
+<p><em>Refines:</em> PRD-2.5 Design processing and analysis; DLM-9 Manage reference and master data.</p>
+<p>Once the target structure is set, the classification steward designs how source codes are mapped one-to-one to standard classifications. The sub-process selects the authoritative classifications and code lists the NSI conforms to, such as NACE, ISCO, COICOP, NUTS, SDMX code lists, and concepts aligned with GSIM. It defines the version policy: which version applies, and how transitions between versions are handled. The mapping is deterministic: maintained correspondence tables translate a value that already carries a source code into the corresponding standard code, and the original value is kept. The design also specifies that unmapped or uncoded values are flagged and passed to VS-03, which does any interpretive coding of free text. Reference and master data sources are identified, so that mapping is anchored to authoritative registers.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Select authoritative classifications and code lists (NACE, ISCO, COICOP, NUTS, SDMX, GSIM concepts)</td>
+<td>Classification standards register</td>
+<td>PRD-2.5 Design processing and analysis; DLM-9 Manage reference and master data</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Define the classification version policy and transition handling</td>
+<td>Classification version policy</td>
+<td>DLM-9 Manage reference and master data</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="odd">
+<td>Design deterministic one-to-one correspondence tables from source codes to standard codes</td>
+<td>Correspondence table set</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td>1.3.1 Data standardisation</td>
+</tr>
+<tr class="even">
+<td>Define the handling of unmapped and uncoded values: flag and route to VS-03</td>
+<td>Unmapped-value routing rules</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Identify reference and master data sources for mapping</td>
+<td>Reference data catalogue</td>
+<td>DLM-9 Manage reference and master data</td>
+<td>CSDA Reference Data</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-metadata-and-semantic-harmonisation-rules" class="level5">
+<h5 class="anchored" data-anchor-id="design-metadata-and-semantic-harmonisation-rules">Design Metadata and Semantic Harmonisation Rules</h5>
+<p><em>Refines:</em> PRD-2.2 Design variables; OVA-2 Metadata Management.</p>
+<p>This sub-process defines how descriptive metadata and semantics are harmonised, so that data from different sources is understood consistently without any value changing. The team designs harmonised concept and variable definitions, and the metadata that records the unit of measure and reference-period basis of each variable. Semantic mapping rules link source variables to canonical concepts in the concept system, and quality descriptors (completeness, accuracy, confidentiality flags) are standardised. Where sources define the same concept differently, the design specifies that the difference is recorded as metadata and flagged for VS-03; VS-02 does not adjust values to reconcile them. The catalogue structure for standardised artefacts is designed so that lineage from raw to standardised state is fully traceable, which makes active metadata a foundation for downstream automation, as emphasised by the Metadata Management capability of CSDA.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define harmonised concept and variable definitions</td>
+<td>Harmonised concept system</td>
+<td>PRD-2.2 Design variables</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Define the unit and reference-period metadata to record per variable (no conversion)</td>
+<td>Unit and reference-period metadata standards</td>
+<td>OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="odd">
+<td>Design semantic mapping rules from source variables to canonical concepts</td>
+<td>Semantic mapping rules</td>
+<td>OVA-2 Metadata Management</td>
+<td>CSDA Metadata Management</td>
+</tr>
+<tr class="even">
+<td>Design rules to record differing cross-source definitions as metadata and flag them for VS-03</td>
+<td>Definition-difference policy</td>
+<td>OVA-2 Metadata Management</td>
+<td>2.1.4 Statistical register management</td>
+</tr>
+<tr class="odd">
+<td>Design the catalogue structure and lineage model for standardised artefacts</td>
+<td>Catalogue registration template</td>
+<td>OVA-2 Metadata Management</td>
+<td>CSDA Metadata Management</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-conformance-validation-rules" class="level5">
+<h5 class="anchored" data-anchor-id="design-conformance-validation-rules">Design Conformance Validation Rules</h5>
+<p><em>Refines:</em> PRD-2.5 Design processing and analysis; DLM-2 Promote data through a quality gate; OVA-1 Quality Management.</p>
+<p>Before any data is standardised, the criteria for “standardised” must be clear. This sub-process sets structural validation rules (field types, formats, value ranges, cardinalities, referential integrity against the target model), classification conformance rules (every mapped code belongs to the correct classification version, no orphan codes), and semantic conformance rules (units, definitions, and reference periods correctly recorded as metadata). The maximum acceptable unmapped-value rate is agreed as a coverage threshold. Exception handling rules distinguish between rejection, conditional acceptance with conformance flags, and routing of unmapped values to VS-03. The rules also verify the no-loss-of-content rule: every value is unchanged, and record counts and key business measures are identical before and after. Together, these rules make up the VS-02 part of the quality gate of State #2. The Quality Management capability of GAMSO provides the overall control framework.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define structural validation rules against the target model</td>
+<td>Structural validation rule set</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Define classification conformance rules: valid codes, correct version, no orphans</td>
+<td>Classification conformance rules</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Define semantic conformance rules: units, definitions, reference periods</td>
+<td>Semantic conformance rules</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Define the no-loss-of-content checks: record and measure preservation</td>
+<td>Content-preservation checks</td>
+<td>OVA-1 Quality Management</td>
+<td>GAMSO Quality Management</td>
+</tr>
+<tr class="odd">
+<td>Design exception handling rules: rejection, conditional acceptance, manual review</td>
+<td>Exception handling policy</td>
+<td>DLM-2 Promote data through a quality gate</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-standardisation-registration-and-privacy-framework" class="level5">
+<h5 class="anchored" data-anchor-id="design-standardisation-registration-and-privacy-framework">Design Standardisation Registration and Privacy Framework</h5>
+<p><em>Refines:</em> DLM-1 Plan and design data assets; DLM-4 Classify and protect data; OVA-4 Process Data Management.</p>
+<p>This sub-process makes sure that standardised artefacts are correctly registered, traceable, and privacy-compliant. Each standardised dataset receives a classification for availability, integrity, and confidentiality (SAF-P09), and role-based access control for the standardised data repository is designed (SAF-P10). The lineage model is designed so that every standardised field can be traced back to its raw source value and the mapping rule applied. Privacy protection follows SAF-P11: standardisation is where direct identifiers are removed or replaced with pseudonymous keys. The design specifies which identifiers are dropped, which are pseudonymised, the pseudonymisation method and key management, and the data minimisation rules. Audit logging requirements, which define the mapping and format-coercion events that must be recorded, complete the design.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define the data classification (availability, integrity, confidentiality) for standardised datasets</td>
+<td>Data classification policy</td>
+<td>DLM-4 Classify and protect data</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Design role-based access control for the standardised data repository</td>
+<td>Access control design</td>
+<td>DLM-1 Plan and design data assets; DLM-4 Classify and protect data</td>
+<td>SAF-P10; 3.3.4 Logical identity and access control</td>
+</tr>
+<tr class="odd">
+<td>Design the lineage model: standardised field, raw source value, mapping rule</td>
+<td>Lineage model specification</td>
+<td>DLM-1 Plan and design data assets</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="even">
+<td>Design identifier removal and pseudonymisation: which identifiers, method, key management, minimisation</td>
+<td>Privacy and pseudonymisation design</td>
+<td>DLM-4 Classify and protect data</td>
+<td>SAF-P11; 3.3.1 Privacy management</td>
+</tr>
+<tr class="odd">
+<td>Design audit logging requirements for mapping and format coercion</td>
+<td>Audit logging specification</td>
+<td>OVA-4 Process Data Management</td>
+<td>SAF-P10</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-02 design process decomposition: inputs (raw data model of State #1, framework standards, classification standards such as NACE, ISCO, COICOP, SDMX, legal and privacy requirements), the five design sub-processes in order, and the artefact each produces (target data model, correspondence tables, harmonised concepts, conformance rule set, lineage and privacy design), which together govern Implementation, Execution, and Management</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="implementation-provides-the-execution-process" class="level4">
+<h4 class="anchored" data-anchor-id="implementation-provides-the-execution-process">Implementation: provides the execution process</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Implementation sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build Profiling and Mapping Engines</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td>Profiling module, lineage-aware mapping and format-coercion component, versioned mapping repository</td>
+</tr>
+<tr class="even">
+<td>Configure Classification Mapping Services</td>
+<td>PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows; DLM-9 Manage reference and master data</td>
+<td>Mapping services with loaded correspondence tables, version control, unmapped-value routing</td>
+</tr>
+<tr class="odd">
+<td>Build Conformance Validation Pipelines and Metadata Registration</td>
+<td>PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows; DLM-3 Register and catalogue data; DLM-4 Classify and protect data; OVA-2 Metadata Management</td>
+<td>Automated conformance pipeline, pseudonymisation component, metadata propagation, events, exception routing</td>
+</tr>
+<tr class="even">
+<td>Test and Validate the Pipeline <em>(standard)</em></td>
+<td>PRD-3.5 Test production systems; PRD-3.6 Test statistical business process; PRD-3.7 Finalise production systems</td>
+<td>Test reports; mapping verification report (correspondence tables checked against the source code lists); pilot confirming one-to-one mapping, complete lineage, no loss of content, routing of unmapped values to VS-03, and identifier removal; volumes tested against processing windows</td>
+</tr>
+</tbody>
+</table>
+<section id="build-profiling-and-mapping-engines" class="level5">
+<h5 class="anchored" data-anchor-id="build-profiling-and-mapping-engines">Build Profiling and Mapping Engines</h5>
+<p><em>Refines:</em> PRD-3.2 Reuse or build processing and analysis components.</p>
+<p>This sub-process turns the target data model and mapping designs into operational tools. Profiling components analyse the structure of incoming raw data: they infer types and detect cardinalities, value distributions, and structural anomalies, so the pipeline can report how far each source is from the target model. The mapping and format-coercion component applies the designed value-preserving operations: renaming, restructuring, type casting, reformatting (for example from CSV to XML), and key alignment. It does not convert units, currencies, or reference periods; those are recorded as metadata, and any conversion takes place in VS-03. The component is declarative and lineage-aware: for each output field it records which input field and which rule produced it. All mapping logic is version-controlled, so that any standardised record can be reproduced from raw data.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build data profiling components: type inference, cardinality, distributions, anomalies</td>
+<td>Production-ready profiling module</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td>3.2.1 Application development</td>
+</tr>
+<tr class="even">
+<td>Build or configure the mapping and format-coercion component: rename, restructure, cast, reformat, align keys</td>
+<td>Configured mapping component</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Configure lineage capture for every mapping and coercion operation</td>
+<td>Lineage-aware mapping modules</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="even">
+<td>Version-control all mapping and format-coercion logic</td>
+<td>Versioned mapping repository</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td>SAF-P10</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="configure-classification-mapping-services" class="level5">
+<h5 class="anchored" data-anchor-id="configure-classification-mapping-services">Configure Classification Mapping Services</h5>
+<p><em>Refines:</em> PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows; DLM-9 Manage reference and master data.</p>
+<p>The designed correspondence tables are turned into automated mapping services. Deterministic correspondence tables are loaded and connected to authoritative reference data, so that a value already carrying a source code is translated one-to-one to the corresponding standard code. Classification version control is configured, so that the correct version is applied and version transitions are managed. Values without a matching correspondence, and free-text or uncoded values, are routed to VS-03 instead of being coded here. Reference and master data connections keep the mapping synchronised with authoritative registers.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Load correspondence tables for deterministic mapping from source codes to standard codes</td>
+<td>Configured mapping services</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Configure classification version control and transition handling</td>
+<td>Version-controlled classifications</td>
+<td>DLM-9 Manage reference and master data</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="odd">
+<td>Configure the routing of unmapped and uncoded values to VS-03</td>
+<td>Unmapped-value routing</td>
+<td>PRD-3.4 Configure workflows</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Configure reference and master data connections</td>
+<td>Synchronised reference data</td>
+<td>DLM-9 Manage reference and master data</td>
+<td>CSDA Reference Data</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="build-conformance-validation-pipelines-and-metadata-registration" class="level5">
+<h5 class="anchored" data-anchor-id="build-conformance-validation-pipelines-and-metadata-registration">Build Conformance Validation Pipelines and Metadata Registration</h5>
+<p><em>Refines:</em> PRD-3.2 Reuse or build processing and analysis components; PRD-3.4 Configure workflows; DLM-3 Register and catalogue data; DLM-4 Classify and protect data; OVA-2 Metadata Management.</p>
+<p>This sub-process implements the conformance validation rules and the registration of standardised artefacts. Structural, classification, semantic, and content-preservation checks run as automated validations on every standardised dataset. Catalogue entries are built from the designed metadata model, and automatic propagation makes mapping lineage, applied classification versions, harmonised definitions, and conformance scores flow into the catalogue. Identifier removal and pseudonymisation are implemented according to the privacy design. Event notifications alert VS-03 when standardised data is registered, and exception workflows route non-conforming data to manual review. As CSDA emphasises, the ultimate goal is active metadata: metadata that can drive standardisation rules and downstream processing specifications.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Implement conformance checks as automated validations (structural, classification, semantic, content preservation)</td>
+<td>Automated conformance pipeline</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Implement identifier removal and pseudonymisation according to the privacy design</td>
+<td>Pseudonymisation component</td>
+<td>DLM-4 Classify and protect data</td>
+<td>SAF-P11</td>
+</tr>
+<tr class="odd">
+<td>Configure automatic metadata and lineage propagation into the catalogue</td>
+<td>Automated metadata pipelines</td>
+<td>DLM-3 Register and catalogue data; OVA-2 Metadata Management</td>
+<td>CSDA Metadata Management</td>
+</tr>
+<tr class="even">
+<td>Configure the <em>Standardized Data Registered</em> event for downstream consumers</td>
+<td>Event publication</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>SAF-P07</td>
+</tr>
+<tr class="odd">
+<td>Configure exception handling workflows</td>
+<td>Non-conformance routing and review queues</td>
+<td>PRD-3.4 Configure workflows</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-02 implementation pipeline: the five design artefacts feeding the three build sub-processes (target model and harmonisation rules into the profiling and mapping engines, the classification strategy into the mapping services, conformance rules and the lineage and privacy design into the conformance pipeline), followed by technical testing, pilot and mapping verification, and performance and lineage testing, resulting in a production-ready standardisation pipeline and operational procedures</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="execution-provides-the-statistical-data" class="level4">
+<h4 class="anchored" data-anchor-id="execution-provides-the-statistical-data">Execution: provides the statistical data</h4>
+<p>Execution runs the stages of VS-02 in every production cycle. The stages and their activities are described in attribute 3. A cycle starts for each new raw data version registered by VS-01. Execution applies the designs and the solution as they are; a changed source schema or a missing correspondence that needs a new rule goes back to Design. Every dataset ends in one of three outcomes: registered, registered with conformance flags and a list of unmapped values for VS-03, or returned for re-mapping.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>VS-02</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Trigger</td>
+<td><em>Raw Data Registered</em></td>
+</tr>
+<tr class="even">
+<td>Cadence</td>
+<td>Per registered raw data version</td>
+</tr>
+<tr class="odd">
+<td>Performed by</td>
+<td>ROL-14 Data quality analyst, ROL-03 Data steward</td>
+</tr>
+<tr class="even">
+<td>Input</td>
+<td>Raw data version (#1), production-ready pipeline, current correspondence tables and target model</td>
+</tr>
+<tr class="odd">
+<td>Output</td>
+<td>Registered standardised data version (#2), its mapping lineage, and the list of unmapped values for VS-03</td>
+</tr>
+<tr class="even">
+<td>Control point</td>
+<td>Gate of State #2 in VS-02.4</td>
+</tr>
+<tr class="odd">
+<td>Exception path</td>
+<td>Re-mapping after <em>Standardisation Non-Conformant</em>; unmapped values routed to VS-03 with conditional acceptance; schema change at the source back to Design</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="management-provides-quality-reports" class="level4">
+<h4 class="anchored" data-anchor-id="management-provides-quality-reports">Management: provides quality reports</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Management sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monitor Process Performance <em>(standard)</em></td>
+<td>OVA-4 Process Data Management; PRD-8.1 Gather evaluation inputs</td>
+<td>Process performance dashboard; throughput report against processing windows; paradata on engine and classification versions</td>
+</tr>
+<tr class="even">
+<td>Assess Standardisation Quality</td>
+<td>OVA-1 Quality Management; DLM-8 Monitor data quality, lineage and use</td>
+<td>Mapping completeness report, conformance and orphan-code report, conformance quality report, trend analysis</td>
+</tr>
+<tr class="odd">
+<td>Manage Classification and Metadata Lifecycle</td>
+<td>DLM-9 Manage reference and master data; OVA-2 Metadata Management; DLM-8 Monitor data quality, lineage and use</td>
+<td>Classification version and correspondence register, metadata quality report, reference data maintenance log, lineage audit</td>
+</tr>
+<tr class="even">
+<td>Audit and Compliance Reporting <em>(standard)</em></td>
+<td>OVA-1 Quality Management; OVA-4 Process Data Management; DLM-8 Monitor data quality, lineage and use</td>
+<td>Audit trail from each raw value through the mapping rules to the standardised value, supporting reproducibility and content preservation; privacy compliance record on identifier removal, pseudonymisation, and minimisation at the #1 to #2 transition; standards compliance report on adopted classifications and SDMX exchange (4.1.5 Accountability)</td>
+</tr>
+<tr class="odd">
+<td>Continuous Improvement <em>(standard)</em></td>
+<td>PRD-8.2 Conduct evaluation; PRD-8.3 Agree an action plan</td>
+<td>Improvement recommendations, for example extending correspondence tables to raise coverage, refining mappings that produce orphan codes, adopting new classification versions, and simplifying conformance rules that produce false positives; recurring unmapped values that need interpretive coding are passed to VS-03 instead of being absorbed in VS-02; trends watched: mapping coverage, unmapped-value rate, conformance pass rate, re-mapping rate</td>
+</tr>
+</tbody>
+</table>
+<section id="assess-standardisation-quality" class="level5">
+<h5 class="anchored" data-anchor-id="assess-standardisation-quality">Assess Standardisation Quality</h5>
+<p><em>Refines:</em> OVA-1 Quality Management; DLM-8 Monitor data quality, lineage and use.</p>
+<p>Beyond process performance, the quality of the standardised data itself is evaluated against the criteria set in <em>Design Conformance Validation Rules</em>. Each dataset is assessed on several dimensions. Mapping completeness covers the share of source codes mapped one-to-one and the unmapped-value rate routed to VS-03. Classification conformance covers orphan codes and correct versions. Structural and format conformance covers alignment with the target model. Metadata completeness covers units, reference-period bases, and definitions correctly recorded. Content preservation confirms that no value changed and that record counts and key measures are identical. Quality indicators are produced per dataset, per source, and per production cycle. Trends are tracked to detect deteriorating sources, growing unmapped-value rates, or problems with classification versions. This follows the Data Quality capability of CSDA and SAF capability 2.1.3 <em>Statistical quality management</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Assess mapping completeness and the unmapped-value rate</td>
+<td>Mapping completeness report (per cycle)</td>
+<td>OVA-1 Quality Management</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Assess classification conformance and the orphan-code rate</td>
+<td>Conformance and orphan-code report</td>
+<td>OVA-1 Quality Management</td>
+<td>CSDA Data Quality</td>
+</tr>
+<tr class="odd">
+<td>Assess structural and format conformance, metadata completeness, and content preservation</td>
+<td>Conformance quality report</td>
+<td>DLM-8 Monitor data quality, lineage and use</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Identify quality trends across sources, classifications, and cycles</td>
+<td>Quality trend analysis</td>
+<td>DLM-8 Monitor data quality, lineage and use</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="manage-classification-and-metadata-lifecycle" class="level5">
+<h5 class="anchored" data-anchor-id="manage-classification-and-metadata-lifecycle">Manage Classification and Metadata Lifecycle</h5>
+<p><em>Refines:</em> DLM-9 Manage reference and master data; OVA-2 Metadata Management; DLM-8 Monitor data quality, lineage and use.</p>
+<p>The classifications and metadata that support standardisation must stay complete, accurate, and current. This sub-process governs the life cycle of classification versions: adopting new versions, for example a NACE or COICOP revision, managing transition periods, and maintaining the correspondence tables between versions. It verifies, as a compliance check on SAF-P09, that every standardised dataset carries full mapping lineage, classification versions, and harmonised concepts. It maintains the concept system, code lists, and reference data, so that mapping stays anchored to authoritative sources. Lineage from raw through standardisation to the standardised state is tracked, and reconciliation across systems makes sure that catalogue entries match the stored artefacts. As CSDA emphasises, active, well-managed metadata is what makes standardised data reusable and downstream automation possible.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Govern the classification version life cycle and correspondence tables</td>
+<td>Classification version and correspondence register</td>
+<td>DLM-9 Manage reference and master data</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="even">
+<td>Verify metadata completeness for all standardised datasets</td>
+<td>Metadata quality report</td>
+<td>OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+<tr class="odd">
+<td>Maintain the concept system, code lists, and reference data</td>
+<td>Reference data maintenance log</td>
+<td>DLM-9 Manage reference and master data; OVA-2 Metadata Management</td>
+<td>CSDA Metadata Management</td>
+</tr>
+<tr class="even">
+<td>Track metadata lineage from raw through standardisation to the standardised state</td>
+<td>Metadata lineage audit</td>
+<td>DLM-8 Monitor data quality, lineage and use</td>
+<td>CSDA Traceability</td>
+</tr>
+<tr class="odd">
+<td>Reconcile metadata across systems</td>
+<td>Catalogue-artefact reconciliation</td>
+<td>OVA-2 Metadata Management</td>
+<td>SAF-P09</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-02 management feedback loop: data and paradata from Execution flowing through monitoring (key performance indicators, throughput), standardisation quality (mapping coverage), classification and metadata lifecycle (versions, reference data), audit (lineage, privacy), and continuous improvement, with dashboards to the process owner, quality reports to the quality manager, compliance reports to VS-07, and updated rules and classifications back to Design</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="metadata-per-process-type" class="level4">
+<h4 class="anchored" data-anchor-id="metadata-per-process-type">Metadata per process type</h4>
+<p>Metadata is produced in every process type, not only in Design. The table shows the data metadata each process type of VS-02 contributes; the paradata are listed in <a href="../framework/value-chain.html#standard-vs-activities">Standard activities in every value stream</a>. In Execution, VS-02 also records the mapping coverage, the count of unmatched values, and the engine and classification versions as paradata, and Design keeps a classification version policy.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Process type</th>
+<th>Data metadata produced</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design</td>
+<td>Target data models, classification schemes, code lists, source-to-target mapping rules, conformance criteria, harmonised definitions</td>
+</tr>
+<tr class="even">
+<td>Implementation</td>
+<td>Mapping configurations, parameters of coding services and validation rules, catalogue templates</td>
+</tr>
+<tr class="odd">
+<td>Execution</td>
+<td>Per dataset: source-to-target mappings, applied classification versions, mapping and format-coercion lineage, conformance scores, profiling statistics</td>
+</tr>
+<tr class="even">
+<td>Management</td>
+<td>Conformance scores, classification quality assessments, coverage reports, lineage assessments, trend analyses</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-02 business object lifecycle: design artefacts (target model, classification strategy, harmonisation, conformance, and privacy design) govern implementation assets (mapping and format coercion, mapping services, conformance pipeline, catalogue configuration), which produce the process that standardises Raw Data (#1) into Standardized Data (#2), generating mapping lineage, conformance, and audit records that management assesses and feeds back to design</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</section>
+<section id="actors-and-roles" class="level3">
+<h3 class="anchored" data-anchor-id="actors-and-roles">5. Actors and roles</h3>
+<p>VS-02 works mostly inside the NSI. Its upstream partner is VS-01, which supplies Raw Data (#1) and its provenance metadata through the <em>Raw Data Registered</em> event. The table shows the actors and the reference roles involved. Specialised role names used in an NSI map onto these reference roles (see <em>Role names in the value streams</em>); for example, the data architect and the metadata architect of the original VS-02 description are both ROL-08 Metadata and data architect, and the system configurator is ROL-11 Platform engineer.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Actor or role</th>
+<th>ID</th>
+<th>Process type</th>
+<th>Responsibility in VS-02</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>International statistical organisation (standards body)</td>
+<td>ACT-07</td>
+<td>External</td>
+<td>Maintains the classification and exchange standards the NSI conforms to, for example Eurostat and UNSD for NACE, ISCO, COICOP, and SDMX</td>
+</tr>
+<tr class="even">
+<td>Process owner</td>
+<td>ROL-01</td>
+<td>Management</td>
+<td>Accountable for the end-to-end performance of VS-02</td>
+</tr>
+<tr class="odd">
+<td>Data owner</td>
+<td>ROL-02</td>
+<td>Management</td>
+<td>Accountable for State #2: conformance and the application of the privacy design</td>
+</tr>
+<tr class="even">
+<td>Data steward</td>
+<td>ROL-03</td>
+<td>Execution</td>
+<td>Registers standardised datasets, manages metadata entries, and applies access controls</td>
+</tr>
+<tr class="odd">
+<td>Data custodian</td>
+<td>ROL-04</td>
+<td>Execution</td>
+<td>Operates storage, access control, and retention; manages pseudonymisation keys separately from the data</td>
+</tr>
+<tr class="even">
+<td>Methodologist</td>
+<td>ROL-07</td>
+<td>Design</td>
+<td>Designs the mapping methodology and the cross-source harmonisation of definitions and metadata</td>
+</tr>
+<tr class="odd">
+<td>Metadata and data architect</td>
+<td>ROL-08</td>
+<td>Design</td>
+<td>Designs the target data models, canonical schemas, structural conformance rules, harmonised definitions, semantic mappings, unit and period metadata, and the standardised metadata schema</td>
+</tr>
+<tr class="even">
+<td>Classification steward</td>
+<td>ROL-09</td>
+<td>Design</td>
+<td>Owns the classification strategy, code lists, and the one-to-one correspondence tables from source codes to standards</td>
+</tr>
+<tr class="odd">
+<td>Data engineer</td>
+<td>ROL-10</td>
+<td>Implementation</td>
+<td>Builds and configures the profiling, mapping, and format-coercion components and the standardisation pipeline</td>
+</tr>
+<tr class="even">
+<td>Platform engineer</td>
+<td>ROL-11</td>
+<td>Implementation</td>
+<td>Configures classification services, reference data connections, and access controls</td>
+</tr>
+<tr class="odd">
+<td>Test manager</td>
+<td>ROL-12</td>
+<td>Implementation</td>
+<td>Plans and carries out testing of the standardisation pipeline: technical, conformance, and integration tests</td>
+</tr>
+<tr class="even">
+<td>Data quality analyst</td>
+<td>ROL-14</td>
+<td>Execution</td>
+<td>Profiles data, assesses structural and semantic conformance, and logs unmapped values and exceptions</td>
+</tr>
+<tr class="odd">
+<td>Quality manager</td>
+<td>ROL-18</td>
+<td>Management</td>
+<td>Monitors conformance key performance indicators, produces quality reports, and drives continuous improvement</td>
+</tr>
+<tr class="even">
+<td>Compliance officer</td>
+<td>ROL-19</td>
+<td>Management</td>
+<td>Ensures privacy (identifier removal) and standards compliance, and produces audit reports</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="capabilities-processes-and-functions" class="level3">
+<h3 class="anchored" data-anchor-id="capabilities-processes-and-functions">6. Capabilities, processes, and functions</h3>
+<section id="capability-foundations" class="level4">
+<h4 class="anchored" data-anchor-id="capability-foundations">Capability foundations</h4>
+<p>The table shows which capabilities from the SAF capability model VS-02 relies on, and what role they play. NSIs can use it to map the value stream to their own organisation.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Capability group</th>
+<th>Capabilities</th>
+<th>Role in VS-02</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.1 Statistical design and build</td>
+<td>1.1.2 Design statistics product, 1.1.3 Build statistics product</td>
+<td>Design the target data models and classification strategies, and build the standardisation pipeline</td>
+</tr>
+<tr class="even">
+<td>1.3 Processing</td>
+<td>1.3.1 Data standardisation</td>
+<td>Standardise formats, category codes, linkage keys, and the recording of units without loss of content, directly after receipt of raw data</td>
+</tr>
+<tr class="odd">
+<td>2.1 Data management</td>
+<td>2.1.1 Data lifecycle management, 2.1.2 Metadata management, 2.1.3 Statistical quality management, 2.1.4 Statistical register management</td>
+<td>Manage data and metadata through standardisation, harmonise semantics, assess conformance quality, align with reference registers</td>
+</tr>
+<tr class="even">
+<td>3.2 Computerisation and automation</td>
+<td>3.2.1 Application development, 3.2.2 Functional management</td>
+<td>Build and maintain mapping engines, coding services, and conformance validation pipelines</td>
+</tr>
+<tr class="odd">
+<td>3.3 Security and privacy</td>
+<td>3.3.1 Privacy management, 3.3.2 Security planning, 3.3.4 Logical identity and access control</td>
+<td>Remove or pseudonymise direct identifiers and build security into the standardisation processes</td>
+</tr>
+<tr class="even">
+<td>4.1 Governance</td>
+<td>4.1.1 Strategy and governance, 4.1.2 Policy and planning, 4.1.4 Improvement management, 4.1.5 Accountability</td>
+<td>Govern the domain, steward classification standards, plan improvements, report on compliance</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="stages-processes-and-functions" class="level4">
+<h4 class="anchored" data-anchor-id="stages-processes-and-functions">Stages, processes, and functions</h4>
+<p>The table shows which SAF business processes realise each stage of VS-02 and which business functions they mainly use.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Realised by processes</th>
+<th>Main functions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-02.1 Profile and Assess Data Structure</td>
+<td>PRD-5.3 Review and validate</td>
+<td>FUN-3.3 Process statistical data</td>
+</tr>
+<tr class="even">
+<td>VS-02.2 Apply Standard Classifications and Formats</td>
+<td>PRD-5.2 Classify and code; DLM-9 Manage reference and master data</td>
+<td>FUN-3.3 Process statistical data; FUN-7.4 Manage reference and master data</td>
+</tr>
+<tr class="odd">
+<td>VS-02.3 Align Metadata and Semantics</td>
+<td>OVA-2 Metadata Management</td>
+<td>FUN-7.2 Manage metadata</td>
+</tr>
+<tr class="even">
+<td>VS-02.4 Validate Structural and Semantic Conformance</td>
+<td>PRD-5.3 Review and validate; DLM-2 Promote data through a quality gate</td>
+<td>FUN-3.3 Process statistical data; FUN-7.3 Manage data lifecycle and storage</td>
+</tr>
+<tr class="odd">
+<td>VS-02.5 Register Standardized Artefacts</td>
+<td>DLM-3 Register and catalogue data; DLM-4 Classify and protect data; DLM-5 Store and version data</td>
+<td>FUN-7.2 Manage metadata; FUN-7.3 Manage data lifecycle and storage; FUN-7.5 Protect data</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-02 (b) stages realised by processes and functions</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="framework-mappings" class="level4">
+<h4 class="anchored" data-anchor-id="framework-mappings">Framework mappings</h4>
+<p>This reference table maps each process type of VS-02 to the SAF business processes, the international frameworks (GSBPM, GAMSO, CSDA), and the SAF capability model. It is intended for architects and auditors; the rest of this section does not depend on it.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Process type</th>
+<th>SAF business processes</th>
+<th>GSBPM</th>
+<th>GAMSO</th>
+<th>CSDA</th>
+<th>SAF capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design</td>
+<td>PRD-2.2, PRD-2.5, DLM-1, DLM-2, DLM-4, DLM-9, OVA-1, OVA-2, OVA-4</td>
+<td>Phase 2 Design (2.2, 2.5)</td>
+<td>Production (design activities), Capability Management</td>
+<td>Data Governance, Metadata Management, Reference and Master Data</td>
+<td>1.1.2 Design statistics product, 2.1.2 Metadata management, 2.1.4 Statistical register management</td>
+</tr>
+<tr class="even">
+<td>Implementation</td>
+<td>PRD-3.2, PRD-3.4 to PRD-3.7, DLM-3, DLM-4, DLM-9, OVA-2</td>
+<td>Phase 3 Build (3.2, 3.4 to 3.7)</td>
+<td>Capability Management</td>
+<td>Data Integration (set-up), Data Governance (configuration)</td>
+<td>1.1.3 Build statistics product, 3.2.1 Application development, 3.2.2 Functional management</td>
+</tr>
+<tr class="odd">
+<td>Execution</td>
+<td>PRD-5.1 (key alignment only), PRD-5.2, PRD-5.3, DLM-2 to DLM-5, DLM-9, OVA-2, OVA-4</td>
+<td>Phase 5 Process (5.1 Integrate data, key alignment only; 5.2 Classify and code; 5.3 Review and validate, structural checks only)</td>
+<td>Production (execution)</td>
+<td>Data Integration (execution)</td>
+<td>1.3.1 Data standardisation, 2.1.2 Metadata management, 2.1.4 Statistical register management</td>
+</tr>
+<tr class="even">
+<td>Management</td>
+<td>OVA-1, OVA-2, OVA-4, DLM-8, DLM-9, PRD-8.1 to PRD-8.3</td>
+<td>Phase 8 Evaluate; overarching Quality Management and Metadata Management</td>
+<td>Corporate Support (Quality, Data, and Metadata Management), Capability Management (improvement)</td>
+<td>Data Quality, Data Governance, Traceability</td>
+<td>2.1.3 Statistical quality management, 4.1.4 Improvement management, 4.1.5 Accountability</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="principles" class="level3">
+<h3 class="anchored" data-anchor-id="principles">7. Principles</h3>
+<p>The following principles govern VS-02 most directly.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Principle</th>
+<th>Statement</th>
+<th>Application in VS-02</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-P01</td>
+<td>Actively participate in open-source communities to maintain collective control over statistical processes</td>
+<td>Classification, coding, and mapping tooling, such as SDMX libraries or coding engines, is built on open source developed with other NSIs, and the NSI contributes back. This keeps collective control over critical standardisation capabilities instead of depending on vendors.</td>
+</tr>
+<tr class="even">
+<td>SAF-P07</td>
+<td>Implement loosely coupled processes and systems</td>
+<td>Standardisation is independent from upstream acquisition and downstream editing. Standardized Data (State #2) is the decoupling interface: downstream consumers use standardised, classified data without knowing the original source structure.</td>
+</tr>
+<tr class="odd">
+<td>SAF-P08</td>
+<td>Data is shared property</td>
+<td>Standardised data, once registered, is available to all authorised consumers. Standardisation is not repeated for each statistical product when the same standardised asset can serve several purposes.</td>
+</tr>
+<tr class="even">
+<td>SAF-P09</td>
+<td>No data without metadata and classification</td>
+<td>Standardisation is where classification is applied as a first-class activity. Every standardised dataset carries source-to-target mappings, classification versions, harmonised definitions, units, and a classification for availability, integrity, and confidentiality. The principle does not require raw inputs to arrive already classified; it requires that data handed over from State #2 onward carries the required metadata and classification. VS-02 is the principal point where this obligation is fulfilled.</td>
+</tr>
+<tr class="odd">
+<td>SAF-P10</td>
+<td>Security by design</td>
+<td>Access controls, integrity verification, and audit logging are built into the standardisation pipeline from the start, so that every mapping and format-coercion operation is traceable and tamper-evident.</td>
+</tr>
+<tr class="even">
+<td>SAF-P11</td>
+<td>Privacy by design</td>
+<td>Direct identifiers are removed or pseudonymised during standardisation, at the transition from State #1 to State #2, applying data minimisation and purpose limitation by design instead of adding privacy after data is processed.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Principles that apply across the process types
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>SAF-P09 is the defining principle of VS-02 and applies to all four process types: Design defines the target classifications and mappings, Execution applies and captures them, and Management assesses classification quality and closes remaining gaps. SAF-P11 applies to <em>Design Standardisation Registration and Privacy Framework</em>, to <em>Build Conformance Validation Pipelines and Metadata Registration</em>, and to VS-02.5, where the removal or pseudonymisation of direct identifiers is confirmed. SAF-P07 governs both the intake of State #1 from VS-01 and the handover of State #2 to VS-03.</p>
+</div>
+</div>
+</section>
+<section id="interfaces-services-and-events" class="level3">
+<h3 class="anchored" data-anchor-id="interfaces-services-and-events">8. Interfaces, services, and events</h3>
+<p><strong>Boundary interfaces</strong></p>
+<p>VS-02 has two boundary interfaces: intake from VS-01, and handover to VS-03.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Boundary</th>
+<th>Handed over</th>
+<th>Required metadata</th>
+<th>Trigger</th>
+<th>Responsibility transfer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-01 → VS-02 (intake)</td>
+<td>Registered raw data version (#1)</td>
+<td>Minimum metadata set of State #1: provenance, source, collection method, receipt timestamp, file hash, agreement reference, classification</td>
+<td><em>Raw Data Registered</em></td>
+<td>VS-01 keeps custody of the raw artefact; VS-02 takes responsibility for standardisation on receipt of the event</td>
+</tr>
+<tr class="even">
+<td>VS-02 → VS-03 (handover)</td>
+<td>Registered standardised data version (#2)</td>
+<td>Minimum metadata set of State #2: mapping lineage, classification versions, recorded unit, currency, and reference-period bases, list of unmapped and uncoded values for VS-03 to code, definition-difference records, conformance assessment, pseudonymisation record, classification</td>
+<td><em>Standardized Data Registered</em></td>
+<td>VS-02 keeps custody of the standardised artefact; VS-03 takes responsibility for editing and enrichment, including any value conversion, interpretive coding, and reconciliation, on receipt of the event</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Business services</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Service</th>
+<th>Offered to</th>
+<th>Realised in</th>
+<th>Interfaces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standardisation service</td>
+<td>Raw data consumers, standardisation teams</td>
+<td>VS-02.1 Profile and Assess Data Structure; VS-02.2 Apply Standard Classifications and Formats</td>
+<td>Event subscription (<em>Raw Data Registered</em>)</td>
+</tr>
+<tr class="even">
+<td>Classification mapping service</td>
+<td>Standardisation teams, methodologists, other domains that need code mapping</td>
+<td>VS-02.2 Apply Standard Classifications and Formats</td>
+<td>Mapping interface from source code to standard code through deterministic correspondence, correspondence table lookup, code list exchange compliant with SDMX</td>
+</tr>
+<tr class="odd">
+<td>Semantic harmonisation service</td>
+<td>Metadata architects, downstream analysts</td>
+<td>VS-02.3 Align Metadata and Semantics</td>
+<td>Concept links and harmonised metadata in the catalogue</td>
+</tr>
+<tr class="even">
+<td>Conformance validation service</td>
+<td>Process owners, quality managers</td>
+<td>VS-02.4 Validate Structural and Semantic Conformance</td>
+<td>Conformance assessment and audit trail</td>
+</tr>
+<tr class="odd">
+<td>Standardised data provisioning service</td>
+<td>VS-03 Data Editing and Enrichment, data analysts, other domains</td>
+<td>VS-02.5 Register Standardized Artefacts</td>
+<td>Event notification (<em>Standardized Data Registered</em>) and a catalogue query interface to find and access standardised datasets and their lineage</td>
+</tr>
+<tr class="even">
+<td>Classification catalogue service</td>
+<td>All data consumers in the NSI</td>
+<td>Management sub-process <em>Manage Classification and Metadata Lifecycle</em></td>
+<td>Search and browse interface for classifications, code lists, and concept definitions, with metadata exchange compliant with SDMX</td>
+</tr>
+<tr class="odd">
+<td>Design and methodology service</td>
+<td>Methodologists, data architects, classification stewards</td>
+<td>All Design sub-processes of VS-02</td>
+<td>Design documents, methodology advice</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Business events</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Triggers or marks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Design artefacts published</em></td>
+<td>Start of Implementation after a design change</td>
+</tr>
+<tr class="even">
+<td><em>Pipeline production-ready</em></td>
+<td>End of Implementation; Execution can start</td>
+</tr>
+<tr class="odd">
+<td><em>Raw Data Registered</em></td>
+<td>Start of VS-02.1 for that raw data version</td>
+</tr>
+<tr class="even">
+<td><em>Standardisation Conformed</em> / <em>Standardisation Non-Conformant</em></td>
+<td>Outcome of VS-02.4; non-conformance starts re-mapping, routing of unmapped values to VS-03, or conditional acceptance</td>
+</tr>
+<tr class="odd">
+<td><em>Standardized Data Registered</em></td>
+<td>Completion of VS-02.5; triggers VS-03</td>
+</tr>
+<tr class="even">
+<td><em>Improvement recommendations issued</em></td>
+<td>Input for Design from <em>Continuous Improvement</em></td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-02 event choreography between VS-01, NSI teams, and process management across Design, Implementation, Execution (raw data registered, profiling, one-to-one mapping and format coercion with unit and period metadata, conformance passed or failed, registration or re-mapping and routing to VS-03), and Management (key performance indicators, mapping quality, compliance, improvement recommendations)</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><strong>Interaction with the supporting value streams</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Value stream</th>
+<th>Provides to VS-02</th>
+<th>Receives from VS-02</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-07 Governance and Compliance</td>
+<td>Privacy and security policy, data and metadata governance</td>
+<td>Audit trails of mapping lineage and pseudonymisation, privacy and standards compliance reports</td>
+</tr>
+<tr class="even">
+<td>VS-08 Innovation and Methodological Development</td>
+<td>New mapping and classification techniques</td>
+<td>Improvement needs; access to #2 for exploration under specific authorisation</td>
+</tr>
+<tr class="odd">
+<td>VS-09 Infrastructure and Platform Enablement</td>
+<td>Computing and orchestration for processing large datasets, storage, catalogue, event interfaces</td>
+<td>Capacity and processing-window requirements</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-performance-indicators" class="level3">
+<h3 class="anchored" data-anchor-id="key-performance-indicators">9. Key performance indicators</h3>
+<p>The key performance indicators are collected per production cycle in <em>Monitor Process Performance</em>. They feed the dashboard that the process owner reviews.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>KPI</th>
+<th>Description</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mapping coverage</td>
+<td>Share of source codes mapped one-to-one to a valid standard code</td>
+<td>Per dataset, per classification</td>
+</tr>
+<tr class="even">
+<td>Unmapped-value rate</td>
+<td>Share of values without a correspondence, routed to VS-03</td>
+<td>Per source, per cycle</td>
+</tr>
+<tr class="odd">
+<td>Conformance pass rate</td>
+<td>Share of datasets passing conformance on the first run</td>
+<td>Per source, per cycle</td>
+</tr>
+<tr class="even">
+<td>Format-conformance rate</td>
+<td>Share of records conforming to the target structure and format</td>
+<td>Per dataset, per cycle</td>
+</tr>
+<tr class="odd">
+<td>Processing time</td>
+<td>Time from raw data registration to standardised registration</td>
+<td>Per dataset, per cycle</td>
+</tr>
+<tr class="even">
+<td>Re-mapping rate</td>
+<td>Frequency of datasets returned for re-mapping or design change</td>
+<td>Per source, per cycle</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">10. Examples</h3>
+<p><strong>Labour Force Survey.</strong> The labour statistics team designs deterministic correspondence tables: source education codes map one-to-one to ISCED-2011, and source region codes map to NUTS-3. In each cycle the XML returns are coerced to the target schema and mapped through these tables. The 42,000 free-text occupation strings are not coded in VS-02. They are flagged and handed to VS-03, where occupation is coded to ISCO-08. No response value is altered; values are only re-expressed in standard codes where a deterministic correspondence exists.</p>
+<p><strong>Tax register intake.</strong> The quarterly corporate tax file, registered by VS-01, is profiled on arrival: 47 fields, the corporate identifier present at 99.8% coverage, economic activity supplied as the internal code of the tax authority, which has a maintained correspondence to NACE, and turnover in thousands of euro. The structure-gap assessment identifies the activity-code mapping and the format coercion of the XML as the VS-02 work. It records that the unit basis of turnover (“thousands of EUR”) travels as metadata, and that conversion to a common unit is done in VS-03.</p>
+<p><strong>Multi-source business statistics.</strong> The business statistics data model uses the statistical business register identifier as the canonical linkage key, expresses economic activity in NACE Rev.&nbsp;2 through a maintained correspondence table, and requires each turnover figure to carry its currency and reference-period basis as metadata. Survey returns, VAT register data, and structural business statistics are all aligned to this target schema. When turnover arrives from the structural business survey, the VAT register, and a commercial dataset, VS-02 links each turnover variable to the canonical concept and records that the VAT register reports on a fiscal-year basis and the survey on a calendar-year basis. The values are not adjusted to a common basis; the alignment is done in VS-03, so the difference stays transparent and the original values intact.</p>
+<p><strong>Web price data.</strong> A component coerces heterogeneous retailer price feeds into the canonical price record by reshaping fields and casting types. It records the currency, the unit (for example price per kilogram), and the scrape timestamp of each item as metadata, and stores prices exactly as received. Lineage links every standardised record to the exact raw scrape record. In conformance validation, all 11,875 records of a daily dataset conform structurally, every product whose source code has a COICOP correspondence is mapped, and the record count and observed price points match the raw scrape exactly. Products without such a code are flagged for VS-03, which also converts currencies and units to a common basis. The result is <em>Standardisation Conformed</em>, logged with rule version, engine version, and operator ID.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><strong>Toolkit:</strong> SAF-TK-V02 VS-02 maturity checklist and scenarios</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="../framework/vs-01.html" class="pagination-link" aria-label="VS-01 Data Acquisition and Ingestion">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">VS-01 Data Acquisition and Ingestion</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../framework/vs-03.html" class="pagination-link" aria-label="VS-03 Data Editing and Enrichment">
+        <span class="nav-page-text">VS-03 Data Editing and Enrichment</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
