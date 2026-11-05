@@ -6,7 +6,8 @@ Quarto runs this as a project pre-render step (see _quarto.yml); the generated
 pages are git-ignored. framework/index.qmd is hand-written and left alone; it
 includes framework/_document-info.md, which this script builds from the version
 information above "# Preface". It also copies docs/images/ to site/images/
-(git-ignored), so images referenced as images/... in the source reach the site.
+(git-ignored), so images referenced as images/... in the source reach the site,
+and publishes docs/SAF Framework Toolkit.md as site/toolkit.qmd (git-ignored).
 """
 import re
 import shutil
@@ -19,25 +20,28 @@ SOURCE = SITE.parent / "docs" / "SAF Framework.md"
 OUT_DIR = SITE / "framework"
 IMAGES_SRC = SOURCE.parent / "images"
 IMAGES_OUT = SITE / "images"
+TOOLKIT_SOURCE = SITE.parent / "docs" / "SAF Framework Toolkit.md"
+TOOLKIT_OUT = SITE / "toolkit.qmd"
 
 # page -> (title, start pattern). A page runs until the start of the next one.
-# Summary headings in Business Architecture use "VS-NN.0 — Name" (em dash);
-# the per-stream chapters use "VS-NN.0 Name", which is what splits the vs pages.
+# Each value stream is a level-2 heading "## VS-NN Name" in the value chain chapter.
 PAGES = [
     ("introduction", "Introduction and Scope", r"^# Preface\s*$"),
     ("motivation", "Motivation", r"^# Motivation\s*$"),
     ("strategy", "Strategy", r"^# Strategy\s*$"),
     ("business-architecture", "Business Architecture", r"^# Business Architecture\s*$"),
-    ("vs-01", "VS-01 Data Acquisition and Ingestion", r"^## VS-01\.0 (?!—)"),
-    ("vs-02", "VS-02 Data Standardization and Integration", r"^## VS-02\.0 (?!—)"),
-    ("vs-03", "VS-03 Data Editing and Enrichment", r"^## VS-03\.0 (?!—)"),
-    ("vs-04", "VS-04 Estimation, Analysis, and Statistical Modeling", r"^## VS-04\.0 (?!—)"),
-    ("vs-05", "VS-05 Statistical Product Composition", r"^## VS-05\.0 (?!—)"),
-    ("vs-06", "VS-06 Dissemination and Service Delivery", r"^## VS-06\.0 (?!—)"),
-    ("vs-07", "VS-07 Governance and Compliance", r"^## VS-07\.0 (?!—)"),
-    ("vs-08", "VS-08 Innovation and Methodological Development", r"^## VS-08\.0 (?!—)"),
-    ("vs-09", "VS-09 Infrastructure and Platform Enablement", r"^## VS-09\.0 (?!—)"),
-    ("vs-10", "VS-10 Customer and Stakeholder Engagement", r"^## VS-10\.0 (?!—)"),
+    ("steady-state", "Steady-State Architecture", r"^# Steady-State Architecture\s*$"),
+    ("value-chain", "Statistical Data Value Chain", r"^# Statistical Data Value Chain\s*$"),
+    ("vs-01", "VS-01 Data Acquisition and Ingestion", r"^## VS-01 "),
+    ("vs-02", "VS-02 Data Standardization and Integration", r"^## VS-02 "),
+    ("vs-03", "VS-03 Data Editing and Enrichment", r"^## VS-03 "),
+    ("vs-04", "VS-04 Estimation, Analysis, and Statistical Modeling", r"^## VS-04 "),
+    ("vs-05", "VS-05 Statistical Product Composition", r"^## VS-05 "),
+    ("vs-06", "VS-06 Dissemination and Service Delivery", r"^## VS-06 "),
+    ("vs-07", "VS-07 Governance and Compliance", r"^## VS-07 "),
+    ("vs-08", "VS-08 Innovation and Methodological Development", r"^## VS-08 "),
+    ("vs-09", "VS-09 Infrastructure and Platform Enablement", r"^## VS-09 "),
+    ("vs-10", "VS-10 Customer and Stakeholder Engagement", r"^## VS-10 "),
 ]
 
 # Partial included by framework/index.qmd ("About this document" callout).
@@ -126,8 +130,31 @@ def copy_images():
     return sum(1 for p in IMAGES_SRC.rglob("*") if p.is_file())
 
 
+def write_toolkit():
+    """Publish docs/SAF Framework Toolkit.md as site/toolkit.qmd.
+
+    Keeps everything from the first chapter heading on, and drops the
+    "Review notes for the core team" section, which is not for publication.
+    """
+    lines = TOOLKIT_SOURCE.read_text(encoding="utf-8").splitlines()
+    first = next((i for i, l in enumerate(lines) if l.startswith("# ")), None)
+    if first is None:
+        sys.exit(f"split-framework: no chapter heading in {TOOLKIT_SOURCE.name}")
+    body = []
+    for line in lines[first:]:
+        if line.startswith("# Review notes"):
+            break
+        body.append(line)
+    while body and body[-1].strip() in ("", "---"):
+        body.pop()
+    header = HEADER.replace("docs/SAF Framework.md", f"docs/{TOOLKIT_SOURCE.name}")
+    text = f'---\ntitle: "SAF Toolkit"\n---\n{header}\n\n' + "\n".join(body) + "\n"
+    TOOLKIT_OUT.write_text(text, encoding="utf-8")
+
+
 def main():
     n_images = copy_images()
+    write_toolkit()
     lines = SOURCE.read_text(encoding="utf-8").splitlines()
     starts = find_starts(lines)
     info = document_info(lines[:starts[0]])
@@ -180,7 +207,7 @@ def main():
 
     if problems:
         sys.exit("split-framework: unresolved internal links:\n  " + "\n  ".join(problems))
-    print(f"split-framework: wrote {len(PAGES)} pages and {DOC_INFO} "
+    print(f"split-framework: wrote {len(PAGES)} pages, {TOOLKIT_OUT.name} and {DOC_INFO} "
           f"to {OUT_DIR.relative_to(SITE.parent)}, "
           f"copied {n_images} images to {IMAGES_OUT.relative_to(SITE.parent)}")
 

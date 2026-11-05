@@ -122,7 +122,7 @@ The two threads go through the same seven handovers with the same event names, a
 
 
 ::: {.callout-warning title="The numbers are illustrative"}
-Volumes, rates, and dates in the walk (42,000 returns, 2,347,891 records, an employment rate of 71.4%, a 09:00 release) are taken from the worked scenarios in the SAF Framework document. They illustrate the mechanism; they are not benchmarks. The tax-thread identifiers (`RD-TAX-2026Q3-001` … `SP-BUS-2026Q3-001`) are the ones used there. For the LFS thread, only `OD-LFS-2026Q3` appears in the framework document; the other LFS identifiers are introduced here so the two threads can be read in parallel.
+Volumes, rates, and dates in the walk (42,000 returns, 2,347,891 records, an employment rate of 71.4%, a 09:00 release) are taken from the worked scenarios in the SAF Framework document and the SAF Toolkit. They illustrate the mechanism; they are not benchmarks. The tax-thread identifiers (`RD-TAX-2026Q3-001` … `SP-BUS-2026Q3-001`) are the ones used there. For the LFS thread, only `OD-LFS-2026Q3` appears in the framework document; the other LFS identifiers are introduced here so the two threads can be read in parallel.
 :::
 
 ## 3. The walk, one state at a time
@@ -151,7 +151,7 @@ Every dataset is enriched at ingestion with provenance, source, method, timestam
 :::
 
 ::: {.callout-note title="In the main document"}
-Full chapter: [VS-01 Data Acquisition and Ingestion](framework/vs-01.qmd). Its *Steady State Transition*, *Boundary Interface Specifications* and *End-to-End Scenarios* go further than the card above. Note that the survey scenario there is a Household Budget Survey; the LFS thread above is built from the LFS design example in the same chapter. A one-page summary of this stream also sits in [Business Architecture](framework/business-architecture.qmd).
+Full chapter: [VS-01 Data Acquisition and Ingestion](framework/vs-01.qmd). Its *Position and state transition* and *boundary interfaces* (attributes 2 and 8) go further than the card above, and its end-to-end scenarios are in the Toolkit, [SAF-TK-V01](toolkit.qmd#saf-tk-v01). Note that the survey scenario there is a Household Budget Survey; the LFS thread above is built from the LFS design example in the same chapter.
 :::
 
 ### State #2 — Standardized Data (VS-02 Data Standardization and Integration)
@@ -178,7 +178,7 @@ VS-02 only maps codes one-to-one, reformats the structure, and adds metadata. It
 :::
 
 ::: {.callout-note title="In the main document"}
-Full chapter: [VS-02 Data Standardization and Integration](framework/vs-02.qmd). See its *Steady State Transition*, *Boundary Interface Specifications* and *End-to-End Scenarios*: Scenario A is the LFS, Scenario B the tax register. A one-page summary of this stream also sits in [Business Architecture](framework/business-architecture.qmd).
+Full chapter: [VS-02 Data Standardization and Integration](framework/vs-02.qmd). See its *Position and state transition* and *boundary interfaces* (attributes 2 and 8), and the end-to-end scenarios in [SAF-TK-V02](toolkit.qmd#saf-tk-v02): Scenario A is the LFS, Scenario B the tax register.
 :::
 
 ### State #3 — Processed Data (VS-03 Data Editing and Enrichment)
@@ -205,7 +205,7 @@ VS-03 is the domain that changes values, under the guarantee of *no undocumented
 :::
 
 ::: {.callout-note title="In the main document"}
-Full chapter: [VS-03 Data Editing and Enrichment](framework/vs-03.qmd). See its *Steady State Transition*, *Boundary Interface Specifications* and *End-to-End Scenarios*. A one-page summary of this stream also sits in [Business Architecture](framework/business-architecture.qmd).
+Full chapter: [VS-03 Data Editing and Enrichment](framework/vs-03.qmd). See its *Position and state transition* and *boundary interfaces* (attributes 2 and 8), and the end-to-end scenarios in [SAF-TK-V03](toolkit.qmd#saf-tk-v03).
 :::
 
 ### State #4a — Statistics (Output Data): analytical outputs (VS-04 Estimation, Analysis, and Statistical Modeling)
@@ -232,7 +232,7 @@ Every estimate carries the method, parameters, and accuracy measure that produce
 :::
 
 ::: {.callout-note title="In the main document"}
-Full chapter: [VS-04 Estimation, Analysis, and Statistical Modeling](framework/vs-04.qmd). See its *Steady State Transition*, *Boundary Interface Specifications* and *End-to-End Scenarios*. A one-page summary of this stream also sits in [Business Architecture](framework/business-architecture.qmd).
+Full chapter: [VS-04 Estimation, Analysis, and Statistical Modeling](framework/vs-04.qmd). See its *Position and state transition* and *boundary interfaces* (attributes 2 and 8), and the end-to-end scenarios in [SAF-TK-V04](toolkit.qmd#saf-tk-v04).
 :::
 
 ### State #4b — Statistics (Output Data): approved product (VS-05 Statistical Product Composition)
@@ -259,7 +259,7 @@ VS-05 **composes** validated outputs (it does not re-estimate). Products are int
 :::
 
 ::: {.callout-note title="In the main document"}
-Full chapter: [VS-05 Statistical Product Composition](framework/vs-05.qmd). Its *Steady State Transition* explains why State #4 has two halves. A one-page summary of this stream also sits in [Business Architecture](framework/business-architecture.qmd).
+Full chapter: [VS-05 Statistical Product Composition](framework/vs-05.qmd). Its *Position and state transition* (attribute 2) explains why State #4 has two halves.
 :::
 
 ### State #5 — Released Data, then #6 Consumed Data (VS-06 Dissemination and Service Delivery)
@@ -281,14 +281,14 @@ Full chapter: [VS-05 Statistical Product Composition](framework/vs-05.qmd). Its 
 
 Confidentiality step at this state: the final disclosure-control gate. Once released, the data is **Consumed Data (#6)**, used by external parties for their own purposes, outside the NSO's direct control. The documentation delivered at #5 supports appropriate use at #6.
 
-In some processes nothing changes between the approved product and the release. A proposal under review allows the #4 artefact to be marked as released in that case, instead of being registered again, provided the release steps are still carried out and recorded. See [Applying the steady states pragmatically](framework/business-architecture.qmd#pragmatic-steady-states).
+In some processes nothing changes between the approved product and the release. A proposal under review allows the #4 artefact to be marked as released in that case, instead of being registered again, provided the release steps are still carried out and recorded. See [Applying the steady states pragmatically](framework/steady-state.qmd#pragmatic-steady-states).
 
 ::: {.callout-note title="Signature discipline — accessibility, trust, and the release gate"}
 Accurate, timely, understandable delivery through secure channels, gated by **final statistical disclosure control** (no release without confidentiality clearance) and supported by documentation that enables responsible, equal-access use. VS-06 relies on the supporting streams VS-07 (compliance), VS-09 (platforms), and VS-10 (user needs).
 :::
 
 ::: {.callout-note title="In the main document"}
-Full chapter: [VS-06 Dissemination and Service Delivery](framework/vs-06.qmd). See its *Steady State Transition*, *Boundary Interface Specifications* and *End-to-End Scenarios*. A one-page summary of this stream also sits in [Business Architecture](framework/business-architecture.qmd).
+Full chapter: [VS-06 Dissemination and Service Delivery](framework/vs-06.qmd). See its *Position and state transition* and *boundary interfaces* (attributes 2 and 8), and the end-to-end scenarios in [SAF-TK-V06](toolkit.qmd#saf-tk-v06).
 :::
 
 ## 4. The other three process types, worked once
@@ -372,7 +372,7 @@ Now blank, for your process:
 : Step 1 worksheet, blank {tbl-colwidths="[12,18,16,14,14,16,10]"}
 :::
 
-Your process does not have to fill every row. If it starts from data another team has already registered, such as a shared #3, begin at that row and note the artefact you start from. If two states hold the same data, for example when nothing changes between #4 and #5, write "same artefact as #4" and give the reason. See [Applying the steady states pragmatically](framework/business-architecture.qmd#pragmatic-steady-states), a proposal still under review.
+Your process does not have to fill every row. If it starts from data another team has already registered, such as a shared #3, begin at that row and note the artefact you start from. If two states hold the same data, for example when nothing changes between #4 and #5, write "same artefact as #4" and give the reason. See [Applying the steady states pragmatically](framework/steady-state.qmd#pragmatic-steady-states), a proposal still under review.
 
 ::: {.callout-tip title="Reading your worksheet: four symptoms and what they mean"}
 - **You cannot name the artefact** at a handover → either the boundary does not exist yet, or two states have been merged or skipped. Both can be legitimate if you can explain why. If you cannot, deciding where the boundary belongs is your first architecture decision.
@@ -449,7 +449,7 @@ The supporting streams have no state transition, so one question each is enough 
 Ten minutes per stream column, with the people who design, build, run, and monitor that stream in the room. Score by consensus; when the room disagrees, record the lower score and the reason. Precision matters less than the overall pattern. A common result is a stream scoring 2 on Execution but 0 on Design and Management: it runs well, but without design or management artefacts it cannot be changed safely.
 :::
 
-Any cell scoring 0 or 1 points you at the stream's full checklist in the SAF Framework document (the *Maturity Assessment Checklist* under *Applying This to Your NSO* in that stream's deep dive), where twenty detailed questions describe what "systematic" looks like.
+Any cell scoring 0 or 1 points you at the stream's full checklist in the [SAF Toolkit](toolkit.qmd#value-stream-instruments) (instruments SAF-TK-V01 to V10), where twenty detailed questions describe what "systematic" looks like.
 
 ### Step 3 — Walk one of your own datasets
 
@@ -470,14 +470,14 @@ Take the blank handover card below and fill it for the product you chose in Step
 
 | If you want to | Go to, in the SAF Framework document |
 |---|---|
-| Read the full definition of each state and its quality requirements | [Steady States of Data](framework/business-architecture.qmd#steady-states-of-data) and the *State #1 … #6* sections that precede it |
-| See the chain and the two summary tables | [The Statistical Data Value Chain](framework/business-architecture.qmd#the-statistical-data-value-chain) and [The Value Chain at a Glance](framework/business-architecture.qmd#the-value-chain-at-a-glance) |
-| Specify a boundary contract precisely | The *Boundary Interface Specifications* table in each VS deep dive: handover artefact, required metadata, trigger event, responsibility transfer |
-| Design, build, or govern one stream | That stream's deep dive: *Design Processes*, *Implementation Processes*, *Management Processes*, and the *Business Roles and Actors* section |
-| Understand how the supporting streams work | [Supporting Value Streams (VS-07 to VS-10)](framework/business-architecture.qmd#supporting-value-streams-vs-07-to-vs-10) |
-| Relate this to GSBPM, GAMSO, and CSDA | The *Framework Mappings* table in each VS deep dive |
-| See which capabilities a stream relies on | The *Capability Foundations* table in each VS deep dive, and the [Capability Model](framework/strategy.qmd#capability-model) |
-| Apply the principles | [Principles to Apply](framework/business-architecture.qmd#principles-to-apply) |
+| Read the full definition of each state and its quality requirements | [Steady states at a glance](framework/steady-state.qmd#steady-states-at-a-glance) and the *State #1 … #5* sections that follow it |
+| See the chain and its summary table | [The chain at a glance](framework/value-chain.qmd#the-chain-at-a-glance) |
+| Specify a boundary contract precisely | The *Boundary interfaces* table (attribute 8) of each value stream: handover artefact, required metadata, trigger event, responsibility transfer |
+| Design, build, or govern one stream | That stream's attribute 4 (the four process types) and attribute 5 (actors and roles) |
+| Understand how the supporting streams work | [How the supporting value streams differ](framework/value-chain.qmd#how-the-supporting-value-streams-differ) |
+| Relate this to GSBPM, GAMSO, and CSDA | The *Framework mappings* table (attribute 6) of each value stream |
+| See which capabilities a stream relies on | The *Capability foundations* table (attribute 6) of each value stream, and the [Capability Model](framework/strategy.qmd#capability-model) |
+| Apply the principles | [Principles to Apply](framework/value-chain.qmd#principles-to-apply) |
 : Where to go next {tbl-colwidths="[40,60]"}
 
 The formal ArchiMate model behind these documents is in the repository's `model/` folder and opens in Archi; the capability model, the value streams and their stages, and the steady-state business objects are all there.
