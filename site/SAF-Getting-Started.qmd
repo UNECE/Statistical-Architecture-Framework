@@ -38,23 +38,20 @@ Like the framework's business-architecture chapters, this guide stops at the bus
 
 ```{mermaid}
 %%| label: fig-gs-states
-%%| fig-cap: "Steady-state handover across the chain. Each arrow is a handover between streams, triggered by a registration event. Blue = data states inside the NSO; yellow = statistics; light green = released; dark green = outside the NSO's control."
+%%| fig-cap: "Steady-state handover across the chain. Each arrow is a handover between streams, triggered by a registration event. White = data states inside the NSO; light grey = statistics; thick border = released; dark grey with dashed border = outside the NSO's control."
 flowchart TD
-    S0["Source Data"]:::ext -->|VS-01| S1["#1 Raw"]
-    S1 -->|VS-02| S2["#2 Standardized"]
-    S2 -->|VS-03| S3["#3 Processed"]
-    S3 -->|VS-04| S4["#4 Statistics"]
-    S4 -->|VS-05| S4b["#4 Approved products"]
-    S4b -->|VS-06| S5["#5 Released"]
+    S0["Source Data"]:::ext -->|VS-01| S1["#1 Raw"]:::s
+    S1 -->|VS-02| S2["#2 Standardized"]:::s
+    S2 -->|VS-03| S3["#3 Processed"]:::s
+    S3 -->|VS-04| S4["#4 Statistics"]:::o
+    S4 -->|VS-05| S4b["#4 Approved products"]:::o
+    S4b -->|VS-06| S5["#5 Released"]:::r
     S5 --> S6["#6 Consumed"]:::ext
 
-    classDef ext fill:#0f766e,color:#fff,stroke:#0f766e
-    style S1 fill:#dbeafe,stroke:#2563eb
-    style S2 fill:#dbeafe,stroke:#2563eb
-    style S3 fill:#dbeafe,stroke:#2563eb
-    style S4 fill:#fef9c3,stroke:#b45309
-    style S4b fill:#fef9c3,stroke:#b45309
-    style S5 fill:#dcfce7,stroke:#16a34a
+    classDef ext fill:#d9d9d9,color:#000,stroke:#000,stroke-dasharray:5 5
+    classDef s fill:#fff,color:#000,stroke:#000
+    classDef o fill:#f2f2f2,color:#000,stroke:#000
+    classDef r fill:#fff,color:#000,stroke:#000,stroke-width:3px
 ```
 
 ::: {.callout-important title="Two cross-chain disciplines"}
@@ -92,10 +89,10 @@ flowchart TD
     L5 -->|"Statistical Product Registered"| L6["Labour market release<br/>#5 Released"]:::r
     L6 -->|"Statistics Released"| L7["Users<br/>#6 Consumed"]:::ext
 
-    classDef ext fill:#0f766e,color:#fff,stroke:#0f766e
-    classDef s fill:#dbeafe,stroke:#2563eb
-    classDef o fill:#fef9c3,stroke:#b45309
-    classDef r fill:#dcfce7,stroke:#16a34a
+    classDef ext fill:#d9d9d9,color:#000,stroke:#000,stroke-dasharray:5 5
+    classDef s fill:#fff,color:#000,stroke:#000
+    classDef o fill:#f2f2f2,color:#000,stroke:#000
+    classDef r fill:#fff,color:#000,stroke:#000,stroke-width:3px
 ```
 
 ```{mermaid}
@@ -110,10 +107,10 @@ flowchart TD
     T5 -->|"Statistical Product Registered"| T6["Tables + secure microdata<br/>#5 Released"]:::r
     T6 -->|"Statistics Released"| T7["Users & researchers<br/>#6 Consumed"]:::ext
 
-    classDef ext fill:#0f766e,color:#fff,stroke:#0f766e
-    classDef s fill:#dbeafe,stroke:#2563eb
-    classDef o fill:#fef9c3,stroke:#b45309
-    classDef r fill:#dcfce7,stroke:#16a34a
+    classDef ext fill:#d9d9d9,color:#000,stroke:#000,stroke-dasharray:5 5
+    classDef s fill:#fff,color:#000,stroke:#000
+    classDef o fill:#f2f2f2,color:#000,stroke:#000
+    classDef r fill:#fff,color:#000,stroke:#000,stroke-width:3px
 ```
 
 :::
@@ -309,10 +306,10 @@ flowchart LR
     _quality reports_"]
     M -->|"improvement feedback"| D
 
-    style D fill:#7c3aed,color:#fff,stroke:#6d28d9
-    style I fill:#2563eb,color:#fff,stroke:#1d4ed8
-    style E fill:#059669,color:#fff,stroke:#047857
-    style M fill:#d97706,color:#fff,stroke:#b45309
+    style D fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style I fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style E fill:#fff,color:#000,stroke:#000,stroke-width:2px
+    style M fill:#fff,color:#000,stroke:#000,stroke-width:2px
 ```
 
 **Design.** Statistical designers define the data requirement: quarterly corporate income-tax declarations for all legal entities, for use in national accounts and business statistics. The data model maps the tax authority's XML schema to the NSO's raw-data structure: 47 fields retained, 12 derived, the corporate ID as the linkage key. The SLA is set at delivery within 45 calendar days of quarter end, at least 98% of expected records, in XML with XSD validation. Validation rules cover schema validation, referential integrity of the corporate ID against the business register, and amount fields within historical range. The privacy framework records that data is received under the statistics-act mandate, with pseudonymisation deferred to VS-02 by agreement.
