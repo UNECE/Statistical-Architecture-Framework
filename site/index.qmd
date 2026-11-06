@@ -1,5 +1,7 @@
 ---
 title: "Statistical Architecture Framework"
+subtitle: "A shared business architecture for producing official statistics"
+title-block-banner: true
 ---
 
 SAF is a shared way for national statistical offices to describe how they turn data into official statistics, and to change how they do it while keeping production running.

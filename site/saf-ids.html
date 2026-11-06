@@ -1,0 +1,41 @@
+<script>
+// Wrap a leading value stream identifier ("VS-01", "VS-01.2") in page titles
+// and sidebar entries in <span class="saf-id">, so custom.scss can set it in
+// the monospace face and give it its own column. Without this script the text
+// simply stays as it is. On framework pages it also numbers the sections.
+document.addEventListener("DOMContentLoaded", function () {
+  var re = /^(VS-\d\d(?:\.\d+)?)\s+/;
+  document.querySelectorAll("h1.title, #quarto-sidebar .menu-text").forEach(function (el) {
+    var node = el.firstChild;
+    if (!node || node.nodeType !== 3) return;
+    var m = node.nodeValue.match(re);
+    if (!m) return;
+    node.nodeValue = node.nodeValue.slice(m[0].length);
+    var id = document.createElement("span");
+    id.className = "saf-id";
+    id.textContent = m[1];
+    var name = document.createElement("span");
+    name.className = "saf-name";
+    el.insertBefore(id, node);
+    el.insertBefore(name, node);
+    name.appendChild(node);
+  });
+
+  // Framework pages: number the first level of the table of contents and the
+  // headings it points to, like the clauses of a standard.
+  if (!document.body.classList.contains("nav-sidebar")) return;
+  var n = 0;
+  document.querySelectorAll("#TOC > ul > li > a").forEach(function (a) {
+    var target = document.getElementById((a.getAttribute("href") || "").slice(1));
+    var heading = target && (target.matches("h1,h2,h3,h4") ? target : target.querySelector("h1,h2,h3,h4"));
+    if (!heading) return;
+    n += 1;
+    [a, heading].forEach(function (el) {
+      var c = document.createElement("span");
+      c.className = "saf-clause";
+      c.textContent = n;
+      el.insertBefore(c, el.firstChild);
+    });
+  });
+});
+</script>

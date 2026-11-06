@@ -179,7 +179,15 @@ def main():
     for name, title, _ in PAGES:
         out = []
         in_fence = False
-        for line in bodies[name]:
+        body = bodies[name]
+        # The page's opening heading usually repeats its title ("# Business
+        # Architecture", "## VS-01.0 Data ..."). Quarto already shows the title,
+        # so drop that heading and keep its anchor for links that point to it.
+        m = HEADING.match(body[0]) if body else None
+        if m and re.sub(r"\.0\b", "", m.group(2)) == title:
+            out.append(f"[]{{#{m.group(4) or slugify(m.group(2))}}}")
+            body = body[1:]
+        for line in body:
             if FENCE.match(line):
                 in_fence = not in_fence
             if not in_fence:

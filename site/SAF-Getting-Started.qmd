@@ -130,7 +130,7 @@ Each state below is one **handover card**: what arrives, what the stream does, w
 
 *Source Data → #1 Raw Data. Received into NSO custody in original form, with provenance and basic validation. Nothing about the content is changed here.*
 
-::: {.column-page}
+::: {.column-page-left}
 | | Labour Force Survey | Tax register → business statistics |
 |---|---|---|
 | **What arrives** | Survey responses from the sampled households: CAWI first, CATI follow-up after two weeks, CAPI for hard-to-reach cases. Trigger: *survey response submitted*. | The Q3 quarterly file, delivered via SFTP on day 38 of the 45-day SLA. Before the window opened, the team verified the SLA (≥ 98% of expected records), confirmed the SFTP credentials, and recorded the active agreement reference. Trigger: *delivery received*. |
@@ -155,7 +155,7 @@ Full chapter: [VS-01 Data Acquisition and Ingestion](framework/vs-01.qmd). Its *
 
 *#1 Raw → #2 Standardized. Aligned to common structure, format, and classifications, with values unchanged. This is the first point at which data from different domains can be combined.*
 
-::: {.column-page}
+::: {.column-page-left}
 | | Labour Force Survey | Tax register → business statistics |
 |---|---|---|
 | **What arrives** | *"Raw Data Registered"* for `RD-LFS-2026Q3-001`, ~42,000 returns. | *"Raw Data Registered"* for `RD-TAX-2026Q3-001`, 2,347,891 records. |
@@ -182,7 +182,7 @@ Full chapter: [VS-02 Data Standardization and Integration](framework/vs-02.qmd).
 
 *#2 Standardized → #3 Processed. Content validated, edited, imputed, enriched, integrated; derived variables added. This is the only stream that deliberately changes values, and every change must be documented and reversible.*
 
-::: {.column-page}
+::: {.column-page-left}
 | | Labour Force Survey | Tax register → business statistics |
 |---|---|---|
 | **What arrives** | *"Standardized Data Registered"* for `SD-LFS-2026Q3-001`, plus the flagged occupation strings and the recorded definition difference. | *"Standardized Data Registered"* for `SD-BUS-2026Q3-001`, plus the recorded unit and fiscal-year bases and the unmapped activity codes. |
@@ -209,7 +209,7 @@ Full chapter: [VS-03 Data Editing and Enrichment](framework/vs-03.qmd). See its 
 
 *#3 Processed → #4 Statistics. The microdata is not edited further; statistics are computed from it, each with a measure of its accuracy, and disclosure control is applied to the outputs.*
 
-::: {.column-page}
+::: {.column-page-left}
 | | Labour Force Survey | Tax register → business statistics |
 |---|---|---|
 | **What arrives** | *"Processed Data Registered"* for `PD-LFS-2026Q3-001`, with its imputation flags. | *"Processed Data Registered"* for `PD-BUS-2026Q3-001`, the integrated business dataset. |
@@ -236,7 +236,7 @@ Full chapter: [VS-04 Estimation, Analysis, and Statistical Modeling](framework/v
 
 *Still within State #4. The framework has a single State #4; **#4a / #4b is this guide's shorthand** for its two halves, because two different streams work on it. VS-04 produced individual validated estimates, and VS-05 now assembles them into an approved product that readers can use. The numbers themselves do not change.*
 
-::: {.column-page}
+::: {.column-page-left}
 | | Labour Force Survey | Tax register → business statistics |
 |---|---|---|
 | **What arrives** | *"Output Data Registered"* for `OD-LFS-2026Q3`. | *"Output Data Registered"* for `OD-BUS-2026Q3-001`. |
@@ -263,7 +263,7 @@ Full chapter: [VS-05 Statistical Product Composition](framework/vs-05.qmd). Its 
 
 *#4 Approved product → #5 Released → #6 Consumed. This is where data leaves the office. The key control is a final disclosure check, and nothing is released until it is passed. VS-06 does not alter the statistics; it protects, formats and delivers them.*
 
-::: {.column-page}
+::: {.column-page-left}
 | | Labour Force Survey | Tax register → business statistics |
 |---|---|---|
 | **What arrives** | *"Statistical Product Registered"* for the Q3-2026 labour-market product. | *"Statistical Product Registered"* for the SBS product. |
@@ -343,7 +343,7 @@ Pick one statistical product. For each handover in the chain, answer the questio
 
 Filled in for the tax thread, the worksheet reads:
 
-::: {.column-page}
+::: {.column-page-left}
 | Handover | What is the artefact? | Who produces → who consumes? | Registered, identified, immutable? | What signals the next team? | What metadata travels? |
 |---|---|---|---|---|---|
 | Source → #1 | The tax authority's quarterly XML file, stored as received | Tax authority → acquisition team | Yes: `RD-TAX-2026Q3-001`, original form kept | *"Raw Data Registered"* | Provenance, hash, agreement reference, quality assessment, BIV |
@@ -357,7 +357,7 @@ Filled in for the tax thread, the worksheet reads:
 
 Now blank, for your process:
 
-::: {.column-page}
+::: {.column-page-left}
 | Handover | What is the artefact? | Who produces → who consumes? | Registered, identified, immutable? | What signals the next team? | What metadata travels? | Gap |
 |---|---|---|---|---|---|---|
 | Source → #1 | | | | | | |

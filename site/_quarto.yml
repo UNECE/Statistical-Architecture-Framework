@@ -7,6 +7,8 @@ project:
 website:
   title: "Statistical Architecture Framework"
   navbar:
+    background: light
+    collapse-below: xl
     left:
       - href: index.qmd
         text: Home
@@ -55,7 +57,14 @@ website:
 
 format:
   html:
-    theme: [yeti, custom.scss]
+    theme: [cosmo, custom.scss]
+    grid:
+      sidebar-width: 270px
+      body-width: 820px
+      margin-width: 230px
+    filters:
+      - table-scroll.lua
+    include-after-body: saf-ids.html
     toc: true
     toc-depth: 3
     toc-expand: 2
