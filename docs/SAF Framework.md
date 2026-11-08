@@ -3412,7 +3412,7 @@ This chapter describes how the statistical value chain works in practice. The St
 
 The division of work between states and value streams is deliberate. A state describes the **result**: what the data looks like, which gate it passed, and how it is protected. A value stream describes the **work**: who does what, in which order, and with which controls. Gate criteria and minimum metadata sets are therefore not repeated in this chapter. Each value stream refers to the state it produces.
 
-**Key concepts — if you are new to architecture documents** <br>
+**Key concepts — if you are new to architecture documents**
 This documentation uses a handful of architecture terms. Here is what they mean in plain language:
 
 - **Value stream** — a sequence of steps that together create a statistical output. Think of it as a production line: VS-01 to VS-06 each add a specific kind of value to the data.
@@ -3528,10 +3528,10 @@ The SAF defines eleven architecture principles, labeled SAF-P01 to SAF-P11. The 
 
 ★ = actively applied by the six primary value streams. † = foregrounded by the four supporting value streams (VS-07–VS-10).
 
-**Metadata everywhere (SAF-P09):** <br>
+**Metadata everywhere (SAF-P09):**
 value is only added once its context is captured — what was done, by which rule/method, with what accuracy, and traceable to its inputs.
 
-**Confidentiality progressively applied (SAF-P11):** <br>
+**Confidentiality progressively applied (SAF-P11):** 
 identifiers are removed/pseudonymized at standardization (#2) at the latest, or earlier where that suits the process; disclosure risk is assessed on enrichment (#3), disclosure control is applied to outputs (#4), and a final disclosure check gates release (#5).
 
 
