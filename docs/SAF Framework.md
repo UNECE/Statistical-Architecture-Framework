@@ -16,7 +16,7 @@ Current version: 0.9
 |0.6|2026-10-11|Restructured strategy section|
 |0.7|2026-10-12|Restructured business section, added business actors, roles and collaborations|
 |0.8|2026-10-31|Consolidated and structured Steady State detail content|
-
+|0.9|2026-11-08|Updated Value stream 1|
 
 ## Content
 [Preface](#preface)
