@@ -3391,8 +3391,7 @@ Released data is the most widely reused form of NSI output. Under SAF-P08 it is 
 **Description:** Consumed data is released data that users have taken into their own environment and use for their own purposes. Examples are a government departments using an unemployment rate in a policy note, a researcher combining released tables with other sources, a journalist quoting an inflation figure, or an application that pulls a series from the API every day. The NSI has no custody of consumed data and cannot control how it is used, combined, or presented. It can influence correct use only through the quality of its documentation, its terms of use, its user support, and its errata.
 
 **Why it is described:** The SAF describes #6 so that the end of the NSI's responsibility is explicit, just as #0 marks where it begins. Everything the NSI can do for correct use has to be done at #5: documentation, accuracy measures, terms of use, and a clear correction history. What the NSI learns about consumed data comes back as usage and feedback, through VS-06.5 and VS-10. That feedback closes the loop: it shapes new information needs and, through them, the next cycle of the value chain from #0 onward.
-<br>
-<br>
+
 # Statistical Data Value Chain
 
 ## Value Chains Introduction
@@ -3400,7 +3399,7 @@ Released data is the most widely reused form of NSI output. Under SAF-P08 it is 
 ### Purpose of this chapter
 
 This chapter describes how the statistical value chain works in practice. The Strategy chapter introduced the ten value streams, their stages, and the value they create. The Steady-State Architecture describes the results the chain hands over: the states, their quality gates, and their metadata. This chapter describes the work between those results: the stages, the processes that realize them, the roles that carry them out, and the events that connect them. Every value stream is described with the same structure, so that NSIs can compare them and map their own organization onto them. **[VC1]**
-<br>
+
 ### Where to find what
 
 | Question | Answered in |
@@ -3555,8 +3554,6 @@ VS-01 corresponds to the business domain **Observation/Collection** (see *Steady
 |**PLACEHOLDER: ArchiMate view VS-01 (a) value stream and capabilities**|
 |---|
 
-<br>
-
 #### 2. Position and state transition
 
 VS-01 is the first primary value stream. All data from outside the NSI enters the statistical system through it, before any downstream processing takes place.
@@ -3569,8 +3566,6 @@ VS-01 takes data from boundary position #0 to State #1. Before VS-01, the data i
 
 |**PLACEHOLDER: ArchiMate view VS-01 (c) state handover and events: Source Data (#0) outside the NSI boundary, the ingestion service at the boundary (metadata addition, quality and schema check), Raw Data (#1) inside the NSI**|
 |---|
-
-<br>
 
 #### 3. Stages
 
@@ -3586,8 +3581,6 @@ The stages describe the value that VS-01 adds in every production cycle. Togethe
 
 Each stage below is described with its activities. The column *SAF process* shows the business process from *Business Processes* that the activity belongs to. The column *Other reference* shows the principles, capabilities, or external frameworks that the activity applies. **[VC9]**
 
-<br>
-
 ##### VS-01.1 Identify Data Needs and Sources
 
 **Value created:** *Clear understanding of what data is needed and where it can be obtained.*
@@ -3602,8 +3595,6 @@ This stage starts from the information need set in the design of the statistical
 | Check that source metadata is current (contacts, formats, schedules) | Updated source metadata | PRD-1.5 Check data availability and suitability; OVA-6 Data Supplier Management | |
 | Identify new sources available since the last cycle | New source assessment (if any) | PRD-1.5 Check data availability and suitability | |
 
-<br>
-
 ##### VS-01.2 Establish Data Agreements and Access Rights
 
 **Value created:** *Legal, ethical, and transparent access to data under controlled conditions.*
@@ -3617,8 +3608,6 @@ Before data flows, legal and operational access must be confirmed for the curren
 | Confirm that access credentials and security certificates are valid | Verified access credentials | PRD-4.2 Set up collection | SAF-P10 |
 | For new sources: carry out the full agreement process | New source agreement | OVA-6 Data Supplier Management; DSP-1 Join a data space; DSP-3 Agree data use conditions | SAF-P11 |
 | Record the active agreement status, linked to upcoming deliveries | Agreement-delivery link | PRD-4.2 Set up collection | |
-
-<br>
 
 ##### VS-01.3 Collect or Receive Data
 
@@ -3647,12 +3636,8 @@ Equally critical is the metadata captured at the moment of receipt. For every da
 | Agreement reference | Legal basis for the data |
 | Collection mode and instrument version | Survey-specific provenance |
 
-<br>
-
 |**PLACEHOLDER: VS-01 collection channel architecture: survey, administrative, and emerging-source channels arriving at one ingestion point, each adding its own metadata (source, timestamp, transfer method, file hash, volume, agreement reference), followed by VS-01.4**|
 |---|
-
-<br>
 
 ##### VS-01.4 Validate and Log Data Intake
 
@@ -3669,9 +3654,6 @@ Every validation result, exception, and decision is logged in an audit trail. Th
 | Perform security and integrity checks: virus scan, checksum, signature | Security verification result | PRD-4.4 Finalize collection | SAF-P10 |
 | Carry out the quality assessment against the designed criteria | Quality assessment scores | DLM-2 Promote data through a quality gate | |
 | Create the audit trail: log all validation results, exceptions, and decisions | Audit trail record | OVA-4 Process Data Management | GAMSO Quality Management |
-
-<br>
-
 
 ##### VS-01.5 Store and Register Raw Data Artifacts
 
@@ -4102,16 +4084,12 @@ The key performance indicators are collected per production cycle in *Monitor Pr
 | Metadata completeness | Share of required metadata fields populated at registration | Per delivery |
 | Exception rate | Frequency of exception handling per check rule | Per rule, per cycle |
 
-#### 10. Examples
+#### 10. Toolkit
 
-**Survey.** The Labor Force Survey uses a mixed-mode approach. Sampled persons first receive a web invitation; non-respondents are called after two weeks, and hard-to-reach groups are visited by an interviewer. Each mode records its own paradata, such as completion time or interviewer identifier. Responses are registered as one #1 version per collection batch, and the data collection manager follows the response rate per mode during the cycle.
+Examples from NSI practice, the maturity checklist, and end-to-end scenarios for VS-01 are part of the SAF Toolkit.
 
-**Administrative register.** The tax authority delivers its quarterly file by secure file transfer on day 38, within the agreed 45 days. The intake checks the checksum, the schema, and the record count, which is 99.2% of the expected volume. Fourteen unknown business identifiers are not an intake issue; they pass through with a flag. The file is registered as `RD-TAX-2026Q3-001`, and the *Raw Data Registered* event notifies VS-02.
+**Toolkit:** SAF-TK-V01 VS-01 Data Acquisition and Ingestion companion **[VC17]**
 
-**Web data.** Every night, 12,500 product pages of 25 retailers are scraped; on a typical day 95% succeed. Each scrape records the scraper version and a fingerprint of the page structure. When one retailer redesigns its website, the fingerprints change and the success rate drops. Management detects the trend and sends an improvement action to Design, where the scraper is rebuilt.
-
-|**PLACEHOLDER: VS-01 maturity checklist and end-to-end scenarios to be added to the toolkit**|
-|---|
 
 
 
