@@ -76,9 +76,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -191,6 +188,18 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Business Architecture</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/steady-states.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Steady-State Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/value-chain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Data Value Chain</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -279,27 +288,35 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#vs-09.0-infrastructure-and-platform-enablement" id="toc-vs-09.0-infrastructure-and-platform-enablement" class="nav-link active" data-scroll-target="#vs-09.0-infrastructure-and-platform-enablement">VS-09.0 Infrastructure and Platform Enablement</a>
+  <li><a href="#purpose-and-value-created" id="toc-purpose-and-value-created" class="nav-link active" data-scroll-target="#purpose-and-value-created">1. Purpose and value created</a></li>
+  <li><a href="#position-and-interaction-with-the-chain" id="toc-position-and-interaction-with-the-chain" class="nav-link" data-scroll-target="#position-and-interaction-with-the-chain">2. Position and interaction with the chain</a></li>
+  <li><a href="#stages" id="toc-stages" class="nav-link" data-scroll-target="#stages">3. Stages</a>
   <ul class="collapse">
-  <li><a href="#purpose-and-scope" id="toc-purpose-and-scope" class="nav-link" data-scroll-target="#purpose-and-scope">Purpose and Scope</a></li>
-  <li><a href="#position-a-supporting-stream-that-works-across-the-whole-chain" id="toc-position-a-supporting-stream-that-works-across-the-whole-chain" class="nav-link" data-scroll-target="#position-a-supporting-stream-that-works-across-the-whole-chain">Position — a supporting stream that works across the whole chain</a></li>
-  <li><a href="#how-it-interacts-with-the-production-chain" id="toc-how-it-interacts-with-the-production-chain" class="nav-link" data-scroll-target="#how-it-interacts-with-the-production-chain">How It Interacts with the Production Chain</a></li>
-  <li><a href="#framework-alignment-gamso" id="toc-framework-alignment-gamso" class="nav-link" data-scroll-target="#framework-alignment-gamso">Framework Alignment (GAMSO)</a></li>
-  <li><a href="#principles-emphasised" id="toc-principles-emphasised" class="nav-link" data-scroll-target="#principles-emphasised">Principles Emphasised</a></li>
+  <li><a href="#vs-09.1-define-digital-and-technical-requirements" id="toc-vs-09.1-define-digital-and-technical-requirements" class="nav-link" data-scroll-target="#vs-09.1-define-digital-and-technical-requirements">VS-09.1 Define Digital and Technical Requirements</a></li>
+  <li><a href="#vs-09.2-design-platform-and-infrastructure-architecture" id="toc-vs-09.2-design-platform-and-infrastructure-architecture" class="nav-link" data-scroll-target="#vs-09.2-design-platform-and-infrastructure-architecture">VS-09.2 Design Platform and Infrastructure Architecture</a></li>
+  <li><a href="#vs-09.3-provision-and-configure-platforms" id="toc-vs-09.3-provision-and-configure-platforms" class="nav-link" data-scroll-target="#vs-09.3-provision-and-configure-platforms">VS-09.3 Provision and Configure Platforms</a></li>
+  <li><a href="#vs-09.4-enable-integration-and-orchestration-services" id="toc-vs-09.4-enable-integration-and-orchestration-services" class="nav-link" data-scroll-target="#vs-09.4-enable-integration-and-orchestration-services">VS-09.4 Enable Integration and Orchestration Services</a></li>
+  <li><a href="#vs-09.5-ensure-performance-security-and-continuity" id="toc-vs-09.5-ensure-performance-security-and-continuity" class="nav-link" data-scroll-target="#vs-09.5-ensure-performance-security-and-continuity">VS-09.5 Ensure Performance, Security, and Continuity</a></li>
+  <li><a href="#vs-09.6-evolve-and-modernize-the-technical-ecosystem" id="toc-vs-09.6-evolve-and-modernize-the-technical-ecosystem" class="nav-link" data-scroll-target="#vs-09.6-evolve-and-modernize-the-technical-ecosystem">VS-09.6 Evolve and Modernize the Technical Ecosystem</a></li>
   </ul></li>
-  <li><a href="#roles-and-actors" id="toc-roles-and-actors" class="nav-link" data-scroll-target="#roles-and-actors">Roles and Actors</a></li>
-  <li><a href="#the-value-stream-flow" id="toc-the-value-stream-flow" class="nav-link" data-scroll-target="#the-value-stream-flow">The Value-Stream Flow</a></li>
-  <li><a href="#capability-governance" id="toc-capability-governance" class="nav-link" data-scroll-target="#capability-governance">Capability Governance</a>
+  <li><a href="#the-four-process-types" id="toc-the-four-process-types" class="nav-link" data-scroll-target="#the-four-process-types">4. The four process types</a>
   <ul class="collapse">
-  <li><a href="#key-performance-indicators" id="toc-key-performance-indicators" class="nav-link" data-scroll-target="#key-performance-indicators">Key Performance Indicators</a></li>
+  <li><a href="#design-provides-the-platform-operating-model" id="toc-design-provides-the-platform-operating-model" class="nav-link" data-scroll-target="#design-provides-the-platform-operating-model">Design: provides the platform operating model</a></li>
+  <li><a href="#implementation-provides-the-service-management" id="toc-implementation-provides-the-service-management" class="nav-link" data-scroll-target="#implementation-provides-the-service-management">Implementation: provides the service management</a></li>
+  <li><a href="#execution-runs-the-platform-services" id="toc-execution-runs-the-platform-services" class="nav-link" data-scroll-target="#execution-runs-the-platform-services">Execution: runs the platform services</a></li>
+  <li><a href="#management-provides-service-performance-reports" id="toc-management-provides-service-performance-reports" class="nav-link" data-scroll-target="#management-provides-service-performance-reports">Management: provides service performance reports</a></li>
   </ul></li>
-  <li><a href="#interactions-services-and-events" id="toc-interactions-services-and-events" class="nav-link" data-scroll-target="#interactions-services-and-events">Interactions, Services and Events</a></li>
-  <li><a href="#business-objects-artefacts" id="toc-business-objects-artefacts" class="nav-link" data-scroll-target="#business-objects-artefacts">Business Objects / Artefacts</a></li>
-  <li><a href="#applying-this-to-your-nsi" id="toc-applying-this-to-your-nsi" class="nav-link" data-scroll-target="#applying-this-to-your-nsi">Applying This to Your NSI</a>
+  <li><a href="#actors-and-roles" id="toc-actors-and-roles" class="nav-link" data-scroll-target="#actors-and-roles">5. Actors and roles</a></li>
+  <li><a href="#capabilities-processes-and-functions" id="toc-capabilities-processes-and-functions" class="nav-link" data-scroll-target="#capabilities-processes-and-functions">6. Capabilities, processes, and functions</a>
   <ul class="collapse">
-  <li><a href="#maturity-assessment-checklist" id="toc-maturity-assessment-checklist" class="nav-link" data-scroll-target="#maturity-assessment-checklist">Maturity Assessment Checklist</a></li>
-  <li><a href="#scenarios" id="toc-scenarios" class="nav-link" data-scroll-target="#scenarios">Scenarios</a></li>
+  <li><a href="#capability-foundations" id="toc-capability-foundations" class="nav-link" data-scroll-target="#capability-foundations">Capability foundations</a></li>
+  <li><a href="#stages-processes-and-functions" id="toc-stages-processes-and-functions" class="nav-link" data-scroll-target="#stages-processes-and-functions">Stages, processes, and functions</a></li>
+  <li><a href="#framework-mappings" id="toc-framework-mappings" class="nav-link" data-scroll-target="#framework-mappings">Framework mappings</a></li>
   </ul></li>
+  <li><a href="#principles" id="toc-principles" class="nav-link" data-scroll-target="#principles">7. Principles</a></li>
+  <li><a href="#interfaces-services-and-events" id="toc-interfaces-services-and-events" class="nav-link" data-scroll-target="#interfaces-services-and-events">8. Interfaces, services, and events</a></li>
+  <li><a href="#key-performance-indicators" id="toc-key-performance-indicators" class="nav-link" data-scroll-target="#key-performance-indicators">9. Key performance indicators</a></li>
+  <li><a href="#toolkit" id="toc-toolkit" class="nav-link" data-scroll-target="#toolkit">10. Toolkit</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="vs-09.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -326,125 +343,47 @@ ul.task-list li input[type="checkbox"] {
 
 
 <!-- GENERATED from docs/SAF Framework.md by scripts/split-framework.py - do not edit -->
-<section id="vs-09.0-infrastructure-and-platform-enablement" class="level2">
-<h2 class="anchored" data-anchor-id="vs-09.0-infrastructure-and-platform-enablement">VS-09.0 Infrastructure and Platform Enablement</h2>
-<section id="purpose-and-scope" class="level3">
-<h3 class="anchored" data-anchor-id="purpose-and-scope">Purpose and Scope</h3>
-<p>VS-09.0 provides the technical and digital foundation that supports every part of the statistical organization. Where the other streams focus on data, methods, or governance, this one ensures all of those activities can actually <strong>run</strong> — safely, efficiently, and at scale. It delivers the IT environments, data platforms, tools, and integration services that make statistical production possible from collection to dissemination, keeping systems secure, resilient, and compliant while remaining flexible enough to adopt new technologies. The value it creates is <strong>reliable enablement</strong> — turning infrastructure from a background function into an active enabler of the statistical mission.</p>
-<p>This document is the <strong>business-layer</strong> view of that enablement (the capability of providing platforms and services). The detailed application and technology architecture is the subject of the SAF’s application and technology layers.</p>
-<p><em>A note on numbering:</em> each <code>VS-0x.y</code> below is both a value stream stage (<em>what value</em> is added) and a business process (<em>how</em> it is done); the numbering maps one-to-one. See the key-concepts box above.</p>
-</section>
-<section id="position-a-supporting-stream-that-works-across-the-whole-chain" class="level3">
-<h3 class="anchored" data-anchor-id="position-a-supporting-stream-that-works-across-the-whole-chain">Position — a supporting stream that works across the whole chain</h3>
-<p>VS-09 is not a stage in the production line. It is the <strong>foundation underneath</strong> all of it: every primary and supporting stream runs on the platforms it provides.</p>
-<div class="cell" data-fig-width="6" data-layout-align="default">
-<div class="cell-output-display">
-<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>
-
-<pre class="mermaid mermaid-js" data-label="fig-1">flowchart TD
-    subgraph primary["Primary Value Streams"]
-        direction LR
-        VS01["VS-01"] --&gt; VS02["VS-02"] --&gt; VS03["VS-03"] --&gt; VS04["VS-04"] --&gt; VS05["VS-05"] --&gt; VS06["VS-06"]
-    end
-    other["Supporting streams&lt;br/&gt;VS-07 · VS-08 · VS-10"]
-
-    VS09["**VS-09.0 Infrastructure &amp;&lt;br/&gt;Platform Enablement**"]:::hi
-    VS09 --&gt;|"platforms, environments,&lt;br/&gt;integration &amp; continuity"| primary
-    VS09 --&gt;|"runtime &amp; tooling"| other
-
-    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9,stroke-width:2px
-</pre>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: VS-09 is the technical foundation every other stream runs on.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-important callout-titled">
+<p><span id="vs-09-infrastructure-and-platform-enablement"></span></p>
+<section id="purpose-and-value-created" class="level2">
+<h2 class="anchored" data-anchor-id="purpose-and-value-created">1. Purpose and value created</h2>
+<p>VS-09 provides the technical and digital foundation for every part of the NSI. Where the other value streams focus on data, methods, or governance, VS-09 makes sure that all of these activities can actually run: safely, efficiently, and at scale. It delivers the IT environments, data platforms, tools, and integration services that statistical production needs, from collection to dissemination. It keeps systems secure, resilient, and compliant, while staying flexible enough to adopt new technologies. VS-09 describes the business view of this enablement: the capability of providing platforms and services. The detailed application and technology architecture is the subject of the application and technology layers of the SAF. The value created is <strong>reliable enablement</strong>: infrastructure becomes an active enabler of the statistical mission rather than a background function.</p>
+<p>VS-09 is a supporting value stream. It aligns with the GAMSO areas <em>Capability Management</em> and <em>Corporate Support</em> rather than with the production phases of GSBPM. This section describes its business layer for all four process types.</p>
+<ul>
+<li><strong>Platform engineer or operations staff:</strong> the stages in attribute 3, which describe the enablement life cycle.</li>
+<li><strong>Enterprise or platform architect:</strong> the Design processes in attribute 4.</li>
+<li><strong>Process owners of other value streams:</strong> attributes 2 and 8, which describe what VS-09 provides and what it needs from them.</li>
+<li><strong>Manager who wants the big picture:</strong> attributes 1, 2, and 9. Examples and scenarios are part of the SAF Toolkit.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>How a supporting value stream differs from a primary one
+<span class="screen-reader-only">Note</span>How a supporting value stream differs from a primary one
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li><strong>No steady-state data transition.</strong> VS-09 does not move data along the chain; it provides the environments in which the chain runs.</li>
-<li><strong>It runs continuously</strong> as an always-on service, not per production cycle.</li>
-<li><strong>Its output is an enabling capability, not a data artefact:</strong> platforms, environments, integration services, and assured availability.</li>
-<li><strong>It aligns to GAMSO Capability Management and Corporate Support</strong>, not to GSBPM production phases.</li>
-</ul>
+<p>VS-09 has no steady-state data transition. It does not move data along the chain; it provides the environments in which the chain runs. It runs continuously as an always-on service, not per production cycle. Its output is an enabling capability rather than a data artifact: platforms, environments, integration services, and assured availability. The steady states and their quality gates are business agreements; VS-09 provides the storage, catalog, and event interfaces that implement them.</p>
 </div>
 </div>
-</section>
-<section id="how-it-interacts-with-the-production-chain" class="level3">
-<h3 class="anchored" data-anchor-id="how-it-interacts-with-the-production-chain">How It Interacts with the Production Chain</h3>
-<p>VS-09 receives requirements (from business capabilities, data volumes, and the other streams — notably VS-08 for new technology and VS-06 for dissemination platforms) and provides the platforms, integration services, and operational assurance the whole organization depends on. Its security and continuity posture is governed by VS-07.</p>
-<div class="cell" data-fig-width="6" data-layout-align="default">
-<div class="cell-output-display">
-<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>
-
-<pre class="mermaid mermaid-js" data-label="fig-2">flowchart LR
-    REQ["Requirements&lt;br/&gt;(business capabilities,&lt;br/&gt;data volumes, VS-08 tech,&lt;br/&gt;VS-06 channels)"] --&gt; VS09["VS-09&lt;br/&gt;Infrastructure &amp;&lt;br/&gt;Platform Enablement"]:::hi
-    VS09 --&gt;|"environments, platforms,&lt;br/&gt;integration, availability"| ALL["All value streams&lt;br/&gt;(VS-01…VS-10)"]
-    VS07["VS-07 Governance"] -.-&gt;|"security &amp; continuity policy"| VS09
-    ALL -.-&gt;|"incidents, capacity demand"| VS09
-
-    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9
-</pre>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Interaction with the chain: requirements in; platforms, integration, and assured availability out.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="framework-alignment-gamso" class="level3">
-<h3 class="anchored" data-anchor-id="framework-alignment-gamso">Framework Alignment (GAMSO)</h3>
-<p>Where the primary streams map to <strong>GSBPM</strong> production phases, VS-09 maps to <strong>GAMSO</strong> capability and support activities and the SAF <strong>supporting-business</strong> capability domain (IT):</p>
-<table class="caption-top table">
+<table class="caption-top">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 100%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>GAMSO area</th>
-<th>Relevance to VS-09</th>
+<th><strong>PLACEHOLDER: ArchiMate view VS-09 (a) value stream and capabilities</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td><strong>Capability Management</strong></td>
-<td>Manage IT capability; introduce and modernize technology</td>
-</tr>
-<tr class="even">
-<td><strong>Corporate Support</strong></td>
-<td>Manage IT services and operations, security, and business continuity</td>
-</tr>
-<tr class="odd">
-<td><strong>SAF capability domain: Supporting business (3.x)</strong></td>
-<td>Computerization &amp; automation (application development, functional management); security &amp; privacy (technical)</td>
-</tr>
 </tbody>
 </table>
+<p><br></p>
 </section>
-<section id="principles-emphasised" class="level3">
-<h3 class="anchored" data-anchor-id="principles-emphasised">Principles Emphasised</h3>
+<section id="position-and-interaction-with-the-chain" class="level2">
+<h2 class="anchored" data-anchor-id="position-and-interaction-with-the-chain">2. Position and interaction with the chain</h2>
+<p>VS-09 is not a stage in the production line. It is the foundation underneath it: every primary and supporting value stream runs on the platforms that VS-09 provides. VS-09 receives requirements that follow from business capabilities, data volumes, and analytical complexity. It receives specific requests from VS-08 for new technology and from VS-06 for dissemination platforms. It provides platforms, integration services, and operational assurance. Its security and continuity are governed by VS-07.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -453,121 +392,203 @@ Figure&nbsp;2: Interaction with the chain: requirements in; platforms, integrati
 </colgroup>
 <thead>
 <tr class="header">
-<th>Principle</th>
-<th>Statement</th>
-<th>How VS-09 applies it</th>
+<th>Counterpart</th>
+<th>VS-09 provides</th>
+<th>VS-09 receives</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>SAF-P10</strong></td>
-<td>Security By Design</td>
-<td>Builds security and access control into every platform and environment from the start</td>
+<td>VS-01 to VS-05 (primary value streams)</td>
+<td>Environments for collection, processing, and analysis; steady-state repositories; catalog; event interfaces</td>
+<td>Requirements, capacity demand, incidents</td>
 </tr>
 <tr class="even">
-<td><strong>SAF-P06</strong></td>
-<td>Business Continuity</td>
-<td>Guarantees availability, resilience, and disaster recovery for the whole chain</td>
+<td>VS-06 Dissemination and Service Delivery</td>
+<td>Portals, APIs, dashboards, secure research environments, data space connectors</td>
+<td>Requirements for channels and scaling, especially at release moments</td>
 </tr>
 <tr class="odd">
-<td><strong>SAF-P02</strong></td>
-<td>Active support</td>
-<td>Runs platforms as actively-supported, monitored services, not one-off builds</td>
+<td>VS-07 Governance and Compliance</td>
+<td>Evidence on security posture and continuity</td>
+<td>Security and continuity policy</td>
 </tr>
 <tr class="even">
-<td><strong>SAF-P05</strong></td>
-<td>IT and technology is everyone’s business</td>
-<td>Provides self-service, well-documented platforms so technology serves all teams</td>
+<td>VS-08 Innovation and Methodological Development</td>
+<td>Research environments and production runtime for new technology</td>
+<td>Requests to adopt new technology</td>
 </tr>
 <tr class="odd">
-<td><strong>SAF-P01</strong></td>
-<td>Actively participate in open-source communities to maintain collective control over statistical processes</td>
-<td>Favours open, shared platform components to retain collective control</td>
+<td>VS-10 Customer and Stakeholder Engagement</td>
+<td>Platforms for user services and communication</td>
+<td>Requirements from users on availability and self-service</td>
+</tr>
+<tr class="even">
+<td>External parties: suppliers and service providers</td>
+<td>Requirements and service agreements</td>
+<td>Infrastructure, cloud services, software, and support</td>
 </tr>
 </tbody>
 </table>
-</section>
-</section>
-<section id="roles-and-actors" class="level2">
-<h2 class="anchored" data-anchor-id="roles-and-actors">Roles and Actors</h2>
-<table class="caption-top table">
+<table class="caption-top">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 100%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Role</th>
-<th>Description</th>
+<th><strong>PLACEHOLDER: ArchiMate view VS-09 (c) interaction with the chain: VS-09 as the foundation underneath all value streams, providing environments, steady-state repositories, catalog, event interfaces, and dissemination platforms, and receiving requirements, capacity demand, and incidents; security and continuity governed by VS-07</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="stages" class="level2">
+<h2 class="anchored" data-anchor-id="stages">3. Stages</h2>
+<p>The stages of VS-09 form a continuous enablement life cycle: define, design, provision, integrate, assure, and evolve. Requirements lead to architecture, architecture to platforms, platforms to services that are monitored and kept safe, and experience to modernization.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Name</th>
+<th>Value added</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Chief Technology / Infrastructure Officer</strong></td>
-<td>Accountable for the technical foundation and its strategy</td>
+<td>VS-09.1</td>
+<td>Define Digital and Technical Requirements</td>
+<td>It is clear which technical capabilities the business needs</td>
 </tr>
 <tr class="even">
-<td><strong>Platform / Cloud Architect</strong></td>
-<td>Designs the platform and infrastructure architecture</td>
+<td>VS-09.2</td>
+<td>Design Platform and Infrastructure Architecture</td>
+<td>There is a coherent blueprint for storage, processing, integration, and access</td>
 </tr>
 <tr class="odd">
-<td><strong>DevOps / Platform Engineer</strong></td>
-<td>Provisions, configures, and operates environments</td>
+<td>VS-09.3</td>
+<td>Provision and Configure Platforms</td>
+<td>Controlled environments are available to the value streams</td>
 </tr>
 <tr class="even">
-<td><strong>Integration Engineer</strong></td>
-<td>Builds APIs, workflow engines, and orchestration</td>
+<td>VS-09.4</td>
+<td>Enable Integration and Orchestration Services</td>
+<td>Processes and value streams are connected through stable interfaces</td>
 </tr>
 <tr class="odd">
-<td><strong>Security &amp; Continuity Officer</strong></td>
-<td>Implements security controls, monitoring, and disaster recovery (with VS-07)</td>
+<td>VS-09.5</td>
+<td>Ensure Performance, Security, and Continuity</td>
+<td>The chain runs reliably, safely, and can recover from disruption</td>
 </tr>
 <tr class="even">
-<td><strong>Service Desk / Operations</strong></td>
-<td>Runs incident management and keeps services available</td>
-</tr>
-<tr class="odd">
-<td><strong>Consuming teams (VS-01…VS-10)</strong></td>
-<td>Define requirements and run their processes on the platforms</td>
+<td>VS-09.6</td>
+<td>Evolve and Modernize the Technical Ecosystem</td>
+<td>The foundation stays current and ready for new data and methods</td>
 </tr>
 </tbody>
 </table>
+<p>Each stage below is described with its activities. The column <em>SAF process</em> shows the business process from <em>Business Processes</em> that the activity belongs to. Some activities have no reference process in the SAF; they are carried out through NSI-specific IT management processes, which the column shows as <em>NSI-specific</em>. The column <em>Other reference</em> shows the principles, capabilities, or external frameworks that the activity applies.</p>
+<p><br></p>
+<section id="vs-09.1-define-digital-and-technical-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="vs-09.1-define-digital-and-technical-requirements">VS-09.1 Define Digital and Technical Requirements</h3>
+<p><strong>Value created:</strong> <em>A clear view of the technical capabilities that the business needs.</em></p>
+<p>The life cycle begins with the requirements. VS-09 translates business capabilities, data volumes, and analytical complexity into technical requirements. It collects the requirements of the value streams for storage, processing, integration, access, and availability. It includes the requirements that follow from the steady states: immutable versions, persistent identifiers, field-level lineage, and the handover events. It adds the requirements of VS-07 for security, privacy, and continuity. Each requirement is linked to the business need it serves, so that platform choices can be explained in business terms.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Translate business capabilities and data volumes into technical requirements</td>
+<td>Technical requirements</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>4.1.7 Architecture management</td>
+</tr>
+<tr class="even">
+<td>Collect the requirements of the value streams for storage, processing, integration, access, and availability</td>
+<td>Requirements inventory</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>SAF-P05 IT and technology is everyone’s business</td>
+</tr>
+<tr class="odd">
+<td>Include the requirements of the steady states and of VS-07 Governance and Compliance</td>
+<td>Requirements for steady states, security, and continuity</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>SAF-P07 Implement loosely coupled processes and systems; SAF-P10 Security by design</td>
+</tr>
+<tr class="even">
+<td>Link each requirement to the business need it serves</td>
+<td>Traceability of requirements</td>
+<td>NSI-specific</td>
+<td>SAF-P04 Maximize the benefits for the organization</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
 </section>
-<section id="the-value-stream-flow" class="level2">
-<h2 class="anchored" data-anchor-id="the-value-stream-flow">The Value-Stream Flow</h2>
-<p>VS-09’s six business processes form a continuous enablement lifecycle — <strong>define → design → provision → integrate → assure → evolve</strong>.</p>
-<div class="cell" data-fig-width="6" data-layout-align="default">
-<div class="cell-output-display">
-<div id="fig-3" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>
-
-<pre class="mermaid mermaid-js" data-label="fig-3">flowchart LR
-    A["09.1 Define Digital &amp;&lt;br/&gt;Technical Requirements"] --&gt; B["09.2 Design Platform &amp;&lt;br/&gt;Infrastructure Architecture"]
-    B --&gt; C["09.3 Provision &amp;&lt;br/&gt;Configure Platforms"]
-    C --&gt; D["09.4 Enable Integration&lt;br/&gt;&amp; Orchestration"]
-    D --&gt; E["09.5 Ensure Performance,&lt;br/&gt;Security &amp; Continuity"]
-    E --&gt; F["09.6 Evolve &amp;&lt;br/&gt;Modernize"]
-    F -.-&gt;|"continuous lifecycle"| A
-
-    style A fill:#f5f3ff,stroke:#7c3aed
-    style B fill:#f5f3ff,stroke:#7c3aed
-    style C fill:#eff6ff,stroke:#2563eb
-    style D fill:#eff6ff,stroke:#2563eb
-    style E fill:#ecfdf5,stroke:#059669
-    style F fill:#fef3c7,stroke:#d97706
-</pre>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: The six business processes as a continuous enablement lifecycle.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Plan — understand what is needed.</strong> The lifecycle begins by <strong>defining digital and technical requirements</strong> (09.1): identifying the infrastructure needs arising from business capabilities, data volumes, and analytical complexity across the streams. These feed the <strong>design of the platform and infrastructure architecture</strong> (09.2): blueprints for data storage, processing, integration, and secure access (data fabric, data market, compute platforms).</p>
+<section id="vs-09.2-design-platform-and-infrastructure-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="vs-09.2-design-platform-and-infrastructure-architecture">VS-09.2 Design Platform and Infrastructure Architecture</h3>
+<p><strong>Value created:</strong> <em>A coherent blueprint for storage, processing, integration, and secure access.</em></p>
+<p>The requirements feed the design of the platform and infrastructure architecture. The blueprint covers data storage, processing, integration, and secure access, for example a data fabric, a data marketplace, and compute platforms. It decides which deployment model fits each component: on-premises, private cloud, public cloud, or a hybrid. It defines how the steady states are implemented on the platforms, so that each state has its repository, catalog entry, and access control. Shared platforms are preferred over solutions per product, and reuse comes before own development. The architecture is reviewed by the architecture board before it is realized.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design the blueprint for storage, processing, integration, and access</td>
+<td>Platform architecture</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>4.1.7 Architecture management</td>
+</tr>
+<tr class="even">
+<td>Decide the deployment model per component: on-premises, private, public, or hybrid cloud</td>
+<td>Deployment decisions</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>3.2.5 IT infrastructure</td>
+</tr>
+<tr class="odd">
+<td>Define how the steady states are implemented on the platforms</td>
+<td>Implementation pattern for steady states</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>SAF-P07 Implement loosely coupled processes and systems <strong>[VC29]</strong></td>
+</tr>
+<tr class="even">
+<td>Review the architecture with the architecture board</td>
+<td>Architecture decision record</td>
+<td>NSI-specific</td>
+<td>SAF-P01 Actively participate in open-source communities to maintain collective control over statistical processes</td>
+</tr>
+</tbody>
+</table>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -578,12 +599,432 @@ Figure&nbsp;3: The six business processes as a continuous enablement lifecycle.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A platform team may use Bronze, Silver, and Gold to organize storage, staging, and table optimization inside the platform. That is an engineering pattern, not a governance model: it describes how data has been refined, not what the data means, what methodological state it is in, or what another statistical process may rely on. The steady states remain the governance model; Medallion, if used at all, sits underneath it as a storage convention.</p>
+<p>A platform team may use Bronze, Silver, and Gold to organize storage, staging, and table optimization inside the platform. That is an engineering pattern, not a governance model. It describes how data has been refined, not what the data means, what methodological state it is in, or what another statistical process may rely on. The steady states remain the governance model; Medallion, if used at all, sits underneath it as a storage convention. <strong>[VC29]</strong></p>
 </div>
 </div>
-<p><strong>Build — stand it up.</strong> The architecture is realized by <strong>provisioning and configuring platforms</strong> (09.3): deploying environments (on-premise, hybrid, or cloud) with the necessary governance, monitoring, and security controls, and by <strong>enabling integration and orchestration services</strong> (09.4): the APIs, workflow engines, and automation that connect the business services and processes — including the steady-state event interfaces the primary streams rely on.</p>
-<p><strong>Operate — keep it running and safe.</strong> Day to day, VS-09 <strong>ensures performance, security, and continuity</strong> (09.5): monitoring platform performance, implementing data protection, managing incidents, and guaranteeing availability and disaster recovery — the assurance that the whole chain can run reliably.</p>
-<p><strong>Improve — modernize.</strong> Finally it <strong>evolves and modernizes the technical ecosystem</strong> (09.6): introducing new technologies (often transferred from VS-08), retiring obsolete components, and keeping the foundation flexible for new data sources and operating models.</p>
+<p><br></p>
+</section>
+<section id="vs-09.3-provision-and-configure-platforms" class="level3">
+<h3 class="anchored" data-anchor-id="vs-09.3-provision-and-configure-platforms">VS-09.3 Provision and Configure Platforms</h3>
+<p><strong>Value created:</strong> <em>Controlled environments that the value streams can use.</em></p>
+<p>The architecture is realized by provisioning and configuring the platforms. Environments are deployed for development, testing, research, and production, with the necessary governance, monitoring, and security controls. The secure processing environment for researchers is provisioned with its specific controls. Self-service is offered where possible, so that teams can obtain standard environments without waiting. Each environment is documented and registered, with an owner and a service level.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Deploy environments for development, testing, research, and production</td>
+<td>Deployed environments</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>3.2.5 IT infrastructure</td>
+</tr>
+<tr class="even">
+<td>Configure governance, monitoring, and security controls per environment</td>
+<td>Controlled environments</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>SAF-P10 Security by design</td>
+</tr>
+<tr class="odd">
+<td>Provision the secure processing environment for researchers</td>
+<td>Secure processing environment</td>
+<td>MDS-4 Provide a secure processing environment</td>
+<td>SAF-P11 Privacy by design</td>
+</tr>
+<tr class="even">
+<td>Offer standard environments as self-service and register them with an owner and service level</td>
+<td>Self-service catalog, environment register</td>
+<td>NSI-specific</td>
+<td>SAF-P05 IT and technology is everyone’s business; 3.4.4 Self-service</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-09.4-enable-integration-and-orchestration-services" class="level3">
+<h3 class="anchored" data-anchor-id="vs-09.4-enable-integration-and-orchestration-services">VS-09.4 Enable Integration and Orchestration Services</h3>
+<p><strong>Value created:</strong> <em>Processes and value streams connected through stable, versioned interfaces.</em></p>
+<p>The platforms are connected through integration and orchestration services. These are the APIs, workflow engines, and automation that link the business services and processes. They include the steady-state event interfaces that the primary value streams rely on, such as <em>Raw Data Registered</em> and <em>Processed Data Registered</em>. They include the connectors for data spaces and for transmission to international organizations. Interfaces are versioned and documented, so that a change on one side does not break the other, in line with SAF-P07.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Provide APIs, workflow engines, and automation</td>
+<td>Integration and orchestration services</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>3.2.1 Application development</td>
+</tr>
+<tr class="even">
+<td>Provide the steady-state event interfaces of the primary value streams</td>
+<td>Event interfaces</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>SAF-P07 Implement loosely coupled processes and systems</td>
+</tr>
+<tr class="odd">
+<td>Provide connectors for data spaces and international transmission</td>
+<td>Data space connectors</td>
+<td>DSP-4 Exchange data under usage control</td>
+<td>4.1.6 Collaboration</td>
+</tr>
+<tr class="even">
+<td>Version and document every interface</td>
+<td>Interface catalog</td>
+<td>NSI-specific</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-09.5-ensure-performance-security-and-continuity" class="level3">
+<h3 class="anchored" data-anchor-id="vs-09.5-ensure-performance-security-and-continuity">VS-09.5 Ensure Performance, Security, and Continuity</h3>
+<p><strong>Value created:</strong> <em>A chain that runs reliably and safely and can recover from disruption.</em></p>
+<p>Day to day, VS-09 keeps the platforms running and safe. It monitors performance and capacity, with special attention to known peaks such as release moments. It implements the technical data protection that the classification of each dataset requires, including the storage of immutable versions. It manages incidents and restores service within the agreed times. It guarantees availability and recovery from disaster through tested continuity plans. Evidence on security posture and continuity is reported to VS-07.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monitor performance and capacity, including known peaks</td>
+<td>Performance and capacity reports</td>
+<td>PRD-3.5 Test production systems</td>
+<td>SAF-P02 Active support</td>
+</tr>
+<tr class="even">
+<td>Implement technical data protection and the storage of immutable versions</td>
+<td>Protected storage</td>
+<td>DLM-5 Store and version data</td>
+<td>SAF-P10 Security by design; 3.3.6 IT security services</td>
+</tr>
+<tr class="odd">
+<td>Manage incidents and restore service</td>
+<td>Incident records</td>
+<td>NSI-specific</td>
+<td>3.3.3 Security incident management</td>
+</tr>
+<tr class="even">
+<td>Guarantee availability and disaster recovery through tested continuity plans</td>
+<td>Continuity plans, test results</td>
+<td>NSI-specific</td>
+<td>SAF-P06 Business continuity</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-09.6-evolve-and-modernize-the-technical-ecosystem" class="level3">
+<h3 class="anchored" data-anchor-id="vs-09.6-evolve-and-modernize-the-technical-ecosystem">VS-09.6 Evolve and Modernize the Technical Ecosystem</h3>
+<p><strong>Value created:</strong> <em>A foundation that stays current and ready for new data sources, methods, and ways of working.</em></p>
+<p>The life cycle closes with the modernization of the ecosystem. New technologies are introduced, often after they have been tested in VS-08. Components that are obsolete or no longer supported are retired according to a roadmap. Dependence on single suppliers is reviewed, in line with SAF-P01. The roadmap is aligned with the strategy of the NSI and with the architecture. Changes are planned so that the production value streams can continue without disruption.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Introduce new technologies transferred from VS-08 Innovation and Methodological Development</td>
+<td>Adopted technologies</td>
+<td>No reference process (NSI-specific)</td>
+<td>4.1.3 Change management</td>
+</tr>
+<tr class="even">
+<td>Retire obsolete and unsupported components according to the roadmap</td>
+<td>Retirement records</td>
+<td>No reference process (NSI-specific)</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+<tr class="odd">
+<td>Review dependence on single suppliers</td>
+<td>Supplier dependence review</td>
+<td>No reference process (NSI-specific)</td>
+<td>SAF-P01 Actively participate in open-source communities to maintain collective control over statistical processes</td>
+</tr>
+<tr class="even">
+<td>Maintain the modernization roadmap, aligned with strategy and architecture</td>
+<td>Modernization roadmap</td>
+<td>No reference process (NSI-specific)</td>
+<td>4.1.7 Architecture management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="the-four-process-types" class="level2">
+<h2 class="anchored" data-anchor-id="the-four-process-types">4. The four process types</h2>
+<p>VS-09 is itself a capability that must be designed, built, operated, and improved. The four process types therefore apply to VS-09 as they do to the primary value streams, but they govern the platform capability rather than a data pipeline. Design produces the operating model and the service catalog, Implementation builds the service management and the supplier arrangements, Execution runs the stages of attribute 3, and Management evaluates whether the platforms meet the needs of the value streams. <strong>[VC26]</strong></p>
+<p>Each sub-process refines one or more SAF business processes, which are listed under its heading as <em>Refines</em>. Where no reference process exists, the sub-process is marked as NSI-specific.</p>
+<section id="design-provides-the-platform-operating-model" class="level3">
+<h3 class="anchored" data-anchor-id="design-provides-the-platform-operating-model">Design: provides the platform operating model</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Design sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design the Platform Operating Model and Service Catalog</td>
+<td>PRD-2.6 Design production systems and workflows; NSI-specific</td>
+<td>Operating model, service catalog, service levels</td>
+</tr>
+<tr class="even">
+<td>Design the Security and Continuity Architecture</td>
+<td>PRD-2.6 Design production systems and workflows; DLM-4 Classify and protect data</td>
+<td>Security architecture, continuity requirements</td>
+</tr>
+</tbody>
+</table>
+<section id="design-the-platform-operating-model-and-service-catalog" class="level4">
+<h4 class="anchored" data-anchor-id="design-the-platform-operating-model-and-service-catalog">Design the Platform Operating Model and Service Catalog</h4>
+<p><em>Refines:</em> PRD-2.6 Design production systems and workflows; NSI-specific IT management processes.</p>
+<p>This sub-process designs how VS-09 delivers its services. It defines the service catalog: which platforms and services are offered, to whom, and with which service levels. It defines the operating model: which services are run by the NSI, which are shared with other government bodies, and which are sourced from suppliers. It defines how teams request services and how requests are prioritized. It sets the service levels for availability, response, and recovery. The catalog makes the offer of VS-09 visible and comparable for all value streams.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define the service catalog with services, users, and service levels</td>
+<td>Service catalog</td>
+<td>NSI-specific</td>
+<td>3.4.1 Services management</td>
+</tr>
+<tr class="even">
+<td>Define the operating model: own, shared, and sourced services</td>
+<td>Operating model</td>
+<td>NSI-specific</td>
+<td>3.1.2 Purchasing and contract management</td>
+</tr>
+<tr class="odd">
+<td>Define the procedure for requests and their prioritization</td>
+<td>Request procedure</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>SAF-P04 Maximize the benefits for the organization</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-the-security-and-continuity-architecture" class="level4">
+<h4 class="anchored" data-anchor-id="design-the-security-and-continuity-architecture">Design the Security and Continuity Architecture</h4>
+<p><em>Refines:</em> PRD-2.6 Design production systems and workflows; DLM-4 Classify and protect data.</p>
+<p>This sub-process designs how platforms are protected and kept available. It translates the security and privacy policy of VS-07 into a security architecture: identity and access control, encryption, logging, and separation of environments. It links the protection level of each platform to the classification of the data it holds. It defines the continuity requirements per service, based on the impact of an outage on the chain and on release commitments. It designs the recovery approach and the tests that prove it works.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Translate the security and privacy policy into a security architecture</td>
+<td>Security architecture</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>SAF-P10 Security by design; 3.3.2 Security planning</td>
+</tr>
+<tr class="even">
+<td>Link platform protection to the classification of the data held</td>
+<td>Protection levels per platform</td>
+<td>DLM-4 Classify and protect data</td>
+<td>3.3.4 Logical identity and access control</td>
+</tr>
+<tr class="odd">
+<td>Define continuity requirements and the recovery approach per service</td>
+<td>Continuity requirements</td>
+<td>NSI-specific</td>
+<td>SAF-P06 Business continuity</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="implementation-provides-the-service-management" class="level3">
+<h3 class="anchored" data-anchor-id="implementation-provides-the-service-management">Implementation: provides the service management</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Implementation sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Establish Service Management and Operations</td>
+<td>NSI-specific</td>
+<td>Service desk, incident and change management, monitoring</td>
+</tr>
+<tr class="even">
+<td>Arrange Supplier and Sourcing Agreements</td>
+<td>NSI-specific</td>
+<td>Contracts, service agreements with suppliers</td>
+</tr>
+</tbody>
+</table>
+<section id="establish-service-management-and-operations" class="level4">
+<h4 class="anchored" data-anchor-id="establish-service-management-and-operations">Establish Service Management and Operations</h4>
+<p><em>Refines:</em> NSI-specific IT service management processes.</p>
+<p>This sub-process puts the operating model into practice. The service desk is set up for requests and incidents. Incident, problem, and change management are established, with clear roles and escalation paths. Monitoring of availability, performance, capacity, and security is configured across all platforms. Operational procedures and runbooks are written and tested. Operations staff are trained, so that services are supported actively and not only built once, in line with SAF-P02.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Set up the service desk for requests and incidents</td>
+<td>Service desk</td>
+<td>NSI-specific</td>
+<td>3.4.1 Services management</td>
+</tr>
+<tr class="even">
+<td>Establish incident, problem, and change management</td>
+<td>Service management processes</td>
+<td>NSI-specific</td>
+<td>SAF-P02 Active support</td>
+</tr>
+<tr class="odd">
+<td>Configure monitoring and write operational procedures</td>
+<td>Monitoring, runbooks</td>
+<td>NSI-specific</td>
+<td>3.2.3 Technical management</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="arrange-supplier-and-sourcing-agreements" class="level4">
+<h4 class="anchored" data-anchor-id="arrange-supplier-and-sourcing-agreements">Arrange Supplier and Sourcing Agreements</h4>
+<p><em>Refines:</em> NSI-specific procurement processes.</p>
+<p>This sub-process arranges the services that VS-09 sources from outside. It selects suppliers according to the operating model and the procurement rules. It negotiates service agreements that match the service levels the NSI promises to its value streams. It includes requirements for security, data location, exit, and the use of open standards. It makes sure that the NSI keeps control over critical components and data, in line with SAF-P01. Agreements are registered and reviewed before they expire.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Select suppliers according to the operating model and procurement rules</td>
+<td>Supplier selection</td>
+<td>NSI-specific</td>
+<td>3.1.2 Purchasing and contract management</td>
+</tr>
+<tr class="even">
+<td>Negotiate service agreements that match the promised service levels</td>
+<td>Service agreements</td>
+<td>NSI-specific</td>
+<td>3.4.3 Service agreement</td>
+</tr>
+<tr class="odd">
+<td>Include requirements for security, data location, exit, and open standards</td>
+<td>Contract requirements</td>
+<td>NSI-specific</td>
+<td>SAF-P01 Actively participate in open-source communities to maintain collective control over statistical processes</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="execution-runs-the-platform-services" class="level3">
+<h3 class="anchored" data-anchor-id="execution-runs-the-platform-services">Execution: runs the platform services</h3>
+<p>Execution runs the stages of attribute 3. VS-09.1 and VS-09.2 run when needs change or new value streams are set up; VS-09.3 and VS-09.4 run per request and per release of the platforms; VS-09.5 runs continuously; VS-09.6 runs as a roadmap.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -591,43 +1032,513 @@ Figure&nbsp;3: The six business processes as a continuous enablement lifecycle.
 </colgroup>
 <thead>
 <tr class="header">
-<th>Business process</th>
-<th>What it produces</th>
+<th>Aspect</th>
+<th>VS-09</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Trigger</td>
+<td><em>Platform or service request</em>; <em>Incident</em>; <em>Capacity change</em>; <em>Technology onboarding</em> from VS-08 Innovation and Methodological Development</td>
+</tr>
+<tr class="even">
+<td>Cadence</td>
+<td>Continuous operation; per request; roadmap cycle</td>
+</tr>
+<tr class="odd">
+<td>Performed by</td>
+<td>ROL-11 Platform engineer, ROL-10 Data engineer, ROL-20 Security officer</td>
+</tr>
+<tr class="even">
+<td>Input</td>
+<td>Requirements of the value streams, security and continuity policy, supplier services</td>
+</tr>
+<tr class="odd">
+<td>Output</td>
+<td>Platforms, environments, integration services, event interfaces, availability and continuity evidence</td>
+</tr>
+<tr class="even">
+<td>Control point</td>
+<td>Architecture review before realization; acceptance of an environment before production use</td>
+</tr>
+<tr class="odd">
+<td>Exception path</td>
+<td>A major incident escalated according to the continuity plan; a security incident handled with ROL-20 Security officer and VS-07 Governance and Compliance</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="management-provides-service-performance-reports" class="level3">
+<h3 class="anchored" data-anchor-id="management-provides-service-performance-reports">Management: provides service performance reports</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Management sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monitor Service Performance</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>Service level reports, capacity and security reports</td>
+</tr>
+<tr class="even">
+<td>Evaluate and Improve the Platform Capability</td>
+<td>PRD-8.2 Conduct evaluation; PRD-8.3 Agree an action plan</td>
+<td>Satisfaction of value streams, improvement plan</td>
+</tr>
+</tbody>
+</table>
+<section id="monitor-service-performance" class="level4">
+<h4 class="anchored" data-anchor-id="monitor-service-performance">Monitor Service Performance</h4>
+<p><em>Refines:</em> PRD-8.1 Gather evaluation inputs.</p>
+<p>This sub-process tracks how the platforms perform against the agreed service levels. It measures the key performance indicators of VS-09 (see attribute 9), such as availability, time to restore service, and the reliability of event interfaces. It reports capacity headroom ahead of known peaks. It reports the security posture, together with VS-07. It reviews the performance of suppliers against their agreements. The results are shared with the process owners of the value streams that depend on the platforms.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Measure the key performance indicators of VS-09 Infrastructure and Platform Enablement</td>
+<td>Service level reports</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>SAF-P02 Active support</td>
+</tr>
+<tr class="even">
+<td>Report capacity headroom and security posture</td>
+<td>Capacity and security reports</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>SAF-P06 Business continuity; SAF-P10 Security by design</td>
+</tr>
+<tr class="odd">
+<td>Review supplier performance against agreements</td>
+<td>Supplier performance review</td>
+<td>NSI-specific</td>
+<td>3.4.3 Service agreement</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evaluate-and-improve-the-platform-capability" class="level4">
+<h4 class="anchored" data-anchor-id="evaluate-and-improve-the-platform-capability">Evaluate and Improve the Platform Capability</h4>
+<p><em>Refines:</em> PRD-8.2 Conduct evaluation; PRD-8.3 Agree an action plan.</p>
+<p>This sub-process asks whether the platforms meet the needs of the value streams. It collects the satisfaction of the process owners with the services. It analyzes recurring incidents and their root causes. It assesses the cost and value of the services. It feeds the findings into the roadmap of VS-09.6 and into the design of the service catalog. Improvements are prioritized by impact and feasibility and tracked, in line with SAF capability 4.1.4 <em>Improvement management</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Collect the satisfaction of process owners with the services</td>
+<td>Satisfaction survey</td>
+<td>PRD-8.2 Conduct evaluation</td>
+<td>3.4.1 Services management</td>
+</tr>
+<tr class="even">
+<td>Analyze recurring incidents and their root causes</td>
+<td>Problem analysis</td>
+<td>PRD-8.2 Conduct evaluation</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Feed findings into the roadmap and the service catalog, and track improvements</td>
+<td>Improvement plan</td>
+<td>PRD-8.3 Agree an action plan</td>
+<td>4.1.4 Improvement management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="actors-and-roles" class="level2">
+<h2 class="anchored" data-anchor-id="actors-and-roles">5. Actors and roles</h2>
+<p>VS-09 brings architecture, engineering, operations, and security together. The table shows the actors and the reference roles involved. Specialized role names used in an NSI map onto these reference roles (see <em>Role names in the value streams</em>); for example, the platform or cloud architect, the DevOps engineer, and service desk and operations staff are ROL-11 Platform engineer, the integration engineer is ROL-10 Data engineer, and the security and continuity officer is ROL-20 Security officer. The chief technology or infrastructure officer is part of the management of the NSI (ACT-01) and a member of the collaboration COL-07 <em>Architecture board</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Actor or role</th>
+<th>ID</th>
+<th>Responsibility in VS-09 Infrastructure and Platform Enablement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>National Statistical Institute</td>
+<td>ACT-01</td>
+<td>Its management, including the chief technology officer, is accountable for the technical foundation and its strategy</td>
+</tr>
+<tr class="even">
+<td>Supplier and service provider</td>
+<td>ACT-09</td>
+<td>Supplies infrastructure, cloud services, software, and support under service agreements</td>
+</tr>
+<tr class="odd">
+<td>Process owners of all value streams</td>
+<td>ROL-01</td>
+<td>Define requirements and run their processes on the platforms</td>
+</tr>
+<tr class="even">
+<td>Data custodian</td>
+<td>ROL-04</td>
+<td>Operates storage, access control, retention, and key management on the platforms</td>
+</tr>
+<tr class="odd">
+<td>Metadata and data architect</td>
+<td>ROL-08</td>
+<td>Aligns the catalog and repositories with the metadata model and the steady states</td>
+</tr>
+<tr class="even">
+<td>Data engineer</td>
+<td>ROL-10</td>
+<td>Builds APIs, workflow engines, orchestration, and event interfaces</td>
+</tr>
+<tr class="odd">
+<td>Platform engineer</td>
+<td>ROL-11</td>
+<td>Designs the platform architecture; provisions, configures, and operates environments; runs incident management</td>
+</tr>
+<tr class="even">
+<td>Security officer</td>
+<td>ROL-20</td>
+<td>Implements security controls, monitoring, and disaster recovery, together with VS-07 Governance and Compliance</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="capabilities-processes-and-functions" class="level2">
+<h2 class="anchored" data-anchor-id="capabilities-processes-and-functions">6. Capabilities, processes, and functions</h2>
+<section id="capability-foundations" class="level3">
+<h3 class="anchored" data-anchor-id="capability-foundations">Capability foundations</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Capability group</th>
+<th>Capabilities</th>
+<th>Role in VS-09 Infrastructure and Platform Enablement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3.2 Computerization and automation</td>
+<td>3.2.1 Application development, 3.2.2 Functional management, 3.2.3 Technical management, 3.2.4 Digital workplace management, 3.2.5 IT infrastructure</td>
+<td>Build, configure, and operate applications, platforms, and infrastructure</td>
+</tr>
+<tr class="even">
+<td>3.3 Security and privacy</td>
+<td>3.3.2 Security planning, 3.3.3 Security incident management, 3.3.4 Logical identity and access control, 3.3.5 Physical security and access control, 3.3.6 IT security services</td>
+<td>Protect platforms and data, and handle incidents</td>
+</tr>
+<tr class="odd">
+<td>3.1 Business operations</td>
+<td>3.1.2 Purchasing and contract management</td>
+<td>Source infrastructure and services from suppliers</td>
+</tr>
+<tr class="even">
+<td>3.4 Customer and chain interaction</td>
+<td>3.4.1 Services management, 3.4.3 Service agreement, 3.4.4 Self-service</td>
+<td>Offer platform services with service levels and self-service</td>
+</tr>
+<tr class="odd">
+<td>4.1 Strategy and leadership</td>
+<td>4.1.3 Change management, 4.1.7 Architecture management</td>
+<td>Manage technological change and the architecture of the platforms</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="stages-processes-and-functions" class="level3">
+<h3 class="anchored" data-anchor-id="stages-processes-and-functions">Stages, processes, and functions</h3>
+<p>The table follows the mapping in <em>Business Processes, Mapping to value stream stages</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Realized by processes</th>
+<th>Main functions</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>VS-09.1 Define Digital and Technical Requirements</td>
-<td>Infrastructure requirements derived from business needs</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>FUN-2.5 Manage enterprise architecture; FUN-3.1 Design and build statistical products</td>
 </tr>
 <tr class="even">
 <td>VS-09.2 Design Platform and Infrastructure Architecture</td>
-<td>Architecture blueprints (storage, processing, integration, access)</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>FUN-2.5 Manage enterprise architecture; FUN-10.3 Manage information technology</td>
 </tr>
 <tr class="odd">
 <td>VS-09.3 Provision and Configure Platforms</td>
-<td>Deployed, controlled environments</td>
+<td>PRD-3.4 Configure workflows; MDS-4 Provide a secure processing environment</td>
+<td>FUN-8.3 Operate secure research environments; FUN-10.3 Manage information technology</td>
 </tr>
 <tr class="even">
 <td>VS-09.4 Enable Integration and Orchestration Services</td>
-<td>APIs, workflow/automation, event interfaces</td>
+<td>PRD-3.4 Configure workflows; DSP-4 Exchange data under usage control</td>
+<td>FUN-9.2 Operate data space connectivity; FUN-10.3 Manage information technology</td>
 </tr>
 <tr class="odd">
 <td>VS-09.5 Ensure Performance, Security, and Continuity</td>
-<td>Monitoring, security, availability, disaster recovery</td>
+<td>PRD-3.5 Test production systems; DLM-5 Store and version data</td>
+<td>FUN-10.3 Manage information technology; FUN-10.8 Manage information security and privacy</td>
 </tr>
 <tr class="even">
 <td>VS-09.6 Evolve and Modernize the Technical Ecosystem</td>
-<td>Modernization roadmap and adopted technologies</td>
+<td>No reference process (NSI-specific)</td>
+<td>FUN-2.2 Develop capability improvements; FUN-10.3 Manage information technology</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-09 (b) stages realized by processes and functions</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="framework-mappings" class="level3">
+<h3 class="anchored" data-anchor-id="framework-mappings">Framework mappings</h3>
+<p>Where the primary value streams map to the production phases of GSBPM, VS-09 maps to the capability and support activities of GAMSO.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>GAMSO area</th>
+<th>Relevance to VS-09 Infrastructure and Platform Enablement</th>
+<th>SAF capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Capability Management</td>
+<td>Manage the IT capability; introduce and modernize technology</td>
+<td>4.1.3 Change management, 4.1.7 Architecture management</td>
+</tr>
+<tr class="even">
+<td>Corporate Support</td>
+<td>Manage IT services and operations, security, and business continuity</td>
+<td>3.2.1 to 3.2.5, 3.3.2 to 3.3.6, 3.4.1 Services management</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="capability-governance" class="level2">
-<h2 class="anchored" data-anchor-id="capability-governance">Capability Governance</h2>
-<p>VS-09 is itself a capability that is <strong>designed</strong> (architecture and operating model), <strong>built</strong> (provisioning and integration), <strong>operated</strong> (continuous monitoring, security, and incident management), and <strong>improved</strong> (09.6). Unlike a primary stream it produces <strong>platforms and assured availability</strong>, not statistical data, and runs as an <strong>always-on service</strong> rather than a per-cycle production run. Its security and continuity are governed by VS-07.</p>
-<section id="key-performance-indicators" class="level3">
-<h3 class="anchored" data-anchor-id="key-performance-indicators">Key Performance Indicators</h3>
+</section>
+<section id="principles" class="level2">
+<h2 class="anchored" data-anchor-id="principles">7. Principles</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Principle</th>
+<th>Statement</th>
+<th>How VS-09 Infrastructure and Platform Enablement applies it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-P01</td>
+<td>Reuse before open source, open source before buying, buying before building</td>
+<td>Favors open, shared platform components and open standards, to keep collective control and avoid dependence on single suppliers <strong>[VC3]</strong></td>
+</tr>
+<tr class="even">
+<td>SAF-P02</td>
+<td>Active support</td>
+<td>Runs platforms as actively supported, monitored services, not one-off builds</td>
+</tr>
+<tr class="odd">
+<td>SAF-P05</td>
+<td>IT and technology is everyone’s business</td>
+<td>Provides self-service, well-documented platforms, so technology serves all teams</td>
+</tr>
+<tr class="even">
+<td>SAF-P06</td>
+<td>Business continuity</td>
+<td>Guarantees availability, resilience, and recovery from disaster for the whole chain</td>
+</tr>
+<tr class="odd">
+<td>SAF-P07</td>
+<td>Implement loosely coupled processes and systems</td>
+<td>Provides the versioned interfaces and events that keep the value streams decoupled</td>
+</tr>
+<tr class="even">
+<td>SAF-P10</td>
+<td>Security by design</td>
+<td>Builds security and access control into every platform and environment from the start</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="interfaces-services-and-events" class="level2">
+<h2 class="anchored" data-anchor-id="interfaces-services-and-events">8. Interfaces, services, and events</h2>
+<p><strong>Business services</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Service</th>
+<th>Offered to</th>
+<th>Realized in</th>
+<th>Interfaces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Platform and environment service</td>
+<td>All value streams</td>
+<td>VS-09.3 Provision and Configure Platforms</td>
+<td>Service catalog, self-service portal, service desk</td>
+</tr>
+<tr class="even">
+<td>Steady-state storage and catalog service</td>
+<td>VS-01 to VS-06 (primary value streams)</td>
+<td>VS-09.3 Provision and Configure Platforms; VS-09.5 Ensure Performance, Security, and Continuity</td>
+<td>Repositories per steady state, data catalog</td>
+</tr>
+<tr class="odd">
+<td>Integration and event service</td>
+<td>All value streams</td>
+<td>VS-09.4 Enable Integration and Orchestration Services</td>
+<td>APIs, workflow engines, event interfaces, data space connectors</td>
+</tr>
+<tr class="even">
+<td>Dissemination platform service</td>
+<td>VS-06 Dissemination and Service Delivery</td>
+<td>VS-09.3 Provision and Configure Platforms; VS-09.4 Enable Integration and Orchestration Services</td>
+<td>Portals, APIs, dashboards, secure research environment</td>
+</tr>
+<tr class="odd">
+<td>Research environment service</td>
+<td>VS-08 Innovation and Methodological Development</td>
+<td>VS-09.3 Provision and Configure Platforms</td>
+<td>Sandboxes with research tooling</td>
+</tr>
+<tr class="even">
+<td>Operations and continuity service</td>
+<td>All value streams, VS-07 Governance and Compliance</td>
+<td>VS-09.5 Ensure Performance, Security, and Continuity</td>
+<td>Monitoring, incident management, continuity reports</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Business events</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Triggers or marks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Platform or service request</em></td>
+<td>Start of VS-09.3 Provision and Configure Platforms or VS-09.4 Enable Integration and Orchestration Services for a request</td>
+</tr>
+<tr class="even">
+<td><em>Technology onboarding</em></td>
+<td>Adoption of a technology transferred from VS-08 Innovation and Methodological Development in VS-09.6 Evolve and Modernize the Technical Ecosystem</td>
+</tr>
+<tr class="odd">
+<td><em>Capacity change</em></td>
+<td>Adjustment of capacity in VS-09.5 Ensure Performance, Security, and Continuity, for example ahead of a release</td>
+</tr>
+<tr class="even">
+<td><em>Incident</em> / <em>Service restored</em></td>
+<td>Start and end of incident handling in VS-09.5 Ensure Performance, Security, and Continuity</td>
+</tr>
+<tr class="odd">
+<td><em>Security or continuity review</em></td>
+<td>Periodic review with VS-07 Governance and Compliance</td>
+</tr>
+<tr class="even">
+<td><em>Component retired</em></td>
+<td>Retirement according to the roadmap in VS-09.6 Evolve and Modernize the Technical Ecosystem</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-09 event choreography between the value streams, VS-09, suppliers, and VS-07: service request, provisioning, incident and restoration, capacity change, security review, technology onboarding, and retirement</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="key-performance-indicators" class="level2">
+<h2 class="anchored" data-anchor-id="key-performance-indicators">9. Key performance indicators</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -653,18 +1564,18 @@ Figure&nbsp;3: The six business processes as a continuous enablement lifecycle.
 <td>Per incident, trended quarterly</td>
 </tr>
 <tr class="odd">
-<td>Event-interface reliability</td>
-<td>Delivery rate of the steady-state handover events the chain depends on</td>
+<td>Event interface reliability</td>
+<td>Delivery rate of the steady-state handover events that the chain depends on</td>
 <td>Per interface, monthly</td>
 </tr>
 <tr class="even">
 <td>Capacity headroom</td>
-<td>Share of platforms operating within their planned capacity envelope</td>
+<td>Share of platforms operating within their planned capacity</td>
 <td>Monthly, ahead of known peaks</td>
 </tr>
 <tr class="odd">
 <td>Security posture</td>
-<td>Open critical vulnerabilities and patch latency (assessed with VS-07)</td>
+<td>Open critical vulnerabilities and time to patch, assessed with VS-07 Governance and Compliance</td>
 <td>Continuous, reported quarterly</td>
 </tr>
 <tr class="even">
@@ -675,77 +1586,12 @@ Figure&nbsp;3: The six business processes as a continuous enablement lifecycle.
 </tbody>
 </table>
 </section>
-</section>
-<section id="interactions-services-and-events" class="level2">
-<h2 class="anchored" data-anchor-id="interactions-services-and-events">Interactions, Services and Events</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Counterpart</th>
-<th>VS-09 provides</th>
-<th>VS-09 receives</th>
-<th>Interaction / event</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>All streams (VS-01…VS-10)</strong></td>
-<td>Environments, platforms, integration, availability</td>
-<td>Requirements, capacity demand, incidents</td>
-<td>“Platform/service request”, “Incident”, “Capacity change”</td>
-</tr>
-<tr class="even">
-<td><strong>VS-06 Dissemination</strong></td>
-<td>Portals, APIs, dashboards, secure research environments</td>
-<td>Channel/scaling requirements</td>
-<td>“Dissemination platform request”</td>
-</tr>
-<tr class="odd">
-<td><strong>VS-08 Innovation</strong></td>
-<td>Sandbox and production runtime for new tech</td>
-<td>New-technology adoption requests</td>
-<td>“Technology onboarding”</td>
-</tr>
-<tr class="even">
-<td><strong>VS-07 Governance</strong></td>
-<td>Security posture and continuity evidence</td>
-<td>Security &amp; continuity policy</td>
-<td>“Security/continuity review”</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="business-objects-artefacts" class="level2">
-<h2 class="anchored" data-anchor-id="business-objects-artefacts">Business Objects / Artefacts</h2>
-<p>VS-09 manages enabling artefacts: <strong>technical requirements</strong>, <strong>architecture blueprints</strong>, <strong>provisioned environments and platforms</strong>, <strong>integration/orchestration services and event interfaces</strong>, <strong>monitoring/security/continuity controls</strong>, and the <strong>modernization roadmap</strong>. These underpin every stream and are managed across their lifecycle (SAF-P03), with security and continuity (SAF-P10/P06) built in. Each artefact has a designated owner; changes are tracked, prior versions remain identifiable, and obsolete components are formally retired.</p>
-</section>
-<section id="applying-this-to-your-nsi" class="level2">
-<h2 class="anchored" data-anchor-id="applying-this-to-your-nsi">Applying This to Your NSI</h2>
-<section id="maturity-assessment-checklist" class="level3">
-<h3 class="anchored" data-anchor-id="maturity-assessment-checklist">Maturity Assessment Checklist</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">Do we derive infrastructure requirements from business capabilities and data volumes (not ad-hoc)?</label></li>
-<li><label><input type="checkbox">Do we have architecture blueprints for storage, processing, integration, and secure access?</label></li>
-<li><label><input type="checkbox">Are environments provisioned with governance, monitoring, and security controls built in?</label></li>
-<li><label><input type="checkbox">Do we provide integration/orchestration and the event interfaces the streams rely on?</label></li>
-<li><label><input type="checkbox">Do we monitor performance, manage incidents, and guarantee availability and disaster recovery?</label></li>
-<li><label><input type="checkbox">Is there a modernization path that adopts new technology (often from VS-08) and retires the obsolete?</label></li>
-</ul>
-</section>
-<section id="scenarios" class="level3">
-<h3 class="anchored" data-anchor-id="scenarios">Scenarios</h3>
-<p><strong>Scenario A — Onboarding a secure research environment.</strong> VS-06 needs to release de-identified microdata to accredited researchers. VS-09 captures the requirement (09.1), designs the SRE architecture (09.2), provisions it with access controls and output checking (09.3/09.4), and assures its security and availability (09.5) under VS-07’s policy — so VS-06 can deliver controlled microdata access reliably.</p>
-<p><strong>Scenario B — Adopting a cloud processing platform.</strong> VS-08 validates a scalable processing technology. VS-09 designs and provisions the platform (09.2/09.3), enables integration with the existing pipelines (09.4), assures performance and continuity (09.5), and folds it into the modernization roadmap (09.6), so the production streams gain capacity without disruption.</p>
-<p><strong>Scenario C — Scaling for the census peak.</strong> The census (VS-01) will multiply ingestion and processing volumes for three months. VS-09 derives the peak requirements with the census team (09.1), updates the capacity plan and architecture (09.2), provisions elastic compute and storage ahead of the field period (09.3), and load-tests the ingestion event interfaces end to end (09.4). During the peak it monitors throughput and availability against the agreed service levels (09.5); afterwards the surge capacity is released and the lessons feed the modernization roadmap (09.6). The chain experiences the census as business as usual.</p>
+<section id="toolkit" class="level2">
+<h2 class="anchored" data-anchor-id="toolkit">10. Toolkit</h2>
+<p>Examples from NSI practice and a maturity checklist for VS-09 are part of the SAF Toolkit.</p>
+<p><strong>Toolkit:</strong> SAF-TK-V09 VS-09 Infrastructure and Platform Enablement companion <strong>[VC17]</strong></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
