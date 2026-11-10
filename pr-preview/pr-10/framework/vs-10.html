@@ -75,9 +75,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -190,6 +187,18 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Business Architecture</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/steady-states.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Steady-State Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/value-chain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Data Value Chain</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -278,24 +287,35 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#purpose-and-scope" id="toc-purpose-and-scope" class="nav-link active" data-scroll-target="#purpose-and-scope">Purpose and Scope</a></li>
-  <li><a href="#position-a-supporting-stream-that-works-across-the-whole-chain" id="toc-position-a-supporting-stream-that-works-across-the-whole-chain" class="nav-link" data-scroll-target="#position-a-supporting-stream-that-works-across-the-whole-chain">Position — a supporting stream that works across the whole chain</a></li>
-  <li><a href="#how-it-interacts-with-the-production-chain" id="toc-how-it-interacts-with-the-production-chain" class="nav-link" data-scroll-target="#how-it-interacts-with-the-production-chain">How It Interacts with the Production Chain</a></li>
-  <li><a href="#framework-alignment-gamso" id="toc-framework-alignment-gamso" class="nav-link" data-scroll-target="#framework-alignment-gamso">Framework Alignment (GAMSO)</a></li>
-  <li><a href="#principles-emphasised" id="toc-principles-emphasised" class="nav-link" data-scroll-target="#principles-emphasised">Principles Emphasised</a></li>
-  <li><a href="#roles-and-actors" id="toc-roles-and-actors" class="nav-link" data-scroll-target="#roles-and-actors">Roles and Actors</a></li>
-  <li><a href="#the-value-stream-flow" id="toc-the-value-stream-flow" class="nav-link" data-scroll-target="#the-value-stream-flow">The Value-Stream Flow</a></li>
-  <li><a href="#capability-governance" id="toc-capability-governance" class="nav-link" data-scroll-target="#capability-governance">Capability Governance</a>
+  <li><a href="#purpose-and-value-created" id="toc-purpose-and-value-created" class="nav-link active" data-scroll-target="#purpose-and-value-created">1. Purpose and value created</a></li>
+  <li><a href="#position-and-interaction-with-the-chain" id="toc-position-and-interaction-with-the-chain" class="nav-link" data-scroll-target="#position-and-interaction-with-the-chain">2. Position and interaction with the chain</a></li>
+  <li><a href="#stages" id="toc-stages" class="nav-link" data-scroll-target="#stages">3. Stages</a>
   <ul class="collapse">
-  <li><a href="#key-performance-indicators" id="toc-key-performance-indicators" class="nav-link" data-scroll-target="#key-performance-indicators">Key Performance Indicators</a></li>
+  <li><a href="#vs-10.1-identify-and-segment-stakeholders" id="toc-vs-10.1-identify-and-segment-stakeholders" class="nav-link" data-scroll-target="#vs-10.1-identify-and-segment-stakeholders">VS-10.1 Identify and Segment Stakeholders</a></li>
+  <li><a href="#vs-10.2-collect-and-analyze-user-needs" id="toc-vs-10.2-collect-and-analyze-user-needs" class="nav-link" data-scroll-target="#vs-10.2-collect-and-analyze-user-needs">VS-10.2 Collect and Analyze User Needs</a></li>
+  <li><a href="#vs-10.3-define-and-manage-service-portfolios" id="toc-vs-10.3-define-and-manage-service-portfolios" class="nav-link" data-scroll-target="#vs-10.3-define-and-manage-service-portfolios">VS-10.3 Define and Manage Service Portfolios</a></li>
+  <li><a href="#vs-10.4-deliver-services-and-manage-relationships" id="toc-vs-10.4-deliver-services-and-manage-relationships" class="nav-link" data-scroll-target="#vs-10.4-deliver-services-and-manage-relationships">VS-10.4 Deliver Services and Manage Relationships</a></li>
+  <li><a href="#vs-10.5-engage-and-communicate-with-stakeholders" id="toc-vs-10.5-engage-and-communicate-with-stakeholders" class="nav-link" data-scroll-target="#vs-10.5-engage-and-communicate-with-stakeholders">VS-10.5 Engage and Communicate with Stakeholders</a></li>
+  <li><a href="#vs-10.6-monitor-impact-and-satisfaction" id="toc-vs-10.6-monitor-impact-and-satisfaction" class="nav-link" data-scroll-target="#vs-10.6-monitor-impact-and-satisfaction">VS-10.6 Monitor Impact and Satisfaction</a></li>
   </ul></li>
-  <li><a href="#interactions-services-and-events" id="toc-interactions-services-and-events" class="nav-link" data-scroll-target="#interactions-services-and-events">Interactions, Services and Events</a></li>
-  <li><a href="#business-objects-artefacts" id="toc-business-objects-artefacts" class="nav-link" data-scroll-target="#business-objects-artefacts">Business Objects / Artefacts</a></li>
-  <li><a href="#applying-this-to-your-nsi" id="toc-applying-this-to-your-nsi" class="nav-link" data-scroll-target="#applying-this-to-your-nsi">Applying This to Your NSI</a>
+  <li><a href="#the-four-process-types" id="toc-the-four-process-types" class="nav-link" data-scroll-target="#the-four-process-types">4. The four process types</a>
   <ul class="collapse">
-  <li><a href="#maturity-assessment-checklist" id="toc-maturity-assessment-checklist" class="nav-link" data-scroll-target="#maturity-assessment-checklist">Maturity Assessment Checklist</a></li>
-  <li><a href="#scenarios" id="toc-scenarios" class="nav-link" data-scroll-target="#scenarios">Scenarios</a></li>
+  <li><a href="#design-provides-the-engagement-framework" id="toc-design-provides-the-engagement-framework" class="nav-link" data-scroll-target="#design-provides-the-engagement-framework">Design: provides the engagement framework</a></li>
+  <li><a href="#implementation-provides-the-engagement-channels" id="toc-implementation-provides-the-engagement-channels" class="nav-link" data-scroll-target="#implementation-provides-the-engagement-channels">Implementation: provides the engagement channels</a></li>
+  <li><a href="#execution-runs-the-engagement-cycle" id="toc-execution-runs-the-engagement-cycle" class="nav-link" data-scroll-target="#execution-runs-the-engagement-cycle">Execution: runs the engagement cycle</a></li>
+  <li><a href="#management-provides-engagement-performance-reports" id="toc-management-provides-engagement-performance-reports" class="nav-link" data-scroll-target="#management-provides-engagement-performance-reports">Management: provides engagement performance reports</a></li>
   </ul></li>
+  <li><a href="#actors-and-roles" id="toc-actors-and-roles" class="nav-link" data-scroll-target="#actors-and-roles">5. Actors and roles</a></li>
+  <li><a href="#capabilities-processes-and-functions" id="toc-capabilities-processes-and-functions" class="nav-link" data-scroll-target="#capabilities-processes-and-functions">6. Capabilities, processes, and functions</a>
+  <ul class="collapse">
+  <li><a href="#capability-foundations" id="toc-capability-foundations" class="nav-link" data-scroll-target="#capability-foundations">Capability foundations</a></li>
+  <li><a href="#stages-processes-and-functions" id="toc-stages-processes-and-functions" class="nav-link" data-scroll-target="#stages-processes-and-functions">Stages, processes, and functions</a></li>
+  <li><a href="#framework-mappings" id="toc-framework-mappings" class="nav-link" data-scroll-target="#framework-mappings">Framework mappings</a></li>
+  </ul></li>
+  <li><a href="#principles" id="toc-principles" class="nav-link" data-scroll-target="#principles">7. Principles</a></li>
+  <li><a href="#interfaces-services-and-events" id="toc-interfaces-services-and-events" class="nav-link" data-scroll-target="#interfaces-services-and-events">8. Interfaces, services, and events</a></li>
+  <li><a href="#key-performance-indicators" id="toc-key-performance-indicators" class="nav-link" data-scroll-target="#key-performance-indicators">9. Key performance indicators</a></li>
+  <li><a href="#toolkit" id="toc-toolkit" class="nav-link" data-scroll-target="#toolkit">10. Toolkit</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="vs-10.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -322,99 +342,725 @@ ul.task-list li input[type="checkbox"] {
 
 
 <!-- GENERATED from docs/SAF Framework.md by scripts/split-framework.py - do not edit -->
-<p><span id="vs-10.0-customer-and-stakeholder-engagement"></span></p>
-<section id="purpose-and-scope" class="level3">
-<h3 class="anchored" data-anchor-id="purpose-and-scope">Purpose and Scope</h3>
-<p>VS-10.0 ensures the statistical organization remains connected, relevant, and responsive to the needs of those it serves. It builds and maintains mutual understanding and trust between the NSI and its users, data providers, partners, and policy stakeholders. Because official statistics exist to create <strong>public value</strong>, the organization must understand what stakeholders need, communicate transparently, and keep products, services, and policies aligned with real-world demand. It is <strong>not a one-way process</strong> — it is a continuous dialogue that turns stakeholder insight into better products, improved services, and stronger relationships. The value it creates is <strong>relevance and public value</strong>.</p>
-<p><em>A note on numbering:</em> each <code>VS-0x.y</code> below is both a value stream stage (<em>what value</em> is added) and a business process (<em>how</em> it is done); the numbering maps one-to-one. See the key-concepts box above.</p>
-</section>
-<section id="position-a-supporting-stream-that-works-across-the-whole-chain" class="level3">
-<h3 class="anchored" data-anchor-id="position-a-supporting-stream-that-works-across-the-whole-chain">Position — a supporting stream that works across the whole chain</h3>
-<p>VS-10 is not a stage in the production line. It sits at the <strong>edges</strong> of the chain — facing both the data providers who feed VS-01 and the users who consume VS-06 — and channels what it learns inward to shape the whole chain.</p>
-<div class="cell" data-fig-width="6" data-layout-align="default">
-<div class="cell-output-display">
-<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>
-
-<pre class="mermaid mermaid-js" data-label="fig-1">flowchart TD
-    PROV["Data providers"] --&gt; VS01["VS-01"]
-    subgraph primary["Primary Value Streams"]
-        direction LR
-        VS01 --&gt; VS02["VS-02"] --&gt; VS03["VS-03"] --&gt; VS04["VS-04"] --&gt; VS05["VS-05"] --&gt; VS06["VS-06"]
-    end
-    VS06 --&gt; USERS["Users &amp; Society"]
-
-    VS10["**VS-10.0 Customer &amp;&lt;br/&gt;Stakeholder Engagement**"]:::hi
-    VS10 &lt;--&gt;|"needs &amp; relationships"| PROV
-    VS10 &lt;--&gt;|"needs, feedback,&lt;br/&gt;satisfaction"| USERS
-    VS10 --&gt;|"needs routed into&lt;br/&gt;design &amp; innovation"| primary
-
-    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9,stroke-width:2px
-    style PROV fill:#0f766e,color:#fff,stroke:#0f766e
-    style USERS fill:#0f766e,color:#fff,stroke:#0f766e
-</pre>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: VS-10 engages providers and users two-way and channels their needs into the chain.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-important callout-titled">
+<p><span id="vs-10-customer-and-stakeholder-engagement"></span></p>
+<section id="purpose-and-value-created" class="level2">
+<h2 class="anchored" data-anchor-id="purpose-and-value-created">1. Purpose and value created</h2>
+<p>VS-10 keeps the NSI connected, relevant, and responsive to the people it serves. It builds and maintains mutual understanding and trust between the NSI and its users, data providers, partners, and policy stakeholders. Official statistics exist to create public value, so the NSI must understand what stakeholders need, communicate openly, and keep its products, services, and policies in line with real demand. VS-10 is not a one-way process. It is a continuous dialogue that turns what stakeholders say into better products, better services, and stronger relationships. The value created is <strong>relevance and public value</strong>.</p>
+<p>VS-10 is a supporting value stream. It aligns with the GAMSO areas <em>Strategy and Leadership</em> and <em>Corporate Support</em> rather than with the production phases of GSBPM. This section describes its business layer for all four process types.</p>
+<ul>
+<li><strong>Relationship manager, user researcher, or service desk staff:</strong> the stages in attribute 3, which describe the engagement cycle.</li>
+<li><strong>Head of communication or dissemination and service manager:</strong> the Design processes in attribute 4.</li>
+<li><strong>Process owners of other value streams:</strong> attributes 2 and 8, which describe how needs flow to them and how feedback returns.</li>
+<li><strong>Manager who wants the big picture:</strong> attributes 1, 2, and 9. Examples and scenarios are part of the SAF Toolkit.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>How a supporting value stream differs from a primary one
+<span class="screen-reader-only">Note</span>How a supporting value stream differs from a primary one
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li><strong>No steady-state data transition.</strong> VS-10 does not move data along the chain; it moves <strong>understanding</strong> — needs in, communication and services out.</li>
-<li><strong>It runs continuously</strong> as an ongoing dialogue, not per production cycle.</li>
-<li><strong>Its output is an enabling capability, not a data artefact:</strong> understood needs, a managed service portfolio, relationships, and impact insight.</li>
-<li><strong>It aligns to GAMSO Strategy &amp; Leadership and Corporate Support</strong>, not to GSBPM production phases.</li>
-</ul>
+<p>VS-10 has no steady-state data transition. It does not move data along the chain; it moves understanding: needs come in, and communication and services go out. It runs continuously as an ongoing dialogue, not per production cycle. Its output is an enabling capability rather than a data artifact: understood needs, a managed service portfolio, relationships, and insight into impact. It uses the usage data of State #5 as a secondary consumer, to measure reach and impact.</p>
 </div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Indicative roles, not a prescribed structure
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The roles in attribute 5 are indicative, not a mandated organizational structure. The SAF deliberately leaves organization design to each NSI. An NSI assigns these responsibilities to fit its own size, culture, and operating model.</p>
+</div>
+</div>
+<div class="table-scroll">
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-10 (a) value stream and capabilities</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+<p><br></p>
+</section>
+<section id="position-and-interaction-with-the-chain" class="level2">
+<h2 class="anchored" data-anchor-id="position-and-interaction-with-the-chain">2. Position and interaction with the chain</h2>
+<p>VS-10 is not a stage in the production line. It sits at the edges of the chain. On one side it faces the data providers who feed VS-01; on the other side it faces the users who consume what VS-06 releases. It channels what it learns inward, to shape the whole chain. VS-10 is closely coupled with VS-01, for the relationships with providers, and with VS-06, from which it receives usage and satisfaction data. It translates what it hears into requirements that flow into the design of the primary value streams and into the innovation backlog of VS-08.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Counterpart</th>
+<th>VS-10 provides</th>
+<th>VS-10 receives</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Users and society</td>
+<td>Services, support, communication, the service portfolio</td>
+<td>Needs, feedback, satisfaction</td>
+</tr>
+<tr class="even">
+<td>Data providers and respondents, through VS-01 Data Acquisition and Ingestion</td>
+<td>Relationship management, transparency on the use and protection of their data, burden reduction</td>
+<td>Willingness to provide data, needs and concerns of providers</td>
+</tr>
+<tr class="odd">
+<td>VS-06 Dissemination and Service Delivery</td>
+<td>Service requirements, user groups, expectations of users</td>
+<td>Usage and satisfaction data</td>
+</tr>
+<tr class="even">
+<td>VS-01 to VS-05 (design of the primary value streams)</td>
+<td>Requirements for new or changed products, breakdowns, and timeliness</td>
+<td>Information on what can be delivered, and when</td>
+</tr>
+<tr class="odd">
+<td>VS-08 Innovation and Methodological Development</td>
+<td>User-driven needs for new methods, sources, and services</td>
+<td>New and improved products and services</td>
+</tr>
+<tr class="even">
+<td>VS-07 Governance and Compliance</td>
+<td>Signals on stakeholder trust, complaints</td>
+<td>Commitments on transparency and accountability</td>
+</tr>
+<tr class="odd">
+<td>Partners: other producers of official statistics, international organizations, data space partners</td>
+<td>Coordination and joint communication</td>
+<td>Joint requirements and agreements</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-scroll">
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-10 (c) interaction with the chain: VS-10 at both edges of the chain, facing data providers at VS-01 and users at VS-06, and channeling needs inward to the design of the primary value streams and to VS-08</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+<p><br></p>
+</section>
+<section id="stages" class="level2">
+<h2 class="anchored" data-anchor-id="stages">3. Stages</h2>
+<p>The stages of VS-10 form a continuous engagement cycle: understand, offer, deliver, and measure. What is learned in the last stage improves the understanding in the first.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Name</th>
+<th>Value added</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-10.1</td>
+<td>Identify and Segment Stakeholders</td>
+<td>It is clear who the stakeholders are and what they expect</td>
+</tr>
+<tr class="even">
+<td>VS-10.2</td>
+<td>Collect and Analyze User Needs</td>
+<td>Stakeholder needs are known and translated into requirements</td>
+</tr>
+<tr class="odd">
+<td>VS-10.3</td>
+<td>Define and Manage Service Portfolios</td>
+<td>The offer of products and services matches needs and strategy</td>
+</tr>
+<tr class="even">
+<td>VS-10.4</td>
+<td>Deliver Services and Manage Relationships</td>
+<td>Stakeholders are served well and relationships are maintained</td>
+</tr>
+<tr class="odd">
+<td>VS-10.5</td>
+<td>Engage and Communicate with Stakeholders</td>
+<td>Stakeholders are aware of the statistics and understand them correctly</td>
+</tr>
+<tr class="even">
+<td>VS-10.6</td>
+<td>Monitor Impact and Satisfaction</td>
+<td>The use, impact, and appreciation of the statistics are known</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Each stage below is described with its activities. The column <em>SAF process</em> shows the business process from <em>Business Processes</em> that the activity belongs to. The column <em>Other reference</em> shows the principles, capabilities, or external frameworks that the activity applies.</p>
+<p><br></p>
+<section id="vs-10.1-identify-and-segment-stakeholders" class="level3">
+<h3 class="anchored" data-anchor-id="vs-10.1-identify-and-segment-stakeholders">VS-10.1 Identify and Segment Stakeholders</h3>
+<p><strong>Value created:</strong> <em>A clear view of who the stakeholders are, what role they play, and what they expect.</em></p>
+<p>The cycle begins with a map of the stakeholder landscape. It covers users, data providers, partners, and policy makers, as well as the media and the public. Stakeholders are grouped into segments with similar needs and expectations, for example policy makers, researchers, businesses, and the general public. Key stakeholders are identified, such as the main ministries, large data providers, and international partners. The roles of other producers of official statistics and of data space partners are included. The map is kept current, because the landscape changes with new data sources, new users, and new partnerships.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Map users, data providers, partners, policy makers, media, and the public</td>
+<td>Stakeholder map</td>
+<td>PRD-1.2 Consult and confirm needs</td>
+<td>3.4.2 Contact management</td>
+</tr>
+<tr class="even">
+<td>Group stakeholders into segments with similar needs</td>
+<td>Stakeholder segments</td>
+<td>PRD-1.2 Consult and confirm needs</td>
+<td>2.2.5 User research</td>
+</tr>
+<tr class="odd">
+<td>Identify key stakeholders and partners, including data space partners</td>
+<td>Key stakeholder list</td>
+<td>DSP-6 Participate in data space governance</td>
+<td>4.1.6 Collaboration</td>
+</tr>
+<tr class="even">
+<td>Keep the map current</td>
+<td>Updated stakeholder map</td>
+<td>NSI-specific</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br></p>
+</section>
+<section id="vs-10.2-collect-and-analyze-user-needs" class="level3">
+<h3 class="anchored" data-anchor-id="vs-10.2-collect-and-analyze-user-needs">VS-10.2 Collect and Analyze User Needs</h3>
+<p><strong>Value created:</strong> <em>Stakeholder needs known and translated into concrete data or service requirements.</em></p>
+<p>Next, the needs of stakeholders are collected and analyzed. Feedback is gathered through consultations, user councils, surveys, and the usage data from VS-06. Needs are analyzed for their value, their urgency, and the number of stakeholders they concern. They are translated into concrete requirements: a new statistic, a finer breakdown, a faster release, or a new channel. Each requirement is routed to the value stream that can meet it, or to VS-08 when it needs a new method or source. The needs register records what was asked, what was decided, and why.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gather feedback through consultations, user councils, surveys, and usage data</td>
+<td>Collected needs</td>
+<td>PRD-1.1 Identify needs; PRD-1.2 Consult and confirm needs</td>
+<td>2.2.5 User research</td>
+</tr>
+<tr class="even">
+<td>Analyze needs for value, urgency, and reach</td>
+<td>Needs analysis</td>
+<td>PRD-1.1 Identify needs</td>
+<td>1.1.1 Needs inventory</td>
+</tr>
+<tr class="odd">
+<td>Translate needs into concrete data or service requirements</td>
+<td>Requirements</td>
+<td>PRD-1.2 Consult and confirm needs</td>
+<td>SAF-P04 Maximize the benefits for the organization</td>
+</tr>
+<tr class="even">
+<td>Route requirements to the value streams or to VS-08 Innovation and Methodological Development, and record decisions</td>
+<td>Needs register, <em>Need routed to design or innovation</em></td>
+<td>NSI-specific</td>
+<td>4.1.5 Accountability</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br></p>
+</section>
+<section id="vs-10.3-define-and-manage-service-portfolios" class="level3">
+<h3 class="anchored" data-anchor-id="vs-10.3-define-and-manage-service-portfolios">VS-10.3 Define and Manage Service Portfolios</h3>
+<p><strong>Value created:</strong> <em>A portfolio of products and services that matches stakeholder needs and the strategy of the NSI.</em></p>
+<p>The needs shape the service portfolio. The portfolio is the catalog of business services and data products that the NSI offers, from publications and open data to tailored analyses and research access. It is the bridge between what users want and what the chain produces. New services are added when needs and strategy justify them, and services that are no longer used are retired. Each service has an owner, a target group, and a service standard. The portfolio is aligned with the dissemination strategy of VS-06 and the capacity of the production value streams.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define the catalog of business services and data products</td>
+<td>Service and product portfolio</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>3.4.1 Services management</td>
+</tr>
+<tr class="even">
+<td>Add and retire services based on needs and strategy</td>
+<td>Portfolio decisions</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+<tr class="odd">
+<td>Assign an owner, target group, and service standard to each service</td>
+<td>Service descriptions</td>
+<td>NSI-specific</td>
+<td>3.4.3 Service agreement</td>
+</tr>
+<tr class="even">
+<td>Align the portfolio with the dissemination strategy and production capacity</td>
+<td>Aligned portfolio</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>SAF-P04 Maximize the benefits for the organization</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br></p>
+</section>
+<section id="vs-10.4-deliver-services-and-manage-relationships" class="level3">
+<h3 class="anchored" data-anchor-id="vs-10.4-deliver-services-and-manage-relationships">VS-10.4 Deliver Services and Manage Relationships</h3>
+<p><strong>Value created:</strong> <em>Stakeholders served well and relationships with key partners maintained.</em></p>
+<p>Services are put into the hands of users. VS-10 operates customer support and account management, together with the user support of VS-06. Relationships with key users, partners, and policy stakeholders are maintained through account managers. Relationships with data providers are maintained together with VS-01, with attention to burden and to transparency about the use of their data. Tailored services, such as custom tables, are delivered under the service standard. Service performance and satisfaction are tracked per service.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Operate customer support and account management</td>
+<td>Support and account records</td>
+<td>PRD-7.5 Provide user support</td>
+<td>3.4.1 Services management</td>
+</tr>
+<tr class="even">
+<td>Maintain relationships with key users, partners, and policy stakeholders</td>
+<td>Relationship plans</td>
+<td>NSI-specific</td>
+<td>3.4.2 Contact management</td>
+</tr>
+<tr class="odd">
+<td>Maintain relationships with data providers, together with VS-01 Data Acquisition and Ingestion</td>
+<td>Provider relationship records</td>
+<td>OVA-6 Data Supplier Management</td>
+<td>SAF-P11 Privacy by design</td>
+</tr>
+<tr class="even">
+<td>Deliver tailored services and support researchers</td>
+<td>Tailored services</td>
+<td>PRD-7.5 Provide user support; MDS-6 Support researchers</td>
+<td>2.2.4 Data services</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br></p>
+</section>
+<section id="vs-10.5-engage-and-communicate-with-stakeholders" class="level3">
+<h3 class="anchored" data-anchor-id="vs-10.5-engage-and-communicate-with-stakeholders">VS-10.5 Engage and Communicate with Stakeholders</h3>
+<p><strong>Value created:</strong> <em>Stakeholders who know the statistics exist and understand them correctly.</em></p>
+<p>Alongside delivery, VS-10 engages and communicates with stakeholders. It runs outreach, workshops, and events that build awareness of statistical outputs. It works with the media, so that figures are reported correctly, including their uncertainty. It promotes statistical literacy among the public and in education. It communicates openly about how the NSI works, how it protects data, and how it handles errors. This builds the public confidence on which the willingness to respond and the use of statistics depend.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Run outreach, workshops, and events</td>
+<td>Outreach activities</td>
+<td>PRD-7.4 Promote dissemination products</td>
+<td>1.5.2 Promotion to use</td>
+</tr>
+<tr class="even">
+<td>Work with the media on correct reporting</td>
+<td>Media relations</td>
+<td>PRD-7.4 Promote dissemination products</td>
+<td>3.1.4 Communication management</td>
+</tr>
+<tr class="odd">
+<td>Promote statistical literacy</td>
+<td>Literacy programs</td>
+<td>NSI-specific</td>
+<td>1.5.2 Promotion to use</td>
+</tr>
+<tr class="even">
+<td>Communicate openly on methods, data protection, and corrections</td>
+<td>Transparency communication</td>
+<td>NSI-specific</td>
+<td>SAF-P11 Privacy by design; 4.1.5 Accountability</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br></p>
+</section>
+<section id="vs-10.6-monitor-impact-and-satisfaction" class="level3">
+<h3 class="anchored" data-anchor-id="vs-10.6-monitor-impact-and-satisfaction">VS-10.6 Monitor Impact and Satisfaction</h3>
+<p><strong>Value created:</strong> <em>Knowledge of how statistics and services are used, valued, and what impact they have.</em></p>
+<p>The cycle closes by measuring impact and satisfaction. Satisfaction surveys are run across user segments and services. The usage data from VS-06 is analyzed to understand reach. Documented uses of official statistics in policy, research, and the media are collected as evidence of impact. Complaints and trust signals are passed to VS-07. The insights are fed back into the needs analysis, the service portfolio, and the innovation backlog, so that the next cycle of needs is better understood.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Run satisfaction surveys across segments and services</td>
+<td>Satisfaction results</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>2.2.5 User research</td>
+</tr>
+<tr class="even">
+<td>Analyze usage data from VS-06 Dissemination and Service Delivery</td>
+<td>Reach analysis</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Collect documented uses of statistics in policy, research, and the media</td>
+<td>Impact evidence</td>
+<td>PRD-8.2 Conduct evaluation</td>
+<td>4.1.5 Accountability</td>
+</tr>
+<tr class="even">
+<td>Feed insights back into needs, portfolio, and innovation; pass complaints to VS-07 Governance and Compliance</td>
+<td>Impact and satisfaction insight</td>
+<td>PRD-8.2 Conduct evaluation</td>
+<td>4.1.4 Improvement management</td>
+</tr>
+</tbody>
+</table>
 </div>
 </section>
-<section id="how-it-interacts-with-the-production-chain" class="level3">
-<h3 class="anchored" data-anchor-id="how-it-interacts-with-the-production-chain">How It Interacts with the Production Chain</h3>
-<p>VS-10 is the chain’s two-way interface with the outside world. It is tightly coupled with <strong>VS-01</strong> (the data providers it engages) and <strong>VS-06</strong> (the users whose feedback it gathers, receiving VS-06.5’s usage and satisfaction data). It translates what it hears into requirements that flow into design across the primary streams and into the <strong>VS-08</strong> innovation backlog.</p>
-<div class="cell" data-fig-width="6" data-layout-align="default">
-<div class="cell-output-display">
-<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>
-
-<pre class="mermaid mermaid-js" data-label="fig-2">flowchart LR
-    EXT["Users, providers,&lt;br/&gt;partners, policymakers"] &lt;--&gt;|"dialogue"| VS10["VS-10&lt;br/&gt;Engagement"]:::hi
-    VS06["VS-06 Dissemination"] --&gt;|"usage &amp; feedback (§6.5)"| VS10
-    VS10 --&gt;|"user needs &amp; service requirements"| DES["Design across VS-01…06"]
-    VS10 --&gt;|"user-driven innovation needs"| VS08["VS-08 Innovation"]
-
-    classDef hi fill:#7c3aed,color:#fff,stroke:#6d28d9
-    style EXT fill:#0f766e,color:#fff,stroke:#0f766e
-</pre>
+</section>
+<section id="the-four-process-types" class="level2">
+<h2 class="anchored" data-anchor-id="the-four-process-types">4. The four process types</h2>
+<p>VS-10 is itself a capability that must be designed, built, operated, and improved. The four process types therefore apply to VS-10 as they do to the primary value streams, but they govern the engagement capability rather than a data pipeline. Design produces the engagement strategy and the portfolio model, Implementation builds the channels for support and feedback, Execution runs the stages of attribute 3, and Management evaluates whether engagement creates relevance. <strong>[VC26]</strong></p>
+<p>Each sub-process refines one or more SAF business processes, which are listed under its heading as <em>Refines</em>. Where no reference process exists, the sub-process is marked as NSI-specific.</p>
+<section id="design-provides-the-engagement-framework" class="level3">
+<h3 class="anchored" data-anchor-id="design-provides-the-engagement-framework">Design: provides the engagement framework</h3>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Design sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design the Engagement Strategy</td>
+<td>NSI-specific</td>
+<td>Engagement strategy, segment approach, communication principles</td>
+</tr>
+<tr class="even">
+<td>Design the Service Portfolio Model</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>Portfolio model, service standards, criteria for adding and retiring services</td>
+</tr>
+</tbody>
+</table>
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Interaction with the chain: needs and feedback in; communication, services, and requirements out.
-</figcaption>
-</figure>
-</div>
-</div>
+<section id="design-the-engagement-strategy" class="level4">
+<h4 class="anchored" data-anchor-id="design-the-engagement-strategy">Design the Engagement Strategy</h4>
+<p><em>Refines:</em> NSI-specific strategic planning processes.</p>
+<p>This sub-process sets the direction of engagement. It defines the goals of engagement in line with the strategy of the NSI, for example more reach among young people or better use of statistics in policy. It defines the approach per stakeholder segment: which channels, how often, and with which message. It sets the principles for communication, such as openness about uncertainty and about errors. It defines how user councils and consultations are organized. A clear strategy keeps engagement focused rather than spread thin.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define the goals of engagement in line with the strategy</td>
+<td>Engagement strategy</td>
+<td>NSI-specific</td>
+<td>4.1.1 Strategy and governance</td>
+</tr>
+<tr class="even">
+<td>Define the approach per stakeholder segment</td>
+<td>Segment approach</td>
+<td>NSI-specific</td>
+<td>3.4.2 Contact management</td>
+</tr>
+<tr class="odd">
+<td>Set communication principles and organize user councils and consultations</td>
+<td>Communication principles, consultation model</td>
+<td>NSI-specific</td>
+<td>3.1.4 Communication management</td>
+</tr>
+</tbody>
+</table>
 </div>
 </section>
-<section id="framework-alignment-gamso" class="level3">
-<h3 class="anchored" data-anchor-id="framework-alignment-gamso">Framework Alignment (GAMSO)</h3>
-<p>Where the primary streams map to <strong>GSBPM</strong> production phases, VS-10 maps to <strong>GAMSO</strong> leadership and support activities:</p>
+<section id="design-the-service-portfolio-model" class="level4">
+<h4 class="anchored" data-anchor-id="design-the-service-portfolio-model">Design the Service Portfolio Model</h4>
+<p><em>Refines:</em> PRD-2.1 Design outputs and dissemination.</p>
+<p>This sub-process designs how the service portfolio is managed. It defines the types of services that the NSI offers and the rules that apply to each type, such as free or paid and standard or tailored. It sets the service standards for response and delivery. It defines the criteria for adding a service and for retiring one. It defines how the portfolio is reviewed and by whom. The model makes portfolio decisions consistent and explainable to stakeholders.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define the types of services and the rules that apply to each</td>
+<td>Portfolio model</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>3.4.1 Services management</td>
+</tr>
+<tr class="even">
+<td>Set service standards for response and delivery</td>
+<td>Service standards</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>3.4.3 Service agreement</td>
+</tr>
+<tr class="odd">
+<td>Define the criteria for adding and retiring services, and the review procedure</td>
+<td>Portfolio criteria</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="implementation-provides-the-engagement-channels" class="level3">
+<h3 class="anchored" data-anchor-id="implementation-provides-the-engagement-channels">Implementation: provides the engagement channels</h3>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Implementation sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build Support and Feedback Channels</td>
+<td>PRD-3.3 Reuse or build dissemination components; PRD-3.4 Configure workflows</td>
+<td>Service desk, feedback channels, needs register, relationship records</td>
+</tr>
+<tr class="even">
+<td>Establish Relationship Management</td>
+<td>OVA-6 Data Supplier Management; NSI-specific</td>
+<td>Account plans, relationship managers, provider engagement procedures</td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="build-support-and-feedback-channels" class="level4">
+<h4 class="anchored" data-anchor-id="build-support-and-feedback-channels">Build Support and Feedback Channels</h4>
+<p><em>Refines:</em> PRD-3.3 Reuse or build dissemination components; PRD-3.4 Configure workflows.</p>
+<p>This sub-process builds the channels through which stakeholders reach the NSI, together with VS-09. It sets up the service desk and the channels for questions, by phone, e-mail, chat, and web forms. It builds the channels for feedback, such as surveys and comment functions on the website. It sets up the needs register and the system for relationship records. It connects these channels to the usage data of VS-06. Every channel records what it receives, so that needs and feedback are not lost.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Set up the service desk and the channels for questions</td>
+<td>Service desk and channels</td>
+<td>PRD-3.3 Reuse or build dissemination components</td>
+<td>3.4.4 Self-service</td>
+</tr>
+<tr class="even">
+<td>Build the channels for feedback</td>
+<td>Feedback channels</td>
+<td>PRD-3.3 Reuse or build dissemination components</td>
+<td>2.2.5 User research</td>
+</tr>
+<tr class="odd">
+<td>Set up the needs register and the relationship records, connected to usage data</td>
+<td>Needs register, relationship records</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>SAF-P09 No data without metadata and classification</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="establish-relationship-management" class="level4">
+<h4 class="anchored" data-anchor-id="establish-relationship-management">Establish Relationship Management</h4>
+<p><em>Refines:</em> OVA-6 Data Supplier Management; NSI-specific relationship processes.</p>
+<p>This sub-process puts relationship management into practice. Account managers are assigned to key users, partners, and policy stakeholders. Account plans are written for the most important relationships. The procedures for engaging data providers are agreed with VS-01, including how burden is discussed and how providers are informed about the use of their data. Agreements with partners, such as other producers of official statistics, are registered. Staff are trained in engagement and communication.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Assign account managers and write account plans</td>
+<td>Account plans</td>
+<td>NSI-specific</td>
+<td>3.4.2 Contact management</td>
+</tr>
+<tr class="even">
+<td>Agree procedures for engaging data providers with VS-01 Data Acquisition and Ingestion</td>
+<td>Provider engagement procedures</td>
+<td>OVA-6 Data Supplier Management</td>
+<td>SAF-P11 Privacy by design</td>
+</tr>
+<tr class="odd">
+<td>Register partner agreements and train staff</td>
+<td>Partner register, trained staff</td>
+<td>NSI-specific</td>
+<td>4.1.6 Collaboration</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="execution-runs-the-engagement-cycle" class="level3">
+<h3 class="anchored" data-anchor-id="execution-runs-the-engagement-cycle">Execution: runs the engagement cycle</h3>
+<p>Execution runs the stages of attribute 3 continuously. VS-10.1 and VS-10.3 run as periodic reviews; VS-10.2, VS-10.4, and VS-10.5 run continuously; VS-10.6 runs per survey wave and per reporting period.</p>
 <div class="table-scroll">
 <table class="caption-top table">
 <colgroup>
@@ -423,29 +1069,382 @@ Figure&nbsp;2: Interaction with the chain: needs and feedback in; communication,
 </colgroup>
 <thead>
 <tr class="header">
-<th>GAMSO area</th>
-<th>Relevance to VS-10</th>
+<th>Aspect</th>
+<th>VS-10</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Strategy and Leadership</strong></td>
-<td>Manage stakeholder and customer relationships; align the portfolio to strategy</td>
+<td>Trigger</td>
+<td><em>User need captured</em>; <em>Service request</em>; <em>Feedback received</em> from VS-06 Dissemination and Service Delivery; a planned consultation or campaign</td>
 </tr>
 <tr class="even">
-<td><strong>Corporate Support</strong></td>
-<td>Manage communications, marketing, user support, and service management</td>
+<td>Cadence</td>
+<td>Continuous dialogue; periodic reviews of stakeholders and portfolio; survey waves</td>
 </tr>
 <tr class="odd">
-<td><strong>SAF capabilities</strong></td>
-<td>Needs inventory (supports statistical design &amp; build); customer/stakeholder management</td>
+<td>Performed by</td>
+<td>ROL-23 Relationship manager, ROL-22 Dissemination and service manager</td>
+</tr>
+<tr class="even">
+<td>Input</td>
+<td>Feedback, consultations, usage data, complaints, strategy of the NSI</td>
+</tr>
+<tr class="odd">
+<td>Output</td>
+<td>Needs register, service portfolio, relationships, communication, impact and satisfaction insight</td>
+</tr>
+<tr class="even">
+<td>Control point</td>
+<td>Portfolio review; decisions on needs recorded in the needs register</td>
+</tr>
+<tr class="odd">
+<td>Exception path</td>
+<td>A complaint about confidentiality or conduct passed to VS-07 Governance and Compliance; a need that the chain cannot meet explained to the stakeholder</td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
-<section id="principles-emphasised" class="level3">
-<h3 class="anchored" data-anchor-id="principles-emphasised">Principles Emphasised</h3>
+<section id="management-provides-engagement-performance-reports" class="level3">
+<h3 class="anchored" data-anchor-id="management-provides-engagement-performance-reports">Management: provides engagement performance reports</h3>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Management sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monitor Engagement Performance</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>Engagement dashboard, service performance reports</td>
+</tr>
+<tr class="even">
+<td>Evaluate and Improve the Engagement Capability</td>
+<td>PRD-8.2 Conduct evaluation; PRD-8.3 Agree an action plan</td>
+<td>Evaluation of engagement, improvement plan</td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="monitor-engagement-performance" class="level4">
+<h4 class="anchored" data-anchor-id="monitor-engagement-performance">Monitor Engagement Performance</h4>
+<p><em>Refines:</em> PRD-8.1 Gather evaluation inputs.</p>
+<p>This sub-process tracks how engagement performs. It measures the key performance indicators of VS-10 (see attribute 9), such as user satisfaction and the conversion of needs into requirements. It tracks service performance against the service standards. It tracks reach and participation in consultations and outreach. It reports the results to management and to the value streams concerned. Visible results show stakeholders that their input leads to action.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Measure the key performance indicators of VS-10 Customer and Stakeholder Engagement</td>
+<td>Engagement dashboard</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>GAMSO Quality Management</td>
+</tr>
+<tr class="even">
+<td>Track service performance against the service standards</td>
+<td>Service performance report</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>3.4.3 Service agreement</td>
+</tr>
+<tr class="odd">
+<td>Track reach and participation</td>
+<td>Reach report</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>1.5.2 Promotion to use</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="evaluate-and-improve-the-engagement-capability" class="level4">
+<h4 class="anchored" data-anchor-id="evaluate-and-improve-the-engagement-capability">Evaluate and Improve the Engagement Capability</h4>
+<p><em>Refines:</em> PRD-8.2 Conduct evaluation; PRD-8.3 Agree an action plan.</p>
+<p>This sub-process asks whether engagement creates relevance and public value. It evaluates whether captured needs led to changes in products and services, and how long that took. It assesses which segments are reached well and which are not. It reviews the effectiveness of channels and campaigns. It adjusts the strategy, the portfolio model, and the channels based on the findings. Improvements are prioritized and tracked, in line with SAF capability 4.1.4 <em>Improvement management</em>.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Evaluate whether needs led to changes, and how quickly</td>
+<td>Needs follow-up evaluation</td>
+<td>PRD-8.2 Conduct evaluation</td>
+<td>4.1.5 Accountability</td>
+</tr>
+<tr class="even">
+<td>Assess the reach per segment and the effectiveness of channels</td>
+<td>Segment and channel evaluation</td>
+<td>PRD-8.2 Conduct evaluation</td>
+<td>2.2.5 User research</td>
+</tr>
+<tr class="odd">
+<td>Adjust strategy, portfolio model, and channels, and track improvements</td>
+<td>Improvement plan</td>
+<td>PRD-8.3 Agree an action plan</td>
+<td>4.1.4 Improvement management</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+<section id="actors-and-roles" class="level2">
+<h2 class="anchored" data-anchor-id="actors-and-roles">5. Actors and roles</h2>
+<p>VS-10 faces outward more than any other supporting value stream. The table shows the actors and the reference roles involved. Specialized role names used in an NSI map onto these reference roles (see <em>Role names in the value streams</em>); for example, the head of communication, the account manager, the user researcher, the communications officer, and the impact analyst are ROL-23 Relationship manager, and the service portfolio manager and service desk staff are ROL-22 Dissemination and service manager. Relationships with data providers are organized in the collaboration COL-01 <em>Data provision partnership</em>, and relationships with other producers in COL-02 <em>National statistical system</em>.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Actor or role</th>
+<th>ID</th>
+<th>Responsibility in VS-10 Customer and Stakeholder Engagement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data user</td>
+<td>ACT-05</td>
+<td>Expresses needs, uses services, gives feedback</td>
+</tr>
+<tr class="even">
+<td>Data provider</td>
+<td>ACT-03</td>
+<td>Provides data; is engaged on burden, transparency, and the use of their data</td>
+</tr>
+<tr class="odd">
+<td>Respondent</td>
+<td>ACT-04</td>
+<td>Provides data through surveys; is informed about the purpose and protection of their data</td>
+</tr>
+<tr class="even">
+<td>Other producer of official statistics</td>
+<td>ACT-06</td>
+<td>Coordinates needs and communication within the national statistical system</td>
+</tr>
+<tr class="odd">
+<td>International statistical organization</td>
+<td>ACT-07</td>
+<td>Expresses international requirements and cooperates on communication</td>
+</tr>
+<tr class="even">
+<td>Process owners of the production value streams</td>
+<td>ROL-01</td>
+<td>Receive requirements and report what can be delivered</td>
+</tr>
+<tr class="odd">
+<td>Dissemination and service manager</td>
+<td>ROL-22</td>
+<td>Manages the service portfolio and day-to-day user support</td>
+</tr>
+<tr class="even">
+<td>Relationship manager</td>
+<td>ROL-23</td>
+<td>Owns the stakeholder strategy and the relationships with key users, providers, and partners; runs outreach, user research, and impact measurement</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="capabilities-processes-and-functions" class="level2">
+<h2 class="anchored" data-anchor-id="capabilities-processes-and-functions">6. Capabilities, processes, and functions</h2>
+<section id="capability-foundations" class="level3">
+<h3 class="anchored" data-anchor-id="capability-foundations">Capability foundations</h3>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Capability group</th>
+<th>Capabilities</th>
+<th>Role in VS-10 Customer and Stakeholder Engagement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.1 Statistical design and build</td>
+<td>1.1.1 Needs inventory</td>
+<td>Capture and analyze needs as input for the design of products</td>
+</tr>
+<tr class="even">
+<td>1.5 Dissemination</td>
+<td>1.5.2 Promotion to use</td>
+<td>Promote awareness and correct use of statistics</td>
+</tr>
+<tr class="odd">
+<td>2.2 Research</td>
+<td>2.2.5 User research</td>
+<td>Understand users, their needs, and their satisfaction</td>
+</tr>
+<tr class="even">
+<td>3.1 Business operations</td>
+<td>3.1.4 Communication management</td>
+<td>Manage external communication and media relations</td>
+</tr>
+<tr class="odd">
+<td>3.4 Customer and chain interaction</td>
+<td>3.4.1 Services management, 3.4.2 Contact management, 3.4.3 Service agreement, 3.4.4 Self-service</td>
+<td>Manage the service portfolio, relationships, service standards, and self-service</td>
+</tr>
+<tr class="even">
+<td>4.1 Strategy and leadership</td>
+<td>4.1.1 Strategy and governance, 4.1.5 Accountability, 4.1.6 Collaboration</td>
+<td>Align engagement with strategy, account to society, cooperate with partners</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="stages-processes-and-functions" class="level3">
+<h3 class="anchored" data-anchor-id="stages-processes-and-functions">Stages, processes, and functions</h3>
+<p>The table follows the mapping in <em>Business Processes, Mapping to value stream stages</em>.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Realized by processes</th>
+<th>Main functions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-10.1 Identify and Segment Stakeholders</td>
+<td>PRD-1.2 Consult and confirm needs; DSP-6 Participate in data space governance</td>
+<td>FUN-1.3 Manage strategic collaboration; FUN-10.9 Manage users and services</td>
+</tr>
+<tr class="even">
+<td>VS-10.2 Collect and Analyze User Needs</td>
+<td>PRD-1.1 Identify needs; PRD-1.2 Consult and confirm needs</td>
+<td>FUN-3.1 Design and build statistical products; FUN-10.9 Manage users and services</td>
+</tr>
+<tr class="odd">
+<td>VS-10.3 Define and Manage Service Portfolios</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>FUN-10.9 Manage users and services</td>
+</tr>
+<tr class="even">
+<td>VS-10.4 Deliver Services and Manage Relationships</td>
+<td>PRD-7.5 Provide user support; MDS-6 Support researchers; OVA-6 Data Supplier Management</td>
+<td>FUN-6.1 Manage data supplier relationships; FUN-10.9 Manage users and services</td>
+</tr>
+<tr class="odd">
+<td>VS-10.5 Engage and Communicate with Stakeholders</td>
+<td>PRD-7.4 Promote dissemination products</td>
+<td>FUN-1.4 Build public confidence; FUN-10.6 Manage communication</td>
+</tr>
+<tr class="even">
+<td>VS-10.6 Monitor Impact and Satisfaction</td>
+<td>PRD-8.1 Gather evaluation inputs; PRD-8.2 Conduct evaluation</td>
+<td>FUN-5.2 Assure and review quality; FUN-10.9 Manage users and services</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-scroll">
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-10 (b) stages realized by processes and functions</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</section>
+<section id="framework-mappings" class="level3">
+<h3 class="anchored" data-anchor-id="framework-mappings">Framework mappings</h3>
+<p>Where the primary value streams map to the production phases of GSBPM, VS-10 maps to the leadership and support activities of GAMSO.</p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>GAMSO area</th>
+<th>Relevance to VS-10 Customer and Stakeholder Engagement</th>
+<th>SAF capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Strategy and Leadership</td>
+<td>Manage relationships with stakeholders and customers; align the portfolio with the strategy</td>
+<td>4.1.1 Strategy and governance, 4.1.6 Collaboration</td>
+</tr>
+<tr class="even">
+<td>Corporate Support</td>
+<td>Manage communication, user support, and service management</td>
+<td>3.1.4 Communication management, 3.4.1 Services management, 3.4.2 Contact management</td>
+</tr>
+<tr class="odd">
+<td>Production (Specify Needs)</td>
+<td>Provide the needs that start the design of statistical products</td>
+<td>1.1.1 Needs inventory</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="principles" class="level2">
+<h2 class="anchored" data-anchor-id="principles">7. Principles</h2>
 <div class="table-scroll">
 <table class="caption-top table">
 <colgroup>
@@ -457,178 +1456,155 @@ Figure&nbsp;2: Interaction with the chain: needs and feedback in; communication,
 <tr class="header">
 <th>Principle</th>
 <th>Statement</th>
-<th>How VS-10 applies it</th>
+<th>How VS-10 Customer and Stakeholder Engagement applies it</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>SAF-P04</strong></td>
-<td>Maximize the benefits for the organization</td>
-<td>Keeps the whole chain aligned to real stakeholder value and public benefit</td>
-</tr>
-<tr class="even">
-<td><strong>SAF-P08</strong></td>
-<td>Data is shared property</td>
-<td>Promotes broad, equitable access and reuse of statistics and services</td>
-</tr>
-<tr class="odd">
-<td><strong>SAF-P02</strong></td>
+<td>SAF-P02</td>
 <td>Active support</td>
-<td>Runs user support and service management as actively-managed services</td>
+<td>Runs user support and service management as actively managed services</td>
 </tr>
 <tr class="even">
-<td><strong>SAF-P11</strong></td>
-<td>Privacy By Design</td>
-<td>Engages data providers and users with transparency about how their data is used and protected</td>
+<td>SAF-P04</td>
+<td>Maximize the benefits for the organization</td>
+<td>Keeps the whole chain aligned with real stakeholder value and public benefit</td>
+</tr>
+<tr class="odd">
+<td>SAF-P08</td>
+<td>Data is shared property</td>
+<td>Promotes broad and equal access to statistics and services, and their reuse</td>
+</tr>
+<tr class="even">
+<td>SAF-P11</td>
+<td>Privacy by design</td>
+<td>Engages data providers and users openly about how their data is used and protected</td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
-<section id="roles-and-actors" class="level2">
-<h2 class="anchored" data-anchor-id="roles-and-actors">Roles and Actors</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Indicative, not prescriptive
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The roles below are indicative, not a mandated organizational structure. The SAF deliberately leaves organization design to each NSI — assign these responsibilities to fit your own size, culture, and operating model.</p>
-</div>
-</div>
+<section id="interfaces-services-and-events" class="level2">
+<h2 class="anchored" data-anchor-id="interfaces-services-and-events">8. Interfaces, services, and events</h2>
+<p><strong>Business services</strong></p>
 <div class="table-scroll">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Role</th>
-<th>Description</th>
+<th>Service</th>
+<th>Offered to</th>
+<th>Realized in</th>
+<th>Interfaces</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Head of Communication / Engagement</strong></td>
-<td>Owns the stakeholder strategy and the external relationship</td>
-</tr>
-<tr class="even">
-<td><strong>User Researcher</strong></td>
-<td>Collects and analyzes user needs and satisfaction</td>
-</tr>
-<tr class="odd">
-<td><strong>Service / Product Portfolio Manager</strong></td>
-<td>Defines and manages the catalog of services and data products</td>
-</tr>
-<tr class="even">
-<td><strong>Account / Relationship Manager</strong></td>
-<td>Manages relationships with key providers, partners, and policy users</td>
-</tr>
-<tr class="odd">
-<td><strong>Service Desk / User Support</strong></td>
-<td>Operates day-to-day user support</td>
-</tr>
-<tr class="even">
-<td><strong>Communications / Outreach Officer</strong></td>
-<td>Runs outreach, workshops, and knowledge-sharing events</td>
-</tr>
-<tr class="odd">
-<td><strong>Impact Analyst</strong></td>
-<td>Measures use, societal impact, and satisfaction</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="the-value-stream-flow" class="level2">
-<h2 class="anchored" data-anchor-id="the-value-stream-flow">The Value-Stream Flow</h2>
-<p>VS-10’s six business processes form a continuous engagement cycle — <strong>understand → offer → deliver → measure</strong> — that feeds back on itself.</p>
-<div class="cell" data-fig-width="6" data-layout-align="default">
-<div class="cell-output-display">
-<div id="fig-3" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>
-
-<pre class="mermaid mermaid-js" data-label="fig-3">flowchart LR
-    A["10.1 Identify &amp;&lt;br/&gt;Segment Stakeholders"] --&gt; B["10.2 Collect &amp;&lt;br/&gt;Analyze User Needs"]
-    B --&gt; C["10.3 Define &amp; Manage&lt;br/&gt;Service Portfolios"]
-    C --&gt; D["10.4 Deliver Services &amp;&lt;br/&gt;Manage Relationships"]
-    D --&gt; E["10.5 Engage &amp;&lt;br/&gt;Communicate"]
-    E --&gt; F["10.6 Monitor Impact&lt;br/&gt;&amp; Satisfaction"]
-    F -.-&gt;|"insight feeds the next cycle"| A
-
-    style A fill:#f5f3ff,stroke:#7c3aed
-    style B fill:#f5f3ff,stroke:#7c3aed
-    style C fill:#eff6ff,stroke:#2563eb
-    style D fill:#ecfdf5,stroke:#059669
-    style E fill:#ecfdf5,stroke:#059669
-    style F fill:#fef3c7,stroke:#d97706
-</pre>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: The six business processes as a continuous engagement cycle.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Understand — know who and what.</strong> The cycle begins by <strong>identifying and segmenting stakeholders</strong> (10.1): mapping the ecosystem of users, data providers, partners, and policymakers and understanding their roles and expectations. It then <strong>collects and analyzes user needs</strong> (10.2): gathering feedback, running consultations, and translating stakeholder needs into concrete data or service requirements.</p>
-<p><strong>Offer — shape the response.</strong> Those needs shape the <strong>definition and management of service portfolios</strong> (10.3): catalogs of business services and data products that address stakeholder needs and align with strategic goals — the bridge between what users want and what the chain produces.</p>
-<p><strong>Deliver — serve and communicate.</strong> Services are put into the hands of users by <strong>delivering services and managing relationships</strong> (10.4): operating customer support, service desks, and account management, and monitoring satisfaction and service performance. Alongside delivery, VS-10 <strong>engages and communicates with stakeholders</strong> (10.5): outreach, workshops, and knowledge-sharing that promote awareness and correct understanding of statistical outputs.</p>
-<p><strong>Measure — learn and feed back.</strong> Finally it <strong>monitors impact and satisfaction</strong> (10.6): measuring how data and services are used, assessing societal impact, and feeding insight back into planning and innovation — closing the loop so the next cycle of needs is better understood.</p>
-<div class="table-scroll">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Business process</th>
-<th>What it produces</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>VS-10.1 Identify and Segment Stakeholders</td>
-<td>Stakeholder map and segments</td>
-</tr>
-<tr class="even">
+<td>Needs intake service</td>
+<td>Users, partners, policy stakeholders</td>
 <td>VS-10.2 Collect and Analyze User Needs</td>
-<td>Needs register / service requirements</td>
+<td>Consultations, user councils, feedback channels, needs register</td>
 </tr>
-<tr class="odd">
+<tr class="even">
+<td>Service portfolio service</td>
+<td>Users; VS-06 Dissemination and Service Delivery</td>
 <td>VS-10.3 Define and Manage Service Portfolios</td>
-<td>Service &amp; product portfolio</td>
-</tr>
-<tr class="even">
-<td>VS-10.4 Deliver Services and Manage Relationships</td>
-<td>Operating support &amp; managed relationships</td>
+<td>Service catalog</td>
 </tr>
 <tr class="odd">
-<td>VS-10.5 Engage and Communicate with Stakeholders</td>
-<td>Outreach, communication, awareness</td>
+<td>Relationship management service</td>
+<td>Key users, partners, data providers</td>
+<td>VS-10.4 Deliver Services and Manage Relationships</td>
+<td>Account managers, relationship records</td>
 </tr>
 <tr class="even">
+<td>Customer support service</td>
+<td>All users</td>
+<td>VS-10.4 Deliver Services and Manage Relationships</td>
+<td>Service desk, self-service, together with VS-06 Dissemination and Service Delivery</td>
+</tr>
+<tr class="odd">
+<td>Communication and outreach service</td>
+<td>The public, the media, education</td>
+<td>VS-10.5 Engage and Communicate with Stakeholders</td>
+<td>Events, media relations, literacy programs</td>
+</tr>
+<tr class="even">
+<td>Impact and satisfaction service</td>
+<td>NSI management, value streams</td>
 <td>VS-10.6 Monitor Impact and Satisfaction</td>
-<td>Impact &amp; satisfaction insight (fed back to the chain)</td>
+<td>Satisfaction surveys, impact reports</td>
 </tr>
 </tbody>
 </table>
 </div>
+<p><strong>Business events</strong></p>
+<div class="table-scroll">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Triggers or marks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>User need captured</em></td>
+<td>Entry of a need into the needs register in VS-10.2 Collect and Analyze User Needs</td>
+</tr>
+<tr class="even">
+<td><em>Need routed to design or innovation</em></td>
+<td>Routing of a requirement to a primary value stream or to VS-08 Innovation and Methodological Development</td>
+</tr>
+<tr class="odd">
+<td><em>Consultation held</em></td>
+<td>Completion of a consultation or user council meeting</td>
+</tr>
+<tr class="even">
+<td><em>Service request</em></td>
+<td>Start of service delivery in VS-10.4 Deliver Services and Manage Relationships</td>
+</tr>
+<tr class="odd">
+<td><em>Feedback received</em></td>
+<td>Receipt of usage and satisfaction data from VS-06 Dissemination and Service Delivery</td>
+</tr>
+<tr class="even">
+<td><em>Provider engagement</em></td>
+<td>Contact with data providers, together with VS-01 Data Acquisition and Ingestion</td>
+</tr>
+<tr class="odd">
+<td><em>Complaint received</em></td>
+<td>Handling of a complaint and, where relevant, referral to VS-07 Governance and Compliance</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-scroll">
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-10 event choreography between users, data providers, VS-10, VS-06, the primary value streams, and VS-08: need captured, consultation, need routed, service request, feedback received, and complaint</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
 </section>
-<section id="capability-governance" class="level2">
-<h2 class="anchored" data-anchor-id="capability-governance">Capability Governance</h2>
-<p>VS-10 is itself a capability that is <strong>designed</strong> (engagement strategy, portfolio model), <strong>built</strong> (support and feedback channels — with VS-09), <strong>operated</strong> (continuous dialogue, support, communication), and <strong>improved</strong> (10.6 insight). Unlike a primary stream it produces <strong>relevance, relationships, and insight</strong>, not statistical data, and runs as a <strong>continuous dialogue</strong> rather than a per-cycle production run.</p>
-<section id="key-performance-indicators" class="level3">
-<h3 class="anchored" data-anchor-id="key-performance-indicators">Key Performance Indicators</h3>
+<section id="key-performance-indicators" class="level2">
+<h2 class="anchored" data-anchor-id="key-performance-indicators">9. Key performance indicators</h2>
 <div class="table-scroll">
 <table class="caption-top table">
 <colgroup>
@@ -656,95 +1632,29 @@ Figure&nbsp;3: The six business processes as a continuous engagement cycle.
 </tr>
 <tr class="odd">
 <td>Service performance</td>
-<td>Support response and resolution times against the service standard</td>
+<td>Response and resolution times of support against the service standard</td>
 <td>Monthly</td>
 </tr>
 <tr class="even">
 <td>Reach and engagement</td>
-<td>Participation in consultations and outreach; channel reach across segments</td>
+<td>Participation in consultations and outreach; reach of channels across segments</td>
 <td>Per campaign, annually</td>
 </tr>
 <tr class="odd">
 <td>Impact evidence</td>
-<td>Documented uses of official statistics in policy, research, and media</td>
+<td>Documented uses of official statistics in policy, research, and the media</td>
 <td>Annually</td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
-</section>
-<section id="interactions-services-and-events" class="level2">
-<h2 class="anchored" data-anchor-id="interactions-services-and-events">Interactions, Services and Events</h2>
-<div class="table-scroll">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Counterpart</th>
-<th>VS-10 provides</th>
-<th>VS-10 receives</th>
-<th>Interaction / event</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Users &amp; society</strong></td>
-<td>Services, support, communication, the service portfolio</td>
-<td>Needs, feedback, satisfaction</td>
-<td>“User need captured”, “Consultation”, “Service request”</td>
-</tr>
-<tr class="even">
-<td><strong>Data providers (via VS-01)</strong></td>
-<td>Relationship management, transparency</td>
-<td>Willingness to provide data, provider needs</td>
-<td>“Provider engagement”</td>
-</tr>
-<tr class="odd">
-<td><strong>VS-06 Dissemination</strong></td>
-<td>Service requirements &amp; user expectations</td>
-<td>Usage and satisfaction data (its §6.5)</td>
-<td>“Feedback received”</td>
-</tr>
-<tr class="even">
-<td><strong>VS-08 Innovation &amp; design across VS-01…06</strong></td>
-<td>User-driven needs and service requirements</td>
-<td>New/improved products and services</td>
-<td>“Need routed to design/innovation”</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="business-objects-artefacts" class="level2">
-<h2 class="anchored" data-anchor-id="business-objects-artefacts">Business Objects / Artefacts</h2>
-<p>VS-10 manages enabling artefacts: the <strong>stakeholder map and segments</strong>, the <strong>user-needs register</strong>, the <strong>service and product portfolio</strong>, <strong>relationship and support records</strong>, and <strong>impact and satisfaction metrics</strong>. These carry user insight into the rest of the chain and are maintained continuously rather than versioned per production cycle. Each artefact nevertheless has a designated owner and a managed lifecycle (SAF-P03): changes are tracked and outdated entries are retired.</p>
-</section>
-<section id="applying-this-to-your-nsi" class="level2">
-<h2 class="anchored" data-anchor-id="applying-this-to-your-nsi">Applying This to Your NSI</h2>
-<section id="maturity-assessment-checklist" class="level3">
-<h3 class="anchored" data-anchor-id="maturity-assessment-checklist">Maturity Assessment Checklist</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">Have we mapped and segmented our stakeholders (users, providers, partners, policymakers)?</label></li>
-<li><label><input type="checkbox">Do we systematically collect and analyze user needs and translate them into requirements?</label></li>
-<li><label><input type="checkbox">Do we manage a service/product portfolio aligned to those needs and to strategy?</label></li>
-<li><label><input type="checkbox">Do we operate user support and manage key relationships, monitoring satisfaction?</label></li>
-<li><label><input type="checkbox">Do we measure impact and feed insight back into design and innovation (VS-08)?</label></li>
-</ul>
-</section>
-<section id="scenarios" class="level3">
-<h3 class="anchored" data-anchor-id="scenarios">Scenarios</h3>
-<p><strong>Scenario A — A new user need becomes a product.</strong> Through consultation (10.2) VS-10 learns that regional policymakers need more granular labour-market data. It logs the requirement, adds a candidate product to the portfolio (10.3), routes the need to design (VS-04/VS-05) and, where new methods are required, to VS-08. Once released by VS-06, VS-10 monitors uptake and satisfaction (10.6) and refines the offering.</p>
-<p><strong>Scenario B — Closing the feedback loop.</strong> VS-06.5 reports confusion about confidence intervals in a release. VS-10 analyzes the feedback (10.2/10.6), provides targeted user guidance and a plain-language explainer (10.5), and feeds a documentation improvement back to VS-05/VS-06 design — turning a usability problem into a concrete improvement.</p>
-<p><strong>Scenario C — A new audience emerges.</strong> Monitoring shows journalists increasingly republishing statistics from third-party aggregators, sometimes incorrectly. VS-10 identifies data journalists as a distinct segment (10.1), consults them on their needs — machine-readable releases, embeddable visuals, plain-language methodology notes (10.2) — and adds a media-service offer to the portfolio (10.3). The channel requirements are routed to VS-06 and VS-09, an embargoed media briefing service is set up under VS-07’s equal-access policy (10.4/10.5), and citation accuracy in the press is tracked as an impact measure (10.6).</p>
+<section id="toolkit" class="level2">
+<h2 class="anchored" data-anchor-id="toolkit">10. Toolkit</h2>
+<p>Examples from NSI practice and a maturity checklist for VS-10 are part of the SAF Toolkit.</p>
+<p><strong>Toolkit:</strong> SAF-TK-V10 VS-10 Customer and Stakeholder Engagement companion <strong>[VC17]</strong></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
