@@ -417,9 +417,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#examples-and-anti-patterns-4" id="toc-examples-and-anti-patterns-4" class="nav-link" data-scroll-target="#examples-and-anti-patterns-4">10. Examples and anti-patterns</a></li>
   </ul></li>
   <li><a href="#boundary-position-6-consumed-data" id="toc-boundary-position-6-consumed-data" class="nav-link" data-scroll-target="#boundary-position-6-consumed-data">Boundary Position #6: Consumed Data</a></li>
+  </ul></li>
+  <li><a href="#statistical-data-value-chain" id="toc-statistical-data-value-chain" class="nav-link" data-scroll-target="#statistical-data-value-chain">Statistical Data Value Chain</a>
+  <ul class="collapse">
   <li><a href="#value-chains-introduction" id="toc-value-chains-introduction" class="nav-link" data-scroll-target="#value-chains-introduction">Value Chains Introduction</a>
   <ul class="collapse">
   <li><a href="#purpose-of-this-chapter-1" id="toc-purpose-of-this-chapter-1" class="nav-link" data-scroll-target="#purpose-of-this-chapter-1">Purpose of this chapter</a></li>
+  <li><a href="#where-to-find-what" id="toc-where-to-find-what" class="nav-link" data-scroll-target="#where-to-find-what">Where to find what</a></li>
   <li><a href="#the-chain-at-a-glance" id="toc-the-chain-at-a-glance" class="nav-link" data-scroll-target="#the-chain-at-a-glance">The chain at a glance</a></li>
   <li><a href="#the-four-process-types-1" id="toc-the-four-process-types-1" class="nav-link" data-scroll-target="#the-four-process-types-1">The four process types</a></li>
   <li><a href="#how-each-value-stream-is-described" id="toc-how-each-value-stream-is-described" class="nav-link" data-scroll-target="#how-each-value-stream-is-described">How each value stream is described</a></li>
@@ -6274,13 +6278,19 @@ ul.task-list li input[type="checkbox"] {
 <section id="boundary-position-6-consumed-data" class="level2">
 <h2 class="anchored" data-anchor-id="boundary-position-6-consumed-data">Boundary Position #6: Consumed Data</h2>
 <p><strong>Description:</strong> Consumed data is released data that users have taken into their own environment and use for their own purposes. Examples are a government departments using an unemployment rate in a policy note, a researcher combining released tables with other sources, a journalist quoting an inflation figure, or an application that pulls a series from the API every day. The NSI has no custody of consumed data and cannot control how it is used, combined, or presented. It can influence correct use only through the quality of its documentation, its terms of use, its user support, and its errata.</p>
-<p><strong>Why it is described:</strong> The SAF describes #6 so that the end of the NSI’s responsibility is explicit, just as #0 marks where it begins. Everything the NSI can do for correct use has to be done at #5: documentation, accuracy measures, terms of use, and a clear correction history. What the NSI learns about consumed data comes back as usage and feedback, through VS-06.5 and VS-10. That feedback closes the loop: it shapes new information needs and, through them, the next cycle of the value chain from #0 onward. <br> <br> # Statistical Data Value Chain</p>
+<p><strong>Why it is described:</strong> The SAF describes #6 so that the end of the NSI’s responsibility is explicit, just as #0 marks where it begins. Everything the NSI can do for correct use has to be done at #5: documentation, accuracy measures, terms of use, and a clear correction history. What the NSI learns about consumed data comes back as usage and feedback, through VS-06.5 and VS-10. That feedback closes the loop: it shapes new information needs and, through them, the next cycle of the value chain from #0 onward.</p>
 </section>
+</section>
+<section id="statistical-data-value-chain" class="level1">
+<h1>Statistical Data Value Chain</h1>
 <section id="value-chains-introduction" class="level2">
 <h2 class="anchored" data-anchor-id="value-chains-introduction">Value Chains Introduction</h2>
 <section id="purpose-of-this-chapter-1" class="level3">
 <h3 class="anchored" data-anchor-id="purpose-of-this-chapter-1">Purpose of this chapter</h3>
-<p>This chapter describes how the statistical value chain works in practice. The Strategy chapter introduced the ten value streams, their stages, and the value they create. The Steady-State Architecture describes the results the chain hands over: the states, their quality gates, and their metadata. This chapter describes the work between those results: the stages, the processes that realize them, the roles that carry them out, and the events that connect them. Every value stream is described with the same structure, so that NSIs can compare them and map their own organization onto them. <strong>[VC1]</strong> <br> ### Where to find what</p>
+<p>This chapter describes how the statistical value chain works in practice. The Strategy chapter introduced the ten value streams, their stages, and the value they create. The Steady-State Architecture describes the results the chain hands over: the states, their quality gates, and their metadata. This chapter describes the work between those results: the stages, the processes that realize them, the roles that carry them out, and the events that connect them. Every value stream is described with the same structure, so that NSIs can compare them and map their own organization onto them. <strong>[VC1]</strong></p>
+</section>
+<section id="where-to-find-what" class="level3">
+<h3 class="anchored" data-anchor-id="where-to-find-what">Where to find what</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -6332,12 +6342,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="the-chain-at-a-glance" class="level3">
 <h3 class="anchored" data-anchor-id="the-chain-at-a-glance">The chain at a glance</h3>
 <p>Six primary value streams form the production chain. Each one consumes a registered state version and produces the next. They are loosely coupled (SAF-P07): a value stream needs no knowledge of the internal work of its neighbors, only of the state it receives and the state it delivers. The handover is triggered by a registration event. Four supporting value streams run continuously across the whole chain. They set the rules, develop new methods, provide the platforms, and keep the chain connected to its users and data providers.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/value-stream-context-map.png" class="img-fluid figure-img"></p>
-<figcaption>Value Stream Context Map</figcaption>
-</figure>
-</div>
+<!-- ![Value Stream Context Map](../images/value-stream-context-map.png) -->
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -6476,12 +6481,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/four-process-governance-pattern.png" class="img-fluid figure-img"></p>
-<figcaption>The Four-Process Governance Pattern</figcaption>
-</figure>
-</div>
+<!-- ![The Four-Process Governance Pattern](../images/four-process-governance-pattern.png) -->
 </section>
 <section id="how-each-value-stream-is-described" class="level3">
 <h3 class="anchored" data-anchor-id="how-each-value-stream-is-described">How each value stream is described</h3>
@@ -6730,7 +6730,6 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 </tbody>
 </table>
-<p><br></p>
 </section>
 <section id="position-and-state-transition" class="level4">
 <h4 class="anchored" data-anchor-id="position-and-state-transition">2. Position and state transition</h4>
@@ -6772,7 +6771,6 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 </tbody>
 </table>
-<p><br></p>
 </section>
 <section id="stages" class="level4">
 <h4 class="anchored" data-anchor-id="stages">3. Stages</h4>
@@ -6819,7 +6817,6 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <p>Each stage below is described with its activities. The column <em>SAF process</em> shows the business process from <em>Business Processes</em> that the activity belongs to. The column <em>Other reference</em> shows the principles, capabilities, or external frameworks that the activity applies. <strong>[VC9]</strong></p>
-<p><br></p>
 <section id="vs-01.1-identify-data-needs-and-sources" class="level5">
 <h5 class="anchored" data-anchor-id="vs-01.1-identify-data-needs-and-sources">VS-01.1 Identify Data Needs and Sources</h5>
 <p><strong>Value created:</strong> <em>Clear understanding of what data is needed and where it can be obtained.</em></p>
@@ -6872,7 +6869,6 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p><br></p>
 </section>
 <section id="vs-01.2-establish-data-agreements-and-access-rights" class="level5">
 <h5 class="anchored" data-anchor-id="vs-01.2-establish-data-agreements-and-access-rights">VS-01.2 Establish Data Agreements and Access Rights</h5>
@@ -6926,7 +6922,6 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p><br></p>
 </section>
 <section id="vs-01.3-collect-or-receive-data" class="level5">
 <h5 class="anchored" data-anchor-id="vs-01.3-collect-or-receive-data">VS-01.3 Collect or Receive Data</h5>
@@ -7029,7 +7024,6 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p><br></p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 100%">
@@ -7042,7 +7036,6 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 </tbody>
 </table>
-<p><br></p>
 </section>
 <section id="vs-01.4-validate-and-log-data-intake" class="level5">
 <h5 class="anchored" data-anchor-id="vs-01.4-validate-and-log-data-intake">VS-01.4 Validate and Log Data Intake</h5>
@@ -7097,7 +7090,6 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p><br></p>
 </section>
 <section id="vs-01.5-store-and-register-raw-data-artifacts" class="level5">
 <h5 class="anchored" data-anchor-id="vs-01.5-store-and-register-raw-data-artifacts">VS-01.5 Store and Register Raw Data Artifacts</h5>
@@ -8740,23 +8732,10 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </section>
-<section id="examples" class="level4">
-<h4 class="anchored" data-anchor-id="examples">10. Examples</h4>
-<p><strong>Survey.</strong> The Labor Force Survey uses a mixed-mode approach. Sampled persons first receive a web invitation; non-respondents are called after two weeks, and hard-to-reach groups are visited by an interviewer. Each mode records its own paradata, such as completion time or interviewer identifier. Responses are registered as one #1 version per collection batch, and the data collection manager follows the response rate per mode during the cycle.</p>
-<p><strong>Administrative register.</strong> The tax authority delivers its quarterly file by secure file transfer on day 38, within the agreed 45 days. The intake checks the checksum, the schema, and the record count, which is 99.2% of the expected volume. Fourteen unknown business identifiers are not an intake issue; they pass through with a flag. The file is registered as <code>RD-TAX-2026Q3-001</code>, and the <em>Raw Data Registered</em> event notifies VS-02.</p>
-<p><strong>Web data.</strong> Every night, 12,500 product pages of 25 retailers are scraped; on a typical day 95% succeed. Each scrape records the scraper version and a fingerprint of the page structure. When one retailer redesigns its website, the fingerprints change and the success rate drops. Management detects the trend and sends an improvement action to Design, where the scraper is rebuilt.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>PLACEHOLDER: VS-01 maturity checklist and end-to-end scenarios to be added to the toolkit</strong></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<section id="toolkit" class="level4">
+<h4 class="anchored" data-anchor-id="toolkit">10. Toolkit</h4>
+<p>Examples from NSI practice, the maturity checklist, and end-to-end scenarios for VS-01 are part of the SAF Toolkit.</p>
+<p><strong>Toolkit:</strong> SAF-TK-V01 VS-01 Data Acquisition and Ingestion companion <strong>[VC17]</strong></p>
 </section>
 </section>
 </section>
