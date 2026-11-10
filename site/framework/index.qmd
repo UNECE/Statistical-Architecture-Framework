@@ -26,9 +26,11 @@ A few sections are still marked as not yet written. That is deliberate — the f
 
 | Chapter | What it covers | Who needs it |
 |---|---|---|
-| [Business Architecture](business-architecture.qmd) | The steady states of data, the four-process governance pattern, how the principles apply across the chain, and a summary of each value stream | Everyone working with production |
+| [Business Architecture](business-architecture.qmd) | Business actors and roles, business processes and functions, and the reference models for the statistical data value chain | Architects, process owners |
+| [Steady-State Architecture](steady-states.qmd) | The steady states of data, from Raw to Released: definition, quality gate, ownership, security and reuse of each | Everyone working with production |
+| [Statistical Data Value Chain](value-chain.qmd) | The chain at a glance, the four process types, how each value stream is described, and how the principles apply across the chain | Everyone working with production |
 
-**The ten value streams in depth** — one chapter each. Each follows the same shape: purpose, position in the chain, the steady state it produces, the four process types, business services and boundary contracts, events, framework mappings, a maturity checklist and worked scenarios.
+**The ten value streams in depth** — one chapter each. Each follows the same shape: purpose, position and state transition, stages, the four process types, actors and roles, capabilities, principles, interfaces and events, key performance indicators, and the toolkit.
 
 *The six production streams, in the order data passes through them:*
 

@@ -47,7 +47,7 @@ Running it by hand is the quickest way to check your edits to the source documen
 
 ### Generated files are not committed
 
-The 14 generated pages and the `site/images/` folder (copied from `docs/images/`) are listed in the repository's root `.gitignore`. They exist only in working copies and CI runners, and never appear in commits or diffs.
+The 16 generated pages and the `site/images/` folder (copied from `docs/images/`) are listed in the repository's root `.gitignore`. They exist only in working copies and CI runners, and never appear in commits or diffs.
 
 `_document-info.md` is the exception: it is committed as an **empty placeholder**. Quarto expands `{{< include >}}` while it first scans the project, *before* the pre-render script runs. Without the placeholder, a fresh checkout (as in CI) fails with `Include directive failed ... could not find file .../_document-info.md`. The script then overwrites the placeholder, and the render uses the real content. After a local render, git shows the file as modified. Don't commit that change; discard it with `git restore site/framework/_document-info.md`, or hide it once with `git update-index --skip-worktree site/framework/_document-info.md`.
 
@@ -69,16 +69,18 @@ The `PAGES` list defines what gets generated. Each entry is `(file name, page ti
 | `motivation.qmd` | Motivation | `^# Motivation\s*$` |
 | `strategy.qmd` | Strategy | `^# Strategy\s*$` |
 | `business-architecture.qmd` | Business Architecture | `^# Business Architecture\s*$` |
-| `vs-01.qmd` | VS-01 Data Acquisition and Ingestion | `^## VS-01\.0 (?!—)` |
-| `vs-02.qmd` | VS-02 Data Standardization and Integration | `^## VS-02\.0 (?!—)` |
-| `vs-03.qmd` | VS-03 Data Editing and Enrichment | `^## VS-03\.0 (?!—)` |
-| `vs-04.qmd` | VS-04 Estimation, Analysis, and Statistical Modeling | `^## VS-04\.0 (?!—)` |
-| `vs-05.qmd` | VS-05 Statistical Product Composition | `^## VS-05\.0 (?!—)` |
-| `vs-06.qmd` | VS-06 Dissemination and Service Delivery | `^## VS-06\.0 (?!—)` |
-| `vs-07.qmd` | VS-07 Governance and Compliance | `^## VS-07\.0 (?!—)` |
-| `vs-08.qmd` | VS-08 Innovation and Methodological Development | `^## VS-08\.0 (?!—)` |
-| `vs-09.qmd` | VS-09 Infrastructure and Platform Enablement | `^## VS-09\.0 (?!—)` |
-| `vs-10.qmd` | VS-10 Customer and Stakeholder Engagement | `^## VS-10\.0 (?!—)` |
+| `steady-states.qmd` | Steady-State Architecture | `^# Steady-State Architecture\s*$` |
+| `value-chain.qmd` | Statistical Data Value Chain | `^# Statistical Data Value Chain\s*$` |
+| `vs-01.qmd` | VS-01 Data Acquisition and Ingestion | `^### VS-01 ` |
+| `vs-02.qmd` | VS-02 Data Standardization and Integration | `^### VS-02 ` |
+| `vs-03.qmd` | VS-03 Data Editing and Enrichment | `^### VS-03 ` |
+| `vs-04.qmd` | VS-04 Estimation, Analysis, and Statistical Modeling | `^### VS-04 ` |
+| `vs-05.qmd` | VS-05 Statistical Product Composition | `^### VS-05 ` |
+| `vs-06.qmd` | VS-06 Dissemination and Service Delivery | `^### VS-06 ` |
+| `vs-07.qmd` | VS-07 Governance and Compliance | `^### VS-07 ` |
+| `vs-08.qmd` | VS-08 Innovation and Methodological Development | `^### VS-08 ` |
+| `vs-09.qmd` | VS-09 Infrastructure and Platform Enablement | `^### VS-09 ` |
+| `vs-10.qmd` | VS-10 Customer and Stakeholder Engagement | `^### VS-10 ` |
 
 The "Introduction and Scope" page starts at `# Preface`, so it holds the Preface, Acknowledgements and Introduction chapters together.
 
@@ -105,12 +107,7 @@ For each entry in `PAGES`, in order, the script looks for the first line matchin
 
 If a pattern matches nothing, the script stops at once with `no heading matching ... for page '...'` (see [Troubleshooting](#troubleshooting)).
 
-**Why the VS patterns end with `(?!—)`.** The document mentions each value stream heading twice:
-
-- In the Business Architecture chapter, a summary section per stream, written with an em dash: `## VS-02.0 — Data Standardization and Integration`
-- Further down, the full chapter for each stream, without a dash: `## VS-02.0 Data Standardization and Integration`
-
-The negative lookahead `(?!—)` refuses a match when an em dash follows `VS-NN.0 `. As a result, the summaries stay inside the Business Architecture page and only the full chapters start new pages. **This difference in punctuation carries meaning: don't "harmonise" those headings.**
+**Where the value stream pages start.** The value streams are level-3 headings inside the chapter `# Statistical Data Value Chain`: `### VS-02 Data Standardization and Integration`, grouped under `## Primary value streams` and `## Supporting value streams`. The pattern `^### VS-02 ` (with the trailing space) matches only that chapter heading. The stage headings inside a stream, such as `##### VS-02.1 Profile and Assess Data Structure`, are deeper and have a `.` after the number, so they do not match.
 
 ### 3. Cut the document into page bodies
 
@@ -118,8 +115,14 @@ Each page runs from its start line up to the line before the next page's start, 
 
 ```python
 ends = starts[1:] + [len(lines)]
-bodies = {name: lines[s:e] ...}
+bodies = {name: normalise(title, lines[s:e]) ...}
 ```
+
+`normalise` then turns each slice into a stand-alone page, in three steps:
+
+1. **Drop the opening heading if it repeats the page title** (see step 6), keeping its anchor.
+2. **Drop a heading left at the very end of the page with nothing below it.** `## Supporting value streams` sits between VS-06 and VS-07 in the source, so it would otherwise close the VS-06 page.
+3. **Raise the headings so that the shallowest one is level 2.** The sections of a value stream are level 4 in the source (`#### 1. Purpose and value created`); on the stream's own page they become level 2, so they appear in the page's table of contents. Pages that already start at level 2 are unchanged.
 
 Everything **above** `# Preface` goes on no chapter page. Part of it feeds the document information (step 3b), and the rest (the title and the hand-written "Content" list of links) is dropped, because Quarto's sidebar and table of contents replace it.
 
@@ -182,10 +185,12 @@ title: "<title from PAGES>"
 <page body, trailing blank lines removed>
 ```
 
+If the page's opening heading repeats its title (`# Business Architecture`, or `### VS-01 Data Acquisition and Ingestion`), the heading is dropped, because Quarto already shows the title above the page. Its anchor is kept as an empty `[]{#id}` span, so links to it still land at the top of the page. The introduction page keeps its `# Preface` heading, which differs from its title.
+
 ### 7. Report
 
 - If any link could not be resolved, the script exits with a non-zero status and lists all of them. Quarto then stops the render. Note that the pages have **already been written** by then, so a local preview may still show them.
-- Otherwise it prints `split-framework: wrote 14 pages and _document-info.md to site/framework, copied N images to site/images`.
+- Otherwise it prints `split-framework: wrote 16 pages and _document-info.md to site/framework, copied N images to site/images`.
 
 Warnings and errors go to stderr, and each starts with `split-framework:`.
 
@@ -194,9 +199,10 @@ Warnings and errors go to stderr, and each starts with `split-framework:`.
 Most edits to `docs/SAF Framework.md` need no thought about the script. The following do:
 
 - **Keep the document information above `# Preface`:** the lines starting with `Created on:`, `Workgroup SAF:` and `Current version:`, and the version table. Update them there. They appear on the Framework index page.
-- **Keep the four top-level headings exactly as they are:** `# Preface`, `# Motivation`, `# Strategy`, `# Business Architecture`. Each one must be alone on its line (trailing spaces are fine).
-- **Keep the value stream chapter headings in the form `## VS-NN.0 Name`:** level 2, `VS-` followed by two digits, `.0`, a space, then the name with **no em dash**. Keep them in order, VS-01 to VS-10, and after `# Business Architecture`.
-- **Keep the summary headings in Business Architecture in the form `## VS-NN.0 — Name`, with the em dash.** Otherwise a summary heading would be taken as the start of a page.
+- **Keep the six top-level headings exactly as they are:** `# Preface`, `# Motivation`, `# Strategy`, `# Business Architecture`, `# Steady-State Architecture`, `# Statistical Data Value Chain`. Each one must be alone on its line (trailing spaces are fine).
+- **Keep the value stream chapter headings in the form `### VS-NN Name`:** level 3, `VS-` followed by two digits, a space, then the name. Keep them in order, VS-01 to VS-10, inside `# Statistical Data Value Chain`.
+- **Keep the sections of a value stream at level 4 and deeper.** On its own page each stream is raised so that its shallowest heading becomes level 2; a stray level-2 or level-3 heading inside a stream would stop that.
+- **A heading with nothing below it at the end of a page is dropped.** This is how `## Primary value streams` and `## Supporting value streams` disappear from the site (the sidebar shows those groups instead). Do not link to such a heading.
 - **Internal links (`[text](#anchor)`) must point to a heading that exists, and each anchor must be unique across the whole document.** If two pages have a heading with the same anchor, a link to it is ambiguous and the build fails. When two headings have the same text, give one of them an explicit `{#unique-id}`.
 - **Prefer explicit `{#id}`s on headings you link to.** The heading text can then change without breaking links.
 - **Images:** put the file in **`docs/images/`** and reference it as `![Caption](images/<file>)`, or `![Caption](<images/<file with spaces>>)`, on a line of its own with blank lines around it. Quarto then renders it as a captioned figure, in the PDF as well. Avoid raw HTML `<img>` tags (the PDF drops them) and images hosted at GitHub `user-attachments` URLs (they live outside the repository).
@@ -221,7 +227,7 @@ When you rename or remove a page, delete the old generated `.qmd` from your work
 The heading that starts page `<name>` was not found below the previous page's start. Typical causes:
 
 - The heading was renamed, or its level changed (`#` versus `##`).
-- An em dash was added to a VS chapter heading, or a regular hyphen or en dash replaced the em dash in a summary heading. Either way, the wrong heading now matches, or nothing does.
+- A value stream chapter heading no longer has the form `### VS-NN Name` (a `.0` was added after the number, for example).
 - Chapters were reordered, so the heading now comes *before* the previous page's start.
 
 Fix the heading in the source document, or adjust the regex in `PAGES` if the change was intentional.

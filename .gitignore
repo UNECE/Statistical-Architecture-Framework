@@ -9,6 +9,8 @@ site/framework/introduction.qmd
 site/framework/motivation.qmd
 site/framework/strategy.qmd
 site/framework/business-architecture.qmd
+site/framework/steady-states.qmd
+site/framework/value-chain.qmd
 site/framework/vs-01.qmd
 site/framework/vs-02.qmd
 site/framework/vs-03.qmd
@@ -22,3 +24,6 @@ site/framework/vs-10.qmd
 
 # Copied from docs/images/ by site/scripts/split-framework.py
 site/images/
+
+/.quarto/
+**/*.quarto_ipynb

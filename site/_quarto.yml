@@ -35,6 +35,8 @@ website:
         - section: "Business architecture"
           contents:
             - framework/business-architecture.qmd
+            - framework/steady-states.qmd
+            - framework/value-chain.qmd
         - section: "Production value streams"
           contents:
             - framework/vs-01.qmd

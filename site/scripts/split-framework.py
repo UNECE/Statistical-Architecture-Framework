@@ -21,23 +21,26 @@ IMAGES_SRC = SOURCE.parent / "images"
 IMAGES_OUT = SITE / "images"
 
 # page -> (title, start pattern). A page runs until the start of the next one.
-# Summary headings in Business Architecture use "VS-NN.0 — Name" (em dash);
-# the per-stream chapters use "VS-NN.0 Name", which is what splits the vs pages.
+# The value stream chapters are level-3 headings "### VS-NN Name", grouped under
+# "## Primary value streams" and "## Supporting value streams" in the chapter
+# "# Statistical Data Value Chain".
 PAGES = [
     ("introduction", "Introduction and Scope", r"^# Preface\s*$"),
     ("motivation", "Motivation", r"^# Motivation\s*$"),
     ("strategy", "Strategy", r"^# Strategy\s*$"),
     ("business-architecture", "Business Architecture", r"^# Business Architecture\s*$"),
-    ("vs-01", "VS-01 Data Acquisition and Ingestion", r"^## VS-01\.0 (?!—)"),
-    ("vs-02", "VS-02 Data Standardization and Integration", r"^## VS-02\.0 (?!—)"),
-    ("vs-03", "VS-03 Data Editing and Enrichment", r"^## VS-03\.0 (?!—)"),
-    ("vs-04", "VS-04 Estimation, Analysis, and Statistical Modeling", r"^## VS-04\.0 (?!—)"),
-    ("vs-05", "VS-05 Statistical Product Composition", r"^## VS-05\.0 (?!—)"),
-    ("vs-06", "VS-06 Dissemination and Service Delivery", r"^## VS-06\.0 (?!—)"),
-    ("vs-07", "VS-07 Governance and Compliance", r"^## VS-07\.0 (?!—)"),
-    ("vs-08", "VS-08 Innovation and Methodological Development", r"^## VS-08\.0 (?!—)"),
-    ("vs-09", "VS-09 Infrastructure and Platform Enablement", r"^## VS-09\.0 (?!—)"),
-    ("vs-10", "VS-10 Customer and Stakeholder Engagement", r"^## VS-10\.0 (?!—)"),
+    ("steady-states", "Steady-State Architecture", r"^# Steady-State Architecture\s*$"),
+    ("value-chain", "Statistical Data Value Chain", r"^# Statistical Data Value Chain\s*$"),
+    ("vs-01", "VS-01 Data Acquisition and Ingestion", r"^### VS-01 "),
+    ("vs-02", "VS-02 Data Standardization and Integration", r"^### VS-02 "),
+    ("vs-03", "VS-03 Data Editing and Enrichment", r"^### VS-03 "),
+    ("vs-04", "VS-04 Estimation, Analysis, and Statistical Modeling", r"^### VS-04 "),
+    ("vs-05", "VS-05 Statistical Product Composition", r"^### VS-05 "),
+    ("vs-06", "VS-06 Dissemination and Service Delivery", r"^### VS-06 "),
+    ("vs-07", "VS-07 Governance and Compliance", r"^### VS-07 "),
+    ("vs-08", "VS-08 Innovation and Methodological Development", r"^### VS-08 "),
+    ("vs-09", "VS-09 Infrastructure and Platform Enablement", r"^### VS-09 "),
+    ("vs-10", "VS-10 Customer and Stakeholder Engagement", r"^### VS-10 "),
 ]
 
 # Partial included by framework/index.qmd ("About this document" callout).
@@ -70,11 +73,46 @@ def headings(lines):
 
 
 def page_anchors(lines):
-    anchors = set()
+    # The first line may be the "[]{#id}" span left in place of the title heading.
+    anchors = set(re.findall(r"^\[\]\{#([^}\s]+)\}$", lines[0])) if lines else set()
     for _, line in headings(lines):
         m = HEADING.match(line)
         anchors.add(m.group(4) or slugify(m.group(2)))
     return anchors
+
+
+def normalise(title, body):
+    """Turn a slice of the source document into a stand-alone page body."""
+    out = []
+    # The page's opening heading usually repeats its title ("# Business
+    # Architecture", "### VS-01 Data ..."). Quarto already shows the title,
+    # so drop that heading and keep its anchor for links that point to it.
+    m = HEADING.match(body[0]) if body else None
+    if m and re.sub(r"\.0\b", "", m.group(2)) == title:
+        out.append(f"[]{{#{m.group(4) or slugify(m.group(2))}}}")
+        body = body[1:]
+    else:
+        body = list(body)
+
+    # A heading at the very end of a page, with nothing below it, is the title of
+    # the group of pages that follows ("## Supporting value streams" after VS-06).
+    # The sidebar already shows those groups, so drop it.
+    while True:
+        while body and not body[-1].strip():
+            body.pop()
+        last = [i for i, _ in headings(body)][-1:]
+        if not last or last[0] != len(body) - 1:
+            break
+        body.pop()
+
+    # Raise the headings so that the shallowest one is level 2: the sections of a
+    # value stream are level 4 in the source, but level 2 on their own page.
+    levels = [len(HEADING.match(line).group(1)) for _, line in headings(body)]
+    shift = min(levels) - 2 if levels else 0
+    if shift > 0:
+        for i, line in list(headings(body)):
+            body[i] = line[shift:]
+    return out + body
 
 
 def find_starts(lines):
@@ -133,7 +171,8 @@ def main():
     info = document_info(lines[:starts[0]])
     (OUT_DIR / DOC_INFO).write_text(info, encoding="utf-8")
     ends = starts[1:] + [len(lines)]
-    bodies = {name: lines[s:e] for (name, _, _), s, e in zip(PAGES, starts, ends)}
+    bodies = {name: normalise(title, lines[s:e])
+              for (name, title, _), s, e in zip(PAGES, starts, ends)}
     anchors = {name: page_anchors(body) for name, body in bodies.items()}
 
     problems = []
