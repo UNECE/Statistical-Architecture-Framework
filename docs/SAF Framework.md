@@ -3429,7 +3429,7 @@ This documentation uses a handful of architecture terms. Here is what they mean 
 
 Six primary value streams form the production chain. Each one consumes a registered state version and produces the next. They are loosely coupled (SAF-P07): a value stream needs no knowledge of the internal work of its neighbors, only of the state it receives and the state it delivers. The handover is triggered by a registration event. Four supporting value streams run continuously across the whole chain. They set the rules, develop new methods, provide the platforms, and keep the chain connected to its users and data providers.
 
-![Value Stream Context Map](images/value-stream-context-map.png)
+<!-- ![Value Stream Context Map](images/value-stream-context-map.png) -->
 
 | VS | Value stream | Type | State in → out | Event out |
 |---|---|---|---|---|
@@ -3459,7 +3459,7 @@ The supporting value streams do not follow a production cycle. They run the same
 | Execution | Statistical data, registered in a state | 4 Collect, 5 Process, 6 Analyze, 7 Disseminate | Operate |
 | Management | Quality reports and improvements | 8 Evaluate; overarching quality and metadata management | Improve |
 
-![The Four-Process Governance Pattern](images/four-process-governance-pattern.png)
+<!-- ![The Four-Process Governance Pattern](images/four-process-governance-pattern.png) -->
 
 ### How each value stream is described
 
