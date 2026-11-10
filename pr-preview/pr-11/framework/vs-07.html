@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>VS-07 Governance and Compliance – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../framework/vs-08.html" rel="next">
+<link href="../framework/vs-06.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f374ad13d1ca50ffd7110ca4e9b8aceb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../framework/index.html" aria-current="page"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-07.html">Supporting value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-07.html">VS-07 Governance and Compliance</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAF Architecture Framework</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Foundations</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and Scope</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/motivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Motivation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/strategy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strategy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Business architecture</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/business-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/steady-states.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Steady-State Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/value-chain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Data Value Chain</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Production value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-01 Data Acquisition and Ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-02 Data Standardization and Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-03 Data Editing and Enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-04 Estimation, Analysis, and Statistical Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-05 Statistical Product Composition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-06 Dissemination and Service Delivery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Supporting value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-07.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">VS-07 Governance and Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-08 Innovation and Methodological Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-09 Infrastructure and Platform Enablement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-10 Customer and Stakeholder Engagement</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#purpose-and-value-created" id="toc-purpose-and-value-created" class="nav-link active" data-scroll-target="#purpose-and-value-created">1. Purpose and value created</a></li>
+  <li><a href="#position-and-interaction-with-the-chain" id="toc-position-and-interaction-with-the-chain" class="nav-link" data-scroll-target="#position-and-interaction-with-the-chain">2. Position and interaction with the chain</a></li>
+  <li><a href="#stages" id="toc-stages" class="nav-link" data-scroll-target="#stages">3. Stages</a>
+  <ul class="collapse">
+  <li><a href="#vs-07.1-define-governance-frameworks-and-policies" id="toc-vs-07.1-define-governance-frameworks-and-policies" class="nav-link" data-scroll-target="#vs-07.1-define-governance-frameworks-and-policies">VS-07.1 Define Governance Frameworks and Policies</a></li>
+  <li><a href="#vs-07.2-establish-legal-and-regulatory-compliance-mechanisms" id="toc-vs-07.2-establish-legal-and-regulatory-compliance-mechanisms" class="nav-link" data-scroll-target="#vs-07.2-establish-legal-and-regulatory-compliance-mechanisms">VS-07.2 Establish Legal and Regulatory Compliance Mechanisms</a></li>
+  <li><a href="#vs-07.3-implement-data-and-metadata-governance" id="toc-vs-07.3-implement-data-and-metadata-governance" class="nav-link" data-scroll-target="#vs-07.3-implement-data-and-metadata-governance">VS-07.3 Implement Data and Metadata Governance</a></li>
+  <li><a href="#vs-07.4-monitor-quality-and-compliance-indicators" id="toc-vs-07.4-monitor-quality-and-compliance-indicators" class="nav-link" data-scroll-target="#vs-07.4-monitor-quality-and-compliance-indicators">VS-07.4 Monitor Quality and Compliance Indicators</a></li>
+  <li><a href="#vs-07.5-audit-certify-and-report-compliance" id="toc-vs-07.5-audit-certify-and-report-compliance" class="nav-link" data-scroll-target="#vs-07.5-audit-certify-and-report-compliance">VS-07.5 Audit, Certify, and Report Compliance</a></li>
+  <li><a href="#vs-07.6-update-and-improve-governance-mechanisms" id="toc-vs-07.6-update-and-improve-governance-mechanisms" class="nav-link" data-scroll-target="#vs-07.6-update-and-improve-governance-mechanisms">VS-07.6 Update and Improve Governance Mechanisms</a></li>
+  </ul></li>
+  <li><a href="#the-four-process-types" id="toc-the-four-process-types" class="nav-link" data-scroll-target="#the-four-process-types">4. The four process types</a>
+  <ul class="collapse">
+  <li><a href="#design-provides-the-governance-model" id="toc-design-provides-the-governance-model" class="nav-link" data-scroll-target="#design-provides-the-governance-model">Design: provides the governance model</a></li>
+  <li><a href="#implementation-provides-the-governance-mechanisms" id="toc-implementation-provides-the-governance-mechanisms" class="nav-link" data-scroll-target="#implementation-provides-the-governance-mechanisms">Implementation: provides the governance mechanisms</a></li>
+  <li><a href="#execution-runs-the-governance-loop" id="toc-execution-runs-the-governance-loop" class="nav-link" data-scroll-target="#execution-runs-the-governance-loop">Execution: runs the governance loop</a></li>
+  <li><a href="#management-provides-governance-effectiveness-reports" id="toc-management-provides-governance-effectiveness-reports" class="nav-link" data-scroll-target="#management-provides-governance-effectiveness-reports">Management: provides governance effectiveness reports</a></li>
+  </ul></li>
+  <li><a href="#actors-and-roles" id="toc-actors-and-roles" class="nav-link" data-scroll-target="#actors-and-roles">5. Actors and roles</a></li>
+  <li><a href="#capabilities-processes-and-functions" id="toc-capabilities-processes-and-functions" class="nav-link" data-scroll-target="#capabilities-processes-and-functions">6. Capabilities, processes, and functions</a>
+  <ul class="collapse">
+  <li><a href="#capability-foundations" id="toc-capability-foundations" class="nav-link" data-scroll-target="#capability-foundations">Capability foundations</a></li>
+  <li><a href="#stages-processes-and-functions" id="toc-stages-processes-and-functions" class="nav-link" data-scroll-target="#stages-processes-and-functions">Stages, processes, and functions</a></li>
+  <li><a href="#framework-mappings" id="toc-framework-mappings" class="nav-link" data-scroll-target="#framework-mappings">Framework mappings</a></li>
+  </ul></li>
+  <li><a href="#principles" id="toc-principles" class="nav-link" data-scroll-target="#principles">7. Principles</a></li>
+  <li><a href="#interfaces-services-and-events" id="toc-interfaces-services-and-events" class="nav-link" data-scroll-target="#interfaces-services-and-events">8. Interfaces, services, and events</a></li>
+  <li><a href="#key-performance-indicators" id="toc-key-performance-indicators" class="nav-link" data-scroll-target="#key-performance-indicators">9. Key performance indicators</a></li>
+  <li><a href="#toolkit" id="toc-toolkit" class="nav-link" data-scroll-target="#toolkit">10. Toolkit</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="vs-07.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-07.html">Supporting value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-07.html">VS-07 Governance and Compliance</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">VS-07 Governance and Compliance</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- GENERATED from docs/SAF Framework.md by scripts/split-framework.py - do not edit -->
+<p><span id="vs-07-governance-and-compliance"></span></p>
+<section id="purpose-and-value-created" class="level2">
+<h2 class="anchored" data-anchor-id="purpose-and-value-created">1. Purpose and value created</h2>
+<p>VS-07 makes sure that every process, dataset, and product of the NSI operates under clear rules, standards, and accountability. It defines the governance frameworks and policies, maps the applicable law to concrete procedures, assigns the data governance roles, monitors quality and compliance, and audits and certifies the results. VS-07 does not move data along the chain. It oversees the value streams that do, and it is the place where the data principles SAF-P09, SAF-P10, and SAF-P11 are enforced across the whole organization. Its frame of reference includes the European Statistics Code of Practice, the GDPR, the national statistics law, and international quality standards. The value created is <strong>integrity and accountability</strong>. Users, respondents, and regulators can trust that the NSI works ethically, transparently, and within the law.</p>
+<p>VS-07 is a supporting value stream. It aligns with the GAMSO areas <em>Strategy and Leadership</em> and <em>Corporate Support</em> rather than with the production phases of GSBPM. This section describes its business layer for all four process types. The application and technology controls that implement governance are provided with VS-09.</p>
+<ul>
+<li><strong>Compliance officer, quality manager, or auditor:</strong> the stages in attribute 3, which describe the continuous governance loop.</li>
+<li><strong>Chief data officer or policy maker:</strong> the Design processes in attribute 4.</li>
+<li><strong>Process owners of other value streams:</strong> attributes 2 and 8, which describe what VS-07 provides and what it expects in return.</li>
+<li><strong>Manager who wants the big picture:</strong> attributes 1, 2, and 9. Examples and scenarios are part of the SAF Toolkit.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>How a supporting value stream differs from a primary one
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VS-07 has no steady-state data transition. It does not take data from one state to the next, and it does not appear in the chain from #1 to #6. It runs continuously, not per production cycle, so no <em>Data Registered</em> event triggers it. Its output is an enabling capability rather than a data artifact: governance frameworks, compliance mechanisms, assurance, and audit results. It foregrounds the principles SAF-P02 to SAF-P06, and it enforces the data principles of the primary value streams.</p>
+</div>
+</div>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-07 (a) value stream and capabilities</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="position-and-interaction-with-the-chain" class="level2">
+<h2 class="anchored" data-anchor-id="position-and-interaction-with-the-chain">2. Position and interaction with the chain</h2>
+<p>VS-07 is not a stage in the production line. It runs horizontally across all six primary value streams and the other supporting streams. It interacts with them in two directions. Downward, it issues governance frameworks, policies, roles, and controls. Upward, it receives compliance evidence, quality indicators, and audit findings. The <em>Audit and Compliance Reporting</em> sub-process of every primary value stream feeds directly into VS-07.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Counterpart</th>
+<th>VS-07 provides</th>
+<th>VS-07 receives</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-01 to VS-06 (primary value streams)</td>
+<td>Frameworks, policies, data governance roles, controls, quality criteria</td>
+<td>Compliance evidence, quality indicators, audit findings</td>
+</tr>
+<tr class="even">
+<td>VS-08 Innovation and Methodological Development</td>
+<td>Compliance criteria that a new method must meet before production</td>
+<td>Requests to assess and approve new methods</td>
+</tr>
+<tr class="odd">
+<td>VS-09 Infrastructure and Platform Enablement</td>
+<td>Security and continuity policy to enforce</td>
+<td>Security posture, incident evidence</td>
+</tr>
+<tr class="even">
+<td>VS-10 Customer and Stakeholder Engagement</td>
+<td>Commitments on transparency and accountability</td>
+<td>Signals on stakeholder trust, complaints</td>
+</tr>
+<tr class="odd">
+<td>External parties: regulators, peer reviewers, the public</td>
+<td>Certifications, assurance statements, transparency reports</td>
+<td>Regulatory requirements and changes, peer review findings</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-07 (c) interaction with the chain: VS-07 across the six primary value streams, with frameworks, policies, and controls flowing down, and compliance evidence, quality indicators, and audit findings flowing up; certification and assurance to external parties</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="stages" class="level2">
+<h2 class="anchored" data-anchor-id="stages">3. Stages</h2>
+<p>The stages of VS-07 form a continuous governance loop: plan, build, operate, and improve. The loop never stops. Rules are set, embedded in the work of the value streams, checked, and revised as the law, the organization, and the evidence change.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Name</th>
+<th>Value added</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-07.1</td>
+<td>Define Governance Frameworks and Policies</td>
+<td>The organization works under one clear rulebook</td>
+</tr>
+<tr class="even">
+<td>VS-07.2</td>
+<td>Establish Legal and Regulatory Compliance Mechanisms</td>
+<td>Every process stays within the law through concrete procedures</td>
+</tr>
+<tr class="odd">
+<td>VS-07.3</td>
+<td>Implement Data and Metadata Governance</td>
+<td>Governance is built into how the value streams actually work</td>
+</tr>
+<tr class="even">
+<td>VS-07.4</td>
+<td>Monitor Quality and Compliance Indicators</td>
+<td>The status of quality and compliance is visible at all times</td>
+</tr>
+<tr class="odd">
+<td>VS-07.5</td>
+<td>Audit, Certify, and Report Compliance</td>
+<td>There is independent assurance that the statistics can be trusted</td>
+</tr>
+<tr class="even">
+<td>VS-07.6</td>
+<td>Update and Improve Governance Mechanisms</td>
+<td>Governance keeps pace with change and lessons learned</td>
+</tr>
+</tbody>
+</table>
+<p>The strategy model labels two stages as VS-07.5. They are distinct activities; this section treats the second as VS-07.6. <strong>[VC27]</strong></p>
+<p>Each stage below is described with its activities. The column <em>SAF process</em> shows the business process from <em>Business Processes</em> that the activity belongs to. Several governance activities have no reference process in the SAF; they are carried out through NSI-specific management processes, which the column shows as <em>NSI-specific</em>. The column <em>Other reference</em> shows the principles, capabilities, or external frameworks that the activity applies.</p>
+<p><br></p>
+<section id="vs-07.1-define-governance-frameworks-and-policies" class="level3">
+<h3 class="anchored" data-anchor-id="vs-07.1-define-governance-frameworks-and-policies">VS-07.1 Define Governance Frameworks and Policies</h3>
+<p><strong>Value created:</strong> <em>One clear rulebook under which the whole organization works.</em></p>
+<p>The loop begins with the frameworks and policies that set the rules. These are the charters and principles for data, metadata, ethics, confidentiality, and statistical quality. They translate the European Statistics Code of Practice and the NSI’s mission into rules that the value streams can apply. Each policy has an owner, a scope, a version, and a review date. The data policy defines which data assets the NSI holds, who is accountable for them, and how they are classified. Policies are written so that they can be checked: a rule that cannot be monitored is rewritten until it can.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define charters and principles for data, metadata, ethics, confidentiality, and quality</td>
+<td>Governance framework</td>
+<td>NSI-specific</td>
+<td>4.1.1 Strategy and governance; European Statistics Code of Practice</td>
+</tr>
+<tr class="even">
+<td>Define the data policy: data assets, accountability, classification</td>
+<td>Data policy</td>
+<td>DLM-1 Plan and design data assets</td>
+<td>SAF-P09 No data without metadata and classification</td>
+</tr>
+<tr class="odd">
+<td>Define the quality framework and quality criteria for products and processes</td>
+<td>Quality framework</td>
+<td>OVA-1 Quality Management</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Assign an owner, scope, version, and review date to every policy</td>
+<td>Policy register</td>
+<td>NSI-specific</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-07.2-establish-legal-and-regulatory-compliance-mechanisms" class="level3">
+<h3 class="anchored" data-anchor-id="vs-07.2-establish-legal-and-regulatory-compliance-mechanisms">VS-07.2 Establish Legal and Regulatory Compliance Mechanisms</h3>
+<p><strong>Value created:</strong> <em>Every process stays within the law through concrete, assigned procedures.</em></p>
+<p>In parallel, VS-07 identifies the regulations that apply to the NSI. Examples are the GDPR, the national statistics law, archival law, and the conditions in data sharing agreements and data spaces. For each regulation, it defines the procedures that keep the processes within the law. It maintains the register of processing activities and the requirements for data protection impact assessments. It defines how security classification and protection follow from the law. The result is a compliance register that links each legal obligation to the procedures, the value streams, and the roles that fulfill it.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Identify the applicable regulations and agreements</td>
+<td>Regulatory inventory</td>
+<td>NSI-specific</td>
+<td>3.1.7 Legal support</td>
+</tr>
+<tr class="even">
+<td>Define procedures that keep each process within the law</td>
+<td>Compliance procedures</td>
+<td>NSI-specific</td>
+<td>SAF-P11 Privacy by design</td>
+</tr>
+<tr class="odd">
+<td>Maintain the register of processing activities and the requirements for impact assessments</td>
+<td>Register of processing activities</td>
+<td>DLM-4 Classify and protect data</td>
+<td>3.3.1 Privacy management</td>
+</tr>
+<tr class="even">
+<td>Link each obligation to procedures, value streams, and roles</td>
+<td>Compliance register</td>
+<td>NSI-specific</td>
+<td>4.1.5 Accountability</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-07.3-implement-data-and-metadata-governance" class="level3">
+<h3 class="anchored" data-anchor-id="vs-07.3-implement-data-and-metadata-governance">VS-07.3 Implement Data and Metadata Governance</h3>
+<p><strong>Value created:</strong> <em>Governance built into how the value streams work, rather than living only on paper.</em></p>
+<p>The frameworks become operational when roles and processes are in place. VS-07 assigns the data governance roles per data domain and per steady state: data owner, data steward, and data custodian. It defines the processes for creating and maintaining metadata, for tracking lineage, and for granting access to data for reuse. It sets the obligations that every registration in a steady state must meet, in line with SAF-P09. It coordinates the data governance board, where data owners and stewards resolve issues across domains. From this point on, every value stream can show who is accountable for each dataset.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Assign data owner, data steward, and data custodian per domain and steady state</td>
+<td>Role assignments</td>
+<td>OVA-3 Data Management; DLM-1 Plan and design data assets</td>
+<td>2.1.1 Data lifecycle management</td>
+</tr>
+<tr class="even">
+<td>Define processes for metadata creation, maintenance, and lineage</td>
+<td>Metadata and lineage rules</td>
+<td>OVA-2 Metadata Management</td>
+<td>SAF-P09 No data without metadata and classification</td>
+</tr>
+<tr class="odd">
+<td>Define the rules for access to registered data for reuse</td>
+<td>Reuse and access rules</td>
+<td>DLM-6 Provide data for reuse</td>
+<td>SAF-P08 Data is shared property</td>
+</tr>
+<tr class="even">
+<td>Operate the data governance board</td>
+<td>Board decisions</td>
+<td>NSI-specific</td>
+<td>4.1.6 Collaboration</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-07.4-monitor-quality-and-compliance-indicators" class="level3">
+<h3 class="anchored" data-anchor-id="vs-07.4-monitor-quality-and-compliance-indicators">VS-07.4 Monitor Quality and Compliance Indicators</h3>
+<p><strong>Value created:</strong> <em>A current, visible picture of quality and compliance across the organization.</em></p>
+<p>With controls in place, VS-07 monitors whether they work. It collects the quality indicators of processes and outputs, such as accuracy, timeliness, and comparability, from the management sub-processes of the value streams. It tracks compliance status on scorecards and dashboards. It monitors data quality, lineage, and use across registered data. It also receives the compliance reports on research access and data spaces. Deviations are raised with the process owner concerned and followed until they are resolved.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Collect quality indicators of processes and outputs from all value streams</td>
+<td>Quality scorecard</td>
+<td>OVA-1 Quality Management</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Monitor data quality, lineage, and use across registered data</td>
+<td>Data governance dashboard</td>
+<td>DLM-8 Monitor data quality, lineage and use</td>
+<td>CSDA Data Quality</td>
+</tr>
+<tr class="odd">
+<td>Monitor compliance of research access and data space exchanges</td>
+<td>Research and data space compliance status</td>
+<td>MDS-8 Monitor use and compliance; DSP-5 Monitor compliance and report</td>
+<td>SAF-P11 Privacy by design</td>
+</tr>
+<tr class="even">
+<td>Raise deviations with the process owners and track them to resolution</td>
+<td>Deviation log</td>
+<td>OVA-1 Quality Management</td>
+<td>4.1.5 Accountability</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-07.5-audit-certify-and-report-compliance" class="level3">
+<h3 class="anchored" data-anchor-id="vs-07.5-audit-certify-and-report-compliance">VS-07.5 Audit, Certify, and Report Compliance</h3>
+<p><strong>Value created:</strong> <em>Independent assurance that the statistics and the processes behind them can be trusted.</em></p>
+<p>Periodically, VS-07 checks independently whether the frameworks are followed. It plans and conducts internal audits and supports external audits and peer reviews, such as those under the European Statistics Code of Practice. It carries out quality reviews of products and processes. It documents adherence and issues assurance statements and transparency reports. Audit findings are assigned to an owner and a deadline. The audit trails that the primary value streams produce, such as edit lineage and disclosure records, are the evidence used here.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Plan and conduct internal audits; support external audits and peer reviews</td>
+<td>Audit reports</td>
+<td>OVA-1 Quality Management</td>
+<td>4.1.5 Accountability</td>
+</tr>
+<tr class="even">
+<td>Carry out quality reviews of products and processes</td>
+<td>Quality review reports</td>
+<td>PRD-8.2 Conduct evaluation</td>
+<td>GAMSO Quality Management</td>
+</tr>
+<tr class="odd">
+<td>Issue certifications, assurance statements, and transparency reports</td>
+<td>Assurance statements, transparency reports</td>
+<td>NSI-specific</td>
+<td>4.1.5 Accountability</td>
+</tr>
+<tr class="even">
+<td>Assign each finding to an owner with a deadline</td>
+<td>Findings register</td>
+<td>OVA-1 Quality Management</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-07.6-update-and-improve-governance-mechanisms" class="level3">
+<h3 class="anchored" data-anchor-id="vs-07.6-update-and-improve-governance-mechanisms">VS-07.6 Update and Improve Governance Mechanisms</h3>
+<p><strong>Value created:</strong> <em>Governance that evolves with the organization and the law rather than growing rigid.</em></p>
+<p>The loop closes with the revision of the governance mechanisms. Feedback, regulatory changes, audit findings, and lessons learned are incorporated into the policies and controls. Action plans are agreed with the process owners and tracked. Policies and controls that are no longer needed are formally retired. Governance of retention is also applied here: data that must be kept long term is transferred to archives, and data at the end of its retention period is disposed of under control. Each revised policy is issued as a new version, and the value streams are notified.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Incorporate feedback, regulatory changes, and findings into policies and controls</td>
+<td>Revised policies and controls</td>
+<td>PRD-8.3 Agree an action plan</td>
+<td>4.1.4 Improvement management</td>
+</tr>
+<tr class="even">
+<td>Agree and track action plans with process owners</td>
+<td>Action plans</td>
+<td>PRD-8.3 Agree an action plan</td>
+<td>4.1.4 Improvement management</td>
+</tr>
+<tr class="odd">
+<td>Govern archiving and disposal according to retention rules</td>
+<td>Archive and disposal decisions</td>
+<td>DLM-10 Archive and preserve data; DLM-11 Dispose of data</td>
+<td>3.1.8 Information management and archive management</td>
+</tr>
+<tr class="even">
+<td>Retire obsolete policies and notify the value streams of new versions</td>
+<td><em>Policy update issued</em></td>
+<td>NSI-specific</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="the-four-process-types" class="level2">
+<h2 class="anchored" data-anchor-id="the-four-process-types">4. The four process types</h2>
+<p>VS-07 is itself a capability that must be designed, built, operated, and improved. The four process types therefore apply to VS-07 as they do to the primary value streams, but they govern the governance capability rather than a data pipeline. Design produces the governance model and its metadata, Implementation builds the roles, procedures, and tooling, Execution runs the stages of attribute 3, and Management evaluates whether governance itself works. <strong>[VC26]</strong></p>
+<p>Each sub-process refines one or more SAF business processes, which are listed under its heading as <em>Refines</em>. Where no reference process exists, the sub-process is marked as NSI-specific.</p>
+<section id="design-provides-the-governance-model" class="level3">
+<h3 class="anchored" data-anchor-id="design-provides-the-governance-model">Design: provides the governance model</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Design sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design the Governance Operating Model</td>
+<td>DLM-1 Plan and design data assets; NSI-specific</td>
+<td>Governance operating model, role model, decision rights</td>
+</tr>
+<tr class="even">
+<td>Design the Quality and Compliance Indicator Set</td>
+<td>OVA-1 Quality Management</td>
+<td>Indicator set, scorecard design, audit program design</td>
+</tr>
+</tbody>
+</table>
+<section id="design-the-governance-operating-model" class="level4">
+<h4 class="anchored" data-anchor-id="design-the-governance-operating-model">Design the Governance Operating Model</h4>
+<p><em>Refines:</em> DLM-1 Plan and design data assets; NSI-specific management processes.</p>
+<p>This sub-process designs how governance is organized. It defines the governance bodies, such as the data governance board and the quality board, and their decision rights. It defines the role model for data governance and how the roles relate to the reference roles of the SAF. It defines how policies are proposed, approved, issued, and retired. It also defines the escalation paths from the value streams to the governance bodies. A good operating model keeps governance light enough to be followed and strong enough to be enforced, in line with SAF-P04.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define governance bodies and their decision rights</td>
+<td>Governance operating model</td>
+<td>NSI-specific</td>
+<td>4.1.1 Strategy and governance</td>
+</tr>
+<tr class="even">
+<td>Define the role model for data governance</td>
+<td>Role model</td>
+<td>DLM-1 Plan and design data assets</td>
+<td>2.1.1 Data lifecycle management</td>
+</tr>
+<tr class="odd">
+<td>Define the life cycle of policies: proposal, approval, issue, retirement</td>
+<td>Policy life cycle</td>
+<td>NSI-specific</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-the-quality-and-compliance-indicator-set" class="level4">
+<h4 class="anchored" data-anchor-id="design-the-quality-and-compliance-indicator-set">Design the Quality and Compliance Indicator Set</h4>
+<p><em>Refines:</em> OVA-1 Quality Management.</p>
+<p>This sub-process designs what VS-07 measures. It selects the quality indicators for processes and outputs, based on the quality framework and the European quality dimensions. It defines the compliance indicators for each policy and legal obligation. It designs the scorecards and dashboards, and which indicators the value streams must supply. It designs the audit program: which areas are audited, how often, and by whom. The indicator set is kept small enough to be supplied without excessive burden on the value streams.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Select quality indicators for processes and outputs</td>
+<td>Quality indicator set</td>
+<td>OVA-1 Quality Management</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+<tr class="even">
+<td>Define compliance indicators per policy and obligation</td>
+<td>Compliance indicator set</td>
+<td>OVA-1 Quality Management</td>
+<td>4.1.5 Accountability</td>
+</tr>
+<tr class="odd">
+<td>Design the scorecards, dashboards, and audit program</td>
+<td>Scorecard design, audit program</td>
+<td>OVA-1 Quality Management</td>
+<td>GAMSO Quality Management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="implementation-provides-the-governance-mechanisms" class="level3">
+<h3 class="anchored" data-anchor-id="implementation-provides-the-governance-mechanisms">Implementation: provides the governance mechanisms</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Implementation sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Establish Governance Roles and Procedures</td>
+<td>OVA-3 Data Management; NSI-specific</td>
+<td>Appointed role holders, operating procedures, trained staff</td>
+</tr>
+<tr class="even">
+<td>Build Governance Tooling</td>
+<td>PRD-3.4 Configure workflows; OVA-2 Metadata Management</td>
+<td>Policy register, compliance register, dashboards, with VS-09 Infrastructure and Platform Enablement</td>
+</tr>
+</tbody>
+</table>
+<section id="establish-governance-roles-and-procedures" class="level4">
+<h4 class="anchored" data-anchor-id="establish-governance-roles-and-procedures">Establish Governance Roles and Procedures</h4>
+<p><em>Refines:</em> OVA-3 Data Management; NSI-specific management processes.</p>
+<p>This sub-process puts the operating model into practice. Data owners, stewards, and custodians are appointed for each domain and steady state. The governance bodies are set up with their members and meeting cycles. Operating procedures are written for issuing policies, handling deviations, and escalating issues. Role holders are trained, so that they know their responsibilities and the evidence they must supply. Without named people in these roles, governance remains a document rather than a practice.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Appoint data owners, stewards, and custodians</td>
+<td>Appointed role holders</td>
+<td>OVA-3 Data Management</td>
+<td>2.1.1 Data lifecycle management</td>
+</tr>
+<tr class="even">
+<td>Set up the governance bodies and their meeting cycles</td>
+<td>Governance bodies in operation</td>
+<td>NSI-specific</td>
+<td>4.1.6 Collaboration</td>
+</tr>
+<tr class="odd">
+<td>Write operating procedures and train role holders</td>
+<td>Procedures, trained staff</td>
+<td>NSI-specific</td>
+<td>3.1.1 Personnel management (HR)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="build-governance-tooling" class="level4">
+<h4 class="anchored" data-anchor-id="build-governance-tooling">Build Governance Tooling</h4>
+<p><em>Refines:</em> PRD-3.4 Configure workflows; OVA-2 Metadata Management.</p>
+<p>This sub-process builds the tools that governance needs, together with VS-09. It implements the policy register and the compliance register. It configures the dashboards that collect indicators from the value streams. It makes sure that the data catalog records owners, classifications, and lineage, so that governance can be checked automatically where possible. It configures the workflow for audit findings and action plans. Automated checks reduce the burden on the value streams and make compliance visible in real time.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Implement the policy register and the compliance register</td>
+<td>Registers</td>
+<td>NSI-specific</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+<tr class="even">
+<td>Configure dashboards that collect indicators from the value streams</td>
+<td>Quality and compliance dashboards</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>2.1.3 Statistical quality management</td>
+</tr>
+<tr class="odd">
+<td>Make the catalog record owners, classifications, and lineage</td>
+<td>Governance-ready catalog</td>
+<td>OVA-2 Metadata Management</td>
+<td>SAF-P09 No data without metadata and classification</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="execution-runs-the-governance-loop" class="level3">
+<h3 class="anchored" data-anchor-id="execution-runs-the-governance-loop">Execution: runs the governance loop</h3>
+<p>Execution runs the stages of attribute 3 continuously. VS-07.1 to VS-07.3 run when policies are created or revised; VS-07.4 runs continuously; VS-07.5 runs according to the audit program; VS-07.6 runs after audits, incidents, and regulatory changes.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>VS-07</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Trigger</td>
+<td><em>Regulatory change</em>; <em>Audit due</em>; <em>Incident reported</em>; review date of a policy</td>
+</tr>
+<tr class="even">
+<td>Cadence</td>
+<td>Continuous monitoring; periodic audits; annual policy review</td>
+</tr>
+<tr class="odd">
+<td>Performed by</td>
+<td>ROL-05 Chief data officer, ROL-19 Compliance officer, ROL-18 Quality manager, ROL-21 Auditor</td>
+</tr>
+<tr class="even">
+<td>Input</td>
+<td>Laws and regulations, Code of Practice, compliance evidence and quality indicators from all value streams</td>
+</tr>
+<tr class="odd">
+<td>Output</td>
+<td>Policies, compliance register, role assignments, dashboards, audit reports, assurance statements</td>
+</tr>
+<tr class="even">
+<td>Control point</td>
+<td>Approval of policies by the governance bodies; audit conclusions</td>
+</tr>
+<tr class="odd">
+<td>Exception path</td>
+<td>Serious non-compliance escalated to NSI management (ACT-01); confidentiality or security incident handled with ROL-20 Security officer</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="management-provides-governance-effectiveness-reports" class="level3">
+<h3 class="anchored" data-anchor-id="management-provides-governance-effectiveness-reports">Management: provides governance effectiveness reports</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Management sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Evaluate Governance Effectiveness</td>
+<td>PRD-8.1 Gather evaluation inputs; PRD-8.2 Conduct evaluation</td>
+<td>Effectiveness report, burden assessment</td>
+</tr>
+<tr class="even">
+<td>Improve the Governance Capability</td>
+<td>PRD-8.3 Agree an action plan</td>
+<td>Improvement plan for the governance capability</td>
+</tr>
+</tbody>
+</table>
+<section id="evaluate-governance-effectiveness" class="level4">
+<h4 class="anchored" data-anchor-id="evaluate-governance-effectiveness">Evaluate Governance Effectiveness</h4>
+<p><em>Refines:</em> PRD-8.1 Gather evaluation inputs; PRD-8.2 Conduct evaluation.</p>
+<p>This sub-process asks whether governance itself works. It measures the key performance indicators of VS-07 (see attribute 9), such as policy coverage and the closure of audit findings. It assesses the burden that governance places on the value streams, in line with SAF-P04. It checks whether incidents were prevented or only detected afterwards. It collects the views of process owners on the clarity and usefulness of policies. The result is an honest report on where governance adds value and where it only adds work.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Measure the key performance indicators of VS-07 Governance and Compliance</td>
+<td>Effectiveness report</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>GAMSO Quality Management</td>
+</tr>
+<tr class="even">
+<td>Assess the burden of governance on the value streams</td>
+<td>Burden assessment</td>
+<td>PRD-8.2 Conduct evaluation</td>
+<td>SAF-P04 Maximize the benefits for the organization</td>
+</tr>
+<tr class="odd">
+<td>Collect the views of process owners on policies</td>
+<td>Feedback on policies</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="improve-the-governance-capability" class="level4">
+<h4 class="anchored" data-anchor-id="improve-the-governance-capability">Improve the Governance Capability</h4>
+<p><em>Refines:</em> PRD-8.3 Agree an action plan.</p>
+<p>This sub-process turns the evaluation into improvements of the governance capability itself. It simplifies policies that are not followed because they are unclear or too heavy. It automates checks that are now done by hand. It strengthens areas where incidents or findings recur. It prioritizes the improvements by impact and feasibility and tracks them through the following cycles. This is SAF capability 4.1.4 <em>Improvement management</em> applied to governance.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Identify improvements: simplification, automation, strengthening</td>
+<td>Improvement plan</td>
+<td>PRD-8.3 Agree an action plan</td>
+<td>4.1.4 Improvement management</td>
+</tr>
+<tr class="even">
+<td>Prioritize improvements by impact and feasibility</td>
+<td>Prioritized improvement list</td>
+<td>PRD-8.3 Agree an action plan</td>
+<td>GAMSO Capability Management</td>
+</tr>
+<tr class="odd">
+<td>Track the implementation of accepted improvements</td>
+<td>Improvement tracking log</td>
+<td>PRD-8.3 Agree an action plan</td>
+<td>4.1.4 Improvement management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="actors-and-roles" class="level2">
+<h2 class="anchored" data-anchor-id="actors-and-roles">5. Actors and roles</h2>
+<p>VS-07 defines the data governance roles for the whole organization, and it relies on specialists in law, quality, and audit. The table shows the actors and the reference roles involved. Specialized role names used in an NSI map onto these reference roles (see <em>Role names in the value streams</em>); for example, the chief governance officer is ROL-05 Chief data officer, and legal counsel is ROL-19 Compliance officer. The data governance roles are organized in the collaboration COL-06 <em>Data governance board</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Actor or role</th>
+<th>ID</th>
+<th>Responsibility in VS-07 Governance and Compliance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>National Statistical Institute</td>
+<td>ACT-01</td>
+<td>Its management is accountable for the governance framework and decides on escalated issues</td>
+</tr>
+<tr class="even">
+<td>Supervisory and legal authority</td>
+<td>ACT-08</td>
+<td>Sets the legal requirements and supervises compliance, for example the data protection authority</td>
+</tr>
+<tr class="odd">
+<td>International statistical organization</td>
+<td>ACT-07</td>
+<td>Sets common standards and carries out peer reviews, for example under the European Statistics Code of Practice</td>
+</tr>
+<tr class="even">
+<td>Process owners</td>
+<td>ROL-01</td>
+<td>Accountable, in their own value streams, for working within the controls of VS-07 Governance and Compliance and supplying evidence</td>
+</tr>
+<tr class="odd">
+<td>Data owner, data steward, data custodian</td>
+<td>ROL-02, ROL-03, ROL-04</td>
+<td>The data governance roles that VS-07 Governance and Compliance defines and assigns across domains</td>
+</tr>
+<tr class="even">
+<td>Chief data officer</td>
+<td>ROL-05</td>
+<td>Accountable for the governance framework and the data policy of the organization</td>
+</tr>
+<tr class="odd">
+<td>Quality manager</td>
+<td>ROL-18</td>
+<td>Defines quality indicators and monitors quality and compliance status</td>
+</tr>
+<tr class="even">
+<td>Compliance officer</td>
+<td>ROL-19</td>
+<td>Ensures compliance with the Code of Practice, the GDPR, and the statistics law; interprets regulation</td>
+</tr>
+<tr class="odd">
+<td>Security officer</td>
+<td>ROL-20</td>
+<td>Defines and monitors information security and continuity, together with VS-09 Infrastructure and Platform Enablement</td>
+</tr>
+<tr class="even">
+<td>Auditor</td>
+<td>ROL-21</td>
+<td>Conducts internal audits and supports external audits and certifications</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="capabilities-processes-and-functions" class="level2">
+<h2 class="anchored" data-anchor-id="capabilities-processes-and-functions">6. Capabilities, processes, and functions</h2>
+<section id="capability-foundations" class="level3">
+<h3 class="anchored" data-anchor-id="capability-foundations">Capability foundations</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Capability group</th>
+<th>Capabilities</th>
+<th>Role in VS-07 Governance and Compliance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2.1 Data management</td>
+<td>2.1.1 Data lifecycle management, 2.1.2 Metadata management, 2.1.3 Statistical quality management</td>
+<td>Govern data, metadata, and quality across the organization</td>
+</tr>
+<tr class="even">
+<td>3.1 Business operations</td>
+<td>3.1.7 Legal support, 3.1.8 Information management and archive management</td>
+<td>Interpret regulation and govern retention and archiving</td>
+</tr>
+<tr class="odd">
+<td>3.3 Security and privacy</td>
+<td>3.3.1 Privacy management, 3.3.2 Security planning, 3.3.3 Security incident management</td>
+<td>Set the privacy and security policy and handle incidents</td>
+</tr>
+<tr class="even">
+<td>4.1 Strategy and leadership</td>
+<td>4.1.1 Strategy and governance, 4.1.2 Policy and planning, 4.1.4 Improvement management, 4.1.5 Accountability, 4.1.6 Collaboration</td>
+<td>Govern the organization, issue policies, improve governance, account to society</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="stages-processes-and-functions" class="level3">
+<h3 class="anchored" data-anchor-id="stages-processes-and-functions">Stages, processes, and functions</h3>
+<p>The table follows the mapping in <em>Business Processes, Mapping to value stream stages</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Realized by processes</th>
+<th>Main functions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-07.1 Define Governance Frameworks and Policies</td>
+<td>DLM-1 Plan and design data assets</td>
+<td>FUN-1.2 Govern and steer the organization; FUN-5.1 Manage the quality framework; FUN-7.1 Govern data</td>
+</tr>
+<tr class="even">
+<td>VS-07.2 Establish Legal and Regulatory Compliance Mechanisms</td>
+<td>DLM-4 Classify and protect data</td>
+<td>FUN-10.5 Manage legal affairs; FUN-10.8 Manage information security and privacy</td>
+</tr>
+<tr class="odd">
+<td>VS-07.3 Implement Data and Metadata Governance</td>
+<td>OVA-2 Metadata Management; OVA-3 Data Management; DLM-1 Plan and design data assets; DLM-6 Provide data for reuse</td>
+<td>FUN-7.1 Govern data; FUN-7.2 Manage metadata</td>
+</tr>
+<tr class="even">
+<td>VS-07.4 Monitor Quality and Compliance Indicators</td>
+<td>OVA-1 Quality Management; DLM-8 Monitor data quality, lineage and use; MDS-8 Monitor use and compliance; DSP-5 Monitor compliance and report</td>
+<td>FUN-5.2 Assure and review quality; FUN-7.1 Govern data</td>
+</tr>
+<tr class="odd">
+<td>VS-07.5 Audit, Certify, and Report Compliance</td>
+<td>OVA-1 Quality Management; PRD-8.2 Conduct evaluation</td>
+<td>FUN-1.2 Govern and steer the organization; FUN-5.2 Assure and review quality</td>
+</tr>
+<tr class="even">
+<td>VS-07.6 Update and Improve Governance Mechanisms</td>
+<td>PRD-8.3 Agree an action plan; DLM-10 Archive and preserve data; DLM-11 Dispose of data</td>
+<td>FUN-2.1 Plan capability improvements; FUN-7.1 Govern data</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-07 (b) stages realized by processes and functions</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="framework-mappings" class="level3">
+<h3 class="anchored" data-anchor-id="framework-mappings">Framework mappings</h3>
+<p>Where the primary value streams map to the production phases of GSBPM, VS-07 maps to the over-arching activities of GAMSO.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>GAMSO area</th>
+<th>Relevance to VS-07 Governance and Compliance</th>
+<th>SAF capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Strategy and Leadership</td>
+<td>Set the governance strategy, charters, and accountability; manage organizational and ethical frameworks</td>
+<td>4.1.1 Strategy and governance, 4.1.2 Policy and planning, 4.1.5 Accountability</td>
+</tr>
+<tr class="even">
+<td>Corporate Support</td>
+<td>Manage the legal framework, quality management, information security governance, and archives</td>
+<td>2.1.3 Statistical quality management, 3.1.7 Legal support, 3.1.8 Information management and archive management, 3.3.2 Security planning</td>
+</tr>
+<tr class="odd">
+<td>Capability Management</td>
+<td>Govern the life cycle of standards, methods, and data assets</td>
+<td>2.1.1 Data lifecycle management, 4.1.4 Improvement management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="principles" class="level2">
+<h2 class="anchored" data-anchor-id="principles">7. Principles</h2>
+<p>VS-07 enforces the data principles across the whole chain and foregrounds several of the broader architecture principles.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Principle</th>
+<th>Statement</th>
+<th>How VS-07 Governance and Compliance applies or enforces it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-P03</td>
+<td>Active life cycle management</td>
+<td>Governs the life cycle of policies, standards, classifications, and data assets, including archiving and disposal</td>
+</tr>
+<tr class="even">
+<td>SAF-P04</td>
+<td>Maximize the benefits for the organization</td>
+<td>Aligns controls with value and accountability for the organization as a whole, and avoids governance for its own sake</td>
+</tr>
+<tr class="odd">
+<td>SAF-P07</td>
+<td>Implement loosely coupled processes and systems</td>
+<td>Defines the steady-state interface and event conventions under which the value streams are governed</td>
+</tr>
+<tr class="even">
+<td>SAF-P09</td>
+<td>No data without metadata and classification</td>
+<td>Governs the metadata and classification obligations and audits them across every value stream</td>
+</tr>
+<tr class="odd">
+<td>SAF-P10</td>
+<td>Security by design</td>
+<td>Sets and assures the framework for information security and access control</td>
+</tr>
+<tr class="even">
+<td>SAF-P11</td>
+<td>Privacy by design</td>
+<td>Sets the policy for privacy, confidentiality, and disclosure control, and verifies compliance</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="interfaces-services-and-events" class="level2">
+<h2 class="anchored" data-anchor-id="interfaces-services-and-events">8. Interfaces, services, and events</h2>
+<p><strong>Business services</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Service</th>
+<th>Offered to</th>
+<th>Realized in</th>
+<th>Interfaces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Policy and framework service</td>
+<td>All value streams</td>
+<td>VS-07.1 Define Governance Frameworks and Policies</td>
+<td>Policy register, published policies</td>
+</tr>
+<tr class="even">
+<td>Compliance advice service</td>
+<td>Process owners, VS-08 Innovation and Methodological Development</td>
+<td>VS-07.2 Establish Legal and Regulatory Compliance Mechanisms</td>
+<td>Compliance register, advice on new methods and sources</td>
+</tr>
+<tr class="odd">
+<td>Data governance service</td>
+<td>Data owners, stewards, and custodians</td>
+<td>VS-07.3 Implement Data and Metadata Governance</td>
+<td>Role assignments, data governance board</td>
+</tr>
+<tr class="even">
+<td>Quality and compliance monitoring service</td>
+<td>NSI management, process owners</td>
+<td>VS-07.4 Monitor Quality and Compliance Indicators</td>
+<td>Scorecards and dashboards</td>
+</tr>
+<tr class="odd">
+<td>Audit and assurance service</td>
+<td>NSI management, regulators, the public</td>
+<td>VS-07.5 Audit, Certify, and Report Compliance</td>
+<td>Audit reports, assurance statements, transparency reports</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Business events</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Triggers or marks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Regulatory change</em></td>
+<td>Start of VS-07.2 Establish Legal and Regulatory Compliance Mechanisms and VS-07.6 Update and Improve Governance Mechanisms</td>
+</tr>
+<tr class="even">
+<td><em>Policy update issued</em></td>
+<td>Notification to the value streams of a new policy version</td>
+</tr>
+<tr class="odd">
+<td><em>Compliance review</em></td>
+<td>Periodic review of the compliance evidence of a value stream</td>
+</tr>
+<tr class="even">
+<td><em>Audit due</em> / <em>Audit completed</em></td>
+<td>Start and end of an audit in VS-07.5 Audit, Certify, and Report Compliance</td>
+</tr>
+<tr class="odd">
+<td><em>Method compliance assessment requested</em></td>
+<td>Request from VS-08 Innovation and Methodological Development before a new method goes into production</td>
+</tr>
+<tr class="even">
+<td><em>Incident reported</em></td>
+<td>Start of incident handling and of a review of the controls concerned</td>
+</tr>
+<tr class="odd">
+<td><em>Certification granted</em></td>
+<td>Outcome of an external audit or peer review</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-07 event choreography between regulators, VS-07, the value streams, and auditors: regulatory change, policy update issued, compliance evidence, audit, findings, and certification</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="key-performance-indicators" class="level2">
+<h2 class="anchored" data-anchor-id="key-performance-indicators">9. Key performance indicators</h2>
+<p>VS-07 monitors itself with the same discipline it imposes on the chain.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>KPI</th>
+<th>Description</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Policy coverage</td>
+<td>Share of value streams and data domains working under current, approved policies</td>
+<td>Per policy domain, annually</td>
+</tr>
+<tr class="even">
+<td>Audit findings closed on time</td>
+<td>Share of audit findings resolved within the agreed deadline</td>
+<td>Per audit cycle</td>
+</tr>
+<tr class="odd">
+<td>Compliance incidents</td>
+<td>Number of confidentiality, security, or legal incidents</td>
+<td>Per quarter (target: zero)</td>
+</tr>
+<tr class="even">
+<td>Certification status</td>
+<td>Certifications and peer review assessments held and current, for example under the Code of Practice</td>
+<td>Annually</td>
+</tr>
+<tr class="odd">
+<td>Metadata governance compliance</td>
+<td>Share of registered datasets that meet the obligations of SAF-P09 No data without metadata and classification</td>
+<td>Per cycle, from the compliance evidence of the value streams</td>
+</tr>
+<tr class="even">
+<td>Regulatory response time</td>
+<td>Time from detecting a regulatory change to issuing an updated policy</td>
+<td>Per change</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="toolkit" class="level2">
+<h2 class="anchored" data-anchor-id="toolkit">10. Toolkit</h2>
+<p>Examples from NSI practice and a maturity checklist for VS-07 are part of the SAF Toolkit.</p>
+<p><strong>Toolkit:</strong> SAF-TK-V07 VS-07 Governance and Compliance companion <strong>[VC17]</strong></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="../framework/vs-06.html" class="pagination-link" aria-label="VS-06 Dissemination and Service Delivery">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">VS-06 Dissemination and Service Delivery</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../framework/vs-08.html" class="pagination-link" aria-label="VS-08 Innovation and Methodological Development">
+        <span class="nav-page-text">VS-08 Innovation and Methodological Development</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
