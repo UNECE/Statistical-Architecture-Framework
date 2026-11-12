@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data and Application Architecture – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../framework/technology-architecture.html" rel="next">
+<link href="../framework/vs-10.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f374ad13d1ca50ffd7110ca4e9b8aceb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../framework/index.html" aria-current="page"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/data-application-architecture.html">Data, application and technology</a></li><li class="breadcrumb-item"><a href="../framework/data-application-architecture.html">Data and Application Architecture</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAF Architecture Framework</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Foundations</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and Scope</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/motivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Motivation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/strategy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strategy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Business architecture</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/business-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/steady-states.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Steady-State Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/value-chain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Data Value Chain</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Production value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-01 Data Acquisition and Ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-02 Data Standardization and Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-03 Data Editing and Enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-04 Estimation, Analysis, and Statistical Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-05 Statistical Product Composition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-06 Dissemination and Service Delivery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Supporting value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-07 Governance and Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-08 Innovation and Methodological Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-09 Infrastructure and Platform Enablement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-10 Customer and Stakeholder Engagement</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Data, application and technology</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/data-application-architecture.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Data and Application Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/technology-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Technology Architecture</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#purpose-of-this-chapter" id="toc-purpose-of-this-chapter" class="nav-link active" data-scroll-target="#purpose-of-this-chapter">Purpose of this chapter</a></li>
+  <li><a href="#position-in-the-framework" id="toc-position-in-the-framework" class="nav-link" data-scroll-target="#position-in-the-framework">Position in the framework</a></li>
+  <li><a href="#how-nsis-use-this-chapter" id="toc-how-nsis-use-this-chapter" class="nav-link" data-scroll-target="#how-nsis-use-this-chapter">How NSIs use this chapter</a></li>
+  <li><a href="#requirements-and-constraints-for-phases-c-and-d" id="toc-requirements-and-constraints-for-phases-c-and-d" class="nav-link" data-scroll-target="#requirements-and-constraints-for-phases-c-and-d">Requirements and Constraints for Phases C and D</a></li>
+  <li><a href="#data-architecture" id="toc-data-architecture" class="nav-link" data-scroll-target="#data-architecture">Data Architecture</a>
+  <ul class="collapse">
+  <li><a href="#steady-state-datasets" id="toc-steady-state-datasets" class="nav-link" data-scroll-target="#steady-state-datasets">Steady-state datasets</a></li>
+  <li><a href="#sdmx-structural-metadata" id="toc-sdmx-structural-metadata" class="nav-link" data-scroll-target="#sdmx-structural-metadata">SDMX structural metadata</a></li>
+  <li><a href="#governance-quality-and-design-data-objects" id="toc-governance-quality-and-design-data-objects" class="nav-link" data-scroll-target="#governance-quality-and-design-data-objects">Governance, quality and design data objects</a></li>
+  </ul></li>
+  <li><a href="#application-architecture" id="toc-application-architecture" class="nav-link" data-scroll-target="#application-architecture">Application Architecture</a>
+  <ul class="collapse">
+  <li><a href="#application-landscape" id="toc-application-landscape" class="nav-link" data-scroll-target="#application-landscape">Application landscape</a></li>
+  <li><a href="#application-services" id="toc-application-services" class="nav-link" data-scroll-target="#application-services">Application services</a></li>
+  <li><a href="#application-interfaces" id="toc-application-interfaces" class="nav-link" data-scroll-target="#application-interfaces">Application interfaces</a></li>
+  <li><a href="#application-services-per-value-stream" id="toc-application-services-per-value-stream" class="nav-link" data-scroll-target="#application-services-per-value-stream">Application services per value stream</a></li>
+  <li><a href="#core-data-platform-and-sdmx-path" id="toc-core-data-platform-and-sdmx-path" class="nav-link" data-scroll-target="#core-data-platform-and-sdmx-path">Core data platform and SDMX path</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="data-application-architecture.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/data-application-architecture.html">Data, application and technology</a></li><li class="breadcrumb-item"><a href="../framework/data-application-architecture.html">Data and Application Architecture</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Data and Application Architecture</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- GENERATED from docs/SAF Framework.md by scripts/split-framework.py - do not edit -->
+<p><span id="data-and-application-architecture"></span></p>
+<section id="purpose-of-this-chapter" class="level2">
+<h2 class="anchored" data-anchor-id="purpose-of-this-chapter">Purpose of this chapter</h2>
+<p>The data and application architecture describes which data the statistical organisation keeps, and which applications create, process and deliver that data. It is the layer where the steady states of the business architecture become datasets, and where the business services become application services.</p>
+<p>The business architecture is independent of technology. This chapter is the first that is not. It describes a reference solution: a set of data objects, application services and application components that together support the primary value streams VS-01 to VS-06. The components are named with a concrete open-source product, so that an NSI can see what a working solution looks like. The product names are examples. The application services behind them are the stable part of the reference.</p>
+<p>The chapter has three parts. The first lists the requirements and the constraint that shape the data, application and technology layers. The second describes the data architecture. The third describes the application architecture.</p>
+</section>
+<section id="position-in-the-framework" class="level2">
+<h2 class="anchored" data-anchor-id="position-in-the-framework">Position in the framework</h2>
+<p>In the TOGAF Architecture Development Method, the data and application architecture are developed in Phase C, Information Systems Architectures. In ArchiMate, both belong to the application layer: data objects are the passive elements of that layer, and application components, services and interfaces are the active and behaviour elements.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: Position of the Data and Application Architecture between the Business Architecture and the Technology Architecture</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Direction</th>
+<th>Relationship</th>
+<th>Example in the SAF</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>From Motivation</td>
+<td>Requirements realise principles, and are realised by data objects and components</td>
+<td>SAF-RQ02 realises SAF-P07 and is realised by the Workflow Orchestrator</td>
+</tr>
+<tr class="even">
+<td>From Strategy</td>
+<td>Application components realise capabilities</td>
+<td>The Statistical Disclosure Control Toolkit realises Statistical disclosure (1.3.7)</td>
+</tr>
+<tr class="odd">
+<td>From Business Architecture</td>
+<td>Data objects realise business objects</td>
+<td><em>Raw Dataset (#1)</em> realises the steady state <em>#1 Raw Data</em></td>
+</tr>
+<tr class="even">
+<td>From Business Architecture</td>
+<td>Application services realise business services and serve business processes</td>
+<td>The Data Validation Service realises the Conformance Validation Service and serves the execution process of VS-02</td>
+</tr>
+<tr class="odd">
+<td>To Technology Architecture</td>
+<td>Artifacts realise data objects</td>
+<td>The Raw Zone realises <em>Raw Dataset (#1)</em></td>
+</tr>
+<tr class="even">
+<td>To Technology Architecture</td>
+<td>Technology services serve application components</td>
+<td>The Table Storage Service serves the Distributed SQL Query Engine</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-nsis-use-this-chapter" class="level2">
+<h2 class="anchored" data-anchor-id="how-nsis-use-this-chapter">How NSIs use this chapter</h2>
+<p>The content of this chapter is reference content at two levels.</p>
+<p><strong>Data objects, application services and application interfaces</strong> are independent of products. They describe what must exist and what it must do. Most NSIs can adopt them as they are, or map their own landscape onto them.</p>
+<p><strong>Application components</strong> are named with one open-source product each. This follows SAF-P01 and the constraint SAF-CN01. An NSI uses the component list in one of three ways: it adopts the product, it replaces the product with another one that realises the same application service, or it maps an existing system onto the component. In all three cases the application service stays the point of comparison between NSIs.</p>
+<p>An NSI that already has a platform does not need to replace it. It uses this chapter to check whether every application service is covered, by which system, and for which value stream.</p>
+<p>Licences are listed with each component. Some products have a copyleft or network-copyleft licence (GPL, AGPL). Under SAF-CN01, these need a legal review before adoption.</p>
+</section>
+<section id="requirements-and-constraints-for-phases-c-and-d" class="level2">
+<h2 class="anchored" data-anchor-id="requirements-and-constraints-for-phases-c-and-d">Requirements and Constraints for Phases C and D</h2>
+<p>The data, application and technology layers are shaped by seven requirements and one constraint. Each requirement realises an architecture principle, a goal or an outcome from the Motivation chapter, and is in turn realised by elements of the lower layers. This gives traceability from a principle down to a component or a storage zone.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Requirement</th>
+<th>Description</th>
+<th>Realises</th>
+<th>Realised by</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAF-RQ01</strong></td>
+<td>Statistics (#4) and Released Data (#5) are formatted in SDMX</td>
+<td>Steady states #4 and #5 follow SDMX. Datasets conform to published Data Structure Definitions, codelists and concept schemes, and are available as SDMX-ML, SDMX-JSON and SDMX-CSV.</td>
+<td>SAF-G2, SAF-O3</td>
+<td>SAF-DO04, SAF-DO05, SAF-DO06, SAF-DO10, SAF-DO11, SAF-DO12, SAF-AC12, SAF-AC13</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-RQ02</strong></td>
+<td>Steady-state handover is event-driven and loosely coupled</td>
+<td>Streams exchange data only through registered steady-state versions. Registration emits an event that triggers the next stream. No stream calls the internals of another stream.</td>
+<td>SAF-P07</td>
+<td>SAF-AC04, SAF-AS24, SAF-TSV04</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-RQ03</strong></td>
+<td>SQL, pipeline and schema definitions are version-controlled</td>
+<td>All SQL models, DAGs, schemas, validation suites and policies live in Git. They are reviewed, tested in CI and promoted through environments. Every dataset version records the code version that produced it.</td>
+<td>SAF-P03</td>
+<td>SAF-DO18, SAF-AC07, SAF-AC23</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-RQ04</strong></td>
+<td>Every dataset version carries metadata, lineage and BIV classification</td>
+<td>Metadata, lineage, quality results and the BIV classification (availability, integrity, confidentiality) are captured automatically at the point of creation and published in the catalogue.</td>
+<td>SAF-P09</td>
+<td>SAF-DO13, SAF-DO14, SAF-DO16, SAF-AC11</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-RQ05</strong></td>
+<td>Confidentiality is applied progressively and gated before release</td>
+<td>Identifiers are pseudonymised at #2, disclosure risk is assessed at #3, initial control is applied at #4, and a final disclosure-control gate precedes #5.</td>
+<td>SAF-P11</td>
+<td>SAF-DO21, SAF-AC09, SAF-AC19</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-RQ06</strong></td>
+<td>Access is authenticated, authorized and audited by design</td>
+<td>All human and system access goes through single sign-on and policy decisions, and is logged in a tamper-evident audit trail.</td>
+<td>SAF-P10</td>
+<td>SAF-DO17, SAF-AC18, SAF-AC19, SAF-AC20</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-RQ07</strong></td>
+<td>Each steady state is a versioned, immutable Iceberg snapshot</td>
+<td>A steady state is an Iceberg snapshot tagged as a quality version. Consumers read a tagged version, so that results stay reproducible and shareable.</td>
+<td>SAF-P08</td>
+<td>SAF-AC06, SAF-AF01, SAF-AF02, SAF-AF03, SAF-AF04, SAF-AF05</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Constraint</th>
+<th>Description</th>
+<th>Realises</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAF-CN01</strong></td>
+<td>Open-source components only</td>
+<td>The target stack contains only open-source products with OSI-approved licences. Where a licence is copyleft or network-copyleft (GPL, AGPL), legal review is needed before adoption. Alternatives are listed in the component documentation.</td>
+<td>SAF-P01</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="data-architecture">Data Architecture</h2>
+<p>A <strong>data object</strong> is data structured for automated processing. In ArchiMate, a data object realises a business object: it is the form in which the information of the business is held by applications. A data object is in turn realised by an artifact in the technology layer, which is the physical form in which it is stored.</p>
+<p>The SAF data architecture contains 18 data objects in three groups: the steady-state datasets, the SDMX structural metadata, and the data objects for governance, quality and design.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view <em>Phase C - Data Architecture: Data Objects and Steady States</em></strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<section id="steady-state-datasets" class="level3">
+<h3 class="anchored" data-anchor-id="steady-state-datasets">Steady-state datasets</h3>
+<p>Each steady state of the business architecture is realised by one or two data objects. Each dataset is stored as Apache Iceberg tables in a namespace of its own. The datasets of #4 and #5 are shaped as SDMX (SAF-RQ01).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Data object</th>
+<th>Description</th>
+<th>Realises business object</th>
+<th>Realised by artifact</th>
+<th>Accessed by</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAF-DO01</strong></td>
+<td>Raw Dataset (#1)</td>
+<td>Iceberg tables in namespace <code>raw</code>. Data in its original form as received, with provenance, source, method, timestamp and BIV classification. Never edited; each registration is an Iceberg snapshot.</td>
+<td>#1 Raw Data</td>
+<td>SAF-AF01</td>
+<td>SAF-AC01, SAF-AC02, SAF-AC03, SAF-AC05, SAF-AC10</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-DO02</strong></td>
+<td>Standardized Dataset (#2)</td>
+<td>Iceberg tables in namespace <code>std</code>. The same values as #1, expressed in common structures, formats and standard classifications. Identifiers are pseudonymised; no personally identifiable information.</td>
+<td>#2 Standardized Data</td>
+<td>SAF-AF02</td>
+<td>SAF-AC05, SAF-AC07, SAF-AC10</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-DO03</strong></td>
+<td>Processed Dataset (#3)</td>
+<td>Iceberg tables in namespace <code>proc</code>. Edited, imputed, enriched and integrated microdata with edit lineage, flags and derived variables. Each quality version is an Iceberg tag on a snapshot.</td>
+<td>#3 Processed Data</td>
+<td>SAF-AF03</td>
+<td>SAF-AC05, SAF-AC07, SAF-AC08, SAF-AC10</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-DO04</strong></td>
+<td>Statistics Dataset - SDMX (#4)</td>
+<td>Estimates and aggregates shaped as SDMX (dimensions, measures, attributes), conforming to a published Data Structure Definition, with accuracy measures. Stored in Iceberg namespace <code>stat</code>; exportable as SDMX-ML, SDMX-JSON and SDMX-CSV.</td>
+<td>#4 Statistics (Output Data)</td>
+<td>SAF-AF04, SAF-AF06</td>
+<td>SAF-AC05, SAF-AC08, SAF-AC09</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-DO05</strong></td>
+<td>Statistical Product - SDMX Dataflow (#4)</td>
+<td>Approved composite product (indicators, indices, time series), registered as an SDMX Dataflow with categorisation. This is the approved state that VS-05 hands to VS-06.</td>
+<td>#4 Statistics (Output Data)</td>
+<td></td>
+<td>SAF-AC07, SAF-AC12</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-DO06</strong></td>
+<td>Released Dataset - SDMX (#5)</td>
+<td>Disclosure-controlled, documented dataset published as SDMX through the SDMX web service, the open-data portal and research access. Iceberg namespace <code>rel</code>.</td>
+<td>#5 Released Data</td>
+<td>SAF-AF05, SAF-AF06</td>
+<td>SAF-AC05, SAF-AC09, SAF-AC13, SAF-AC14, SAF-AC15, SAF-AC16, SAF-AC17</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sdmx-structural-metadata" class="level3">
+<h3 class="anchored" data-anchor-id="sdmx-structural-metadata">SDMX structural metadata</h3>
+<p>The SDMX structures are the contract between the producers and the consumers of steady states #4 and #5. Together they realise SAF-RQ01.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Data object</th>
+<th>Description</th>
+<th>Accessed by</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAF-DO10</strong></td>
+<td>SDMX Data Structure Definition (DSD)</td>
+<td>SDMX structure that defines the dimensions, measures and attributes of a dataset. It is the contract between producers and consumers of #4 and #5, aligned with GSIM.</td>
+<td>SAF-AC12, SAF-AC13</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-DO11</strong></td>
+<td>SDMX Codelists and Concept Schemes</td>
+<td>Standard classifications, code lists and concept definitions (for example NACE and ISCO), used for standardization in VS-02 and in SDMX structures. Versioned and published.</td>
+<td>SAF-AC12, SAF-AC13</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-DO12</strong></td>
+<td>SDMX Dataflow and Categorisation</td>
+<td>Catalogue of publishable dataflows organised by category. It is the product and service catalogue for dissemination.</td>
+<td>SAF-AC12, SAF-AC13, SAF-AC16</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="governance-quality-and-design-data-objects" class="level3">
+<h3 class="anchored" data-anchor-id="governance-quality-and-design-data-objects">Governance, quality and design data objects</h3>
+<p>These data objects hold the metadata, logs, policies and definitions that accompany the datasets. Several of them realise business objects of the four process types: design artefacts, provenance and audit logs, and quality reports.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Data object</th>
+<th>Description</th>
+<th>Realises business object</th>
+<th>Accessed by</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAF-DO13</strong></td>
+<td>Lineage and Provenance Record</td>
+<td>OpenLineage job, run and dataset events, and provenance metadata that capture origin, method, parameters and inputs for every dataset version (SAF-P09).</td>
+<td>Provenance, QA &amp; Audit Logs</td>
+<td>SAF-AC04, SAF-AC11</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-DO14</strong></td>
+<td>Data Quality Result</td>
+<td>Validation outcomes and quality indicators per dataset version: integrity, conformance, edit impact, accuracy and coherence.</td>
+<td></td>
+<td>SAF-AC10, SAF-AC11</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-DO15</strong></td>
+<td>Data Agreement Record</td>
+<td>Register entry per data sharing agreement: provider, legal basis, access rights, SLA and validity.</td>
+<td>Data Sharing Agreement</td>
+<td>SAF-AC02, SAF-AC03, SAF-AC11</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-DO16</strong></td>
+<td>Dataset Metadata Entry</td>
+<td>Catalogue entry per dataset version: schema, owner and steward, BIV classification, steady state, quality version, and links to lineage and quality results.</td>
+<td></td>
+<td>SAF-AC06, SAF-AC11</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-DO17</strong></td>
+<td>Access and Audit Log</td>
+<td>Tamper-evident log of authentication, authorization decisions, data access and changes (SAF-P10).</td>
+<td>Provenance, QA &amp; Audit Logs</td>
+<td>SAF-AC18, SAF-AC19, SAF-AC20</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-DO18</strong></td>
+<td>Pipeline and SQL Model Definitions</td>
+<td>Versioned (Git) Airflow DAGs, dbt SQL models, validation suites, disclosure-control and statistical scripts, and schema migrations. These are the design and implementation artefacts of every stream.</td>
+<td>Design Artefacts (Metadata)</td>
+<td>SAF-AC04, SAF-AC07, SAF-AC23</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-DO19</strong></td>
+<td>Quality Indicators and KPI Metrics</td>
+<td>Process KPIs (timeliness, rejection rates, conformance, accuracy) and platform metrics that feed quality reports and dashboards.</td>
+<td>Quality Report</td>
+<td>SAF-AC15</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-DO20</strong></td>
+<td>Usage and Feedback Data</td>
+<td>Web analytics, API usage, user questions and tickets from dissemination (VS-06.5), routed to VS-10.</td>
+<td></td>
+<td>SAF-AC21, SAF-AC22</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-DO21</strong></td>
+<td>Access and Disclosure Policy</td>
+<td>Policy-as-code: access rules by BIV classification, role and steady state, and disclosure-control rules and thresholds.</td>
+<td></td>
+<td>SAF-AC09, SAF-AC19, SAF-AC23</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="application-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="application-architecture">Application Architecture</h2>
+<p>The application architecture uses three ArchiMate elements. An <strong>application component</strong> is a self-contained unit of software. An <strong>application service</strong> is the behaviour that a component offers to its environment. An <strong>application interface</strong> is the point where that service is made available to users or to other components.</p>
+<p>The SAF application architecture contains 23 application components, 24 application services and 5 application interfaces.</p>
+<section id="application-landscape" class="level3">
+<h3 class="anchored" data-anchor-id="application-landscape">Application landscape</h3>
+<p>The components are grouped into five functional groups.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view <em>Phase C - Application Architecture: Landscape</em></strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><strong>Acquisition</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Component</th>
+<th>Product</th>
+<th>Licence</th>
+<th>Description</th>
+<th>Realises service</th>
+<th>Realises capability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAF-AC01</strong></td>
+<td>Survey Platform</td>
+<td>LimeSurvey</td>
+<td>GPL-2.0</td>
+<td>Web (CAWI) and self-completion surveys for primary collection. Exports responses and paradata to the raw zone. Field (CAPI) collection can be added with an open-source field tool such as Survey Solutions or ODK.</td>
+<td>SAF-AS01</td>
+<td>1.2.1 Primary data collection</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AC02</strong></td>
+<td>Secure File Transfer Gateway</td>
+<td>SFTPGo</td>
+<td>AGPL-3.0</td>
+<td>SFTP/HTTPS endpoint where providers deliver files. Writes to the landing prefix in S3 and raises a delivery notification. Credentials and quotas per provider.</td>
+<td>SAF-AS02</td>
+<td>1.2.2 Secondary data collection</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AC03</strong></td>
+<td>Ingestion Engine</td>
+<td>Apache NiFi</td>
+<td>Apache-2.0</td>
+<td>Pulls from REST APIs, SFTP, databases and web sources. Records ingestion provenance and lands data in the raw zone. Supports secondary and emerging sources such as web scraping and sensors.</td>
+<td>SAF-AS03</td>
+<td>1.2.2 Secondary data collection</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Processing and Transformation</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Component</th>
+<th>Product</th>
+<th>Licence</th>
+<th>Description</th>
+<th>Realises service</th>
+<th>Realises capability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAF-AC04</strong></td>
+<td>Workflow Orchestrator</td>
+<td>Apache Airflow</td>
+<td>Apache-2.0</td>
+<td>Schedules and runs all pipelines as versioned DAGs (KubernetesExecutor). Asset-aware scheduling starts the next stream when a steady state is registered. Emits OpenLineage events.</td>
+<td>SAF-AS04, SAF-AS24</td>
+<td>3.2.3 Technical management</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AC05</strong></td>
+<td>Distributed SQL Query Engine</td>
+<td>Trino</td>
+<td>Apache-2.0</td>
+<td>Federated SQL over Iceberg tables in S3. Executes standardization, derivation and composition SQL and serves analysts. Access control is delegated to the Policy Decision Engine.</td>
+<td>SAF-AS05</td>
+<td>1.3 Processing</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AC06</strong></td>
+<td>Iceberg REST Catalog</td>
+<td>Apache Polaris</td>
+<td>Apache-2.0</td>
+<td>Table catalog for the namespaces <code>raw</code>, <code>std</code>, <code>proc</code>, <code>stat</code> and <code>rel</code>. Manages snapshots, branches and tags (quality versions) and table-level access. Alternative: Project Nessie.</td>
+<td>SAF-AS06</td>
+<td>2.1.1 Data lifecycle management</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AC07</strong></td>
+<td>SQL Transformation Framework</td>
+<td>dbt Core</td>
+<td>Apache-2.0</td>
+<td>Version-controlled, tested SQL models for standardization, editing, derivation and composition. Runs on Trino through Airflow. Generates documentation and lineage.</td>
+<td>SAF-AS07</td>
+<td>1.3.1 Data standardization; 1.3.2 Deriving variables and units</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AC08</strong></td>
+<td>Statistical Computing Runtime</td>
+<td>R and Python</td>
+<td>GPL-2.0 / PSF</td>
+<td>Containerised R (survey, VIM, mice) and Python jobs for imputation, weighting and calibration, estimation, and small-area and time-series models. Run as Airflow Kubernetes pods; read and write Iceberg through Trino.</td>
+<td>SAF-AS08</td>
+<td>1.3.4 Adjusting and imputing; 1.3.5 Estimating population parameters</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AC09</strong></td>
+<td>Statistical Disclosure Control Toolkit</td>
+<td>sdcMicro, sdcTable</td>
+<td>GPL-2.0</td>
+<td>Disclosure risk assessment and protection of microdata and tables (suppression, perturbation, k-anonymity). Applied at #4 and as the final gate before #5.</td>
+<td>SAF-AS09</td>
+<td>1.3.7 Statistical disclosure</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AC10</strong></td>
+<td>Data Quality Framework</td>
+<td>Great Expectations</td>
+<td>Apache-2.0</td>
+<td>Declarative expectation suites for intake, conformance, edit and coherence checks. Results are stored as Data Quality Results and published to the catalogue.</td>
+<td>SAF-AS10</td>
+<td>1.3.3 Check content; 2.1.3 Statistical quality management</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Metadata and Governance</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Component</th>
+<th>Product</th>
+<th>Licence</th>
+<th>Description</th>
+<th>Realises service</th>
+<th>Realises capability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAF-AC11</strong></td>
+<td>Metadata and Lineage Platform</td>
+<td>OpenMetadata, OpenLineage</td>
+<td>Apache-2.0</td>
+<td>Dataset catalogue, glossary, BIV classification tags, ownership and column-level lineage, ingested from Airflow, Trino, dbt and OpenLineage. Implements the Metadata Catalog Service.</td>
+<td>SAF-AS11</td>
+<td>2.1.1 Data lifecycle management; 2.1.2 Metadata management</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AC12</strong></td>
+<td>SDMX Structure and Lifecycle Manager</td>
+<td>.Stat Suite DLM</td>
+<td>MIT (verify per component)</td>
+<td>Authoring and registry of SDMX structures (DSD, codelists, concept schemes, dataflows), and loading of statistical data into the dissemination store.</td>
+<td>SAF-AS12</td>
+<td>2.1.2 Metadata management; 2.1.4 Statistical register management</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SDMX and Dissemination</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Component</th>
+<th>Product</th>
+<th>Licence</th>
+<th>Description</th>
+<th>Realises service</th>
+<th>Realises capability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAF-AC13</strong></td>
+<td>SDMX Web Service</td>
+<td>.Stat Suite NSI-WS</td>
+<td>MIT / EUPL (verify per component)</td>
+<td>SDMX REST API for data and structure queries. Delivers SDMX-ML, SDMX-JSON and SDMX-CSV for #4 and #5 datasets.</td>
+<td>SAF-AS13</td>
+<td>1.5.3 Facilitate data access</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AC14</strong></td>
+<td>SDMX Data Explorer</td>
+<td>.Stat Suite Data Explorer</td>
+<td>MIT (verify per component)</td>
+<td>Public web application to search, view, chart and download released SDMX datasets.</td>
+<td>SAF-AS14</td>
+<td>1.5.3 Facilitate data access</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AC15</strong></td>
+<td>BI and Dashboards</td>
+<td>Apache Superset</td>
+<td>Apache-2.0</td>
+<td>Interactive dashboards over released data. Also used for internal quality and KPI dashboards.</td>
+<td>SAF-AS15</td>
+<td>1.5.4 Statistical information management</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AC16</strong></td>
+<td>Open Data Portal</td>
+<td>CKAN</td>
+<td>AGPL-3.0</td>
+<td>Open-data catalogue and bulk download with machine-readable (DCAT) metadata. Links to SDMX dataflows.</td>
+<td>SAF-AS16</td>
+<td>1.5.1 Publication management</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AC17</strong></td>
+<td>Research Workbench</td>
+<td>JupyterHub</td>
+<td>BSD-3-Clause</td>
+<td>Secure containerised notebook environment for accredited researchers and for VS-08 sandboxes. Outputs are checked before they leave the environment.</td>
+<td>SAF-AS17</td>
+<td>2.2.3 Methodology; 2.2.4 Data services</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AC21</strong></td>
+<td>Service Desk</td>
+<td>Zammad</td>
+<td>AGPL-3.0</td>
+<td>User-support ticketing, knowledge base and feedback capture.</td>
+<td>SAF-AS21</td>
+<td>3.4.2 Contact management; 3.4.4 Self-service</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AC22</strong></td>
+<td>Web Analytics</td>
+<td>Matomo</td>
+<td>GPL-3.0</td>
+<td>Privacy-respecting usage statistics for portals, APIs and releases.</td>
+<td>SAF-AS22</td>
+<td>2.2.5 User research</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Security, Access and Delivery</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Component</th>
+<th>Product</th>
+<th>Licence</th>
+<th>Description</th>
+<th>Realises service</th>
+<th>Realises capability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAF-AC18</strong></td>
+<td>Identity and Access Management</td>
+<td>Keycloak</td>
+<td>Apache-2.0</td>
+<td>Single sign-on (OIDC/SAML), multi-factor authentication, and role and group management for staff, providers and researchers.</td>
+<td>SAF-AS18</td>
+<td>3.3.4 Logical identity and access control</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AC19</strong></td>
+<td>Policy Decision Engine</td>
+<td>Open Policy Agent</td>
+<td>Apache-2.0</td>
+<td>Policy-as-code decisions for Trino, APIs and research access, based on role, BIV class and steady state.</td>
+<td>SAF-AS19</td>
+<td>3.3.4 Logical identity and access control</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AC20</strong></td>
+<td>API Gateway</td>
+<td>Apache APISIX</td>
+<td>Apache-2.0</td>
+<td>Single entry point for external APIs: authentication, rate limiting and usage logging.</td>
+<td>SAF-AS20</td>
+<td>3.3.6 IT security services</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AC23</strong></td>
+<td>Source Control and CI/CD</td>
+<td>GitLab CE</td>
+<td>MIT</td>
+<td>Git repositories, merge requests and CI pipelines. System of record for SQL models, DAGs, schemas and policies. Promotes versions from test to production.</td>
+<td>SAF-AS23</td>
+<td>3.2.1 Application development</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="application-services" class="level3">
+<h3 class="anchored" data-anchor-id="application-services">Application services</h3>
+<p>Each application service is realised by one component. Most services realise one or more business services of the value streams.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Application service</th>
+<th>Description</th>
+<th>Realised by</th>
+<th>Realises business services</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAF-AS01</strong></td>
+<td>Survey Collection Service</td>
+<td>Collect responses through web questionnaires.</td>
+<td>SAF-AC01</td>
+<td>Data Collection Service</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AS02</strong></td>
+<td>Secure File Receipt Service</td>
+<td>Receive files from data providers securely.</td>
+<td>SAF-AC02</td>
+<td>Data Collection Service</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AS03</strong></td>
+<td>Data Ingestion Service</td>
+<td>Acquire data from APIs, databases and web sources into the raw zone.</td>
+<td>SAF-AC03</td>
+<td>Data Collection Service</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AS04</strong></td>
+<td>Pipeline Orchestration Service</td>
+<td>Schedule, run, monitor and retry pipelines; expose run status.</td>
+<td>SAF-AC04</td>
+<td>Ingestion Monitoring Service</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AS05</strong></td>
+<td>SQL Query and Processing Service</td>
+<td>Run SQL over Iceberg tables for processing and analysis.</td>
+<td>SAF-AC05</td>
+<td>Raw Data Provisioning Service; Standardization Service; Error-Detection Service; Derivation and Integration Service; Estimation and Aggregation Service; Integration and Composition Service</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AS06</strong></td>
+<td>Table Catalog Service</td>
+<td>Manage tables, snapshots, tags and quality versions.</td>
+<td>SAF-AC06</td>
+<td>Raw Data Provisioning Service; Quality-Version Catalog Service; Output-Version Catalog Service</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AS07</strong></td>
+<td>Versioned Transformation Service</td>
+<td>Execute version-controlled SQL transformations.</td>
+<td>SAF-AC07</td>
+<td>Standardization Service; Classification Mapping Service; Editing and Correction Service; Derivation and Integration Service; Integration and Composition Service; Indicator and Index Service; Dissemination Preparation Service</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AS08</strong></td>
+<td>Statistical Processing Service</td>
+<td>Run imputation, weighting, estimation and model workloads.</td>
+<td>SAF-AC08</td>
+<td>Editing and Correction Service; Imputation Service; Weighting and Calibration Service; Estimation and Aggregation Service; Modeling and Analysis Service; Indicator and Index Service</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AS09</strong></td>
+<td>Disclosure Control Service</td>
+<td>Assess disclosure risk and apply protection.</td>
+<td>SAF-AC09</td>
+<td>Validation and Disclosure-Control Service; Dissemination Preparation Service</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AS10</strong></td>
+<td>Data Validation Service</td>
+<td>Validate data against expectation suites and record results.</td>
+<td>SAF-AC10</td>
+<td>Ingestion Monitoring Service; Conformance Validation Service; Error-Detection Service; Validation and Disclosure-Control Service; Coherence Validation Service</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AS11</strong></td>
+<td>Metadata and Lineage Service</td>
+<td>Search, govern and trace datasets and their lineage.</td>
+<td>SAF-AC11</td>
+<td>Data Agreement Management Service; Metadata Catalog Service; Semantic Harmonization Service; Quality-Version Catalog Service; Output-Version Catalog Service; Product Catalog Service</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AS12</strong></td>
+<td>SDMX Structure Registry Service</td>
+<td>Maintain and publish SDMX structures, codelists and dataflows.</td>
+<td>SAF-AC12</td>
+<td>Classification Catalog Service; Classification Mapping Service; Semantic Harmonization Service; Output-Data Provisioning Service; Output-Version Catalog Service; Product Catalog Service; Product Provisioning Service; Dissemination Preparation Service</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AS13</strong></td>
+<td>SDMX Data Dissemination Service</td>
+<td>Serve SDMX data and structure queries.</td>
+<td>SAF-AC13</td>
+<td>API and Dashboard Service</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AS14</strong></td>
+<td>Data Exploration Service</td>
+<td>Explore, chart and download released data.</td>
+<td>SAF-AC14</td>
+<td>Publication and Open-Data Service</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AS15</strong></td>
+<td>Dashboard Service</td>
+<td>Provide dashboards and visual analytics.</td>
+<td>SAF-AC15</td>
+<td>API and Dashboard Service; Analytical Content Service</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AS16</strong></td>
+<td>Open Data Catalog Service</td>
+<td>Publish open data with machine-readable metadata.</td>
+<td>SAF-AC16</td>
+<td>Publication and Open-Data Service</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AS17</strong></td>
+<td>Research Workbench Service</td>
+<td>Provide secure analysis environments.</td>
+<td>SAF-AC17</td>
+<td>Analytical Content Service; Secure Research Access Service</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AS18</strong></td>
+<td>Authentication Service</td>
+<td>Authenticate users and services.</td>
+<td>SAF-AC18</td>
+<td>Secure Research Access Service</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AS19</strong></td>
+<td>Authorization Service</td>
+<td>Decide access by policy.</td>
+<td>SAF-AC19</td>
+<td>Secure Research Access Service</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AS20</strong></td>
+<td>API Management Service</td>
+<td>Expose, secure and meter APIs.</td>
+<td>SAF-AC20</td>
+<td>API and Dashboard Service</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AS21</strong></td>
+<td>User Support Ticketing Service</td>
+<td>Handle user questions and feedback.</td>
+<td>SAF-AC21</td>
+<td>User Support Service; Usage and Feedback Service</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AS22</strong></td>
+<td>Usage Analytics Service</td>
+<td>Measure usage of releases and services.</td>
+<td>SAF-AC22</td>
+<td>Usage and Feedback Service</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AS23</strong></td>
+<td>Version Control and CI/CD Service</td>
+<td>Version, review, test and promote design artefacts.</td>
+<td>SAF-AC23</td>
+<td>Design and Methodology Service</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AS24</strong></td>
+<td>Dataset Registration Event Service</td>
+<td>Signal that a new steady-state version is registered, which triggers the next stream (asset update plus Kafka message).</td>
+<td>SAF-AC04</td>
+<td>Raw Data Provisioning Service; Standardized Data Provisioning Service; Processed-Data Provisioning Service; Output-Data Provisioning Service; Product Provisioning Service</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="application-interfaces" class="level3">
+<h3 class="anchored" data-anchor-id="application-interfaces">Application interfaces</h3>
+<p>Five application services are exposed through an explicit interface. Each interface is part of the component that realises the service.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Application interface</th>
+<th>Description</th>
+<th>Part of</th>
+<th>Exposes service</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAF-AI01</strong></td>
+<td>SQL Interface (JDBC/ODBC/HTTP)</td>
+<td>Trino client protocol for analysts, BI tools and pipelines.</td>
+<td>SAF-AC05</td>
+<td>SAF-AS05</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AI02</strong></td>
+<td>SDMX REST API</td>
+<td>SDMX data and structure queries (SDMX-ML, SDMX-JSON, SDMX-CSV).</td>
+<td>SAF-AC13</td>
+<td>SAF-AS13</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AI03</strong></td>
+<td>Iceberg REST Catalog API</td>
+<td>Standard Iceberg REST catalog endpoint used by Trino, dbt and Spark-compatible clients.</td>
+<td>SAF-AC06</td>
+<td>SAF-AS06</td>
+</tr>
+<tr class="even">
+<td><strong>SAF-AI04</strong></td>
+<td>Metadata and OpenLineage API</td>
+<td>Ingest and query metadata and lineage events.</td>
+<td>SAF-AC11</td>
+<td>SAF-AS11</td>
+</tr>
+<tr class="odd">
+<td><strong>SAF-AI05</strong></td>
+<td>Orchestration REST API</td>
+<td>Trigger and monitor pipeline runs; asset events.</td>
+<td>SAF-AC04</td>
+<td>SAF-AS04</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="application-services-per-value-stream" class="level3">
+<h3 class="anchored" data-anchor-id="application-services-per-value-stream">Application services per value stream</h3>
+<p>The application services serve the business processes of the six business domains. The table shows which services serve which process type of each primary value stream.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view <em>Phase C - Application to Value Stream Mapping</em></strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Value stream</th>
+<th>Design and Implementation</th>
+<th>Execution</th>
+<th>Management</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-01 Data Acquisition and Ingestion</td>
+<td>SAF-AS23</td>
+<td>SAF-AS01, SAF-AS02, SAF-AS03, SAF-AS04, SAF-AS06, SAF-AS10, SAF-AS11, SAF-AS24</td>
+<td>SAF-AS11</td>
+</tr>
+<tr class="even">
+<td>VS-02 Data Standardization and Integration</td>
+<td>SAF-AS23</td>
+<td>SAF-AS04, SAF-AS05, SAF-AS06, SAF-AS07, SAF-AS10, SAF-AS11, SAF-AS12, SAF-AS24</td>
+<td>SAF-AS11</td>
+</tr>
+<tr class="odd">
+<td>VS-03 Data Editing and Enrichment</td>
+<td>SAF-AS23</td>
+<td>SAF-AS04, SAF-AS05, SAF-AS06, SAF-AS07, SAF-AS08, SAF-AS10, SAF-AS11, SAF-AS24</td>
+<td>SAF-AS11</td>
+</tr>
+<tr class="even">
+<td>VS-04 Estimation, Analysis, and Statistical Modeling</td>
+<td>SAF-AS23</td>
+<td>SAF-AS04, SAF-AS05, SAF-AS06, SAF-AS08, SAF-AS09, SAF-AS10, SAF-AS12, SAF-AS24</td>
+<td>SAF-AS11</td>
+</tr>
+<tr class="odd">
+<td>VS-05 Statistical Product Composition</td>
+<td>SAF-AS23</td>
+<td>SAF-AS04, SAF-AS05, SAF-AS06, SAF-AS07, SAF-AS08, SAF-AS10, SAF-AS12, SAF-AS15, SAF-AS17, SAF-AS24</td>
+<td>SAF-AS11</td>
+</tr>
+<tr class="even">
+<td>VS-06 Dissemination and Service Delivery</td>
+<td>SAF-AS23</td>
+<td>SAF-AS09, SAF-AS12, SAF-AS13, SAF-AS14, SAF-AS15, SAF-AS16, SAF-AS17, SAF-AS18, SAF-AS19, SAF-AS20, SAF-AS21, SAF-AS22</td>
+<td>SAF-AS11, SAF-AS22</td>
+</tr>
+</tbody>
+</table>
+<p>Four services return in almost every stream: orchestration (SAF-AS04), the table catalog (SAF-AS06), validation (SAF-AS10) and the registration event (SAF-AS24). They are the shared mechanics of a steady-state handover: run the pipeline, validate against the quality gate, tag the version, and signal the next stream.</p>
+</section>
+<section id="core-data-platform-and-sdmx-path" class="level3">
+<h3 class="anchored" data-anchor-id="core-data-platform-and-sdmx-path">Core data platform and SDMX path</h3>
+<p>The core of the landscape is the path that data follows from #1 to #5. Each steady-state dataset is accessed by a small set of components and stored in a zone of its own.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view <em>Phase C-D - Core Data Platform and SDMX Path</em></strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Steady-state dataset</th>
+<th>Components that access it</th>
+<th>Stored in</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Raw Dataset (#1)</td>
+<td>Survey Platform, Secure File Transfer Gateway, Ingestion Engine, Data Quality Framework, Distributed SQL Query Engine</td>
+<td>Raw Zone</td>
+</tr>
+<tr class="even">
+<td>Standardized Dataset (#2)</td>
+<td>SQL Transformation Framework, Distributed SQL Query Engine, Data Quality Framework</td>
+<td>Standardized Zone</td>
+</tr>
+<tr class="odd">
+<td>Processed Dataset (#3)</td>
+<td>SQL Transformation Framework, Statistical Computing Runtime, Distributed SQL Query Engine, Data Quality Framework</td>
+<td>Processed Zone</td>
+</tr>
+<tr class="even">
+<td>Statistics Dataset - SDMX (#4)</td>
+<td>Statistical Computing Runtime, Statistical Disclosure Control Toolkit, Distributed SQL Query Engine</td>
+<td>Statistics Zone, SDMX Messages</td>
+</tr>
+<tr class="odd">
+<td>Statistical Product - SDMX Dataflow (#4)</td>
+<td>SQL Transformation Framework, SDMX Structure and Lifecycle Manager</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Released Dataset - SDMX (#5)</td>
+<td>Statistical Disclosure Control Toolkit, Distributed SQL Query Engine, SDMX Web Service, SDMX Data Explorer, BI and Dashboards, Open Data Portal, Research Workbench</td>
+<td>Released Zone, SDMX Messages</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="../framework/vs-10.html" class="pagination-link" aria-label="VS-10 Customer and Stakeholder Engagement">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">VS-10 Customer and Stakeholder Engagement</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../framework/technology-architecture.html" class="pagination-link" aria-label="Technology Architecture">
+        <span class="nav-page-text">Technology Architecture</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

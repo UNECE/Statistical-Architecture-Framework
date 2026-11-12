@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>VS-10 Customer and Stakeholder Engagement – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../framework/data-application-architecture.html" rel="next">
+<link href="../framework/vs-09.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f374ad13d1ca50ffd7110ca4e9b8aceb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../framework/index.html" aria-current="page"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-07.html">Supporting value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-10.html">VS-10 Customer and Stakeholder Engagement</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAF Architecture Framework</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Foundations</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and Scope</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/motivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Motivation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/strategy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strategy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Business architecture</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/business-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/steady-states.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Steady-State Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/value-chain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Data Value Chain</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Production value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-01 Data Acquisition and Ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-02 Data Standardization and Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-03 Data Editing and Enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-04 Estimation, Analysis, and Statistical Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-05 Statistical Product Composition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-06 Dissemination and Service Delivery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Supporting value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-07 Governance and Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-08 Innovation and Methodological Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-09 Infrastructure and Platform Enablement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-10.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">VS-10 Customer and Stakeholder Engagement</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Data, application and technology</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/data-application-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data and Application Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/technology-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Technology Architecture</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#purpose-and-value-created" id="toc-purpose-and-value-created" class="nav-link active" data-scroll-target="#purpose-and-value-created">1. Purpose and value created</a></li>
+  <li><a href="#position-and-interaction-with-the-chain" id="toc-position-and-interaction-with-the-chain" class="nav-link" data-scroll-target="#position-and-interaction-with-the-chain">2. Position and interaction with the chain</a></li>
+  <li><a href="#stages" id="toc-stages" class="nav-link" data-scroll-target="#stages">3. Stages</a>
+  <ul class="collapse">
+  <li><a href="#vs-10.1-identify-and-segment-stakeholders" id="toc-vs-10.1-identify-and-segment-stakeholders" class="nav-link" data-scroll-target="#vs-10.1-identify-and-segment-stakeholders">VS-10.1 Identify and Segment Stakeholders</a></li>
+  <li><a href="#vs-10.2-collect-and-analyze-user-needs" id="toc-vs-10.2-collect-and-analyze-user-needs" class="nav-link" data-scroll-target="#vs-10.2-collect-and-analyze-user-needs">VS-10.2 Collect and Analyze User Needs</a></li>
+  <li><a href="#vs-10.3-define-and-manage-service-portfolios" id="toc-vs-10.3-define-and-manage-service-portfolios" class="nav-link" data-scroll-target="#vs-10.3-define-and-manage-service-portfolios">VS-10.3 Define and Manage Service Portfolios</a></li>
+  <li><a href="#vs-10.4-deliver-services-and-manage-relationships" id="toc-vs-10.4-deliver-services-and-manage-relationships" class="nav-link" data-scroll-target="#vs-10.4-deliver-services-and-manage-relationships">VS-10.4 Deliver Services and Manage Relationships</a></li>
+  <li><a href="#vs-10.5-engage-and-communicate-with-stakeholders" id="toc-vs-10.5-engage-and-communicate-with-stakeholders" class="nav-link" data-scroll-target="#vs-10.5-engage-and-communicate-with-stakeholders">VS-10.5 Engage and Communicate with Stakeholders</a></li>
+  <li><a href="#vs-10.6-monitor-impact-and-satisfaction" id="toc-vs-10.6-monitor-impact-and-satisfaction" class="nav-link" data-scroll-target="#vs-10.6-monitor-impact-and-satisfaction">VS-10.6 Monitor Impact and Satisfaction</a></li>
+  </ul></li>
+  <li><a href="#the-four-process-types" id="toc-the-four-process-types" class="nav-link" data-scroll-target="#the-four-process-types">4. The four process types</a>
+  <ul class="collapse">
+  <li><a href="#design-provides-the-engagement-framework" id="toc-design-provides-the-engagement-framework" class="nav-link" data-scroll-target="#design-provides-the-engagement-framework">Design: provides the engagement framework</a></li>
+  <li><a href="#implementation-provides-the-engagement-channels" id="toc-implementation-provides-the-engagement-channels" class="nav-link" data-scroll-target="#implementation-provides-the-engagement-channels">Implementation: provides the engagement channels</a></li>
+  <li><a href="#execution-runs-the-engagement-cycle" id="toc-execution-runs-the-engagement-cycle" class="nav-link" data-scroll-target="#execution-runs-the-engagement-cycle">Execution: runs the engagement cycle</a></li>
+  <li><a href="#management-provides-engagement-performance-reports" id="toc-management-provides-engagement-performance-reports" class="nav-link" data-scroll-target="#management-provides-engagement-performance-reports">Management: provides engagement performance reports</a></li>
+  </ul></li>
+  <li><a href="#actors-and-roles" id="toc-actors-and-roles" class="nav-link" data-scroll-target="#actors-and-roles">5. Actors and roles</a></li>
+  <li><a href="#capabilities-processes-and-functions" id="toc-capabilities-processes-and-functions" class="nav-link" data-scroll-target="#capabilities-processes-and-functions">6. Capabilities, processes, and functions</a>
+  <ul class="collapse">
+  <li><a href="#capability-foundations" id="toc-capability-foundations" class="nav-link" data-scroll-target="#capability-foundations">Capability foundations</a></li>
+  <li><a href="#stages-processes-and-functions" id="toc-stages-processes-and-functions" class="nav-link" data-scroll-target="#stages-processes-and-functions">Stages, processes, and functions</a></li>
+  <li><a href="#framework-mappings" id="toc-framework-mappings" class="nav-link" data-scroll-target="#framework-mappings">Framework mappings</a></li>
+  </ul></li>
+  <li><a href="#principles" id="toc-principles" class="nav-link" data-scroll-target="#principles">7. Principles</a></li>
+  <li><a href="#interfaces-services-and-events" id="toc-interfaces-services-and-events" class="nav-link" data-scroll-target="#interfaces-services-and-events">8. Interfaces, services, and events</a></li>
+  <li><a href="#key-performance-indicators" id="toc-key-performance-indicators" class="nav-link" data-scroll-target="#key-performance-indicators">9. Key performance indicators</a></li>
+  <li><a href="#toolkit" id="toc-toolkit" class="nav-link" data-scroll-target="#toolkit">10. Toolkit</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="vs-10.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-07.html">Supporting value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-10.html">VS-10 Customer and Stakeholder Engagement</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">VS-10 Customer and Stakeholder Engagement</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- GENERATED from docs/SAF Framework.md by scripts/split-framework.py - do not edit -->
+<p><span id="vs-10-customer-and-stakeholder-engagement"></span></p>
+<section id="purpose-and-value-created" class="level2">
+<h2 class="anchored" data-anchor-id="purpose-and-value-created">1. Purpose and value created</h2>
+<p>VS-10 keeps the NSI connected, relevant, and responsive to the people it serves. It builds and maintains mutual understanding and trust between the NSI and its users, data providers, partners, and policy stakeholders. Official statistics exist to create public value, so the NSI must understand what stakeholders need, communicate openly, and keep its products, services, and policies in line with real demand. VS-10 is not a one-way process. It is a continuous dialogue that turns what stakeholders say into better products, better services, and stronger relationships. The value created is <strong>relevance and public value</strong>.</p>
+<p>VS-10 is a supporting value stream. It aligns with the GAMSO areas <em>Strategy and Leadership</em> and <em>Corporate Support</em> rather than with the production phases of GSBPM. This section describes its business layer for all four process types.</p>
+<ul>
+<li><strong>Relationship manager, user researcher, or service desk staff:</strong> the stages in attribute 3, which describe the engagement cycle.</li>
+<li><strong>Head of communication or dissemination and service manager:</strong> the Design processes in attribute 4.</li>
+<li><strong>Process owners of other value streams:</strong> attributes 2 and 8, which describe how needs flow to them and how feedback returns.</li>
+<li><strong>Manager who wants the big picture:</strong> attributes 1, 2, and 9. Examples and scenarios are part of the SAF Toolkit.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>How a supporting value stream differs from a primary one
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VS-10 has no steady-state data transition. It does not move data along the chain; it moves understanding: needs come in, and communication and services go out. It runs continuously as an ongoing dialogue, not per production cycle. Its output is an enabling capability rather than a data artifact: understood needs, a managed service portfolio, relationships, and insight into impact. It uses the usage data of State #5 as a secondary consumer, to measure reach and impact.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Indicative roles, not a prescribed structure
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The roles in attribute 5 are indicative, not a mandated organizational structure. The SAF deliberately leaves organization design to each NSI. An NSI assigns these responsibilities to fit its own size, culture, and operating model.</p>
+</div>
+</div>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-10 (a) value stream and capabilities</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="position-and-interaction-with-the-chain" class="level2">
+<h2 class="anchored" data-anchor-id="position-and-interaction-with-the-chain">2. Position and interaction with the chain</h2>
+<p>VS-10 is not a stage in the production line. It sits at the edges of the chain. On one side it faces the data providers who feed VS-01; on the other side it faces the users who consume what VS-06 releases. It channels what it learns inward, to shape the whole chain. VS-10 is closely coupled with VS-01, for the relationships with providers, and with VS-06, from which it receives usage and satisfaction data. It translates what it hears into requirements that flow into the design of the primary value streams and into the innovation backlog of VS-08.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Counterpart</th>
+<th>VS-10 provides</th>
+<th>VS-10 receives</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Users and society</td>
+<td>Services, support, communication, the service portfolio</td>
+<td>Needs, feedback, satisfaction</td>
+</tr>
+<tr class="even">
+<td>Data providers and respondents, through VS-01 Data Acquisition and Ingestion</td>
+<td>Relationship management, transparency on the use and protection of their data, burden reduction</td>
+<td>Willingness to provide data, needs and concerns of providers</td>
+</tr>
+<tr class="odd">
+<td>VS-06 Dissemination and Service Delivery</td>
+<td>Service requirements, user groups, expectations of users</td>
+<td>Usage and satisfaction data</td>
+</tr>
+<tr class="even">
+<td>VS-01 to VS-05 (design of the primary value streams)</td>
+<td>Requirements for new or changed products, breakdowns, and timeliness</td>
+<td>Information on what can be delivered, and when</td>
+</tr>
+<tr class="odd">
+<td>VS-08 Innovation and Methodological Development</td>
+<td>User-driven needs for new methods, sources, and services</td>
+<td>New and improved products and services</td>
+</tr>
+<tr class="even">
+<td>VS-07 Governance and Compliance</td>
+<td>Signals on stakeholder trust, complaints</td>
+<td>Commitments on transparency and accountability</td>
+</tr>
+<tr class="odd">
+<td>Partners: other producers of official statistics, international organizations, data space partners</td>
+<td>Coordination and joint communication</td>
+<td>Joint requirements and agreements</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-10 (c) interaction with the chain: VS-10 at both edges of the chain, facing data providers at VS-01 and users at VS-06, and channeling needs inward to the design of the primary value streams and to VS-08</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="stages" class="level2">
+<h2 class="anchored" data-anchor-id="stages">3. Stages</h2>
+<p>The stages of VS-10 form a continuous engagement cycle: understand, offer, deliver, and measure. What is learned in the last stage improves the understanding in the first.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Name</th>
+<th>Value added</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-10.1</td>
+<td>Identify and Segment Stakeholders</td>
+<td>It is clear who the stakeholders are and what they expect</td>
+</tr>
+<tr class="even">
+<td>VS-10.2</td>
+<td>Collect and Analyze User Needs</td>
+<td>Stakeholder needs are known and translated into requirements</td>
+</tr>
+<tr class="odd">
+<td>VS-10.3</td>
+<td>Define and Manage Service Portfolios</td>
+<td>The offer of products and services matches needs and strategy</td>
+</tr>
+<tr class="even">
+<td>VS-10.4</td>
+<td>Deliver Services and Manage Relationships</td>
+<td>Stakeholders are served well and relationships are maintained</td>
+</tr>
+<tr class="odd">
+<td>VS-10.5</td>
+<td>Engage and Communicate with Stakeholders</td>
+<td>Stakeholders are aware of the statistics and understand them correctly</td>
+</tr>
+<tr class="even">
+<td>VS-10.6</td>
+<td>Monitor Impact and Satisfaction</td>
+<td>The use, impact, and appreciation of the statistics are known</td>
+</tr>
+</tbody>
+</table>
+<p>Each stage below is described with its activities. The column <em>SAF process</em> shows the business process from <em>Business Processes</em> that the activity belongs to. The column <em>Other reference</em> shows the principles, capabilities, or external frameworks that the activity applies.</p>
+<p><br></p>
+<section id="vs-10.1-identify-and-segment-stakeholders" class="level3">
+<h3 class="anchored" data-anchor-id="vs-10.1-identify-and-segment-stakeholders">VS-10.1 Identify and Segment Stakeholders</h3>
+<p><strong>Value created:</strong> <em>A clear view of who the stakeholders are, what role they play, and what they expect.</em></p>
+<p>The cycle begins with a map of the stakeholder landscape. It covers users, data providers, partners, and policy makers, as well as the media and the public. Stakeholders are grouped into segments with similar needs and expectations, for example policy makers, researchers, businesses, and the general public. Key stakeholders are identified, such as the main ministries, large data providers, and international partners. The roles of other producers of official statistics and of data space partners are included. The map is kept current, because the landscape changes with new data sources, new users, and new partnerships.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Map users, data providers, partners, policy makers, media, and the public</td>
+<td>Stakeholder map</td>
+<td>PRD-1.2 Consult and confirm needs</td>
+<td>3.4.2 Contact management</td>
+</tr>
+<tr class="even">
+<td>Group stakeholders into segments with similar needs</td>
+<td>Stakeholder segments</td>
+<td>PRD-1.2 Consult and confirm needs</td>
+<td>2.2.5 User research</td>
+</tr>
+<tr class="odd">
+<td>Identify key stakeholders and partners, including data space partners</td>
+<td>Key stakeholder list</td>
+<td>DSP-6 Participate in data space governance</td>
+<td>4.1.6 Collaboration</td>
+</tr>
+<tr class="even">
+<td>Keep the map current</td>
+<td>Updated stakeholder map</td>
+<td>NSI-specific</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-10.2-collect-and-analyze-user-needs" class="level3">
+<h3 class="anchored" data-anchor-id="vs-10.2-collect-and-analyze-user-needs">VS-10.2 Collect and Analyze User Needs</h3>
+<p><strong>Value created:</strong> <em>Stakeholder needs known and translated into concrete data or service requirements.</em></p>
+<p>Next, the needs of stakeholders are collected and analyzed. Feedback is gathered through consultations, user councils, surveys, and the usage data from VS-06. Needs are analyzed for their value, their urgency, and the number of stakeholders they concern. They are translated into concrete requirements: a new statistic, a finer breakdown, a faster release, or a new channel. Each requirement is routed to the value stream that can meet it, or to VS-08 when it needs a new method or source. The needs register records what was asked, what was decided, and why.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gather feedback through consultations, user councils, surveys, and usage data</td>
+<td>Collected needs</td>
+<td>PRD-1.1 Identify needs; PRD-1.2 Consult and confirm needs</td>
+<td>2.2.5 User research</td>
+</tr>
+<tr class="even">
+<td>Analyze needs for value, urgency, and reach</td>
+<td>Needs analysis</td>
+<td>PRD-1.1 Identify needs</td>
+<td>1.1.1 Needs inventory</td>
+</tr>
+<tr class="odd">
+<td>Translate needs into concrete data or service requirements</td>
+<td>Requirements</td>
+<td>PRD-1.2 Consult and confirm needs</td>
+<td>SAF-P04 Maximize the benefits for the organization</td>
+</tr>
+<tr class="even">
+<td>Route requirements to the value streams or to VS-08 Innovation and Methodological Development, and record decisions</td>
+<td>Needs register, <em>Need routed to design or innovation</em></td>
+<td>NSI-specific</td>
+<td>4.1.5 Accountability</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-10.3-define-and-manage-service-portfolios" class="level3">
+<h3 class="anchored" data-anchor-id="vs-10.3-define-and-manage-service-portfolios">VS-10.3 Define and Manage Service Portfolios</h3>
+<p><strong>Value created:</strong> <em>A portfolio of products and services that matches stakeholder needs and the strategy of the NSI.</em></p>
+<p>The needs shape the service portfolio. The portfolio is the catalog of business services and data products that the NSI offers, from publications and open data to tailored analyses and research access. It is the bridge between what users want and what the chain produces. New services are added when needs and strategy justify them, and services that are no longer used are retired. Each service has an owner, a target group, and a service standard. The portfolio is aligned with the dissemination strategy of VS-06 and the capacity of the production value streams.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define the catalog of business services and data products</td>
+<td>Service and product portfolio</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>3.4.1 Services management</td>
+</tr>
+<tr class="even">
+<td>Add and retire services based on needs and strategy</td>
+<td>Portfolio decisions</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+<tr class="odd">
+<td>Assign an owner, target group, and service standard to each service</td>
+<td>Service descriptions</td>
+<td>NSI-specific</td>
+<td>3.4.3 Service agreement</td>
+</tr>
+<tr class="even">
+<td>Align the portfolio with the dissemination strategy and production capacity</td>
+<td>Aligned portfolio</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>SAF-P04 Maximize the benefits for the organization</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-10.4-deliver-services-and-manage-relationships" class="level3">
+<h3 class="anchored" data-anchor-id="vs-10.4-deliver-services-and-manage-relationships">VS-10.4 Deliver Services and Manage Relationships</h3>
+<p><strong>Value created:</strong> <em>Stakeholders served well and relationships with key partners maintained.</em></p>
+<p>Services are put into the hands of users. VS-10 operates customer support and account management, together with the user support of VS-06. Relationships with key users, partners, and policy stakeholders are maintained through account managers. Relationships with data providers are maintained together with VS-01, with attention to burden and to transparency about the use of their data. Tailored services, such as custom tables, are delivered under the service standard. Service performance and satisfaction are tracked per service.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Operate customer support and account management</td>
+<td>Support and account records</td>
+<td>PRD-7.5 Provide user support</td>
+<td>3.4.1 Services management</td>
+</tr>
+<tr class="even">
+<td>Maintain relationships with key users, partners, and policy stakeholders</td>
+<td>Relationship plans</td>
+<td>NSI-specific</td>
+<td>3.4.2 Contact management</td>
+</tr>
+<tr class="odd">
+<td>Maintain relationships with data providers, together with VS-01 Data Acquisition and Ingestion</td>
+<td>Provider relationship records</td>
+<td>OVA-6 Data Supplier Management</td>
+<td>SAF-P11 Privacy by design</td>
+</tr>
+<tr class="even">
+<td>Deliver tailored services and support researchers</td>
+<td>Tailored services</td>
+<td>PRD-7.5 Provide user support; MDS-6 Support researchers</td>
+<td>2.2.4 Data services</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-10.5-engage-and-communicate-with-stakeholders" class="level3">
+<h3 class="anchored" data-anchor-id="vs-10.5-engage-and-communicate-with-stakeholders">VS-10.5 Engage and Communicate with Stakeholders</h3>
+<p><strong>Value created:</strong> <em>Stakeholders who know the statistics exist and understand them correctly.</em></p>
+<p>Alongside delivery, VS-10 engages and communicates with stakeholders. It runs outreach, workshops, and events that build awareness of statistical outputs. It works with the media, so that figures are reported correctly, including their uncertainty. It promotes statistical literacy among the public and in education. It communicates openly about how the NSI works, how it protects data, and how it handles errors. This builds the public confidence on which the willingness to respond and the use of statistics depend.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Run outreach, workshops, and events</td>
+<td>Outreach activities</td>
+<td>PRD-7.4 Promote dissemination products</td>
+<td>1.5.2 Promotion to use</td>
+</tr>
+<tr class="even">
+<td>Work with the media on correct reporting</td>
+<td>Media relations</td>
+<td>PRD-7.4 Promote dissemination products</td>
+<td>3.1.4 Communication management</td>
+</tr>
+<tr class="odd">
+<td>Promote statistical literacy</td>
+<td>Literacy programs</td>
+<td>NSI-specific</td>
+<td>1.5.2 Promotion to use</td>
+</tr>
+<tr class="even">
+<td>Communicate openly on methods, data protection, and corrections</td>
+<td>Transparency communication</td>
+<td>NSI-specific</td>
+<td>SAF-P11 Privacy by design; 4.1.5 Accountability</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-10.6-monitor-impact-and-satisfaction" class="level3">
+<h3 class="anchored" data-anchor-id="vs-10.6-monitor-impact-and-satisfaction">VS-10.6 Monitor Impact and Satisfaction</h3>
+<p><strong>Value created:</strong> <em>Knowledge of how statistics and services are used, valued, and what impact they have.</em></p>
+<p>The cycle closes by measuring impact and satisfaction. Satisfaction surveys are run across user segments and services. The usage data from VS-06 is analyzed to understand reach. Documented uses of official statistics in policy, research, and the media are collected as evidence of impact. Complaints and trust signals are passed to VS-07. The insights are fed back into the needs analysis, the service portfolio, and the innovation backlog, so that the next cycle of needs is better understood.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Run satisfaction surveys across segments and services</td>
+<td>Satisfaction results</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>2.2.5 User research</td>
+</tr>
+<tr class="even">
+<td>Analyze usage data from VS-06 Dissemination and Service Delivery</td>
+<td>Reach analysis</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Collect documented uses of statistics in policy, research, and the media</td>
+<td>Impact evidence</td>
+<td>PRD-8.2 Conduct evaluation</td>
+<td>4.1.5 Accountability</td>
+</tr>
+<tr class="even">
+<td>Feed insights back into needs, portfolio, and innovation; pass complaints to VS-07 Governance and Compliance</td>
+<td>Impact and satisfaction insight</td>
+<td>PRD-8.2 Conduct evaluation</td>
+<td>4.1.4 Improvement management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="the-four-process-types" class="level2">
+<h2 class="anchored" data-anchor-id="the-four-process-types">4. The four process types</h2>
+<p>VS-10 is itself a capability that must be designed, built, operated, and improved. The four process types therefore apply to VS-10 as they do to the primary value streams, but they govern the engagement capability rather than a data pipeline. Design produces the engagement strategy and the portfolio model, Implementation builds the channels for support and feedback, Execution runs the stages of attribute 3, and Management evaluates whether engagement creates relevance. <strong>[VC26]</strong></p>
+<p>Each sub-process refines one or more SAF business processes, which are listed under its heading as <em>Refines</em>. Where no reference process exists, the sub-process is marked as NSI-specific.</p>
+<section id="design-provides-the-engagement-framework" class="level3">
+<h3 class="anchored" data-anchor-id="design-provides-the-engagement-framework">Design: provides the engagement framework</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Design sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design the Engagement Strategy</td>
+<td>NSI-specific</td>
+<td>Engagement strategy, segment approach, communication principles</td>
+</tr>
+<tr class="even">
+<td>Design the Service Portfolio Model</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>Portfolio model, service standards, criteria for adding and retiring services</td>
+</tr>
+</tbody>
+</table>
+<section id="design-the-engagement-strategy" class="level4">
+<h4 class="anchored" data-anchor-id="design-the-engagement-strategy">Design the Engagement Strategy</h4>
+<p><em>Refines:</em> NSI-specific strategic planning processes.</p>
+<p>This sub-process sets the direction of engagement. It defines the goals of engagement in line with the strategy of the NSI, for example more reach among young people or better use of statistics in policy. It defines the approach per stakeholder segment: which channels, how often, and with which message. It sets the principles for communication, such as openness about uncertainty and about errors. It defines how user councils and consultations are organized. A clear strategy keeps engagement focused rather than spread thin.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define the goals of engagement in line with the strategy</td>
+<td>Engagement strategy</td>
+<td>NSI-specific</td>
+<td>4.1.1 Strategy and governance</td>
+</tr>
+<tr class="even">
+<td>Define the approach per stakeholder segment</td>
+<td>Segment approach</td>
+<td>NSI-specific</td>
+<td>3.4.2 Contact management</td>
+</tr>
+<tr class="odd">
+<td>Set communication principles and organize user councils and consultations</td>
+<td>Communication principles, consultation model</td>
+<td>NSI-specific</td>
+<td>3.1.4 Communication management</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-the-service-portfolio-model" class="level4">
+<h4 class="anchored" data-anchor-id="design-the-service-portfolio-model">Design the Service Portfolio Model</h4>
+<p><em>Refines:</em> PRD-2.1 Design outputs and dissemination.</p>
+<p>This sub-process designs how the service portfolio is managed. It defines the types of services that the NSI offers and the rules that apply to each type, such as free or paid and standard or tailored. It sets the service standards for response and delivery. It defines the criteria for adding a service and for retiring one. It defines how the portfolio is reviewed and by whom. The model makes portfolio decisions consistent and explainable to stakeholders.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define the types of services and the rules that apply to each</td>
+<td>Portfolio model</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>3.4.1 Services management</td>
+</tr>
+<tr class="even">
+<td>Set service standards for response and delivery</td>
+<td>Service standards</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>3.4.3 Service agreement</td>
+</tr>
+<tr class="odd">
+<td>Define the criteria for adding and retiring services, and the review procedure</td>
+<td>Portfolio criteria</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="implementation-provides-the-engagement-channels" class="level3">
+<h3 class="anchored" data-anchor-id="implementation-provides-the-engagement-channels">Implementation: provides the engagement channels</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Implementation sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build Support and Feedback Channels</td>
+<td>PRD-3.3 Reuse or build dissemination components; PRD-3.4 Configure workflows</td>
+<td>Service desk, feedback channels, needs register, relationship records</td>
+</tr>
+<tr class="even">
+<td>Establish Relationship Management</td>
+<td>OVA-6 Data Supplier Management; NSI-specific</td>
+<td>Account plans, relationship managers, provider engagement procedures</td>
+</tr>
+</tbody>
+</table>
+<section id="build-support-and-feedback-channels" class="level4">
+<h4 class="anchored" data-anchor-id="build-support-and-feedback-channels">Build Support and Feedback Channels</h4>
+<p><em>Refines:</em> PRD-3.3 Reuse or build dissemination components; PRD-3.4 Configure workflows.</p>
+<p>This sub-process builds the channels through which stakeholders reach the NSI, together with VS-09. It sets up the service desk and the channels for questions, by phone, e-mail, chat, and web forms. It builds the channels for feedback, such as surveys and comment functions on the website. It sets up the needs register and the system for relationship records. It connects these channels to the usage data of VS-06. Every channel records what it receives, so that needs and feedback are not lost.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Set up the service desk and the channels for questions</td>
+<td>Service desk and channels</td>
+<td>PRD-3.3 Reuse or build dissemination components</td>
+<td>3.4.4 Self-service</td>
+</tr>
+<tr class="even">
+<td>Build the channels for feedback</td>
+<td>Feedback channels</td>
+<td>PRD-3.3 Reuse or build dissemination components</td>
+<td>2.2.5 User research</td>
+</tr>
+<tr class="odd">
+<td>Set up the needs register and the relationship records, connected to usage data</td>
+<td>Needs register, relationship records</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>SAF-P09 No data without metadata and classification</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="establish-relationship-management" class="level4">
+<h4 class="anchored" data-anchor-id="establish-relationship-management">Establish Relationship Management</h4>
+<p><em>Refines:</em> OVA-6 Data Supplier Management; NSI-specific relationship processes.</p>
+<p>This sub-process puts relationship management into practice. Account managers are assigned to key users, partners, and policy stakeholders. Account plans are written for the most important relationships. The procedures for engaging data providers are agreed with VS-01, including how burden is discussed and how providers are informed about the use of their data. Agreements with partners, such as other producers of official statistics, are registered. Staff are trained in engagement and communication.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Assign account managers and write account plans</td>
+<td>Account plans</td>
+<td>NSI-specific</td>
+<td>3.4.2 Contact management</td>
+</tr>
+<tr class="even">
+<td>Agree procedures for engaging data providers with VS-01 Data Acquisition and Ingestion</td>
+<td>Provider engagement procedures</td>
+<td>OVA-6 Data Supplier Management</td>
+<td>SAF-P11 Privacy by design</td>
+</tr>
+<tr class="odd">
+<td>Register partner agreements and train staff</td>
+<td>Partner register, trained staff</td>
+<td>NSI-specific</td>
+<td>4.1.6 Collaboration</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="execution-runs-the-engagement-cycle" class="level3">
+<h3 class="anchored" data-anchor-id="execution-runs-the-engagement-cycle">Execution: runs the engagement cycle</h3>
+<p>Execution runs the stages of attribute 3 continuously. VS-10.1 and VS-10.3 run as periodic reviews; VS-10.2, VS-10.4, and VS-10.5 run continuously; VS-10.6 runs per survey wave and per reporting period.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>VS-10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Trigger</td>
+<td><em>User need captured</em>; <em>Service request</em>; <em>Feedback received</em> from VS-06 Dissemination and Service Delivery; a planned consultation or campaign</td>
+</tr>
+<tr class="even">
+<td>Cadence</td>
+<td>Continuous dialogue; periodic reviews of stakeholders and portfolio; survey waves</td>
+</tr>
+<tr class="odd">
+<td>Performed by</td>
+<td>ROL-23 Relationship manager, ROL-22 Dissemination and service manager</td>
+</tr>
+<tr class="even">
+<td>Input</td>
+<td>Feedback, consultations, usage data, complaints, strategy of the NSI</td>
+</tr>
+<tr class="odd">
+<td>Output</td>
+<td>Needs register, service portfolio, relationships, communication, impact and satisfaction insight</td>
+</tr>
+<tr class="even">
+<td>Control point</td>
+<td>Portfolio review; decisions on needs recorded in the needs register</td>
+</tr>
+<tr class="odd">
+<td>Exception path</td>
+<td>A complaint about confidentiality or conduct passed to VS-07 Governance and Compliance; a need that the chain cannot meet explained to the stakeholder</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="management-provides-engagement-performance-reports" class="level3">
+<h3 class="anchored" data-anchor-id="management-provides-engagement-performance-reports">Management: provides engagement performance reports</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Management sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monitor Engagement Performance</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>Engagement dashboard, service performance reports</td>
+</tr>
+<tr class="even">
+<td>Evaluate and Improve the Engagement Capability</td>
+<td>PRD-8.2 Conduct evaluation; PRD-8.3 Agree an action plan</td>
+<td>Evaluation of engagement, improvement plan</td>
+</tr>
+</tbody>
+</table>
+<section id="monitor-engagement-performance" class="level4">
+<h4 class="anchored" data-anchor-id="monitor-engagement-performance">Monitor Engagement Performance</h4>
+<p><em>Refines:</em> PRD-8.1 Gather evaluation inputs.</p>
+<p>This sub-process tracks how engagement performs. It measures the key performance indicators of VS-10 (see attribute 9), such as user satisfaction and the conversion of needs into requirements. It tracks service performance against the service standards. It tracks reach and participation in consultations and outreach. It reports the results to management and to the value streams concerned. Visible results show stakeholders that their input leads to action.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Measure the key performance indicators of VS-10 Customer and Stakeholder Engagement</td>
+<td>Engagement dashboard</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>GAMSO Quality Management</td>
+</tr>
+<tr class="even">
+<td>Track service performance against the service standards</td>
+<td>Service performance report</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>3.4.3 Service agreement</td>
+</tr>
+<tr class="odd">
+<td>Track reach and participation</td>
+<td>Reach report</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>1.5.2 Promotion to use</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evaluate-and-improve-the-engagement-capability" class="level4">
+<h4 class="anchored" data-anchor-id="evaluate-and-improve-the-engagement-capability">Evaluate and Improve the Engagement Capability</h4>
+<p><em>Refines:</em> PRD-8.2 Conduct evaluation; PRD-8.3 Agree an action plan.</p>
+<p>This sub-process asks whether engagement creates relevance and public value. It evaluates whether captured needs led to changes in products and services, and how long that took. It assesses which segments are reached well and which are not. It reviews the effectiveness of channels and campaigns. It adjusts the strategy, the portfolio model, and the channels based on the findings. Improvements are prioritized and tracked, in line with SAF capability 4.1.4 <em>Improvement management</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Evaluate whether needs led to changes, and how quickly</td>
+<td>Needs follow-up evaluation</td>
+<td>PRD-8.2 Conduct evaluation</td>
+<td>4.1.5 Accountability</td>
+</tr>
+<tr class="even">
+<td>Assess the reach per segment and the effectiveness of channels</td>
+<td>Segment and channel evaluation</td>
+<td>PRD-8.2 Conduct evaluation</td>
+<td>2.2.5 User research</td>
+</tr>
+<tr class="odd">
+<td>Adjust strategy, portfolio model, and channels, and track improvements</td>
+<td>Improvement plan</td>
+<td>PRD-8.3 Agree an action plan</td>
+<td>4.1.4 Improvement management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="actors-and-roles" class="level2">
+<h2 class="anchored" data-anchor-id="actors-and-roles">5. Actors and roles</h2>
+<p>VS-10 faces outward more than any other supporting value stream. The table shows the actors and the reference roles involved. Specialized role names used in an NSI map onto these reference roles (see <em>Role names in the value streams</em>); for example, the head of communication, the account manager, the user researcher, the communications officer, and the impact analyst are ROL-23 Relationship manager, and the service portfolio manager and service desk staff are ROL-22 Dissemination and service manager. Relationships with data providers are organized in the collaboration COL-01 <em>Data provision partnership</em>, and relationships with other producers in COL-02 <em>National statistical system</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Actor or role</th>
+<th>ID</th>
+<th>Responsibility in VS-10 Customer and Stakeholder Engagement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data user</td>
+<td>ACT-05</td>
+<td>Expresses needs, uses services, gives feedback</td>
+</tr>
+<tr class="even">
+<td>Data provider</td>
+<td>ACT-03</td>
+<td>Provides data; is engaged on burden, transparency, and the use of their data</td>
+</tr>
+<tr class="odd">
+<td>Respondent</td>
+<td>ACT-04</td>
+<td>Provides data through surveys; is informed about the purpose and protection of their data</td>
+</tr>
+<tr class="even">
+<td>Other producer of official statistics</td>
+<td>ACT-06</td>
+<td>Coordinates needs and communication within the national statistical system</td>
+</tr>
+<tr class="odd">
+<td>International statistical organization</td>
+<td>ACT-07</td>
+<td>Expresses international requirements and cooperates on communication</td>
+</tr>
+<tr class="even">
+<td>Process owners of the production value streams</td>
+<td>ROL-01</td>
+<td>Receive requirements and report what can be delivered</td>
+</tr>
+<tr class="odd">
+<td>Dissemination and service manager</td>
+<td>ROL-22</td>
+<td>Manages the service portfolio and day-to-day user support</td>
+</tr>
+<tr class="even">
+<td>Relationship manager</td>
+<td>ROL-23</td>
+<td>Owns the stakeholder strategy and the relationships with key users, providers, and partners; runs outreach, user research, and impact measurement</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="capabilities-processes-and-functions" class="level2">
+<h2 class="anchored" data-anchor-id="capabilities-processes-and-functions">6. Capabilities, processes, and functions</h2>
+<section id="capability-foundations" class="level3">
+<h3 class="anchored" data-anchor-id="capability-foundations">Capability foundations</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Capability group</th>
+<th>Capabilities</th>
+<th>Role in VS-10 Customer and Stakeholder Engagement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.1 Statistical design and build</td>
+<td>1.1.1 Needs inventory</td>
+<td>Capture and analyze needs as input for the design of products</td>
+</tr>
+<tr class="even">
+<td>1.5 Dissemination</td>
+<td>1.5.2 Promotion to use</td>
+<td>Promote awareness and correct use of statistics</td>
+</tr>
+<tr class="odd">
+<td>2.2 Research</td>
+<td>2.2.5 User research</td>
+<td>Understand users, their needs, and their satisfaction</td>
+</tr>
+<tr class="even">
+<td>3.1 Business operations</td>
+<td>3.1.4 Communication management</td>
+<td>Manage external communication and media relations</td>
+</tr>
+<tr class="odd">
+<td>3.4 Customer and chain interaction</td>
+<td>3.4.1 Services management, 3.4.2 Contact management, 3.4.3 Service agreement, 3.4.4 Self-service</td>
+<td>Manage the service portfolio, relationships, service standards, and self-service</td>
+</tr>
+<tr class="even">
+<td>4.1 Strategy and leadership</td>
+<td>4.1.1 Strategy and governance, 4.1.5 Accountability, 4.1.6 Collaboration</td>
+<td>Align engagement with strategy, account to society, cooperate with partners</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="stages-processes-and-functions" class="level3">
+<h3 class="anchored" data-anchor-id="stages-processes-and-functions">Stages, processes, and functions</h3>
+<p>The table follows the mapping in <em>Business Processes, Mapping to value stream stages</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Realized by processes</th>
+<th>Main functions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-10.1 Identify and Segment Stakeholders</td>
+<td>PRD-1.2 Consult and confirm needs; DSP-6 Participate in data space governance</td>
+<td>FUN-1.3 Manage strategic collaboration; FUN-10.9 Manage users and services</td>
+</tr>
+<tr class="even">
+<td>VS-10.2 Collect and Analyze User Needs</td>
+<td>PRD-1.1 Identify needs; PRD-1.2 Consult and confirm needs</td>
+<td>FUN-3.1 Design and build statistical products; FUN-10.9 Manage users and services</td>
+</tr>
+<tr class="odd">
+<td>VS-10.3 Define and Manage Service Portfolios</td>
+<td>PRD-2.1 Design outputs and dissemination</td>
+<td>FUN-10.9 Manage users and services</td>
+</tr>
+<tr class="even">
+<td>VS-10.4 Deliver Services and Manage Relationships</td>
+<td>PRD-7.5 Provide user support; MDS-6 Support researchers; OVA-6 Data Supplier Management</td>
+<td>FUN-6.1 Manage data supplier relationships; FUN-10.9 Manage users and services</td>
+</tr>
+<tr class="odd">
+<td>VS-10.5 Engage and Communicate with Stakeholders</td>
+<td>PRD-7.4 Promote dissemination products</td>
+<td>FUN-1.4 Build public confidence; FUN-10.6 Manage communication</td>
+</tr>
+<tr class="even">
+<td>VS-10.6 Monitor Impact and Satisfaction</td>
+<td>PRD-8.1 Gather evaluation inputs; PRD-8.2 Conduct evaluation</td>
+<td>FUN-5.2 Assure and review quality; FUN-10.9 Manage users and services</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-10 (b) stages realized by processes and functions</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="framework-mappings" class="level3">
+<h3 class="anchored" data-anchor-id="framework-mappings">Framework mappings</h3>
+<p>Where the primary value streams map to the production phases of GSBPM, VS-10 maps to the leadership and support activities of GAMSO.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>GAMSO area</th>
+<th>Relevance to VS-10 Customer and Stakeholder Engagement</th>
+<th>SAF capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Strategy and Leadership</td>
+<td>Manage relationships with stakeholders and customers; align the portfolio with the strategy</td>
+<td>4.1.1 Strategy and governance, 4.1.6 Collaboration</td>
+</tr>
+<tr class="even">
+<td>Corporate Support</td>
+<td>Manage communication, user support, and service management</td>
+<td>3.1.4 Communication management, 3.4.1 Services management, 3.4.2 Contact management</td>
+</tr>
+<tr class="odd">
+<td>Production (Specify Needs)</td>
+<td>Provide the needs that start the design of statistical products</td>
+<td>1.1.1 Needs inventory</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="principles" class="level2">
+<h2 class="anchored" data-anchor-id="principles">7. Principles</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Principle</th>
+<th>Statement</th>
+<th>How VS-10 Customer and Stakeholder Engagement applies it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-P02</td>
+<td>Active support</td>
+<td>Runs user support and service management as actively managed services</td>
+</tr>
+<tr class="even">
+<td>SAF-P04</td>
+<td>Maximize the benefits for the organization</td>
+<td>Keeps the whole chain aligned with real stakeholder value and public benefit</td>
+</tr>
+<tr class="odd">
+<td>SAF-P08</td>
+<td>Data is shared property</td>
+<td>Promotes broad and equal access to statistics and services, and their reuse</td>
+</tr>
+<tr class="even">
+<td>SAF-P11</td>
+<td>Privacy by design</td>
+<td>Engages data providers and users openly about how their data is used and protected</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="interfaces-services-and-events" class="level2">
+<h2 class="anchored" data-anchor-id="interfaces-services-and-events">8. Interfaces, services, and events</h2>
+<p><strong>Business services</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Service</th>
+<th>Offered to</th>
+<th>Realized in</th>
+<th>Interfaces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Needs intake service</td>
+<td>Users, partners, policy stakeholders</td>
+<td>VS-10.2 Collect and Analyze User Needs</td>
+<td>Consultations, user councils, feedback channels, needs register</td>
+</tr>
+<tr class="even">
+<td>Service portfolio service</td>
+<td>Users; VS-06 Dissemination and Service Delivery</td>
+<td>VS-10.3 Define and Manage Service Portfolios</td>
+<td>Service catalog</td>
+</tr>
+<tr class="odd">
+<td>Relationship management service</td>
+<td>Key users, partners, data providers</td>
+<td>VS-10.4 Deliver Services and Manage Relationships</td>
+<td>Account managers, relationship records</td>
+</tr>
+<tr class="even">
+<td>Customer support service</td>
+<td>All users</td>
+<td>VS-10.4 Deliver Services and Manage Relationships</td>
+<td>Service desk, self-service, together with VS-06 Dissemination and Service Delivery</td>
+</tr>
+<tr class="odd">
+<td>Communication and outreach service</td>
+<td>The public, the media, education</td>
+<td>VS-10.5 Engage and Communicate with Stakeholders</td>
+<td>Events, media relations, literacy programs</td>
+</tr>
+<tr class="even">
+<td>Impact and satisfaction service</td>
+<td>NSI management, value streams</td>
+<td>VS-10.6 Monitor Impact and Satisfaction</td>
+<td>Satisfaction surveys, impact reports</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Business events</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Triggers or marks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>User need captured</em></td>
+<td>Entry of a need into the needs register in VS-10.2 Collect and Analyze User Needs</td>
+</tr>
+<tr class="even">
+<td><em>Need routed to design or innovation</em></td>
+<td>Routing of a requirement to a primary value stream or to VS-08 Innovation and Methodological Development</td>
+</tr>
+<tr class="odd">
+<td><em>Consultation held</em></td>
+<td>Completion of a consultation or user council meeting</td>
+</tr>
+<tr class="even">
+<td><em>Service request</em></td>
+<td>Start of service delivery in VS-10.4 Deliver Services and Manage Relationships</td>
+</tr>
+<tr class="odd">
+<td><em>Feedback received</em></td>
+<td>Receipt of usage and satisfaction data from VS-06 Dissemination and Service Delivery</td>
+</tr>
+<tr class="even">
+<td><em>Provider engagement</em></td>
+<td>Contact with data providers, together with VS-01 Data Acquisition and Ingestion</td>
+</tr>
+<tr class="odd">
+<td><em>Complaint received</em></td>
+<td>Handling of a complaint and, where relevant, referral to VS-07 Governance and Compliance</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-10 event choreography between users, data providers, VS-10, VS-06, the primary value streams, and VS-08: need captured, consultation, need routed, service request, feedback received, and complaint</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="key-performance-indicators" class="level2">
+<h2 class="anchored" data-anchor-id="key-performance-indicators">9. Key performance indicators</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>KPI</th>
+<th>Description</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>User satisfaction</td>
+<td>Satisfaction score across user segments and services</td>
+<td>Per survey wave, per segment</td>
+</tr>
+<tr class="even">
+<td>Needs conversion</td>
+<td>Share of captured needs converted into requirements routed to design or innovation</td>
+<td>Per planning period</td>
+</tr>
+<tr class="odd">
+<td>Service performance</td>
+<td>Response and resolution times of support against the service standard</td>
+<td>Monthly</td>
+</tr>
+<tr class="even">
+<td>Reach and engagement</td>
+<td>Participation in consultations and outreach; reach of channels across segments</td>
+<td>Per campaign, annually</td>
+</tr>
+<tr class="odd">
+<td>Impact evidence</td>
+<td>Documented uses of official statistics in policy, research, and the media</td>
+<td>Annually</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="toolkit" class="level2">
+<h2 class="anchored" data-anchor-id="toolkit">10. Toolkit</h2>
+<p>Examples from NSI practice and a maturity checklist for VS-10 are part of the SAF Toolkit.</p>
+<p><strong>Toolkit:</strong> SAF-TK-V10 VS-10 Customer and Stakeholder Engagement companion <strong>[VC17]</strong></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="../framework/vs-09.html" class="pagination-link" aria-label="VS-09 Infrastructure and Platform Enablement">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">VS-09 Infrastructure and Platform Enablement</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../framework/data-application-architecture.html" class="pagination-link" aria-label="Data and Application Architecture">
+        <span class="nav-page-text">Data and Application Architecture</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

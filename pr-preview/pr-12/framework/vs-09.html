@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>VS-09 Infrastructure and Platform Enablement – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../framework/vs-10.html" rel="next">
+<link href="../framework/vs-08.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f374ad13d1ca50ffd7110ca4e9b8aceb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../framework/index.html" aria-current="page"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-07.html">Supporting value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-09.html">VS-09 Infrastructure and Platform Enablement</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAF Architecture Framework</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Foundations</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and Scope</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/motivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Motivation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/strategy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strategy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Business architecture</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/business-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/steady-states.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Steady-State Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/value-chain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Data Value Chain</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Production value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-01 Data Acquisition and Ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-02 Data Standardization and Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-03 Data Editing and Enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-04 Estimation, Analysis, and Statistical Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-05 Statistical Product Composition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-06 Dissemination and Service Delivery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Supporting value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-07 Governance and Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-08 Innovation and Methodological Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-09.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">VS-09 Infrastructure and Platform Enablement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-10 Customer and Stakeholder Engagement</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Data, application and technology</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/data-application-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data and Application Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/technology-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Technology Architecture</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#purpose-and-value-created" id="toc-purpose-and-value-created" class="nav-link active" data-scroll-target="#purpose-and-value-created">1. Purpose and value created</a></li>
+  <li><a href="#position-and-interaction-with-the-chain" id="toc-position-and-interaction-with-the-chain" class="nav-link" data-scroll-target="#position-and-interaction-with-the-chain">2. Position and interaction with the chain</a></li>
+  <li><a href="#stages" id="toc-stages" class="nav-link" data-scroll-target="#stages">3. Stages</a>
+  <ul class="collapse">
+  <li><a href="#vs-09.1-define-digital-and-technical-requirements" id="toc-vs-09.1-define-digital-and-technical-requirements" class="nav-link" data-scroll-target="#vs-09.1-define-digital-and-technical-requirements">VS-09.1 Define Digital and Technical Requirements</a></li>
+  <li><a href="#vs-09.2-design-platform-and-infrastructure-architecture" id="toc-vs-09.2-design-platform-and-infrastructure-architecture" class="nav-link" data-scroll-target="#vs-09.2-design-platform-and-infrastructure-architecture">VS-09.2 Design Platform and Infrastructure Architecture</a></li>
+  <li><a href="#vs-09.3-provision-and-configure-platforms" id="toc-vs-09.3-provision-and-configure-platforms" class="nav-link" data-scroll-target="#vs-09.3-provision-and-configure-platforms">VS-09.3 Provision and Configure Platforms</a></li>
+  <li><a href="#vs-09.4-enable-integration-and-orchestration-services" id="toc-vs-09.4-enable-integration-and-orchestration-services" class="nav-link" data-scroll-target="#vs-09.4-enable-integration-and-orchestration-services">VS-09.4 Enable Integration and Orchestration Services</a></li>
+  <li><a href="#vs-09.5-ensure-performance-security-and-continuity" id="toc-vs-09.5-ensure-performance-security-and-continuity" class="nav-link" data-scroll-target="#vs-09.5-ensure-performance-security-and-continuity">VS-09.5 Ensure Performance, Security, and Continuity</a></li>
+  <li><a href="#vs-09.6-evolve-and-modernize-the-technical-ecosystem" id="toc-vs-09.6-evolve-and-modernize-the-technical-ecosystem" class="nav-link" data-scroll-target="#vs-09.6-evolve-and-modernize-the-technical-ecosystem">VS-09.6 Evolve and Modernize the Technical Ecosystem</a></li>
+  </ul></li>
+  <li><a href="#the-four-process-types" id="toc-the-four-process-types" class="nav-link" data-scroll-target="#the-four-process-types">4. The four process types</a>
+  <ul class="collapse">
+  <li><a href="#design-provides-the-platform-operating-model" id="toc-design-provides-the-platform-operating-model" class="nav-link" data-scroll-target="#design-provides-the-platform-operating-model">Design: provides the platform operating model</a></li>
+  <li><a href="#implementation-provides-the-service-management" id="toc-implementation-provides-the-service-management" class="nav-link" data-scroll-target="#implementation-provides-the-service-management">Implementation: provides the service management</a></li>
+  <li><a href="#execution-runs-the-platform-services" id="toc-execution-runs-the-platform-services" class="nav-link" data-scroll-target="#execution-runs-the-platform-services">Execution: runs the platform services</a></li>
+  <li><a href="#management-provides-service-performance-reports" id="toc-management-provides-service-performance-reports" class="nav-link" data-scroll-target="#management-provides-service-performance-reports">Management: provides service performance reports</a></li>
+  </ul></li>
+  <li><a href="#actors-and-roles" id="toc-actors-and-roles" class="nav-link" data-scroll-target="#actors-and-roles">5. Actors and roles</a></li>
+  <li><a href="#capabilities-processes-and-functions" id="toc-capabilities-processes-and-functions" class="nav-link" data-scroll-target="#capabilities-processes-and-functions">6. Capabilities, processes, and functions</a>
+  <ul class="collapse">
+  <li><a href="#capability-foundations" id="toc-capability-foundations" class="nav-link" data-scroll-target="#capability-foundations">Capability foundations</a></li>
+  <li><a href="#stages-processes-and-functions" id="toc-stages-processes-and-functions" class="nav-link" data-scroll-target="#stages-processes-and-functions">Stages, processes, and functions</a></li>
+  <li><a href="#framework-mappings" id="toc-framework-mappings" class="nav-link" data-scroll-target="#framework-mappings">Framework mappings</a></li>
+  </ul></li>
+  <li><a href="#principles" id="toc-principles" class="nav-link" data-scroll-target="#principles">7. Principles</a></li>
+  <li><a href="#interfaces-services-and-events" id="toc-interfaces-services-and-events" class="nav-link" data-scroll-target="#interfaces-services-and-events">8. Interfaces, services, and events</a></li>
+  <li><a href="#key-performance-indicators" id="toc-key-performance-indicators" class="nav-link" data-scroll-target="#key-performance-indicators">9. Key performance indicators</a></li>
+  <li><a href="#toolkit" id="toc-toolkit" class="nav-link" data-scroll-target="#toolkit">10. Toolkit</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="vs-09.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-07.html">Supporting value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-09.html">VS-09 Infrastructure and Platform Enablement</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">VS-09 Infrastructure and Platform Enablement</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- GENERATED from docs/SAF Framework.md by scripts/split-framework.py - do not edit -->
+<p><span id="vs-09-infrastructure-and-platform-enablement"></span></p>
+<section id="purpose-and-value-created" class="level2">
+<h2 class="anchored" data-anchor-id="purpose-and-value-created">1. Purpose and value created</h2>
+<p>VS-09 provides the technical and digital foundation for every part of the NSI. Where the other value streams focus on data, methods, or governance, VS-09 makes sure that all of these activities can actually run: safely, efficiently, and at scale. It delivers the IT environments, data platforms, tools, and integration services that statistical production needs, from collection to dissemination. It keeps systems secure, resilient, and compliant, while staying flexible enough to adopt new technologies. VS-09 describes the business view of this enablement: the capability of providing platforms and services. The detailed application and technology architecture is the subject of the application and technology layers of the SAF. The value created is <strong>reliable enablement</strong>: infrastructure becomes an active enabler of the statistical mission rather than a background function.</p>
+<p>VS-09 is a supporting value stream. It aligns with the GAMSO areas <em>Capability Management</em> and <em>Corporate Support</em> rather than with the production phases of GSBPM. This section describes its business layer for all four process types.</p>
+<ul>
+<li><strong>Platform engineer or operations staff:</strong> the stages in attribute 3, which describe the enablement life cycle.</li>
+<li><strong>Enterprise or platform architect:</strong> the Design processes in attribute 4.</li>
+<li><strong>Process owners of other value streams:</strong> attributes 2 and 8, which describe what VS-09 provides and what it needs from them.</li>
+<li><strong>Manager who wants the big picture:</strong> attributes 1, 2, and 9. Examples and scenarios are part of the SAF Toolkit.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>How a supporting value stream differs from a primary one
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VS-09 has no steady-state data transition. It does not move data along the chain; it provides the environments in which the chain runs. It runs continuously as an always-on service, not per production cycle. Its output is an enabling capability rather than a data artifact: platforms, environments, integration services, and assured availability. The steady states and their quality gates are business agreements; VS-09 provides the storage, catalog, and event interfaces that implement them.</p>
+</div>
+</div>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-09 (a) value stream and capabilities</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="position-and-interaction-with-the-chain" class="level2">
+<h2 class="anchored" data-anchor-id="position-and-interaction-with-the-chain">2. Position and interaction with the chain</h2>
+<p>VS-09 is not a stage in the production line. It is the foundation underneath it: every primary and supporting value stream runs on the platforms that VS-09 provides. VS-09 receives requirements that follow from business capabilities, data volumes, and analytical complexity. It receives specific requests from VS-08 for new technology and from VS-06 for dissemination platforms. It provides platforms, integration services, and operational assurance. Its security and continuity are governed by VS-07.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Counterpart</th>
+<th>VS-09 provides</th>
+<th>VS-09 receives</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-01 to VS-05 (primary value streams)</td>
+<td>Environments for collection, processing, and analysis; steady-state repositories; catalog; event interfaces</td>
+<td>Requirements, capacity demand, incidents</td>
+</tr>
+<tr class="even">
+<td>VS-06 Dissemination and Service Delivery</td>
+<td>Portals, APIs, dashboards, secure research environments, data space connectors</td>
+<td>Requirements for channels and scaling, especially at release moments</td>
+</tr>
+<tr class="odd">
+<td>VS-07 Governance and Compliance</td>
+<td>Evidence on security posture and continuity</td>
+<td>Security and continuity policy</td>
+</tr>
+<tr class="even">
+<td>VS-08 Innovation and Methodological Development</td>
+<td>Research environments and production runtime for new technology</td>
+<td>Requests to adopt new technology</td>
+</tr>
+<tr class="odd">
+<td>VS-10 Customer and Stakeholder Engagement</td>
+<td>Platforms for user services and communication</td>
+<td>Requirements from users on availability and self-service</td>
+</tr>
+<tr class="even">
+<td>External parties: suppliers and service providers</td>
+<td>Requirements and service agreements</td>
+<td>Infrastructure, cloud services, software, and support</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-09 (c) interaction with the chain: VS-09 as the foundation underneath all value streams, providing environments, steady-state repositories, catalog, event interfaces, and dissemination platforms, and receiving requirements, capacity demand, and incidents; security and continuity governed by VS-07</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="stages" class="level2">
+<h2 class="anchored" data-anchor-id="stages">3. Stages</h2>
+<p>The stages of VS-09 form a continuous enablement life cycle: define, design, provision, integrate, assure, and evolve. Requirements lead to architecture, architecture to platforms, platforms to services that are monitored and kept safe, and experience to modernization.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Name</th>
+<th>Value added</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-09.1</td>
+<td>Define Digital and Technical Requirements</td>
+<td>It is clear which technical capabilities the business needs</td>
+</tr>
+<tr class="even">
+<td>VS-09.2</td>
+<td>Design Platform and Infrastructure Architecture</td>
+<td>There is a coherent blueprint for storage, processing, integration, and access</td>
+</tr>
+<tr class="odd">
+<td>VS-09.3</td>
+<td>Provision and Configure Platforms</td>
+<td>Controlled environments are available to the value streams</td>
+</tr>
+<tr class="even">
+<td>VS-09.4</td>
+<td>Enable Integration and Orchestration Services</td>
+<td>Processes and value streams are connected through stable interfaces</td>
+</tr>
+<tr class="odd">
+<td>VS-09.5</td>
+<td>Ensure Performance, Security, and Continuity</td>
+<td>The chain runs reliably, safely, and can recover from disruption</td>
+</tr>
+<tr class="even">
+<td>VS-09.6</td>
+<td>Evolve and Modernize the Technical Ecosystem</td>
+<td>The foundation stays current and ready for new data and methods</td>
+</tr>
+</tbody>
+</table>
+<p>Each stage below is described with its activities. The column <em>SAF process</em> shows the business process from <em>Business Processes</em> that the activity belongs to. Some activities have no reference process in the SAF; they are carried out through NSI-specific IT management processes, which the column shows as <em>NSI-specific</em>. The column <em>Other reference</em> shows the principles, capabilities, or external frameworks that the activity applies.</p>
+<p><br></p>
+<section id="vs-09.1-define-digital-and-technical-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="vs-09.1-define-digital-and-technical-requirements">VS-09.1 Define Digital and Technical Requirements</h3>
+<p><strong>Value created:</strong> <em>A clear view of the technical capabilities that the business needs.</em></p>
+<p>The life cycle begins with the requirements. VS-09 translates business capabilities, data volumes, and analytical complexity into technical requirements. It collects the requirements of the value streams for storage, processing, integration, access, and availability. It includes the requirements that follow from the steady states: immutable versions, persistent identifiers, field-level lineage, and the handover events. It adds the requirements of VS-07 for security, privacy, and continuity. Each requirement is linked to the business need it serves, so that platform choices can be explained in business terms.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Translate business capabilities and data volumes into technical requirements</td>
+<td>Technical requirements</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>4.1.7 Architecture management</td>
+</tr>
+<tr class="even">
+<td>Collect the requirements of the value streams for storage, processing, integration, access, and availability</td>
+<td>Requirements inventory</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>SAF-P05 IT and technology is everyone’s business</td>
+</tr>
+<tr class="odd">
+<td>Include the requirements of the steady states and of VS-07 Governance and Compliance</td>
+<td>Requirements for steady states, security, and continuity</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>SAF-P07 Implement loosely coupled processes and systems; SAF-P10 Security by design</td>
+</tr>
+<tr class="even">
+<td>Link each requirement to the business need it serves</td>
+<td>Traceability of requirements</td>
+<td>NSI-specific</td>
+<td>SAF-P04 Maximize the benefits for the organization</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-09.2-design-platform-and-infrastructure-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="vs-09.2-design-platform-and-infrastructure-architecture">VS-09.2 Design Platform and Infrastructure Architecture</h3>
+<p><strong>Value created:</strong> <em>A coherent blueprint for storage, processing, integration, and secure access.</em></p>
+<p>The requirements feed the design of the platform and infrastructure architecture. The blueprint covers data storage, processing, integration, and secure access, for example a data fabric, a data marketplace, and compute platforms. It decides which deployment model fits each component: on-premises, private cloud, public cloud, or a hybrid. It defines how the steady states are implemented on the platforms, so that each state has its repository, catalog entry, and access control. Shared platforms are preferred over solutions per product, and reuse comes before own development. The architecture is reviewed by the architecture board before it is realized.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design the blueprint for storage, processing, integration, and access</td>
+<td>Platform architecture</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>4.1.7 Architecture management</td>
+</tr>
+<tr class="even">
+<td>Decide the deployment model per component: on-premises, private, public, or hybrid cloud</td>
+<td>Deployment decisions</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>3.2.5 IT infrastructure</td>
+</tr>
+<tr class="odd">
+<td>Define how the steady states are implemented on the platforms</td>
+<td>Implementation pattern for steady states</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>SAF-P07 Implement loosely coupled processes and systems <strong>[VC29]</strong></td>
+</tr>
+<tr class="even">
+<td>Review the architecture with the architecture board</td>
+<td>Architecture decision record</td>
+<td>NSI-specific</td>
+<td>SAF-P01 Actively participate in open-source communities to maintain collective control over statistical processes</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>On the Medallion architecture
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A platform team may use Bronze, Silver, and Gold to organize storage, staging, and table optimization inside the platform. That is an engineering pattern, not a governance model. It describes how data has been refined, not what the data means, what methodological state it is in, or what another statistical process may rely on. The steady states remain the governance model; Medallion, if used at all, sits underneath it as a storage convention. <strong>[VC29]</strong></p>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="vs-09.3-provision-and-configure-platforms" class="level3">
+<h3 class="anchored" data-anchor-id="vs-09.3-provision-and-configure-platforms">VS-09.3 Provision and Configure Platforms</h3>
+<p><strong>Value created:</strong> <em>Controlled environments that the value streams can use.</em></p>
+<p>The architecture is realized by provisioning and configuring the platforms. Environments are deployed for development, testing, research, and production, with the necessary governance, monitoring, and security controls. The secure processing environment for researchers is provisioned with its specific controls. Self-service is offered where possible, so that teams can obtain standard environments without waiting. Each environment is documented and registered, with an owner and a service level.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Deploy environments for development, testing, research, and production</td>
+<td>Deployed environments</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>3.2.5 IT infrastructure</td>
+</tr>
+<tr class="even">
+<td>Configure governance, monitoring, and security controls per environment</td>
+<td>Controlled environments</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>SAF-P10 Security by design</td>
+</tr>
+<tr class="odd">
+<td>Provision the secure processing environment for researchers</td>
+<td>Secure processing environment</td>
+<td>MDS-4 Provide a secure processing environment</td>
+<td>SAF-P11 Privacy by design</td>
+</tr>
+<tr class="even">
+<td>Offer standard environments as self-service and register them with an owner and service level</td>
+<td>Self-service catalog, environment register</td>
+<td>NSI-specific</td>
+<td>SAF-P05 IT and technology is everyone’s business; 3.4.4 Self-service</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-09.4-enable-integration-and-orchestration-services" class="level3">
+<h3 class="anchored" data-anchor-id="vs-09.4-enable-integration-and-orchestration-services">VS-09.4 Enable Integration and Orchestration Services</h3>
+<p><strong>Value created:</strong> <em>Processes and value streams connected through stable, versioned interfaces.</em></p>
+<p>The platforms are connected through integration and orchestration services. These are the APIs, workflow engines, and automation that link the business services and processes. They include the steady-state event interfaces that the primary value streams rely on, such as <em>Raw Data Registered</em> and <em>Processed Data Registered</em>. They include the connectors for data spaces and for transmission to international organizations. Interfaces are versioned and documented, so that a change on one side does not break the other, in line with SAF-P07.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Provide APIs, workflow engines, and automation</td>
+<td>Integration and orchestration services</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>3.2.1 Application development</td>
+</tr>
+<tr class="even">
+<td>Provide the steady-state event interfaces of the primary value streams</td>
+<td>Event interfaces</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>SAF-P07 Implement loosely coupled processes and systems</td>
+</tr>
+<tr class="odd">
+<td>Provide connectors for data spaces and international transmission</td>
+<td>Data space connectors</td>
+<td>DSP-4 Exchange data under usage control</td>
+<td>4.1.6 Collaboration</td>
+</tr>
+<tr class="even">
+<td>Version and document every interface</td>
+<td>Interface catalog</td>
+<td>NSI-specific</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-09.5-ensure-performance-security-and-continuity" class="level3">
+<h3 class="anchored" data-anchor-id="vs-09.5-ensure-performance-security-and-continuity">VS-09.5 Ensure Performance, Security, and Continuity</h3>
+<p><strong>Value created:</strong> <em>A chain that runs reliably and safely and can recover from disruption.</em></p>
+<p>Day to day, VS-09 keeps the platforms running and safe. It monitors performance and capacity, with special attention to known peaks such as release moments. It implements the technical data protection that the classification of each dataset requires, including the storage of immutable versions. It manages incidents and restores service within the agreed times. It guarantees availability and recovery from disaster through tested continuity plans. Evidence on security posture and continuity is reported to VS-07.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monitor performance and capacity, including known peaks</td>
+<td>Performance and capacity reports</td>
+<td>PRD-3.5 Test production systems</td>
+<td>SAF-P02 Active support</td>
+</tr>
+<tr class="even">
+<td>Implement technical data protection and the storage of immutable versions</td>
+<td>Protected storage</td>
+<td>DLM-5 Store and version data</td>
+<td>SAF-P10 Security by design; 3.3.6 IT security services</td>
+</tr>
+<tr class="odd">
+<td>Manage incidents and restore service</td>
+<td>Incident records</td>
+<td>NSI-specific</td>
+<td>3.3.3 Security incident management</td>
+</tr>
+<tr class="even">
+<td>Guarantee availability and disaster recovery through tested continuity plans</td>
+<td>Continuity plans, test results</td>
+<td>NSI-specific</td>
+<td>SAF-P06 Business continuity</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-09.6-evolve-and-modernize-the-technical-ecosystem" class="level3">
+<h3 class="anchored" data-anchor-id="vs-09.6-evolve-and-modernize-the-technical-ecosystem">VS-09.6 Evolve and Modernize the Technical Ecosystem</h3>
+<p><strong>Value created:</strong> <em>A foundation that stays current and ready for new data sources, methods, and ways of working.</em></p>
+<p>The life cycle closes with the modernization of the ecosystem. New technologies are introduced, often after they have been tested in VS-08. Components that are obsolete or no longer supported are retired according to a roadmap. Dependence on single suppliers is reviewed, in line with SAF-P01. The roadmap is aligned with the strategy of the NSI and with the architecture. Changes are planned so that the production value streams can continue without disruption.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Introduce new technologies transferred from VS-08 Innovation and Methodological Development</td>
+<td>Adopted technologies</td>
+<td>No reference process (NSI-specific)</td>
+<td>4.1.3 Change management</td>
+</tr>
+<tr class="even">
+<td>Retire obsolete and unsupported components according to the roadmap</td>
+<td>Retirement records</td>
+<td>No reference process (NSI-specific)</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+<tr class="odd">
+<td>Review dependence on single suppliers</td>
+<td>Supplier dependence review</td>
+<td>No reference process (NSI-specific)</td>
+<td>SAF-P01 Actively participate in open-source communities to maintain collective control over statistical processes</td>
+</tr>
+<tr class="even">
+<td>Maintain the modernization roadmap, aligned with strategy and architecture</td>
+<td>Modernization roadmap</td>
+<td>No reference process (NSI-specific)</td>
+<td>4.1.7 Architecture management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="the-four-process-types" class="level2">
+<h2 class="anchored" data-anchor-id="the-four-process-types">4. The four process types</h2>
+<p>VS-09 is itself a capability that must be designed, built, operated, and improved. The four process types therefore apply to VS-09 as they do to the primary value streams, but they govern the platform capability rather than a data pipeline. Design produces the operating model and the service catalog, Implementation builds the service management and the supplier arrangements, Execution runs the stages of attribute 3, and Management evaluates whether the platforms meet the needs of the value streams. <strong>[VC26]</strong></p>
+<p>Each sub-process refines one or more SAF business processes, which are listed under its heading as <em>Refines</em>. Where no reference process exists, the sub-process is marked as NSI-specific.</p>
+<section id="design-provides-the-platform-operating-model" class="level3">
+<h3 class="anchored" data-anchor-id="design-provides-the-platform-operating-model">Design: provides the platform operating model</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Design sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design the Platform Operating Model and Service Catalog</td>
+<td>PRD-2.6 Design production systems and workflows; NSI-specific</td>
+<td>Operating model, service catalog, service levels</td>
+</tr>
+<tr class="even">
+<td>Design the Security and Continuity Architecture</td>
+<td>PRD-2.6 Design production systems and workflows; DLM-4 Classify and protect data</td>
+<td>Security architecture, continuity requirements</td>
+</tr>
+</tbody>
+</table>
+<section id="design-the-platform-operating-model-and-service-catalog" class="level4">
+<h4 class="anchored" data-anchor-id="design-the-platform-operating-model-and-service-catalog">Design the Platform Operating Model and Service Catalog</h4>
+<p><em>Refines:</em> PRD-2.6 Design production systems and workflows; NSI-specific IT management processes.</p>
+<p>This sub-process designs how VS-09 delivers its services. It defines the service catalog: which platforms and services are offered, to whom, and with which service levels. It defines the operating model: which services are run by the NSI, which are shared with other government bodies, and which are sourced from suppliers. It defines how teams request services and how requests are prioritized. It sets the service levels for availability, response, and recovery. The catalog makes the offer of VS-09 visible and comparable for all value streams.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define the service catalog with services, users, and service levels</td>
+<td>Service catalog</td>
+<td>NSI-specific</td>
+<td>3.4.1 Services management</td>
+</tr>
+<tr class="even">
+<td>Define the operating model: own, shared, and sourced services</td>
+<td>Operating model</td>
+<td>NSI-specific</td>
+<td>3.1.2 Purchasing and contract management</td>
+</tr>
+<tr class="odd">
+<td>Define the procedure for requests and their prioritization</td>
+<td>Request procedure</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>SAF-P04 Maximize the benefits for the organization</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-the-security-and-continuity-architecture" class="level4">
+<h4 class="anchored" data-anchor-id="design-the-security-and-continuity-architecture">Design the Security and Continuity Architecture</h4>
+<p><em>Refines:</em> PRD-2.6 Design production systems and workflows; DLM-4 Classify and protect data.</p>
+<p>This sub-process designs how platforms are protected and kept available. It translates the security and privacy policy of VS-07 into a security architecture: identity and access control, encryption, logging, and separation of environments. It links the protection level of each platform to the classification of the data it holds. It defines the continuity requirements per service, based on the impact of an outage on the chain and on release commitments. It designs the recovery approach and the tests that prove it works.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Translate the security and privacy policy into a security architecture</td>
+<td>Security architecture</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>SAF-P10 Security by design; 3.3.2 Security planning</td>
+</tr>
+<tr class="even">
+<td>Link platform protection to the classification of the data held</td>
+<td>Protection levels per platform</td>
+<td>DLM-4 Classify and protect data</td>
+<td>3.3.4 Logical identity and access control</td>
+</tr>
+<tr class="odd">
+<td>Define continuity requirements and the recovery approach per service</td>
+<td>Continuity requirements</td>
+<td>NSI-specific</td>
+<td>SAF-P06 Business continuity</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="implementation-provides-the-service-management" class="level3">
+<h3 class="anchored" data-anchor-id="implementation-provides-the-service-management">Implementation: provides the service management</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Implementation sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Establish Service Management and Operations</td>
+<td>NSI-specific</td>
+<td>Service desk, incident and change management, monitoring</td>
+</tr>
+<tr class="even">
+<td>Arrange Supplier and Sourcing Agreements</td>
+<td>NSI-specific</td>
+<td>Contracts, service agreements with suppliers</td>
+</tr>
+</tbody>
+</table>
+<section id="establish-service-management-and-operations" class="level4">
+<h4 class="anchored" data-anchor-id="establish-service-management-and-operations">Establish Service Management and Operations</h4>
+<p><em>Refines:</em> NSI-specific IT service management processes.</p>
+<p>This sub-process puts the operating model into practice. The service desk is set up for requests and incidents. Incident, problem, and change management are established, with clear roles and escalation paths. Monitoring of availability, performance, capacity, and security is configured across all platforms. Operational procedures and runbooks are written and tested. Operations staff are trained, so that services are supported actively and not only built once, in line with SAF-P02.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Set up the service desk for requests and incidents</td>
+<td>Service desk</td>
+<td>NSI-specific</td>
+<td>3.4.1 Services management</td>
+</tr>
+<tr class="even">
+<td>Establish incident, problem, and change management</td>
+<td>Service management processes</td>
+<td>NSI-specific</td>
+<td>SAF-P02 Active support</td>
+</tr>
+<tr class="odd">
+<td>Configure monitoring and write operational procedures</td>
+<td>Monitoring, runbooks</td>
+<td>NSI-specific</td>
+<td>3.2.3 Technical management</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="arrange-supplier-and-sourcing-agreements" class="level4">
+<h4 class="anchored" data-anchor-id="arrange-supplier-and-sourcing-agreements">Arrange Supplier and Sourcing Agreements</h4>
+<p><em>Refines:</em> NSI-specific procurement processes.</p>
+<p>This sub-process arranges the services that VS-09 sources from outside. It selects suppliers according to the operating model and the procurement rules. It negotiates service agreements that match the service levels the NSI promises to its value streams. It includes requirements for security, data location, exit, and the use of open standards. It makes sure that the NSI keeps control over critical components and data, in line with SAF-P01. Agreements are registered and reviewed before they expire.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Select suppliers according to the operating model and procurement rules</td>
+<td>Supplier selection</td>
+<td>NSI-specific</td>
+<td>3.1.2 Purchasing and contract management</td>
+</tr>
+<tr class="even">
+<td>Negotiate service agreements that match the promised service levels</td>
+<td>Service agreements</td>
+<td>NSI-specific</td>
+<td>3.4.3 Service agreement</td>
+</tr>
+<tr class="odd">
+<td>Include requirements for security, data location, exit, and open standards</td>
+<td>Contract requirements</td>
+<td>NSI-specific</td>
+<td>SAF-P01 Actively participate in open-source communities to maintain collective control over statistical processes</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="execution-runs-the-platform-services" class="level3">
+<h3 class="anchored" data-anchor-id="execution-runs-the-platform-services">Execution: runs the platform services</h3>
+<p>Execution runs the stages of attribute 3. VS-09.1 and VS-09.2 run when needs change or new value streams are set up; VS-09.3 and VS-09.4 run per request and per release of the platforms; VS-09.5 runs continuously; VS-09.6 runs as a roadmap.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>VS-09</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Trigger</td>
+<td><em>Platform or service request</em>; <em>Incident</em>; <em>Capacity change</em>; <em>Technology onboarding</em> from VS-08 Innovation and Methodological Development</td>
+</tr>
+<tr class="even">
+<td>Cadence</td>
+<td>Continuous operation; per request; roadmap cycle</td>
+</tr>
+<tr class="odd">
+<td>Performed by</td>
+<td>ROL-11 Platform engineer, ROL-10 Data engineer, ROL-20 Security officer</td>
+</tr>
+<tr class="even">
+<td>Input</td>
+<td>Requirements of the value streams, security and continuity policy, supplier services</td>
+</tr>
+<tr class="odd">
+<td>Output</td>
+<td>Platforms, environments, integration services, event interfaces, availability and continuity evidence</td>
+</tr>
+<tr class="even">
+<td>Control point</td>
+<td>Architecture review before realization; acceptance of an environment before production use</td>
+</tr>
+<tr class="odd">
+<td>Exception path</td>
+<td>A major incident escalated according to the continuity plan; a security incident handled with ROL-20 Security officer and VS-07 Governance and Compliance</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="management-provides-service-performance-reports" class="level3">
+<h3 class="anchored" data-anchor-id="management-provides-service-performance-reports">Management: provides service performance reports</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Management sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monitor Service Performance</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>Service level reports, capacity and security reports</td>
+</tr>
+<tr class="even">
+<td>Evaluate and Improve the Platform Capability</td>
+<td>PRD-8.2 Conduct evaluation; PRD-8.3 Agree an action plan</td>
+<td>Satisfaction of value streams, improvement plan</td>
+</tr>
+</tbody>
+</table>
+<section id="monitor-service-performance" class="level4">
+<h4 class="anchored" data-anchor-id="monitor-service-performance">Monitor Service Performance</h4>
+<p><em>Refines:</em> PRD-8.1 Gather evaluation inputs.</p>
+<p>This sub-process tracks how the platforms perform against the agreed service levels. It measures the key performance indicators of VS-09 (see attribute 9), such as availability, time to restore service, and the reliability of event interfaces. It reports capacity headroom ahead of known peaks. It reports the security posture, together with VS-07. It reviews the performance of suppliers against their agreements. The results are shared with the process owners of the value streams that depend on the platforms.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Measure the key performance indicators of VS-09 Infrastructure and Platform Enablement</td>
+<td>Service level reports</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>SAF-P02 Active support</td>
+</tr>
+<tr class="even">
+<td>Report capacity headroom and security posture</td>
+<td>Capacity and security reports</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>SAF-P06 Business continuity; SAF-P10 Security by design</td>
+</tr>
+<tr class="odd">
+<td>Review supplier performance against agreements</td>
+<td>Supplier performance review</td>
+<td>NSI-specific</td>
+<td>3.4.3 Service agreement</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evaluate-and-improve-the-platform-capability" class="level4">
+<h4 class="anchored" data-anchor-id="evaluate-and-improve-the-platform-capability">Evaluate and Improve the Platform Capability</h4>
+<p><em>Refines:</em> PRD-8.2 Conduct evaluation; PRD-8.3 Agree an action plan.</p>
+<p>This sub-process asks whether the platforms meet the needs of the value streams. It collects the satisfaction of the process owners with the services. It analyzes recurring incidents and their root causes. It assesses the cost and value of the services. It feeds the findings into the roadmap of VS-09.6 and into the design of the service catalog. Improvements are prioritized by impact and feasibility and tracked, in line with SAF capability 4.1.4 <em>Improvement management</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Collect the satisfaction of process owners with the services</td>
+<td>Satisfaction survey</td>
+<td>PRD-8.2 Conduct evaluation</td>
+<td>3.4.1 Services management</td>
+</tr>
+<tr class="even">
+<td>Analyze recurring incidents and their root causes</td>
+<td>Problem analysis</td>
+<td>PRD-8.2 Conduct evaluation</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Feed findings into the roadmap and the service catalog, and track improvements</td>
+<td>Improvement plan</td>
+<td>PRD-8.3 Agree an action plan</td>
+<td>4.1.4 Improvement management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="actors-and-roles" class="level2">
+<h2 class="anchored" data-anchor-id="actors-and-roles">5. Actors and roles</h2>
+<p>VS-09 brings architecture, engineering, operations, and security together. The table shows the actors and the reference roles involved. Specialized role names used in an NSI map onto these reference roles (see <em>Role names in the value streams</em>); for example, the platform or cloud architect, the DevOps engineer, and service desk and operations staff are ROL-11 Platform engineer, the integration engineer is ROL-10 Data engineer, and the security and continuity officer is ROL-20 Security officer. The chief technology or infrastructure officer is part of the management of the NSI (ACT-01) and a member of the collaboration COL-07 <em>Architecture board</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Actor or role</th>
+<th>ID</th>
+<th>Responsibility in VS-09 Infrastructure and Platform Enablement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>National Statistical Institute</td>
+<td>ACT-01</td>
+<td>Its management, including the chief technology officer, is accountable for the technical foundation and its strategy</td>
+</tr>
+<tr class="even">
+<td>Supplier and service provider</td>
+<td>ACT-09</td>
+<td>Supplies infrastructure, cloud services, software, and support under service agreements</td>
+</tr>
+<tr class="odd">
+<td>Process owners of all value streams</td>
+<td>ROL-01</td>
+<td>Define requirements and run their processes on the platforms</td>
+</tr>
+<tr class="even">
+<td>Data custodian</td>
+<td>ROL-04</td>
+<td>Operates storage, access control, retention, and key management on the platforms</td>
+</tr>
+<tr class="odd">
+<td>Metadata and data architect</td>
+<td>ROL-08</td>
+<td>Aligns the catalog and repositories with the metadata model and the steady states</td>
+</tr>
+<tr class="even">
+<td>Data engineer</td>
+<td>ROL-10</td>
+<td>Builds APIs, workflow engines, orchestration, and event interfaces</td>
+</tr>
+<tr class="odd">
+<td>Platform engineer</td>
+<td>ROL-11</td>
+<td>Designs the platform architecture; provisions, configures, and operates environments; runs incident management</td>
+</tr>
+<tr class="even">
+<td>Security officer</td>
+<td>ROL-20</td>
+<td>Implements security controls, monitoring, and disaster recovery, together with VS-07 Governance and Compliance</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="capabilities-processes-and-functions" class="level2">
+<h2 class="anchored" data-anchor-id="capabilities-processes-and-functions">6. Capabilities, processes, and functions</h2>
+<section id="capability-foundations" class="level3">
+<h3 class="anchored" data-anchor-id="capability-foundations">Capability foundations</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Capability group</th>
+<th>Capabilities</th>
+<th>Role in VS-09 Infrastructure and Platform Enablement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3.2 Computerization and automation</td>
+<td>3.2.1 Application development, 3.2.2 Functional management, 3.2.3 Technical management, 3.2.4 Digital workplace management, 3.2.5 IT infrastructure</td>
+<td>Build, configure, and operate applications, platforms, and infrastructure</td>
+</tr>
+<tr class="even">
+<td>3.3 Security and privacy</td>
+<td>3.3.2 Security planning, 3.3.3 Security incident management, 3.3.4 Logical identity and access control, 3.3.5 Physical security and access control, 3.3.6 IT security services</td>
+<td>Protect platforms and data, and handle incidents</td>
+</tr>
+<tr class="odd">
+<td>3.1 Business operations</td>
+<td>3.1.2 Purchasing and contract management</td>
+<td>Source infrastructure and services from suppliers</td>
+</tr>
+<tr class="even">
+<td>3.4 Customer and chain interaction</td>
+<td>3.4.1 Services management, 3.4.3 Service agreement, 3.4.4 Self-service</td>
+<td>Offer platform services with service levels and self-service</td>
+</tr>
+<tr class="odd">
+<td>4.1 Strategy and leadership</td>
+<td>4.1.3 Change management, 4.1.7 Architecture management</td>
+<td>Manage technological change and the architecture of the platforms</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="stages-processes-and-functions" class="level3">
+<h3 class="anchored" data-anchor-id="stages-processes-and-functions">Stages, processes, and functions</h3>
+<p>The table follows the mapping in <em>Business Processes, Mapping to value stream stages</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Realized by processes</th>
+<th>Main functions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-09.1 Define Digital and Technical Requirements</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>FUN-2.5 Manage enterprise architecture; FUN-3.1 Design and build statistical products</td>
+</tr>
+<tr class="even">
+<td>VS-09.2 Design Platform and Infrastructure Architecture</td>
+<td>PRD-2.6 Design production systems and workflows</td>
+<td>FUN-2.5 Manage enterprise architecture; FUN-10.3 Manage information technology</td>
+</tr>
+<tr class="odd">
+<td>VS-09.3 Provision and Configure Platforms</td>
+<td>PRD-3.4 Configure workflows; MDS-4 Provide a secure processing environment</td>
+<td>FUN-8.3 Operate secure research environments; FUN-10.3 Manage information technology</td>
+</tr>
+<tr class="even">
+<td>VS-09.4 Enable Integration and Orchestration Services</td>
+<td>PRD-3.4 Configure workflows; DSP-4 Exchange data under usage control</td>
+<td>FUN-9.2 Operate data space connectivity; FUN-10.3 Manage information technology</td>
+</tr>
+<tr class="odd">
+<td>VS-09.5 Ensure Performance, Security, and Continuity</td>
+<td>PRD-3.5 Test production systems; DLM-5 Store and version data</td>
+<td>FUN-10.3 Manage information technology; FUN-10.8 Manage information security and privacy</td>
+</tr>
+<tr class="even">
+<td>VS-09.6 Evolve and Modernize the Technical Ecosystem</td>
+<td>No reference process (NSI-specific)</td>
+<td>FUN-2.2 Develop capability improvements; FUN-10.3 Manage information technology</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-09 (b) stages realized by processes and functions</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="framework-mappings" class="level3">
+<h3 class="anchored" data-anchor-id="framework-mappings">Framework mappings</h3>
+<p>Where the primary value streams map to the production phases of GSBPM, VS-09 maps to the capability and support activities of GAMSO.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>GAMSO area</th>
+<th>Relevance to VS-09 Infrastructure and Platform Enablement</th>
+<th>SAF capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Capability Management</td>
+<td>Manage the IT capability; introduce and modernize technology</td>
+<td>4.1.3 Change management, 4.1.7 Architecture management</td>
+</tr>
+<tr class="even">
+<td>Corporate Support</td>
+<td>Manage IT services and operations, security, and business continuity</td>
+<td>3.2.1 to 3.2.5, 3.3.2 to 3.3.6, 3.4.1 Services management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="principles" class="level2">
+<h2 class="anchored" data-anchor-id="principles">7. Principles</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Principle</th>
+<th>Statement</th>
+<th>How VS-09 Infrastructure and Platform Enablement applies it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-P01</td>
+<td>Reuse before open source, open source before buying, buying before building</td>
+<td>Favors open, shared platform components and open standards, to keep collective control and avoid dependence on single suppliers <strong>[VC3]</strong></td>
+</tr>
+<tr class="even">
+<td>SAF-P02</td>
+<td>Active support</td>
+<td>Runs platforms as actively supported, monitored services, not one-off builds</td>
+</tr>
+<tr class="odd">
+<td>SAF-P05</td>
+<td>IT and technology is everyone’s business</td>
+<td>Provides self-service, well-documented platforms, so technology serves all teams</td>
+</tr>
+<tr class="even">
+<td>SAF-P06</td>
+<td>Business continuity</td>
+<td>Guarantees availability, resilience, and recovery from disaster for the whole chain</td>
+</tr>
+<tr class="odd">
+<td>SAF-P07</td>
+<td>Implement loosely coupled processes and systems</td>
+<td>Provides the versioned interfaces and events that keep the value streams decoupled</td>
+</tr>
+<tr class="even">
+<td>SAF-P10</td>
+<td>Security by design</td>
+<td>Builds security and access control into every platform and environment from the start</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="interfaces-services-and-events" class="level2">
+<h2 class="anchored" data-anchor-id="interfaces-services-and-events">8. Interfaces, services, and events</h2>
+<p><strong>Business services</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Service</th>
+<th>Offered to</th>
+<th>Realized in</th>
+<th>Interfaces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Platform and environment service</td>
+<td>All value streams</td>
+<td>VS-09.3 Provision and Configure Platforms</td>
+<td>Service catalog, self-service portal, service desk</td>
+</tr>
+<tr class="even">
+<td>Steady-state storage and catalog service</td>
+<td>VS-01 to VS-06 (primary value streams)</td>
+<td>VS-09.3 Provision and Configure Platforms; VS-09.5 Ensure Performance, Security, and Continuity</td>
+<td>Repositories per steady state, data catalog</td>
+</tr>
+<tr class="odd">
+<td>Integration and event service</td>
+<td>All value streams</td>
+<td>VS-09.4 Enable Integration and Orchestration Services</td>
+<td>APIs, workflow engines, event interfaces, data space connectors</td>
+</tr>
+<tr class="even">
+<td>Dissemination platform service</td>
+<td>VS-06 Dissemination and Service Delivery</td>
+<td>VS-09.3 Provision and Configure Platforms; VS-09.4 Enable Integration and Orchestration Services</td>
+<td>Portals, APIs, dashboards, secure research environment</td>
+</tr>
+<tr class="odd">
+<td>Research environment service</td>
+<td>VS-08 Innovation and Methodological Development</td>
+<td>VS-09.3 Provision and Configure Platforms</td>
+<td>Sandboxes with research tooling</td>
+</tr>
+<tr class="even">
+<td>Operations and continuity service</td>
+<td>All value streams, VS-07 Governance and Compliance</td>
+<td>VS-09.5 Ensure Performance, Security, and Continuity</td>
+<td>Monitoring, incident management, continuity reports</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Business events</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Triggers or marks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Platform or service request</em></td>
+<td>Start of VS-09.3 Provision and Configure Platforms or VS-09.4 Enable Integration and Orchestration Services for a request</td>
+</tr>
+<tr class="even">
+<td><em>Technology onboarding</em></td>
+<td>Adoption of a technology transferred from VS-08 Innovation and Methodological Development in VS-09.6 Evolve and Modernize the Technical Ecosystem</td>
+</tr>
+<tr class="odd">
+<td><em>Capacity change</em></td>
+<td>Adjustment of capacity in VS-09.5 Ensure Performance, Security, and Continuity, for example ahead of a release</td>
+</tr>
+<tr class="even">
+<td><em>Incident</em> / <em>Service restored</em></td>
+<td>Start and end of incident handling in VS-09.5 Ensure Performance, Security, and Continuity</td>
+</tr>
+<tr class="odd">
+<td><em>Security or continuity review</em></td>
+<td>Periodic review with VS-07 Governance and Compliance</td>
+</tr>
+<tr class="even">
+<td><em>Component retired</em></td>
+<td>Retirement according to the roadmap in VS-09.6 Evolve and Modernize the Technical Ecosystem</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-09 event choreography between the value streams, VS-09, suppliers, and VS-07: service request, provisioning, incident and restoration, capacity change, security review, technology onboarding, and retirement</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="key-performance-indicators" class="level2">
+<h2 class="anchored" data-anchor-id="key-performance-indicators">9. Key performance indicators</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>KPI</th>
+<th>Description</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Platform availability</td>
+<td>Measured availability against the agreed service level, per platform</td>
+<td>Monthly</td>
+</tr>
+<tr class="even">
+<td>Incident response</td>
+<td>Mean time to restore service after an incident, per severity class</td>
+<td>Per incident, trended quarterly</td>
+</tr>
+<tr class="odd">
+<td>Event interface reliability</td>
+<td>Delivery rate of the steady-state handover events that the chain depends on</td>
+<td>Per interface, monthly</td>
+</tr>
+<tr class="even">
+<td>Capacity headroom</td>
+<td>Share of platforms operating within their planned capacity</td>
+<td>Monthly, ahead of known peaks</td>
+</tr>
+<tr class="odd">
+<td>Security posture</td>
+<td>Open critical vulnerabilities and time to patch, assessed with VS-07 Governance and Compliance</td>
+<td>Continuous, reported quarterly</td>
+</tr>
+<tr class="even">
+<td>Modernization progress</td>
+<td>Components retired or replaced according to the roadmap</td>
+<td>Annually</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="toolkit" class="level2">
+<h2 class="anchored" data-anchor-id="toolkit">10. Toolkit</h2>
+<p>Examples from NSI practice and a maturity checklist for VS-09 are part of the SAF Toolkit.</p>
+<p><strong>Toolkit:</strong> SAF-TK-V09 VS-09 Infrastructure and Platform Enablement companion <strong>[VC17]</strong></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="../framework/vs-08.html" class="pagination-link" aria-label="VS-08 Innovation and Methodological Development">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">VS-08 Innovation and Methodological Development</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../framework/vs-10.html" class="pagination-link" aria-label="VS-10 Customer and Stakeholder Engagement">
+        <span class="nav-page-text">VS-10 Customer and Stakeholder Engagement</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

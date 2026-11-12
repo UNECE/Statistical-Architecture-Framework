@@ -1,0 +1,2015 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>VS-08 Innovation and Methodological Development – Statistical Architecture Framework</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../framework/vs-09.html" rel="next">
+<link href="../framework/vs-07.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f374ad13d1ca50ffd7110ca4e9b8aceb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistical Architecture Framework</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-in-Brief.html"> 
+<span class="menu-text">SAF in Brief</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SAF-Getting-Started.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../framework/index.html" aria-current="page"> 
+<span class="menu-text">Framework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../open-source.html"> 
+<span class="menu-text">Open Source</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-07.html">Supporting value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-08.html">VS-08 Innovation and Methodological Development</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAF Architecture Framework</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Foundations</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and Scope</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/motivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Motivation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/strategy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strategy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Business architecture</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/business-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/steady-states.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Steady-State Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/value-chain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Data Value Chain</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Production value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-01 Data Acquisition and Ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-02 Data Standardization and Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-03 Data Editing and Enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-04 Estimation, Analysis, and Statistical Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-05 Statistical Product Composition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-06 Dissemination and Service Delivery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Supporting value streams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-07 Governance and Compliance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-08.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">VS-08 Innovation and Methodological Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-09 Infrastructure and Platform Enablement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/vs-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS-10 Customer and Stakeholder Engagement</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Data, application and technology</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/data-application-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data and Application Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../framework/technology-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Technology Architecture</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#purpose-and-value-created" id="toc-purpose-and-value-created" class="nav-link active" data-scroll-target="#purpose-and-value-created">1. Purpose and value created</a></li>
+  <li><a href="#position-and-interaction-with-the-chain" id="toc-position-and-interaction-with-the-chain" class="nav-link" data-scroll-target="#position-and-interaction-with-the-chain">2. Position and interaction with the chain</a></li>
+  <li><a href="#stages" id="toc-stages" class="nav-link" data-scroll-target="#stages">3. Stages</a>
+  <ul class="collapse">
+  <li><a href="#vs-08.1-identify-innovation-needs-and-opportunities" id="toc-vs-08.1-identify-innovation-needs-and-opportunities" class="nav-link" data-scroll-target="#vs-08.1-identify-innovation-needs-and-opportunities">VS-08.1 Identify Innovation Needs and Opportunities</a></li>
+  <li><a href="#vs-08.2-conduct-research-and-proof-of-concepts" id="toc-vs-08.2-conduct-research-and-proof-of-concepts" class="nav-link" data-scroll-target="#vs-08.2-conduct-research-and-proof-of-concepts">VS-08.2 Conduct Research and Proof-of-Concepts</a></li>
+  <li><a href="#vs-08.3-evaluate-methodological-soundness-and-feasibility" id="toc-vs-08.3-evaluate-methodological-soundness-and-feasibility" class="nav-link" data-scroll-target="#vs-08.3-evaluate-methodological-soundness-and-feasibility">VS-08.3 Evaluate Methodological Soundness and Feasibility</a></li>
+  <li><a href="#vs-08.4-develop-and-document-new-methodologies-or-tools" id="toc-vs-08.4-develop-and-document-new-methodologies-or-tools" class="nav-link" data-scroll-target="#vs-08.4-develop-and-document-new-methodologies-or-tools">VS-08.4 Develop and Document New Methodologies or Tools</a></li>
+  <li><a href="#vs-08.5-integrate-innovation-into-production-environments" id="toc-vs-08.5-integrate-innovation-into-production-environments" class="nav-link" data-scroll-target="#vs-08.5-integrate-innovation-into-production-environments">VS-08.5 Integrate Innovation into Production Environments</a></li>
+  <li><a href="#vs-08.6-promote-knowledge-sharing-and-capability-building" id="toc-vs-08.6-promote-knowledge-sharing-and-capability-building" class="nav-link" data-scroll-target="#vs-08.6-promote-knowledge-sharing-and-capability-building">VS-08.6 Promote Knowledge Sharing and Capability Building</a></li>
+  </ul></li>
+  <li><a href="#the-four-process-types" id="toc-the-four-process-types" class="nav-link" data-scroll-target="#the-four-process-types">4. The four process types</a>
+  <ul class="collapse">
+  <li><a href="#design-provides-the-innovation-framework" id="toc-design-provides-the-innovation-framework" class="nav-link" data-scroll-target="#design-provides-the-innovation-framework">Design: provides the innovation framework</a></li>
+  <li><a href="#implementation-provides-the-innovation-environment" id="toc-implementation-provides-the-innovation-environment" class="nav-link" data-scroll-target="#implementation-provides-the-innovation-environment">Implementation: provides the innovation environment</a></li>
+  <li><a href="#execution-runs-the-innovation-pipeline" id="toc-execution-runs-the-innovation-pipeline" class="nav-link" data-scroll-target="#execution-runs-the-innovation-pipeline">Execution: runs the innovation pipeline</a></li>
+  <li><a href="#management-provides-innovation-performance-reports" id="toc-management-provides-innovation-performance-reports" class="nav-link" data-scroll-target="#management-provides-innovation-performance-reports">Management: provides innovation performance reports</a></li>
+  </ul></li>
+  <li><a href="#actors-and-roles" id="toc-actors-and-roles" class="nav-link" data-scroll-target="#actors-and-roles">5. Actors and roles</a></li>
+  <li><a href="#capabilities-processes-and-functions" id="toc-capabilities-processes-and-functions" class="nav-link" data-scroll-target="#capabilities-processes-and-functions">6. Capabilities, processes, and functions</a>
+  <ul class="collapse">
+  <li><a href="#capability-foundations" id="toc-capability-foundations" class="nav-link" data-scroll-target="#capability-foundations">Capability foundations</a></li>
+  <li><a href="#stages-processes-and-functions" id="toc-stages-processes-and-functions" class="nav-link" data-scroll-target="#stages-processes-and-functions">Stages, processes, and functions</a></li>
+  <li><a href="#framework-mappings" id="toc-framework-mappings" class="nav-link" data-scroll-target="#framework-mappings">Framework mappings</a></li>
+  </ul></li>
+  <li><a href="#principles" id="toc-principles" class="nav-link" data-scroll-target="#principles">7. Principles</a></li>
+  <li><a href="#interfaces-services-and-events" id="toc-interfaces-services-and-events" class="nav-link" data-scroll-target="#interfaces-services-and-events">8. Interfaces, services, and events</a></li>
+  <li><a href="#key-performance-indicators" id="toc-key-performance-indicators" class="nav-link" data-scroll-target="#key-performance-indicators">9. Key performance indicators</a></li>
+  <li><a href="#toolkit" id="toc-toolkit" class="nav-link" data-scroll-target="#toolkit">10. Toolkit</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="vs-08.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../framework/vs-07.html">Supporting value streams</a></li><li class="breadcrumb-item"><a href="../framework/vs-08.html">VS-08 Innovation and Methodological Development</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">VS-08 Innovation and Methodological Development</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- GENERATED from docs/SAF Framework.md by scripts/split-framework.py - do not edit -->
+<p><span id="vs-08-innovation-and-methodological-development"></span></p>
+<section id="purpose-and-value-created" class="level2">
+<h2 class="anchored" data-anchor-id="purpose-and-value-created">1. Purpose and value created</h2>
+<p>VS-08 makes sure that the NSI does not stand still. It discovers, tests, and introduces new ways of working: new data sources, methods, tools, and technologies. It connects research, methodology, IT, and business users. It keeps innovation controlled, so that only methods that are sound, documented, and compliant reach production. VS-08 does not produce statistics. It improves the methods and tools that the production value streams use, and it builds the skills needed to apply them. The value created is <strong>continuous improvement</strong>: the NSI stays ready for new data, such as sensor data, administrative data, and data spaces, and for new techniques, such as machine learning and small-area estimation.</p>
+<p>VS-08 is a supporting value stream. It aligns with the GAMSO area <em>Capability Management</em> rather than with the production phases of GSBPM. This section describes its business layer for all four process types.</p>
+<ul>
+<li><strong>Methodologist, researcher, or data scientist:</strong> the stages in attribute 3, which describe the innovation pipeline.</li>
+<li><strong>Head of methodology or innovation:</strong> the Design processes in attribute 4.</li>
+<li><strong>Process owners of the production value streams:</strong> attributes 2 and 8, which describe how needs enter VS-08 and how validated methods return.</li>
+<li><strong>Manager who wants the big picture:</strong> attributes 1, 2, and 9. Examples and scenarios are part of the SAF Toolkit.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>How a supporting value stream differs from a primary one
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VS-08 has no steady-state data transition. It does not move data from one state to the next; it improves the methods and tools that the production value streams use. It runs continuously as a pipeline of research and development, not per production cycle. Its output is an enabling capability rather than a data artifact: validated methods, documented tools, reference implementations, and trained staff. Where it uses production data for research, it does so under specific authorization and within the rules of VS-07.</p>
+</div>
+</div>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-08 (a) value stream and capabilities</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="position-and-interaction-with-the-chain" class="level2">
+<h2 class="anchored" data-anchor-id="position-and-interaction-with-the-chain">2. Position and interaction with the chain</h2>
+<p>VS-08 is not a stage in the production line. It runs alongside the chain as a pipeline that feeds improvements into every primary value stream and draws its agenda from their needs. The improvement recommendations of the primary value streams, produced in their <em>Continuous Improvement</em> sub-processes, together with the user needs from VS-10, form the innovation backlog of VS-08. After research and evaluation, the transfer gate in VS-08.5 moves a validated method or tool into the production value stream concerned. That transfer requires the approval of VS-07 and runs on the platforms of VS-09.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Counterpart</th>
+<th>VS-08 provides</th>
+<th>VS-08 receives</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-01 to VS-06 (primary value streams)</td>
+<td>Validated methods and tools transferred to production</td>
+<td>Improvement recommendations, problems with current methods, validation of fitness for purpose</td>
+</tr>
+<tr class="even">
+<td>VS-07 Governance and Compliance</td>
+<td>Methods submitted for approval before production</td>
+<td>Compliance criteria and approval decisions</td>
+</tr>
+<tr class="odd">
+<td>VS-09 Infrastructure and Platform Enablement</td>
+<td>Requirements for research and production platforms</td>
+<td>Research environments (sandboxes) and production runtime</td>
+</tr>
+<tr class="even">
+<td>VS-10 Customer and Stakeholder Engagement</td>
+<td>New possibilities for products and services</td>
+<td>User needs that require new methods or sources</td>
+</tr>
+<tr class="odd">
+<td>External parties: universities, other NSIs, international bodies</td>
+<td>Shared methods and open-source contributions</td>
+<td>Research results, shared methods, and tools</td>
+</tr>
+</tbody>
+</table>
+<p>Occasional access to data in the steady states is part of this interaction. Researchers in VS-08 may explore Standardized Data (#2) or Processed Data (#3) to test new methods, under specific authorization (see <em>State #2: Standardized Data</em> and <em>State #3: Processed Data</em>).</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-08 (c) interaction with the chain: improvement needs from VS-01 to VS-06 and user needs from VS-10 entering the innovation backlog; the pipeline of research, evaluation, and development; the transfer gate to production with approval of VS-07 and platforms of VS-09</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="stages" class="level2">
+<h2 class="anchored" data-anchor-id="stages">3. Stages</h2>
+<p>The stages of VS-08 form a continuous innovation pipeline: identify, research, evaluate, develop, integrate, and share. Ideas enter at the start, and many of them are stopped along the way. That is intended: a healthy pipeline stops attractive but unsound ideas before they reach production.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Name</th>
+<th>Value added</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-08.1</td>
+<td>Identify Innovation Needs and Opportunities</td>
+<td>It is clear which innovations are worth pursuing</td>
+</tr>
+<tr class="even">
+<td>VS-08.2</td>
+<td>Conduct Research and Proof-of-Concepts</td>
+<td>A new method or technology has been tested in a limited scope</td>
+</tr>
+<tr class="odd">
+<td>VS-08.3</td>
+<td>Evaluate Methodological Soundness and Feasibility</td>
+<td>Only sound and feasible innovations go forward</td>
+</tr>
+<tr class="even">
+<td>VS-08.4</td>
+<td>Develop and Document New Methodologies or Tools</td>
+<td>A validated method is reproducible and ready to hand over</td>
+</tr>
+<tr class="odd">
+<td>VS-08.5</td>
+<td>Integrate Innovation into Production Environments</td>
+<td>The method or tool works as part of a production value stream</td>
+</tr>
+<tr class="even">
+<td>VS-08.6</td>
+<td>Promote Knowledge Sharing and Capability Building</td>
+<td>The organization can adopt and sustain the new way of working</td>
+</tr>
+</tbody>
+</table>
+<p>Each stage below is described with its activities. The column <em>SAF process</em> shows the business process from <em>Business Processes</em> that the activity belongs to. Research has no reference process in the SAF; it is carried out through innovation projects, which the column shows as <em>NSI-specific</em>. The column <em>Other reference</em> shows the principles, capabilities, or external frameworks that the activity applies.</p>
+<p><br></p>
+<section id="vs-08.1-identify-innovation-needs-and-opportunities" class="level3">
+<h3 class="anchored" data-anchor-id="vs-08.1-identify-innovation-needs-and-opportunities">VS-08.1 Identify Innovation Needs and Opportunities</h3>
+<p><strong>Value created:</strong> <em>A prioritized backlog of innovations that are worth pursuing.</em></p>
+<p>The pipeline begins by collecting needs and opportunities. The improvement recommendations of the production value streams and the user needs from VS-10 enter the backlog. The team scans technological, methodological, and policy developments, such as artificial intelligence, new data sources, and cloud services. It checks whether a source or method that already exists elsewhere, in the NSI or at another NSI, can meet the need. Each candidate is assessed for value to the organization, feasibility, and risk. The result is a prioritized innovation backlog, aligned with the strategy of the NSI.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Collect improvement needs from the value streams and user needs from VS-10 Customer and Stakeholder Engagement</td>
+<td>Raw backlog</td>
+<td>NSI-specific</td>
+<td>4.1.4 Improvement management</td>
+</tr>
+<tr class="even">
+<td>Scan technological, methodological, and policy developments</td>
+<td>Horizon scan</td>
+<td>NSI-specific</td>
+<td>2.2.2 Product innovation</td>
+</tr>
+<tr class="odd">
+<td>Check whether existing sources or methods can meet the need</td>
+<td>Availability check</td>
+<td>PRD-1.5 Check data availability and suitability</td>
+<td>2.2.1 Data source exploration; SAF-P01 Actively participate in open-source communities to maintain collective control over statistical processes</td>
+</tr>
+<tr class="even">
+<td>Assess and prioritize candidates by value, feasibility, and risk</td>
+<td>Prioritized innovation backlog</td>
+<td>NSI-specific</td>
+<td>SAF-P04 Maximize the benefits for the organization</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-08.2-conduct-research-and-proof-of-concepts" class="level3">
+<h3 class="anchored" data-anchor-id="vs-08.2-conduct-research-and-proof-of-concepts">VS-08.2 Conduct Research and Proof-of-Concepts</h3>
+<p><strong>Value created:</strong> <em>A new method or technology tested in a limited, controlled scope before any commitment.</em></p>
+<p>Candidates from the backlog enter research. The team defines a research question, a hypothesis, and criteria for success before it starts. It runs controlled experiments and pilots in a research environment provided by VS-09. Where production data is needed, access is requested under specific authorization, and the data is used only for the stated purpose. Results are recorded, including negative results, so that the organization learns from what did not work. A proof-of-concept ends with a clear recommendation: stop, adjust, or proceed to evaluation.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define the research question, hypothesis, and success criteria</td>
+<td>Research plan</td>
+<td>NSI-specific</td>
+<td>2.2.3 Methodology</td>
+</tr>
+<tr class="even">
+<td>Run experiments and pilots in a research environment</td>
+<td>Experiment and pilot results</td>
+<td>NSI-specific</td>
+<td>2.2.1 Data source exploration</td>
+</tr>
+<tr class="odd">
+<td>Request authorized access to production data where needed</td>
+<td>Access authorization</td>
+<td>DLM-6 Provide data for reuse</td>
+<td>SAF-P11 Privacy by design</td>
+</tr>
+<tr class="even">
+<td>Record results, including negative results, and recommend a next step</td>
+<td>Proof-of-concept report</td>
+<td>NSI-specific</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-08.3-evaluate-methodological-soundness-and-feasibility" class="level3">
+<h3 class="anchored" data-anchor-id="vs-08.3-evaluate-methodological-soundness-and-feasibility">VS-08.3 Evaluate Methodological Soundness and Feasibility</h3>
+<p><strong>Value created:</strong> <em>Confidence that only sound, feasible, and compliant innovations go forward.</em></p>
+<p>Promising results are evaluated before any further investment. The evaluation assesses accuracy, bias, robustness, and scalability. It checks alignment with the quality framework and with ethical rules, for example on transparency and explainability of machine-learning methods. It compares the new method with the current method on real or realistic data. Subject-matter experts from the production value stream concerned confirm fitness for purpose. VS-07 assesses the method against its compliance criteria. This gate stops ideas that are attractive but not sound, with a documented rationale.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Assess accuracy, bias, robustness, and scalability</td>
+<td>Soundness assessment</td>
+<td>PRD-3.6 Test statistical business process</td>
+<td>2.2.3 Methodology</td>
+</tr>
+<tr class="even">
+<td>Compare the new method with the current method on realistic data</td>
+<td>Comparison report</td>
+<td>PRD-3.6 Test statistical business process</td>
+<td>GAMSO Quality Management</td>
+</tr>
+<tr class="odd">
+<td>Confirm fitness for purpose with the production value stream</td>
+<td>Fitness-for-purpose confirmation</td>
+<td>PRD-3.6 Test statistical business process</td>
+<td>SAF-P05 IT and technology is everyone’s business</td>
+</tr>
+<tr class="even">
+<td>Obtain the compliance assessment of VS-07 Governance and Compliance</td>
+<td>Compliance assessment</td>
+<td>NSI-specific</td>
+<td>SAF-P11 Privacy by design</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-08.4-develop-and-document-new-methodologies-or-tools" class="level3">
+<h3 class="anchored" data-anchor-id="vs-08.4-develop-and-document-new-methodologies-or-tools">VS-08.4 Develop and Document New Methodologies or Tools</h3>
+<p><strong>Value created:</strong> <em>A validated method that is reproducible and ready to hand over, rather than living in a researcher’s notebook.</em></p>
+<p>What passes the gate is developed into a standard method, algorithm, or reference implementation. The method is documented: its purpose, assumptions, parameters, limitations, and the evidence from the evaluation. The reference implementation is written so that it can be maintained, tested, and run on the production platforms of VS-09. Where possible, it is developed or shared as open source with other NSIs. The method is added to the knowledge base, so that others can find and apply it.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Develop the standard method, algorithm, or reference implementation</td>
+<td>Reference implementation</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td>SAF-P01 Actively participate in open-source communities to maintain collective control over statistical processes</td>
+</tr>
+<tr class="even">
+<td>Document purpose, assumptions, parameters, limitations, and evidence</td>
+<td>Method documentation</td>
+<td>OVA-5 Knowledge Management</td>
+<td>SAF-P09 No data without metadata and classification</td>
+</tr>
+<tr class="odd">
+<td>Prepare the implementation to run on production platforms</td>
+<td>Production-ready component</td>
+<td>PRD-3.2 Reuse or build processing and analysis components</td>
+<td>SAF-P07 Implement loosely coupled processes and systems</td>
+</tr>
+<tr class="even">
+<td>Add the method to the knowledge base</td>
+<td>Knowledge base entry</td>
+<td>OVA-5 Knowledge Management</td>
+<td>2.2.3 Methodology</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-08.5-integrate-innovation-into-production-environments" class="level3">
+<h3 class="anchored" data-anchor-id="vs-08.5-integrate-innovation-into-production-environments">VS-08.5 Integrate Innovation into Production Environments</h3>
+<p><strong>Value created:</strong> <em>A validated method or tool working as part of a production value stream.</em></p>
+<p>This is the transfer gate, where innovation becomes part of everyday production. The method or tool is handed over to the production value stream concerned. That value stream takes it up through its own Design and Implementation process types. Approval from VS-07 is confirmed before the transfer. The component is deployed on the platforms of VS-09 and tested in the production context. Ownership is transferred formally, so that the production value stream maintains the method from then on. The transfer is recorded, together with the method version and the date of entry into production.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hand over the method to the Design and Implementation of the production value stream</td>
+<td>Handover package</td>
+<td>PRD-3.7 Finalize production systems</td>
+<td>4.1.3 Change management</td>
+</tr>
+<tr class="even">
+<td>Confirm the approval of VS-07 Governance and Compliance</td>
+<td>Approval record</td>
+<td>NSI-specific</td>
+<td>4.1.5 Accountability</td>
+</tr>
+<tr class="odd">
+<td>Deploy and test on the platforms of VS-09 Infrastructure and Platform Enablement</td>
+<td>Production deployment</td>
+<td>PRD-3.7 Finalize production systems</td>
+<td>3.2.3 Technical management</td>
+</tr>
+<tr class="even">
+<td>Transfer ownership formally and record the transfer</td>
+<td>Transfer record, <em>Method transferred to production</em></td>
+<td>PRD-3.7 Finalize production systems</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="vs-08.6-promote-knowledge-sharing-and-capability-building" class="level3">
+<h3 class="anchored" data-anchor-id="vs-08.6-promote-knowledge-sharing-and-capability-building">VS-08.6 Promote Knowledge Sharing and Capability Building</h3>
+<p><strong>Value created:</strong> <em>An organization that can adopt and sustain the new way of working.</em></p>
+<p>The pipeline ends by spreading what was learned. Results, best practices, and guidelines are shared inside the NSI and with the international community. Staff in the production value streams are trained in the new method. Communities of practice keep knowledge alive after the project ends. Superseded methods are retired formally. The experience gained surfaces the next round of needs, which returns to VS-08.1.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Share results, best practices, and guidelines inside and outside the NSI</td>
+<td>Published guidelines</td>
+<td>OVA-5 Knowledge Management</td>
+<td>4.1.6 Collaboration</td>
+</tr>
+<tr class="even">
+<td>Train staff in the production value streams</td>
+<td>Trained staff</td>
+<td>OVA-5 Knowledge Management</td>
+<td>3.1.1 Personnel management (HR)</td>
+</tr>
+<tr class="odd">
+<td>Support communities of practice</td>
+<td>Active communities of practice</td>
+<td>OVA-5 Knowledge Management</td>
+<td>SAF-P05 IT and technology is everyone’s business</td>
+</tr>
+<tr class="even">
+<td>Retire superseded methods</td>
+<td>Retirement record</td>
+<td>OVA-5 Knowledge Management</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="the-four-process-types" class="level2">
+<h2 class="anchored" data-anchor-id="the-four-process-types">4. The four process types</h2>
+<p>VS-08 is itself a capability that must be designed, built, operated, and improved. The four process types therefore apply to VS-08 as they do to the primary value streams, but they govern the innovation capability rather than a data pipeline. Design produces the innovation strategy and the evaluation criteria, Implementation builds the research environment and the pipeline procedures, Execution runs the stages of attribute 3, and Management evaluates whether innovation delivers. <strong>[VC26]</strong></p>
+<p>Each sub-process refines one or more SAF business processes, which are listed under its heading as <em>Refines</em>. Where no reference process exists, the sub-process is marked as NSI-specific.</p>
+<section id="design-provides-the-innovation-framework" class="level3">
+<h3 class="anchored" data-anchor-id="design-provides-the-innovation-framework">Design: provides the innovation framework</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Design sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design the Innovation Strategy and Portfolio</td>
+<td>NSI-specific</td>
+<td>Innovation strategy, portfolio themes, budget rules</td>
+</tr>
+<tr class="even">
+<td>Design the Evaluation and Transfer Criteria</td>
+<td>PRD-2.5 Design processing and analysis; OVA-1 Quality Management</td>
+<td>Evaluation criteria, gate criteria, transfer protocol</td>
+</tr>
+</tbody>
+</table>
+<section id="design-the-innovation-strategy-and-portfolio" class="level4">
+<h4 class="anchored" data-anchor-id="design-the-innovation-strategy-and-portfolio">Design the Innovation Strategy and Portfolio</h4>
+<p><em>Refines:</em> NSI-specific strategic planning processes.</p>
+<p>This sub-process sets the direction of innovation. It derives innovation themes from the strategy of the NSI, such as the use of new data sources or the automation of coding. It decides how the innovation portfolio is balanced between quick improvements and long-term research. It sets the rules for funding and prioritizing projects. It defines how the NSI cooperates with universities, other NSIs, and international bodies. The strategy keeps innovation focused on value for the organization, in line with SAF-P04, rather than on novelty.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Derive innovation themes from the strategy of the NSI</td>
+<td>Innovation strategy</td>
+<td>NSI-specific</td>
+<td>4.1.1 Strategy and governance</td>
+</tr>
+<tr class="even">
+<td>Define the balance of the portfolio and the rules for funding and priority</td>
+<td>Portfolio rules</td>
+<td>NSI-specific</td>
+<td>SAF-P04 Maximize the benefits for the organization</td>
+</tr>
+<tr class="odd">
+<td>Define cooperation with universities, other NSIs, and international bodies</td>
+<td>Cooperation framework</td>
+<td>NSI-specific</td>
+<td>4.1.6 Collaboration</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-the-evaluation-and-transfer-criteria" class="level4">
+<h4 class="anchored" data-anchor-id="design-the-evaluation-and-transfer-criteria">Design the Evaluation and Transfer Criteria</h4>
+<p><em>Refines:</em> PRD-2.5 Design processing and analysis; OVA-1 Quality Management.</p>
+<p>This sub-process designs the gates of the pipeline. It sets the criteria for soundness: accuracy, bias, robustness, scalability, and explainability. It sets the criteria that a method must meet before transfer, together with VS-07. It designs the transfer protocol: what must be handed over, to whom, and with which documentation. It defines when a method is retired. Clear criteria make gate decisions predictable and defensible.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Define criteria for methodological soundness</td>
+<td>Evaluation criteria</td>
+<td>PRD-2.5 Design processing and analysis</td>
+<td>2.2.3 Methodology</td>
+</tr>
+<tr class="even">
+<td>Define the criteria for transfer, together with VS-07 Governance and Compliance</td>
+<td>Gate criteria</td>
+<td>OVA-1 Quality Management</td>
+<td>4.1.5 Accountability</td>
+</tr>
+<tr class="odd">
+<td>Design the transfer protocol and the rules for retirement</td>
+<td>Transfer protocol</td>
+<td>NSI-specific</td>
+<td>SAF-P03 Active life cycle management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="implementation-provides-the-innovation-environment" class="level3">
+<h3 class="anchored" data-anchor-id="implementation-provides-the-innovation-environment">Implementation: provides the innovation environment</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Implementation sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Set Up Research Environments and Procedures</td>
+<td>PRD-3.4 Configure workflows; DLM-6 Provide data for reuse</td>
+<td>Research environment, access procedure for research data, pipeline procedures</td>
+</tr>
+<tr class="even">
+<td>Build the Knowledge Base</td>
+<td>OVA-5 Knowledge Management</td>
+<td>Knowledge base, method catalog, training material</td>
+</tr>
+</tbody>
+</table>
+<section id="set-up-research-environments-and-procedures" class="level4">
+<h4 class="anchored" data-anchor-id="set-up-research-environments-and-procedures">Set Up Research Environments and Procedures</h4>
+<p><em>Refines:</em> PRD-3.4 Configure workflows; DLM-6 Provide data for reuse.</p>
+<p>This sub-process builds the environment in which research takes place, together with VS-09. It provides research environments, or sandboxes, with the tools that researchers need. It defines the procedure for authorized access to production data for research, with VS-07. It sets up the procedures for the pipeline: how ideas are submitted, how gate decisions are taken, and how results are recorded. It makes sure that experiments can be reproduced. A good environment lets researchers move fast without putting production or confidentiality at risk.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Provide research environments with VS-09 Infrastructure and Platform Enablement</td>
+<td>Research environment</td>
+<td>PRD-3.4 Configure workflows</td>
+<td>3.2.5 IT infrastructure</td>
+</tr>
+<tr class="even">
+<td>Define the procedure for authorized access to production data</td>
+<td>Access procedure for research data</td>
+<td>DLM-6 Provide data for reuse</td>
+<td>SAF-P11 Privacy by design</td>
+</tr>
+<tr class="odd">
+<td>Set up the pipeline procedures: submission, gate decisions, recording</td>
+<td>Pipeline procedures</td>
+<td>NSI-specific</td>
+<td>4.1.4 Improvement management</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="build-the-knowledge-base" class="level4">
+<h4 class="anchored" data-anchor-id="build-the-knowledge-base">Build the Knowledge Base</h4>
+<p><em>Refines:</em> OVA-5 Knowledge Management.</p>
+<p>This sub-process builds the place where methods and knowledge are kept. It sets up the method catalog with the documentation of validated methods and their versions. It links each method to the production value streams that use it. It develops training material and learning paths for new methods. It provides the channels for communities of practice. The knowledge base turns individual expertise into an asset of the organization.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Set up the method catalog with documentation and versions</td>
+<td>Method catalog</td>
+<td>OVA-5 Knowledge Management</td>
+<td>2.2.3 Methodology</td>
+</tr>
+<tr class="even">
+<td>Link methods to the value streams that use them</td>
+<td>Method usage map</td>
+<td>OVA-5 Knowledge Management</td>
+<td>SAF-P09 No data without metadata and classification</td>
+</tr>
+<tr class="odd">
+<td>Develop training material and support for communities of practice</td>
+<td>Training material, community channels</td>
+<td>OVA-5 Knowledge Management</td>
+<td>3.1.1 Personnel management (HR)</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="execution-runs-the-innovation-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="execution-runs-the-innovation-pipeline">Execution: runs the innovation pipeline</h3>
+<p>Execution runs the stages of attribute 3 continuously, as a pipeline of projects. VS-08.1 runs as a periodic planning cycle; VS-08.2 to VS-08.5 run per project; VS-08.6 runs continuously.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>VS-08</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Trigger</td>
+<td><em>Innovation need raised</em> by a value stream or VS-10 Customer and Stakeholder Engagement; a planning cycle; a new opportunity from the horizon scan</td>
+</tr>
+<tr class="even">
+<td>Cadence</td>
+<td>Per project; periodic review of the backlog</td>
+</tr>
+<tr class="odd">
+<td>Performed by</td>
+<td>ROL-07 Methodologist, ROL-15 Subject-matter statistician (researcher, data scientist), ROL-10 Data engineer</td>
+</tr>
+<tr class="even">
+<td>Input</td>
+<td>Improvement needs, user needs, research results from outside, authorized research data</td>
+</tr>
+<tr class="odd">
+<td>Output</td>
+<td>Validated methods and tools, documentation, transfer records, trained staff</td>
+</tr>
+<tr class="even">
+<td>Control point</td>
+<td>Gate in VS-08.3 Evaluate Methodological Soundness and Feasibility; transfer gate in VS-08.5 Integrate Innovation into Production Environments</td>
+</tr>
+<tr class="odd">
+<td>Exception path</td>
+<td>An unsound method stopped with a documented rationale; a compliance objection returned to research or stopped</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="management-provides-innovation-performance-reports" class="level3">
+<h3 class="anchored" data-anchor-id="management-provides-innovation-performance-reports">Management: provides innovation performance reports</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Management sub-process</th>
+<th>Refines</th>
+<th>Main outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monitor the Innovation Pipeline</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>Pipeline dashboard, lead times, gate statistics</td>
+</tr>
+<tr class="even">
+<td>Evaluate and Improve the Innovation Capability</td>
+<td>PRD-8.2 Conduct evaluation; PRD-8.3 Agree an action plan</td>
+<td>Evaluation of transfers, improvement plan</td>
+</tr>
+</tbody>
+</table>
+<section id="monitor-the-innovation-pipeline" class="level4">
+<h4 class="anchored" data-anchor-id="monitor-the-innovation-pipeline">Monitor the Innovation Pipeline</h4>
+<p><em>Refines:</em> PRD-8.1 Gather evaluation inputs.</p>
+<p>This sub-process tracks how the pipeline performs. It measures the key performance indicators of VS-08 (see attribute 9), such as the time from idea to production and the share of proofs-of-concept stopped at the gate. It tracks the status of each item in the backlog. It records the use of research data and the compliance of research projects. It reports the progress of the portfolio to management. Visibility of the pipeline helps the value streams see when their needs will be addressed.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Measure the key performance indicators of VS-08 Innovation and Methodological Development</td>
+<td>Pipeline dashboard</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td>GAMSO Capability Management</td>
+</tr>
+<tr class="even">
+<td>Track the status of backlog items</td>
+<td>Backlog status report</td>
+<td>PRD-8.1 Gather evaluation inputs</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Record the use of research data and the compliance of research projects</td>
+<td>Research compliance record</td>
+<td>DLM-8 Monitor data quality, lineage and use</td>
+<td>SAF-P11 Privacy by design</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evaluate-and-improve-the-innovation-capability" class="level4">
+<h4 class="anchored" data-anchor-id="evaluate-and-improve-the-innovation-capability">Evaluate and Improve the Innovation Capability</h4>
+<p><em>Refines:</em> PRD-8.2 Conduct evaluation; PRD-8.3 Agree an action plan.</p>
+<p>This sub-process asks whether innovation delivers lasting value. It evaluates transferred methods after a period in production: are they still in use, and did they deliver the expected benefits? It holds retrospectives on stopped and completed projects. It adjusts the strategy, the evaluation criteria, and the procedures based on the findings. It prioritizes improvements of the innovation capability and tracks them. This closes the cycle of VS-08 itself, in line with SAF capability 4.1.4 <em>Improvement management</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Key outputs</th>
+<th>SAF process</th>
+<th>Other reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Evaluate transferred methods after a period in production</td>
+<td>Transfer evaluation</td>
+<td>PRD-8.2 Conduct evaluation</td>
+<td>GAMSO Capability Management</td>
+</tr>
+<tr class="even">
+<td>Hold retrospectives on stopped and completed projects</td>
+<td>Lessons learned</td>
+<td>PRD-8.2 Conduct evaluation</td>
+<td>4.1.4 Improvement management</td>
+</tr>
+<tr class="odd">
+<td>Adjust strategy, criteria, and procedures, and track the improvements</td>
+<td>Improvement plan</td>
+<td>PRD-8.3 Agree an action plan</td>
+<td>4.1.4 Improvement management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="actors-and-roles" class="level2">
+<h2 class="anchored" data-anchor-id="actors-and-roles">5. Actors and roles</h2>
+<p>VS-08 connects researchers, methodologists, IT staff, and the production value streams. The table shows the actors and the reference roles involved. Specialized role names used in an NSI map onto these reference roles (see <em>Role names in the value streams</em>); for example, the head of methodology or innovation is ROL-07 Methodologist, the researcher or data scientist is ROL-15 Subject-matter statistician, and the tool or platform engineer is ROL-10 Data engineer. The trainer or knowledge manager is not part of the reference set. <strong>[VC28]</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Actor or role</th>
+<th>ID</th>
+<th>Responsibility in VS-08 Innovation and Methodological Development</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>International statistical organization</td>
+<td>ACT-07</td>
+<td>Shares methods, standards, and research results, for example through UNECE projects</td>
+</tr>
+<tr class="even">
+<td>Supplier and service provider</td>
+<td>ACT-09</td>
+<td>Supplies research partnerships, tools, or data for innovation, for example universities</td>
+</tr>
+<tr class="odd">
+<td>Process owners of production value streams</td>
+<td>ROL-01</td>
+<td>Raise needs, confirm fitness for purpose, and take over transferred methods</td>
+</tr>
+<tr class="even">
+<td>Methodologist</td>
+<td>ROL-07</td>
+<td>Owns the innovation agenda and the methodological standards; evaluates soundness and formalizes validated methods</td>
+</tr>
+<tr class="odd">
+<td>Data engineer</td>
+<td>ROL-10</td>
+<td>Builds reference implementations and prepares them for production, together with VS-09 Infrastructure and Platform Enablement</td>
+</tr>
+<tr class="even">
+<td>Subject-matter statistician</td>
+<td>ROL-15</td>
+<td>Carries out research and proofs-of-concept; brings the real problem from production and validates fitness for purpose</td>
+</tr>
+<tr class="odd">
+<td>Compliance officer</td>
+<td>ROL-19</td>
+<td>Assesses methods against the compliance criteria of VS-07 Governance and Compliance before transfer</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="capabilities-processes-and-functions" class="level2">
+<h2 class="anchored" data-anchor-id="capabilities-processes-and-functions">6. Capabilities, processes, and functions</h2>
+<section id="capability-foundations" class="level3">
+<h3 class="anchored" data-anchor-id="capability-foundations">Capability foundations</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Capability group</th>
+<th>Capabilities</th>
+<th>Role in VS-08 Innovation and Methodological Development</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2.2 Research</td>
+<td>2.2.1 Data source exploration, 2.2.2 Product innovation, 2.2.3 Methodology</td>
+<td>Explore new sources, develop new products and methods</td>
+</tr>
+<tr class="even">
+<td>1.1 Statistical design and build</td>
+<td>1.1.2 Design statistics product, 1.1.3 Build statistics product</td>
+<td>Bring validated methods into the design and build of products</td>
+</tr>
+<tr class="odd">
+<td>3.2 Computerization and automation</td>
+<td>3.2.1 Application development, 3.2.3 Technical management</td>
+<td>Build reference implementations and deploy them</td>
+</tr>
+<tr class="even">
+<td>4.1 Strategy and leadership</td>
+<td>4.1.3 Change management, 4.1.4 Improvement management, 4.1.6 Collaboration</td>
+<td>Manage the change that innovation brings, improve continuously, cooperate with partners</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="stages-processes-and-functions" class="level3">
+<h3 class="anchored" data-anchor-id="stages-processes-and-functions">Stages, processes, and functions</h3>
+<p>The table follows the mapping in <em>Business Processes, Mapping to value stream stages</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Realized by processes</th>
+<th>Main functions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS-08.1 Identify Innovation Needs and Opportunities</td>
+<td>PRD-1.5 Check data availability and suitability</td>
+<td>FUN-4.2 Research and innovate</td>
+</tr>
+<tr class="even">
+<td>VS-08.2 Conduct Research and Proof-of-Concepts</td>
+<td>No reference process (NSI-specific)</td>
+<td>FUN-4.2 Research and innovate</td>
+</tr>
+<tr class="odd">
+<td>VS-08.3 Evaluate Methodological Soundness and Feasibility</td>
+<td>PRD-3.6 Test statistical business process</td>
+<td>FUN-4.1 Manage statistical and analytical methodology; FUN-5.2 Assure and review quality</td>
+</tr>
+<tr class="even">
+<td>VS-08.4 Develop and Document New Methodologies or Tools</td>
+<td>PRD-3.2 Reuse or build processing and analysis components; OVA-5 Knowledge Management</td>
+<td>FUN-4.1 Manage statistical and analytical methodology; FUN-10.4 Manage information and records</td>
+</tr>
+<tr class="odd">
+<td>VS-08.5 Integrate Innovation into Production Environments</td>
+<td>PRD-3.7 Finalize production systems</td>
+<td>FUN-2.4 Transfer capability improvements to operations; FUN-3.1 Design and build statistical products</td>
+</tr>
+<tr class="even">
+<td>VS-08.6 Promote Knowledge Sharing and Capability Building</td>
+<td>OVA-5 Knowledge Management</td>
+<td>FUN-10.1 Manage human resources; FUN-10.4 Manage information and records</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: ArchiMate view VS-08 (b) stages realized by processes and functions</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="framework-mappings" class="level3">
+<h3 class="anchored" data-anchor-id="framework-mappings">Framework mappings</h3>
+<p>Where the primary value streams map to the production phases of GSBPM, VS-08 maps to GAMSO <em>Capability Management</em>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>GAMSO area</th>
+<th>Relevance to VS-08 Innovation and Methodological Development</th>
+<th>SAF capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Capability Management</td>
+<td>Manage research and innovation, develop methodology, manage change, build staff capability</td>
+<td>2.2.1 Data source exploration, 2.2.2 Product innovation, 2.2.3 Methodology, 4.1.3 Change management</td>
+</tr>
+<tr class="even">
+<td>Strategy and Leadership</td>
+<td>Set the innovation agenda in line with the strategy of the organization</td>
+<td>4.1.1 Strategy and governance</td>
+</tr>
+<tr class="odd">
+<td>Corporate Support</td>
+<td>Train staff and manage knowledge</td>
+<td>3.1.1 Personnel management (HR), 3.1.8 Information management and archive management</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="principles" class="level2">
+<h2 class="anchored" data-anchor-id="principles">7. Principles</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Principle</th>
+<th>Statement</th>
+<th>How VS-08 Innovation and Methodological Development applies it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAF-P01</td>
+<td>Reuse before open source, open source before buying, buying before building</td>
+<td>Innovates on and contributes to shared, open methods and tools rather than closed products from vendors <strong>[VC3]</strong></td>
+</tr>
+<tr class="even">
+<td>SAF-P03</td>
+<td>Active life cycle management</td>
+<td>Manages methods and tools across their life cycle, from proof-of-concept to production to retirement</td>
+</tr>
+<tr class="odd">
+<td>SAF-P04</td>
+<td>Maximize the benefits for the organization</td>
+<td>Prioritizes innovations by value for the whole organization and by scalability, not by novelty</td>
+</tr>
+<tr class="even">
+<td>SAF-P05</td>
+<td>IT and technology is everyone’s business</td>
+<td>Connects research, methodology, IT, and business users, and builds broad capability to adopt new methods</td>
+</tr>
+<tr class="odd">
+<td>SAF-P07</td>
+<td>Implement loosely coupled processes and systems</td>
+<td>Transfers methods that fit the steady-state interfaces, so that the production value streams stay decoupled</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="interfaces-services-and-events" class="level2">
+<h2 class="anchored" data-anchor-id="interfaces-services-and-events">8. Interfaces, services, and events</h2>
+<p><strong>Business services</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Service</th>
+<th>Offered to</th>
+<th>Realized in</th>
+<th>Interfaces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Innovation intake service</td>
+<td>All value streams, VS-10 Customer and Stakeholder Engagement</td>
+<td>VS-08.1 Identify Innovation Needs and Opportunities</td>
+<td>Innovation backlog, submission procedure</td>
+</tr>
+<tr class="even">
+<td>Research and experimentation service</td>
+<td>Production value streams</td>
+<td>VS-08.2 Conduct Research and Proof-of-Concepts</td>
+<td>Research environments, proof-of-concept reports</td>
+</tr>
+<tr class="odd">
+<td>Methodology advice and evaluation service</td>
+<td>Production value streams, VS-07 Governance and Compliance</td>
+<td>VS-08.3 Evaluate Methodological Soundness and Feasibility</td>
+<td>Soundness assessments, comparison reports</td>
+</tr>
+<tr class="even">
+<td>Method transfer service</td>
+<td>Production value streams</td>
+<td>VS-08.5 Integrate Innovation into Production Environments</td>
+<td>Transfer protocol, handover packages</td>
+</tr>
+<tr class="odd">
+<td>Knowledge and training service</td>
+<td>All staff</td>
+<td>VS-08.6 Promote Knowledge Sharing and Capability Building</td>
+<td>Method catalog, training, communities of practice</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Business events</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Triggers or marks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Innovation need raised</em></td>
+<td>Entry of an item into the backlog in VS-08.1 Identify Innovation Needs and Opportunities</td>
+</tr>
+<tr class="even">
+<td><em>Proof-of-concept started</em> / <em>Proof-of-concept completed</em></td>
+<td>Start and end of VS-08.2 Conduct Research and Proof-of-Concepts</td>
+</tr>
+<tr class="odd">
+<td><em>Method compliance assessment requested</em></td>
+<td>Request to VS-07 Governance and Compliance during VS-08.3 Evaluate Methodological Soundness and Feasibility</td>
+</tr>
+<tr class="even">
+<td><em>Gate passed</em> / <em>Gate stopped</em></td>
+<td>Outcome of VS-08.3 Evaluate Methodological Soundness and Feasibility</td>
+</tr>
+<tr class="odd">
+<td><em>Platform request</em></td>
+<td>Request to VS-09 Infrastructure and Platform Enablement for a research or production environment</td>
+</tr>
+<tr class="even">
+<td><em>Method transferred to production</em></td>
+<td>Completion of VS-08.5 Integrate Innovation into Production Environments</td>
+</tr>
+<tr class="odd">
+<td><em>Method retired</em></td>
+<td>Formal retirement of a superseded method in VS-08.6 Promote Knowledge Sharing and Capability Building</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>PLACEHOLDER: VS-08 event choreography between the production value streams, VS-08, VS-07, and VS-09: need raised, proof-of-concept, compliance assessment, gate decision, platform request, transfer to production, and retirement</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="key-performance-indicators" class="level2">
+<h2 class="anchored" data-anchor-id="key-performance-indicators">9. Key performance indicators</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>KPI</th>
+<th>Description</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Idea-to-production lead time</td>
+<td>Median time from a backlog item in VS-08.1 Identify Innovation Needs and Opportunities to a completed transfer in VS-08.5 Integrate Innovation into Production Environments</td>
+<td>Per transferred innovation</td>
+</tr>
+<tr class="even">
+<td>Transfer rate and durability</td>
+<td>Methods and tools transferred per year, and the share still in use after 12 months</td>
+<td>Annually</td>
+</tr>
+<tr class="odd">
+<td>Gate effectiveness</td>
+<td>Share of proofs-of-concept stopped at the gate of VS-08.3 Evaluate Methodological Soundness and Feasibility with a documented rationale; a healthy gate stops some</td>
+<td>Per evaluation</td>
+</tr>
+<tr class="even">
+<td>Backlog responsiveness</td>
+<td>Share of prioritized backlog items that reach a proof-of-concept within the agreed time</td>
+<td>Per planning period</td>
+</tr>
+<tr class="odd">
+<td>Capability building</td>
+<td>Staff trained in new methods, and the rate of adoption in the target value streams</td>
+<td>Per year, per transfer</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="toolkit" class="level2">
+<h2 class="anchored" data-anchor-id="toolkit">10. Toolkit</h2>
+<p>Examples from NSI practice and a maturity checklist for VS-08 are part of the SAF Toolkit.</p>
+<p><strong>Toolkit:</strong> SAF-TK-V08 VS-08 Innovation and Methodological Development companion <strong>[VC17]</strong></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="../framework/vs-07.html" class="pagination-link" aria-label="VS-07 Governance and Compliance">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">VS-07 Governance and Compliance</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../framework/vs-09.html" class="pagination-link" aria-label="VS-09 Infrastructure and Platform Enablement">
+        <span class="nav-page-text">VS-09 Infrastructure and Platform Enablement</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
