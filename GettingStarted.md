@@ -6,7 +6,7 @@
 # Add MCP server
 
 - Start the MCP server in the menu
-
+- Install mcp-proxy : https://www.npmjs.com/package/mcp-proxy , a nodejs package
 - Open Claude Desktop. Edit the ```claude_desktop_config.json``` file and add:
 ```
 {
