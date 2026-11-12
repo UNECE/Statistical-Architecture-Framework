@@ -14,7 +14,7 @@ Please refer to the [Getting Started](GettingStarted.md) in the docs folder.
 ## Repository Structure
 
 - `/docs/` — Documentation and rendered views
-- `/model/` — Archi contents
+- `/site/` — Publishable contents
 
 ## Contributing to the framework
 
