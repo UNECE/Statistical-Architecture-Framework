@@ -105,6 +105,34 @@ Current version: 0.9
 -   [State #5: Published Output Data (Released Data)](#state-5-published-output-data-released-data)
 -   [State #6: Consumed Data](#state-6-consumed-data)
 
+[Data and Application Architecture](#data-and-application-architecture)
+
+-   [Purpose of this chapter](#purpose-of-this-chapter-4)
+-   [Position in the framework](#position-in-the-framework-3)
+-   [How NSIs use this chapter](#how-nsis-use-this-chapter-3)
+-   [Requirements and Constraints for Phases C and D](#requirements-and-constraints-for-phases-c-and-d)
+-   [Data Architecture](#data-architecture)
+    -   [Steady-state datasets](#steady-state-datasets)
+    -   [SDMX structural metadata](#sdmx-structural-metadata)
+    -   [Governance, quality and design data objects](#governance-quality-and-design-data-objects)
+-   [Application Architecture](#application-architecture)
+    -   [Application landscape](#application-landscape)
+    -   [Application services](#application-services)
+    -   [Application interfaces](#application-interfaces)
+    -   [Application services per value stream](#application-services-per-value-stream)
+    -   [Core data platform and SDMX path](#core-data-platform-and-sdmx-path)
+
+[Technology Architecture](#technology-architecture)
+
+-   [Purpose of this chapter](#purpose-of-this-chapter-5)
+-   [Position in the framework](#position-in-the-framework-4)
+-   [How NSIs use this chapter](#how-nsis-use-this-chapter-4)
+-   [Technology layers](#technology-layers)
+-   [Nodes](#nodes)
+-   [System Software](#system-software)
+-   [Technology Services](#technology-services)
+-   [Artifacts](#artifacts)
+
 
 
 
@@ -8305,5 +8333,350 @@ Examples from NSI practice and a maturity checklist for VS-10 are part of the SA
 
 **Toolkit:** SAF-TK-V10 VS-10 Customer and Stakeholder Engagement companion **[VC17]**
 
+# Data and Application Architecture
 
+## Purpose of this chapter
 
+The data and application architecture describes which data the statistical organisation keeps, and which applications create, process and deliver that data. It is the layer where the steady states of the business architecture become datasets, and where the business services become application services.
+
+The business architecture is independent of technology. This chapter is the first that is not. It describes a reference solution: a set of data objects, application services and application components that together support the primary value streams VS-01 to VS-06. The components are named with a concrete open-source product, so that an NSI can see what a working solution looks like. The product names are examples. The application services behind them are the stable part of the reference.
+
+The chapter has three parts. The first lists the requirements and the constraint that shape the data, application and technology layers. The second describes the data architecture. The third describes the application architecture.
+
+## Position in the framework
+
+In the TOGAF Architecture Development Method, the data and application architecture are developed in Phase C, Information Systems Architectures. In ArchiMate, both belong to the application layer: data objects are the passive elements of that layer, and application components, services and interfaces are the active and behaviour elements.
+
+|**PLACEHOLDER: Position of the Data and Application Architecture between the Business Architecture and the Technology Architecture**|
+|---|
+
+| Direction | Relationship | Example in the SAF |
+|---|---|---|
+| From Motivation | Requirements realise principles, and are realised by data objects and components | SAF-RQ02 realises SAF-P07 and is realised by the Workflow Orchestrator |
+| From Strategy | Application components realise capabilities | The Statistical Disclosure Control Toolkit realises Statistical disclosure (1.3.7) |
+| From Business Architecture | Data objects realise business objects | *Raw Dataset (#1)* realises the steady state *#1 Raw Data* |
+| From Business Architecture | Application services realise business services and serve business processes | The Data Validation Service realises the Conformance Validation Service and serves the execution process of VS-02 |
+| To Technology Architecture | Artifacts realise data objects | The Raw Zone realises *Raw Dataset (#1)* |
+| To Technology Architecture | Technology services serve application components | The Table Storage Service serves the Distributed SQL Query Engine |
+
+## How NSIs use this chapter
+
+The content of this chapter is reference content at two levels.
+
+**Data objects, application services and application interfaces** are independent of products. They describe what must exist and what it must do. Most NSIs can adopt them as they are, or map their own landscape onto them.
+
+**Application components** are named with one open-source product each. This follows SAF-P01 and the constraint SAF-CN01. An NSI uses the component list in one of three ways: it adopts the product, it replaces the product with another one that realises the same application service, or it maps an existing system onto the component. In all three cases the application service stays the point of comparison between NSIs.
+
+An NSI that already has a platform does not need to replace it. It uses this chapter to check whether every application service is covered, by which system, and for which value stream.
+
+Licences are listed with each component. Some products have a copyleft or network-copyleft licence (GPL, AGPL). Under SAF-CN01, these need a legal review before adoption.
+
+## Requirements and Constraints for Phases C and D
+
+The data, application and technology layers are shaped by seven requirements and one constraint. Each requirement realises an architecture principle, a goal or an outcome from the Motivation chapter, and is in turn realised by elements of the lower layers. This gives traceability from a principle down to a component or a storage zone.
+
+| ID | Requirement | Description | Realises | Realised by |
+|---|---|---|---|---|
+| **SAF-RQ01** | Statistics (#4) and Released Data (#5) are formatted in SDMX | Steady states #4 and #5 follow SDMX. Datasets conform to published Data Structure Definitions, codelists and concept schemes, and are available as SDMX-ML, SDMX-JSON and SDMX-CSV. | SAF-G2, SAF-O3 | SAF-DO04, SAF-DO05, SAF-DO06, SAF-DO10, SAF-DO11, SAF-DO12, SAF-AC12, SAF-AC13 |
+| **SAF-RQ02** | Steady-state handover is event-driven and loosely coupled | Streams exchange data only through registered steady-state versions. Registration emits an event that triggers the next stream. No stream calls the internals of another stream. | SAF-P07 | SAF-AC04, SAF-AS24, SAF-TSV04 |
+| **SAF-RQ03** | SQL, pipeline and schema definitions are version-controlled | All SQL models, DAGs, schemas, validation suites and policies live in Git. They are reviewed, tested in CI and promoted through environments. Every dataset version records the code version that produced it. | SAF-P03 | SAF-DO18, SAF-AC07, SAF-AC23 |
+| **SAF-RQ04** | Every dataset version carries metadata, lineage and BIV classification | Metadata, lineage, quality results and the BIV classification (availability, integrity, confidentiality) are captured automatically at the point of creation and published in the catalogue. | SAF-P09 | SAF-DO13, SAF-DO14, SAF-DO16, SAF-AC11 |
+| **SAF-RQ05** | Confidentiality is applied progressively and gated before release | Identifiers are pseudonymised at #2, disclosure risk is assessed at #3, initial control is applied at #4, and a final disclosure-control gate precedes #5. | SAF-P11 | SAF-DO21, SAF-AC09, SAF-AC19 |
+| **SAF-RQ06** | Access is authenticated, authorized and audited by design | All human and system access goes through single sign-on and policy decisions, and is logged in a tamper-evident audit trail. | SAF-P10 | SAF-DO17, SAF-AC18, SAF-AC19, SAF-AC20 |
+| **SAF-RQ07** | Each steady state is a versioned, immutable Iceberg snapshot | A steady state is an Iceberg snapshot tagged as a quality version. Consumers read a tagged version, so that results stay reproducible and shareable. | SAF-P08 | SAF-AC06, SAF-AF01, SAF-AF02, SAF-AF03, SAF-AF04, SAF-AF05 |
+
+| ID | Constraint | Description | Realises |
+|---|---|---|---|
+| **SAF-CN01** | Open-source components only | The target stack contains only open-source products with OSI-approved licences. Where a licence is copyleft or network-copyleft (GPL, AGPL), legal review is needed before adoption. Alternatives are listed in the component documentation. | SAF-P01 |
+
+## Data Architecture
+
+A **data object** is data structured for automated processing. In ArchiMate, a data object realises a business object: it is the form in which the information of the business is held by applications. A data object is in turn realised by an artifact in the technology layer, which is the physical form in which it is stored.
+
+The SAF data architecture contains 18 data objects in three groups: the steady-state datasets, the SDMX structural metadata, and the data objects for governance, quality and design.
+
+|**PLACEHOLDER: ArchiMate view *Phase C - Data Architecture: Data Objects and Steady States***|
+|---|
+
+### Steady-state datasets
+
+Each steady state of the business architecture is realised by one or two data objects. Each dataset is stored as Apache Iceberg tables in a namespace of its own. The datasets of #4 and #5 are shaped as SDMX (SAF-RQ01).
+
+| ID | Data object | Description | Realises business object | Realised by artifact | Accessed by |
+|---|---|---|---|---|---|
+| **SAF-DO01** | Raw Dataset (#1) | Iceberg tables in namespace `raw`. Data in its original form as received, with provenance, source, method, timestamp and BIV classification. Never edited; each registration is an Iceberg snapshot. | #1 Raw Data | SAF-AF01 | SAF-AC01, SAF-AC02, SAF-AC03, SAF-AC05, SAF-AC10 |
+| **SAF-DO02** | Standardized Dataset (#2) | Iceberg tables in namespace `std`. The same values as #1, expressed in common structures, formats and standard classifications. Identifiers are pseudonymised; no personally identifiable information. | #2 Standardized Data | SAF-AF02 | SAF-AC05, SAF-AC07, SAF-AC10 |
+| **SAF-DO03** | Processed Dataset (#3) | Iceberg tables in namespace `proc`. Edited, imputed, enriched and integrated microdata with edit lineage, flags and derived variables. Each quality version is an Iceberg tag on a snapshot. | #3 Processed Data | SAF-AF03 | SAF-AC05, SAF-AC07, SAF-AC08, SAF-AC10 |
+| **SAF-DO04** | Statistics Dataset - SDMX (#4) | Estimates and aggregates shaped as SDMX (dimensions, measures, attributes), conforming to a published Data Structure Definition, with accuracy measures. Stored in Iceberg namespace `stat`; exportable as SDMX-ML, SDMX-JSON and SDMX-CSV. | #4 Statistics (Output Data) | SAF-AF04, SAF-AF06 | SAF-AC05, SAF-AC08, SAF-AC09 |
+| **SAF-DO05** | Statistical Product - SDMX Dataflow (#4) | Approved composite product (indicators, indices, time series), registered as an SDMX Dataflow with categorisation. This is the approved state that VS-05 hands to VS-06. | #4 Statistics (Output Data) | | SAF-AC07, SAF-AC12 |
+| **SAF-DO06** | Released Dataset - SDMX (#5) | Disclosure-controlled, documented dataset published as SDMX through the SDMX web service, the open-data portal and research access. Iceberg namespace `rel`. | #5 Released Data | SAF-AF05, SAF-AF06 | SAF-AC05, SAF-AC09, SAF-AC13, SAF-AC14, SAF-AC15, SAF-AC16, SAF-AC17 |
+
+### SDMX structural metadata
+
+The SDMX structures are the contract between the producers and the consumers of steady states #4 and #5. Together they realise SAF-RQ01.
+
+| ID | Data object | Description | Accessed by |
+|---|---|---|---|
+| **SAF-DO10** | SDMX Data Structure Definition (DSD) | SDMX structure that defines the dimensions, measures and attributes of a dataset. It is the contract between producers and consumers of #4 and #5, aligned with GSIM. | SAF-AC12, SAF-AC13 |
+| **SAF-DO11** | SDMX Codelists and Concept Schemes | Standard classifications, code lists and concept definitions (for example NACE and ISCO), used for standardization in VS-02 and in SDMX structures. Versioned and published. | SAF-AC12, SAF-AC13 |
+| **SAF-DO12** | SDMX Dataflow and Categorisation | Catalogue of publishable dataflows organised by category. It is the product and service catalogue for dissemination. | SAF-AC12, SAF-AC13, SAF-AC16 |
+
+### Governance, quality and design data objects
+
+These data objects hold the metadata, logs, policies and definitions that accompany the datasets. Several of them realise business objects of the four process types: design artefacts, provenance and audit logs, and quality reports.
+
+| ID | Data object | Description | Realises business object | Accessed by |
+|---|---|---|---|---|
+| **SAF-DO13** | Lineage and Provenance Record | OpenLineage job, run and dataset events, and provenance metadata that capture origin, method, parameters and inputs for every dataset version (SAF-P09). | Provenance, QA & Audit Logs | SAF-AC04, SAF-AC11 |
+| **SAF-DO14** | Data Quality Result | Validation outcomes and quality indicators per dataset version: integrity, conformance, edit impact, accuracy and coherence. | | SAF-AC10, SAF-AC11 |
+| **SAF-DO15** | Data Agreement Record | Register entry per data sharing agreement: provider, legal basis, access rights, SLA and validity. | Data Sharing Agreement | SAF-AC02, SAF-AC03, SAF-AC11 |
+| **SAF-DO16** | Dataset Metadata Entry | Catalogue entry per dataset version: schema, owner and steward, BIV classification, steady state, quality version, and links to lineage and quality results. | | SAF-AC06, SAF-AC11 |
+| **SAF-DO17** | Access and Audit Log | Tamper-evident log of authentication, authorization decisions, data access and changes (SAF-P10). | Provenance, QA & Audit Logs | SAF-AC18, SAF-AC19, SAF-AC20 |
+| **SAF-DO18** | Pipeline and SQL Model Definitions | Versioned (Git) Airflow DAGs, dbt SQL models, validation suites, disclosure-control and statistical scripts, and schema migrations. These are the design and implementation artefacts of every stream. | Design Artefacts (Metadata) | SAF-AC04, SAF-AC07, SAF-AC23 |
+| **SAF-DO19** | Quality Indicators and KPI Metrics | Process KPIs (timeliness, rejection rates, conformance, accuracy) and platform metrics that feed quality reports and dashboards. | Quality Report | SAF-AC15 |
+| **SAF-DO20** | Usage and Feedback Data | Web analytics, API usage, user questions and tickets from dissemination (VS-06.5), routed to VS-10. | | SAF-AC21, SAF-AC22 |
+| **SAF-DO21** | Access and Disclosure Policy | Policy-as-code: access rules by BIV classification, role and steady state, and disclosure-control rules and thresholds. | | SAF-AC09, SAF-AC19, SAF-AC23 |
+
+## Application Architecture
+
+The application architecture uses three ArchiMate elements. An **application component** is a self-contained unit of software. An **application service** is the behaviour that a component offers to its environment. An **application interface** is the point where that service is made available to users or to other components.
+
+The SAF application architecture contains 23 application components, 24 application services and 5 application interfaces.
+
+### Application landscape
+
+The components are grouped into five functional groups.
+
+|**PLACEHOLDER: ArchiMate view *Phase C - Application Architecture: Landscape***|
+|---|
+
+**Acquisition**
+
+| ID | Component | Product | Licence | Description | Realises service | Realises capability |
+|---|---|---|---|---|---|---|
+| **SAF-AC01** | Survey Platform | LimeSurvey | GPL-2.0 | Web (CAWI) and self-completion surveys for primary collection. Exports responses and paradata to the raw zone. Field (CAPI) collection can be added with an open-source field tool such as Survey Solutions or ODK. | SAF-AS01 | 1.2.1 Primary data collection |
+| **SAF-AC02** | Secure File Transfer Gateway | SFTPGo | AGPL-3.0 | SFTP/HTTPS endpoint where providers deliver files. Writes to the landing prefix in S3 and raises a delivery notification. Credentials and quotas per provider. | SAF-AS02 | 1.2.2 Secondary data collection |
+| **SAF-AC03** | Ingestion Engine | Apache NiFi | Apache-2.0 | Pulls from REST APIs, SFTP, databases and web sources. Records ingestion provenance and lands data in the raw zone. Supports secondary and emerging sources such as web scraping and sensors. | SAF-AS03 | 1.2.2 Secondary data collection |
+
+**Processing and Transformation**
+
+| ID | Component | Product | Licence | Description | Realises service | Realises capability |
+|---|---|---|---|---|---|---|
+| **SAF-AC04** | Workflow Orchestrator | Apache Airflow | Apache-2.0 | Schedules and runs all pipelines as versioned DAGs (KubernetesExecutor). Asset-aware scheduling starts the next stream when a steady state is registered. Emits OpenLineage events. | SAF-AS04, SAF-AS24 | 3.2.3 Technical management |
+| **SAF-AC05** | Distributed SQL Query Engine | Trino | Apache-2.0 | Federated SQL over Iceberg tables in S3. Executes standardization, derivation and composition SQL and serves analysts. Access control is delegated to the Policy Decision Engine. | SAF-AS05 | 1.3 Processing |
+| **SAF-AC06** | Iceberg REST Catalog | Apache Polaris | Apache-2.0 | Table catalog for the namespaces `raw`, `std`, `proc`, `stat` and `rel`. Manages snapshots, branches and tags (quality versions) and table-level access. Alternative: Project Nessie. | SAF-AS06 | 2.1.1 Data lifecycle management |
+| **SAF-AC07** | SQL Transformation Framework | dbt Core | Apache-2.0 | Version-controlled, tested SQL models for standardization, editing, derivation and composition. Runs on Trino through Airflow. Generates documentation and lineage. | SAF-AS07 | 1.3.1 Data standardization; 1.3.2 Deriving variables and units |
+| **SAF-AC08** | Statistical Computing Runtime | R and Python | GPL-2.0 / PSF | Containerised R (survey, VIM, mice) and Python jobs for imputation, weighting and calibration, estimation, and small-area and time-series models. Run as Airflow Kubernetes pods; read and write Iceberg through Trino. | SAF-AS08 | 1.3.4 Adjusting and imputing; 1.3.5 Estimating population parameters |
+| **SAF-AC09** | Statistical Disclosure Control Toolkit | sdcMicro, sdcTable | GPL-2.0 | Disclosure risk assessment and protection of microdata and tables (suppression, perturbation, k-anonymity). Applied at #4 and as the final gate before #5. | SAF-AS09 | 1.3.7 Statistical disclosure |
+| **SAF-AC10** | Data Quality Framework | Great Expectations | Apache-2.0 | Declarative expectation suites for intake, conformance, edit and coherence checks. Results are stored as Data Quality Results and published to the catalogue. | SAF-AS10 | 1.3.3 Check content; 2.1.3 Statistical quality management |
+
+**Metadata and Governance**
+
+| ID | Component | Product | Licence | Description | Realises service | Realises capability |
+|---|---|---|---|---|---|---|
+| **SAF-AC11** | Metadata and Lineage Platform | OpenMetadata, OpenLineage | Apache-2.0 | Dataset catalogue, glossary, BIV classification tags, ownership and column-level lineage, ingested from Airflow, Trino, dbt and OpenLineage. Implements the Metadata Catalog Service. | SAF-AS11 | 2.1.1 Data lifecycle management; 2.1.2 Metadata management |
+| **SAF-AC12** | SDMX Structure and Lifecycle Manager | .Stat Suite DLM | MIT (verify per component) | Authoring and registry of SDMX structures (DSD, codelists, concept schemes, dataflows), and loading of statistical data into the dissemination store. | SAF-AS12 | 2.1.2 Metadata management; 2.1.4 Statistical register management |
+
+**SDMX and Dissemination**
+
+| ID | Component | Product | Licence | Description | Realises service | Realises capability |
+|---|---|---|---|---|---|---|
+| **SAF-AC13** | SDMX Web Service | .Stat Suite NSI-WS | MIT / EUPL (verify per component) | SDMX REST API for data and structure queries. Delivers SDMX-ML, SDMX-JSON and SDMX-CSV for #4 and #5 datasets. | SAF-AS13 | 1.5.3 Facilitate data access |
+| **SAF-AC14** | SDMX Data Explorer | .Stat Suite Data Explorer | MIT (verify per component) | Public web application to search, view, chart and download released SDMX datasets. | SAF-AS14 | 1.5.3 Facilitate data access |
+| **SAF-AC15** | BI and Dashboards | Apache Superset | Apache-2.0 | Interactive dashboards over released data. Also used for internal quality and KPI dashboards. | SAF-AS15 | 1.5.4 Statistical information management |
+| **SAF-AC16** | Open Data Portal | CKAN | AGPL-3.0 | Open-data catalogue and bulk download with machine-readable (DCAT) metadata. Links to SDMX dataflows. | SAF-AS16 | 1.5.1 Publication management |
+| **SAF-AC17** | Research Workbench | JupyterHub | BSD-3-Clause | Secure containerised notebook environment for accredited researchers and for VS-08 sandboxes. Outputs are checked before they leave the environment. | SAF-AS17 | 2.2.3 Methodology; 2.2.4 Data services |
+| **SAF-AC21** | Service Desk | Zammad | AGPL-3.0 | User-support ticketing, knowledge base and feedback capture. | SAF-AS21 | 3.4.2 Contact management; 3.4.4 Self-service |
+| **SAF-AC22** | Web Analytics | Matomo | GPL-3.0 | Privacy-respecting usage statistics for portals, APIs and releases. | SAF-AS22 | 2.2.5 User research |
+
+**Security, Access and Delivery**
+
+| ID | Component | Product | Licence | Description | Realises service | Realises capability |
+|---|---|---|---|---|---|---|
+| **SAF-AC18** | Identity and Access Management | Keycloak | Apache-2.0 | Single sign-on (OIDC/SAML), multi-factor authentication, and role and group management for staff, providers and researchers. | SAF-AS18 | 3.3.4 Logical identity and access control |
+| **SAF-AC19** | Policy Decision Engine | Open Policy Agent | Apache-2.0 | Policy-as-code decisions for Trino, APIs and research access, based on role, BIV class and steady state. | SAF-AS19 | 3.3.4 Logical identity and access control |
+| **SAF-AC20** | API Gateway | Apache APISIX | Apache-2.0 | Single entry point for external APIs: authentication, rate limiting and usage logging. | SAF-AS20 | 3.3.6 IT security services |
+| **SAF-AC23** | Source Control and CI/CD | GitLab CE | MIT | Git repositories, merge requests and CI pipelines. System of record for SQL models, DAGs, schemas and policies. Promotes versions from test to production. | SAF-AS23 | 3.2.1 Application development |
+
+### Application services
+
+Each application service is realised by one component. Most services realise one or more business services of the value streams.
+
+| ID | Application service | Description | Realised by | Realises business services |
+|---|---|---|---|---|
+| **SAF-AS01** | Survey Collection Service | Collect responses through web questionnaires. | SAF-AC01 | Data Collection Service |
+| **SAF-AS02** | Secure File Receipt Service | Receive files from data providers securely. | SAF-AC02 | Data Collection Service |
+| **SAF-AS03** | Data Ingestion Service | Acquire data from APIs, databases and web sources into the raw zone. | SAF-AC03 | Data Collection Service |
+| **SAF-AS04** | Pipeline Orchestration Service | Schedule, run, monitor and retry pipelines; expose run status. | SAF-AC04 | Ingestion Monitoring Service |
+| **SAF-AS05** | SQL Query and Processing Service | Run SQL over Iceberg tables for processing and analysis. | SAF-AC05 | Raw Data Provisioning Service; Standardization Service; Error-Detection Service; Derivation and Integration Service; Estimation and Aggregation Service; Integration and Composition Service |
+| **SAF-AS06** | Table Catalog Service | Manage tables, snapshots, tags and quality versions. | SAF-AC06 | Raw Data Provisioning Service; Quality-Version Catalog Service; Output-Version Catalog Service |
+| **SAF-AS07** | Versioned Transformation Service | Execute version-controlled SQL transformations. | SAF-AC07 | Standardization Service; Classification Mapping Service; Editing and Correction Service; Derivation and Integration Service; Integration and Composition Service; Indicator and Index Service; Dissemination Preparation Service |
+| **SAF-AS08** | Statistical Processing Service | Run imputation, weighting, estimation and model workloads. | SAF-AC08 | Editing and Correction Service; Imputation Service; Weighting and Calibration Service; Estimation and Aggregation Service; Modeling and Analysis Service; Indicator and Index Service |
+| **SAF-AS09** | Disclosure Control Service | Assess disclosure risk and apply protection. | SAF-AC09 | Validation and Disclosure-Control Service; Dissemination Preparation Service |
+| **SAF-AS10** | Data Validation Service | Validate data against expectation suites and record results. | SAF-AC10 | Ingestion Monitoring Service; Conformance Validation Service; Error-Detection Service; Validation and Disclosure-Control Service; Coherence Validation Service |
+| **SAF-AS11** | Metadata and Lineage Service | Search, govern and trace datasets and their lineage. | SAF-AC11 | Data Agreement Management Service; Metadata Catalog Service; Semantic Harmonization Service; Quality-Version Catalog Service; Output-Version Catalog Service; Product Catalog Service |
+| **SAF-AS12** | SDMX Structure Registry Service | Maintain and publish SDMX structures, codelists and dataflows. | SAF-AC12 | Classification Catalog Service; Classification Mapping Service; Semantic Harmonization Service; Output-Data Provisioning Service; Output-Version Catalog Service; Product Catalog Service; Product Provisioning Service; Dissemination Preparation Service |
+| **SAF-AS13** | SDMX Data Dissemination Service | Serve SDMX data and structure queries. | SAF-AC13 | API and Dashboard Service |
+| **SAF-AS14** | Data Exploration Service | Explore, chart and download released data. | SAF-AC14 | Publication and Open-Data Service |
+| **SAF-AS15** | Dashboard Service | Provide dashboards and visual analytics. | SAF-AC15 | API and Dashboard Service; Analytical Content Service |
+| **SAF-AS16** | Open Data Catalog Service | Publish open data with machine-readable metadata. | SAF-AC16 | Publication and Open-Data Service |
+| **SAF-AS17** | Research Workbench Service | Provide secure analysis environments. | SAF-AC17 | Analytical Content Service; Secure Research Access Service |
+| **SAF-AS18** | Authentication Service | Authenticate users and services. | SAF-AC18 | Secure Research Access Service |
+| **SAF-AS19** | Authorization Service | Decide access by policy. | SAF-AC19 | Secure Research Access Service |
+| **SAF-AS20** | API Management Service | Expose, secure and meter APIs. | SAF-AC20 | API and Dashboard Service |
+| **SAF-AS21** | User Support Ticketing Service | Handle user questions and feedback. | SAF-AC21 | User Support Service; Usage and Feedback Service |
+| **SAF-AS22** | Usage Analytics Service | Measure usage of releases and services. | SAF-AC22 | Usage and Feedback Service |
+| **SAF-AS23** | Version Control and CI/CD Service | Version, review, test and promote design artefacts. | SAF-AC23 | Design and Methodology Service |
+| **SAF-AS24** | Dataset Registration Event Service | Signal that a new steady-state version is registered, which triggers the next stream (asset update plus Kafka message). | SAF-AC04 | Raw Data Provisioning Service; Standardized Data Provisioning Service; Processed-Data Provisioning Service; Output-Data Provisioning Service; Product Provisioning Service |
+
+### Application interfaces
+
+Five application services are exposed through an explicit interface. Each interface is part of the component that realises the service.
+
+| ID | Application interface | Description | Part of | Exposes service |
+|---|---|---|---|---|
+| **SAF-AI01** | SQL Interface (JDBC/ODBC/HTTP) | Trino client protocol for analysts, BI tools and pipelines. | SAF-AC05 | SAF-AS05 |
+| **SAF-AI02** | SDMX REST API | SDMX data and structure queries (SDMX-ML, SDMX-JSON, SDMX-CSV). | SAF-AC13 | SAF-AS13 |
+| **SAF-AI03** | Iceberg REST Catalog API | Standard Iceberg REST catalog endpoint used by Trino, dbt and Spark-compatible clients. | SAF-AC06 | SAF-AS06 |
+| **SAF-AI04** | Metadata and OpenLineage API | Ingest and query metadata and lineage events. | SAF-AC11 | SAF-AS11 |
+| **SAF-AI05** | Orchestration REST API | Trigger and monitor pipeline runs; asset events. | SAF-AC04 | SAF-AS04 |
+
+### Application services per value stream
+
+The application services serve the business processes of the six business domains. The table shows which services serve which process type of each primary value stream.
+
+|**PLACEHOLDER: ArchiMate view *Phase C - Application to Value Stream Mapping***|
+|---|
+
+| Value stream | Design and Implementation | Execution | Management |
+|---|---|---|---|
+| VS-01 Data Acquisition and Ingestion | SAF-AS23 | SAF-AS01, SAF-AS02, SAF-AS03, SAF-AS04, SAF-AS06, SAF-AS10, SAF-AS11, SAF-AS24 | SAF-AS11 |
+| VS-02 Data Standardization and Integration | SAF-AS23 | SAF-AS04, SAF-AS05, SAF-AS06, SAF-AS07, SAF-AS10, SAF-AS11, SAF-AS12, SAF-AS24 | SAF-AS11 |
+| VS-03 Data Editing and Enrichment | SAF-AS23 | SAF-AS04, SAF-AS05, SAF-AS06, SAF-AS07, SAF-AS08, SAF-AS10, SAF-AS11, SAF-AS24 | SAF-AS11 |
+| VS-04 Estimation, Analysis, and Statistical Modeling | SAF-AS23 | SAF-AS04, SAF-AS05, SAF-AS06, SAF-AS08, SAF-AS09, SAF-AS10, SAF-AS12, SAF-AS24 | SAF-AS11 |
+| VS-05 Statistical Product Composition | SAF-AS23 | SAF-AS04, SAF-AS05, SAF-AS06, SAF-AS07, SAF-AS08, SAF-AS10, SAF-AS12, SAF-AS15, SAF-AS17, SAF-AS24 | SAF-AS11 |
+| VS-06 Dissemination and Service Delivery | SAF-AS23 | SAF-AS09, SAF-AS12, SAF-AS13, SAF-AS14, SAF-AS15, SAF-AS16, SAF-AS17, SAF-AS18, SAF-AS19, SAF-AS20, SAF-AS21, SAF-AS22 | SAF-AS11, SAF-AS22 |
+
+Four services return in almost every stream: orchestration (SAF-AS04), the table catalog (SAF-AS06), validation (SAF-AS10) and the registration event (SAF-AS24). They are the shared mechanics of a steady-state handover: run the pipeline, validate against the quality gate, tag the version, and signal the next stream.
+
+### Core data platform and SDMX path
+
+The core of the landscape is the path that data follows from #1 to #5. Each steady-state dataset is accessed by a small set of components and stored in a zone of its own.
+
+|**PLACEHOLDER: ArchiMate view *Phase C-D - Core Data Platform and SDMX Path***|
+|---|
+
+| Steady-state dataset | Components that access it | Stored in |
+|---|---|---|
+| Raw Dataset (#1) | Survey Platform, Secure File Transfer Gateway, Ingestion Engine, Data Quality Framework, Distributed SQL Query Engine | Raw Zone |
+| Standardized Dataset (#2) | SQL Transformation Framework, Distributed SQL Query Engine, Data Quality Framework | Standardized Zone |
+| Processed Dataset (#3) | SQL Transformation Framework, Statistical Computing Runtime, Distributed SQL Query Engine, Data Quality Framework | Processed Zone |
+| Statistics Dataset - SDMX (#4) | Statistical Computing Runtime, Statistical Disclosure Control Toolkit, Distributed SQL Query Engine | Statistics Zone, SDMX Messages |
+| Statistical Product - SDMX Dataflow (#4) | SQL Transformation Framework, SDMX Structure and Lifecycle Manager | |
+| Released Dataset - SDMX (#5) | Statistical Disclosure Control Toolkit, Distributed SQL Query Engine, SDMX Web Service, SDMX Data Explorer, BI and Dashboards, Open Data Portal, Research Workbench | Released Zone, SDMX Messages |
+
+# Technology Architecture
+
+## Purpose of this chapter
+
+The technology architecture describes the platform on which the applications run and on which the data is stored. It covers the nodes, the system software, the technology services that the platform offers to the applications, and the artifacts in which data objects take physical form.
+
+Like the application components, the system software is named with concrete open-source products. The technology services are the stable part of the reference. An NSI can realise the same service with a different product, or obtain it from a shared or hosted platform.
+
+## Position in the framework
+
+In the TOGAF Architecture Development Method, the technology architecture is developed in Phase D. In ArchiMate, it is the technology layer, the lowest of the three core layers. It receives its requirements from the layers above and serves them.
+
+|**PLACEHOLDER: Position of the Technology Architecture below the Data and Application Architecture**|
+|---|
+
+| Direction | Relationship | Example in the SAF |
+|---|---|---|
+| From Motivation | Requirements are realised by technology elements | SAF-RQ07 is realised by the five storage zones; SAF-RQ02 by the Event Streaming Service |
+| From Strategy | Technology services realise capabilities | The Object Storage Service realises IT infrastructure (3.2.5) |
+| From Data Architecture | Artifacts realise data objects | The Statistics Zone realises *Statistics Dataset - SDMX (#4)* |
+| From Application Architecture | Technology services serve application components | The Relational Database Service serves eleven application components |
+| Within the layer | Nodes host system software; system software realises technology services | Storage Nodes host Ceph RGW, which realises the Object Storage Service |
+
+## How NSIs use this chapter
+
+An NSI uses this chapter as a checklist of the technology services that the application landscape needs, and as one worked example of how to provide them with open-source software.
+
+The reference platform is a Kubernetes cluster that can run on-premise or in a hybrid setup. An NSI that uses a public or government cloud can obtain several technology services as managed services, for example object storage, relational databases or secrets management. The technology service in the SAF stays the same; only the element that realises it changes. As in the application architecture, licences are listed, and SAF-CN01 applies.
+
+VS-09 Infrastructure and Platform Enablement describes the business view of providing these platforms and services. This chapter describes what is provided.
+
+## Technology layers
+
+The technology architecture contains 3 nodes, 15 system software elements, 12 technology services and 8 artifacts. They form four layers: nodes host system software, system software realises technology services, technology services serve the application components, and artifacts hold the data and the definitions.
+
+|**PLACEHOLDER: ArchiMate view *Phase D - Technology Architecture: Layers***|
+|---|
+
+## Nodes
+
+A **node** is a computational or physical resource that hosts other technology elements.
+
+| ID | Node | Description | Composed of |
+|---|---|---|---|
+| **SAF-TN01** | Kubernetes Platform Cluster | Container platform that hosts all application components. On-premise or hybrid, with separate namespaces for production, test and research (secure) workloads. | SAF-TN02, SAF-TN03; SAF-SW02, SAF-SW11, SAF-SW12, SAF-SW13, SAF-SW14, SAF-SW15 |
+| **SAF-TN02** | Compute Worker Nodes | General-purpose servers that run containers, Trino workers and statistical jobs. | SAF-SW01, SAF-SW03, SAF-SW05, SAF-SW06, SAF-SW07, SAF-SW08, SAF-SW09, SAF-SW10 |
+| **SAF-TN03** | Storage Nodes | Servers with local disks that form the object-storage cluster. | SAF-SW04 |
+
+## System Software
+
+**System software** is software that provides an environment for storing, running and using other software or data.
+
+| ID | System software | Licence | Description | Hosted on | Realises technology service |
+|---|---|---|---|---|---|
+| **SAF-SW01** | Linux | GPL-2.0 | Operating system for all nodes. | SAF-TN02 | |
+| **SAF-SW02** | Kubernetes | Apache-2.0 | Container orchestration. Airflow KubernetesExecutor and Trino run on it. | SAF-TN01 | SAF-TSV03 |
+| **SAF-SW03** | containerd | Apache-2.0 | Container runtime. | SAF-TN02 | SAF-TSV03 |
+| **SAF-SW04** | S3-Compatible Object Storage (Ceph RGW) | LGPL-2.1 | Durable S3 API storage for all data zones. Alternative: MinIO (AGPL-3.0). | SAF-TN03 | SAF-TSV01 |
+| **SAF-SW05** | Apache Iceberg Table Format | Apache-2.0 | Open table format on S3: ACID, schema evolution, snapshots, branches and tags (used as steady-state quality versions). | SAF-TN02 | SAF-TSV02 |
+| **SAF-SW06** | Apache Kafka | Apache-2.0 | Event streaming backbone for registration events and lineage. | SAF-TN02 | SAF-TSV04 |
+| **SAF-SW07** | PostgreSQL | PostgreSQL License | Relational store for Airflow, catalogs, Keycloak, .Stat Suite and the service desk. | SAF-TN02 | SAF-TSV05 |
+| **SAF-SW08** | OpenSearch | Apache-2.0 | Search and index for the metadata catalogue and log search. | SAF-TN02 | SAF-TSV06 |
+| **SAF-SW09** | OpenBao | MPL-2.0 | Secrets, certificates and transit encryption keys (used for pseudonymisation). Open-source fork of HashiCorp Vault. | SAF-TN02 | SAF-TSV07 |
+| **SAF-SW10** | Observability Stack (Prometheus, OpenTelemetry, Grafana, Loki) | Apache-2.0 / AGPL-3.0 | Metrics, traces, logs and alerting for the platform and the pipelines. | SAF-TN02 | SAF-TSV08 |
+| **SAF-SW11** | Harbor | Apache-2.0 | Container image registry with scanning and signing. | SAF-TN01 | SAF-TSV09 |
+| **SAF-SW12** | Argo CD | Apache-2.0 | GitOps delivery of platform and application releases. | SAF-TN01 | SAF-TSV09 |
+| **SAF-SW13** | OpenTofu | MPL-2.0 | Infrastructure as code for clusters, storage and networks. | SAF-TN01 | SAF-TSV11 |
+| **SAF-SW14** | Velero | Apache-2.0 | Backup and restore of cluster state and volumes. | SAF-TN01 | SAF-TSV10 |
+| **SAF-SW15** | Traefik | MIT | Ingress controller with TLS termination. | SAF-TN01 | SAF-TSV12 |
+
+## Technology Services
+
+A **technology service** is the behaviour that the platform offers to application components and to other technology services.
+
+| ID | Technology service | Description | Realised by | Serves | Realises |
+|---|---|---|---|---|---|
+| **SAF-TSV01** | Object Storage Service | S3 API for the landing, raw, standardized, processed, statistics and released zones. | SAF-SW04 | SAF-AC02, SAF-AC03, SAF-AC05, SAF-AC08, SAF-AC17; SAF-TSV02 | 3.2.5 IT infrastructure |
+| **SAF-TSV02** | Table Storage Service | Iceberg tables with snapshots, branches and tags on object storage. | SAF-SW05 | SAF-AC05, SAF-AC06, SAF-AC07, SAF-AC08 | 3.2.5 IT infrastructure |
+| **SAF-TSV03** | Container Orchestration Service | Scheduling, scaling and isolation of containers; jobs for statistical workloads. | SAF-SW02, SAF-SW03 | SAF-AC04, SAF-AC05, SAF-AC08, SAF-AC17 | 3.2.5 IT infrastructure |
+| **SAF-TSV04** | Event Streaming Service | Durable events for *Registered* signals and lineage. | SAF-SW06 | SAF-AC03, SAF-AC04, SAF-AC11 | SAF-RQ02 |
+| **SAF-TSV05** | Relational Database Service | Managed PostgreSQL instances. | SAF-SW07 | SAF-AC04, SAF-AC06, SAF-AC11, SAF-AC12, SAF-AC13, SAF-AC15, SAF-AC16, SAF-AC18, SAF-AC21, SAF-AC22, SAF-AC23 | |
+| **SAF-TSV06** | Search and Index Service | Search over metadata and logs. | SAF-SW08 | SAF-AC11, SAF-AC16 | |
+| **SAF-TSV07** | Secrets and Key Management Service | Secrets, certificates and transit keys. | SAF-SW09 | SAF-AC03, SAF-AC04, SAF-AC05, SAF-AC18 | 3.3.6 IT security services |
+| **SAF-TSV08** | Observability Service | Metrics, logs, traces and alerts. | SAF-SW10 | SAF-AC04, SAF-AC05, SAF-AC20 | 3.2.3 Technical management |
+| **SAF-TSV09** | Image Registry and Delivery Service | Trusted images; together with Argo CD it delivers all releases (GitOps). | SAF-SW11, SAF-SW12 | SAF-TSV03 | |
+| **SAF-TSV10** | Backup and Recovery Service | Backup of cluster state and persistent volumes. | SAF-SW14 | SAF-TSV01, SAF-TSV05 | |
+| **SAF-TSV11** | Infrastructure Provisioning Service | Reproducible infrastructure from code. | SAF-SW13 | SAF-TSV03 | |
+| **SAF-TSV12** | Ingress and TLS Service | Secure external access to portals and APIs. | SAF-SW15 | SAF-AC13, SAF-AC14, SAF-AC15, SAF-AC16, SAF-AC17, SAF-AC20 | |
+
+## Artifacts
+
+An **artifact** is a piece of data that is used or produced by software, such as a file, a table or a repository. In the SAF, artifacts are the physical form of the data objects. All artifacts are stored on the S3-compatible object storage (SAF-SW04).
+
+The five zones are the physical steady states. Each zone is an Iceberg namespace, and each registered version in it is an immutable, tagged snapshot (SAF-RQ07).
+
+| ID | Artifact | Description | Realises |
+|---|---|---|---|
+| **SAF-AF01** | Raw Zone (S3 bucket + Iceberg namespace `raw`) | Landing prefix plus registered raw tables. Write-once; BIV classification tags; retention per agreement. | SAF-DO01, SAF-RQ07 |
+| **SAF-AF02** | Standardized Zone (namespace `std`) | Pseudonymised standardized tables that conform to the classifications. | SAF-DO02, SAF-RQ07 |
+| **SAF-AF03** | Processed Zone (namespace `proc`) | Edited and enriched microdata with quality-version tags and edit lineage. | SAF-DO03, SAF-RQ07 |
+| **SAF-AF04** | Statistics Zone (namespace `stat`) | SDMX-shaped tables (dimension, measure and attribute columns per DSD) with accuracy attributes. Approved products as dataflows. | SAF-DO04, SAF-RQ07 |
+| **SAF-AF05** | Released Zone (namespace `rel`) | Disclosure-controlled SDMX-shaped tables and the published SDMX messages. | SAF-DO06, SAF-RQ07 |
+| **SAF-AF06** | SDMX Messages (SDMX-ML, SDMX-JSON, SDMX-CSV) | Files and API responses in SDMX formats, generated from the statistics and released zones. | SAF-DO04, SAF-DO06 |
+| **SAF-AF07** | Airflow DAG Repository (Git) | DAG definitions, one set per stream, reviewed and released through GitLab. | SAF-DO18 |
+| **SAF-AF08** | dbt Project (Git) | Versioned SQL models, tests and documentation per stream. | SAF-DO18 |

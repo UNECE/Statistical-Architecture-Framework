@@ -41,6 +41,8 @@ PAGES = [
     ("vs-08", "VS-08 Innovation and Methodological Development", r"^### VS-08 "),
     ("vs-09", "VS-09 Infrastructure and Platform Enablement", r"^### VS-09 "),
     ("vs-10", "VS-10 Customer and Stakeholder Engagement", r"^### VS-10 "),
+    ("data-application-architecture", "Data and Application Architecture", r"^# Data and Application Architecture\s*$"),
+    ("technology-architecture", "Technology Architecture", r"^# Technology Architecture\s*$"),
 ]
 
 # Partial included by framework/index.qmd ("About this document" callout).

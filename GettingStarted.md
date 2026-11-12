@@ -1,51 +1,43 @@
 # Software
 - Download and install Archi : https://www.archimatetool.com/download/
-- Download coArchi from : https://www.archimatetool.com/plugins/
-- Install the plugin : Help -> Manage plugins -> Install -> choose coArchi_0.9.4.archiplugin -> restart Archi.
+- Download the latest MCP plugin release from : https://github.com/fanievh/archi-mcp-server/releases
+- Install the plugin : Help -> Manage plugins -> Install -> choose ```net.vheerden.archi.mcp_1.10.0.archiplugin``` -> restart Archi when asked.
 
-![Archi plugin modal](images/GS-01-Archi-Plugins.png)
+# Add MCP server
 
-## From the Collaboration menu : 
-- Toggle Collaboration Workspace
-- Import Remote Model to Workspace
+- Start the MCP server in the menu
 
-![Archi import remote model](images/GS-02-Import-remote-model.png)
+- Open Claude Desktop. Edit the ```claude_desktop_config.json``` file and add:
+```
+{
+  "mcpServers": {
+    "archi": {
+      "command": "uvx",
+      "args": [
+        "mcp-proxy",
+        "--transport",
+        "streamablehttp",
+        "http://127.0.0.1:18090/mcp"
+      ]
+    },
+  }
+}
+``` 
 
-- When no local password is set, set a password to protect your repository on the local machine
-- A github token can be obtained here : https://github.com/settings/tokens. Create a classis token and save the token in a safe environment.
+# Get the content
 
-![Github personal access token](images/GS-00-Github-PAT.png)
+- open a terminal or use your favorite IDE
+```
+git clone https://github.com/UNECE/Statistical-Architecture-Framework.git
+cd Statistical-Architecture-Framework
+```
+- You now have a copy of the SAF repository
+- Use a new branch to apply changes. 
 
-- The "Add Remote Model" popup is shown. 
+# Open the model
+The architecture model can be loaded into Archi. Please open the ```SAF.archimate``` file in Archi or ask your AI-agent to do so.
 
-	Choose :
-	```
-	URL : https://github.com/statistiekcbs/UNECE-SAF
-	User Name : [your github user]
-	Password : [Personal access token] 
-	```
-	Check the Store user name and password checkbox.
+# Collaboration
 
-![Github personal access token](images/GS-03-Add-remote-model.png)
+You are now set up to communicate with model the documentation as well as the Archimate model. Commit the changes when ready, create a pull request and collaborate to merge the new contents.
 
-- The Statistical Architecture Framework [main] should be shown in the Collaboration Workspace part of Archi.
-- Right click to open the model.
-
-![Github personal access token](images/GS-04-Open-model.png)
-
-
-## Collaboration
-
-![Archi collaboration](images/GS-05-Collaboration-modelling.png)
-
-You are now set up to collaborate. Changes to the Model can be published as follows:
-- Save the Model (will be asked when necessary)
-- Publish Changes
-- A commit form will be shown. Give comment on what the commit is.
-
-![Archi commit](images/GS-06-Commit.png)
-
-- Publish.
-- Check the repository online if changes are available
-
-![Github published](images/GS-07-Published.png)
