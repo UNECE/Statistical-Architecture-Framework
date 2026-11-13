@@ -43,6 +43,10 @@ PAGES = [
     ("vs-10", "VS-10 Customer and Stakeholder Engagement", r"^### VS-10 "),
 ]
 
+# Complete PDF-only document built from the whole source (title page + all chapters).
+COMPLETE_DIR = SITE / "downloads"
+COMPLETE = "SAF-Framework-complete.qmd"
+
 # Partial included by framework/index.qmd ("About this document" callout).
 DOC_INFO = "_document-info.md"
 
@@ -156,6 +160,33 @@ def document_info(preamble):
             f"Created {created}.\n\n" + "\n".join(table) + "\n")
 
 
+def complete_document(lines, start, preamble):
+    """Whole framework as one PDF-only page: title page, version table, all chapters."""
+    def field(label):
+        rx = re.compile(rf"^\s*{re.escape(label)}\s*(.+?)\s*$")
+        return next(m.group(1) for m in map(rx.match, preamble) if m)
+
+    version = field("Current version:")
+    workgroup = field("Workgroup SAF:").replace('"', "'")
+    table = [l.strip() for l in preamble if l.lstrip().startswith("|")]
+    body = []
+    in_fence = False
+    for line in lines[start:]:
+        if FENCE.match(line):
+            in_fence = not in_fence
+        if not in_fence:
+            line = (line.replace("](images/", "](../images/")
+                        .replace("](<images/", "](<../images/")
+                        .replace('src="images/', 'src="../images/'))
+        body.append(line)
+    front = (f'---\ntitle: "Statistical Architecture Framework"\n'
+             f'subtitle: "The Framework, complete document (version {version})"\n'
+             f'author: "{workgroup}"\n'
+             f'date: today\n'
+             f'format:\n  pdf:\n    classoption: [titlepage]\n    toc-depth: 2\n---\n{HEADER}\n\n')
+    return front + "\n".join(table) + "\n\n\\newpage\n\n" + "\n".join(body).rstrip() + "\n"
+
+
 def copy_images():
     """Copy docs/images/ into site/images/ (overwriting, never deleting)."""
     if not IMAGES_SRC.is_dir():
@@ -224,6 +255,10 @@ def main():
             out.append(line)
         text = f'---\ntitle: "{title}"\n---\n{HEADER}\n\n' + "\n".join(out).rstrip() + "\n"
         (OUT_DIR / f"{name}.qmd").write_text(text, encoding="utf-8")
+
+    COMPLETE_DIR.mkdir(exist_ok=True)
+    (COMPLETE_DIR / COMPLETE).write_text(
+        complete_document(lines, starts[0], lines[:starts[0]]), encoding="utf-8")
 
     if problems:
         sys.exit("split-framework: unresolved internal links:\n  " + "\n  ".join(problems))

@@ -6,6 +6,8 @@ This is the full Statistical Architecture Framework document, split into chapter
 
 If you are new to SAF, start with [SAF in Brief](../SAF-in-Brief.qmd) instead, then come back here for the chapter you need. Terms are explained in the [Glossary](../glossary.qmd).
 
+The whole framework is also available as a single [complete PDF](../downloads/SAF-Framework-complete.pdf); see all [Downloads](../downloads.qmd).
+
 ::: {.callout-note title="About this document"}
 {{< include _document-info.md >}}
 

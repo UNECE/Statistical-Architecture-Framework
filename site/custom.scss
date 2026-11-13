@@ -210,20 +210,6 @@ p.subtitle,
   vertical-align: .1em;
 }
 
-.navbar .nav-link {
-  color: $saf-muted;
-  font-size: .9rem;
-  border-bottom: 2px solid transparent;
-
-  &:hover { color: $saf-fg; }
-
-  &.active {
-    color: $saf-fg;
-    font-weight: 600;
-    border-bottom-color: $saf-fg;
-  }
-}
-
 @media (max-width: 575.98px) {
   .navbar-title { font-size: .95rem; }
 }
@@ -243,9 +229,34 @@ p.subtitle,
 #quarto-sidebar {
   font-size: .86rem;
 
-  .sidebar-item-section > .sidebar-item-container .sidebar-item-text,
+  // Group labels nested inside a section (Foundations, Production value streams, ...)
+  .sidebar-section .sidebar-item-section > .sidebar-item-container .sidebar-item-text,
   .sidebar-section-header {
     @include saf-label;
+  }
+
+  // Top-level entries (Home, Framework, Glossary, ...): the strongest level.
+  .sidebar-menu-container > ul > .sidebar-item > .sidebar-item-container {
+    border-left: 3px solid transparent;
+    padding-left: .3rem;
+
+    .sidebar-link {
+      font-family: $saf-sans;
+      font-size: .95rem;
+      font-weight: 600;
+      color: $saf-fg;
+      padding-block: .3rem;
+    }
+
+    .sidebar-link:hover { color: $saf-accent; }
+    &:has(.sidebar-link.active) { border-left-color: $saf-accent; }
+  }
+
+  .sidebar-menu-container > ul > .sidebar-item-section {
+    border-top: 1px solid $saf-rule;
+    border-bottom: 1px solid $saf-rule;
+    margin: .35rem 0;
+    padding: .2rem 0;
   }
 
   .sidebar-link {
