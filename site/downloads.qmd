@@ -1,0 +1,42 @@
+---
+title: "Downloads"
+---
+
+All SAF documents are available as PDF, for reading offline or sharing.
+
+## The complete Framework
+
+::: {.callout-note title="Complete document"}
+[**Statistical Architecture Framework, complete (PDF)**](downloads/SAF-Framework-complete.pdf): title page, version history and every chapter of the Framework in one file.
+:::
+
+## Introductory pages
+
+| Document | PDF |
+|---|---|
+| SAF in Brief | [Download](SAF-in-Brief.pdf) |
+| Getting Started with SAF | [Download](SAF-Getting-Started.pdf) |
+| Open Source in SAF | [Download](open-source.pdf) |
+| Glossary | [Download](glossary.pdf) |
+| SAF Toolkit | [Download](toolkit.pdf) |
+
+## Framework chapters
+
+| Chapter | PDF |
+|---|---|
+| Introduction and Scope | [Download](framework/introduction.pdf) |
+| Motivation | [Download](framework/motivation.pdf) |
+| Strategy | [Download](framework/strategy.pdf) |
+| Business Architecture | [Download](framework/business-architecture.pdf) |
+| Steady-State Architecture | [Download](framework/steady-states.pdf) |
+| Statistical Data Value Chain | [Download](framework/value-chain.pdf) |
+| VS-01 Data Acquisition and Ingestion | [Download](framework/vs-01.pdf) |
+| VS-02 Data Standardization and Integration | [Download](framework/vs-02.pdf) |
+| VS-03 Data Editing and Enrichment | [Download](framework/vs-03.pdf) |
+| VS-04 Estimation, Analysis, and Statistical Modeling | [Download](framework/vs-04.pdf) |
+| VS-05 Statistical Product Composition | [Download](framework/vs-05.pdf) |
+| VS-06 Dissemination and Service Delivery | [Download](framework/vs-06.pdf) |
+| VS-07 Governance and Compliance | [Download](framework/vs-07.pdf) |
+| VS-08 Innovation and Methodological Development | [Download](framework/vs-08.pdf) |
+| VS-09 Infrastructure and Platform Enablement | [Download](framework/vs-09.pdf) |
+| VS-10 Customer and Stakeholder Engagement | [Download](framework/vs-10.pdf) |

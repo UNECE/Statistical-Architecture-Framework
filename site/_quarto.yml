@@ -7,60 +7,64 @@ project:
 website:
   title: "Statistical Architecture Framework"
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - href: SAF-in-Brief.qmd
-        text: SAF in Brief
-      - href: SAF-Getting-Started.qmd
-        text: Getting Started
-      - href: framework/index.qmd
-        text: Framework
-      - href: glossary.qmd
-        text: Glossary
-      - href: open-source.qmd
-        text: Open Source
+    background: light
+    search: true
   sidebar:
-    - id: framework
-      title: "Framework"
-      style: floating
-      collapse-level: 2
-      contents:
-        - framework/index.qmd
-        - section: "Foundations"
-          contents:
-            - framework/introduction.qmd
-            - framework/motivation.qmd
-            - framework/strategy.qmd
-        - section: "Business architecture"
-          contents:
-            - framework/business-architecture.qmd
-            - framework/steady-states.qmd
-            - framework/value-chain.qmd
-        - section: "Production value streams"
-          contents:
-            - framework/vs-01.qmd
-            - framework/vs-02.qmd
-            - framework/vs-03.qmd
-            - framework/vs-04.qmd
-            - framework/vs-05.qmd
-            - framework/vs-06.qmd
-        - section: "Supporting value streams"
-          contents:
-            - framework/vs-07.qmd
-            - framework/vs-08.qmd
-            - framework/vs-09.qmd
-            - framework/vs-10.qmd
+    style: floating
+    collapse-level: 1
+    contents:
+      - index.qmd
+      - SAF-in-Brief.qmd
+      - SAF-Getting-Started.qmd
+      - section: "Framework"
+        href: framework/index.qmd
+        contents:
+          - section: "Foundations"
+            contents:
+              - framework/introduction.qmd
+              - framework/motivation.qmd
+              - framework/strategy.qmd
+          - section: "Business architecture"
+            contents:
+              - framework/business-architecture.qmd
+              - framework/steady-states.qmd
+              - framework/value-chain.qmd
+          - section: "Production value streams"
+            contents:
+              - framework/vs-01.qmd
+              - framework/vs-02.qmd
+              - framework/vs-03.qmd
+              - framework/vs-04.qmd
+              - framework/vs-05.qmd
+              - framework/vs-06.qmd
+          - section: "Supporting value streams"
+            contents:
+              - framework/vs-07.qmd
+              - framework/vs-08.qmd
+              - framework/vs-09.qmd
+              - framework/vs-10.qmd
+      - glossary.qmd
+      - open-source.qmd
+      - downloads.qmd
   page-navigation: true
 
 format:
   html:
-    theme: [yeti, custom.scss]
+    theme: [cosmo, custom.scss]
+    grid:
+      sidebar-width: 270px
+      body-width: 820px
+      margin-width: 230px
+    filters:
+      - table-scroll.lua
+    include-after-body: saf-ids.html
     toc: true
     toc-depth: 3
     toc-expand: 2
     number-sections: false
     code-copy: false
+    mermaid:
+      theme: neutral
   pdf:
     documentclass: scrartcl
     papersize: a4
@@ -72,6 +76,8 @@ format:
     number-sections: false
     colorlinks: true
     linkcolor: "RoyalBlue"
+    mermaid:
+      theme: neutral
     urlcolor: "RoyalBlue"
     filters:
       - pdf-links.lua
