@@ -47,7 +47,7 @@ Running it by hand is the quickest way to check your edits to the source documen
 
 ### Generated files are not committed
 
-The 16 generated pages and the `site/images/` folder (copied from `docs/images/`) are listed in the repository's root `.gitignore`. They exist only in working copies and CI runners, and never appear in commits or diffs.
+The 18 generated pages and the `site/images/` folder (copied from `docs/images/`) are listed in the repository's root `.gitignore`. They exist only in working copies and CI runners, and never appear in commits or diffs.
 
 `_document-info.md` is the exception: it is committed as an **empty placeholder**. Quarto expands `{{< include >}}` while it first scans the project, *before* the pre-render script runs. Without the placeholder, a fresh checkout (as in CI) fails with `Include directive failed ... could not find file .../_document-info.md`. The script then overwrites the placeholder, and the render uses the real content. After a local render, git shows the file as modified. Don't commit that change; discard it with `git restore site/framework/_document-info.md`, or hide it once with `git update-index --skip-worktree site/framework/_document-info.md`.
 
@@ -81,6 +81,8 @@ The `PAGES` list defines what gets generated. Each entry is `(file name, page ti
 | `vs-08.qmd` | VS-08 Innovation and Methodological Development | `^### VS-08 ` |
 | `vs-09.qmd` | VS-09 Infrastructure and Platform Enablement | `^### VS-09 ` |
 | `vs-10.qmd` | VS-10 Customer and Stakeholder Engagement | `^### VS-10 ` |
+| `data-application-architecture.qmd` | Data and Application Architecture | `^# Data and Application Architecture\s*$` |
+| `technology-architecture.qmd` | Technology Architecture | `^# Technology Architecture\s*$` |
 
 The "Introduction and Scope" page starts at `# Preface`, so it holds the Preface, Acknowledgements and Introduction chapters together.
 
@@ -111,7 +113,7 @@ If a pattern matches nothing, the script stops at once with `no heading matching
 
 ### 3. Cut the document into page bodies
 
-Each page runs from its start line up to the line before the next page's start, and the last page (`vs-10`) runs to the end of the file:
+Each page runs from its start line up to the line before the next page's start, and the last page (`technology-architecture`) runs to the end of the file:
 
 ```python
 ends = starts[1:] + [len(lines)]
@@ -190,7 +192,7 @@ If the page's opening heading repeats its title (`# Business Architecture`, or `
 ### 7. Report
 
 - If any link could not be resolved, the script exits with a non-zero status and lists all of them. Quarto then stops the render. Note that the pages have **already been written** by then, so a local preview may still show them.
-- Otherwise it prints `split-framework: wrote 16 pages and _document-info.md to site/framework, copied N images to site/images`.
+- Otherwise it prints `split-framework: wrote 18 pages and _document-info.md to site/framework, copied N images to site/images`.
 
 Warnings and errors go to stderr, and each starts with `split-framework:`.
 
@@ -199,8 +201,8 @@ Warnings and errors go to stderr, and each starts with `split-framework:`.
 Most edits to `docs/SAF Framework.md` need no thought about the script. The following do:
 
 - **Keep the document information above `# Preface`:** the lines starting with `Created on:`, `Workgroup SAF:` and `Current version:`, and the version table. Update them there. They appear on the Framework index page.
-- **Keep the six top-level headings exactly as they are:** `# Preface`, `# Motivation`, `# Strategy`, `# Business Architecture`, `# Steady-State Architecture`, `# Statistical Data Value Chain`. Each one must be alone on its line (trailing spaces are fine).
-- **Keep the value stream chapter headings in the form `### VS-NN Name`:** level 3, `VS-` followed by two digits, a space, then the name. Keep them in order, VS-01 to VS-10, inside `# Statistical Data Value Chain`.
+- **Keep the eight top-level headings exactly as they are, and in this order:** `# Preface`, `# Motivation`, `# Strategy`, `# Business Architecture`, `# Steady-State Architecture`, `# Statistical Data Value Chain`, `# Data and Application Architecture`, `# Technology Architecture`. Each one must be alone on its line (trailing spaces are fine).
+- **Keep the value stream chapter headings in the form `### VS-NN Name`:** level 3, `VS-` followed by two digits, a space, then the name. Keep them in order, VS-01 to VS-10, inside `# Statistical Data Value Chain`. The VS-10 page ends where `# Data and Application Architecture` starts, so that chapter must stay below the value streams.
 - **Keep the sections of a value stream at level 4 and deeper.** On its own page each stream is raised so that its shallowest heading becomes level 2; a stray level-2 or level-3 heading inside a stream would stop that.
 - **A heading with nothing below it at the end of a page is dropped.** This is how `## Primary value streams` and `## Supporting value streams` disappear from the site (the sidebar shows those groups instead). Do not link to such a heading.
 - **Internal links (`[text](#anchor)`) must point to a heading that exists, and each anchor must be unique across the whole document.** If two pages have a heading with the same anchor, a link to it is ambiguous and the build fails. When two headings have the same text, give one of them an explicit `{#unique-id}`.
