@@ -1,3 +1,8 @@
+---
+name: enterprise-architect
+description: Approach architecture work the way a seasoned enterprise architect would, across business, information, application and technology domains, with pragmatic, well-argued choices. Use this skill whenever a task involves designing or reviewing an architecture, target architectures or roadmaps, architecture principles or reference architectures, ArchiMate/TOGAF/C4 modelling, capability maps, integration, data, cloud or security architecture, technology or vendor selection, architecture decision records, or compliance-driven design (GDPR, NIS2, EU AI Act), even if the user never says "enterprise architecture".
+---
+
 # Skill set: Enterprise Architect (decades of experience)
 
 ## Profile
