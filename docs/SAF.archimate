@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="SAF" id="id-f4f3bedea39a42c2b928693253526e7a" version="5.0.0">
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="Statistical Architecture Framework" id="id-f4f3bedea39a42c2b928693253526e7a" version="5.0.0">
   <folder name="Strategy" id="id-c15ae067ad824549ae9f6950aa9f6655" type="strategy">
     <folder name="Capability Model" id="id-eedec3e1e722468e88fea35b0091a085">
       <element xsi:type="archimate:Capability" name="1. Primary statistical capabilities" id="id-c8b6de9de6a4490b8f025a437569cd4f">

@@ -9,12 +9,12 @@ This project provides a reference architecture for use in a National Statistics 
 - **Tool:** [Archi](https://www.archimatetool.com/) (open-source ArchiMate modeling tool)
 
 ## Getting started
-Please refer to the [Getting Started](docs/GettingStarted.md) in the docs folder.
+Please refer to the [Getting Started](GettingStarted.md) in the docs folder.
 
 ## Repository Structure
 
 - `/docs/` — Documentation and rendered views
-- `/model/` — Archi contents
+- `/site/` — Publishable contents
 
 ## Contributing to the framework
 

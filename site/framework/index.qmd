@@ -51,3 +51,10 @@ A few sections are still marked as not yet written. That is deliberate — the f
 | [VS-08 Innovation and Methodological Development](vs-08.qmd) | Validated new methods and tools |
 | [VS-09 Infrastructure and Platform Enablement](vs-09.qmd) | Platforms, environments, integration |
 | [VS-10 Customer and Stakeholder Engagement](vs-10.qmd) | Understood user needs and relationships |
+
+**The data, application and technology architecture** — a reference solution that supports the production streams, built from open-source components.
+
+| Chapter | What it covers | Who needs it |
+|---|---|---|
+| [Data and Application Architecture](data-application-architecture.qmd) | The requirements for the lower layers, the data objects behind each steady state, and the application components, services and interfaces | Architects, data engineers, developers |
+| [Technology Architecture](technology-architecture.qmd) | The platform: nodes, system software, technology services and the storage zones | Architects, platform engineers |

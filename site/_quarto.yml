@@ -51,6 +51,10 @@ website:
             - framework/vs-08.qmd
             - framework/vs-09.qmd
             - framework/vs-10.qmd
+        - section: "Data, application and technology"
+          contents:
+            - framework/data-application-architecture.qmd
+            - framework/technology-architecture.qmd
   page-navigation: true
 
 format:
