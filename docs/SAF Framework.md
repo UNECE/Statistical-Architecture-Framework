@@ -105,7 +105,30 @@ Current version: 0.9
 -   [State #5: Published Output Data (Released Data)](#state-5-published-output-data-released-data)
 -   [State #6: Consumed Data](#state-6-consumed-data)
 
+[Statistical Data Value Chain](#statistical-data-value-chain)
 
+-   [Value Chains Introduction](#value-chains-introduction)
+    -   [Purpose of this chapter](#purpose-of-this-chapter-3)
+    -   [Where to find what](#where-to-find-what)
+    -   [The chain at a glance](#the-chain-at-a-glance)
+    -   [The four process types](#the-four-process-types-1)
+    -   [How each value stream is described](#how-each-value-stream-is-described)
+    -   [Identifiers used in this chapter](#identifiers-used-in-this-chapter)
+    -   [Steady States of Data](#steady-states-of-data)
+    -   [Applying the steady states pragmatically](#pragmatic-steady-states)
+-   [Principles to Apply](#principles-to-apply)
+-   [Primary value streams](#primary-value-streams-2)
+    -   [VS-01 Data Acquisition and Ingestion](#vs-01-data-acquisition-and-ingestion)
+    -   [VS-02 Data Standardization and Integration](#vs-02-data-standardization-and-integration)
+    -   [VS-03 Data Editing and Enrichment](#vs-03-data-editing-and-enrichment)
+    -   [VS-04 Estimation, Analysis, and Statistical Modeling](#vs-04-estimation-analysis-and-statistical-modeling)
+    -   [VS-05 Statistical Product Composition](#vs-05-statistical-product-composition)
+    -   [VS-06 Dissemination and Service Delivery](#vs-06-dissemination-and-service-delivery)
+-   [Supporting value streams](#supporting-value-streams-2)
+    -   [VS-07 Governance and Compliance](#vs-07-governance-and-compliance)
+    -   [VS-08 Innovation and Methodological Development](#vs-08-innovation-and-methodological-development)
+    -   [VS-09 Infrastructure and Platform Enablement](#vs-09-infrastructure-and-platform-enablement)
+    -   [VS-10 Customer and Stakeholder Engagement](#vs-10-customer-and-stakeholder-engagement)
 
 
 
