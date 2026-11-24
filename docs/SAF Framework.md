@@ -62,6 +62,7 @@ Current version: 0.10
 -   [Value Streams](#value-streams)
 -   [Resources](#resources)
 -   [Courses of Action](#courses-of-action)
+-   [Domain Strategies](#domain-strategies)
 
 [Business Architecture](#business-architecture)
 
@@ -1685,6 +1686,310 @@ The following published strategies and guidance documents can serve as reference
 |**PLACEHOLDER: Strategy Template and the application of Courses of Action to be added to the toolkit**|
 |---|
 
+## Domain Strategies
+
+### Approach per domain strategy
+
+The SAF does not prescribe the content of domain strategies. Every NSI has its own mandate, maturity, legal context and budget. The SAF does offer an approach for each domain strategy that NSIs commonly need. The approach tells an NSI where to start, which questions to answer, which SAF elements to use and in which order to work. It is technology-neutral: it names no products, vendors or platforms.
+
+This section covers seven domain strategies: data, metadata, application, infrastructure, cloud, artificial intelligence (AI) and security. They complement the examples above. A small NSI can combine several of them in one document, for example application, infrastructure and cloud in one IT strategy. It can still use the separate approaches as chapters of that document.
+
+**Common structure**
+
+Each approach has the same parts:
+
+| Part | Content |
+|---|---|
+| Scope | What the strategy covers, and where it borders on the other strategies |
+| Key questions | The choices the NSI must make in this strategy |
+| Starting points in the SAF | The drivers, goals, outcomes, principles, constraints, capabilities and value streams the strategy builds on |
+| Step-by-step approach | The order in which the NSI develops the strategy, with the result of each step |
+| Dependencies | How the strategy depends on, and gives input to, the other domain strategies |
+| Toolkit | A reference to the strategy template in the SAF toolkit |
+
+**Common steps**
+
+All approaches follow the same basic order, from motivation to roadmap. The NSI first records why the strategy is needed, using drivers and assessments. It then sets goals and outcomes, applies the relevant principles and constraints, assesses the capabilities involved, makes its choices as courses of action, and lays down the order of change in a roadmap. Each approach below fills in this order for its own domain.
+
+Each domain strategy is owned by the NSI's management and developed through capability 4.1.2 *Policy and planning*. Capability 4.1.7 *Architecture Management* checks that the domain strategies are consistent with each other and with the organisation strategy.
+
+### Data strategy
+
+**Scope**
+
+The data strategy describes how the NSI manages and uses data as an asset, from acquisition to dissemination and archiving. It covers data sources, data ownership and stewardship, data quality, data sharing, data reuse and the reference model for the data value chain. It does not cover the description of data (metadata strategy), the platforms that store and process data (infrastructure and cloud strategies) or the protection of data against threats (security strategy).
+
+**Key questions**
+
+- Which data sources does the NSI depend on now, and which sources does it want to use in five years?
+- Who owns each dataset, and who is responsible for its quality during each stage of the data value chain?
+- Which reference model does the NSI follow for the data value chain, such as the Steady-State or the Medallion architecture?
+- Which data does the NSI share, with whom, and under which conditions?
+- How does the NSI take part in national data platforms and data spaces?
+- How long does the NSI keep data, and when does it archive or destroy it?
+
+**Starting points in the SAF**
+
+| SAF element | Reference |
+|---|---|
+| Drivers | SAF-D1 Evolving data ecosystems and partnerships; SAF-D3 Trust, scientific rigour and data protection |
+| Goals | SAF-G2 Harmonised reference framework; SAF-G4 Support for data innovation; SAF-G5 Sustainable compliance |
+| Outcomes | SAF-O2 Enhanced data quality; SAF-O3 Improved interoperability |
+| Principles | SAF-P08 Data is shared property; SAF-P09 No data without metadata and classification; SAF-P11 Privacy by design |
+| Capabilities | 1.2.2 Secondary data collection; 2.1 Data management (2.1.1, 2.1.3, 2.1.4); 1.5.3 Facilitate data access; 2.2.4 Data services |
+| Value streams | VS-01 to VS-06 (the statistical value chain); VS-07 Governance and Compliance |
+
+**Step-by-step approach**
+
+| Step | What the NSI does | Result |
+|---|---|---|
+| 1. Map the data landscape | List the main data sources, the datasets the NSI produces and the steady states they pass through. Record for each source the provider, the legal basis and the agreement. | Inventory of data sources and data assets |
+| 2. Assess the current situation | Assess capabilities 2.1.1 to 2.1.4 and the stages of VS-01 to VS-06. Record weaknesses as assessments, such as missing lineage or datasets without an owner. | Assessments linked to SAF-D1 and SAF-D3 |
+| 3. Set data goals and outcomes | Select the SAF goals and outcomes that apply, and set indicators and target values. | Goals and outcomes with indicators, for example the share of datasets with complete lineage |
+| 4. Choose the reference model for the data value chain | Decide which reference model the NSI follows, and which steady states or layers it uses. This choice is itself a course of action. | Recorded choice of reference model |
+| 5. Define data governance | Assign data ownership and stewardship for each steady state, and define the quality gates between states. Align the roles with the business roles in the Business Architecture chapter. | Data governance model with roles and quality gates |
+| 6. Decide on data sharing and data spaces | Decide which data is shared, with which parties and under which conditions. Decide whether and how the NSI joins national data platforms and data spaces. | Data sharing policy; position on data spaces |
+| 7. Set the roadmap | Order the changes in time. Start with capabilities that have a low maturity and a high contribution to the goals. | Data roadmap |
+| 8. Monitor and review | Monitor the indicators in the planning and control cycle. Review the strategy when drivers or assessments change. | Monitoring report; updated strategy |
+
+**Dependencies**
+
+The data strategy sets the requirements for the metadata strategy, because shared data needs metadata (SAF-P09). It gives the infrastructure and cloud strategies their requirements for storage, processing and the location of data. The security strategy protects the data assets that the data strategy defines. The AI strategy depends on the data strategy for the availability and quality of training and input data.
+
+|**PLACEHOLDER: Data strategy template and its application to be added to the toolkit**|
+|---|
+
+### Metadata strategy
+
+**Scope**
+
+The metadata strategy describes how the NSI makes data findable, understandable and reusable, for people and machines. It covers structural, reference and process metadata, classifications and code lists, the metadata standards the NSI uses and the governance of metadata. It does not cover the data itself (data strategy) or the tools that store metadata (application strategy).
+
+**Key questions**
+
+- Which types of metadata does the NSI manage, and for which users?
+- Which statistical and metadata standards does the NSI use, such as GSIM and SDMX?
+- Which classifications and code lists are authoritative, and who maintains them?
+- At which point in the data value chain must metadata be complete?
+- How does the NSI exchange metadata with other NSIs, international organisations and data spaces?
+
+**Starting points in the SAF**
+
+| SAF element | Reference |
+|---|---|
+| Drivers | SAF-D1 Evolving data ecosystems and partnerships; SAF-D4 Uncertain and polarised global environment (interoperability across borders) |
+| Goals | SAF-G2 Harmonised reference framework; SAF-G5 Sustainable compliance |
+| Outcomes | SAF-O2 Enhanced data quality; SAF-O3 Improved interoperability; SAF-O6 Shared knowledge base |
+| Principles | SAF-P09 No data without metadata and classification; SAF-P08 Data is shared property |
+| Capabilities | 2.1.2 Metadata management; 1.3.1 Data standardisation; 1.5.3 Facilitate data access |
+| Value streams | VS-02 Data Standardization and Integration (in particular VS-02.3 Align Metadata and Semantics); VS-07.3 Implement Data and Metadata Governance |
+
+**Step-by-step approach**
+
+| Step | What the NSI does | Result |
+|---|---|---|
+| 1. Define the metadata scope | Decide which types of metadata the strategy covers and which users need them, inside and outside the NSI. | Metadata scope and user groups |
+| 2. Assess the current situation | Assess capability 2.1.2 and stage VS-02.3. Record where metadata is missing, duplicated or inconsistent. | Assessments of metadata coverage and consistency |
+| 3. Choose standards | Select the statistical and metadata standards the NSI applies, and record where it deviates from them and why. | List of adopted standards with justification |
+| 4. Set the metadata requirements per steady state | Decide which metadata must be complete before data moves to the next steady state. Make this part of the quality gates. | Metadata requirements per steady state |
+| 5. Define metadata governance | Assign ownership of classifications, code lists and variable definitions. Define how changes are proposed, approved and versioned. | Metadata governance model |
+| 6. Decide on exchange and reuse | Decide which metadata the NSI publishes, in which formats, and how it reuses metadata from other organisations. | Metadata exchange policy |
+| 7. Set the roadmap | Order the changes in time. Link each change to the capabilities and value stream stages it improves. | Metadata roadmap |
+| 8. Monitor and review | Monitor metadata indicators, such as the share of datasets with complete metadata (SAF-O2). | Monitoring report; updated strategy |
+
+**Dependencies**
+
+The metadata strategy follows the data strategy and is often a chapter of it. It sets requirements for the application strategy, which selects the tools that store and publish metadata. The AI strategy depends on rich metadata to make the NSI's output usable by AI systems (SAF-D2).
+
+|**PLACEHOLDER: Metadata strategy template and its application to be added to the toolkit**|
+|---|
+
+### Application strategy
+
+**Scope**
+
+The application strategy describes which applications the NSI uses to support its business processes, and how it acquires, develops, manages and retires them. It covers the application portfolio, sourcing choices, life cycle management and the integration between applications. It does not cover the platforms on which applications run (infrastructure and cloud strategies).
+
+**Key questions**
+
+- Which applications support which capabilities and business processes, and which of them are at risk?
+- When does the NSI reuse, use open source, buy or build (SAF-P01)?
+- Which applications does the NSI share with other NSIs or develop together with them?
+- How are applications integrated, and through which standard interfaces?
+- When are applications replaced or retired?
+
+**Starting points in the SAF**
+
+| SAF element | Reference |
+|---|---|
+| Drivers | SAF-D5 Resource constraints and organisational agility; SAF-D1 Evolving data ecosystems and partnerships (open-source collaboration) |
+| Goals | SAF-G1 Cost efficiency and resource sharing; SAF-G3 Modernisation of statistical systems |
+| Outcomes | SAF-O1 Accelerated modernisation; SAF-O5 Increased efficiency |
+| Principles | SAF-P01 Reuse before open source, open source before buying, buying before building; SAF-P02 Active support; SAF-P03 Active life cycle management; SAF-P07 Implement loosely coupled processes and systems |
+| Capabilities | 3.2.1 Application development; 3.2.2 Functional management; 3.2.3 Technical management; 3.1.2 Purchasing and contract management |
+| Value streams | VS-09 Infrastructure and Platform Enablement; VS-08 Innovation and Methodological Development |
+
+**Step-by-step approach**
+
+| Step | What the NSI does | Result |
+|---|---|---|
+| 1. Build the application portfolio | List the applications and link each one to the capabilities and business processes it supports. | Application portfolio linked to the capability model |
+| 2. Assess the portfolio | Assess each application on business fit, technical condition, support status (SAF-P02) and cost. Record applications that are out of support or that duplicate others. | Portfolio assessment |
+| 3. Set the sourcing policy | Translate SAF-P01 into a sourcing policy: when the NSI reuses, uses open source, buys or builds, and who decides. | Sourcing policy |
+| 4. Decide per application | Decide for each application whether to keep, replace, consolidate or retire it. Use capabilities as the basis, so that applications that serve the same capability are compared with each other. | Decision per application |
+| 5. Define integration principles | Set the standards for interfaces between applications (SAF-P07). Decide how applications connect to data platforms and to external parties. | Integration principles and standard interfaces |
+| 6. Identify shared solutions | Identify applications that can be shared with other NSIs or developed together with them (SAF-G1). | Candidates for sharing and joint development |
+| 7. Set the roadmap | Order replacements and retirements in time, taking contract end dates and support end dates into account. | Application roadmap |
+| 8. Monitor and review | Monitor portfolio indicators, such as the number of redundant systems retired (SAF-O5). Review the portfolio at least once a year. | Updated portfolio and roadmap |
+
+**Dependencies**
+
+The application strategy implements the requirements of the data, metadata and AI strategies in concrete applications. It depends on the infrastructure and cloud strategies for where applications can run. The security strategy sets the security requirements that applications must meet.
+
+|**PLACEHOLDER: Application strategy template and its application to be added to the toolkit**|
+|---|
+
+### Infrastructure strategy
+
+**Scope**
+
+The infrastructure strategy describes the technical foundation on which the NSI runs its applications and processes its data. It covers data centres, compute, storage, networks, platforms for data processing, the digital workplace and the operation of these components. It does not cover the choice between deployment models, such as on-premises and cloud (cloud strategy), or the protection of infrastructure against threats (security strategy).
+
+**Key questions**  
+
+- Which infrastructure services does the NSI need to support its value streams, now and in five years?
+- Which infrastructure does the NSI operate itself, and which does it obtain from other government bodies or suppliers?
+- How does the NSI separate environments for statistical production, research and innovation, and business support?
+- Which continuity requirements apply, and how does the infrastructure meet them (SAF-P06)?
+- How does the NSI keep its infrastructure up to date (SAF-P03)?
+
+**Starting points in the SAF**
+
+| SAF element | Reference |
+|---|---|
+| Drivers | SAF-D5 Resource constraints and organisational agility; SAF-D2 Artificial intelligence and technological acceleration |
+| Goals | SAF-G1 Cost efficiency and resource sharing; SAF-G3 Modernisation of statistical systems |
+| Outcomes | SAF-O5 Increased efficiency |
+| Principles | SAF-P03 Active life cycle management; SAF-P06 Business continuity; SAF-P10 Security by design |
+| Constraints | Constraints on where statistical microdata may be processed (see the examples under Constraints) |
+| Capabilities | 3.2.5 IT infrastructure; 3.2.4 Digital workplace management; 3.2.3 Technical management |
+| Value streams | VS-09 Infrastructure and Platform Enablement (in particular VS-09.3 and VS-09.5) |
+
+**Step-by-step approach**
+
+| Step | What the NSI does | Result |
+|---|---|---|
+| 1. Derive infrastructure requirements | Derive requirements from the value streams and from the data, application and AI strategies, such as processing volumes, availability and separation of environments. | Infrastructure requirements (VS-09.1) |
+| 2. Inventory the current infrastructure | List the infrastructure components, their age, support status and the applications that depend on them. | Infrastructure inventory |
+| 3. Assess the gaps | Compare the inventory with the requirements. Record gaps as assessments, such as end-of-support dates or insufficient capacity. | Assessments linked to SAF-D5 |
+| 4. Define the target infrastructure | Describe the target infrastructure as a set of infrastructure services, independent of specific products. Define the separation between production, research and business support environments. | Target infrastructure architecture (VS-09.2) |
+| 5. Decide on sourcing and operation | Decide which services the NSI operates itself and which it obtains from shared government services or suppliers. Align this with the cloud strategy. | Sourcing decisions for infrastructure services |
+| 6. Define continuity and life cycle | Set continuity requirements per service (SAF-P06) and the life cycle policy for each component (SAF-P03). | Continuity and life cycle policy |
+| 7. Set the roadmap | Order the changes in time, taking dependencies with the application roadmap into account. | Infrastructure roadmap (VS-09.6) |
+| 8. Monitor and review | Monitor availability, capacity and support status. Review the strategy when requirements or constraints change. | Monitoring report; updated strategy |
+
+**Dependencies**
+
+The infrastructure strategy follows the requirements of the data, application and AI strategies. It works closely with the cloud strategy: the cloud strategy decides which deployment model applies, the infrastructure strategy describes the services within each model. The security strategy sets the security measures for the infrastructure.
+
+|**PLACEHOLDER: Infrastructure strategy template and its application to be added to the toolkit**|
+|---|
+
+### Cloud strategy
+
+**Scope**
+
+The cloud strategy describes which workloads the NSI may run in which deployment model, and under which conditions. Deployment models include on-premises, private cloud, government cloud, public cloud and combinations of these. The strategy covers the classification of workloads, the conditions for each deployment model, exit and portability, and the skills needed to operate in the cloud. It does not cover the infrastructure services themselves (infrastructure strategy).
+
+**Key questions**
+
+- Which workloads may run in which deployment model, given their sensitivity and the legal framework?
+- Which conditions apply to data location, jurisdiction, encryption and access by the provider?
+- How does the NSI avoid dependence on a single provider, and how does it leave a provider if needed?
+- How does the move to the cloud change costs, skills and the operating model?
+- Which cloud services can the NSI share with other government bodies or NSIs?
+
+**Starting points in the SAF**
+
+| SAF element | Reference |
+|---|---|
+| Drivers | SAF-D4 Uncertain and polarised global environment; SAF-D5 Resource constraints and organisational agility; SAF-D3 Trust, scientific rigour and data protection |
+| Goals | SAF-G1 Cost efficiency and resource sharing; SAF-G3 Modernisation of statistical systems; SAF-G5 Sustainable compliance |
+| Outcomes | SAF-O4 Improved trust and transparency; SAF-O5 Increased efficiency |
+| Principles | SAF-P04 Maximise the benefits for the organisation; SAF-P06 Business continuity; SAF-P10 Security by design; SAF-P11 Privacy by design |
+| Constraints | Constraints on where statistical microdata may be processed and on the use of public cloud (see the examples under Constraints) |
+| Capabilities | 3.2.5 IT infrastructure; 3.3 Security and privacy; 3.1.2 Purchasing and contract management; 3.1.7 Legal support |
+| Value streams | VS-09 Infrastructure and Platform Enablement; VS-07 Governance and Compliance |
+
+**Step-by-step approach**
+
+| Step | What the NSI does | Result |
+|---|---|---|
+| 1. Record the legal and policy framework | List the legal provisions and government policies that limit cloud use, such as rules on data protection, statistical confidentiality and government cloud use. Record them as constraints (see *Legislation and regulation* in the Introduction). | Constraints for cloud use |
+| 2. Classify workloads | Classify workloads by sensitivity, for example statistical microdata, published statistics, research data and business support data. | Workload classification |
+| 3. Set conditions per deployment model | Decide for each class of workload which deployment models are allowed, and under which conditions for data location, jurisdiction, encryption and provider access. | Matrix of workload classes and allowed deployment models |
+| 4. Assess candidate workloads | Assess which workloads benefit from a move, based on cost, scalability, continuity and skills. Not every workload benefits from the cloud. | Assessment per candidate workload |
+| 5. Define exit and portability | Set requirements for portability and an exit plan for each cloud service, so that the NSI can change provider. | Exit and portability requirements |
+| 6. Adjust the operating model | Decide which skills, roles and contracts the NSI needs to manage cloud services, including cost management. | Changes to the operating model and skills plan |
+| 7. Set the roadmap | Order the moves in time, starting with workloads that carry little risk. | Cloud roadmap |
+| 8. Monitor and review | Monitor costs, compliance and dependence on providers. Review the strategy when legislation, government policy or the market changes. | Monitoring report; updated strategy |
+
+The UNECE publication *Cloud for Official Statistics* (see Reference strategies) gives further guidance for this approach.
+
+**Dependencies**
+
+The cloud strategy sets the boundaries within which the infrastructure and application strategies make their choices. It depends on the data strategy for the classification of data, and on the security strategy for the security requirements per deployment model. The AI strategy often depends on the cloud strategy, because some AI services are only offered as cloud services.
+
+|**PLACEHOLDER: Cloud strategy template and its application to be added to the toolkit**|
+|---|
+
+#### Security strategy
+
+**Scope**
+
+The security strategy describes how the NSI protects its information, systems and facilities against threats, and how it detects and responds to incidents. It covers risk management, security governance, security measures across all architecture layers, identity and access management, incident response and security awareness. Privacy and statistical confidentiality are covered in a separate privacy and confidentiality strategy (see the examples above), but the two strategies share the same risk picture.
+
+**Key questions**
+
+- Which information and systems are most critical for the NSI, and which threats apply to them?
+- Which security standards and legal obligations does the NSI follow?
+- How is security embedded in the design of solutions (SAF-P10)?
+- Who has access to which data and systems, and how is access granted, reviewed and withdrawn?
+- How does the NSI detect, respond to and recover from incidents?
+- How does the NSI secure its exchanges with data providers, partners and data spaces?
+
+**Starting points in the SAF**
+
+| SAF element | Reference |
+|---|---|
+| Drivers | SAF-D3 Trust, scientific rigour and data protection; SAF-D4 Uncertain and polarised global environment |
+| Goals | SAF-G5 Sustainable compliance; SAF-G3 Modernisation of statistical systems |
+| Outcomes | SAF-O4 Improved trust and transparency |
+| Value | SAF-V3 Risk reduction; SAF-V6 Trust and legitimacy |
+| Principles | SAF-P10 Security by design; SAF-P06 Business continuity |
+| Capabilities | 3.3.2 Security planning; 3.3.3 Security incident management; 3.3.4 Logical identity and access control; 3.3.5 Physical security and access control; 3.3.6 IT security services |
+| Value streams | VS-07 Governance and Compliance; VS-09.5 Ensure Performance, Security and Continuity |
+
+**Step-by-step approach**
+
+| Step | What the NSI does | Result |
+|---|---|---|
+| 1. Record the legal and normative framework | List the legal obligations and security standards that apply, and record them as constraints and requirements (see *Legislation and regulation* in the Introduction). | Constraints and requirements for security |
+| 2. Identify critical assets | Identify the information, systems and facilities that are most critical, using the data inventory and the application portfolio. | List of critical assets |
+| 3. Analyse risks | Analyse threats and vulnerabilities for the critical assets, and assess the risks. Record the main risks as assessments. | Risk analysis |
+| 4. Define security governance | Assign responsibilities for security, set the risk appetite and define how security decisions are made and reported. | Security governance model |
+| 5. Choose measures per architecture layer | Choose measures for the business, data, application and technology layers, in proportion to the risks. Embed them in reference architectures and quality gates (SAF-P10). | Security measures per layer |
+| 6. Define incident response and continuity | Set up the process to detect, respond to and recover from incidents, and link it to the continuity requirements (SAF-P06). | Incident response and recovery process |
+| 7. Plan awareness and skills | Plan security awareness for all staff and specialist skills for security roles. | Awareness and skills plan |
+| 8. Set the roadmap | Order the measures in time, starting with the highest risks. | Security roadmap |
+| 9. Monitor, test and review | Monitor security indicators, test measures regularly and review the strategy when threats or obligations change. | Monitoring and test reports; updated strategy |
+
+**Dependencies**
+
+The security strategy applies to all other domain strategies. It takes the data inventory from the data strategy and the application portfolio from the application strategy as input. It sets requirements for the infrastructure and cloud strategies, such as conditions per deployment model. It works closely with the privacy and confidentiality strategy, which uses the same risk analysis for personal data and statistical disclosure. It also covers threats that are specific to AI systems, together with the AI strategy.
+
+|**PLACEHOLDER: Security strategy template and its application to be added to the toolkit**|
+|---|
 
 
 
